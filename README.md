@@ -16,19 +16,6 @@ const buttonStyles = {
 }
 ```
 
-```js
-// In
-import tw from 'twin.macro'
-const button = tw.button`bg-purple-700 text-sm`
-
-// Out
-import _styled from '@emotion/styled'
-const Box = _styled.div({
-  backgroundColor: '#6b46c1',
-  fontSize: '0.875rem'
-})
-```
-
 ## Install
 
 #### 1. Install the dependencies
