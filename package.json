@@ -1,0 +1,63 @@
+{
+  "name": "twin.macro",
+  "version": "1.0.0-alpha.1",
+  "description": "Use Tailwind classes within any CSS-in-JS library",
+  "main": "macro.js",
+  "scripts": {
+    "dev": "nodemon --watch src -x \"npm run build:macro\"",
+    "build": "npm run build:all",
+    "build:all": "npm run build:macro && npm run build:util",
+    "build:macro": "microbundle -i src/macro.js -f cjs -o ./macro.js --target node",
+    "build:util": "microbundle -i src/utils.js -f umd -o ./utils.js",
+    "test": "npm run build && jest",
+    "prepublish": "npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "files": [
+    "macro.js",
+    "utils.umd.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ben-rogerson/twin.macro.git"
+  },
+  "keywords": [
+    "glamor",
+    "emotion",
+    "styled-components",
+    "tailwind",
+    "tailwindcss",
+    "css-in-js",
+    "babel-plugin",
+    "babel-plugin-macros"
+  ],
+  "author": "Ben Rogerson <info@benrogerson.com.au> and Brad Cornes <bradlc41@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ben-rogerson/twin.macro/issues"
+  },
+  "homepage": "https://github.com/ben-rogerson/twin.macro#readme",
+  "dependencies": {
+    "@babel/parser": "^7.8.4",
+    "babel-plugin-macros": "^2.8.0",
+    "chalk": "^3.0.0",
+    "dlv": "^1.1.3",
+    "dset": "^2.0.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.8.3",
+    "babel-plugin-tester": "^6.0.1",
+    "glob-all": "^3.1.0",
+    "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "microbundle": "^0.11.0",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "tailwindcss": "^1.2.0"
+  }
+}
