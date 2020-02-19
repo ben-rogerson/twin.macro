@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`tailwind.macro -general.js: -general.js 1`] = `
+exports[`twin.macro -general.js: -general.js 1`] = `
 "
 import tw from './macro'
 
@@ -27,7 +27,7 @@ const BoxExtended = _styled(Box)({
 "
 `;
 
-exports[`tailwind.macro -prop.js: -prop.js 1`] = `
+exports[`twin.macro -prop.js: -prop.js 1`] = `
 "
 import tw from './macro'
 
@@ -75,7 +75,7 @@ const Component3 = () => (
 "
 `;
 
-exports[`tailwind.macro accessibility.js: accessibility.js 1`] = `
+exports[`twin.macro accessibility.js: accessibility.js 1`] = `
 "
 import tw from './macro'
 
@@ -110,7 +110,7 @@ tw\`not-sr-only\`
 "
 `;
 
-exports[`tailwind.macro backgrounds.js: backgrounds.js 1`] = `
+exports[`twin.macro backgrounds.js: backgrounds.js 1`] = `
 "
 import tw from './macro'
 
@@ -1298,7 +1298,7 @@ tw\`rounded-bl-full\`
 "
 `;
 
-exports[`tailwind.macro effects.js: effects.js 1`] = `
+exports[`twin.macro effects.js: effects.js 1`] = `
 "
 import tw from './macro'
 
@@ -1376,7 +1376,7 @@ tw\`opacity-0\`
 "
 `;
 
-exports[`tailwind.macro flexbox.js: flexbox.js 1`] = `
+exports[`twin.macro flexbox.js: flexbox.js 1`] = `
 "
 import tw from './macro'
 
@@ -1615,7 +1615,7 @@ tw\`order-12\`
 "
 `;
 
-exports[`tailwind.macro grid.js: grid.js 1`] = `
+exports[`twin.macro grid.js: grid.js 1`] = `
 "
 import tw from './macro'
 
@@ -2222,7 +2222,7 @@ tw\`grid-flow-col-dense\`
 "
 `;
 
-exports[`tailwind.macro interactivity.js: interactivity.js 1`] = `
+exports[`twin.macro interactivity.js: interactivity.js 1`] = `
 "
 import tw from './macro'
 
@@ -2325,7 +2325,7 @@ tw\`select-auto\`
 "
 `;
 
-exports[`tailwind.macro layout.js: layout.js 1`] = `
+exports[`twin.macro layout.js: layout.js 1`] = `
 "
 import tw from './macro'
 
@@ -2705,7 +2705,7 @@ tw\`z-auto\`
 "
 `;
 
-exports[`tailwind.macro sizing.js: sizing.js 1`] = `
+exports[`twin.macro sizing.js: sizing.js 1`] = `
 "
 import tw from './macro'
 
@@ -3104,7 +3104,7 @@ tw\`max-h-screen\`
 "
 `;
 
-exports[`tailwind.macro spacing.js: spacing.js 1`] = `
+exports[`twin.macro spacing.js: spacing.js 1`] = `
 "
 import tw from './macro'
 
@@ -4829,7 +4829,7 @@ tw\`-ml-px\`
 "
 `;
 
-exports[`tailwind.macro svg.js: svg.js 1`] = `
+exports[`twin.macro svg.js: svg.js 1`] = `
 "
 import tw from './macro'
 
@@ -4867,7 +4867,7 @@ tw\`stroke-2\`
 "
 `;
 
-exports[`tailwind.macro tables.js: tables.js 1`] = `
+exports[`twin.macro tables.js: tables.js 1`] = `
 "
 import tw from './macro'
 
@@ -4898,7 +4898,7 @@ tw\`table-fixed\`
 "
 `;
 
-exports[`tailwind.macro transforms.js: transforms.js 1`] = `
+exports[`twin.macro transforms.js: transforms.js 1`] = `
 "
 import tw from './macro'
 
@@ -5416,7 +5416,7 @@ tw\`origin-top-left\`
 "
 `;
 
-exports[`tailwind.macro transitions.js: transitions.js 1`] = `
+exports[`twin.macro transitions.js: transitions.js 1`] = `
 "
 import tw from './macro'
 
@@ -5511,7 +5511,7 @@ tw\`ease-in-out\`
 "
 `;
 
-exports[`tailwind.macro typography.js: typography.js 1`] = `
+exports[`twin.macro typography.js: typography.js 1`] = `
 "
 import tw from './macro'
 
