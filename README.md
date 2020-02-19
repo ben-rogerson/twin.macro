@@ -114,7 +114,7 @@ yarn add @emotion/core @emotion/styled -D
 // Example.js
 import { css } from '@emotion/core'
 import styled from '@emotion/styled/macro'
-import tw from 'tailwind.macro'
+import tw from 'twin.macro'
 
 const stylesGreen = css(tw`text-green`)
 const Button = () => <button css={stylesGreen}>hello, world</button>
