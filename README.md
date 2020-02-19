@@ -156,7 +156,7 @@ npm i -D @emotion/core @emotion/styled
 
 ```js
 import { css } from 'glamor'
-import tw from 'tailwind.macro'
+import tw from 'twin.macro'
 
 const style = css(tw`font-mono text-sm text-red hover:text-blue`)
 
@@ -172,7 +172,7 @@ const App = () => <div {...style}>hello, world</div>
 ### [Styled-jsx](https://github.com/zeit/styled-jsx)
 
 ```js
-import tw from 'tailwind.macro'
+import tw from 'twin.macro'
 
 const App = () => (
   <div>
