@@ -9,7 +9,7 @@ import replaceWithLocation from './replaceWithLocation'
 import resolveConfig from 'tailwindcss/lib/util/resolveConfig'
 import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
 
-// const UTILS_IMPORT_FILEPATH = 'tailwind.macro/utils.umd'
+// const UTILS_IMPORT_FILEPATH = 'twin.macro/utils.umd'
 const TW_CONFIG_DEFAULT_FILENAME = 'tailwind.config.js'
 
 export default createMacro(twinMacro, { configName: 'twin' })

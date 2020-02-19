@@ -7,7 +7,7 @@ let prettier = require('prettier')
 
 pluginTester({
   plugin,
-  pluginName: 'tailwind.macro',
+  pluginName: 'twin.macro',
   babelOptions: {
     filename: __filename,
     babelrc: true
