@@ -30,7 +30,7 @@ yarn add twin.macro babel-plugin-macros -D
 
 >
 
-### 2. Enable babel macros
+### 2. Enable Babel macros
 
 Twin requires the macros plugin to be added in the babel config:
 
@@ -41,7 +41,21 @@ Twin requires the macros plugin to be added in the babel config:
 }
 ```
 
-### 3. Add a CSS-in-JS library
+### 3. Import the Tailwind reset
+
+You'll need to import the base Tailwind reset as it's needed for the styles to work correctly:
+
+```js
+// js
+import 'tailwindcss/dist/base.css'
+```
+
+```css
+/* css */
+@import '~tailwindcss/dist/base.css';
+```
+
+### 4. Add a CSS-in-JS library
 
 <details>
   <summary>Emotion (default)</summary>
@@ -195,7 +209,7 @@ curl https://raw.githubusercontent.com/tailwindcss/tailwindcss/master/stubs/defa
 In the config, there only needs to be a `theme: {...}` entry so feel free to cleanup.
 
 You can overwrite or extend classes the same way as Tailwind.<br/>
-Overwrite parts of the base config in `theme: { ... }` and xtend in `theme: { extend: { ... } }`.<br/>
+Overwrite parts of the base config in `theme: { ... }` and extend in `theme: { extend: { ... } }`.<br/>
 Read more in the [Tailwind theme docs](https://tailwindcss.com/docs/theme).
 
 </details>
