@@ -8,7 +8,9 @@
 // In
 import tw from 'twin.macro'
 const buttonStyles = tw`bg-purple-700 text-sm`
+```
 
+```js
 // Out
 const buttonStyles = {
   backgroundColor: '#6b46c1',
@@ -18,7 +20,7 @@ const buttonStyles = {
 
 ## Install
 
-#### 1. Install the dependencies
+### 1. Install the dependencies
 
 ```bash
 npm install -D twin.macro babel-plugin-macros
@@ -26,26 +28,157 @@ npm install -D twin.macro babel-plugin-macros
 yarn add twin.macro babel-plugin-macros -D
 ```
 
-#### 2. Enable Babel macros in `.babelrc`
+>
 
-Enable Babel macros by adding "macros" to the plugin configuration:
+### 2. Enable babel macros
+
+Twin requires the macros plugin to be added in the babel config:
 
 ```js
+// In .babelrc
 {
   "plugins": ["macros"]
 }
 ```
 
+### 3. Add a CSS-in-JS library
+
+<details>
+  <summary>Emotion (default)</summary>
+
+## [Emotion](https://github.com/emotion-js/emotion)
+
+#### Getting started
+
+```bash
+npm install -D @emotion/core @emotion/styled
+# or
+yarn add @emotion/core @emotion/styled -D
+```
+
+#### Basic example
+
+```js
+import tw from 'twin.macro'
+import { css } from '@emotion/core'
+
+const style = css(tw`font-mono text-sm text-red-500 hover:text-blue-500`)
+
+const Button = () => <button {...style}>Success</button>
+```
+
+#### React example
+
+```js
+import React from 'react'
+import tw from 'twin.macro'
+import styled from '@emotion/styled/macro'
+import { css } from '@emotion/core'
+
+// Use the tw operator to create elements and style them,
+// this will keep your classes on a single line.
+const BtnPrimary = tw.button`text-white hover:focus:bg-black`
+
+// When you need to use vanilla css then use styled to create
+// the element and use tw inside the backticks to add your classes.
+const BtnSecondary = styled.button`
+  ${tw`text-white bg-blue-500`}
+  &:hover, &:focus {
+    ${tw`bg-black`}
+  }
+`
+
+// When working with conditional props in styled you can use tw or css
+// This example passes in the props to be used anywhere within the backticks
+const BtnTertiary = styled.button(
+  ({ isSmall, isExtraPadded }) => css`
+    font-size: 1em;
+    ${isSmall && tw`text-sm`}
+
+    ${isExtraPadded
+      ? tw`px-12 py-8`
+      : css`
+          padding: 5px 10px;
+        `}
+  `
+)
+
+// Alternatively, props can also be passed in on the line you need them
+const BtnTertiary = styled.button`
+  // These two lines are equivalent:
+  ${({ isSmall }) => isSmall && tw`text-sm`}
+  ${props => props.isSmall && tw`text-sm`}
+`
+
+const ButtonSet = () => (
+  <>
+    <BtnPrimary>Submit</BtnPrimary>
+    <BtnSecondary>Cancel</BtnSecondary>
+    <BtnTertiary isSmall isExtraPadded>
+      Cancel
+    </BtnTertiary>
+  </>
+)
+```
+
+<hr />
+
+</details>
+
+<details>
+  <summary>Glamor</summary>
+
+### [Glamor](https://github.com/threepointone/glamor)
+
+```js
+import { css } from 'glamor'
+import tw from 'twin.macro'
+
+const style = css(tw`font-mono text-sm text-red-500 hover:text-blue-500`)
+
+const App = () => <div {...style}>Success</div>
+```
+
+<hr />
+</details>
+
+<details>
+  <summary>Styled-jsx</summary>
+
+### [Styled-jsx](https://github.com/zeit/styled-jsx)
+
+```js
+import tw from 'twin.macro'
+
+const App = () => (
+  <div>
+    <button className="button">Success</button>
+    <style jsx>{`
+      .button {
+        ${tw`font-mono text-sm text-red-500 hover:text-blue-500`}
+      }
+    `}</style>
+  </div>
+)
+```
+
+When used inside a `<style>` element the tagged template literal (``) is transformed into a CSS string.
+
+Also, when using `hover:*`, `focus:*`, or media query (e.g. `sm:*`) class names the output is nested. Use [styled-jsx-plugin-postcss](https://github.com/giuseppeg/styled-jsx-plugin-postcss) and [postcss-nested](https://github.com/postcss/postcss-nested) to allow nesting.
+
+<hr />
+</details>
+
 ## Configation
 
 <details>
-  <summary>Customise the classes</summary>
+  <summary>Customise the tailwind classes</summary>
 <br>
 
 > It’s important to know that you don’t need a `tailwind.config.js` to use Twin. You already have access to every class with every variant.
 > Unlike Tailwind, twin.macro only generates styles for the classes you use. This means you don’t need to use additional tools like purgeCSS.
 
-Customising classes is done in `tailwind.config.js`.<br/>Here's two types of configs to get you started.:<br/>
+Customising classes is done in `tailwind.config.js`.<br/>Here's two types of configs to get you started:<br/>
 
 a) Add the [simple config](https://raw.githubusercontent.com/tailwindcss/tailwindcss/master/stubs/simpleConfig.stub.js)
 
@@ -73,134 +206,38 @@ Read more in the [Tailwind theme docs](https://tailwindcss.com/docs/theme).
 
 Create a `babel-plugin-macros.config.js` in your project root to configure twin.macro.
 
-`config`: path to your Tailwind config file. Defaults to `"./tailwind.config.js"`
-
-`format`: CSS output format. `"object"`, `"string"`, or `"auto"` (default) – `"auto"` will cause the output to be an object except when inside a `<style>` element.
-
-`debug`: Displays information about the Tailwind class conversions.
-
 ```js
 // babel-plugin-macros.config.js
 module.exports = {
   twin: {
-    config: "./path/to/tailwind.config.js", // Default: "./tailwind.config.js"
-    styled: "@emotion/styled", // Default: "@emotion/styled"
-    format: "auto" // Options: "string", "auto"
-    debug: true
+    config: './tailwind.config.js',
+    styled: '@emotion/styled',
+    format: 'auto',
+    debug: false
   }
 }
 ```
 
-</details>
+| Name   | Type      | Default                  | Description                                                                                                            |
+| ------ | --------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| config | `string`  | `"./tailwind.config.js"` | The path to your tailwind config                                                                                       |
+| styled | `string`  | `"@emotion/styled"`      | The css-in-js library to import behind the scenes when using `tw`                                                      |
+| format | `string`  | `"auto"`                 | CSS output format. Output can be an object except when inside a `<style>` element. `"object"`, `"string"`, or `"auto"` |
+| debug  | `boolean` | `false`                  | Display information about the Tailwind class conversions                                                               |
 
-## Examples
-
-<details>
-  <summary>Emotion &amp; Styled Components (recommended)</summary>
-
-### [Emotion](https://github.com/emotion-js/emotion) and [Styled Components](https://github.com/styled-components/styled-components)
-
-#### Install the dependencies
-
-```bash
-npm install -D @emotion/core @emotion/styled
-# or
-yarn add @emotion/core @emotion/styled -D
-```
-
-#### Inline css prop example
-
-```js
-// Example.js
-import { css } from '@emotion/core'
-import styled from '@emotion/styled/macro'
-import tw from 'twin.macro'
-
-const stylesGreen = css(tw`text-green`)
-const Button = () => <button css={stylesGreen}>hello, world</button>
-```
-
-####
-
-```js
-const ButtonPrimary = tw.button`text-white bg-green hover:bg-black focus:bg-black`
-const ButtonSecondary = styled.button`
-  ${tw`bg-red`}
-  &:hover, &:focus {
-    ${tw`bg-black`}
-  }
-`
-
-const ButtonSet = () => (
-  <>
-    <ButtonPrimary>Submit</ButtonPrimary>
-    <ButtonSecondary>Cancel</ButtonSecondary>
-  </>
-)
-```
-
-_Note: the `css` prop requires [babel-plugin-emotion](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion)._
-
-```bash
-npm i -D @emotion/core @emotion/styled
-```
-
-<hr />
-
-</details>
-
-<details>
-  <summary>Glamor</summary>
-
-### [Glamor](https://github.com/threepointone/glamor)
-
-```js
-import { css } from 'glamor'
-import tw from 'twin.macro'
-
-const style = css(tw`font-mono text-sm text-red hover:text-blue`)
-
-const App = () => <div {...style}>hello, world</div>
-```
-
-<hr />
-</details>
-
-<details>
-  <summary>Styled-jsx</summary>
-
-### [Styled-jsx](https://github.com/zeit/styled-jsx)
-
-```js
-import tw from 'twin.macro'
-
-const App = () => (
-  <div>
-    <div className="foo">hello, world</div>
-    <style jsx>{`
-      .foo {
-        ${tw`font-mono text-sm text-red hover:text-blue`}
-      }
-    `}</style>
-  </div>
-)
-```
-
-When used inside a `<style>` element the tagged template literal (``) is transformed into a CSS string.
-
-Also, when using `hover:*`, `focus:*`, or media query (e.g. `sm:*`) class names the output is nested. Use [styled-jsx-plugin-postcss](https://github.com/giuseppeg/styled-jsx-plugin-postcss) and [postcss-nested](https://github.com/postcss/postcss-nested) to allow nesting.
-
-<hr />
 </details>
 
 ## Roadmap
 
-- Support the container class
+- Support the `transform` class
+- Support the `container` class
 - Improve vanilla css usage alongside the `tw` macro
 - Add instructions on how to setup css syntax highlighting
+- Add `!important` styling
+- Improve and add more usage examples
 - Have an idea? I’d love to hear it [in an issue](https://github.com/ben-rogerson/twin.macro/issues)
 
-## Quick picks
+## Sick picks
 
 - [Nerdcave's Tailwind cheat sheet](https://nerdcave.com/tailwind-cheat-sheet)
 - [Tailwind documentation](https://tailwindcss.com/docs/installation)
