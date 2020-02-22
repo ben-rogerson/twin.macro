@@ -28,8 +28,6 @@ npm install -D twin.macro babel-plugin-macros
 yarn add twin.macro babel-plugin-macros -D
 ```
 
->
-
 ### 2. Enable Babel macros
 
 Twin requires the macros plugin to be added in the babel config:
