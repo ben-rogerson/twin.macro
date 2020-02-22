@@ -243,13 +243,15 @@ module.exports = {
 
 ## Roadmap
 
-- Support the `transform` class
-- Support the `container` class
-- Improve vanilla css usage alongside the `tw` macro
-- Add instructions on how to setup css syntax highlighting
-- Add `!important` styling
-- Improve and add more usage examples
-- Have an idea? I’d love to hear it [in an issue](https://github.com/ben-rogerson/twin.macro/issues)
+- [ ] Add a media query helper
+- [ ] Improve vanilla css usage alongside the `tw` macro
+- [ ] Add instructions on how to setup css syntax highlighting
+- [ ] Improve and add more usage examples
+- [ ] Support the `container` class
+- [ ] Have an idea? I’d love to hear it [in an issue](https://github.com/ben-rogerson/twin.macro/issues)
+- [x] ~~Support the `transform` class~~
+- [x] ~~Add `!important` styling~~<br/>Add a `!` at the end of your classes<br/>eg: `hidden!` > `display: hidden !important;`
+- [x] ~~Add `hocus:` variant which combines `hover:` and `focus:`~~<br/>eg: `hocus:bg-red-500` > `:hover,:focus { color: #F56565 }`
 
 ## Sick picks
 
