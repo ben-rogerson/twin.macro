@@ -37,7 +37,7 @@ Twin requires the macros plugin to be added in the babel config:
 ```js
 // In .babelrc
 {
-  "plugins": ["macros"]
+  "plugins": ["babel-plugin-macros"]
 }
 ```
 
@@ -91,13 +91,13 @@ import { css } from '@emotion/core'
 
 // Use the tw operator to create elements and style them,
 // this will keep your classes on a single line.
-const BtnPrimary = tw.button`text-white hover:focus:bg-black`
+const BtnPrimary = tw.button`text-white hover:bg-black`
 
 // When you need to use vanilla css then use styled to create
 // the element and use tw inside the backticks to add your classes.
 const BtnSecondary = styled.button`
   ${tw`text-white bg-blue-500`}
-  &:hover, &:focus {
+  &:hover {
     ${tw`bg-black`}
   }
 `
