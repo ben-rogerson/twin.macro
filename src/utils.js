@@ -1,6 +1,6 @@
 import resolveTailwindConfig from 'tailwindcss/lib/util/resolveConfig'
 import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
-import showError from './showError'
+import { logNoClass } from './logging'
 import dlv from 'dlv'
 
 let resolvedConfig
@@ -120,7 +120,7 @@ export function resolveStyle(props) {
       x => x && Object.values(x)[0] !== undefined
     )
     if (!results) {
-      return showError(className)
+      throw new Error(logNoClass(className))
     }
     return results
   }
@@ -128,11 +128,11 @@ export function resolveStyle(props) {
   if (typeof styleList === 'object') {
     const results = resolve(styleList, ...props)
     if (!results) {
-      return showError(className)
+      throw new Error(logNoClass(className))
     }
     const resultLength = Object.keys(results).length
     if (!resultLength) {
-      return showError(className)
+      throw new Error(logNoClass(className))
     }
     return results
   }
@@ -167,6 +167,7 @@ function resolve(opt, { config, key, className, prefix }) {
       : [className]
 
   let index = 0
+  // Match parts of the classname against the config
   for (const item of Object.entries(classParts)) {
     const [index, part] = item
     const partFound = Object.keys(findKey).includes(part)
