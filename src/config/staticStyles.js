@@ -1,4 +1,4 @@
-let staticStyles = {
+const staticStyles = {
   /**
    * ===========================================
    * Layout

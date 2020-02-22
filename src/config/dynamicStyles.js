@@ -1,4 +1,4 @@
-let dynamicStyles = {
+const dynamicStyles = {
   /**
    * ===========================================
    * Layout
@@ -26,16 +26,9 @@ let dynamicStyles = {
   bottom: { prop: 'bottom', config: 'inset' },
   right: { prop: 'right', config: 'inset' },
   left: { prop: 'left', config: 'inset' },
-  '-top': { prop: 'top', config: 'inset' },
-  '-bottom': { prop: 'bottom', config: 'inset' },
-  '-right': { prop: 'right', config: 'inset' },
-  '-left': { prop: 'left', config: 'inset' },
   'inset-y': { prop: ['top', 'bottom'], config: 'inset' },
   'inset-x': { prop: ['left', 'right'], config: 'inset' },
   inset: { prop: ['top', 'right', 'bottom', 'left'], config: 'inset' },
-  '-inset-y': { prop: ['top', 'bottom'], config: 'inset' },
-  '-inset-x': { prop: ['left', 'right'], config: 'inset' },
-  '-inset': { prop: ['top', 'right', 'bottom', 'left'], config: 'inset' },
 
   // https://tailwindcss.com/docs/visibility
   // See staticStyles.js
@@ -116,13 +109,6 @@ let dynamicStyles = {
   mx: { prop: ['marginLeft', 'marginRight'], config: 'margin' },
   my: { prop: ['marginTop', 'marginBottom'], config: 'margin' },
   m: { prop: 'margin', config: 'margin' },
-  '-mt': { prop: 'marginTop', config: 'margin' },
-  '-mr': { prop: 'marginRight', config: 'margin' },
-  '-mb': { prop: 'marginBottom', config: 'margin' },
-  '-ml': { prop: 'marginLeft', config: 'margin' },
-  '-mx': { prop: ['marginLeft', 'marginRight'], config: 'margin' },
-  '-my': { prop: ['marginTop', 'marginBottom'], config: 'margin' },
-  '-m': { prop: 'margin', config: 'margin' },
 
   /**
    * ===========================================
@@ -314,7 +300,6 @@ let dynamicStyles = {
 
   // https://tailwindcss.com/docs/rotate
   rotate: { prop: '--transform-rotate', config: 'rotate' },
-  '-rotate': { prop: '--transform-rotate', config: 'rotate' },
 
   // https://tailwindcss.com/docs/translate
   'translate-x': { prop: '--transform-translate-x', config: 'translate' },
@@ -323,8 +308,6 @@ let dynamicStyles = {
   // https://tailwindcss.com/docs/skew
   'skew-x': { prop: '--transform-skew-x', config: 'skew' },
   'skew-y': { prop: '--transform-skew-y', config: 'skew' },
-  '-skew-x': { prop: '--transform-skew-x', config: 'skew' },
-  '-skew-y': { prop: '--transform-skew-y', config: 'skew' },
 
   // https://tailwindcss.com/docs/transform-origin
   origin: { prop: 'transform-origin', config: 'transformOrigin' },
