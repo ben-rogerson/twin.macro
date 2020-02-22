@@ -5,10 +5,20 @@ exports[`twin.macro -general.js: -general.js 1`] = `
 import tw from './macro'
 
 const styles = tw\`uppercase\`
+const Box = tw.div\`text-red-500\`
+const BoxExtended = tw(Box)\`bg-blue-500\`
 
-const Box = tw.div\`uppercase\`
+// Media queries
 
-const BoxExtended = tw(Box)\`flex\`
+const styles2 = tw\`lg:uppercase\`
+const Box2 = tw.div\`lg:text-red-500\`
+const BoxExtended2 = tw(Box2)\`lg:bg-blue-500\`
+
+// Important
+
+const styles3 = tw\`lg:uppercase!\`
+const Box3 = tw.div\`lg:text-red-500!\`
+const BoxExtended3 = tw(Box3)\`lg:bg-blue-500!\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -18,11 +28,47 @@ const styles = {
 }
 
 const Box = _styled.div({
-  textTransform: 'uppercase'
+  color: '#f56565'
 })
 
 const BoxExtended = _styled(Box)({
-  display: 'flex'
+  backgroundColor: '#4299e1'
+}) // Media queries
+
+const styles2 = {
+  '@media (min-width: 1024px)': {
+    textTransform: 'uppercase'
+  }
+}
+
+const Box2 = _styled.div({
+  '@media (min-width: 1024px)': {
+    color: '#f56565'
+  }
+})
+
+const BoxExtended2 = _styled(Box2)({
+  '@media (min-width: 1024px)': {
+    backgroundColor: '#4299e1'
+  }
+}) // Important
+
+const styles3 = {
+  '@media (min-width: 1024px)': {
+    textTransform: 'uppercase !important'
+  }
+}
+
+const Box3 = _styled.div({
+  '@media (min-width: 1024px)': {
+    color: '#f56565 !important'
+  }
+})
+
+const BoxExtended3 = _styled(Box3)({
+  '@media (min-width: 1024px)': {
+    backgroundColor: '#4299e1 !important'
+  }
 })
 "
 `;
@@ -4963,26 +5009,26 @@ tw\`translate-x-48\`
 tw\`translate-x-56\`
 tw\`translate-x-64\`
 tw\`translate-x-px\`
-// tw\`-translate-x-1\`
-// tw\`-translate-x-2\`
-// tw\`-translate-x-3\`
-// tw\`-translate-x-4\`
-// tw\`-translate-x-5\`
-// tw\`-translate-x-6\`
-// tw\`-translate-x-8\`
-// tw\`-translate-x-10\`
-// tw\`-translate-x-12\`
-// tw\`-translate-x-16\`
-// tw\`-translate-x-20\`
-// tw\`-translate-x-24\`
-// tw\`-translate-x-32\`
-// tw\`-translate-x-40\`
-// tw\`-translate-x-48\`
-// tw\`-translate-x-56\`
-// tw\`-translate-x-64\`
-// tw\`-translate-x-px\`
-// tw\`-translate-x-full\`
-// tw\`-translate-x-1/2\`
+tw\`-translate-x-1\`
+tw\`-translate-x-2\`
+tw\`-translate-x-3\`
+tw\`-translate-x-4\`
+tw\`-translate-x-5\`
+tw\`-translate-x-6\`
+tw\`-translate-x-8\`
+tw\`-translate-x-10\`
+tw\`-translate-x-12\`
+tw\`-translate-x-16\`
+tw\`-translate-x-20\`
+tw\`-translate-x-24\`
+tw\`-translate-x-32\`
+tw\`-translate-x-40\`
+tw\`-translate-x-48\`
+tw\`-translate-x-56\`
+tw\`-translate-x-64\`
+tw\`-translate-x-px\`
+tw\`-translate-x-full\`
+tw\`-translate-x-1/2\`
 tw\`translate-x-1/2\`
 tw\`translate-x-full\`
 tw\`translate-y-0\`
@@ -5004,28 +5050,28 @@ tw\`translate-y-48\`
 tw\`translate-y-56\`
 tw\`translate-y-64\`
 tw\`translate-y-px\`
-// tw\`-translate-y-1\`
-// tw\`-translate-y-2\`
-// tw\`-translate-y-3\`
-// tw\`-translate-y-4\`
-// tw\`-translate-y-5\`
-// tw\`-translate-y-6\`
-// tw\`-translate-y-8\`
-// tw\`-translate-y-10\`
-// tw\`-translate-y-12\`
-// tw\`-translate-y-16\`
-// tw\`-translate-y-20\`
-// tw\`-translate-y-24\`
-// tw\`-translate-y-32\`
-// tw\`-translate-y-40\`
-// tw\`-translate-y-48\`
-// tw\`-translate-y-56\`
-// tw\`-translate-y-64\`
-// tw\`-translate-y-px\`
-// tw\`-translate-y-full\`
-// tw\`-translate-y-1/2\`
-// tw\`translate-y-1/2\`
-// tw\`translate-y-full\`
+tw\`-translate-y-1\`
+tw\`-translate-y-2\`
+tw\`-translate-y-3\`
+tw\`-translate-y-4\`
+tw\`-translate-y-5\`
+tw\`-translate-y-6\`
+tw\`-translate-y-8\`
+tw\`-translate-y-10\`
+tw\`-translate-y-12\`
+tw\`-translate-y-16\`
+tw\`-translate-y-20\`
+tw\`-translate-y-24\`
+tw\`-translate-y-32\`
+tw\`-translate-y-40\`
+tw\`-translate-y-48\`
+tw\`-translate-y-56\`
+tw\`-translate-y-64\`
+tw\`-translate-y-px\`
+tw\`-translate-y-full\`
+tw\`-translate-y-1/2\`
+tw\`translate-y-1/2\`
+tw\`translate-y-full\`
 
 // https://tailwindcss.com/docs/skew
 tw\`skew-x-0\`
@@ -5236,27 +5282,67 @@ tw\`origin-top-left\`
 })
 ;({
   '--transform-translate-x': '1px'
-}) // tw\`-translate-x-1\`
-// tw\`-translate-x-2\`
-// tw\`-translate-x-3\`
-// tw\`-translate-x-4\`
-// tw\`-translate-x-5\`
-// tw\`-translate-x-6\`
-// tw\`-translate-x-8\`
-// tw\`-translate-x-10\`
-// tw\`-translate-x-12\`
-// tw\`-translate-x-16\`
-// tw\`-translate-x-20\`
-// tw\`-translate-x-24\`
-// tw\`-translate-x-32\`
-// tw\`-translate-x-40\`
-// tw\`-translate-x-48\`
-// tw\`-translate-x-56\`
-// tw\`-translate-x-64\`
-// tw\`-translate-x-px\`
-// tw\`-translate-x-full\`
-// tw\`-translate-x-1/2\`
-
+})
+;({
+  '--transform-translate-x': '-0.25rem'
+})
+;({
+  '--transform-translate-x': '-0.5rem'
+})
+;({
+  '--transform-translate-x': '-0.75rem'
+})
+;({
+  '--transform-translate-x': '-1rem'
+})
+;({
+  '--transform-translate-x': '-1.25rem'
+})
+;({
+  '--transform-translate-x': '-1.5rem'
+})
+;({
+  '--transform-translate-x': '-2rem'
+})
+;({
+  '--transform-translate-x': '-2.5rem'
+})
+;({
+  '--transform-translate-x': '-3rem'
+})
+;({
+  '--transform-translate-x': '-4rem'
+})
+;({
+  '--transform-translate-x': '-5rem'
+})
+;({
+  '--transform-translate-x': '-6rem'
+})
+;({
+  '--transform-translate-x': '-8rem'
+})
+;({
+  '--transform-translate-x': '-10rem'
+})
+;({
+  '--transform-translate-x': '-12rem'
+})
+;({
+  '--transform-translate-x': '-14rem'
+})
+;({
+  '--transform-translate-x': '-16rem'
+})
+;({
+  '--transform-translate-x': '-1px'
+})
+;({
+  '--transform-translate-x': '-100%'
+})
+;({
+  '--transform-translate-x': '-50%'
+})
 ;({
   '--transform-translate-x': '50%'
 })
@@ -5319,29 +5405,73 @@ tw\`origin-top-left\`
 })
 ;({
   '--transform-translate-y': '1px'
-}) // tw\`-translate-y-1\`
-// tw\`-translate-y-2\`
-// tw\`-translate-y-3\`
-// tw\`-translate-y-4\`
-// tw\`-translate-y-5\`
-// tw\`-translate-y-6\`
-// tw\`-translate-y-8\`
-// tw\`-translate-y-10\`
-// tw\`-translate-y-12\`
-// tw\`-translate-y-16\`
-// tw\`-translate-y-20\`
-// tw\`-translate-y-24\`
-// tw\`-translate-y-32\`
-// tw\`-translate-y-40\`
-// tw\`-translate-y-48\`
-// tw\`-translate-y-56\`
-// tw\`-translate-y-64\`
-// tw\`-translate-y-px\`
-// tw\`-translate-y-full\`
-// tw\`-translate-y-1/2\`
-// tw\`translate-y-1/2\`
-// tw\`translate-y-full\`
-// https://tailwindcss.com/docs/skew
+})
+;({
+  '--transform-translate-y': '-0.25rem'
+})
+;({
+  '--transform-translate-y': '-0.5rem'
+})
+;({
+  '--transform-translate-y': '-0.75rem'
+})
+;({
+  '--transform-translate-y': '-1rem'
+})
+;({
+  '--transform-translate-y': '-1.25rem'
+})
+;({
+  '--transform-translate-y': '-1.5rem'
+})
+;({
+  '--transform-translate-y': '-2rem'
+})
+;({
+  '--transform-translate-y': '-2.5rem'
+})
+;({
+  '--transform-translate-y': '-3rem'
+})
+;({
+  '--transform-translate-y': '-4rem'
+})
+;({
+  '--transform-translate-y': '-5rem'
+})
+;({
+  '--transform-translate-y': '-6rem'
+})
+;({
+  '--transform-translate-y': '-8rem'
+})
+;({
+  '--transform-translate-y': '-10rem'
+})
+;({
+  '--transform-translate-y': '-12rem'
+})
+;({
+  '--transform-translate-y': '-14rem'
+})
+;({
+  '--transform-translate-y': '-16rem'
+})
+;({
+  '--transform-translate-y': '-1px'
+})
+;({
+  '--transform-translate-y': '-100%'
+})
+;({
+  '--transform-translate-y': '-50%'
+})
+;({
+  '--transform-translate-y': '50%'
+})
+;({
+  '--transform-translate-y': '100%'
+}) // https://tailwindcss.com/docs/skew
 
 ;({
   '--transform-skew-x': '0'

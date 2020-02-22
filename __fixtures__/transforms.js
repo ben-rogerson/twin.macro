@@ -61,26 +61,26 @@ tw`translate-x-48`
 tw`translate-x-56`
 tw`translate-x-64`
 tw`translate-x-px`
-// tw`-translate-x-1`
-// tw`-translate-x-2`
-// tw`-translate-x-3`
-// tw`-translate-x-4`
-// tw`-translate-x-5`
-// tw`-translate-x-6`
-// tw`-translate-x-8`
-// tw`-translate-x-10`
-// tw`-translate-x-12`
-// tw`-translate-x-16`
-// tw`-translate-x-20`
-// tw`-translate-x-24`
-// tw`-translate-x-32`
-// tw`-translate-x-40`
-// tw`-translate-x-48`
-// tw`-translate-x-56`
-// tw`-translate-x-64`
-// tw`-translate-x-px`
-// tw`-translate-x-full`
-// tw`-translate-x-1/2`
+tw`-translate-x-1`
+tw`-translate-x-2`
+tw`-translate-x-3`
+tw`-translate-x-4`
+tw`-translate-x-5`
+tw`-translate-x-6`
+tw`-translate-x-8`
+tw`-translate-x-10`
+tw`-translate-x-12`
+tw`-translate-x-16`
+tw`-translate-x-20`
+tw`-translate-x-24`
+tw`-translate-x-32`
+tw`-translate-x-40`
+tw`-translate-x-48`
+tw`-translate-x-56`
+tw`-translate-x-64`
+tw`-translate-x-px`
+tw`-translate-x-full`
+tw`-translate-x-1/2`
 tw`translate-x-1/2`
 tw`translate-x-full`
 tw`translate-y-0`
@@ -102,28 +102,28 @@ tw`translate-y-48`
 tw`translate-y-56`
 tw`translate-y-64`
 tw`translate-y-px`
-// tw`-translate-y-1`
-// tw`-translate-y-2`
-// tw`-translate-y-3`
-// tw`-translate-y-4`
-// tw`-translate-y-5`
-// tw`-translate-y-6`
-// tw`-translate-y-8`
-// tw`-translate-y-10`
-// tw`-translate-y-12`
-// tw`-translate-y-16`
-// tw`-translate-y-20`
-// tw`-translate-y-24`
-// tw`-translate-y-32`
-// tw`-translate-y-40`
-// tw`-translate-y-48`
-// tw`-translate-y-56`
-// tw`-translate-y-64`
-// tw`-translate-y-px`
-// tw`-translate-y-full`
-// tw`-translate-y-1/2`
-// tw`translate-y-1/2`
-// tw`translate-y-full`
+tw`-translate-y-1`
+tw`-translate-y-2`
+tw`-translate-y-3`
+tw`-translate-y-4`
+tw`-translate-y-5`
+tw`-translate-y-6`
+tw`-translate-y-8`
+tw`-translate-y-10`
+tw`-translate-y-12`
+tw`-translate-y-16`
+tw`-translate-y-20`
+tw`-translate-y-24`
+tw`-translate-y-32`
+tw`-translate-y-40`
+tw`-translate-y-48`
+tw`-translate-y-56`
+tw`-translate-y-64`
+tw`-translate-y-px`
+tw`-translate-y-full`
+tw`-translate-y-1/2`
+tw`translate-y-1/2`
+tw`translate-y-full`
 
 // https://tailwindcss.com/docs/skew
 tw`skew-x-0`
