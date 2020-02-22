@@ -43,7 +43,7 @@ export default function getStyles(str, t, state) {
 
       // Exit early if no className is found in both configs
       if (!staticStyleKey && !dynamicStyleKey) {
-        throw new Error(logNoClass(className))
+        throw new Error(logNoClass({ className }))
       }
 
       // Match the filtered modifiers
@@ -94,6 +94,7 @@ export default function getStyles(str, t, state) {
             styleList: dynamicStyleset,
             key,
             className,
+            matchedKey: dynamicKey,
             prefix: hasNegative ? '-' : ''
           })
         : {

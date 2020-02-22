@@ -112,7 +112,10 @@ function checkNewStyle({ config, key, prop }) {
 }
 
 export function resolveStyle(props) {
-  const { styleList, key, className } = props
+  const { styleList, key, className, config, matchedKey } = props
+  // Get data for error messages
+  const configFound = dlv(config, ['theme', styleList.config])
+  const errorProps = { className, matchedKey, config: configFound }
   // Deal with Array items like 'font' or 'bg'
   if (Array.isArray(styleList)) {
     const resultsRaw = styleList.map(item => resolve(item, ...props))
@@ -120,7 +123,7 @@ export function resolveStyle(props) {
       x => x && Object.values(x)[0] !== undefined
     )
     if (!results) {
-      throw new Error(logNoClass(className))
+      throw new Error(logNoClass(errorProps))
     }
     return results
   }
@@ -128,11 +131,11 @@ export function resolveStyle(props) {
   if (typeof styleList === 'object') {
     const results = resolve(styleList, ...props)
     if (!results) {
-      throw new Error(logNoClass(className))
+      throw new Error(logNoClass(errorProps))
     }
     const resultLength = Object.keys(results).length
     if (!resultLength) {
-      throw new Error(logNoClass(className))
+      throw new Error(logNoClass(errorProps))
     }
     return results
   }
