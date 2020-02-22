@@ -1,138 +1,22 @@
-import dset from 'dset'
 import dlv from 'dlv'
-import chalk from 'chalk'
-import staticStyles from './config/staticStyles'
-import dynamicStyles from './config/dynamicStyles'
-import { stringifyScreen, resolveStyle } from './utils'
-import showError from './showError'
+import { staticStyles, dynamicStyles } from './config'
+import { resolveStyle } from './utils'
 import astify from './astify'
 import assignify from './assignify'
-
-/**
- * Get the variant(s) from the className
- */
-const splitVariants = className => {
-  let modifiers = []
-  let modifier
-  while (modifier !== null) {
-    modifier = className.match(/^([a-z-_]+):/i)
-    if (modifier) {
-      className = className.substr(modifier[0].length)
-      modifiers.push(modifier[1])
-    }
-  }
-  return { className, modifiers }
-}
-
-/**
- * Merge the modifiers
- */
-const mergeVariants = ({ variants, objBase, objToMerge }) => {
-  if (!objToMerge) return objBase
-  if (!variants.length) {
-    return {
-      ...objBase,
-      ...objToMerge
-    }
-  }
-  // TODO: Replace dset
-  dset(objBase, variants, {
-    ...dlv(objBase, variants, {}),
-    ...objToMerge
-  })
-  return objBase
-}
-
-/**
- * Validate modifiers against the variants config key
- */
-const validateVariants = ({ modifiers, state }) => {
-  if (!modifiers) return []
-
-  const availableModifiers = [
-    'group',
-    'group-hover',
-    'focus-within',
-    'first',
-    'last',
-    'odd',
-    'even',
-    'hover',
-    'focus',
-    'active',
-    'visited',
-    'disabled'
-  ]
-  const themeScreens = dlv(state.config, ['theme', 'screens'])
-  const themeScreenKeys = Object.keys(themeScreens)
-  const validModifiers = [...availableModifiers, ...themeScreenKeys]
-
-  return modifiers
-    .map(mod => {
-      if (mod === 'group') {
-        return '.group &'
-      }
-      if (mod === 'group-hover') {
-        return '.group:hover &'
-      }
-      if (mod === 'focus-within') {
-        return ':focus-within'
-      }
-      if (mod === 'first') {
-        return ':first-child'
-      }
-      if (mod === 'last') {
-        return ':last-child'
-      }
-      if (mod === 'odd') {
-        return ':nth-child(odd)'
-      }
-      if (mod === 'even') {
-        return ':nth-child(even)'
-      }
-
-      // Get theme screen
-      const isModResponsive = themeScreenKeys && themeScreenKeys.includes(mod)
-
-      if (isModResponsive) {
-        const isModResponsiveAllowed = validModifiers.includes(mod)
-        if (isModResponsiveAllowed) {
-          return state.isProd
-            ? stringifyScreen(state.config, mod)
-            : '__computed__' +
-                state.tailwindUtilsIdentifier.name +
-                '.stringifyScreen(' +
-                state.tailwindConfigIdentifier.name +
-                ', "' +
-                mod +
-                '")'
-        }
-      }
-      if (validModifiers.includes(mod)) {
-        return `:${mod}`
-      }
-
-      throw new Error(
-        `\n\nThe variant "${mod}" is unavailable.\n\nAvailable variants:\n${validModifiers
-          .map(i => `${i}:`)
-          .join(`${chalk.hex('#a0aec0')(',')} `)}\n\n`
-      )
-    })
-    .filter(Boolean)
-}
+import splitter from './splitter'
+import { mergeVariants, validateVariants } from './variants'
+import { mergeImportant } from './important'
+import { logInOut, logNoClass, logNoTrailingDash } from './logging'
 
 export default function getStyles(str, t, state) {
   const styles = (str.match(/\S+/g) || []).reduce(
     (acc, classNameRaw, index) => {
-      // Exit early
       if (classNameRaw.endsWith('-')) {
-        return showError(classNameRaw)
+        throw new Error(logNoTrailingDash(classNameRaw))
       }
-
-      // Extract the modifiers
-      const { className, modifiers } = splitVariants(classNameRaw)
-
-      const hasNegativeValue = className.slice(0, 1) === '-'
+      const { className, modifiers, hasImportant, hasNegative } = splitter(
+        classNameRaw
+      )
 
       const staticConfig = dlv(staticStyles, [className, 'config'])
       const staticConfigOutput = dlv(staticStyles, [className, 'output'])
@@ -159,7 +43,7 @@ export default function getStyles(str, t, state) {
 
       // Exit early if no className is found in both configs
       if (!staticStyleKey && !dynamicStyleKey) {
-        return showError(className)
+        throw new Error(logNoClass(className))
       }
 
       // Match the filtered modifiers
@@ -176,18 +60,18 @@ export default function getStyles(str, t, state) {
           )
         }
 
+        const staticStyleImportant = mergeImportant(
+          staticStyleOutput,
+          hasImportant
+        )
+
         const mergedStaticOutput = mergeVariants({
           variants: matchedVariants,
           objBase: acc,
-          objToMerge: staticStyleOutput
+          objToMerge: staticStyleImportant
         })
 
-        state.debug &&
-          console.log(
-            `${className} ${chalk.hex('#a0aec0')('>')} ${JSON.stringify(
-              staticStyleOutput
-            )}`
-          )
+        state.debug && console.log(logInOut(className, staticStyleImportant))
 
         return state.isProd ? mergedStaticOutput : ''
 
@@ -210,7 +94,7 @@ export default function getStyles(str, t, state) {
             styleList: dynamicStyleset,
             key,
             className,
-            prefix: hasNegativeValue ? '-' : ''
+            prefix: hasNegative ? '-' : ''
           })
         : {
             ['__spread__' + index]:
@@ -224,16 +108,15 @@ export default function getStyles(str, t, state) {
               '")'
           }
 
+      const dynamicStyleImportant = mergeImportant(results, hasImportant)
+
       const mergedDynamicOutput = mergeVariants({
         variants: matchedVariants,
         objBase: acc,
-        objToMerge: results
+        objToMerge: dynamicStyleImportant
       })
 
-      state.debug &&
-        console.log(
-          `${className} ${chalk.hex('#a0aec0')('>')} ${JSON.stringify(results)}`
-        )
+      state.debug && console.log(logInOut(className, dynamicStyleImportant))
 
       return mergedDynamicOutput
     },
