@@ -40,7 +40,8 @@ const validateVariants = ({ modifiers, state }) => {
     'focus',
     'active',
     'visited',
-    'disabled'
+    'disabled',
+    'hocus'
   ]
   const themeScreens = dlv(state.config, ['theme', 'screens'])
   const themeScreenKeys = Object.keys(themeScreens)
@@ -68,6 +69,9 @@ const validateVariants = ({ modifiers, state }) => {
       }
       if (mod === 'even') {
         return ':nth-child(even)'
+      }
+      if (mod === 'hocus') {
+        return ':hover, :focus'
       }
 
       // Get theme screen
