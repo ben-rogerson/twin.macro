@@ -81,7 +81,7 @@ const Button = () => <button {...style}>Success</button>
 
 #### React example
 
-[React + Tailwind + Emotion Starter](https://codesandbox.io/s/react-tailwind-emotion-starter-c5mw3) on Code Sandbox
+[React + Tailwind + Emotion Starter](https://codesandbox.io/s/react-tailwind-emotion-starter-3d1dl) on Code Sandbox
 
 #### Create React App example
 
