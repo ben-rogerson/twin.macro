@@ -81,57 +81,15 @@ const Button = () => <button {...style}>Success</button>
 
 #### React example
 
-```js
-import React from 'react'
-import tw from 'twin.macro'
-import styled from '@emotion/styled/macro'
-import { css } from '@emotion/core'
+[React + Tailwind + Emotion Starter](https://codesandbox.io/s/react-tailwind-emotion-starter-c5mw3) on Code Sandbox
 
-// Use the tw operator to create elements and style them,
-// this will keep your classes on a single line.
-const BtnPrimary = tw.button`text-white hover:bg-black`
+#### Create React App example
 
-// When you need to use vanilla css then use styled to create
-// the element and use tw inside the backticks to add your classes.
-const BtnSecondary = styled.button`
-  ${tw`text-white bg-blue-500`}
-  &:hover {
-    ${tw`bg-black`}
-  }
-`
+Coming soon...
 
-// When working with conditional props in styled you can use tw or css
-// This example passes in the props to be used anywhere within the backticks
-const BtnTertiary = styled.button(
-  ({ isSmall, isExtraPadded }) => css`
-    font-size: 1em;
-    ${isSmall && tw`text-sm`}
+#### Gatsby example
 
-    ${isExtraPadded
-      ? tw`px-12 py-8`
-      : css`
-          padding: 5px 10px;
-        `}
-  `
-)
-
-// Alternatively, props can also be passed in on the line you need them
-const BtnTertiary = styled.button`
-  // These two lines are equivalent:
-  ${({ isSmall }) => isSmall && tw`text-sm`}
-  ${props => props.isSmall && tw`text-sm`}
-`
-
-const ButtonSet = () => (
-  <>
-    <BtnPrimary>Submit</BtnPrimary>
-    <BtnSecondary>Cancel</BtnSecondary>
-    <BtnTertiary isSmall isExtraPadded>
-      Cancel
-    </BtnTertiary>
-  </>
-)
-```
+Coming soon...
 
 <hr />
 
@@ -241,10 +199,10 @@ module.exports = {
 
 ## Roadmap
 
-- [ ] Add a media query helper
-- [ ] Improve vanilla css usage alongside the `tw` macro
-- [ ] Add instructions on how to setup css syntax highlighting
-- [ ] Improve and add more usage examples
+- [ ] Complete dev functions (production mode only at the moment)
+- [ ] Add codesandbox starters for cra / gatsby / vanilla react
+- [ ] Add media query helpers
+- [ ] Improve vanilla css syntax alongside `tw` macro
 - [ ] Support the `container` class
 - [ ] Have an idea? I’d love to hear it [in an issue](https://github.com/ben-rogerson/twin.macro/issues)
 - [x] ~~Support the `transform` class~~
