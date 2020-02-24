@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`twin.macro -general.js: -general.js 1`] = `
-"
+
 import tw from './macro'
 
 const styles = tw\`uppercase\`
@@ -70,11 +70,12 @@ const BoxExtended3 = _styled(Box3)({
     backgroundColor: '#4299e1 !important'
   }
 })
-"
+
+
 `;
 
 exports[`twin.macro -ordering.js: -ordering.js 1`] = `
-"
+
 import tw from './macro'
 
 // This tests the screens end up in the order they are defined in the config
@@ -103,18 +104,19 @@ _styled.div({
     backgroundColor: '#f56565'
   }
 })
-"
+
+
 `;
 
 exports[`twin.macro -prop.js: -prop.js 1`] = `
-"
+
 import tw from './macro'
 
-const Component1 = () => <div tw=\\"uppercase\\" />
+const Component1 = () => <div tw="uppercase" />
 
-const Component2 = () => <div css={{ display: 'flex' }} tw=\\"uppercase\\" />
+const Component2 = () => <div css={{ display: 'flex' }} tw="uppercase" />
 
-const Component3 = () => <div css={[{ display: 'flex' }]} tw=\\"uppercase\\" />
+const Component3 = () => <div css={[{ display: 'flex' }]} tw="uppercase" />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -151,11 +153,12 @@ const Component3 = () => (
     ]}
   />
 )
-"
+
+
 `;
 
 exports[`twin.macro -variants.js: -variants.js 1`] = `
-"
+
 import tw from './macro'
 
 // Test all variants
@@ -242,11 +245,12 @@ tw\`hocus:bg-red-500\`
     backgroundColor: '#f56565'
   }
 })
-"
+
+
 `;
 
 exports[`twin.macro accessibility.js: accessibility.js 1`] = `
-"
+
 import tw from './macro'
 
 // https://tailwindcss.com/docs/screen-readers
@@ -277,11 +281,12 @@ tw\`not-sr-only\`
   clip: 'auto',
   whiteSpace: 'normal'
 })
-"
+
+
 `;
 
 exports[`twin.macro backgrounds.js: backgrounds.js 1`] = `
-"
+
 import tw from './macro'
 
 // https://tailwindcss.com/docs/background-attachment
@@ -1465,11 +1470,12 @@ tw\`rounded-bl-full\`
 ;({
   borderBottomLeftRadius: '9999px'
 })
-"
+
+
 `;
 
 exports[`twin.macro effects.js: effects.js 1`] = `
-"
+
 import tw from './macro'
 
 // https://tailwindcss.com/docs/box-shadow
@@ -1543,11 +1549,12 @@ tw\`opacity-0\`
 ;({
   opacity: '0'
 })
-"
+
+
 `;
 
 exports[`twin.macro extras.js: extras.js 1`] = `
-"
+
 import tw from './macro'
 
 // Extra styles that aren't part of Tailwind
@@ -1559,16 +1566,17 @@ tw\`clearfix\`
 // Extra styles that aren't part of Tailwind
 ;({
   '::after': {
-    content: '\\"\\"',
+    content: '""',
     display: 'table',
     clear: 'both'
   }
 })
-"
+
+
 `;
 
 exports[`twin.macro flexbox.js: flexbox.js 1`] = `
-"
+
 import tw from './macro'
 
 // https://tailwindcss.com/docs/flex-direction
@@ -1803,11 +1811,12 @@ tw\`order-12\`
 ;({
   order: '12'
 })
-"
+
+
 `;
 
 exports[`twin.macro grid.js: grid.js 1`] = `
-"
+
 import tw from './macro'
 
 // https://tailwindcss.com/docs/grid-template-columns
@@ -2410,11 +2419,12 @@ tw\`grid-flow-col-dense\`
 ;({
   gridAutoFlow: 'col dense'
 })
-"
+
+
 `;
 
 exports[`twin.macro interactivity.js: interactivity.js 1`] = `
-"
+
 import tw from './macro'
 
 // https://tailwindcss.com/docs/appearance
@@ -2513,11 +2523,12 @@ tw\`select-auto\`
 ;({
   userSelect: 'auto'
 })
-"
+
+
 `;
 
 exports[`twin.macro layout.js: layout.js 1`] = `
-"
+
 import tw from './macro'
 
 // https://tailwindcss.com/docs/box-sizing
@@ -2693,7 +2704,7 @@ tw\`z-auto\`
 })
 ;({
   '::after': {
-    content: '\\"\\"',
+    content: '""',
     display: 'table',
     clear: 'both'
   }
@@ -2893,11 +2904,12 @@ tw\`z-auto\`
 ;({
   zIndex: 'auto'
 })
-"
+
+
 `;
 
 exports[`twin.macro sizing.js: sizing.js 1`] = `
-"
+
 import tw from './macro'
 
 // https://tailwindcss.com/docs/width
@@ -3292,11 +3304,12 @@ tw\`max-h-screen\`
 ;({
   maxHeight: '100vh'
 })
-"
+
+
 `;
 
 exports[`twin.macro spacing.js: spacing.js 1`] = `
-"
+
 import tw from './macro'
 
 // https://tailwindcss.com/docs/padding
@@ -5017,11 +5030,12 @@ tw\`-ml-px\`
 ;({
   marginLeft: '-1px'
 })
-"
+
+
 `;
 
 exports[`twin.macro svg.js: svg.js 1`] = `
-"
+
 import tw from './macro'
 
 // https://tailwindcss.com/docs/fill
@@ -5055,11 +5069,12 @@ tw\`stroke-2\`
 ;({
   strokeWidth: '2'
 })
-"
+
+
 `;
 
 exports[`twin.macro tables.js: tables.js 1`] = `
-"
+
 import tw from './macro'
 
 // https://tailwindcss.com/docs/border-collapse
@@ -5086,11 +5101,12 @@ tw\`table-fixed\`
 ;({
   tableLayout: 'fixed'
 })
-"
+
+
 `;
 
 exports[`twin.macro transforms.js: transforms.js 1`] = `
-"
+
 import tw from './macro'
 
 // https://tailwindcss.com/docs/scale
@@ -5701,11 +5717,12 @@ tw\`transform\`
   transform:
     'translateX(var(--transform-translate-x)) translateY(var(--transform-translate-y)) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y))'
 })
-"
+
+
 `;
 
 exports[`twin.macro transitions.js: transitions.js 1`] = `
-"
+
 import tw from './macro'
 
 // https://tailwindcss.com/docs/transition-property
@@ -5796,11 +5813,12 @@ tw\`ease-in-out\`
 ;({
   transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
 })
-"
+
+
 `;
 
 exports[`twin.macro typography.js: typography.js 1`] = `
-"
+
 import tw from './macro'
 
 // https://tailwindcss.com/docs/font-family
@@ -6206,14 +6224,14 @@ tw\`truncate\`
 // https://tailwindcss.com/docs/font-family
 ;({
   fontFamily:
-    'system-ui, -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, \\"Helvetica Neue\\", Arial, \\"Noto Sans\\", sans-serif, \\"Apple Color Emoji\\", \\"Segoe UI Emoji\\", \\"Segoe UI Symbol\\", \\"Noto Color Emoji\\"'
+    'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
 })
 ;({
-  fontFamily: 'Georgia, Cambria, \\"Times New Roman\\", Times, serif'
+  fontFamily: 'Georgia, Cambria, "Times New Roman", Times, serif'
 })
 ;({
   fontFamily:
-    'Menlo, Monaco, Consolas, \\"Liberation Mono\\", \\"Courier New\\", monospace'
+    'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
 }) // https://tailwindcss.com/docs/font-size
 
 ;({
@@ -7309,5 +7327,6 @@ tw\`truncate\`
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap'
 })
-"
+
+
 `;
