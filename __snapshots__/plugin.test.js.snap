@@ -73,6 +73,39 @@ const BoxExtended3 = _styled(Box3)({
 "
 `;
 
+exports[`twin.macro -ordering.js: -ordering.js 1`] = `
+"
+import tw from './macro'
+
+// This tests the screens end up in the order they are defined in the config
+
+tw.div\`xl:bg-red-500 lg:bg-blue-500 fill-current md:bg-pink-500 sm:bg-orange-500 sm:text-yellow-500 hidden\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from '@emotion/styled'
+
+// This tests the screens end up in the order they are defined in the config
+_styled.div({
+  fill: 'currentColor',
+  display: 'none',
+  '@media (min-width: 640px)': {
+    backgroundColor: '#ed8936',
+    color: '#ecc94b'
+  },
+  '@media (min-width: 768px)': {
+    backgroundColor: '#ed64a6'
+  },
+  '@media (min-width: 1024px)': {
+    backgroundColor: '#4299e1'
+  },
+  '@media (min-width: 1280px)': {
+    backgroundColor: '#f56565'
+  }
+})
+"
+`;
+
 exports[`twin.macro -prop.js: -prop.js 1`] = `
 "
 import tw from './macro'
@@ -1826,259 +1859,259 @@ tw\`grid-flow-col-dense\`
 
 // https://tailwindcss.com/docs/grid-template-columns
 ;({
-  'grid-template-columns': 'repeat(1, minmax(0, 1fr))'
+  gridTemplateColumns: 'repeat(1, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-columns': 'repeat(2, minmax(0, 1fr))'
+  gridTemplateColumns: 'repeat(2, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-columns': 'repeat(3, minmax(0, 1fr))'
+  gridTemplateColumns: 'repeat(3, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-columns': 'repeat(4, minmax(0, 1fr))'
+  gridTemplateColumns: 'repeat(4, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-columns': 'repeat(5, minmax(0, 1fr))'
+  gridTemplateColumns: 'repeat(5, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-columns': 'repeat(6, minmax(0, 1fr))'
+  gridTemplateColumns: 'repeat(6, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-columns': 'repeat(7, minmax(0, 1fr))'
+  gridTemplateColumns: 'repeat(7, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-columns': 'repeat(8, minmax(0, 1fr))'
+  gridTemplateColumns: 'repeat(8, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-columns': 'repeat(9, minmax(0, 1fr))'
+  gridTemplateColumns: 'repeat(9, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-columns': 'repeat(10, minmax(0, 1fr))'
+  gridTemplateColumns: 'repeat(10, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-columns': 'repeat(11, minmax(0, 1fr))'
+  gridTemplateColumns: 'repeat(11, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-columns': 'repeat(12, minmax(0, 1fr))'
+  gridTemplateColumns: 'repeat(12, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-columns': 'none'
+  gridTemplateColumns: 'none'
 }) // https://tailwindcss.com/docs/grid-column
 
 ;({
-  'grid-column': 'auto'
+  gridColumn: 'auto'
 })
 ;({
-  'grid-column': 'span 1 / span 1'
+  gridColumn: 'span 1 / span 1'
 })
 ;({
-  'grid-column': 'span 2 / span 2'
+  gridColumn: 'span 2 / span 2'
 })
 ;({
-  'grid-column': 'span 3 / span 3'
+  gridColumn: 'span 3 / span 3'
 })
 ;({
-  'grid-column': 'span 4 / span 4'
+  gridColumn: 'span 4 / span 4'
 })
 ;({
-  'grid-column': 'span 5 / span 5'
+  gridColumn: 'span 5 / span 5'
 })
 ;({
-  'grid-column': 'span 6 / span 6'
+  gridColumn: 'span 6 / span 6'
 })
 ;({
-  'grid-column': 'span 7 / span 7'
+  gridColumn: 'span 7 / span 7'
 })
 ;({
-  'grid-column': 'span 8 / span 8'
+  gridColumn: 'span 8 / span 8'
 })
 ;({
-  'grid-column': 'span 9 / span 9'
+  gridColumn: 'span 9 / span 9'
 })
 ;({
-  'grid-column': 'span 10 / span 10'
+  gridColumn: 'span 10 / span 10'
 })
 ;({
-  'grid-column': 'span 11 / span 11'
+  gridColumn: 'span 11 / span 11'
 })
 ;({
-  'grid-column': 'span 12 / span 12'
+  gridColumn: 'span 12 / span 12'
 })
 ;({
-  'grid-column-start': '1'
+  gridColumnStart: '1'
 })
 ;({
-  'grid-column-start': '2'
+  gridColumnStart: '2'
 })
 ;({
-  'grid-column-start': '3'
+  gridColumnStart: '3'
 })
 ;({
-  'grid-column-start': '4'
+  gridColumnStart: '4'
 })
 ;({
-  'grid-column-start': '5'
+  gridColumnStart: '5'
 })
 ;({
-  'grid-column-start': '6'
+  gridColumnStart: '6'
 })
 ;({
-  'grid-column-start': '7'
+  gridColumnStart: '7'
 })
 ;({
-  'grid-column-start': '8'
+  gridColumnStart: '8'
 })
 ;({
-  'grid-column-start': '9'
+  gridColumnStart: '9'
 })
 ;({
-  'grid-column-start': '10'
+  gridColumnStart: '10'
 })
 ;({
-  'grid-column-start': '11'
+  gridColumnStart: '11'
 })
 ;({
-  'grid-column-start': '12'
+  gridColumnStart: '12'
 })
 ;({
-  'grid-column-start': '13'
+  gridColumnStart: '13'
 })
 ;({
-  'grid-column-start': 'auto'
+  gridColumnStart: 'auto'
 })
 ;({
-  'grid-column-end': '1'
+  gridColumnEnd: '1'
 })
 ;({
-  'grid-column-end': '2'
+  gridColumnEnd: '2'
 })
 ;({
-  'grid-column-end': '3'
+  gridColumnEnd: '3'
 })
 ;({
-  'grid-column-end': '4'
+  gridColumnEnd: '4'
 })
 ;({
-  'grid-column-end': '5'
+  gridColumnEnd: '5'
 })
 ;({
-  'grid-column-end': '6'
+  gridColumnEnd: '6'
 })
 ;({
-  'grid-column-end': '7'
+  gridColumnEnd: '7'
 })
 ;({
-  'grid-column-end': '8'
+  gridColumnEnd: '8'
 })
 ;({
-  'grid-column-end': '9'
+  gridColumnEnd: '9'
 })
 ;({
-  'grid-column-end': '10'
+  gridColumnEnd: '10'
 })
 ;({
-  'grid-column-end': '11'
+  gridColumnEnd: '11'
 })
 ;({
-  'grid-column-end': '12'
+  gridColumnEnd: '12'
 })
 ;({
-  'grid-column-end': '13'
+  gridColumnEnd: '13'
 })
 ;({
-  'grid-column-end': 'auto'
+  gridColumnEnd: 'auto'
 }) // https://tailwindcss.com/docs/grid-template-rows
 
 ;({
-  'grid-template-rows': 'repeat(1, minmax(0, 1fr))'
+  gridTemplateRows: 'repeat(1, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-rows': 'repeat(2, minmax(0, 1fr))'
+  gridTemplateRows: 'repeat(2, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-rows': 'repeat(3, minmax(0, 1fr))'
+  gridTemplateRows: 'repeat(3, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-rows': 'repeat(4, minmax(0, 1fr))'
+  gridTemplateRows: 'repeat(4, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-rows': 'repeat(5, minmax(0, 1fr))'
+  gridTemplateRows: 'repeat(5, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-rows': 'repeat(6, minmax(0, 1fr))'
+  gridTemplateRows: 'repeat(6, minmax(0, 1fr))'
 })
 ;({
-  'grid-template-rows': 'none'
+  gridTemplateRows: 'none'
 }) // https://tailwindcss.com/docs/grid-row
 
 ;({
-  'grid-row': 'auto'
+  gridRow: 'auto'
 })
 ;({
-  'grid-row': 'span 1 / span 1'
+  gridRow: 'span 1 / span 1'
 })
 ;({
-  'grid-row': 'span 2 / span 2'
+  gridRow: 'span 2 / span 2'
 })
 ;({
-  'grid-row': 'span 3 / span 3'
+  gridRow: 'span 3 / span 3'
 })
 ;({
-  'grid-row': 'span 4 / span 4'
+  gridRow: 'span 4 / span 4'
 })
 ;({
-  'grid-row': 'span 5 / span 5'
+  gridRow: 'span 5 / span 5'
 })
 ;({
-  'grid-row': 'span 6 / span 6'
+  gridRow: 'span 6 / span 6'
 })
 ;({
-  'grid-row-start': '1'
+  gridRowStart: '1'
 })
 ;({
-  'grid-row-start': '2'
+  gridRowStart: '2'
 })
 ;({
-  'grid-row-start': '3'
+  gridRowStart: '3'
 })
 ;({
-  'grid-row-start': '4'
+  gridRowStart: '4'
 })
 ;({
-  'grid-row-start': '5'
+  gridRowStart: '5'
 })
 ;({
-  'grid-row-start': '6'
+  gridRowStart: '6'
 })
 ;({
-  'grid-row-start': '7'
+  gridRowStart: '7'
 })
 ;({
-  'grid-row-start': 'auto'
+  gridRowStart: 'auto'
 })
 ;({
-  'grid-row-end': '1'
+  gridRowEnd: '1'
 })
 ;({
-  'grid-row-end': '2'
+  gridRowEnd: '2'
 })
 ;({
-  'grid-row-end': '3'
+  gridRowEnd: '3'
 })
 ;({
-  'grid-row-end': '4'
+  gridRowEnd: '4'
 })
 ;({
-  'grid-row-end': '5'
+  gridRowEnd: '5'
 })
 ;({
-  'grid-row-end': '6'
+  gridRowEnd: '6'
 })
 ;({
-  'grid-row-end': '7'
+  gridRowEnd: '7'
 })
 ;({
-  'grid-row-end': 'auto'
+  gridRowEnd: 'auto'
 }) // https://tailwindcss.com/docs/gap
 
 ;({
@@ -2139,118 +2172,118 @@ tw\`grid-flow-col-dense\`
   gap: '1px'
 })
 ;({
-  'row-gap': '0'
+  rowGap: '0'
 })
 ;({
-  'row-gap': '0.25rem'
+  rowGap: '0.25rem'
 })
 ;({
-  'row-gap': '0.5rem'
+  rowGap: '0.5rem'
 })
 ;({
-  'row-gap': '0.75rem'
+  rowGap: '0.75rem'
 })
 ;({
-  'row-gap': '1rem'
+  rowGap: '1rem'
 })
 ;({
-  'row-gap': '1.25rem'
+  rowGap: '1.25rem'
 })
 ;({
-  'row-gap': '1.5rem'
+  rowGap: '1.5rem'
 })
 ;({
-  'row-gap': '2rem'
+  rowGap: '2rem'
 })
 ;({
-  'row-gap': '2.5rem'
+  rowGap: '2.5rem'
 })
 ;({
-  'row-gap': '3rem'
+  rowGap: '3rem'
 })
 ;({
-  'row-gap': '4rem'
+  rowGap: '4rem'
 })
 ;({
-  'row-gap': '5rem'
+  rowGap: '5rem'
 })
 ;({
-  'row-gap': '6rem'
+  rowGap: '6rem'
 })
 ;({
-  'row-gap': '8rem'
+  rowGap: '8rem'
 })
 ;({
-  'row-gap': '10rem'
+  rowGap: '10rem'
 })
 ;({
-  'row-gap': '12rem'
+  rowGap: '12rem'
 })
 ;({
-  'row-gap': '14rem'
+  rowGap: '14rem'
 })
 ;({
-  'row-gap': '16rem'
+  rowGap: '16rem'
 })
 ;({
-  'row-gap': '1px'
+  rowGap: '1px'
 })
 ;({
-  'column-gap': '0'
+  columnGap: '0'
 })
 ;({
-  'column-gap': '0.25rem'
+  columnGap: '0.25rem'
 })
 ;({
-  'column-gap': '0.5rem'
+  columnGap: '0.5rem'
 })
 ;({
-  'column-gap': '0.75rem'
+  columnGap: '0.75rem'
 })
 ;({
-  'column-gap': '1rem'
+  columnGap: '1rem'
 })
 ;({
-  'column-gap': '1.25rem'
+  columnGap: '1.25rem'
 })
 ;({
-  'column-gap': '1.5rem'
+  columnGap: '1.5rem'
 })
 ;({
-  'column-gap': '2rem'
+  columnGap: '2rem'
 })
 ;({
-  'column-gap': '2.5rem'
+  columnGap: '2.5rem'
 })
 ;({
-  'column-gap': '3rem'
+  columnGap: '3rem'
 })
 ;({
-  'column-gap': '4rem'
+  columnGap: '4rem'
 })
 ;({
-  'column-gap': '5rem'
+  columnGap: '5rem'
 })
 ;({
-  'column-gap': '6rem'
+  columnGap: '6rem'
 })
 ;({
-  'column-gap': '8rem'
+  columnGap: '8rem'
 })
 ;({
-  'column-gap': '10rem'
+  columnGap: '10rem'
 })
 ;({
-  'column-gap': '12rem'
+  columnGap: '12rem'
 })
 ;({
-  'column-gap': '14rem'
+  columnGap: '14rem'
 })
 ;({
-  'column-gap': '16rem'
+  columnGap: '16rem'
 })
 ;({
-  'column-gap': '1px'
+  columnGap: '1px'
 }) // https://tailwindcss.com/docs/grid-auto-flow
 
 ;({
@@ -4902,13 +4935,13 @@ tw\`stroke-2\`
 }) // https://tailwindcss.com/docs/stroke-width
 
 ;({
-  'stroke-width': '0'
+  strokeWidth: '0'
 })
 ;({
-  'stroke-width': '1'
+  strokeWidth: '1'
 })
 ;({
-  'stroke-width': '2'
+  strokeWidth: '2'
 })
 "
 `;
@@ -5517,31 +5550,31 @@ tw\`origin-top-left\`
 }) // https://tailwindcss.com/docs/transform-origin
 
 ;({
-  'transform-origin': 'center'
+  transformOrigin: 'center'
 })
 ;({
-  'transform-origin': 'top'
+  transformOrigin: 'top'
 })
 ;({
-  'transform-origin': 'top right'
+  transformOrigin: 'top right'
 })
 ;({
-  'transform-origin': 'right'
+  transformOrigin: 'right'
 })
 ;({
-  'transform-origin': 'bottom right'
+  transformOrigin: 'bottom right'
 })
 ;({
-  'transform-origin': 'bottom'
+  transformOrigin: 'bottom'
 })
 ;({
-  'transform-origin': 'bottom left'
+  transformOrigin: 'bottom left'
 })
 ;({
-  'transform-origin': 'left'
+  transformOrigin: 'left'
 })
 ;({
-  'transform-origin': 'top left'
+  transformOrigin: 'top left'
 })
 "
 `;
@@ -5579,64 +5612,64 @@ tw\`ease-in-out\`
 
 // https://tailwindcss.com/docs/transition-property
 ;({
-  'transition-property': 'none'
+  transitionProperty: 'none'
 })
 ;({
-  'transition-property': 'all'
+  transitionProperty: 'all'
 })
 ;({
-  'transition-property':
+  transitionProperty:
     'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform'
 })
 ;({
-  'transition-property': 'background-color, border-color, color, fill, stroke'
+  transitionProperty: 'background-color, border-color, color, fill, stroke'
 })
 ;({
-  'transition-property': 'opacity'
+  transitionProperty: 'opacity'
 })
 ;({
-  'transition-property': 'box-shadow'
+  transitionProperty: 'box-shadow'
 })
 ;({
-  'transition-property': 'transform'
+  transitionProperty: 'transform'
 }) // https://tailwindcss.com/docs/transition-duration
 
 ;({
-  'transition-duration': '75ms'
+  transitionDuration: '75ms'
 })
 ;({
-  'transition-duration': '100ms'
+  transitionDuration: '100ms'
 })
 ;({
-  'transition-duration': '150ms'
+  transitionDuration: '150ms'
 })
 ;({
-  'transition-duration': '200ms'
+  transitionDuration: '200ms'
 })
 ;({
-  'transition-duration': '300ms'
+  transitionDuration: '300ms'
 })
 ;({
-  'transition-duration': '500ms'
+  transitionDuration: '500ms'
 })
 ;({
-  'transition-duration': '700ms'
+  transitionDuration: '700ms'
 })
 ;({
-  'transition-duration': '1000ms'
+  transitionDuration: '1000ms'
 }) // https://tailwindcss.com/docs/transition-timing-function
 
 ;({
-  'transition-timing-function': 'linear'
+  transitionTimingFunction: 'linear'
 })
 ;({
-  'transition-timing-function': 'cubic-bezier(0.4, 0, 1, 1)'
+  transitionTimingFunction: 'cubic-bezier(0.4, 0, 1, 1)'
 })
 ;({
-  'transition-timing-function': 'cubic-bezier(0, 0, 0.2, 1)'
+  transitionTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)'
 })
 ;({
-  'transition-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)'
+  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
 })
 "
 `;
