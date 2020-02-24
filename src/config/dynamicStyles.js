@@ -67,25 +67,25 @@ const dynamicStyles = {
    */
 
   // https://tailwindcss.com/docs/grid-template-columns
-  'grid-cols': { prop: 'grid-template-columns', config: 'gridTemplateColumns' },
+  'grid-cols': { prop: 'gridTemplateColumns', config: 'gridTemplateColumns' },
 
   // https://tailwindcss.com/docs/grid-column
-  col: { prop: 'grid-column', config: 'gridColumn' },
-  'col-start': { prop: 'grid-column-start', config: 'gridColumnStart' },
-  'col-end': { prop: 'grid-column-end', config: 'gridColumnEnd' },
+  col: { prop: 'gridColumn', config: 'gridColumn' },
+  'col-start': { prop: 'gridColumnStart', config: 'gridColumnStart' },
+  'col-end': { prop: 'gridColumnEnd', config: 'gridColumnEnd' },
 
   // https://tailwindcss.com/docs/grid-template-rows
-  'grid-rows': { prop: 'grid-template-rows', config: 'gridTemplateRows' },
+  'grid-rows': { prop: 'gridTemplateRows', config: 'gridTemplateRows' },
 
   // https://tailwindcss.com/docs/grid-row
-  row: { prop: 'grid-row', config: 'gridRow' },
-  'row-start': { prop: 'grid-row-start', config: 'gridRowStart' },
-  'row-end': { prop: 'grid-row-end', config: 'gridRowEnd' },
+  row: { prop: 'gridRow', config: 'gridRow' },
+  'row-start': { prop: 'gridRowStart', config: 'gridRowStart' },
+  'row-end': { prop: 'gridRowEnd', config: 'gridRowEnd' },
 
   // https://tailwindcss.com/docs/gap
   gap: { prop: 'gap', config: 'gap' },
-  'col-gap': { prop: 'column-gap', config: 'gap' },
-  'row-gap': { prop: 'row-gap', config: 'gap' },
+  'col-gap': { prop: 'columnGap', config: 'gap' },
+  'row-gap': { prop: 'rowGap', config: 'gap' },
 
   /**
    * ===========================================
@@ -274,14 +274,14 @@ const dynamicStyles = {
    */
 
   // https://tailwindcss.com/docs/transition-property
-  transition: { prop: 'transition-property', config: 'transitionProperty' },
+  transition: { prop: 'transitionProperty', config: 'transitionProperty' },
 
   // https://tailwindcss.com/docs/transition-duration
-  duration: { prop: 'transition-duration', config: 'transitionDuration' },
+  duration: { prop: 'transitionDuration', config: 'transitionDuration' },
 
   // https://tailwindcss.com/docs/transition-timing-function
   ease: {
-    prop: 'transition-timing-function',
+    prop: 'transitionTimingFunction',
     config: 'transitionTimingFunction'
   },
 
@@ -310,7 +310,7 @@ const dynamicStyles = {
   'skew-y': { prop: '--transform-skew-y', config: 'skew' },
 
   // https://tailwindcss.com/docs/transform-origin
-  origin: { prop: 'transform-origin', config: 'transformOrigin' },
+  origin: { prop: 'transformOrigin', config: 'transformOrigin' },
 
   /**
    * ===========================================
@@ -341,7 +341,7 @@ const dynamicStyles = {
     // https://tailwindcss.com/docs/stroke
     { prop: 'stroke', config: 'stroke' },
     // https://tailwindcss.com/docs/stroke
-    { prop: 'stroke-width', config: 'strokeWidth' }
+    { prop: 'strokeWidth', config: 'strokeWidth' }
   ]
 
   /**
