@@ -2,6 +2,7 @@ import resolveTailwindConfig from 'tailwindcss/lib/util/resolveConfig'
 import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
 import { logNoClass } from './logging'
 import dlv from 'dlv'
+export { stringifyScreen } from './screens' // Here for backwards compat
 
 let resolvedConfig
 
@@ -9,30 +10,6 @@ export function resolveConfig(config) {
   if (resolvedConfig) return resolvedConfig
   resolvedConfig = resolveTailwindConfig([config, defaultTailwindConfig])
   return resolvedConfig
-}
-
-export function stringifyScreen(config, screenName) {
-  const screen = dlv(config, ['theme', 'screens', screenName])
-  if (typeof screen === 'undefined') {
-    throw new Error(
-      `Couldn’t find Tailwind the screen "${screenName}" in the Tailwind config`
-    )
-  }
-  if (typeof screen === 'string') return `@media (min-width: ${screen})`
-  if (typeof screen.raw === 'string') {
-    return `@media ${screen.raw}`
-  }
-  const str = (Array.isArray(screen) ? screen : [screen])
-    .map(range => {
-      return [
-        typeof range.min === 'string' ? `(min-width: ${range.min})` : null,
-        typeof range.max === 'string' ? `(max-width: ${range.max})` : null
-      ]
-        .filter(Boolean)
-        .join(' and ')
-    })
-    .join(', ')
-  return str ? `@media ${str}` : ''
 }
 
 function styleify({ prop, value }) {

@@ -1,6 +1,6 @@
 import dset from 'dset'
 import dlv from 'dlv'
-import { stringifyScreen } from './utils'
+import { stringifyScreen } from './screens'
 import { logNoVariant } from './logging'
 
 /**
