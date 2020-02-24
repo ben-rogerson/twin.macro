@@ -154,6 +154,97 @@ const Component3 = () => (
 "
 `;
 
+exports[`twin.macro -variants.js: -variants.js 1`] = `
+"
+import tw from './macro'
+
+// Test all variants
+
+tw\`group:bg-red-500\`
+tw\`group-hover:bg-red-500\`
+tw\`focus-within:bg-red-500\`
+tw\`first:bg-red-500\`
+tw\`last:bg-red-500\`
+tw\`odd:bg-red-500\`
+tw\`even:bg-red-500\`
+tw\`hover:bg-red-500\`
+tw\`focus:bg-red-500\`
+tw\`active:bg-red-500\`
+tw\`visited:bg-red-500\`
+tw\`disabled:bg-red-500\`
+tw\`hocus:bg-red-500\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// Test all variants
+;({
+  '.group &': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  '.group:hover &': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  ':focus-within': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  ':first-child': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  ':last-child': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  ':nth-child(odd)': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  ':nth-child(even)': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  ':hover': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  ':focus': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  ':active': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  ':visited': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  ':disabled': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  ':hover, :focus': {
+    backgroundColor: '#f56565'
+  }
+})
+"
+`;
+
 exports[`twin.macro accessibility.js: accessibility.js 1`] = `
 "
 import tw from './macro'
@@ -1451,6 +1542,27 @@ tw\`opacity-0\`
 })
 ;({
   opacity: '0'
+})
+"
+`;
+
+exports[`twin.macro extras.js: extras.js 1`] = `
+"
+import tw from './macro'
+
+// Extra styles that aren't part of Tailwind
+
+tw\`clearfix\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// Extra styles that aren't part of Tailwind
+;({
+  '::after': {
+    content: '\\"\\"',
+    display: 'table',
+    clear: 'both'
+  }
 })
 "
 `;
@@ -5133,6 +5245,8 @@ tw\`origin-bottom-left\`
 tw\`origin-left\`
 tw\`origin-top-left\`
 
+tw\`transform\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // https://tailwindcss.com/docs/scale
@@ -5575,6 +5689,17 @@ tw\`origin-top-left\`
 })
 ;({
   transformOrigin: 'top left'
+})
+;({
+  '--transform-translate-x': '0',
+  '--transform-translate-y': '0',
+  '--transform-rotate': '0',
+  '--transform-skew-x': '0',
+  '--transform-skew-y': '0',
+  '--transform-scale-x': '0',
+  '--transform-scale-y': '0',
+  transform:
+    'translateX(var(--transform-translate-x)) translateY(var(--transform-translate-y)) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y))'
 })
 "
 `;
