@@ -171,7 +171,7 @@ function resolve(opt, { config, key, className, prefix }) {
     index = index + 1
 
     const keyNext = classParts[index] ? classParts[index] : null
-    const keyFound = findKey[`${prefix}${keyNext}`] || findKey['default']
+    const keyFound = findKey[`${prefix}${keyNext}`]
 
     if (keyFound) {
       const strResults = checkNewStyle({
