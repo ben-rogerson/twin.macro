@@ -505,7 +505,7 @@ const staticStyles = {
    */
 
   content: {
-    output: { content: '' },
+    output: { content: '""' },
     config: false
   }
 }
