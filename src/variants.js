@@ -41,7 +41,10 @@ const validateVariants = ({ modifiers, state }) => {
     'active',
     'visited',
     'disabled',
-    'hocus'
+    // Custom variants
+    'hocus',
+    'before',
+    'after'
   ]
   const themeScreens = dlv(state.config, ['theme', 'screens'])
   const themeScreenKeys = Object.keys(themeScreens)
