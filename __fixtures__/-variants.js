@@ -14,4 +14,9 @@ tw`focus:bg-red-500`
 tw`active:bg-red-500`
 tw`visited:bg-red-500`
 tw`disabled:bg-red-500`
+
+// Native to Twin
+
 tw`hocus:bg-red-500`
+tw`before:bg-red-500`
+tw`after:bg-red-500`

@@ -175,7 +175,12 @@ tw\`focus:bg-red-500\`
 tw\`active:bg-red-500\`
 tw\`visited:bg-red-500\`
 tw\`disabled:bg-red-500\`
+
+// Native to Twin
+
 tw\`hocus:bg-red-500\`
+tw\`before:bg-red-500\`
+tw\`after:bg-red-500\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -239,9 +244,20 @@ tw\`hocus:bg-red-500\`
   ':disabled': {
     backgroundColor: '#f56565'
   }
-})
+}) // Native to Twin
+
 ;({
   ':hover, :focus': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  ':before': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  ':after': {
     backgroundColor: '#f56565'
   }
 })
@@ -1469,6 +1485,24 @@ tw\`rounded-bl-full\`
 })
 ;({
   borderBottomLeftRadius: '9999px'
+})
+
+
+`;
+
+exports[`twin.macro custom.js: custom.js 1`] = `
+
+import tw from './macro'
+
+// Classes native to Twin
+
+tw\`content\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// Classes native to Twin
+;({
+  content: '""'
 })
 
 
@@ -5712,8 +5746,8 @@ tw\`transform\`
   '--transform-rotate': '0',
   '--transform-skew-x': '0',
   '--transform-skew-y': '0',
-  '--transform-scale-x': '0',
-  '--transform-scale-y': '0',
+  '--transform-scale-x': '1',
+  '--transform-scale-y': '1',
   transform:
     'translateX(var(--transform-translate-x)) translateY(var(--transform-translate-y)) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y))'
 })
