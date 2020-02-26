@@ -24,10 +24,6 @@ function twinMacro({ babel: { types: t }, references, state, config }) {
   )
   const configExists = existsSync(configPath)
 
-  if (configPath && !configExists) {
-    throw new MacroError(`Couldn’t find the Tailwind config ${configPath}`)
-  }
-
   state.tailwindConfigIdentifier = program.scope.generateUidIdentifier(
     'tailwindConfig'
   )
@@ -48,9 +44,14 @@ function twinMacro({ babel: { types: t }, references, state, config }) {
     state.isProd = true
   }
 
-  state.config = configExists
+  const tailwindConfig = configExists
     ? resolveConfig([require(configPath), defaultTailwindConfig])
     : resolveConfig([defaultTailwindConfig])
+  state.config = tailwindConfig
+
+  if (!tailwindConfig) {
+    throw new MacroError(`Couldn’t find the Tailwind config`)
+  }
 
   const styledImport =
     config && config.styled
