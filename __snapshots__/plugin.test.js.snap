@@ -1498,11 +1498,21 @@ import tw from './macro'
 
 tw\`content\`
 
+
+tw\`font-customFontWeightAsString\`
+tw\`font-customFontWeightAsNumber\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // Classes native to Twin
 ;({
   content: '""'
+})
+;({
+  fontWeight: '700'
+})
+;({
+  fontWeight: '800'
 })
 
 

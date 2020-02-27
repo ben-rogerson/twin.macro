@@ -33,6 +33,11 @@ function matchString(value) {
   return value
 }
 
+function matchNumberAsString(value) {
+  if (typeof value !== 'number') return
+  return String(value)
+}
+
 function matchDefaultValue(value) {
   if (typeof value !== 'object') return
   if (!value['default']) return
@@ -46,8 +51,9 @@ function matchObject(value) {
 }
 
 function checkNewStyle({ config, key, prop }) {
-  // String
-  const stringMatch = matchString(config[key])
+  // String-ish
+  const stringMatch =
+    matchString(config[key]) || matchNumberAsString(config[key])
   if (stringMatch) {
     return styleify({
       prop,
