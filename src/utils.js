@@ -1,8 +1,11 @@
 import resolveTailwindConfig from 'tailwindcss/lib/util/resolveConfig'
 import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
 import { logNoClass } from './logging'
+import { logNoClass, softMatchConfigs } from './logging'
 import dlv from 'dlv'
 export { stringifyScreen } from './screens' // Here for backwards compat
+import dset from 'dset'
+import { MacroError } from 'babel-plugin-macros'
 
 let resolvedConfig
 
@@ -12,8 +15,14 @@ export function resolveConfig(config) {
   return resolvedConfig
 }
 
-function styleify({ prop, value }) {
-  return Array.isArray(prop)
+const isEmpty = value =>
+  value === undefined ||
+  value === null ||
+  (typeof value === 'object' && Object.keys(value).length === 0) ||
+  (typeof value === 'string' && value.trim().length === 0)
+
+const styleify = ({ prop, value }) =>
+  Array.isArray(prop)
     ? prop.reduce(
         (acc, item) => ({
           ...acc,
@@ -100,7 +109,12 @@ export function resolveStyle(props) {
       x => x && Object.values(x)[0] !== undefined
     )
     if (!results) {
-      throw new Error(logNoClass(errorProps))
+      // TODO: Add class suggestions for these types
+      throw new MacroError(
+        logNoClass({
+          className: `${prefix}${className}`
+        })
+      )
     }
     return results
   }
@@ -126,9 +140,11 @@ function resolve(opt, { config, key, className, prefix }) {
   // Check the key is defined in the tailwind config
   const checkValidConfig = matchObject(findKey)
   if (!checkValidConfig) {
-    throw new Error(`${className} expects ${opt.config} in the Tailwind config`)
+    throw new MacroError(
+      `${className} expects ${opt.config} in the Tailwind config`
+    )
   }
-  // Check for hypenated key matches eg: row-span-2 ("span-2" being the key)
+  // Check for hyphenated key matches eg: row-span-2 ("span-2" being the key)
   const keyMatch = findKey[`${prefix}${key || 'default'}`] || null
   if (keyMatch) {
     const strResults = checkNewStyle({
@@ -192,3 +208,5 @@ function resolve(opt, { config, key, className, prefix }) {
 
   return {}
 }
+
+export { resolveConfig, resolveStyleFromPlugins, resolveStyle, isEmpty }
