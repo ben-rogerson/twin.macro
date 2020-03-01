@@ -145,7 +145,8 @@ function resolveStyle(props) {
       // TODO: Add class suggestions for these types
       throw new MacroError(
         logNoClass({
-          className: `${prefix}${className}`
+          className: `${prefix}${className}`,
+          hasSuggestions
         })
       )
     }
@@ -158,6 +159,7 @@ function resolveStyle(props) {
       throw new MacroError(
         logNoClass({
           className: `${prefix}${className}`,
+          hasSuggestions,
           config: softMatchConfigs({
             className,
             configTheme: config.theme,

@@ -3,23 +3,14 @@ import chalk from 'chalk'
 import { staticStyles, dynamicStyles } from './config'
 import { isEmpty } from './utils'
 
-const spaced = string => `\n\n${string}\n\n`
-const warning = string => chalk.bgBlack(chalk.redBright(`✕ ${string}`))
+const spaced = string => `\n\n${string}\n`
+const warning = string => chalk.bgBlack(chalk.hex('#ff8383')(`✕ ${string}`))
 
 const getClassNamePieces = className => {
   const classNamePieces = className.split('-')
   return classNamePieces.length > 1
     ? classNamePieces.slice(0, -1).join('-')
     : classNamePieces[0]
-}
-
-const softMatchStaticConfig = ({ className, prefix }) => {
-  const props = { obj: staticStyles, prefix }
-  const config = softMatchStaticClass({ ...props, className })
-  const classNamePieceCheck = getClassNamePieces(className)
-  return !isEmpty(config)
-    ? config
-    : softMatchStaticClass({ ...props, className: classNamePieceCheck })
 }
 
 const softMatchDynamicConfig = ({ className, configTheme, prefix }) => {
@@ -34,19 +25,20 @@ const softMatchDynamicConfig = ({ className, configTheme, prefix }) => {
       })
 }
 
-const softMatchConfigs = ({ className, configTheme, prefix }) => {
-  // Get soft matches from the static and dynamic configs for suggestions
-  const configStatic = softMatchStaticConfig({ className, prefix })
-  const configDynamic = softMatchDynamicConfig({
-    className,
-    configTheme,
-    prefix
-  })
-  return {
-    ...configDynamic,
-    ...configStatic
-  }
+const softMatchStaticConfig = ({ className, prefix }) => {
+  const props = { obj: staticStyles, prefix }
+  const config = softMatchStaticClass({ ...props, className })
+  const classNamePieceCheck = getClassNamePieces(className)
+  return !isEmpty(config)
+    ? config
+    : softMatchStaticClass({ ...props, className: classNamePieceCheck })
 }
+
+// Get soft matches from the static and dynamic configs for suggestions
+const softMatchConfigs = props => ({
+  ...softMatchDynamicConfig(props),
+  ...softMatchStaticConfig(props)
+})
 
 const softMatchDynamicClass = ({ className, obj, configTheme, prefix }) => {
   if (typeof obj !== 'object') return []
@@ -130,26 +122,24 @@ const suggestions = ({ config }) => {
     .map(([key, value], index) => {
       const displayValue = value ? ` ${chalk.hex('#999')(`[${value}]`)}` : ''
       const result = `${key !== 'undefined' ? key : ''}${displayValue}`
-      lineLength = lineLength + `${result}${value}`.length
+      lineLength = lineLength + `${key}${value}`.length
       const divider =
-        lineLength > 150
+        lineLength > 60
           ? '\n'
           : index !== Object.entries(config).length - 1
           ? chalk.gray(` / `)
           : ''
-      if (lineLength > 150) lineLength = 0
+      if (lineLength > 60) lineLength = 0
       return `${chalk.yellowBright(result)}${divider}`
     })
     .join('')}`
 }
 
-const logNoClass = ({ className, config }) =>
+const logNoClass = ({ className, config, hasSuggestions }) =>
   spaced(
     `${warning(
-      `${
-        className ? chalk.yellowBright(className) : 'Class'
-      } was not found in the Tailwind config.`
-    )}${suggestions({ config })}`
+      `${className ? chalk.hex('#ffd3d3')(className) : 'Class'} was not found`
+    )}${hasSuggestions ? suggestions({ config }) : ''}`
   )
 
 const logNoTrailingDash = className =>

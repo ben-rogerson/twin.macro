@@ -41,13 +41,13 @@ export default function getStyles(str, t, state) {
       className
     })
     if (pluginMatch) {
-      const pluginStyleImportant = mergeImportant(pluginMatch, hasImportant)
+      const objToMerge = mergeImportant(pluginMatch, hasImportant)
       const pluginOutput = mergeVariants({
         variants: matchedVariants,
         objBase: acc,
-        objToMerge: pluginStyleImportant
+        objToMerge
       })
-      state.debug && console.log(logInOut(className, pluginStyleImportant))
+      state.debug && console.log(logInOut(className, objToMerge))
       return pluginOutput
     }
 
@@ -84,7 +84,8 @@ export default function getStyles(str, t, state) {
       throw new MacroError(
         logNoClass({
           className: `${prefix}${className}`,
-          config
+          config,
+          hasSuggestions: state.hasSuggestions
         })
       )
     }
@@ -97,18 +98,15 @@ export default function getStyles(str, t, state) {
         )
       }
 
-      const staticStyleImportant = mergeImportant(
-        staticStyleOutput,
-        hasImportant
-      )
+      const objToMerge = mergeImportant(staticStyleOutput, hasImportant)
 
       const mergedStaticOutput = mergeVariants({
         variants: matchedVariants,
         objBase: acc,
-        objToMerge: staticStyleImportant
+        objToMerge
       })
 
-      state.debug && console.log(logInOut(className, staticStyleImportant))
+      state.debug && console.log(logInOut(className, objToMerge))
 
       return state.isProd ? mergedStaticOutput : ''
 
@@ -132,7 +130,8 @@ export default function getStyles(str, t, state) {
           key,
           className,
           matchedKey: dynamicKey,
-          prefix
+          prefix,
+          hasSuggestions: state.hasSuggestions
         })
       : {
           ['__spread__' + index]:
@@ -159,6 +158,6 @@ export default function getStyles(str, t, state) {
     return mergedDynamicOutput
   }, {})
 
-  const ast = state.isDev ? assignify(ast, t) : astify(styles, t)
+  const ast = state.isDev ? assignify(styles, t) : astify(styles, t)
   return ast
 }
