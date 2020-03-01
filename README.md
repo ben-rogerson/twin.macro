@@ -36,10 +36,9 @@ Twin supports all Tailwind v1.2.0 classes (except [container](https://tailwindcs
 ✕ ml-7 was not found
 
 Try one of these classes:
-ml-0 [0] / ml-1 [0.25rem] / ml-2 [0.5rem] / ml-3 [0.75rem] / ml-4 [1rem] / ml-5 [1.25rem]
-ml-6 [1.5rem] / ml-8 [2rem] / ml-10 [2.5rem] / ml-12 [3rem] / ml-16 [4rem]
-ml-20 [5rem] / ml-24 [6rem] / ml-32 [8rem] / ml-40 [10rem] / ml-48 [12rem]
-ml-56 [14rem] / ml-64 [16rem] / ml-auto [auto] / ml-px [1px]
+ml-0 [0] / ml-1 [0.25rem] / ml-2 [0.5rem] / ml-3 [0.75rem] / ml-4 [1rem] / ml-5 [1.25rem] / ml-6 [1.5rem]
+ml-8 [2rem] / ml-10 [2.5rem] / ml-12 [3rem] / ml-16 [4rem] / ml-20 [5rem] / ml-24 [6rem] / ml-32 [8rem]
+ml-40 [10rem] / ml-48 [12rem] / ml-56 [14rem] / ml-64 [16rem] / ml-auto [auto] / ml-px [1px]
 ```
 
 
