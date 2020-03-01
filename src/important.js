@@ -1,14 +1,14 @@
-// Add important
-const mergeImportant = (input, hasImportant) => {
-  if (!hasImportant) return input
-  return Object.entries(input).reduce((acc, item) => {
+/**
+ * Add important to a value
+ */
+const mergeImportant = (obj, hasImportant) => {
+  if (!hasImportant) return obj
+  return Object.entries(obj).reduce((acc, item) => {
     const [key, value] = item
-    if (hasImportant) {
-      if (typeof value === 'object') {
-        return mergeImportant(value, hasImportant)
-      }
-      return { ...acc, [key]: `${value} !important` }
+    if (typeof value === 'object') {
+      return mergeImportant(value, hasImportant)
     }
+    return { ...acc, [key]: `${value} !important` }
   }, {})
 }
 

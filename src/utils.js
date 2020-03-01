@@ -1,19 +1,30 @@
-import resolveTailwindConfig from 'tailwindcss/lib/util/resolveConfig'
-import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
-import { logNoClass } from './logging'
+import {
+  resolveTailwindConfig,
+  processPlugins,
+  defaultTailwindConfig
+} from './tailwindHelpers'
+import { logNoClass, softMatchConfigs } from './logging'
 import dlv from 'dlv'
-export { stringifyScreen } from './screens' // Here for backwards compat
+import dset from 'dset'
+export { stringifyScreen } from './screens' // For backwards compat
+import { MacroError } from 'babel-plugin-macros'
 
 let resolvedConfig
 
-export function resolveConfig(config) {
+const resolveConfig = config => {
   if (resolvedConfig) return resolvedConfig
   resolvedConfig = resolveTailwindConfig([config, defaultTailwindConfig])
   return resolvedConfig
 }
 
-function styleify({ prop, value }) {
-  return Array.isArray(prop)
+const isEmpty = value =>
+  value === undefined ||
+  value === null ||
+  (typeof value === 'object' && Object.keys(value).length === 0) ||
+  (typeof value === 'string' && value.trim().length === 0)
+
+const styleify = ({ prop, value }) =>
+  Array.isArray(prop)
     ? prop.reduce(
         (acc, item) => ({
           ...acc,
@@ -22,7 +33,6 @@ function styleify({ prop, value }) {
         {}
       )
     : { [prop]: value }
-}
 
 /**
  * Matches
@@ -94,11 +104,43 @@ function checkNewStyle({ config, key, prop }) {
   return
 }
 
-export function resolveStyle(props) {
-  const { styleList, key, className, config, matchedKey } = props
-  // Get data for error messages
-  const configFound = dlv(config, ['theme', styleList.config])
-  const errorProps = { className, matchedKey, config: configFound }
+function resolveStyleFromPlugins({ config, className }) {
+  pluginClassNames = {}
+
+  if (!config.plugins || !config.plugins.length) {
+    return
+  }
+
+  const processedPlugins = processPlugins(config.plugins, config)
+  // Only plugin utilities for now, plugin components are much more complex
+  // This mimics the tailwind.macro functionality
+  processedPlugins.utilities.forEach(rule => {
+    if (rule.type !== 'atrule' || rule.name !== 'variants') {
+      return
+    }
+    rule.each(x => {
+      const match = x.selector.match(/^\.(\S+)(\s+.*?)?$/)
+      if (match === null) {
+        return
+      }
+      const name = match[1]
+      const rest = match[2]
+      const keys = rest ? [name, rest.trim()] : [name]
+      dset(pluginClassNames, keys, {})
+      x.walkDecls(decl => {
+        dset(pluginClassNames, keys.concat(decl.prop), decl.value)
+      })
+    })
+  })
+  const output =
+    typeof pluginClassNames[className] !== 'undefined'
+      ? pluginClassNames[className]
+      : null
+  return output
+}
+
+function resolveStyle(props) {
+  const { styleList, key, className, prefix, config, hasSuggestions } = props
   // Deal with Array items like 'font' or 'bg'
   if (Array.isArray(styleList)) {
     const resultsRaw = styleList.map(item => resolve(item, ...props))
@@ -106,24 +148,38 @@ export function resolveStyle(props) {
       x => x && Object.values(x)[0] !== undefined
     )
     if (!results) {
-      throw new Error(logNoClass(errorProps))
+      // TODO: Add class suggestions for these types
+      throw new MacroError(
+        logNoClass({
+          className: `${prefix}${className}`,
+          hasSuggestions
+        })
+      )
     }
     return results
   }
 
   if (typeof styleList === 'object') {
     const results = resolve(styleList, ...props)
-    if (!results) {
-      throw new Error(logNoClass(errorProps))
-    }
-    const resultLength = Object.keys(results).length
-    if (!resultLength) {
-      throw new Error(logNoClass(errorProps))
+    if (isEmpty(results)) {
+      throw new MacroError(
+        logNoClass({
+          className: `${prefix}${className}`,
+          hasSuggestions,
+          config: softMatchConfigs({
+            className,
+            configTheme: config.theme,
+            prefix
+          })
+        })
+      )
     }
     return results
   }
 
-  throw Error(`"${className}" requires "${key}" in the Tailwind config`)
+  throw new MacroError(
+    `"${className}" requires "${key}" in the Tailwind config`
+  )
 }
 
 function resolve(opt, { config, key, className, prefix }) {
@@ -132,9 +188,11 @@ function resolve(opt, { config, key, className, prefix }) {
   // Check the key is defined in the tailwind config
   const checkValidConfig = matchObject(findKey)
   if (!checkValidConfig) {
-    throw new Error(`${className} expects ${opt.config} in the Tailwind config`)
+    throw new MacroError(
+      `${className} expects ${opt.config} in the Tailwind config`
+    )
   }
-  // Check for hypenated key matches eg: row-span-2 ("span-2" being the key)
+  // Check for hyphenated key matches eg: row-span-2 ("span-2" being the key)
   const keyMatch = findKey[`${prefix}${key || 'default'}`] || null
   if (keyMatch) {
     const strResults = checkNewStyle({
@@ -198,3 +256,5 @@ function resolve(opt, { config, key, className, prefix }) {
 
   return {}
 }
+
+export { resolveConfig, resolveStyleFromPlugins, resolveStyle, isEmpty }

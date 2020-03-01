@@ -108,6 +108,26 @@ _styled.div({
 
 `;
 
+exports[`twin.macro -plugins.js: -plugins.js 1`] = `
+
+import tw from './macro'
+
+// Tailwind plugin tests
+
+tw\`type-sm\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// Tailwind plugin tests
+;({
+  'font-size': '0.875rem',
+  'font-weight': '500',
+  'line-height': '1.25'
+})
+
+
+`;
+
 exports[`twin.macro -prop.js: -prop.js 1`] = `
 
 import tw from './macro'

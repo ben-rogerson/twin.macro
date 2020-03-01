@@ -1,13 +1,18 @@
 import dlv from 'dlv'
+import { resolveStyle, resolveStyleFromPlugins } from './utils'
 import { staticStyles, dynamicStyles } from './config'
-import { resolveStyle } from './utils'
-import astify from './astify'
-import assignify from './assignify'
+import { assignify, astify } from './macroHelpers'
 import splitter from './splitter'
 import { mergeVariants, validateVariants } from './variants'
 import { mergeImportant } from './important'
-import { logInOut, logNoClass, logNoTrailingDash } from './logging'
+import {
+  logInOut,
+  logNoClass,
+  logNoTrailingDash,
+  softMatchConfigs
+} from './logging'
 import { orderByScreens } from './screens'
+import { MacroError } from 'babel-plugin-macros'
 
 export default function getStyles(str, t, state) {
   // Move and sort the responsive items to the end of the list
@@ -17,11 +22,34 @@ export default function getStyles(str, t, state) {
 
   const styles = classListOrdered.reduce((acc, classNameRaw, index) => {
     if (classNameRaw.endsWith('-')) {
-      throw new Error(logNoTrailingDash(classNameRaw))
+      throw new MacroError(logNoTrailingDash(classNameRaw))
     }
     const { className, modifiers, hasImportant, hasNegative } = splitter(
       classNameRaw
     )
+    const prefix = hasNegative ? '-' : ''
+
+    // Match the filtered modifiers
+    const matchedVariants = validateVariants({
+      modifiers,
+      state
+    })
+
+    // Match against plugin classNames Get classnames from plugin
+    const pluginMatch = resolveStyleFromPlugins({
+      config: state.config,
+      className
+    })
+    if (pluginMatch) {
+      const objToMerge = mergeImportant(pluginMatch, hasImportant)
+      const pluginOutput = mergeVariants({
+        variants: matchedVariants,
+        objBase: acc,
+        objToMerge
+      })
+      state.debug && console.log(logInOut(className, objToMerge))
+      return pluginOutput
+    }
 
     const staticConfig = dlv(staticStyles, [className, 'config'])
     const staticConfigOutput = dlv(staticStyles, [className, 'output'])
@@ -48,35 +76,37 @@ export default function getStyles(str, t, state) {
 
     // Exit early if no className is found in both configs
     if (!staticStyleKey && !dynamicStyleKey) {
-      throw new Error(logNoClass({ className }))
+      const config = softMatchConfigs({
+        className,
+        configTheme: state.config.theme,
+        prefix
+      })
+      throw new MacroError(
+        logNoClass({
+          className: `${prefix}${className}`,
+          config,
+          hasSuggestions: state.hasSuggestions
+        })
+      )
     }
-
-    // Match the filtered modifiers
-    const matchedVariants = validateVariants({
-      modifiers,
-      state
-    })
 
     if (staticStyleKey) {
       const staticStyleOutput = dlv(staticStyles, [className, 'output'])
       if (!staticStyleOutput) {
-        throw new Error(
+        throw new MacroError(
           `No output value found for ${className} in static config`
         )
       }
 
-      const staticStyleImportant = mergeImportant(
-        staticStyleOutput,
-        hasImportant
-      )
+      const objToMerge = mergeImportant(staticStyleOutput, hasImportant)
 
       const mergedStaticOutput = mergeVariants({
         variants: matchedVariants,
         objBase: acc,
-        objToMerge: staticStyleImportant
+        objToMerge
       })
 
-      state.debug && console.log(logInOut(className, staticStyleImportant))
+      state.debug && console.log(logInOut(className, objToMerge))
 
       return state.isProd ? mergedStaticOutput : ''
 
@@ -100,7 +130,8 @@ export default function getStyles(str, t, state) {
           key,
           className,
           matchedKey: dynamicKey,
-          prefix: hasNegative ? '-' : ''
+          prefix,
+          hasSuggestions: state.hasSuggestions
         })
       : {
           ['__spread__' + index]:
@@ -127,6 +158,6 @@ export default function getStyles(str, t, state) {
     return mergedDynamicOutput
   }, {})
 
-  const ast = state.isDev ? assignify(ast, t) : astify(styles, t)
+  const ast = state.isDev ? assignify(styles, t) : astify(styles, t)
   return ast
 }

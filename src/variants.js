@@ -2,6 +2,7 @@ import dset from 'dset'
 import dlv from 'dlv'
 import { stringifyScreen } from './screens'
 import { logNoVariant } from './logging'
+import { MacroError } from 'babel-plugin-macros'
 
 /**
  * Merge the modifiers
@@ -98,7 +99,7 @@ const validateVariants = ({ modifiers, state }) => {
         return `:${mod}`
       }
 
-      throw new Error(logNoVariant(mod, validModifiers))
+      throw new MacroError(logNoVariant(mod, validModifiers))
     })
     .filter(Boolean)
 }
