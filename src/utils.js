@@ -5,13 +5,13 @@ import {
 } from './tailwindHelpers'
 import { logNoClass, softMatchConfigs } from './logging'
 import dlv from 'dlv'
-export { stringifyScreen } from './screens' // Here for backwards compat
 import dset from 'dset'
+export { stringifyScreen } from './screens' // For backwards compat
 import { MacroError } from 'babel-plugin-macros'
 
 let resolvedConfig
 
-export function resolveConfig(config) {
+const resolveConfig = config => {
   if (resolvedConfig) return resolvedConfig
   resolvedConfig = resolveTailwindConfig([config, defaultTailwindConfig])
   return resolvedConfig
@@ -33,7 +33,6 @@ const styleify = ({ prop, value }) =>
         {}
       )
     : { [prop]: value }
-}
 
 /**
  * Matches
@@ -123,17 +122,24 @@ export function resolveStyle(props) {
 
   if (typeof styleList === 'object') {
     const results = resolve(styleList, ...props)
-    if (!results) {
-      throw new Error(logNoClass(errorProps))
-    }
-    const resultLength = Object.keys(results).length
-    if (!resultLength) {
-      throw new Error(logNoClass(errorProps))
+    if (isEmpty(results)) {
+      throw new MacroError(
+        logNoClass({
+          className: `${prefix}${className}`,
+          config: softMatchConfigs({
+            className,
+            configTheme: config.theme,
+            prefix
+          })
+        })
+      )
     }
     return results
   }
 
-  throw Error(`"${className}" requires "${key}" in the Tailwind config`)
+  throw new MacroError(
+    `"${className}" requires "${key}" in the Tailwind config`
+  )
 }
 
 function resolve(opt, { config, key, className, prefix }) {

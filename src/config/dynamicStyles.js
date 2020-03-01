@@ -140,10 +140,7 @@ const dynamicStyles = {
 
   font: [
     // https://tailwindcss.com/docs/font-family
-    {
-      prop: 'fontFamily',
-      config: 'fontFamily'
-    },
+    { prop: 'fontFamily', config: 'fontFamily' },
     // https://tailwindcss.com/docs/font-weight
     { prop: 'fontWeight', config: 'fontWeight' }
   ],
