@@ -21,27 +21,27 @@ const styles = {
   }
 }
 ```
+## About
 
-Twin converts Tailwind classes into CSS style objects that any CSS-in-JS library can use.
+Twin converts [Tailwind](https://tailwindcss.com) classes into CSS style objects that any CSS-in-JS library can use. 
 This includes popular libraries like: [Emotion](https://emotion.sh/docs/introduction), [Styled Components](https://styled-components.com/) and [Styled JSX](https://github.com/zeit/styled-jsx).
+
+Twin supports all Tailwind v1.2.0 classes (except [container](https://tailwindcss.com/docs/container)) and also supports [custom utility classes](https://tailwindcss.com/docs/plugins/#adding-utilities) added as plugins.
 
 ## Extra features
 
-**💥 Go important with a bang** - Add important to any class with a trailing bang!
-```js
-tw`hidden!`
-// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
-{ "display": "hidden !important" }
+**🛎 Helpful suggestions for mistypings** - Twin chimes in with class and variant examples from your Tailwind config:
+
+```bash
+✕ ml-7 was not found
+
+Try one of these classes:
+ml-0 [0] / ml-1 [0.25rem] / ml-2 [0.5rem] / ml-3 [0.75rem] / ml-4 [1rem] / ml-5 [1.25rem]
+ml-6 [1.5rem] / ml-8 [2rem] / ml-10 [2.5rem] / ml-12 [3rem] / ml-16 [4rem]
+ml-20 [5rem] / ml-24 [6rem] / ml-32 [8rem] / ml-40 [10rem] / ml-48 [12rem]
+ml-56 [14rem] / ml-64 [16rem] / ml-auto [auto] / ml-px [1px]
 ```
 
-**🎩 A focus on hocus** - Style elements on hover + focus with one magic-sounding `hocus:` variant:
-```js
-tw`hocus:bg-red-500`
-// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
-{ ":hover, :focus": {
-  "backgroundColor": "#f56565"
-}}
-```
 
 **🎲 Bring before and after elements to the game** - Style `::before` and `::after` pseudo-elements with custom variants:
 ```js
@@ -59,13 +59,20 @@ tw`before:content before:block after:content after:w-10`
 }
 ```
 
-**🛎 Helpful suggestions for mistypings** - Twin chimes in with class and variant examples from your Tailwind config:
+**💥 Go important with a bang** - Add important to any class with a trailing bang!
+```js
+tw`hidden!`
+// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+{ "display": "hidden !important" }
+```
 
-```bash
-✕ “flex-muscles” was not found in the Tailwind config.
-
-Try one of these classes:
-flex-1 [1 1 0%] / flex-auto [1 1 auto] / flex-initial [0 1 auto] / flex-none [none] / flex [default]
+**🎩 A focus on hocus** - Style elements on hover + focus with one magic-sounding `hocus:` variant:
+```js
+tw`hocus:bg-red-500`
+// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+{ ":hover, :focus": {
+  "backgroundColor": "#f56565"
+}}
 ```
 
 ## Installation
@@ -302,6 +309,7 @@ module.exports = {
     config: './tailwind.config.js',
     styled: '@emotion/styled',
     format: 'auto',
+    hasSuggestions: true,
     debug: false
   }
 }
@@ -312,17 +320,19 @@ module.exports = {
       "config": "./tailwind.config.js",
       "styled": "@emotion/styled",
       "format": "auto",
+      "hasSuggestions": true,
       "debug": false
     }
 },
 ```
 
-| Name   | Type                 | Default                  | Description                                                                                                                                          |
-| ------ | -------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| config | `string`             | `"./tailwind.config.js"` | The path to your tailwind config                                                                                                                     |
-| styled | `string` or `object` | `"@emotion/styled"`      | The css-in-js library to import behind the scenes when using `tw`. For more options, use an object: `{ import: "default", from: "@emotion/styled" }` |
-| format | `string`             | `"auto"`                 | CSS output format. Output can be an object except when inside a `<style>` element. `"object"`, `"string"`, or `"auto"`                               |
-| debug  | `boolean`            | `false`                  | Display information about the Tailwind class conversions                                                                                             |
+| Name           | Type                 | Default                  | Description                                                                                                                                          |
+| -------------- | -------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| config         | `string`             | `"./tailwind.config.js"` | The path to your tailwind config                                                                                                                     |
+| styled         | `string` or `object` | `"@emotion/styled"`      | The css-in-js library to import behind the scenes when using `tw`. For more options, use an object: `{ import: "default", from: "@emotion/styled" }` |
+| format         | `string`             | `"auto"`                 | CSS output format. Output can be an object except when inside a `<style>` element. `"object"`, `"string"`, or `"auto"`                               |
+| hasSuggestions | `boolean`            | `true`                   | Display class suggestions when a class can't be found                                                                                                |
+| debug          | `boolean`            | `false`                  | Display information about the Tailwind class conversions                                                                                             |
 
 <hr />
 
@@ -330,7 +340,7 @@ module.exports = {
 
 ## Roadmap
 
-- [ ] Support plugins
+- [ ] Add further support for plugins
 - [ ] Complete dev functions (production mode only at the moment)
 - [ ] Add media query helpers
 - [ ] Improve vanilla css syntax alongside `tw` macro
