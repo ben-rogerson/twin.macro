@@ -98,11 +98,43 @@ function checkNewStyle({ config, key, prop }) {
   return
 }
 
-export function resolveStyle(props) {
-  const { styleList, key, className, config, matchedKey } = props
-  // Get data for error messages
-  const configFound = dlv(config, ['theme', styleList.config])
-  const errorProps = { className, matchedKey, config: configFound }
+function resolveStyleFromPlugins({ config, className }) {
+  pluginClassNames = {}
+
+  if (!config.plugins || !config.plugins.length) {
+    return
+  }
+
+  const processedPlugins = processPlugins(config.plugins, config)
+  // Only plugin utilities for now, plugin components are much more complex
+  // This mimics the tailwind.macro functionality
+  processedPlugins.utilities.forEach(rule => {
+    if (rule.type !== 'atrule' || rule.name !== 'variants') {
+      return
+    }
+    rule.each(x => {
+      const match = x.selector.match(/^\.(\S+)(\s+.*?)?$/)
+      if (match === null) {
+        return
+      }
+      const name = match[1]
+      const rest = match[2]
+      const keys = rest ? [name, rest.trim()] : [name]
+      dset(pluginClassNames, keys, {})
+      x.walkDecls(decl => {
+        dset(pluginClassNames, keys.concat(decl.prop), decl.value)
+      })
+    })
+  })
+  const output =
+    typeof pluginClassNames[className] !== 'undefined'
+      ? pluginClassNames[className]
+      : null
+  return output
+}
+
+function resolveStyle(props) {
+  const { styleList, key, className, prefix, config, hasSuggestions } = props
   // Deal with Array items like 'font' or 'bg'
   if (Array.isArray(styleList)) {
     const resultsRaw = styleList.map(item => resolve(item, ...props))
