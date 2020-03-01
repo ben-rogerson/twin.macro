@@ -8,8 +8,7 @@ import {
   replaceWithLocation
 } from './macroHelpers'
 import getStyles from './getStyles'
-import resolveConfig from 'tailwindcss/lib/util/resolveConfig'
-import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
+import { resolveTailwindConfig, defaultTailwindConfig } from './tailwindHelpers'
 
 // const UTILS_IMPORT_FILEPATH = 'twin.macro/utils.umd'
 const TW_CONFIG_DEFAULT_FILENAME = 'tailwind.config.js'
@@ -47,8 +46,8 @@ function twinMacro({ babel: { types: t }, references, state, config }) {
   }
 
   const tailwindConfig = configExists
-    ? resolveConfig([require(configPath), defaultTailwindConfig])
-    : resolveConfig([defaultTailwindConfig])
+    ? resolveTailwindConfig([require(configPath), defaultTailwindConfig])
+    : resolveTailwindConfig([defaultTailwindConfig])
   state.config = tailwindConfig
 
   if (!tailwindConfig) {
@@ -158,7 +157,7 @@ function twinMacro({ babel: { types: t }, references, state, config }) {
   //         t.callExpression(
   //           t.memberExpression(
   //             state.tailwindUtilsIdentifier,
-  //             t.identifier('resolveConfig')
+  //             t.identifier('resolveTailwindConfig')
   //           ),
   //           [configExists ? originalConfigIdentifier : t.objectExpression([])]
   //         )

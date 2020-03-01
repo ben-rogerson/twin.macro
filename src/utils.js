@@ -1,6 +1,8 @@
-import resolveTailwindConfig from 'tailwindcss/lib/util/resolveConfig'
-import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
-import { logNoClass } from './logging'
+import {
+  resolveTailwindConfig,
+  processPlugins,
+  defaultTailwindConfig
+} from './tailwindHelpers'
 import { logNoClass, softMatchConfigs } from './logging'
 import dlv from 'dlv'
 export { stringifyScreen } from './screens' // Here for backwards compat

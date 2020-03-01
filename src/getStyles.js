@@ -1,6 +1,6 @@
 import dlv from 'dlv'
+import { resolveStyle, resolveStyleFromPlugins } from './utils'
 import { staticStyles, dynamicStyles } from './config'
-import { resolveStyle } from './utils'
 import { assignify, astify } from './macroHelpers'
 import splitter from './splitter'
 import { mergeVariants, validateVariants } from './variants'
