@@ -1,11 +1,13 @@
 import { createMacro, MacroError } from 'babel-plugin-macros'
 import { resolve, relative, dirname } from 'path'
 import { existsSync } from 'fs'
-import findIdentifier from './findIdentifier'
-import parseTte from './parseTte'
-import addImport from './addImport'
+import {
+  addImport,
+  findIdentifier,
+  parseTte,
+  replaceWithLocation
+} from './macroHelpers'
 import getStyles from './getStyles'
-import replaceWithLocation from './replaceWithLocation'
 import resolveConfig from 'tailwindcss/lib/util/resolveConfig'
 import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
 

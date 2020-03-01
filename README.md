@@ -5,47 +5,80 @@
 <p align="center">Use Tailwind classes within any CSS-in-JS library<br /></p>
 
 ```js
-import tw from 'twin.macro'
-const buttonStyles = tw`bg-purple-700 text-sm`
+import tw from "twin.macro"
+const styles = tw`text-2xl bg-purple-700 hover:bg-purple-400 lg:bg-pink-500`
 
 // ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
 
-const buttonStyles = {
-  backgroundColor: '#6b46c1',
-  fontSize: '0.875rem'
+const styles = {
+  "fontSize": "1.5rem",
+  "backgroundColor": "#6b46c1",
+  ":hover": {
+    "backgroundColor": "#b794f4"
+  },
+  "@media (min-width: 1024px)": {
+    "backgroundColor": "#ed64a6"
+  }
 }
 ```
 
-## Features
+Twin converts Tailwind classes into CSS style objects that any CSS-in-JS library can use.
+This includes popular libraries like: [Emotion](https://emotion.sh/docs/introduction), [Styled Components](https://styled-components.com/) and [Styled JSX](https://github.com/zeit/styled-jsx).
 
-**💁🏼 Custom suggestions when you get a class wrong**<br/>Twin helps out with custom class suggestions from your tailwind config.
+## Extra features
 
-**💥 Important with a bang**<br/>Add important to any class with a trailing bang!<br />eg: `hidden!` » `{ "display": "hidden !important" }`
+**💥 Go important with a bang** - Add important to any class with a trailing bang!
+```js
+tw`hidden!`
+// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+{ "display": "hidden !important" }
+```
 
-**🎩 A focus on hocus**<br/>Style elements on hover + focus with one magic-sounding `hocus:` variant.<br />eg: `hocus:bg-red-500` » `{
-  ":hover, :focus": {
-    "backgroundColor": "#f56565"
-  }
-}`
+**🎩 A focus on hocus** - Style elements on hover + focus with one magic-sounding `hocus:` variant:
+```js
+tw`hocus:bg-red-500`
+// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+{ ":hover, :focus": {
+  "backgroundColor": "#f56565"
+}}
+```
 
-**🎲 Bring before and after elements to the game**<br/>Style the `::before` and `::after` pseudo-elements with custom variants. You'll also need to add a `content` class to kick it into gear.<br />eg: `before:content before:block` » `{ ":before": {
+**🎲 Bring before and after elements to the game** - Style `::before` and `::after` pseudo-elements with custom variants:
+```js
+tw`before:content before:block after:content after:w-10`
+// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+{
+  ":before": {
     "content": "\"\"",
     "display": "block"
-  } }`
+  },
+  ":after": {
+    "content": "\"\"",
+    "width": "2.5rem"
+  }
+}
+```
+
+**🛎 Helpful suggestions for mistypings** - Twin chimes in with class and variant examples from your Tailwind config:
+
+```bash
+✕ “flex-muscles” was not found in the Tailwind config.
+
+Try one of these classes:
+flex-1 [1 1 0%] / flex-auto [1 1 auto] / flex-initial [0 1 auto] / flex-none [none] / flex [default]
+```
 
 ## Installation
 
-For many projects, I recommend using Emotion with Twin for it’s flexibility and features. Here’s some installation examples:
+If you’re not sure which JavaScript styling library to use then try [Emotion](https://emotion.sh/docs/introduction) for it’s flexibility and rich features.<br/>
+Here’s some installation examples:
 
 <details>
   <summary>Gatsby + Twin + Emotion</summary>
 
 ## Gatsby + Twin + Emotion
 
-### Getting started
-
-- [Gatsby + Tailwind + Emotion starter](https://codesandbox.io/s/gatsby-tailwind-emotion-starter-z3hun)
-- [Learn more about Emotion](https://emotion.sh/docs/introduction)
+**🔥 View the [Gatsby + Tailwind + Emotion starter](https://codesandbox.io/s/gatsby-tailwind-emotion-starter-z3hun) for setup and usage examples**
 
 ### 1. Install Gatsby
 
@@ -88,29 +121,22 @@ module.exports = {
 
 ```js
 import tw from 'twin.macro'
-import { css } from '@emotion/core'
-
 const Button = tw.button`text-lg px-8 py-2 rounded bg-white text-green-500 border-green-500`
-
 const SuccessButton = () => <Button>Success</Button>
 ```
 
-See the [Gatsby + Tailwind + Emotion starter](https://codesandbox.io/s/gatsby-tailwind-emotion-starter-z3hun) for more usage examples.
+More usage examples can be found in the [Gatsby + Tailwind + Emotion starter](https://codesandbox.io/s/gatsby-tailwind-emotion-starter-z3hun).
 
 <hr />
 
 </details>
-
 
 <details>
   <summary>Create React App + Twin + Emotion</summary>
 
 ## Create React App + Twin + Emotion
 
-### Getting started
-
-- [CRA + Tailwind + Emotion starter](https://codesandbox.io/s/cra-tailwind-emotion-starter-bi1kx)
-- [Learn more about Emotion](https://emotion.sh/docs/introduction)
+**🔥 View the [CRA + Tailwind + Emotion starter](https://codesandbox.io/s/cra-tailwind-emotion-starter-bi1kx) for setup and usage examples**
 
 ### 1. Install Create React App
 
@@ -137,7 +163,7 @@ yarn add twin.macro @emotion/core @emotion/styled -D
 
 ```js
 // In your App.js or index.js entry
-// (tailwindcss is installed with twin.macro)
+// (tailwindcss is pre-installed with twin.macro)
 import 'tailwindcss/dist/base.css'
 ```
 
@@ -145,14 +171,11 @@ import 'tailwindcss/dist/base.css'
 
 ```js
 import tw from 'twin.macro'
-import { css } from '@emotion/core'
-
 const Button = tw.button`text-lg px-8 py-2 rounded bg-white text-green-500 border-green-500`
-
 const SuccessButton = () => <Button>Success</Button>
 ```
 
-See the [CRA + Tailwind + Emotion starter](https://codesandbox.io/s/cra-tailwind-emotion-starter-bi1kx) for more usage examples.
+More usage examples can be found in the [CRA + Tailwind + Emotion starter](https://codesandbox.io/s/cra-tailwind-emotion-starter-bi1kx).
 
 <hr />
 
@@ -163,10 +186,7 @@ See the [CRA + Tailwind + Emotion starter](https://codesandbox.io/s/cra-tailwind
 
 ## React + Twin + Emotion
 
-### Getting started
-
-- [React + Tailwind + Emotion starter](https://codesandbox.io/s/react-tailwind-emotion-starter-3d1dl)
-- [Learn more about Emotion](https://emotion.sh/docs/introduction)
+**🔥 View the [React + Tailwind + Emotion starter](https://codesandbox.io/s/react-tailwind-emotion-starter-3d1dl) for setup and usage examples**
 
 ### 1. Install the dependencies
 
@@ -207,7 +227,7 @@ yarn add twin.macro @emotion/core @emotion/styled -D
 
 ```js
 // In your App.js or index.js entry
-// (tailwindcss is installed with twin.macro)
+// (tailwindcss is pre-installed with twin.macro)
 import 'tailwindcss/dist/base.css'
 ```
 
@@ -215,14 +235,11 @@ import 'tailwindcss/dist/base.css'
 
 ```js
 import tw from 'twin.macro'
-import { css } from '@emotion/core'
-
 const Button = tw.button`text-lg px-8 py-2 rounded bg-white text-green-500 border-green-500`
-
 const SuccessButton = () => <Button>Success</Button>
 ```
 
-See the [React + Tailwind + Emotion starter](https://codesandbox.io/s/react-tailwind-emotion-starter-3d1dl) for more usage examples.
+More usage examples can be found in the [React + Tailwind + Emotion starter](https://codesandbox.io/s/react-tailwind-emotion-starter-3d1dl).
 
 <hr />
 
