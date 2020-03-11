@@ -13,7 +13,8 @@ pluginTester({
     babelrc: true
   },
   snapshot: true,
-  tests: glob.sync('__fixtures__/*.js').map(file => ({
+  tests: glob.sync('__fixtures__/custom.js').map(file => ({
+    // tests: glob.sync('__fixtures__/*.js').map(file => ({
     title: path.basename(file),
     code: fs.readFileSync(file, 'utf-8')
   }))

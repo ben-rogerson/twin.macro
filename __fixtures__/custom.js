@@ -6,3 +6,4 @@ tw`content`
 
 tw`font-customFontWeightAsString`
 tw`font-customFontWeightAsNumber`
+tw`form-input`

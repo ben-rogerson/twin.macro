@@ -8,5 +8,21 @@ module.exports = {
         customFontWeightAsNumber: 800
       }
     }
-  }
+  },
+  corePlugins: {
+    preflight: false
+  },
+  plugins: [
+    require('@tailwindcss/custom-forms'),
+    ({ addComponents }) => {
+      addComponents({
+        '.content': {
+          content: '""'
+        },
+        '.clearfix': {
+          '::after': { content: '""', display: 'table', clear: 'both' }
+        }
+      })
+    }
+  ]
 }
