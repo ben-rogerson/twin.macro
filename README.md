@@ -231,6 +231,37 @@ yarn add twin.macro @emotion/core @emotion/styled -D
 import 'tailwindcss/dist/base.css'
 ```
 
+### 4. Configure custom config location
+
+Add the config to your `package.json`:
+
+```js
+// package.json
+"babelMacros": {
+  "twin": {
+    // Place tailwind.config.js in the src folder so
+    // it can be imported into your theme provider
+    "config": "src/tailwind.config.js"
+  }
+},
+```
+
+<details>
+  <summary>Alternatively add config to babel-plugin-macros.config.js</summary>
+
+```js
+// babel-plugin-macros.config.js
+module.exports = {
+  twin: {
+    // Place tailwind.config.js in the src folder so
+    // it can be imported into your theme provider
+    config: 'src/tailwind.config.js'
+  }
+}
+```
+
+</details>
+
 ### Basic usage example
 
 ```js
