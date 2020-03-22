@@ -2,34 +2,88 @@
   <img src="https://i.imgur.com/iWBWhY0.png" alt="emotion" width="360" height="135">
   <h1 align="center">twin</h1>
 </p>
-<p align="center">Use Tailwind classes within any CSS-in-JS library<br /></p>
+
+Twin converts Tailwind classes into js object styles:
 
 ```js
 import tw from 'twin.macro'
-const styles = tw`text-2xl bg-purple-700 hover:bg-purple-400 lg:bg-pink-500`
+const styles = tw`inline-block text-2xl`
 
-// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+// ↓ ↓ ↓ ↓ ↓ ↓
 
 const styles = {
-  fontSize: '1.5rem',
-  backgroundColor: '#6b46c1',
-  ':hover': {
-    backgroundColor: '#b794f4'
-  },
-  '@media (min-width: 1024px)': {
-    backgroundColor: '#ed64a6'
-  }
+  display: 'inline-block',
+  fontSize: '1.5rem'
 }
 ```
 
-## About
+The tw prop allows Tailwind classes on jsx elements:
 
-Twin converts [Tailwind](https://tailwindcss.com) classes into CSS style objects that any CSS-in-JS library can use.
-This includes popular libraries like: [Emotion](https://emotion.sh/docs/introduction), [Styled Components](https://styled-components.com/) and [Styled JSX](https://github.com/zeit/styled-jsx).
+```js
+import React from 'react'
+import tw from 'twin.macro'
+export default () => <div tw="inline-block hover:bg-black">...</div>
+```
 
-Twin supports all Tailwind v1.2.0 classes (except [container](https://tailwindcss.com/docs/container)) and also supports [custom utility classes](https://tailwindcss.com/docs/plugins/#adding-utilities) added as plugins.
+Use a css prop to add conditional styles and vanilla css:
 
-## Extra features
+```js
+import React from 'react'
+import { css } from '@emotion/core'
+import tw from 'twin.macro'
+
+export default ({ hasDarkHover }) => (
+  <div
+    css={[
+      tw`inline-block`,
+      hasDarkHover
+        ? tw`hover:text-black`
+        : css`
+            &:hover {
+              ${tw`text-white`}
+            }
+          `
+    ]}
+  >
+    ...
+  </div>
+)
+```
+
+If you'd like to keep your styling separate, then use tw to define your element:
+
+```js
+import React from 'react'
+import tw from 'twin.macro'
+
+const MyComponent = tw.div`inline-block hover:bg-black`
+export default props => <MyComponent {...props} />
+```
+
+You can also add conditional styles / vanilla css with this method:
+
+```js
+import React from 'react'
+import tw from 'twin.macro'
+import styled from '@emotion/styled/macro'
+import { css } from '@emotion/core'
+
+const MyComponent = styled.div(({ hasDarkHover }) => [
+  tw`inline-block`,
+  hasDarkHover
+    ? tw`hover:text-black`
+    : css`
+        &:hover {
+          ${tw`text-white`}
+        }
+      `
+])
+export default props => <MyComponent {...props} />
+```
+
+## Features
+
+**👍 Tailwind v1.2.0 supported** - All classes are supported (except [container](https://tailwindcss.com/docs/container)) and also [custom utility classes](https://tailwindcss.com/docs/plugins/#adding-utilities) added as plugins
 
 **🛎 Helpful suggestions for mistypings** - Twin chimes in with class and variant examples from your Tailwind config:
 
@@ -79,13 +133,14 @@ tw`hocus:bg-red-500`
 
 ## Installation
 
-If you’re not sure which JavaScript styling library to use then try [Emotion](https://emotion.sh/docs/introduction) for it’s flexibility and rich features.<br/>
-Here’s some installation examples:
+Pick a css-in-js library:<br/>
+
+### [Emotion](https://emotion.sh/docs/introduction) (default)
 
 <details>
-  <summary>Gatsby + Twin + Emotion</summary>
+  <summary>Gatsby</summary>
 
-## Gatsby + Twin + Emotion
+## Gatsby + Emotion
 
 **🔥 View the [Gatsby + Tailwind + Emotion starter](https://codesandbox.io/s/gatsby-tailwind-emotion-starter-z3hun) for setup and usage examples**
 
@@ -126,11 +181,11 @@ module.exports = {
 }
 ```
 
-### 5. Basic usage example
+### Basic usage example
 
 ```js
 import tw from 'twin.macro'
-const Button = tw.button`text-lg px-8 py-2 rounded bg-white text-green-500 border-green-500`
+const Button = tw.button`text-lg px-8 py-2 rounded`
 const SuccessButton = () => <Button>Success</Button>
 ```
 
@@ -141,9 +196,9 @@ More usage examples can be found in the [Gatsby + Tailwind + Emotion starter](ht
 </details>
 
 <details>
-  <summary>Create React App + Twin + Emotion</summary>
+  <summary>Create React App</summary>
 
-## Create React App + Twin + Emotion
+## Create React App + Emotion
 
 **🔥 View the [CRA + Tailwind + Emotion starter](https://codesandbox.io/s/cra-tailwind-emotion-starter-bi1kx) for setup and usage examples**
 
@@ -176,11 +231,11 @@ yarn add twin.macro @emotion/core @emotion/styled -D
 import 'tailwindcss/dist/base.css'
 ```
 
-### 4. Basic usage example
+### Basic usage example
 
 ```js
 import tw from 'twin.macro'
-const Button = tw.button`text-lg px-8 py-2 rounded bg-white text-green-500 border-green-500`
+const Button = tw.button`text-lg px-8 py-2 rounded`
 const SuccessButton = () => <Button>Success</Button>
 ```
 
@@ -191,9 +246,9 @@ More usage examples can be found in the [CRA + Tailwind + Emotion starter](https
 </details>
 
 <details>
-  <summary>React + Twin + Emotion</summary>
+  <summary>React</summary>
 
-## React + Twin + Emotion
+## React + Emotion
 
 **🔥 View the [React + Tailwind + Emotion starter](https://codesandbox.io/s/react-tailwind-emotion-starter-3d1dl) for setup and usage examples**
 
@@ -201,7 +256,7 @@ More usage examples can be found in the [CRA + Tailwind + Emotion starter](https
 
 ```bash
 # React and Babel
-npm install -D react react-dom @babel/plugin-transform-react-jsx @babel/core @babel/cli babel-plugin-macros
+npm install -D react react-dom @babel/core @babel/plugin-transform-react-jsx babel-plugin-macros
 # Twin and Emotion
 npm install -D twin.macro @emotion/core @emotion/styled
 ```
@@ -211,7 +266,7 @@ npm install -D twin.macro @emotion/core @emotion/styled
 
 ```bash
 # React and Babel
-yarn add react react-dom @babel/plugin-transform-react-jsx @babel/core @babel/cli babel-plugin-macros -D
+yarn add react react-dom @babel/core @babel/plugin-transform-react-jsx babel-plugin-macros -D
 # Twin and Emotion
 yarn add twin.macro @emotion/core @emotion/styled -D
 ```
@@ -230,7 +285,7 @@ yarn add twin.macro @emotion/core @emotion/styled -D
 }
 ```
 
-> Note: If you’re using Parcel and seeing "process is not defined" then add `"transform-node-env-inline"` to the plugins list. [[Source]](https://github.com/parcel-bundler/parcel/issues/2470#issuecomment-468028575)
+> Note: After build, if you’re seeing "process is not defined" then npm install and add `"babel-plugin-transform-inline-environment-variables"` to .babelrc
 
 ### 3. Import the Tailwind base styles
 
@@ -240,11 +295,11 @@ yarn add twin.macro @emotion/core @emotion/styled -D
 import 'tailwindcss/dist/base.css'
 ```
 
-### 4. Basic usage example
+### Basic usage example
 
 ```js
 import tw from 'twin.macro'
-const Button = tw.button`text-lg px-8 py-2 rounded bg-white text-green-500 border-green-500`
+const Button = tw.button`text-lg px-8 py-2 rounded`
 const SuccessButton = () => <Button>Success</Button>
 ```
 
@@ -254,10 +309,269 @@ More usage examples can be found in the [React + Tailwind + Emotion starter](htt
 
 </details>
 
+### [Styled Components](https://styled-components.com/)
+
+<details>
+  <summary>Gatsby</summary>
+
+## Gatsby + Styled Components
+
+**🔥 View the [Gatsby + Tailwind + Styled Components starter](https://codesandbox.io/s/gatsby-tailwind-styled-components-starter-trrlp) for setup and usage examples**
+
+### 1. Install Gatsby
+
+```bash
+npx gatsby new gatsby-site
+```
+
+### 2. Install the dependencies
+
+```bash
+npm install -D twin.macro styled-components gatsby-plugin-styled-components
+```
+
+<details>
+  <summary>Yarn instructions</summary>
+
+```bash
+yarn add twin.macro styled-components gatsby-plugin-styled-components -D
+```
+
+</details>
+
+### 3. Import the Tailwind base styles
+
+```js
+// gatsby-browser.js
+import 'tailwindcss/dist/base.css'
+```
+
+### 4. Enable the Gatsby emotion plugin
+
+```js
+// gatsby-config.js
+module.exports = {
+  plugins: [`gatsby-plugin-styled-components`]
+}
+```
+
+### 5. Configure twin to use styled components
+
+Add the config to your `package.json`:
+
+```js
+// package.json
+"babelMacros": {
+  "twin": {
+    "styled": "styled-components"
+  }
+},
+```
+
+<details>
+  <summary>Alternatively add config to babel-plugin-macros.config.js</summary>
+
+```js
+// babel-plugin-macros.config.js
+module.exports = {
+  twin: {
+    styled: 'styled-components'
+  }
+}
+```
+
+</details>
+
+### Basic usage example
+
+```js
+import tw from 'twin.macro'
+const Button = tw.button`text-lg px-8 py-2 rounded`
+const SuccessButton = () => <Button>Success</Button>
+```
+
+More usage examples can be found in the [Gatsby + Tailwind + Emotion starter](https://codesandbox.io/s/gatsby-tailwind-styled-components-starter-trrlp).
+
+<hr />
+
+</details>
+
+<details>
+  <summary>Create React App</summary>
+
+## Create React App + Styled Components
+
+**🔥 View the [CRA + Tailwind + Styled Components starter](https://codesandbox.io/s/cra-tailwind-styled-components-starter-m8cyz) for setup and usage examples**
+
+### 1. Install Create React App
+
+```bash
+npx create-react-app my-app
+```
+
+### 2. Install the dependencies
+
+```bash
+npm install -D twin.macro styled-components
+```
+
+<details>
+  <summary>Yarn instructions</summary>
+
+```bash
+yarn add twin.macro styled-components -D
+```
+
+</details>
+
+### 3. Import the Tailwind base styles
+
+```js
+// In your App.js or index.js entry
+// (tailwindcss is pre-installed with twin.macro)
+import 'tailwindcss/dist/base.css'
+```
+
+### 4. Configure twin to use styled components
+
+Add the config to your `package.json`:
+
+```js
+// package.json
+"babelMacros": {
+  "twin": {
+    "styled": "styled-components",
+    // Place tailwind.config.js in the src folder so
+    // it can be imported into your theme provider
+    "config": "src/tailwind.config.js"
+  }
+},
+```
+
+<details>
+  <summary>Alternatively add config to babel-plugin-macros.config.js</summary>
+
+```js
+// babel-plugin-macros.config.js
+module.exports = {
+  twin: {
+    styled: 'styled-components',
+    // Place tailwind.config.js in the src folder so
+    // it can be imported into your theme provider
+    config: 'src/tailwind.config.js'
+  }
+}
+```
+
+</details>
+
+### Basic usage example
+
+```js
+import tw from 'twin.macro'
+const Button = tw.button`text-lg px-8 py-2 rounded`
+const SuccessButton = () => <Button>Success</Button>
+```
+
+More usage examples can be found in the [CRA + Tailwind + Styled Components starter](https://codesandbox.io/s/cra-tailwind-styled-components-starter-m8cyz).
+
+<hr />
+
+</details>
+
+<details>
+  <summary>React</summary>
+
+## React + Styled Components
+
+**🔥 View the [React + Tailwind + Styled Components starter](https://codesandbox.io/s/react-tailwind-styled-components-starter-f87y7) for setup and usage examples**
+
+### 1. Install the dependencies
+
+```bash
+# React and Babel
+npm install -D react react-dom @babel/core @babel/plugin-transform-react-jsx
+# Twin and Styled Components
+npm install -D twin.macro styled-components
+```
+
+<details>
+  <summary>Yarn instructions</summary>
+
+```bash
+# React and Babel
+yarn add react react-dom @babel/core -D
+# Twin and Styled Components
+yarn add twin.macro styled-components -D
+```
+
+</details>
+
+### 2. Enable babel macros and jsx
+
+```js
+// In .babelrc
+{
+  "plugins": [
+    "babel-plugin-macros",
+    "@babel/plugin-transform-react-jsx",
+  ]
+}
+```
+
+### 3. Import the Tailwind base styles
+
+```js
+// In your App.js or index.js entry
+// (tailwindcss is pre-installed with twin.macro)
+import 'tailwindcss/dist/base.css'
+```
+
+### 4. Configure twin to use styled components
+
+Add the config to your `package.json`:
+
+```js
+// package.json
+"babelMacros": {
+  "twin": {
+    "styled": "styled-components"
+  }
+},
+```
+
+<details>
+  <summary>Alternatively add config to babel-plugin-macros.config.js</summary>
+
+```js
+// babel-plugin-macros.config.js
+module.exports = {
+  twin: {
+    styled: 'styled-components'
+  }
+}
+```
+
+</details>
+
+### Basic usage example
+
+```js
+import tw from 'twin.macro'
+const Button = tw.button`text-lg px-8 py-2 rounded`
+const SuccessButton = () => <Button>Success</Button>
+```
+
+More usage examples can be found in the [React + Tailwind + Styled Components starter](https://codesandbox.io/s/react-tailwind-styled-components-starter-f87y7).
+
+<hr />
+
+</details>
+
 ## Configuration
 
 <details>
-  <summary>Customize the tailwind classes</summary>
+  <summary>Customize the Tailwind classes</summary>
 
 ### Customize the Tailwind classes
 
@@ -268,7 +582,7 @@ For style customizations, you’ll need to add a `tailwind.config.js` in your pr
 
 Choose from one of the following configs:
 
-- Option a. Start with an empty config:
+- a) Start with an empty config:
 
   ```js
   // tailwind.config.js
@@ -279,7 +593,7 @@ Choose from one of the following configs:
   }
   ```
 
-- Option b. Start with a [full config](https://raw.githubusercontent.com/tailwindcss/tailwindcss/master/stubs/defaultConfig.stub.js):
+- b) Start with a [full config](https://raw.githubusercontent.com/tailwindcss/tailwindcss/master/stubs/defaultConfig.stub.js):
 
   ```bash
   # cd into your project folder then:
