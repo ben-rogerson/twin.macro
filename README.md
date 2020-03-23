@@ -648,7 +648,22 @@ Read more in the [Tailwind theme docs](https://tailwindcss.com/docs/theme).
 
 ### Configure Twin
 
-Add a `babel-plugin-macros.config.js` in your project root or place the config in `package.json`:
+Add the default config to your `package.json` and tweak:
+
+```js
+// package.json
+"babelMacros": {
+    "twin": {
+      "config": "./tailwind.config.js",
+      "styled": "@emotion/styled",
+      "format": "auto",
+      "hasSuggestions": true,
+      "debug": false
+    }
+},
+```
+
+Alternatively add the config to `babel-plugin-macros.config.js` in your project root:
 
 ```js
 // babel-plugin-macros.config.js
@@ -661,17 +676,6 @@ module.exports = {
     debug: false
   }
 }
-
-// or package.json
-"babelMacros": {
-    "twin": {
-      "config": "./tailwind.config.js",
-      "styled": "@emotion/styled",
-      "format": "auto",
-      "hasSuggestions": true,
-      "debug": false
-    }
-},
 ```
 
 | Name           | Type                 | Default                  | Description                                                                                                                                          |
@@ -688,13 +692,11 @@ module.exports = {
 
 ## Roadmap
 
-- [ ] Add further support for plugins
-- [ ] Complete dev functions (production mode only at the moment)
-- [ ] Add media query helpers
-- [ ] Improve vanilla css syntax alongside `tw` macro
+- [ ] While in dev, remove requirement to restart server after changing tailwind.config.js
+- [ ] Add further plugin support (addUtilities at the moment)
 - [ ] Support the `container` class
 
-Have an idea for a killer feature? Please [open an issue](https://github.com/ben-rogerson/twin.macro/issues), I'd love to hear from you.
+Have an idea for a killer feature? Feel free to [open an issue](https://github.com/ben-rogerson/twin.macro/issues).
 
 ## Resources
 
