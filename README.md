@@ -227,7 +227,7 @@ yarn add twin.macro @emotion/core @emotion/styled -D
 
 ```js
 // In your App.js or index.js entry
-// (tailwindcss is pre-installed with twin.macro)
+// (the dependency 'tailwindcss' is already in your node_modules)
 import 'tailwindcss/dist/base.css'
 ```
 
@@ -271,6 +271,72 @@ const SuccessButton = () => <Button>Success</Button>
 ```
 
 More usage examples can be found in the [CRA + Tailwind + Emotion starter](https://codesandbox.io/s/cra-tailwind-emotion-starter-bi1kx).
+
+<hr />
+
+</details>
+
+<details>
+  <summary>Next</summary>
+
+## Next + Emotion
+
+**🔥 View the [Next + Tailwind + Emotion starter](https://codesandbox.io/s/next-tailwind-emotion-starter-8h2b2) for setup and usage examples**
+
+### 1. Install the dependencies
+
+After creating your next app:
+
+```bash
+npm install -D twin.macro @emotion/core @emotion/styled @emotion/babel-preset-css-prop
+```
+
+<details>
+  <summary>Yarn instructions</summary>
+
+```bash
+yarn add twin.macro @emotion/core @emotion/styled @emotion/babel-preset-css-prop -D
+```
+
+</details>
+
+### 2. Enable babel macros and the css prop
+
+```js
+// In .babelrc
+{
+  "presets": [
+    "next/babel",
+    "@emotion/babel-preset-css-prop"
+  ],
+  "plugins": [
+    "babel-plugin-macros"
+  ]
+}
+```
+
+### 3. Import the Tailwind base styles
+
+In `pages/_app.js`, add the following:
+
+```js
+import React from 'react'
+import 'tailwindcss/dist/base.css'
+
+const App = ({ Component, pageProps }) => <Component {...pageProps} />
+
+export default App
+```
+
+### Basic usage example
+
+```js
+import tw from 'twin.macro'
+const Button = tw.button`text-lg px-8 py-2 rounded`
+const SuccessButton = () => <Button>Success</Button>
+```
+
+More usage examples can be found in the [Next + Tailwind + Emotion starter](hhttps://codesandbox.io/s/next-tailwind-emotion-starter-8h2b2).
 
 <hr />
 
@@ -322,7 +388,7 @@ yarn add twin.macro @emotion/core @emotion/styled -D
 
 ```js
 // In your App.js or index.js entry
-// (tailwindcss is pre-installed with twin.macro)
+// (the dependency 'tailwindcss' is already in your node_modules)
 import 'tailwindcss/dist/base.css'
 ```
 
@@ -459,7 +525,7 @@ yarn add twin.macro styled-components -D
 
 ```js
 // In your App.js or index.js entry
-// (tailwindcss is pre-installed with twin.macro)
+// (the dependency 'tailwindcss' is already in your node_modules)
 import 'tailwindcss/dist/base.css'
 ```
 
@@ -511,6 +577,77 @@ More usage examples can be found in the [CRA + Tailwind + Styled Components star
 </details>
 
 <details>
+  <summary>Next</summary>
+
+## Next + Styled Components
+
+**🔥 View the [Next + Tailwind + Styled Components starter](https://codesandbox.io/s/next-tailwind-styled-components-starter-m1f6d) for setup and usage examples**
+
+### 1. Install the dependencies
+
+After creating your next app:
+
+```bash
+npm install -D twin.macro styled-components
+```
+
+<details>
+  <summary>Yarn instructions</summary>
+
+```bash
+yarn add twin.macro styled-components -D
+```
+
+</details>
+
+### 2. Enable babel macros and configure styled-components
+
+```js
+// In .babelrc
+{
+  "presets": [
+    "next/babel"
+  ],
+  "plugins": [
+    "babel-plugin-macros",
+    [
+      "styled-components",
+      {
+        "ssr": true
+      }
+    ]
+  ]
+}
+```
+
+### 3. Import the Tailwind base styles
+
+In `pages/_app.js`, add the following:
+
+```js
+import React from 'react'
+import 'tailwindcss/dist/base.css'
+
+const App = ({ Component, pageProps }) => <Component {...pageProps} />
+
+export default App
+```
+
+### Basic usage example
+
+```js
+import tw from 'twin.macro'
+const Button = tw.button`text-lg px-8 py-2 rounded`
+const SuccessButton = () => <Button>Success</Button>
+```
+
+More usage examples can be found in the [Next + Tailwind + Styled Components starter](https://codesandbox.io/s/next-tailwind-styled-components-starter-m1f6d).
+
+<hr />
+
+</details>
+
+<details>
   <summary>React</summary>
 
 ## React + Styled Components
@@ -554,7 +691,7 @@ yarn add twin.macro styled-components -D
 
 ```js
 // In your App.js or index.js entry
-// (tailwindcss is pre-installed with twin.macro)
+// (the dependency 'tailwindcss' is already in your node_modules)
 import 'tailwindcss/dist/base.css'
 ```
 
