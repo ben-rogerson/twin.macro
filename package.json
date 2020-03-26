@@ -10,7 +10,7 @@
     "build:macro": "microbundle -i src/macro.js -f cjs -o ./macro.js --target node",
     "build:util": "microbundle -i src/utils.js -f umd -o ./utils.js",
     "test": "npm run build && jest",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "husky": {
     "hooks": {
