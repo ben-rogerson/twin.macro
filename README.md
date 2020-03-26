@@ -736,6 +736,10 @@ More usage examples can be found in the [React + Tailwind + Styled Components st
 
 </details>
 
+## TypeScript support
+
+Twin comes with built-in TypeScript types. For additional editor support (autocomplete, unknown class warnings), use [typescript-plugin-tw-template](https://github.com/kingdaro/typescript-plugin-tw-template)
+
 ## Configuration
 
 <details>
