@@ -3,3 +3,4 @@ node_modules
 /macro.js.map
 /utils.umd.js
 /utils.umd.js.map
+.vscode
