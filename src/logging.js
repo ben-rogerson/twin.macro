@@ -1,7 +1,13 @@
 import dlv from 'dlv'
 import chalk from 'chalk'
 import { staticStyles, dynamicStyles } from './config'
-import { isEmpty } from './utils'
+
+// Function duplicated in utils to resolve circular dependency
+const isEmpty = value =>
+  value === undefined ||
+  value === null ||
+  (typeof value === 'object' && Object.keys(value).length === 0) ||
+  (typeof value === 'string' && value.trim().length === 0)
 
 const spaced = string => `\n\n${string}\n`
 const warning = string => chalk.bgBlack(chalk.hex('#ff8383')(`✕ ${string}`))
