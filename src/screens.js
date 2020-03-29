@@ -1,4 +1,5 @@
 import dlv from 'dlv'
+import timSort from 'timsort'
 
 const stringifyScreen = (config, screenName) => {
   const screen = dlv(config, ['theme', 'screens', screenName])
@@ -24,11 +25,16 @@ const stringifyScreen = (config, screenName) => {
   return str ? `@media ${str}` : ''
 }
 
-const orderByScreens = (classNames, screens) =>
-  classNames.sort((a, b) => {
+const orderByScreens = (classNames, screens) => {
+  const screenCompare = (a, b) => {
     const A = a.includes(':') ? a.split(':')[0] : a
     const B = b.includes(':') ? b.split(':')[0] : b
     return screens.indexOf(A) < screens.indexOf(B) ? -1 : 1
-  })
+  }
+  // Tim Sort provides accurate sorting in node < 11
+  // https://github.com/ben-rogerson/twin.macro/issues/20
+  timSort.sort(classNames, screenCompare)
+  return classNames
+}
 
 export { stringifyScreen, orderByScreens }
