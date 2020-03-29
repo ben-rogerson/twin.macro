@@ -32,6 +32,10 @@ const validateVariants = ({ modifiers, state }) => {
   const availableModifiers = [
     'group',
     'group-hover',
+    'group-hocus',
+    'group-focus',
+    'group-active',
+    'group-visited',
     'focus-within',
     'first',
     'last',
@@ -58,6 +62,18 @@ const validateVariants = ({ modifiers, state }) => {
       }
       if (mod === 'group-hover') {
         return '.group:hover &'
+      }
+      if (mod === 'group-hocus') {
+        return '.group:hover &, .group:focus &'
+      }
+      if (mod === 'group-focus') {
+        return '.group:focus &'
+      }
+      if (mod === 'group-active') {
+        return '.group:active &'
+      }
+      if (mod === 'group-visited') {
+        return '.group:visited &'
       }
       if (mod === 'focus-within') {
         return ':focus-within'

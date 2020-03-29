@@ -1521,6 +1521,11 @@ tw\`content\`
 tw\`font-customFontWeightAsString\`
 tw\`font-customFontWeightAsNumber\`
 
+tw\`group-hocus:bg-red-500\`
+tw\`group-focus:bg-red-500\`
+tw\`group-active:bg-red-500\`
+tw\`group-visited:bg-red-500\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // Classes native to Twin
@@ -1532,6 +1537,26 @@ tw\`font-customFontWeightAsNumber\`
 })
 ;({
   fontWeight: '800'
+})
+;({
+  '.group:hover &, .group:focus &': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  '.group:focus &': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  '.group:active &': {
+    backgroundColor: '#f56565'
+  }
+})
+;({
+  '.group:visited &': {
+    backgroundColor: '#f56565'
+  }
 })
 
 
