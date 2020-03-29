@@ -47,7 +47,8 @@
     "chalk": "^3.0.0",
     "dlv": "^1.1.3",
     "dset": "^2.0.1",
-    "tailwindcss": "^1.2.0"
+    "tailwindcss": "^1.2.0",
+    "timsort": "^0.3.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.8.3",
