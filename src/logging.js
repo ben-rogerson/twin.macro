@@ -145,10 +145,16 @@ const logNoClass = ({ className, config, hasSuggestions }) =>
 const logNoTrailingDash = className =>
   spaced(warning(`Class “${className}” shouldn’t have a trailing dash.`))
 
+const logBadGood = (bad, good) =>
+  `${chalk.hex('#ff8383')('✕ Bad:')} ${bad}\n${chalk.greenBright(
+    '✓ Good:'
+  )} ${good}`
+
 export {
   logInOut,
   logNoVariant,
   logNoClass,
   logNoTrailingDash,
+  logBadGood,
   softMatchConfigs
 }

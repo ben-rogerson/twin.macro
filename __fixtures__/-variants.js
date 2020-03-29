@@ -2,7 +2,6 @@ import tw from './macro'
 
 // Test all variants
 
-tw`group:bg-red-500`
 tw`group-hover:bg-red-500`
 tw`focus-within:bg-red-500`
 tw`first:bg-red-500`

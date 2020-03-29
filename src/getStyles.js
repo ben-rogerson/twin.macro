@@ -9,6 +9,7 @@ import {
   logInOut,
   logNoClass,
   logNoTrailingDash,
+  logBadGood,
   softMatchConfigs
 } from './logging'
 import { orderByScreens } from './screens'
@@ -21,6 +22,15 @@ export default function getStyles(str, t, state) {
   const classListOrdered = orderByScreens(classList, order)
 
   const styles = classListOrdered.reduce((acc, classNameRaw, index) => {
+    if (classNameRaw === 'group') {
+      throw new MacroError(
+        `"group" must be added as className:\n\n${logBadGood(
+          'tw`group`',
+          '<div className="group">'
+        )}\n`
+      )
+    }
+
     if (classNameRaw.endsWith('-')) {
       throw new MacroError(logNoTrailingDash(classNameRaw))
     }

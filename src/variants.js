@@ -30,7 +30,6 @@ const validateVariants = ({ modifiers, state }) => {
   if (!modifiers) return []
 
   const availableModifiers = [
-    'group',
     'group-hover',
     'focus-within',
     'first',
@@ -53,9 +52,6 @@ const validateVariants = ({ modifiers, state }) => {
 
   return modifiers
     .map(mod => {
-      if (mod === 'group') {
-        return '.group &'
-      }
       if (mod === 'group-hover') {
         return '.group:hover &'
       }
