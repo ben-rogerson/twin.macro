@@ -57,6 +57,7 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.8.3",
+    "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@types/styled-components": "^5.0.1",
     "babel-plugin-tester": "^8.0.1",
