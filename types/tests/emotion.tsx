@@ -1,4 +1,6 @@
+import {} from '@emotion/core'
 import styled from '@emotion/styled'
+import React from 'react'
 import tw from '..'
 
 export const Container = styled.div`
@@ -7,3 +9,5 @@ export const Container = styled.div`
     ${tw`w-full`}
   }
 `
+
+export const cssProp = <div css={tw`bg-red-100`} />
