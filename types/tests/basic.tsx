@@ -1,7 +1,7 @@
 import React from 'react'
-import tw from '.'
+import tw from '..'
 
-tw`bg-blue-500 text-gray-100`
+tw`text-gray-100 bg-blue-500`
 
 // @ts-expect-error
 tw('')

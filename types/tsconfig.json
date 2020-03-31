@@ -7,6 +7,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "jsx": "react",
-    "noEmit": true
+    "noEmit": true,
+    "types": ["react", "styled-components", "@emotion/styled"]
   }
 }
