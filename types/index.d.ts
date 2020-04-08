@@ -1,7 +1,7 @@
 import 'react'
 
-export interface CSSObject {
-  [key: string]: string | number | CSSObject
+export interface TwStyle {
+  [key: string]: string | number | TwStyle
 }
 
 export type TemplateFn<R> = (
@@ -9,7 +9,7 @@ export type TemplateFn<R> = (
   ...values: never[]
 ) => R
 
-export type TwFn = TemplateFn<CSSObject>
+export type TwFn = TemplateFn<TwStyle>
 
 export type TwComponent<K extends keyof JSX.IntrinsicElements> = (
   props: JSX.IntrinsicElements[K]
