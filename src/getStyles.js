@@ -155,7 +155,16 @@ export default function getStyles(str, t, state) {
             '")'
         }
 
-    const dynamicStyleImportant = mergeImportant(results, hasImportant)
+    // The placeholder class requires a custom prefix
+    const isPlaceholder = className.startsWith('placeholder-')
+    const dynamicStylePlaceholder = isPlaceholder
+      ? { '::placeholder': results }
+      : results
+
+    const dynamicStyleImportant = mergeImportant(
+      dynamicStylePlaceholder,
+      hasImportant
+    )
 
     const mergedDynamicOutput = mergeVariants({
       variants: matchedVariants,

@@ -6472,283 +6472,469 @@ tw\`truncate\`
 }) // https://tailwindcss.com/docs/placeholder-color
 
 ;({
-  color: 'transparent'
+  '::placeholder': {
+    color: 'transparent'
+  }
 })
 ;({
-  color: '#000'
+  '::placeholder': {
+    color: '#000'
+  }
 })
 ;({
-  color: '#fff'
+  '::placeholder': {
+    color: '#fff'
+  }
 })
 ;({
-  color: '#f7fafc'
+  '::placeholder': {
+    color: '#f7fafc'
+  }
 })
 ;({
-  color: '#edf2f7'
+  '::placeholder': {
+    color: '#edf2f7'
+  }
 })
 ;({
-  color: '#e2e8f0'
+  '::placeholder': {
+    color: '#e2e8f0'
+  }
 })
 ;({
-  color: '#cbd5e0'
+  '::placeholder': {
+    color: '#cbd5e0'
+  }
 })
 ;({
-  color: '#a0aec0'
+  '::placeholder': {
+    color: '#a0aec0'
+  }
 })
 ;({
-  color: '#718096'
+  '::placeholder': {
+    color: '#718096'
+  }
 })
 ;({
-  color: '#4a5568'
+  '::placeholder': {
+    color: '#4a5568'
+  }
 })
 ;({
-  color: '#2d3748'
+  '::placeholder': {
+    color: '#2d3748'
+  }
 })
 ;({
-  color: '#1a202c'
+  '::placeholder': {
+    color: '#1a202c'
+  }
 })
 ;({
-  color: '#fff5f5'
+  '::placeholder': {
+    color: '#fff5f5'
+  }
 })
 ;({
-  color: '#fed7d7'
+  '::placeholder': {
+    color: '#fed7d7'
+  }
 })
 ;({
-  color: '#feb2b2'
+  '::placeholder': {
+    color: '#feb2b2'
+  }
 })
 ;({
-  color: '#fc8181'
+  '::placeholder': {
+    color: '#fc8181'
+  }
 })
 ;({
-  color: '#f56565'
+  '::placeholder': {
+    color: '#f56565'
+  }
 })
 ;({
-  color: '#e53e3e'
+  '::placeholder': {
+    color: '#e53e3e'
+  }
 })
 ;({
-  color: '#c53030'
+  '::placeholder': {
+    color: '#c53030'
+  }
 })
 ;({
-  color: '#9b2c2c'
+  '::placeholder': {
+    color: '#9b2c2c'
+  }
 })
 ;({
-  color: '#742a2a'
+  '::placeholder': {
+    color: '#742a2a'
+  }
 })
 ;({
-  color: '#fffaf0'
+  '::placeholder': {
+    color: '#fffaf0'
+  }
 })
 ;({
-  color: '#feebc8'
+  '::placeholder': {
+    color: '#feebc8'
+  }
 })
 ;({
-  color: '#fbd38d'
+  '::placeholder': {
+    color: '#fbd38d'
+  }
 })
 ;({
-  color: '#f6ad55'
+  '::placeholder': {
+    color: '#f6ad55'
+  }
 })
 ;({
-  color: '#ed8936'
+  '::placeholder': {
+    color: '#ed8936'
+  }
 })
 ;({
-  color: '#dd6b20'
+  '::placeholder': {
+    color: '#dd6b20'
+  }
 })
 ;({
-  color: '#c05621'
+  '::placeholder': {
+    color: '#c05621'
+  }
 })
 ;({
-  color: '#9c4221'
+  '::placeholder': {
+    color: '#9c4221'
+  }
 })
 ;({
-  color: '#7b341e'
+  '::placeholder': {
+    color: '#7b341e'
+  }
 })
 ;({
-  color: '#fffff0'
+  '::placeholder': {
+    color: '#fffff0'
+  }
 })
 ;({
-  color: '#fefcbf'
+  '::placeholder': {
+    color: '#fefcbf'
+  }
 })
 ;({
-  color: '#faf089'
+  '::placeholder': {
+    color: '#faf089'
+  }
 })
 ;({
-  color: '#f6e05e'
+  '::placeholder': {
+    color: '#f6e05e'
+  }
 })
 ;({
-  color: '#ecc94b'
+  '::placeholder': {
+    color: '#ecc94b'
+  }
 })
 ;({
-  color: '#d69e2e'
+  '::placeholder': {
+    color: '#d69e2e'
+  }
 })
 ;({
-  color: '#b7791f'
+  '::placeholder': {
+    color: '#b7791f'
+  }
 })
 ;({
-  color: '#975a16'
+  '::placeholder': {
+    color: '#975a16'
+  }
 })
 ;({
-  color: '#744210'
+  '::placeholder': {
+    color: '#744210'
+  }
 })
 ;({
-  color: '#f0fff4'
+  '::placeholder': {
+    color: '#f0fff4'
+  }
 })
 ;({
-  color: '#c6f6d5'
+  '::placeholder': {
+    color: '#c6f6d5'
+  }
 })
 ;({
-  color: '#9ae6b4'
+  '::placeholder': {
+    color: '#9ae6b4'
+  }
 })
 ;({
-  color: '#68d391'
+  '::placeholder': {
+    color: '#68d391'
+  }
 })
 ;({
-  color: '#48bb78'
+  '::placeholder': {
+    color: '#48bb78'
+  }
 })
 ;({
-  color: '#38a169'
+  '::placeholder': {
+    color: '#38a169'
+  }
 })
 ;({
-  color: '#2f855a'
+  '::placeholder': {
+    color: '#2f855a'
+  }
 })
 ;({
-  color: '#276749'
+  '::placeholder': {
+    color: '#276749'
+  }
 })
 ;({
-  color: '#22543d'
+  '::placeholder': {
+    color: '#22543d'
+  }
 })
 ;({
-  color: '#e6fffa'
+  '::placeholder': {
+    color: '#e6fffa'
+  }
 })
 ;({
-  color: '#b2f5ea'
+  '::placeholder': {
+    color: '#b2f5ea'
+  }
 })
 ;({
-  color: '#81e6d9'
+  '::placeholder': {
+    color: '#81e6d9'
+  }
 })
 ;({
-  color: '#4fd1c5'
+  '::placeholder': {
+    color: '#4fd1c5'
+  }
 })
 ;({
-  color: '#38b2ac'
+  '::placeholder': {
+    color: '#38b2ac'
+  }
 })
 ;({
-  color: '#319795'
+  '::placeholder': {
+    color: '#319795'
+  }
 })
 ;({
-  color: '#2c7a7b'
+  '::placeholder': {
+    color: '#2c7a7b'
+  }
 })
 ;({
-  color: '#285e61'
+  '::placeholder': {
+    color: '#285e61'
+  }
 })
 ;({
-  color: '#234e52'
+  '::placeholder': {
+    color: '#234e52'
+  }
 })
 ;({
-  color: '#ebf8ff'
+  '::placeholder': {
+    color: '#ebf8ff'
+  }
 })
 ;({
-  color: '#bee3f8'
+  '::placeholder': {
+    color: '#bee3f8'
+  }
 })
 ;({
-  color: '#90cdf4'
+  '::placeholder': {
+    color: '#90cdf4'
+  }
 })
 ;({
-  color: '#63b3ed'
+  '::placeholder': {
+    color: '#63b3ed'
+  }
 })
 ;({
-  color: '#4299e1'
+  '::placeholder': {
+    color: '#4299e1'
+  }
 })
 ;({
-  color: '#3182ce'
+  '::placeholder': {
+    color: '#3182ce'
+  }
 })
 ;({
-  color: '#2b6cb0'
+  '::placeholder': {
+    color: '#2b6cb0'
+  }
 })
 ;({
-  color: '#2c5282'
+  '::placeholder': {
+    color: '#2c5282'
+  }
 })
 ;({
-  color: '#2a4365'
+  '::placeholder': {
+    color: '#2a4365'
+  }
 })
 ;({
-  color: '#ebf4ff'
+  '::placeholder': {
+    color: '#ebf4ff'
+  }
 })
 ;({
-  color: '#c3dafe'
+  '::placeholder': {
+    color: '#c3dafe'
+  }
 })
 ;({
-  color: '#a3bffa'
+  '::placeholder': {
+    color: '#a3bffa'
+  }
 })
 ;({
-  color: '#7f9cf5'
+  '::placeholder': {
+    color: '#7f9cf5'
+  }
 })
 ;({
-  color: '#667eea'
+  '::placeholder': {
+    color: '#667eea'
+  }
 })
 ;({
-  color: '#5a67d8'
+  '::placeholder': {
+    color: '#5a67d8'
+  }
 })
 ;({
-  color: '#4c51bf'
+  '::placeholder': {
+    color: '#4c51bf'
+  }
 })
 ;({
-  color: '#434190'
+  '::placeholder': {
+    color: '#434190'
+  }
 })
 ;({
-  color: '#3c366b'
+  '::placeholder': {
+    color: '#3c366b'
+  }
 })
 ;({
-  color: '#faf5ff'
+  '::placeholder': {
+    color: '#faf5ff'
+  }
 })
 ;({
-  color: '#e9d8fd'
+  '::placeholder': {
+    color: '#e9d8fd'
+  }
 })
 ;({
-  color: '#d6bcfa'
+  '::placeholder': {
+    color: '#d6bcfa'
+  }
 })
 ;({
-  color: '#b794f4'
+  '::placeholder': {
+    color: '#b794f4'
+  }
 })
 ;({
-  color: '#9f7aea'
+  '::placeholder': {
+    color: '#9f7aea'
+  }
 })
 ;({
-  color: '#805ad5'
+  '::placeholder': {
+    color: '#805ad5'
+  }
 })
 ;({
-  color: '#6b46c1'
+  '::placeholder': {
+    color: '#6b46c1'
+  }
 })
 ;({
-  color: '#553c9a'
+  '::placeholder': {
+    color: '#553c9a'
+  }
 })
 ;({
-  color: '#44337a'
+  '::placeholder': {
+    color: '#44337a'
+  }
 })
 ;({
-  color: '#fff5f7'
+  '::placeholder': {
+    color: '#fff5f7'
+  }
 })
 ;({
-  color: '#fed7e2'
+  '::placeholder': {
+    color: '#fed7e2'
+  }
 })
 ;({
-  color: '#fbb6ce'
+  '::placeholder': {
+    color: '#fbb6ce'
+  }
 })
 ;({
-  color: '#f687b3'
+  '::placeholder': {
+    color: '#f687b3'
+  }
 })
 ;({
-  color: '#ed64a6'
+  '::placeholder': {
+    color: '#ed64a6'
+  }
 })
 ;({
-  color: '#d53f8c'
+  '::placeholder': {
+    color: '#d53f8c'
+  }
 })
 ;({
-  color: '#b83280'
+  '::placeholder': {
+    color: '#b83280'
+  }
 })
 ;({
-  color: '#97266d'
+  '::placeholder': {
+    color: '#97266d'
+  }
 })
 ;({
-  color: '#702459'
+  '::placeholder': {
+    color: '#702459'
+  }
 }) // https://tailwindcss.com/docs/text-align
 
 ;({
