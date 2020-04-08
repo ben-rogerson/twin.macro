@@ -3,64 +3,26 @@
   <h1 align="center">twin</h1>
 </p>
 
-Twin converts Tailwind classes into js object styles:
-
-```js
-import tw from 'twin.macro'
-const styles = tw`inline-block text-2xl`
-
-// ↓ ↓ ↓ ↓ ↓ ↓
-
-const styles = {
-  display: 'inline-block',
-  fontSize: '1.5rem'
-}
-```
-
-The tw prop allows Tailwind classes on jsx elements:
-
-```js
-import React from 'react'
-import tw from 'twin.macro'
-export default () => <div tw="inline-block hover:bg-black">...</div>
-```
-
-Use a css prop to add conditional styles and vanilla css:
-
-```js
-import React from 'react'
-import { css } from '@emotion/core'
-import tw from 'twin.macro'
-
-export default ({ hasDarkHover }) => (
-  <div
-    css={[
-      tw`inline-block`,
-      hasDarkHover
-        ? tw`hover:text-black`
-        : css`
-            &:hover {
-              ${tw`text-white`}
-            }
-          `
-    ]}
-  >
-    ...
-  </div>
-)
-```
-
-If you'd like to keep your styling separate, then use tw to define your element:
+Use Twin's `tw` prop to add Tailwind styles on jsx elements:
 
 ```js
 import React from 'react'
 import tw from 'twin.macro'
 
-const MyComponent = tw.div`inline-block hover:bg-black`
-export default props => <MyComponent {...props} />
+export default () => <input tw="border hover:border-black" />
 ```
 
-You can also add conditional styles / vanilla css with this method:
+Or use `tw.` to define new elements and add styles:
+
+```js
+import React from 'react'
+import tw from 'twin.macro'
+
+const Input = tw.input`border hover:border-black`
+export default () => <Input />
+```
+
+For features like conditional styling and css blocks, Twin works within styling libraries like [👩‍🎤 emotion](https://emotion.sh/docs/introduction) or [💅 styled-components](https://styled-components.com/):
 
 ```js
 import React from 'react'
@@ -68,22 +30,51 @@ import tw from 'twin.macro'
 import styled from '@emotion/styled/macro'
 import { css } from '@emotion/core'
 
-const MyComponent = styled.div(({ hasDarkHover }) => [
-  tw`inline-block`,
-  hasDarkHover
-    ? tw`hover:text-black`
-    : css`
-        &:hover {
-          ${tw`text-white`}
-        }
-      `
+const Input = styled.input([
+  tw`border`,
+  ({ hasDarkHover }) =>
+    hasDarkHover
+      ? tw`hover:border-black`
+      : css`
+          &:hover {
+            ${tw`border-white`}
+          }
+        `
 ])
-export default props => <MyComponent {...props} />
+export default () => <Input hasDarkHover />
 ```
+
+But if you'd rather style on jsx elements then use a css prop:
+
+```js
+import React from 'react'
+import { css } from '@emotion/core'
+import tw from 'twin.macro'
+
+const Input = ({ hasDarkHover }) => (
+  <input
+    css={[
+      tw`border`,
+      hasDarkHover
+        ? tw`hover:border-black`
+        : css`
+            &:hover {
+              ${tw`border-white`}
+            }
+          `
+    ]}
+  />
+)
+export default () => <Input hasDarkHover />
+```
+
+For more examples, head down to the [installation section](#installation).
 
 ## Features
 
-**👍 Tailwind v1.2.0 supported** - All classes are supported (except [container](https://tailwindcss.com/docs/container)) and also [custom utility classes](https://tailwindcss.com/docs/plugins/#adding-utilities) added as plugins
+**👍 Supports Tailwind v1.2.0** - All classes are available (except [container](https://tailwindcss.com/docs/container)) with support for [custom utility plugins](https://tailwindcss.com/docs/plugins/#adding-utilities)
+
+**🙅🏻 No PurgeCSS required** - Unlike Tailwind, there's no need to pre-generate a css file with all the possible styles. Instead, Twin converts used Tailwind classes into css object styles using Babel
 
 **🛎 Helpful suggestions for mistypings** - Twin chimes in with class and variant examples from your Tailwind config:
 
@@ -133,8 +124,6 @@ tw`hocus:bg-red-500`
 
 ## Installation
 
-Pick a css-in-js library:<br/>
-
 ### [Emotion](https://emotion.sh/docs/introduction) (default)
 
 <details>
@@ -142,7 +131,7 @@ Pick a css-in-js library:<br/>
 
 ## Gatsby + Emotion
 
-**🔥 View the [Gatsby + Tailwind + Emotion starter](https://codesandbox.io/s/gatsby-tailwind-emotion-starter-z3hun) for setup and usage examples**
+**🔥 View the [Gatsby + Emotion + Tailwind Twin starter](https://codesandbox.io/s/gatsby-tailwind-emotion-starter-z3hun) for setup and usage examples**
 
 ### 1. Install Gatsby
 
@@ -189,7 +178,7 @@ const Button = tw.button`text-lg px-8 py-2 rounded`
 const SuccessButton = () => <Button>Success</Button>
 ```
 
-More usage examples can be found in the [Gatsby + Tailwind + Emotion starter](https://codesandbox.io/s/gatsby-tailwind-emotion-starter-z3hun).
+More usage examples can be found in the [Gatsby + Emotion + Tailwind Twin starter](https://codesandbox.io/s/gatsby-tailwind-emotion-starter-z3hun).
 
 <hr />
 
@@ -200,7 +189,7 @@ More usage examples can be found in the [Gatsby + Tailwind + Emotion starter](ht
 
 ## Create React App + Emotion
 
-**🔥 View the [CRA + Tailwind + Emotion starter](https://codesandbox.io/s/cra-tailwind-emotion-starter-bi1kx) for setup and usage examples**
+**🔥 View the [CRA + Emotion + Tailwind Twin starter](https://codesandbox.io/s/cra-tailwind-emotion-starter-bi1kx) for setup and usage examples**
 
 ### 1. Install Create React App
 
@@ -270,7 +259,7 @@ const Button = tw.button`text-lg px-8 py-2 rounded`
 const SuccessButton = () => <Button>Success</Button>
 ```
 
-More usage examples can be found in the [CRA + Tailwind + Emotion starter](https://codesandbox.io/s/cra-tailwind-emotion-starter-bi1kx).
+More usage examples can be found in the [CRA + Emotion + Tailwind Twin starter](https://codesandbox.io/s/cra-tailwind-emotion-starter-bi1kx).
 
 <hr />
 
@@ -281,7 +270,7 @@ More usage examples can be found in the [CRA + Tailwind + Emotion starter](https
 
 ## Next + Emotion
 
-**🔥 View the [Next + Tailwind + Emotion starter](https://codesandbox.io/s/next-tailwind-emotion-starter-8h2b2) for setup and usage examples**
+**🔥 View the [Next + Emotion + Tailwind Twin starter](https://codesandbox.io/s/next-tailwind-emotion-starter-8h2b2) for setup and usage examples**
 
 ### 1. Install the dependencies
 
@@ -336,7 +325,7 @@ const Button = tw.button`text-lg px-8 py-2 rounded`
 const SuccessButton = () => <Button>Success</Button>
 ```
 
-More usage examples can be found in the [Next + Tailwind + Emotion starter](hhttps://codesandbox.io/s/next-tailwind-emotion-starter-8h2b2).
+More usage examples can be found in the [Next + Emotion + Tailwind Twin starter](hhttps://codesandbox.io/s/next-tailwind-emotion-starter-8h2b2).
 
 <hr />
 
@@ -347,7 +336,7 @@ More usage examples can be found in the [Next + Tailwind + Emotion starter](hhtt
 
 ## React + Emotion
 
-**🔥 View the [React + Tailwind + Emotion starter](https://codesandbox.io/s/react-tailwind-emotion-starter-3d1dl) for setup and usage examples**
+**🔥 View the [React + Emotion + Tailwind Twin starter](https://codesandbox.io/s/react-tailwind-emotion-starter-3d1dl) for setup and usage examples**
 
 ### 1. Install the dependencies
 
@@ -400,7 +389,7 @@ const Button = tw.button`text-lg px-8 py-2 rounded`
 const SuccessButton = () => <Button>Success</Button>
 ```
 
-More usage examples can be found in the [React + Tailwind + Emotion starter](https://codesandbox.io/s/react-tailwind-emotion-starter-3d1dl).
+More usage examples can be found in the [React + Emotion + Tailwind Twin starter](https://codesandbox.io/s/react-tailwind-emotion-starter-3d1dl).
 
 <hr />
 
@@ -413,7 +402,7 @@ More usage examples can be found in the [React + Tailwind + Emotion starter](htt
 
 ## Gatsby + Styled Components
 
-**🔥 View the [Gatsby + Tailwind + Styled Components starter](https://codesandbox.io/s/gatsby-tailwind-styled-components-starter-trrlp) for setup and usage examples**
+**🔥 View the [Gatsby + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/gatsby-tailwind-styled-components-starter-trrlp) for setup and usage examples**
 
 ### 1. Install Gatsby
 
@@ -487,7 +476,7 @@ const Button = tw.button`text-lg px-8 py-2 rounded`
 const SuccessButton = () => <Button>Success</Button>
 ```
 
-More usage examples can be found in the [Gatsby + Tailwind + Emotion starter](https://codesandbox.io/s/gatsby-tailwind-styled-components-starter-trrlp).
+More usage examples can be found in the [Gatsby + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/gatsby-tailwind-styled-components-starter-trrlp).
 
 <hr />
 
@@ -498,7 +487,7 @@ More usage examples can be found in the [Gatsby + Tailwind + Emotion starter](ht
 
 ## Create React App + Styled Components
 
-**🔥 View the [CRA + Tailwind + Styled Components starter](https://codesandbox.io/s/cra-tailwind-styled-components-starter-m8cyz) for setup and usage examples**
+**🔥 View the [CRA + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/cra-tailwind-styled-components-starter-m8cyz) for setup and usage examples**
 
 ### 1. Install Create React App
 
@@ -570,7 +559,7 @@ const Button = tw.button`text-lg px-8 py-2 rounded`
 const SuccessButton = () => <Button>Success</Button>
 ```
 
-More usage examples can be found in the [CRA + Tailwind + Styled Components starter](https://codesandbox.io/s/cra-tailwind-styled-components-starter-m8cyz).
+More usage examples can be found in the [CRA + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/cra-tailwind-styled-components-starter-m8cyz).
 
 <hr />
 
@@ -581,7 +570,7 @@ More usage examples can be found in the [CRA + Tailwind + Styled Components star
 
 ## Next + Styled Components
 
-**🔥 View the [Next + Tailwind + Styled Components starter](https://codesandbox.io/s/next-tailwind-styled-components-starter-m1f6d) for setup and usage examples**
+**🔥 View the [Next + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/next-tailwind-styled-components-starter-m1f6d) for setup and usage examples**
 
 ### 1. Install the dependencies
 
@@ -641,7 +630,7 @@ const Button = tw.button`text-lg px-8 py-2 rounded`
 const SuccessButton = () => <Button>Success</Button>
 ```
 
-More usage examples can be found in the [Next + Tailwind + Styled Components starter](https://codesandbox.io/s/next-tailwind-styled-components-starter-m1f6d).
+More usage examples can be found in the [Next + Styled Component + Tailwind Twin starter](https://codesandbox.io/s/next-tailwind-styled-components-starter-m1f6d).
 
 <hr />
 
@@ -652,7 +641,7 @@ More usage examples can be found in the [Next + Tailwind + Styled Components sta
 
 ## React + Styled Components
 
-**🔥 View the [React + Tailwind + Styled Components starter](https://codesandbox.io/s/react-tailwind-styled-components-starter-f87y7) for setup and usage examples**
+**🔥 View the [React + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/react-tailwind-styled-components-starter-f87y7) for setup and usage examples**
 
 ### 1. Install the dependencies
 
@@ -730,7 +719,7 @@ const Button = tw.button`text-lg px-8 py-2 rounded`
 const SuccessButton = () => <Button>Success</Button>
 ```
 
-More usage examples can be found in the [React + Tailwind + Styled Components starter](https://codesandbox.io/s/react-tailwind-styled-components-starter-f87y7).
+More usage examples can be found in the [React + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/react-tailwind-styled-components-starter-f87y7).
 
 <hr />
 
