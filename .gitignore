@@ -4,3 +4,4 @@ node_modules
 /utils.umd.js
 /utils.umd.js.map
 .vscode
+yarn.lock
