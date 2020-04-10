@@ -1,4 +1,10 @@
 {
+  "endOfLine": "lf",
   "semi": false,
-  "singleQuote": true
+  "singleQuote": true,
+  "bracketSpacing": false,
+  "tabWidth": 2,
+  "jsxBracketSameLine": false,
+  "trailingComma": "es5",
+  "useTabs": false
 }
