@@ -1,5 +1,5 @@
 import React from 'react'
-import tw from '..'
+import tw from '../..'
 
 tw`text-gray-100 bg-blue-500`
 
