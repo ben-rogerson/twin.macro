@@ -8,6 +8,9 @@ export const Container = styled.div`
   }
 `
 
+export const Link = tw.a``
+export const ComposedLink = styled(Link)``
+
 // I want to test the styled-components css prop in isolation from the emotion css prop,
 // but I dunno how to do that
 // export const cssProp = <div css={tw`bg-red-100`} />
