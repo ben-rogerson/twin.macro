@@ -1,5 +1,5 @@
 import React from 'react'
-import tw from '..'
+import tw from '../..'
 
 tw`text-gray-100 bg-blue-500`
 
@@ -32,9 +32,12 @@ tw.nonexistentelement``
 // @ts-expect-error
 tw('call syntax not supported')``
 
-function App() {
-  return <p>hi</p>
+function App({ children }: { children: React.ReactNode }) {
+  return <p>{children}</p>
 }
 
-const twPropElement = <div tw="prop" />
-const twPropComponent = <App tw="prop" />
+const twProp = (
+  <App tw="prop">
+    <div tw="prop">cool</div>
+  </App>
+)

@@ -10,7 +10,7 @@
     "build:all": "npm run build:macro && npm run build:util",
     "build:macro": "microbundle -i src/macro.js -f cjs -o ./macro.js --target node",
     "build:util": "microbundle -i src/utils.js -f umd -o ./utils.js",
-    "test:types": "tsc -p ./types/tsconfig.json",
+    "test:types": "tsc -b ./types/tsconfig.json",
     "test": "npm run build && jest && npm run test:types",
     "prepublishOnly": "npm run build"
   },
