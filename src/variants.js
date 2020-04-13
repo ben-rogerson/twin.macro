@@ -12,13 +12,13 @@ const mergeVariants = ({ variants, objBase, objToMerge }) => {
   if (!variants.length) {
     return {
       ...objBase,
-      ...objToMerge
+      ...objToMerge,
     }
   }
   // TODO: Replace dset
   dset(objBase, variants, {
     ...dlv(objBase, variants, {}),
-    ...objToMerge
+    ...objToMerge,
   })
   return objBase
 }
@@ -48,7 +48,7 @@ const validateVariants = ({ modifiers, state }) => {
     // Custom variants
     'hocus',
     'before',
-    'after'
+    'after',
   ]
   const themeScreens = dlv(state.config, ['theme', 'screens'])
   const themeScreenKeys = Object.keys(themeScreens)

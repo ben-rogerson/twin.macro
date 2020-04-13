@@ -36,7 +36,7 @@ const staticStyles = {
   'float-none': { output: { float: 'none' } },
   clearfix: {
     output: { '::after': { content: '""', display: 'table', clear: 'both' } },
-    config: false
+    config: false,
   },
 
   // https://tailwindcss.com/docs/clear
@@ -65,21 +65,21 @@ const staticStyles = {
   'overflow-y-hidden': { output: { overflowY: 'hidden' }, config: 'overflow' },
   'overflow-x-visible': {
     output: { overflowX: 'visible' },
-    config: 'overflow'
+    config: 'overflow',
   },
   'overflow-y-visible': {
     output: { overflowY: 'visible' },
-    config: 'overflow'
+    config: 'overflow',
   },
   'overflow-x-scroll': { output: { overflowX: 'scroll' }, config: 'overflow' },
   'overflow-y-scroll': { output: { overflowY: 'scroll' }, config: 'overflow' },
   'scrolling-touch': {
     output: { WebkitOverflowScrolling: 'touch' },
-    config: false
+    config: false,
   },
   'scrolling-auto': {
     output: { WebkitOverflowScrolling: 'auto' },
-    config: false
+    config: false,
   },
 
   // https://tailwindcss.com/docs/position
@@ -109,7 +109,7 @@ const staticStyles = {
   'flex-row-reverse': { output: { flexDirection: 'row-reverse' } },
   'flex-col': { output: { flexDirection: 'column' } },
   'flex-col-reverse': {
-    output: { flexDirection: 'column-reverse' }
+    output: { flexDirection: 'column-reverse' },
   },
 
   // https://tailwindcss.com/docs/flex-wrap
@@ -126,19 +126,19 @@ const staticStyles = {
 
   // https://tailwindcss.com/docs/align-content
   'content-start': {
-    output: { alignContent: 'flex-start' }
+    output: { alignContent: 'flex-start' },
   },
   'content-center': {
-    output: { alignContent: 'center' }
+    output: { alignContent: 'center' },
   },
   'content-end': {
-    output: { alignContent: 'flex-end' }
+    output: { alignContent: 'flex-end' },
   },
   'content-between': {
-    output: { alignContent: 'space-between' }
+    output: { alignContent: 'space-between' },
   },
   'content-around': {
-    output: { alignContent: 'space-around' }
+    output: { alignContent: 'space-around' },
   },
 
   // https://tailwindcss.com/docs/align-self
@@ -150,19 +150,19 @@ const staticStyles = {
 
   // https://tailwindcss.com/docs/justify-content
   'justify-start': {
-    output: { justifyContent: 'flex-start' }
+    output: { justifyContent: 'flex-start' },
   },
   'justify-center': {
-    output: { justifyContent: 'center' }
+    output: { justifyContent: 'center' },
   },
   'justify-end': {
-    output: { justifyContent: 'flex-end' }
+    output: { justifyContent: 'flex-end' },
   },
   'justify-between': {
-    output: { justifyContent: 'space-between' }
+    output: { justifyContent: 'space-between' },
   },
   'justify-around': {
-    output: { justifyContent: 'space-around' }
+    output: { justifyContent: 'space-around' },
   },
 
   // https://tailwindcss.com/docs/flex
@@ -224,16 +224,16 @@ const staticStyles = {
   antialiased: {
     output: {
       WebkitFontSmoothing: 'antialiased',
-      MozOsxFontSmoothing: 'grayscale'
+      MozOsxFontSmoothing: 'grayscale',
     },
-    config: false
+    config: false,
   },
   'subpixel-antialiased': {
     output: {
       WebkitFontSmoothing: 'auto',
-      MozOsxFontSmoothing: 'auto'
+      MozOsxFontSmoothing: 'auto',
     },
-    config: false
+    config: false,
   },
 
   // https://tailwindcss.com/docs/font-style
@@ -291,20 +291,20 @@ const staticStyles = {
   // https://tailwindcss.com/docs/word-break
   'break-normal': {
     output: { wordBreak: 'normal', overflowWrap: 'normal' },
-    config: 'wordbreak'
+    config: 'wordbreak',
   },
   'break-words': {
     output: { overflowWrap: 'break-word' },
-    config: 'wordbreak'
+    config: 'wordbreak',
   },
   'break-all': { output: { wordBreak: 'break-all' }, config: 'wordbreak' },
   truncate: {
     output: {
       overflow: 'hidden',
       textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
     },
-    config: false
+    config: false,
   },
 
   /**
@@ -359,10 +359,10 @@ const staticStyles = {
 
   // https://tailwindcss.com/docs/border-collapse
   'border-collapse': {
-    output: { borderCollapse: 'collapse' }
+    output: { borderCollapse: 'collapse' },
   },
   'border-separate': {
-    output: { borderCollapse: 'separate' }
+    output: { borderCollapse: 'separate' },
   },
 
   // https://tailwindcss.com/docs/table-layout
@@ -416,10 +416,10 @@ const staticStyles = {
 
   // https://tailwindcss.com/docs/pointer-events
   'pointer-events-none': {
-    output: { pointerEvents: 'none' }
+    output: { pointerEvents: 'none' },
   },
   'pointer-events-auto': {
-    output: { pointerEvents: 'auto' }
+    output: { pointerEvents: 'auto' },
   },
 
   // https://tailwindcss.com/docs/resize
@@ -460,9 +460,9 @@ const staticStyles = {
       overflow: 'hidden',
       clip: 'rect(0, 0, 0, 0)',
       whiteSpace: 'nowrap',
-      borderWidth: '0'
+      borderWidth: '0',
     },
-    config: 'accessibility'
+    config: 'accessibility',
   },
   'not-sr-only': {
     output: {
@@ -473,9 +473,9 @@ const staticStyles = {
       margin: '0',
       overflow: 'visible',
       clip: 'auto',
-      whiteSpace: 'normal'
+      whiteSpace: 'normal',
     },
-    config: 'accessibility'
+    config: 'accessibility',
   },
 
   /**
@@ -493,9 +493,9 @@ const staticStyles = {
       '--transform-scale-x': '1',
       '--transform-scale-y': '1',
       transform:
-        'translateX(var(--transform-translate-x)) translateY(var(--transform-translate-y)) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y))'
+        'translateX(var(--transform-translate-x)) translateY(var(--transform-translate-y)) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y))',
     },
-    config: false
+    config: false,
   },
 
   /**
@@ -506,8 +506,8 @@ const staticStyles = {
 
   content: {
     output: { content: '""' },
-    config: false
-  }
+    config: false,
+  },
 }
 
 export default staticStyles

@@ -2,9 +2,10 @@
   "endOfLine": "lf",
   "semi": false,
   "singleQuote": true,
-  "bracketSpacing": false,
+  "bracketSpacing": true,
   "tabWidth": 2,
   "jsxBracketSameLine": false,
   "trailingComma": "es5",
-  "useTabs": false
+  "useTabs": false,
+  "arrowParens": "avoid"
 }

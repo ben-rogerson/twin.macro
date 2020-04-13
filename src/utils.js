@@ -1,7 +1,7 @@
 import {
   resolveTailwindConfig,
   processPlugins,
-  defaultTailwindConfig
+  defaultTailwindConfig,
 } from './tailwindHelpers'
 import { logNoClass, softMatchConfigs } from './logging'
 import dlv from 'dlv'
@@ -28,7 +28,7 @@ const styleify = ({ prop, value }) =>
     ? prop.reduce(
         (acc, item) => ({
           ...acc,
-          [item]: value
+          [item]: value,
         }),
         {}
       )
@@ -67,7 +67,7 @@ function checkNewStyle({ config, key, prop }) {
   if (stringMatch) {
     return styleify({
       prop,
-      value: stringMatch
+      value: stringMatch,
     })
   }
   // Default
@@ -75,7 +75,7 @@ function checkNewStyle({ config, key, prop }) {
   if (defaultValueMatch) {
     return styleify({
       prop,
-      value: defaultValueMatch
+      value: defaultValueMatch,
     })
   }
   // Font family
@@ -84,7 +84,7 @@ function checkNewStyle({ config, key, prop }) {
     if (objectMatch && Array.isArray(Object.values(objectMatch))) {
       return styleify({
         prop,
-        value: Object.values(objectMatch).join(', ')
+        value: Object.values(objectMatch).join(', '),
       })
     }
   }
@@ -94,7 +94,7 @@ function checkNewStyle({ config, key, prop }) {
     const newStyleCheck = checkNewStyle({
       config: Object.values(objectMatch),
       key,
-      prop
+      prop,
     })
     if (newStyleCheck) {
       return newStyleCheck
@@ -152,7 +152,7 @@ function resolveStyle(props) {
       throw new MacroError(
         logNoClass({
           className: `${prefix}${className}`,
-          hasSuggestions
+          hasSuggestions,
         })
       )
     }
@@ -169,8 +169,8 @@ function resolveStyle(props) {
           config: softMatchConfigs({
             className,
             configTheme: config.theme,
-            prefix
-          })
+            prefix,
+          }),
         })
       )
     }
@@ -198,7 +198,7 @@ function resolve(opt, { config, key, className, prefix }) {
     const strResults = checkNewStyle({
       config: findKey,
       key: `${prefix}${key || 'default'}`,
-      prop: opt.prop
+      prop: opt.prop,
     })
     if (strResults) {
       return strResults
@@ -222,7 +222,7 @@ function resolve(opt, { config, key, className, prefix }) {
         const strResults = checkNewStyle({
           config: value,
           key: newKey,
-          prop: opt.prop
+          prop: opt.prop,
         })
         if (strResults) {
           return strResults
@@ -242,13 +242,13 @@ function resolve(opt, { config, key, className, prefix }) {
         className,
         config: keyFound,
         key,
-        prop: opt.prop
+        prop: opt.prop,
       })
 
       if (strResults) {
         return styleify({
           prop: opt.prop,
-          value: strResults
+          value: strResults,
         })
       }
     }

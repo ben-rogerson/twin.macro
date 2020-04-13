@@ -5,7 +5,7 @@ import {
   addImport,
   findIdentifier,
   parseTte,
-  replaceWithLocation
+  replaceWithLocation,
 } from './macroHelpers'
 import getStyles from './getStyles'
 import { resolveTailwindConfig, defaultTailwindConfig } from './tailwindHelpers'
@@ -58,7 +58,7 @@ function twinMacro({ babel: { types: t }, references, state, config }) {
     config && config.styled
       ? {
           import: config.styled.import || 'default',
-          from: config.styled.from || config.styled
+          from: config.styled.from || config.styled,
         }
       : { import: 'default', from: '@emotion/styled' }
 
@@ -78,7 +78,7 @@ function twinMacro({ babel: { types: t }, references, state, config }) {
   state.styledIdentifier = findIdentifier({
     program,
     mod: styledImport.from,
-    name: styledImport.import
+    name: styledImport.import,
   })
   if (state.styledIdentifier === null) {
     state.styledIdentifier = program.scope.generateUidIdentifier('styled')
@@ -118,7 +118,7 @@ function twinMacro({ babel: { types: t }, references, state, config }) {
           )
         )
       }
-    }
+    },
   })
 
   references.default.forEach(path => {
@@ -129,7 +129,7 @@ function twinMacro({ babel: { types: t }, references, state, config }) {
       path: parent,
       types: t,
       styledIdentifier: state.styledIdentifier,
-      state
+      state,
     })
     if (!parsed) return
 
@@ -142,7 +142,7 @@ function twinMacro({ babel: { types: t }, references, state, config }) {
       program,
       mod: styledImport.from,
       name: styledImport.import,
-      identifier: state.styledIdentifier
+      identifier: state.styledIdentifier,
     })
   }
 

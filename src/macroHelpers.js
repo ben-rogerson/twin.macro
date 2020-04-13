@@ -60,7 +60,7 @@ function astify(literal, t) {
     case 'function':
       let ast = babylon.parse(literal.toString(), {
         allowReturnOutsideFunction: true,
-        allowSuperOutsideMethod: true
+        allowSuperOutsideMethod: true,
       })
       return traverse.removeProperties(ast)
     case 'number':
@@ -127,7 +127,7 @@ function findIdentifier({ program, mod, name }) {
         }
         return false
       })
-    }
+    },
   })
 
   return identifier
@@ -168,7 +168,7 @@ function parseTte({ path, types: t, styledIdentifier, state }) {
     replaceWithLocation(
       path,
       t.callExpression(cloneNode(path.node.tag), [
-        t.identifier('__twPlaceholder')
+        t.identifier('__twPlaceholder'),
       ])
     )
 
@@ -197,5 +197,5 @@ export {
   astify,
   findIdentifier,
   parseTte,
-  replaceWithLocation
+  replaceWithLocation,
 }

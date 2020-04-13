@@ -16,7 +16,7 @@ const stringifyScreen = (config, screenName) => {
     .map(range => {
       return [
         typeof range.min === 'string' ? `(min-width: ${range.min})` : null,
-        typeof range.max === 'string' ? `(max-width: ${range.max})` : null
+        typeof range.max === 'string' ? `(max-width: ${range.max})` : null,
       ]
         .filter(Boolean)
         .join(' and ')

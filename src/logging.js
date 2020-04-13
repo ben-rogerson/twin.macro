@@ -27,7 +27,7 @@ const softMatchDynamicConfig = ({ className, configTheme, prefix }) => {
     ? config
     : softMatchDynamicClass({
         ...props,
-        className: classNamePieceCheck
+        className: classNamePieceCheck,
       })
 }
 
@@ -43,7 +43,7 @@ const softMatchStaticConfig = ({ className, prefix }) => {
 // Get soft matches from the static and dynamic configs for suggestions
 const softMatchConfigs = props => ({
   ...softMatchDynamicConfig(props),
-  ...softMatchStaticConfig(props)
+  ...softMatchStaticConfig(props),
 })
 
 const softMatchDynamicClass = ({ className, obj, configTheme, prefix }) => {
@@ -60,7 +60,7 @@ const softMatchDynamicClass = ({ className, obj, configTheme, prefix }) => {
           hasDefaultKey ? '' : `${hasNegative ? '' : '-'}${k}`
         }${hasObjectValue ? chalk.hex('#999')('-xxx') : ''}`]: hasObjectValue
           ? ''
-          : v
+          : v,
       }
     })
   })
@@ -70,7 +70,7 @@ const softMatchDynamicClass = ({ className, obj, configTheme, prefix }) => {
     .reduce(
       (acc, item) => ({
         ...acc,
-        ...item
+        ...item,
       }),
       {}
     )
@@ -87,7 +87,7 @@ const softMatchStaticClass = ({ className, obj, prefix }) => {
     .reduce(
       (acc, item) => ({
         ...acc,
-        [item[0]]: ''
+        [item[0]]: '',
       }),
       {}
     )
@@ -162,5 +162,5 @@ export {
   logNoClass,
   logNoTrailingDash,
   logBadGood,
-  softMatchConfigs
+  softMatchConfigs,
 }

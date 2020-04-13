@@ -142,7 +142,7 @@ const dynamicStyles = {
     // https://tailwindcss.com/docs/font-family
     { prop: 'fontFamily', config: 'fontFamily' },
     // https://tailwindcss.com/docs/font-weight
-    { prop: 'fontWeight', config: 'fontWeight' }
+    { prop: 'fontWeight', config: 'fontWeight' },
   ],
 
   // https://tailwindcss.com/docs/font-smoothing
@@ -171,7 +171,7 @@ const dynamicStyles = {
     // https://tailwindcss.com/docs/text-color
     { prop: 'color', config: 'textColor' },
     // https://tailwindcss.com/docs/font-size
-    { prop: 'fontSize', config: 'fontSize' }
+    { prop: 'fontSize', config: 'fontSize' },
   ],
 
   // https://tailwindcss.com/docs/text-decoration
@@ -195,7 +195,7 @@ const dynamicStyles = {
     // https://tailwindcss.com/docs/background-size
     { prop: 'backgroundSize', config: 'backgroundSize' },
     // https://tailwindcss.com/docs/background-position
-    { prop: 'backgroundPosition', config: 'backgroundPosition' }
+    { prop: 'backgroundPosition', config: 'backgroundPosition' },
   ],
 
   // https://tailwindcss.com/docs/background-repeat
@@ -219,7 +219,7 @@ const dynamicStyles = {
     // https://tailwindcss.com/docs/border-width
     { prop: 'borderWidth', config: 'borderWidth' }, // keep above borderColor to support 'border'
     // https://tailwindcss.com/docs/border-color
-    { prop: 'borderColor', config: 'borderColor' }
+    { prop: 'borderColor', config: 'borderColor' },
   ],
 
   // https://tailwindcss.com/docs/border-radius
@@ -229,19 +229,19 @@ const dynamicStyles = {
   'rounded-bl': { prop: 'borderBottomLeftRadius', config: 'borderRadius' },
   'rounded-t': {
     prop: ['borderTopLeftRadius', 'borderTopRightRadius'],
-    config: 'borderRadius'
+    config: 'borderRadius',
   },
   'rounded-r': {
     prop: ['borderTopRightRadius', 'borderBottomRightRadius'],
-    config: 'borderRadius'
+    config: 'borderRadius',
   },
   'rounded-b': {
     prop: ['borderBottomLeftRadius', 'borderBottomRightRadius'],
-    config: 'borderRadius'
+    config: 'borderRadius',
   },
   'rounded-l': {
     prop: ['borderTopLeftRadius', 'borderBottomLeftRadius'],
-    config: 'borderRadius'
+    config: 'borderRadius',
   },
   rounded: { prop: 'borderRadius', config: 'borderRadius' },
 
@@ -279,7 +279,7 @@ const dynamicStyles = {
   // https://tailwindcss.com/docs/transition-timing-function
   ease: {
     prop: 'transitionTimingFunction',
-    config: 'transitionTimingFunction'
+    config: 'transitionTimingFunction',
   },
 
   /**
@@ -292,7 +292,7 @@ const dynamicStyles = {
   'scale-y': { prop: '--transform-scale-y', config: 'scale' },
   scale: {
     prop: ['--transform-scale-x', '--transform-scale-y'],
-    config: 'scale'
+    config: 'scale',
   },
 
   // https://tailwindcss.com/docs/rotate
@@ -338,8 +338,8 @@ const dynamicStyles = {
     // https://tailwindcss.com/docs/stroke
     { prop: 'stroke', config: 'stroke' },
     // https://tailwindcss.com/docs/stroke
-    { prop: 'strokeWidth', config: 'strokeWidth' }
-  ]
+    { prop: 'strokeWidth', config: 'strokeWidth' },
+  ],
 
   /**
    * ===========================================

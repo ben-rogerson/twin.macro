@@ -10,7 +10,7 @@ import {
   logNoClass,
   logNoTrailingDash,
   logBadGood,
-  softMatchConfigs
+  softMatchConfigs,
 } from './logging'
 import { orderByScreens } from './screens'
 import { MacroError } from 'babel-plugin-macros'
@@ -42,20 +42,20 @@ export default function getStyles(str, t, state) {
     // Match the filtered modifiers
     const matchedVariants = validateVariants({
       modifiers,
-      state
+      state,
     })
 
     // Match against plugin classNames Get classnames from plugin
     const pluginMatch = resolveStyleFromPlugins({
       config: state.config,
-      className
+      className,
     })
     if (pluginMatch) {
       const objToMerge = mergeImportant(pluginMatch, hasImportant)
       const pluginOutput = mergeVariants({
         variants: matchedVariants,
         objBase: acc,
-        objToMerge
+        objToMerge,
       })
       state.debug && console.log(logInOut(className, objToMerge))
       return pluginOutput
@@ -89,13 +89,13 @@ export default function getStyles(str, t, state) {
       const config = softMatchConfigs({
         className,
         configTheme: state.config.theme,
-        prefix
+        prefix,
       })
       throw new MacroError(
         logNoClass({
           className: `${prefix}${className}`,
           config,
-          hasSuggestions: state.hasSuggestions
+          hasSuggestions: state.hasSuggestions,
         })
       )
     }
@@ -113,7 +113,7 @@ export default function getStyles(str, t, state) {
       const mergedStaticOutput = mergeVariants({
         variants: matchedVariants,
         objBase: acc,
-        objToMerge
+        objToMerge,
       })
 
       state.debug && console.log(logInOut(className, objToMerge))
@@ -141,7 +141,7 @@ export default function getStyles(str, t, state) {
           className,
           matchedKey: dynamicKey,
           prefix,
-          hasSuggestions: state.hasSuggestions
+          hasSuggestions: state.hasSuggestions,
         })
       : {
           ['__spread__' + index]:
@@ -152,7 +152,7 @@ export default function getStyles(str, t, state) {
             JSON.stringify(dynamicStyles[dynamicKey]) +
             ',"' +
             key +
-            '")'
+            '")',
         }
 
     const dynamicStyleImportant = mergeImportant(results, hasImportant)
@@ -160,7 +160,7 @@ export default function getStyles(str, t, state) {
     const mergedDynamicOutput = mergeVariants({
       variants: matchedVariants,
       objBase: acc,
-      objToMerge: dynamicStyleImportant
+      objToMerge: dynamicStyleImportant,
     })
 
     state.debug && console.log(logInOut(className, dynamicStyleImportant))
