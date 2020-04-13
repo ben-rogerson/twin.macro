@@ -100,7 +100,9 @@ function twinMacro({ babel: { types: t }, references, state, config }) {
       const attrs = path
         .findParent(p => p.isJSXOpeningElement())
         .get('attributes')
-      const cssAttr = attrs.filter(p => p.node.name.name === 'css')
+      const cssAttr = attrs.filter(
+        p => p.node.name && p.node.name.name === 'css'
+      )
 
       if (cssAttr.length) {
         path.remove()
