@@ -1,5 +1,8 @@
 import babylon from '@babel/parser'
 
+const SPREAD_ID = '__spread__'
+const COMPUTED_ID = '__computed__'
+
 function addImport({ types: t, program, mod, name, identifier }) {
   if (name === 'default') {
     program.unshiftContainer(
@@ -66,7 +69,7 @@ function astify(literal, t) {
     case 'number':
       return t.numericLiteral(literal)
     case 'string':
-      if (literal.startsWith('__computed__')) {
+      if (literal.startsWith(COMPUTED_ID)) {
         return babylon.parseExpression(literal.substr(12))
       }
       return t.stringLiteral(literal)
@@ -96,10 +99,10 @@ function objectExpressionElements(literal, t, spreadType) {
       return typeof literal[k] !== 'undefined'
     })
     .map(k => {
-      if (k.startsWith('__spread__')) {
+      if (k.startsWith(SPREAD_ID)) {
         return t[spreadType](babylon.parseExpression(literal[k]))
       } else {
-        let computed = k.startsWith('__computed__')
+        let computed = k.startsWith(COMPUTED_ID)
         let key = computed
           ? babylon.parseExpression(k.substr(12))
           : t.stringLiteral(k)
@@ -192,6 +195,8 @@ function replaceWithLocation(path, replacement) {
 }
 
 export {
+  SPREAD_ID,
+  COMPUTED_ID,
   addImport,
   assignify,
   astify,

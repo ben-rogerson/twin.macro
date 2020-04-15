@@ -1,7 +1,7 @@
 import dlv from 'dlv'
 import { resolveStyle, resolveStyleFromPlugins } from './utils'
 import { staticStyles, dynamicStyles } from './config'
-import { assignify, astify } from './macroHelpers'
+import { SPREAD_ID, COMPUTED_ID, assignify, astify } from './macroHelpers'
 import splitter from './splitter'
 import { mergeVariants, validateVariants } from './variants'
 import { mergeImportant } from './important'
@@ -121,7 +121,7 @@ export default function getStyles(str, t, state) {
       return state.isProd ? mergedStaticOutput : ''
 
       // [c]:
-      //   '__computed__' +
+      //   COMPUTED_ID +
       //   pre +
       //   state.tailwindConfigIdentifier.name +
       //   '.theme.' +
@@ -144,7 +144,7 @@ export default function getStyles(str, t, state) {
           hasSuggestions: state.hasSuggestions,
         })
       : {
-          ['__spread__' + index]:
+          [SPREAD_ID + index]:
             state.tailwindUtilsIdentifier.name +
             '.resolveStyle(' +
             state.tailwindConfigIdentifier.name +

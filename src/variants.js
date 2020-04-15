@@ -3,6 +3,7 @@ import dlv from 'dlv'
 import { stringifyScreen } from './screens'
 import { logNoVariant } from './logging'
 import { MacroError } from 'babel-plugin-macros'
+import { SPREAD_ID, COMPUTED_ID } from './macroHelpers'
 
 /**
  * Merge the modifiers
@@ -98,7 +99,7 @@ const validateVariants = ({ modifiers, state }) => {
         if (isModResponsiveAllowed) {
           return state.isProd
             ? stringifyScreen(state.config, mod)
-            : '__computed__' +
+            : COMPUTED_ID +
                 state.tailwindUtilsIdentifier.name +
                 '.stringifyScreen(' +
                 state.tailwindConfigIdentifier.name +
