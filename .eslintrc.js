@@ -23,9 +23,21 @@ module.exports = {
   ],
   plugins: ['chai-friendly', 'jest', 'import'],
   rules: {
+    'no-unused-expressions': 0,
+    'no-negated-condition': 0,
+    'no-warning-comments': 0,
+    'operator-assignment': 0,
+    'import/no-unresolved': 0,
+    'chai-friendly/no-unused-expressions': 0,
+    '@typescript-eslint/no-unused-expressions': 0,
+    '@typescript-eslint/no-use-before-define': 0,
+    '@typescript-eslint/no-base-to-string': 0,
+    '@typescript-eslint/prefer-nullish-coalescing': 0,
+    '@typescript-eslint/no-unsafe-return': 0,
     '@typescript-eslint/semi': 0,
     '@typescript-eslint/restrict-template-expressions': 0,
     '@typescript-eslint/default-param-last': 0,
+    '@typescript-eslint/prefer-optional-chain': 0,
     'react/prop-types': 0,
     'jest/prefer-expect-assertions': 0,
     'capitalized-comments': 0,
@@ -42,6 +54,13 @@ module.exports = {
         allow: ['**/*.css'],
       },
     ],
+    'unicorn/filename-case': [
+      'error',
+      {
+        case: 'camelCase',
+      },
+    ],
+    'unicorn/prefer-type-error': 0,
   },
   overrides: [
     {

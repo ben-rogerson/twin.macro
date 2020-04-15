@@ -26,8 +26,8 @@ const isEmpty = value =>
 const styleify = ({ prop, value }) =>
   Array.isArray(prop)
     ? prop.reduce(
-        (acc, item) => ({
-          ...acc,
+        (accumulator, item) => ({
+          ...accumulator,
           [item]: value,
         }),
         {}
@@ -50,8 +50,8 @@ function matchNumberAsString(value) {
 
 function matchDefaultValue(value) {
   if (typeof value !== 'object') return
-  if (!value['default']) return
-  return value['default']
+  if (!value.default) return
+  return value.default
 }
 
 function matchObject(value) {
@@ -70,6 +70,7 @@ function checkNewStyle({ config, key, prop }) {
       value: stringMatch,
     })
   }
+
   // Default
   const defaultValueMatch = matchDefaultValue(config[key])
   if (defaultValueMatch) {
@@ -78,6 +79,7 @@ function checkNewStyle({ config, key, prop }) {
       value: defaultValueMatch,
     })
   }
+
   // Font family
   if (prop === 'fontFamily') {
     const objectMatch = matchObject(config[key])
@@ -88,6 +90,7 @@ function checkNewStyle({ config, key, prop }) {
       })
     }
   }
+
   // Object
   const objectMatch = matchObject(config[key])
   if (objectMatch) {
@@ -100,14 +103,12 @@ function checkNewStyle({ config, key, prop }) {
       return newStyleCheck
     }
   }
-
-  return
 }
 
 function resolveStyleFromPlugins({ config, className }) {
-  pluginClassNames = {}
+  const pluginClassNames = {}
 
-  if (!config.plugins || !config.plugins.length) {
+  if (!config.plugins || config.plugins.length === 0) {
     return
   }
 
@@ -118,11 +119,13 @@ function resolveStyleFromPlugins({ config, className }) {
     if (rule.type !== 'atrule' || rule.name !== 'variants') {
       return
     }
+
     rule.each(x => {
       const match = x.selector.match(/^\.(\S+)(\s+.*?)?$/)
       if (match === null) {
         return
       }
+
       const name = match[1]
       const rest = match[2]
       const keys = rest ? [name, rest.trim()] : [name]
@@ -139,11 +142,18 @@ function resolveStyleFromPlugins({ config, className }) {
   return output
 }
 
-function resolveStyle(props) {
-  const { styleList, key, className, prefix, config, hasSuggestions } = props
+function resolveStyle(properties) {
+  const {
+    styleList,
+    key,
+    className,
+    prefix,
+    config,
+    hasSuggestions,
+  } = properties
   // Deal with Array items like 'font' or 'bg'
   if (Array.isArray(styleList)) {
-    const resultsRaw = styleList.map(item => resolve(item, ...props))
+    const resultsRaw = styleList.map(item => resolve(item, ...properties))
     const results = Object.values(resultsRaw).find(
       x => x && Object.values(x)[0] !== undefined
     )
@@ -156,11 +166,12 @@ function resolveStyle(props) {
         })
       )
     }
+
     return results
   }
 
   if (typeof styleList === 'object') {
-    const results = resolve(styleList, ...props)
+    const results = resolve(styleList, ...properties)
     if (isEmpty(results)) {
       throw new MacroError(
         logNoClass({
@@ -174,6 +185,7 @@ function resolveStyle(props) {
         })
       )
     }
+
     return results
   }
 
@@ -192,20 +204,22 @@ function resolve(opt, { config, key, className, prefix }) {
       `${className} expects ${opt.config} in the Tailwind config`
     )
   }
+
   // Check for hyphenated key matches eg: row-span-2 ("span-2" being the key)
   const keyMatch = findKey[`${prefix}${key || 'default'}`] || null
   if (keyMatch) {
-    const strResults = checkNewStyle({
+    const stringResults = checkNewStyle({
       config: findKey,
       key: `${prefix}${key || 'default'}`,
       prop: opt.prop,
     })
-    if (strResults) {
-      return strResults
+    if (stringResults) {
+      return stringResults
     }
   }
+
   // Check using className splitting
-  let classParts =
+  const classParts =
     className && className.includes('-')
       ? className.split('-').filter(Boolean)
       : [className]
@@ -219,36 +233,37 @@ function resolve(opt, { config, key, className, prefix }) {
       const value = findKey[part] || null
       if (value) {
         const newKey = classParts[Number(index) + 1]
-        const strResults = checkNewStyle({
+        const stringResults = checkNewStyle({
           config: value,
           key: newKey,
           prop: opt.prop,
         })
-        if (strResults) {
-          return strResults
+        if (stringResults) {
+          return stringResults
         }
       }
     }
   }
 
-  for (let _ of classParts) {
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+  for (const _ of classParts) {
     index = index + 1
 
     const keyNext = classParts[index] ? classParts[index] : null
     const keyFound = findKey[`${prefix}${keyNext}`]
 
     if (keyFound) {
-      const strResults = checkNewStyle({
+      const stringResults = checkNewStyle({
         className,
         config: keyFound,
         key,
         prop: opt.prop,
       })
 
-      if (strResults) {
+      if (stringResults) {
         return styleify({
           prop: opt.prop,
-          value: strResults,
+          value: stringResults,
         })
       }
     }

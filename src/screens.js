@@ -8,11 +8,13 @@ const stringifyScreen = (config, screenName) => {
       `Couldn’t find Tailwind the screen "${screenName}" in the Tailwind config`
     )
   }
+
   if (typeof screen === 'string') return `@media (min-width: ${screen})`
   if (typeof screen.raw === 'string') {
     return `@media ${screen.raw}`
   }
-  const str = (Array.isArray(screen) ? screen : [screen])
+
+  const string = (Array.isArray(screen) ? screen : [screen])
     .map(range => {
       return [
         typeof range.min === 'string' ? `(min-width: ${range.min})` : null,
@@ -22,7 +24,7 @@ const stringifyScreen = (config, screenName) => {
         .join(' and ')
     })
     .join(', ')
-  return str ? `@media ${str}` : ''
+  return string ? `@media ${string}` : ''
 }
 
 const orderByScreens = (classNames, screens) => {
@@ -31,6 +33,7 @@ const orderByScreens = (classNames, screens) => {
     const B = b.includes(':') ? b.split(':')[0] : b
     return screens.indexOf(A) < screens.indexOf(B) ? -1 : 1
   }
+
   // Tim Sort provides accurate sorting in node < 11
   // https://github.com/ben-rogerson/twin.macro/issues/20
   timSort.sort(classNames, screenCompare)

@@ -6,6 +6,7 @@ const splitNegative = ({ className, ...rest }) => {
   if (hasNegative) {
     className = className.slice(1, className.length)
   }
+
   return { ...rest, className, hasNegative }
 }
 

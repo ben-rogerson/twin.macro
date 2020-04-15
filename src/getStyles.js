@@ -1,7 +1,7 @@
 import dlv from 'dlv'
 import { resolveStyle, resolveStyleFromPlugins } from './utils'
 import { staticStyles, dynamicStyles } from './config'
-import { SPREAD_ID, COMPUTED_ID, assignify, astify } from './macroHelpers'
+import { SPREAD_ID, assignify, astify } from './macroHelpers'
 import splitter from './splitter'
 import { mergeVariants, validateVariants } from './variants'
 import { mergeImportant } from './important'
@@ -15,13 +15,13 @@ import {
 import { orderByScreens } from './screens'
 import { MacroError } from 'babel-plugin-macros'
 
-export default function getStyles(str, t, state) {
+export default function getStyles(string, t, state) {
   // Move and sort the responsive items to the end of the list
-  const classList = str.match(/\S+/g) || []
+  const classList = string.match(/\S+/g) || []
   const order = Object.keys(state.config.theme.screens)
   const classListOrdered = orderByScreens(classList, order)
 
-  const styles = classListOrdered.reduce((acc, classNameRaw, index) => {
+  const styles = classListOrdered.reduce((accumulator, classNameRaw, index) => {
     if (classNameRaw === 'group') {
       throw new MacroError(
         `"group" must be added as className:\n\n${logBadGood(
@@ -34,6 +34,7 @@ export default function getStyles(str, t, state) {
     if (classNameRaw.endsWith('-')) {
       throw new MacroError(logNoTrailingDash(classNameRaw))
     }
+
     const { className, modifiers, hasImportant, hasNegative } = splitter(
       classNameRaw
     )
@@ -51,13 +52,13 @@ export default function getStyles(str, t, state) {
       className,
     })
     if (pluginMatch) {
-      const objToMerge = mergeImportant(pluginMatch, hasImportant)
+      const important = mergeImportant(pluginMatch, hasImportant)
       const pluginOutput = mergeVariants({
         variants: matchedVariants,
-        objBase: acc,
-        objToMerge,
+        objBase: accumulator,
+        objToMerge: important,
       })
-      state.debug && console.log(logInOut(className, objToMerge))
+      state.debug && console.log(logInOut(className, important))
       return pluginOutput
     }
 
@@ -67,7 +68,7 @@ export default function getStyles(str, t, state) {
       ? Object.keys(staticConfigOutput).shift()
       : null
 
-    const staticStyleKey = !!staticConfig ? staticConfig : staticConfigKey
+    const staticStyleKey = staticConfig || staticConfigKey
 
     // Get an array of matches (eg: ['col', 'col-span'])
     const dynamicKeyMatches =
@@ -76,7 +77,7 @@ export default function getStyles(str, t, state) {
       ) || []
     // Get the best match from the match array
     const dynamicKey = dynamicKeyMatches.reduce(
-      (r, e) => (r.length < e.length ? e : r),
+      (r, match) => (r.length < match.length ? match : r),
       []
     )
     const dynamicStyleset = dlv(dynamicStyles, dynamicKey)
@@ -108,15 +109,15 @@ export default function getStyles(str, t, state) {
         )
       }
 
-      const objToMerge = mergeImportant(staticStyleOutput, hasImportant)
+      const important = mergeImportant(staticStyleOutput, hasImportant)
 
       const mergedStaticOutput = mergeVariants({
         variants: matchedVariants,
-        objBase: acc,
-        objToMerge,
+        objBase: accumulator,
+        objToMerge: important,
       })
 
-      state.debug && console.log(logInOut(className, objToMerge))
+      state.debug && console.log(logInOut(className, important))
 
       return state.isProd ? mergedStaticOutput : ''
 
@@ -131,7 +132,7 @@ export default function getStyles(str, t, state) {
       //   '"]'
     }
 
-    const key = className.substr(dynamicKey.length + 1)
+    const key = className.slice(dynamicKey.length + 1)
 
     const results = state.isProd
       ? resolveStyle({
@@ -144,15 +145,11 @@ export default function getStyles(str, t, state) {
           hasSuggestions: state.hasSuggestions,
         })
       : {
-          [SPREAD_ID + index]:
-            state.tailwindUtilsIdentifier.name +
-            '.resolveStyle(' +
-            state.tailwindConfigIdentifier.name +
-            ', ' +
-            JSON.stringify(dynamicStyles[dynamicKey]) +
-            ',"' +
-            key +
-            '")',
+          [`${SPREAD_ID}${index}`]: `${
+            state.tailwindUtilsIdentifier.name
+          }.resolveStyle("${
+            state.tailwindConfigIdentifier.name
+          }, ${JSON.stringify(dynamicStyles[dynamicKey])}, "${key}")`,
         }
 
     const dynamicStyleImportant = mergeImportant(results, hasImportant)
@@ -165,10 +162,11 @@ export default function getStyles(str, t, state) {
 
     const mergedDynamicOutput = mergeVariants({
       variants: matchedVariants,
-      objBase: acc,
+      objBase: accumulator,
       objToMerge: dynamicStylePlaceholder,
     })
 
+    // TODO: Find how to add variants to debug (eg: media queries, before)
     state.debug && console.log(logInOut(className, dynamicStylePlaceholder))
 
     return mergedDynamicOutput

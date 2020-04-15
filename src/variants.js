@@ -3,19 +3,42 @@ import dlv from 'dlv'
 import { stringifyScreen } from './screens'
 import { logNoVariant } from './logging'
 import { MacroError } from 'babel-plugin-macros'
-import { SPREAD_ID, COMPUTED_ID } from './macroHelpers'
+import { COMPUTED_ID } from './macroHelpers'
+
+const modifierList = {
+  'group-hover': '.group:hover &',
+  'focus-within': ':focus-within',
+  first: ':first-child',
+  last: ':last-child',
+  odd: ':nth-child(odd)',
+  even: ':nth-child(even)',
+  hover: ':hover',
+  focus: ':focus',
+  active: ':active',
+  visited: ':visited',
+  disabled: ':disabled',
+  // Custom to Twin
+  'group-hocus': '.group:hover &, .group:focus &',
+  'group-focus': '.group:focus &',
+  'group-active': '.group:active &',
+  'group-visited': '.group:visited &',
+  hocus: ':hover, :focus',
+  before: ':before',
+  after: ':after',
+}
 
 /**
  * Merge the modifiers
  */
 const mergeVariants = ({ variants, objBase, objToMerge }) => {
   if (!objToMerge) return objBase
-  if (!variants.length) {
+  if (variants.length === 0) {
     return {
       ...objBase,
       ...objToMerge,
     }
   }
+
   // TODO: Replace dset
   dset(objBase, variants, {
     ...dlv(objBase, variants, {}),
@@ -30,89 +53,26 @@ const mergeVariants = ({ variants, objBase, objToMerge }) => {
 const validateVariants = ({ modifiers, state }) => {
   if (!modifiers) return []
 
-  const availableModifiers = [
-    'group-hover',
-    'group-hocus',
-    'group-focus',
-    'group-active',
-    'group-visited',
-    'focus-within',
-    'first',
-    'last',
-    'odd',
-    'even',
-    'hover',
-    'focus',
-    'active',
-    'visited',
-    'disabled',
-    // Custom variants
-    'hocus',
-    'before',
-    'after',
-  ]
   const themeScreens = dlv(state.config, ['theme', 'screens'])
   const themeScreenKeys = Object.keys(themeScreens)
-  const validModifiers = [...availableModifiers, ...themeScreenKeys]
+  const validModifiers = [...Object.keys(modifierList), ...themeScreenKeys]
 
   return modifiers
-    .map(mod => {
-      if (mod === 'group-hover') {
-        return '.group:hover &'
-      }
-      if (mod === 'group-hocus') {
-        return '.group:hover &, .group:focus &'
-      }
-      if (mod === 'group-focus') {
-        return '.group:focus &'
-      }
-      if (mod === 'group-active') {
-        return '.group:active &'
-      }
-      if (mod === 'group-visited') {
-        return '.group:visited &'
-      }
-      if (mod === 'focus-within') {
-        return ':focus-within'
-      }
-      if (mod === 'first') {
-        return ':first-child'
-      }
-      if (mod === 'last') {
-        return ':last-child'
-      }
-      if (mod === 'odd') {
-        return ':nth-child(odd)'
-      }
-      if (mod === 'even') {
-        return ':nth-child(even)'
-      }
-      if (mod === 'hocus') {
-        return ':hover, :focus'
+    .map(modifier => {
+      const isModifierResponsive =
+        themeScreenKeys && themeScreenKeys.includes(modifier)
+      if (isModifierResponsive) {
+        return state.isProd
+          ? stringifyScreen(state.config, modifier)
+          : `${COMPUTED_ID}${state.tailwindUtilsIdentifier.name}.stringifyScreen(${state.tailwindConfigIdentifier.name}, "${modifier}")`
       }
 
-      // Get theme screen
-      const isModResponsive = themeScreenKeys && themeScreenKeys.includes(mod)
-
-      if (isModResponsive) {
-        const isModResponsiveAllowed = validModifiers.includes(mod)
-        if (isModResponsiveAllowed) {
-          return state.isProd
-            ? stringifyScreen(state.config, mod)
-            : COMPUTED_ID +
-                state.tailwindUtilsIdentifier.name +
-                '.stringifyScreen(' +
-                state.tailwindConfigIdentifier.name +
-                ', "' +
-                mod +
-                '")'
-        }
-      }
-      if (validModifiers.includes(mod)) {
-        return `:${mod}`
+      // Check modifier against available modifiers
+      if (modifierList[modifier]) {
+        return modifierList[modifier]
       }
 
-      throw new MacroError(logNoVariant(mod, validModifiers))
+      throw new MacroError(logNoVariant(modifier, validModifiers))
     })
     .filter(Boolean)
 }
@@ -121,15 +81,16 @@ const validateVariants = ({ modifiers, state }) => {
  * Split the variant(s) from the className
  */
 const splitVariants = ({ className, ...rest }) => {
-  let modifiers = []
+  const modifiers = []
   let modifier
   while (modifier !== null) {
-    modifier = className.match(/^([a-z-_]+):/i)
+    modifier = className.match(/^([_a-z-]+):/)
     if (modifier) {
-      className = className.substr(modifier[0].length)
+      className = className.slice(modifier[0].length)
       modifiers.push(modifier[1])
     }
   }
+
   return { ...rest, className, modifiers }
 }
 

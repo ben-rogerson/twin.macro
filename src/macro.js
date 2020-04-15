@@ -12,9 +12,60 @@ import { resolveTailwindConfig, defaultTailwindConfig } from './tailwindHelpers'
 
 const TW_CONFIG_DEFAULT_FILENAME = 'tailwind.config.js'
 
-export default createMacro(twinMacro, { configName: 'twin' })
+const addDevelopmentImports = ({
+  state,
+  configPath,
+  program,
+  t,
+  configExists,
+}) => {
+  const tailwindConfigUid = program.scope.generateUidIdentifier(
+    'tailwindConfig'
+  )
+  // Call resolveConfig function from the utils file
+  // For hot tailwind.config updates
+  // eg: const _tailwindConfig = _tailwindUtils.resolveConfig()
+  program.unshiftContainer(
+    'body',
+    t.variableDeclaration('const', [
+      t.variableDeclarator(
+        state.tailwindConfigIdentifier,
+        t.callExpression(
+          t.memberExpression(
+            state.tailwindUtilsIdentifier,
+            t.identifier('resolveConfig')
+          ),
+          [configExists ? tailwindConfigUid : t.objectExpression([])]
+        )
+      ),
+    ])
+  )
+  // Import users tailwind.config.js for hot config updates
+  if (configExists) {
+    const tailwindConfigImportPath = `./${relative(
+      dirname(state.file.opts.filename),
+      configPath
+    )}`
+    addImport({
+      types: t,
+      program,
+      mod: tailwindConfigImportPath,
+      name: 'default',
+      identifier: tailwindConfigUid,
+    })
+  }
 
-function twinMacro({ babel: { types: t }, references, state, config }) {
+  // Import the utils
+  addImport({
+    types: t,
+    program,
+    mod: 'twin.macro/utils.umd',
+    name: 'default',
+    identifier: state.tailwindUtilsIdentifier,
+  })
+}
+
+const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   const sourceRoot = state.file.opts.sourceRoot || '.'
   const program = state.file.path
   const configFile = config && config.config
@@ -31,6 +82,7 @@ function twinMacro({ babel: { types: t }, references, state, config }) {
     'tailwindUtils'
   )
 
+  /* eslint-disable-next-line unicorn/prevent-abbreviations */
   const isDev =
     process.env.NODE_ENV === 'development' ||
     process.env.NODE_ENV === 'dev' ||
@@ -96,16 +148,16 @@ function twinMacro({ babel: { types: t }, references, state, config }) {
     JSXAttribute(path) {
       if (path.node.name.name !== 'tw') return
       const styles = getStyles(path.node.value.value, t, state)
-      const attrs = path
+      const attributes = path
         .findParent(p => p.isJSXOpeningElement())
         .get('attributes')
-      const cssAttr = attrs.filter(
+      const cssAttributes = attributes.filter(
         p => p.node.name && p.node.name.name === 'css'
       )
 
-      if (cssAttr.length) {
+      if (cssAttributes.length > 0) {
         path.remove()
-        const expr = cssAttr[0].get('value').get('expression')
+        const expr = cssAttributes[0].get('value').get('expression')
         if (expr.isArrayExpression()) {
           expr.pushContainer('elements', styles)
         } else {
@@ -134,7 +186,7 @@ function twinMacro({ babel: { types: t }, references, state, config }) {
     })
     if (!parsed) return
 
-    replaceWithLocation(parsed.path, getStyles(parsed.str, t, state))
+    replaceWithLocation(parsed.path, getStyles(parsed.string, t, state))
   })
 
   if (state.shouldImportStyled && !state.existingStyledIdentifier) {
@@ -148,54 +200,10 @@ function twinMacro({ babel: { types: t }, references, state, config }) {
   }
 
   if (state.isDev) {
-    addDevImports({ state, configPath, program, t, configExists })
+    addDevelopmentImports({ state, configPath, program, t, configExists })
   }
 
   program.scope.crawl()
 }
 
-const addDevImports = ({ state, configPath, program, t, configExists }) => {
-  const tailwindConfigUid = program.scope.generateUidIdentifier(
-    'tailwindConfig'
-  )
-  // Call resolveConfig function from the utils file
-  // For hot tailwind.config updates
-  // eg: const _tailwindConfig = _tailwindUtils.resolveConfig()
-  program.unshiftContainer(
-    'body',
-    t.variableDeclaration('const', [
-      t.variableDeclarator(
-        state.tailwindConfigIdentifier,
-        t.callExpression(
-          t.memberExpression(
-            state.tailwindUtilsIdentifier,
-            t.identifier('resolveConfig')
-          ),
-          [configExists ? tailwindConfigUid : t.objectExpression([])]
-        )
-      )
-    ])
-  )
-  // Import users tailwind.config.js for hot config updates
-  if (configExists) {
-    const tailwindConfigImportPath = `./${relative(
-      dirname(state.file.opts.filename),
-      configPath
-    )}`
-    addImport({
-      types: t,
-      program,
-      mod: tailwindConfigImportPath,
-      name: 'default',
-      identifier: tailwindConfigUid
-    })
-  }
-  // Import the utils
-  addImport({
-    types: t,
-    program,
-    mod: 'twin.macro/utils.umd',
-    name: 'default',
-    identifier: state.tailwindUtilsIdentifier
-  })
-}
+export default createMacro(twinMacro, { configName: 'twin' })

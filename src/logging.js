@@ -19,33 +19,6 @@ const getClassNamePieces = className => {
     : classNamePieces[0]
 }
 
-const softMatchDynamicConfig = ({ className, configTheme, prefix }) => {
-  const props = { obj: dynamicStyles, configTheme, prefix }
-  const config = softMatchDynamicClass({ ...props, className })
-  const classNamePieceCheck = getClassNamePieces(className)
-  return !isEmpty(config)
-    ? config
-    : softMatchDynamicClass({
-        ...props,
-        className: classNamePieceCheck,
-      })
-}
-
-const softMatchStaticConfig = ({ className, prefix }) => {
-  const props = { obj: staticStyles, prefix }
-  const config = softMatchStaticClass({ ...props, className })
-  const classNamePieceCheck = getClassNamePieces(className)
-  return !isEmpty(config)
-    ? config
-    : softMatchStaticClass({ ...props, className: classNamePieceCheck })
-}
-
-// Get soft matches from the static and dynamic configs for suggestions
-const softMatchConfigs = props => ({
-  ...softMatchDynamicConfig(props),
-  ...softMatchStaticConfig(props),
-})
-
 const softMatchDynamicClass = ({ className, obj, configTheme, prefix }) => {
   if (typeof obj !== 'object') return []
   const values = Object.entries(obj).map(([key, value]) => {
@@ -54,7 +27,7 @@ const softMatchDynamicClass = ({ className, obj, configTheme, prefix }) => {
     return Object.entries(config).map(([k, v]) => {
       const hasObjectValue = typeof v === 'object'
       const hasDefaultKey = k === 'default'
-      const hasNegative = k.slice(0, 1) === '-'
+      const hasNegative = k.startsWith === '-'
       return {
         [`${hasNegative ? '-' : ''}${key}${
           hasDefaultKey ? '' : `${hasNegative ? '' : '-'}${k}`
@@ -68,8 +41,8 @@ const softMatchDynamicClass = ({ className, obj, configTheme, prefix }) => {
   const matches = combinedValues
     .filter(item => Object.keys(item)[0].startsWith(`${prefix}${className}`))
     .reduce(
-      (acc, item) => ({
-        ...acc,
+      (accumulator, item) => ({
+        ...accumulator,
         ...item,
       }),
       {}
@@ -85,14 +58,41 @@ const softMatchStaticClass = ({ className, obj, prefix }) => {
         !isEmpty(value) && key.startsWith(`${prefix}${className}`)
     )
     .reduce(
-      (acc, item) => ({
-        ...acc,
+      (accumulator, item) => ({
+        ...accumulator,
         [item[0]]: '',
       }),
       {}
     )
   return matches
 }
+
+const softMatchDynamicConfig = ({ className, configTheme, prefix }) => {
+  const properties = { obj: dynamicStyles, configTheme, prefix }
+  const config = softMatchDynamicClass({ ...properties, className })
+  const classNamePieceCheck = getClassNamePieces(className)
+  return !isEmpty(config)
+    ? config
+    : softMatchDynamicClass({
+        ...properties,
+        className: classNamePieceCheck,
+      })
+}
+
+const softMatchStaticConfig = ({ className, prefix }) => {
+  const properties = { obj: staticStyles, prefix }
+  const config = softMatchStaticClass({ ...properties, className })
+  const classNamePieceCheck = getClassNamePieces(className)
+  return !isEmpty(config)
+    ? config
+    : softMatchStaticClass({ ...properties, className: classNamePieceCheck })
+}
+
+// Get soft matches from the static and dynamic configs for suggestions
+const softMatchConfigs = properties => ({
+  ...softMatchDynamicConfig(properties),
+  ...softMatchStaticConfig(properties),
+})
 
 const logInOut = (input, output) =>
   `${chalk.greenBright('✓')} ${input} ${chalk.greenBright(

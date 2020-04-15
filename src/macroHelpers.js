@@ -23,19 +23,20 @@ function addImport({ types: t, program, mod, name, identifier }) {
   }
 }
 
-function assignify(objAst, t) {
-  if (objAst.type !== 'ObjectExpression') return objAst
+function assignify(objectAst, t) {
+  if (objectAst.type !== 'ObjectExpression') return objectAst
 
-  let cloneNode = t.cloneNode || t.cloneDeep
-  let currentChunk = []
-  let chunks = []
+  const cloneNode = t.cloneNode || t.cloneDeep
+  const currentChunk = []
+  const chunks = []
 
-  objAst.properties.forEach(property => {
+  objectAst.properties.forEach(property => {
     if (property.type === 'SpreadElement') {
-      if (currentChunk.length) {
+      if (currentChunk.length > 0) {
         chunks.push(cloneNode(t.objectExpression(currentChunk)))
         currentChunk.length = 0
       }
+
       chunks.push(cloneNode(property.argument))
     } else {
       property.value = assignify(property.value, t)
@@ -43,9 +44,9 @@ function assignify(objAst, t) {
     }
   })
 
-  if (chunks.length === 0) return objAst
+  if (chunks.length === 0) return objectAst
 
-  if (currentChunk.length) {
+  if (currentChunk.length > 0) {
     chunks.push(cloneNode(t.objectExpression(currentChunk)))
   }
 
@@ -53,44 +54,6 @@ function assignify(objAst, t) {
     t.memberExpression(t.identifier('Object'), t.identifier('assign')),
     chunks
   )
-}
-
-function astify(literal, t) {
-  if (literal === null) {
-    return t.nullLiteral()
-  }
-  switch (typeof literal) {
-    case 'function':
-      let ast = babylon.parse(literal.toString(), {
-        allowReturnOutsideFunction: true,
-        allowSuperOutsideMethod: true,
-      })
-      return traverse.removeProperties(ast)
-    case 'number':
-      return t.numericLiteral(literal)
-    case 'string':
-      if (literal.startsWith(COMPUTED_ID)) {
-        return babylon.parseExpression(literal.substr(12))
-      }
-      return t.stringLiteral(literal)
-    case 'boolean':
-      return t.booleanLiteral(literal)
-    case 'undefined':
-      return t.unaryExpression('void', t.numericLiteral(0), true)
-    default:
-      if (Array.isArray(literal)) {
-        return t.arrayExpression(literal.map(x => astify(x, t)))
-      }
-      try {
-        return t.objectExpression(
-          objectExpressionElements(literal, t, 'spreadElement')
-        )
-      } catch (err) {
-        return t.objectExpression(
-          objectExpressionElements(literal, t, 'spreadProperty')
-        )
-      }
-  }
 }
 
 function objectExpressionElements(literal, t, spreadType) {
@@ -101,14 +64,53 @@ function objectExpressionElements(literal, t, spreadType) {
     .map(k => {
       if (k.startsWith(SPREAD_ID)) {
         return t[spreadType](babylon.parseExpression(literal[k]))
-      } else {
-        let computed = k.startsWith(COMPUTED_ID)
-        let key = computed
-          ? babylon.parseExpression(k.substr(12))
-          : t.stringLiteral(k)
-        return t.objectProperty(key, astify(literal[k], t), computed)
       }
+
+      const computed = k.startsWith(COMPUTED_ID)
+      const key = computed
+        ? babylon.parseExpression(k.slice(12))
+        : t.stringLiteral(k)
+      return t.objectProperty(key, astify(literal[k], t), computed)
     })
+}
+
+function astify(literal, t) {
+  if (literal === null) {
+    return t.nullLiteral()
+  }
+
+  switch (typeof literal) {
+    case 'function':
+      return t.unaryExpression('void', t.numericLiteral(0), true)
+    case 'number':
+      return t.numericLiteral(literal)
+    case 'boolean':
+      return t.booleanLiteral(literal)
+    case 'undefined':
+      return t.unaryExpression('void', t.numericLiteral(0), true)
+    case 'string':
+      if (literal.startsWith(COMPUTED_ID)) {
+        return babylon.parseExpression(literal.slice(COMPUTED_ID.length))
+      }
+
+      return t.stringLiteral(literal)
+    default:
+      // TODO: When is the literal an array? It's only an object/string
+      if (Array.isArray(literal)) {
+        return t.arrayExpression(literal.map(x => astify(x, t)))
+      }
+
+      // TODO: This is horrible, clean it up
+      try {
+        return t.objectExpression(
+          objectExpressionElements(literal, t, 'spreadElement')
+        )
+      } catch (_) {
+        return t.objectExpression(
+          objectExpressionElements(literal, t, 'spreadProperty')
+        )
+      }
+  }
 }
 
 function findIdentifier({ program, mod, name }) {
@@ -119,15 +121,16 @@ function findIdentifier({ program, mod, name }) {
       if (path.node.source.value !== mod) return
 
       path.node.specifiers.some(specifier => {
-        if (specifier.type === 'ImportDefaultSpecifier') {
-          if (name === 'default') {
-            identifier = specifier.local
-            return true
-          }
-        } else if (specifier.imported.name === name) {
+        if (specifier.type === 'ImportDefaultSpecifier' && name === 'default') {
           identifier = specifier.local
           return true
         }
+
+        if (specifier.imported.name === name) {
+          identifier = specifier.local
+          return true
+        }
+
         return false
       })
     },
@@ -137,7 +140,7 @@ function findIdentifier({ program, mod, name }) {
 }
 
 function parseTte({ path, types: t, styledIdentifier, state }) {
-  let cloneNode = t.cloneNode || t.cloneDeep
+  const cloneNode = t.cloneNode || t.cloneDeep
 
   if (
     path.node.tag.type !== 'Identifier' &&
@@ -146,8 +149,8 @@ function parseTte({ path, types: t, styledIdentifier, state }) {
   )
     return null
 
-  let str = path.get('quasi').get('quasis')[0].node.value.cooked
-  let strLoc = path.get('quasi').node.loc
+  const string = path.get('quasi').get('quasis')[0].node.value.cooked
+  const stringLoc = path.get('quasi').node.loc
 
   if (path.node.tag.type === 'CallExpression') {
     replaceWithLocation(
@@ -178,19 +181,20 @@ function parseTte({ path, types: t, styledIdentifier, state }) {
     path = path.get('arguments')[0]
   }
 
-  path.node.loc = strLoc
+  path.node.loc = stringLoc
 
-  return { str, path }
+  return { string, path }
 }
 
 function replaceWithLocation(path, replacement) {
-  let newPaths = replacement ? path.replaceWith(replacement) : []
-  if (Array.isArray(newPaths) && newPaths.length) {
-    let loc = path.node.loc
+  const newPaths = replacement ? path.replaceWith(replacement) : []
+  if (Array.isArray(newPaths) && newPaths.length > 0) {
+    const { loc } = path.node
     newPaths.forEach(p => {
       p.node.loc = loc
     })
   }
+
   return newPaths
 }
 

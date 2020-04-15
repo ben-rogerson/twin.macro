@@ -65,11 +65,11 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.8.3",
-    "@typescript-eslint/eslint-plugin": "^2.27.0",
-    "@typescript-eslint/parser": "^2.27.0",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@types/styled-components": "^5.0.1",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
     "babel-plugin-tester": "^8.0.1",
     "eslint": "^6.8.0",
     "eslint-config-import": "^0.13.0",
@@ -92,6 +92,8 @@
     "microbundle": "^0.11.0",
     "nodemon": "^2.0.2",
     "prettier": "^2.0.4",
+    "react": "^16.13.1",
+    "styled-components": "^5.1.0",
     "typescript": "^3.9.0-beta"
   }
 }
