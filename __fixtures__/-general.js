@@ -9,6 +9,7 @@ const BoxExtended = tw(Box)`bg-blue-500`
 const MediaProperty = tw`lg:uppercase`
 const MediaColorProperty = tw.div`lg:text-red-500`
 const ElementMediaColorProperty = tw(Box2)`lg:bg-blue-500`
+const MediaPropertyDuplicates = tw`lg:bg-blue-500 lg:bg-black`
 
 // Important
 

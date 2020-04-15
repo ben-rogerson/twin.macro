@@ -13,6 +13,7 @@ const BoxExtended = tw(Box)\`bg-blue-500\`
 const MediaProperty = tw\`lg:uppercase\`
 const MediaColorProperty = tw.div\`lg:text-red-500\`
 const ElementMediaColorProperty = tw(Box2)\`lg:bg-blue-500\`
+const MediaPropertyDuplicates = tw\`lg:bg-blue-500 lg:bg-black\`
 
 // Important
 
@@ -64,7 +65,13 @@ const ElementMediaColorProperty = _styled(Box2)({
   '@media (min-width: 1024px)': {
     backgroundColor: '#4299e1',
   },
-}) // Important
+})
+
+const MediaPropertyDuplicates = {
+  '@media (min-width: 1024px)': {
+    backgroundColor: '#000',
+  },
+} // Important
 
 const Important = {
   '@media (min-width: 1024px)': {
@@ -287,6 +294,8 @@ tw\`active:bg-red-500\`
 tw\`visited:bg-red-500\`
 tw\`disabled:bg-red-500\`
 
+const multiVariants = tw\`xl:placeholder-bg-red-500! first:md:block sm:disabled:bg-red-500\`
+
 // Native to Twin
 
 tw\`hocus:bg-red-500\`
@@ -350,7 +359,24 @@ tw\`after:bg-red-500\`
   ':disabled': {
     backgroundColor: '#f56565',
   },
-}) // Native to Twin
+})
+const multiVariants = {
+  ':first-child': {
+    '@media (min-width: 768px)': {
+      display: 'block',
+    },
+  },
+  '@media (min-width: 640px)': {
+    ':disabled': {
+      backgroundColor: '#f56565',
+    },
+  },
+  '@media (min-width: 1280px)': {
+    '::placeholder': {
+      color: '#f56565 !important',
+    },
+  },
+} // Native to Twin
 
 ;({
   ':hover, :focus': {

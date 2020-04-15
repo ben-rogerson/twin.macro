@@ -14,6 +14,8 @@ tw`active:bg-red-500`
 tw`visited:bg-red-500`
 tw`disabled:bg-red-500`
 
+const multiVariants = tw`xl:placeholder-bg-red-500! first:md:block sm:disabled:bg-red-500`
+
 // Native to Twin
 
 tw`hocus:bg-red-500`
