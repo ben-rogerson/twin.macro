@@ -5,6 +5,7 @@ import { SPREAD_ID, assignify, astify } from './macroHelpers'
 import splitter from './splitter'
 import { mergeVariants, validateVariants } from './variants'
 import { mergeImportant } from './important'
+import { getContainerStyles } from './container'
 import {
   logInOut,
   logNoClass,
@@ -17,8 +18,8 @@ import { orderByScreens } from './screens'
 export default function getStyles(string, t, state) {
   // Move and sort the responsive items to the end of the list
   const classList = string.match(/\S+/g) || []
-  const order = Object.keys(state.config.theme.screens)
-  const classListOrdered = orderByScreens(classList, order)
+  const configScreens = Object.keys(state.config.theme.screens)
+  const classListOrdered = orderByScreens(classList, configScreens)
 
   const styles = classListOrdered.reduce((accumulator, classNameRaw, index) => {
     assert(
@@ -31,8 +32,17 @@ export default function getStyles(string, t, state) {
 
     assert(classNameRaw.endsWith('-'), logNoTrailingDash(classNameRaw))
 
-    if (classNameRaw.endsWith('-')) {
-      throw new MacroError(logNoTrailingDash(classNameRaw))
+    // Container
+    if (['container', 'container-auto'].includes(classNameRaw)) {
+      const { container, screens } = dlv(state, ['config', 'theme'])
+      const containerStyles = getContainerStyles({
+        isCentered: classNameRaw === 'container-auto',
+        screens: Object.values(screens),
+        padding: container.padding,
+      })
+      if (containerStyles) {
+        return containerStyles
+      }
     }
 
     const { className, modifiers, hasImportant, hasNegative } = splitter(
