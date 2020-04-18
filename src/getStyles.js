@@ -1,5 +1,5 @@
 import dlv from 'dlv'
-import { resolveStyle, resolveStyleFromPlugins } from './utils'
+import { resolveStyle, resolveStyleFromPlugins, assert } from './utils'
 import { staticStyles, dynamicStyles } from './config'
 import { SPREAD_ID, assignify, astify } from './macroHelpers'
 import splitter from './splitter'
@@ -13,7 +13,6 @@ import {
   softMatchConfigs,
 } from './logging'
 import { orderByScreens } from './screens'
-import { MacroError } from 'babel-plugin-macros'
 
 export default function getStyles(string, t, state) {
   // Move and sort the responsive items to the end of the list
@@ -22,14 +21,15 @@ export default function getStyles(string, t, state) {
   const classListOrdered = orderByScreens(classList, order)
 
   const styles = classListOrdered.reduce((accumulator, classNameRaw, index) => {
-    if (classNameRaw === 'group') {
-      throw new MacroError(
-        `"group" must be added as className:\n\n${logBadGood(
-          'tw`group`',
-          '<div className="group">'
-        )}\n`
-      )
-    }
+    assert(
+      classNameRaw === 'group',
+      `"group" must be added as className:\n\n${logBadGood(
+        'tw`group`',
+        '<div className="group">'
+      )}\n`
+    )
+
+    assert(classNameRaw.endsWith('-'), logNoTrailingDash(classNameRaw))
 
     if (classNameRaw.endsWith('-')) {
       throw new MacroError(logNoTrailingDash(classNameRaw))
@@ -86,28 +86,26 @@ export default function getStyles(string, t, state) {
       : dlv(dynamicStyles, [dynamicKey, 'config'])
 
     // Exit early if no className is found in both configs
-    if (!staticStyleKey && !dynamicStyleKey) {
-      const config = softMatchConfigs({
-        className,
-        configTheme: state.config.theme,
-        prefix,
+    assert(
+      !staticStyleKey && !dynamicStyleKey,
+      logNoClass({
+        className: `${prefix}${className}`,
+        config: softMatchConfigs({
+          className,
+          configTheme: state.config.theme,
+          prefix,
+        }),
+        hasSuggestions: state.hasSuggestions,
       })
-      throw new MacroError(
-        logNoClass({
-          className: `${prefix}${className}`,
-          config,
-          hasSuggestions: state.hasSuggestions,
-        })
-      )
-    }
+    )
 
     if (staticStyleKey) {
       const staticStyleOutput = dlv(staticStyles, [className, 'output'])
-      if (!staticStyleOutput) {
-        throw new MacroError(
-          `No output value found for ${className} in static config`
-        )
-      }
+
+      assert(
+        !staticStyleOutput,
+        `No output value found for ${className} in static config`
+      )
 
       const important = mergeImportant(staticStyleOutput, hasImportant)
 

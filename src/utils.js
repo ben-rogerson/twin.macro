@@ -17,6 +17,11 @@ const resolveConfig = config => {
   return resolvedConfig
 }
 
+const assert = (expression, error) => {
+  if (!expression) return
+  throw new MacroError(error)
+}
+
 const isEmpty = value =>
   value === undefined ||
   value === null ||
@@ -157,34 +162,32 @@ function resolveStyle(properties) {
     const results = Object.values(resultsRaw).find(
       x => x && Object.values(x)[0] !== undefined
     )
-    if (!results) {
+    assert(
+      !results,
       // TODO: Add class suggestions for these types
-      throw new MacroError(
-        logNoClass({
-          className: `${prefix}${className}`,
-          hasSuggestions,
-        })
-      )
-    }
+      logNoClass({
+        className: `${prefix}${className}`,
+        hasSuggestions,
+      })
+    )
 
     return results
   }
 
   if (typeof styleList === 'object') {
     const results = resolve(styleList, ...properties)
-    if (isEmpty(results)) {
-      throw new MacroError(
-        logNoClass({
-          className: `${prefix}${className}`,
-          hasSuggestions,
-          config: softMatchConfigs({
-            className,
-            configTheme: config.theme,
-            prefix,
-          }),
-        })
-      )
-    }
+    assert(
+      isEmpty(results),
+      logNoClass({
+        className: `${prefix}${className}`,
+        hasSuggestions,
+        config: softMatchConfigs({
+          className,
+          configTheme: config.theme,
+          prefix,
+        }),
+      })
+    )
 
     return results
   }
@@ -199,11 +202,10 @@ function resolve(opt, { config, key, className, prefix }) {
   const findKey = dlv(config, ['theme', opt.config], {})
   // Check the key is defined in the tailwind config
   const checkValidConfig = matchObject(findKey)
-  if (!checkValidConfig) {
-    throw new MacroError(
-      `${className} expects ${opt.config} in the Tailwind config`
-    )
-  }
+  assert(
+    !checkValidConfig,
+    `${className} expects ${opt.config} in the Tailwind config`
+  )
 
   // Check for hyphenated key matches eg: row-span-2 ("span-2" being the key)
   const keyMatch = findKey[`${prefix}${key || 'default'}`] || null
@@ -272,4 +274,4 @@ function resolve(opt, { config, key, className, prefix }) {
   return {}
 }
 
-export { resolveConfig, resolveStyleFromPlugins, resolveStyle, isEmpty }
+export { resolveConfig, assert, resolveStyleFromPlugins, resolveStyle, isEmpty }
