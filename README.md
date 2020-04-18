@@ -22,7 +22,7 @@ const Input = tw.input`border hover:border-black`
 export default () => <Input />
 ```
 
-For features like conditional styling and css blocks, Twin works within styling libraries like [👩‍🎤 emotion](https://emotion.sh/docs/introduction) or [💅 styled-components](https://styled-components.com/):
+For features like conditional styling and css blocks, Twin works with styling libraries like [👩‍🎤 emotion](https://emotion.sh/docs/introduction) or [💅 styled-components](https://styled-components.com/):
 
 ```js
 import React from 'react'
@@ -39,7 +39,7 @@ const Input = styled.input([
           &:hover {
             ${tw`border-white`}
           }
-        `
+        `,
 ])
 export default () => <Input hasDarkHover />
 ```
@@ -61,7 +61,7 @@ const Input = ({ hasDarkHover }) => (
             &:hover {
               ${tw`border-white`}
             }
-          `
+          `,
     ]}
   />
 )
@@ -166,7 +166,7 @@ import 'tailwindcss/dist/base.css'
 ```js
 // gatsby-config.js
 module.exports = {
-  plugins: [`gatsby-plugin-emotion`]
+  plugins: [`gatsby-plugin-emotion`],
 }
 ```
 
@@ -244,8 +244,8 @@ module.exports = {
   twin: {
     // Place tailwind.config.js in the src folder so
     // it can be imported into your theme provider
-    config: 'src/tailwind.config.js'
-  }
+    config: 'src/tailwind.config.js',
+  },
 }
 ```
 
@@ -437,7 +437,7 @@ import 'tailwindcss/dist/base.css'
 ```js
 // gatsby-config.js
 module.exports = {
-  plugins: [`gatsby-plugin-styled-components`]
+  plugins: [`gatsby-plugin-styled-components`],
 }
 ```
 
@@ -461,8 +461,8 @@ Add the config to your `package.json`:
 // babel-plugin-macros.config.js
 module.exports = {
   twin: {
-    styled: 'styled-components'
-  }
+    styled: 'styled-components',
+  },
 }
 ```
 
@@ -544,8 +544,8 @@ module.exports = {
     styled: 'styled-components',
     // Place tailwind.config.js in the src folder so
     // it can be imported into your theme provider
-    config: 'src/tailwind.config.js'
-  }
+    config: 'src/tailwind.config.js',
+  },
 }
 ```
 
@@ -704,8 +704,8 @@ Add the config to your `package.json`:
 // babel-plugin-macros.config.js
 module.exports = {
   twin: {
-    styled: 'styled-components'
-  }
+    styled: 'styled-components',
+  },
 }
 ```
 
@@ -745,8 +745,8 @@ Choose from one of the following configs:
   // tailwind.config.js
   module.exports = {
     theme: {
-      extend: {}
-    }
+      extend: {},
+    },
   }
   ```
 
@@ -799,8 +799,8 @@ module.exports = {
     styled: '@emotion/styled',
     format: 'auto',
     hasSuggestions: true,
-    debug: false
-  }
+    debug: false,
+  },
 }
 ```
 

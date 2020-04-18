@@ -56,7 +56,7 @@ export default function getStyles(string, t, state) {
       state,
     })
 
-    // Match against plugin classNames Get classnames from plugin
+    // Match against plugin classNames
     const pluginMatch = resolveStyleFromPlugins({
       config: state.config,
       className,
