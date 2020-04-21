@@ -432,7 +432,7 @@ yarn add twin.macro styled-components gatsby-plugin-styled-components -D
 import 'tailwindcss/dist/base.css'
 ```
 
-### 4. Enable the Gatsby emotion plugin
+### 4. Enable the Gatsby Styled Components plugin
 
 ```js
 // gatsby-config.js
