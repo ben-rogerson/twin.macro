@@ -9,6 +9,7 @@ tw`hidden`
 tw`block`
 tw`inline-block`
 tw`inline`
+tw`flow-root`
 tw`flex`
 tw`inline-flex`
 tw`grid`

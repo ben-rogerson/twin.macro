@@ -16,6 +16,7 @@ const staticStyles = {
   block: { output: { display: 'block' } },
   'inline-block': { output: { display: 'inline-block' } },
   inline: { output: { display: 'inline' } },
+  'flow-root': { output: { display: 'flow-root' } },
   flex: { output: { display: 'flex' } },
   'inline-flex': { output: { display: 'inline-flex' } },
   grid: { output: { display: 'grid' } },
