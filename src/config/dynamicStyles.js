@@ -110,6 +110,9 @@ const dynamicStyles = {
   my: { prop: ['marginTop', 'marginBottom'], config: 'margin' },
   m: { prop: 'margin', config: 'margin' },
 
+  // https://tailwindcss.com/docs/space
+  space: { prop: 'space', config: 'space' },
+
   /**
    * ===========================================
    * Sizing

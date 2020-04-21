@@ -198,6 +198,7 @@ const staticStyles = {
 
   // https://tailwindcss.com/docs/padding
   // https://tailwindcss.com/docs/margin
+  // https://tailwindcss.com/docs/space
   // See dynamicStyles.js
 
   /**
