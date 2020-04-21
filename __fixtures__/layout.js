@@ -13,6 +13,7 @@ tw`flow-root`
 tw`flex`
 tw`inline-flex`
 tw`grid`
+tw`inline-grid`
 tw`table`
 tw`table-caption`
 tw`table-cell`
