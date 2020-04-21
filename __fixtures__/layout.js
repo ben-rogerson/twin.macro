@@ -32,6 +32,7 @@ tw`clearfix`
 tw`clear-left`
 tw`clear-right`
 tw`clear-both`
+tw`clear-none`
 
 // https://tailwindcss.com/docs/object-fit
 tw`object-contain`

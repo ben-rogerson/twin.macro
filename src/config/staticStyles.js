@@ -43,6 +43,7 @@ const staticStyles = {
   'clear-left': { output: { clear: 'left' } },
   'clear-right': { output: { clear: 'right' } },
   'clear-both': { output: { clear: 'both' } },
+  'clear-none': { output: { clear: 'none' } },
 
   // https://tailwindcss.com/docs/object-fit
   'object-contain': { output: { objectFit: 'contain' } },
