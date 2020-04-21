@@ -71,6 +71,7 @@ tw`list-outside`
 
 // https://tailwindcss.com/docs/placeholder-color
 tw`placeholder-transparent`
+tw`placeholder-current`
 tw`placeholder-black`
 tw`placeholder-white`
 tw`placeholder-gray-100`
@@ -172,6 +173,7 @@ tw`text-justify`
 
 // https://tailwindcss.com/docs/text-color
 tw`text-transparent`
+tw`text-current`
 tw`text-black`
 tw`text-white`
 tw`text-gray-100`
@@ -273,6 +275,7 @@ tw`text-justify`
 
 // https://tailwindcss.com/docs/text-color
 tw`text-transparent`
+tw`text-current`
 tw`text-black`
 tw`text-white`
 tw`text-gray-100`
