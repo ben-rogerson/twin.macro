@@ -105,6 +105,10 @@ tw`z-auto`
 
 // https://tailwindcss.com/docs/space
 tw`space-y-1`
+tw`space-x-1`
 tw`space-y-2`
+tw`space-x-2`
 tw`space-y-4`
+tw`space-x-4`
 tw`space-y-8`
+tw`space-x-8`
