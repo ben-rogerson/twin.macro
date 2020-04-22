@@ -2739,6 +2739,9 @@ exports[`twin.macro layout.js: layout.js 1`] = `
 
 import tw from './macro'
 
+// https://tailwindcss.com/docs/container
+tw\`container\`
+
 // https://tailwindcss.com/docs/box-sizing
 tw\`box-border\`
 tw\`box-content\`
@@ -2847,7 +2850,37 @@ tw\`z-auto\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-// https://tailwindcss.com/docs/box-sizing
+// https://tailwindcss.com/docs/container
+;({
+  width: '100%',
+  paddingLeft: '1rem',
+  paddingRight: '2rem',
+  marginLeft: '2rem',
+  marginRight: '3rem',
+  '@media (min-width: 640px)': {
+    maxWidth: '640px',
+    paddingLeft: '2rem',
+    marginLeft: 'auto',
+  },
+  '@media (min-width: 768px)': {
+    maxWidth: '768px',
+  },
+  '@media (min-width: 1024px)': {
+    maxWidth: '1024px',
+    paddingLeft: '4rem',
+    paddingRight: '4rem',
+    marginLeft: '5rem',
+    marginRight: '5rem',
+  },
+  '@media (min-width: 1280px)': {
+    maxWidth: '1280px',
+    paddingLeft: '6rem',
+    paddingRight: '6rem',
+    marginLeft: '7rem',
+    marginRight: '7rem',
+  },
+}) // https://tailwindcss.com/docs/box-sizing
+
 ;({
   'box-sizing': 'border-box',
 })

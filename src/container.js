@@ -1,32 +1,74 @@
-const getContainerStyles = ({ isCentered, screens, padding }) => {
-  const baseStyle = { width: '100%' }
+import { isEmpty } from './utils'
 
-  const mediaScreens = screens.reduce(
-    (accumulator, screen) => ({
+const properties = type => ({
+  left: `${type}Left`,
+  right: `${type}Right`,
+})
+
+const getSpacingFromArray = ({ values, left, right }) => {
+  if (!Array.isArray(values)) return
+  const [valueLeft, valueRight] = values
+  return { [left]: valueLeft, [right]: valueRight }
+}
+
+const getSpacingStyle = (type, values, key) => {
+  if (Array.isArray(values) || typeof values !== 'object') return
+
+  const propertyValue = values[key] || {}
+  if (isEmpty(propertyValue)) return
+
+  const objectArraySpacing = getSpacingFromArray({
+    values: propertyValue,
+    ...properties(type),
+  })
+  if (objectArraySpacing) return objectArraySpacing
+
+  return {
+    [properties(type).left]: propertyValue,
+    [properties(type).right]: propertyValue,
+  }
+}
+
+const getContainerStyles = ({ screens, padding, margin, center }) => {
+  const mediaScreens = Object.entries(screens).reduce(
+    (accumulator, [key, value]) => ({
       ...accumulator,
-      [`@media (min-width: ${screen})`]: {
-        maxWidth: screen,
+      [`@media (min-width: ${value})`]: {
+        maxWidth: value,
+        ...getSpacingStyle('padding', padding, key),
+        ...(!center && getSpacingStyle('margin', margin, key)),
       },
     }),
     {}
   )
 
-  const paddingStyles = padding
-    ? { paddingLeft: padding, paddingRight: padding }
-    : {}
+  const paddingStyles = Array.isArray(padding)
+    ? getSpacingFromArray({
+        values: padding,
+        ...properties('padding'),
+      })
+    : typeof padding === 'object'
+    ? getSpacingStyle('padding', padding, 'default')
+    : { paddingLeft: padding, paddingRight: padding }
 
-  const containerStyles = { ...baseStyle, ...mediaScreens }
+  let marginStyles = Array.isArray(margin)
+    ? getSpacingFromArray({
+        values: margin,
+        ...properties('margin'),
+      })
+    : typeof margin === 'object'
+    ? getSpacingStyle('margin', margin, 'default')
+    : { marginLeft: margin, marginRight: margin }
 
-  if (isCentered) {
-    return {
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      ...paddingStyles,
-      ...containerStyles,
-    }
+  // { center: true } overrides any margin styles
+  if (center) marginStyles = { marginLeft: 'auto', marginRight: 'auto' }
+
+  return {
+    width: '100%',
+    ...paddingStyles,
+    ...marginStyles,
+    ...mediaScreens,
   }
-
-  return { ...paddingStyles, ...containerStyles }
 }
 
 export { getContainerStyles }

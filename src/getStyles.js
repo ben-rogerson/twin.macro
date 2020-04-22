@@ -32,15 +32,14 @@ export default function getStyles(string, t, state) {
 
     assert(classNameRaw.endsWith('-'), logNoTrailingDash(classNameRaw))
 
-    // Container
-    if (['container', 'container-auto'].includes(classNameRaw)) {
+    if (['container'].includes(classNameRaw)) {
       const { container, screens } = dlv(state, ['config', 'theme'])
       const containerStyles = getContainerStyles({
-        isCentered: classNameRaw === 'container-auto',
-        screens: Object.values(screens),
-        padding: container.padding,
+        ...container,
+        screens,
       })
       if (containerStyles) {
+        state.debug && console.log(logInOut(classNameRaw, containerStyles))
         return containerStyles
       }
     }
