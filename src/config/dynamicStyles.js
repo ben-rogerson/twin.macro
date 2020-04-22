@@ -279,6 +279,9 @@ const dynamicStyles = {
   // https://tailwindcss.com/docs/transition-duration
   duration: { prop: 'transitionDuration', config: 'transitionDuration' },
 
+  // https://tailwindcss.com/docs/transition-delay
+  delay: { prop: 'transitionDelay', config: 'transitionDelay' },
+
   // https://tailwindcss.com/docs/transition-timing-function
   ease: {
     prop: 'transitionTimingFunction',
