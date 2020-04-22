@@ -104,6 +104,9 @@ const staticStyles = {
   // https://tailwindcss.com/docs/space
   // See dynamicStyles.js
 
+  // https://tailwindcss.com/docs/divider
+  // See dynamicStyles.js
+
   /**
    * ===========================================
    * Flexbox
