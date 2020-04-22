@@ -3161,6 +3161,430 @@ tw\`z-auto\`
 
 `;
 
+exports[`twin.macro layout.js: layout.js 1`] = `
+
+import tw from './macro'
+
+// https://tailwindcss.com/docs/box-sizing
+tw\`box-border\`
+tw\`box-content\`
+
+// https://tailwindcss.com/docs/display
+tw\`hidden\`
+tw\`block\`
+tw\`inline-block\`
+tw\`inline\`
+tw\`flex\`
+tw\`inline-flex\`
+tw\`grid\`
+tw\`table\`
+tw\`table-caption\`
+tw\`table-cell\`
+tw\`table-column\`
+tw\`table-column-group\`
+tw\`table-footer-group\`
+tw\`table-header-group\`
+tw\`table-row-group\`
+tw\`table-row\`
+
+// https://tailwindcss.com/docs/float
+tw\`float-right\`
+tw\`float-left\`
+tw\`float-none\`
+tw\`clearfix\`
+
+// https://tailwindcss.com/docs/clear
+tw\`clear-left\`
+tw\`clear-right\`
+tw\`clear-both\`
+
+// https://tailwindcss.com/docs/object-fit
+tw\`object-contain\`
+tw\`object-cover\`
+tw\`object-fill\`
+tw\`object-none\`
+tw\`object-scale-down\`
+
+// https://tailwindcss.com/docs/object-position
+tw\`object-bottom\`
+tw\`object-center\`
+tw\`object-left\`
+tw\`object-left-bottom\`
+tw\`object-left-top\`
+tw\`object-right\`
+tw\`object-right-bottom\`
+tw\`object-right-top\`
+tw\`object-top\`
+
+// https://tailwindcss.com/docs/overflow
+tw\`overflow-auto\`
+tw\`overflow-hidden\`
+tw\`overflow-visible\`
+tw\`overflow-scroll\`
+tw\`overflow-x-auto\`
+tw\`overflow-y-auto\`
+tw\`overflow-x-hidden\`
+tw\`overflow-y-hidden\`
+tw\`overflow-x-visible\`
+tw\`overflow-y-visible\`
+tw\`overflow-x-scroll\`
+tw\`overflow-y-scroll\`
+tw\`scrolling-touch\`
+tw\`scrolling-auto\`
+
+// https://tailwindcss.com/docs/position
+tw\`static\`
+tw\`fixed\`
+tw\`absolute\`
+tw\`relative\`
+tw\`sticky\`
+
+// https://tailwindcss.com/docs/top-right-bottom-left
+tw\`inset-0\`
+tw\`inset-y-0\`
+tw\`inset-x-0\`
+tw\`top-0\`
+tw\`right-0\`
+tw\`bottom-0\`
+tw\`left-0\`
+tw\`inset-auto\`
+tw\`inset-y-auto\`
+tw\`inset-x-auto\`
+tw\`top-auto\`
+tw\`bottom-auto\`
+tw\`left-auto\`
+tw\`right-auto\`
+
+// https://tailwindcss.com/docs/visibility
+tw\`visible\`
+tw\`invisible\`
+
+// https://tailwindcss.com/docs/z-index
+tw\`z-0\`
+tw\`z-10\`
+tw\`z-20\`
+tw\`z-30\`
+tw\`z-40\`
+tw\`z-50\`
+tw\`z-auto\`
+
+// https://tailwindcss.com/docs/space
+tw\`space-y-1\`
+tw\`space-x-1\`
+tw\`space-y-2\`
+tw\`space-x-2\`
+tw\`space-y-4\`
+tw\`space-x-4\`
+tw\`space-y-8\`
+tw\`space-x-8\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// https://tailwindcss.com/docs/box-sizing
+;({
+  'box-sizing': 'border-box',
+})
+;({
+  'box-sizing': 'content-box',
+}) // https://tailwindcss.com/docs/display
+
+;({
+  display: 'none',
+})
+;({
+  display: 'block',
+})
+;({
+  display: 'inline-block',
+})
+;({
+  display: 'inline',
+})
+;({
+  display: 'flex',
+})
+;({
+  display: 'inline-flex',
+})
+;({
+  display: 'grid',
+})
+;({
+  display: 'table',
+})
+;({
+  display: 'table-caption',
+})
+;({
+  display: 'table-cell',
+})
+;({
+  display: 'table-column',
+})
+;({
+  display: 'table-column-group',
+})
+;({
+  display: 'table-footer-group',
+})
+;({
+  display: 'table-header-group',
+})
+;({
+  display: 'table-row-group',
+})
+;({
+  display: 'table-row',
+}) // https://tailwindcss.com/docs/float
+
+;({
+  float: 'right',
+})
+;({
+  float: 'left',
+})
+;({
+  float: 'none',
+})
+;({
+  '::after': {
+    content: '""',
+    display: 'table',
+    clear: 'both',
+  },
+}) // https://tailwindcss.com/docs/clear
+
+;({
+  clear: 'left',
+})
+;({
+  clear: 'right',
+})
+;({
+  clear: 'both',
+}) // https://tailwindcss.com/docs/object-fit
+
+;({
+  objectFit: 'contain',
+})
+;({
+  objectFit: 'cover',
+})
+;({
+  objectFit: 'fill',
+})
+;({
+  objectFit: 'none',
+})
+;({
+  objectFit: 'scale-down',
+}) // https://tailwindcss.com/docs/object-position
+
+;({
+  objectPosition: 'bottom',
+})
+;({
+  objectPosition: 'center',
+})
+;({
+  objectPosition: 'left',
+})
+;({
+  objectPosition: 'left bottom',
+})
+;({
+  objectPosition: 'left top',
+})
+;({
+  objectPosition: 'right',
+})
+;({
+  objectPosition: 'right bottom',
+})
+;({
+  objectPosition: 'right top',
+})
+;({
+  objectPosition: 'top',
+}) // https://tailwindcss.com/docs/overflow
+
+;({
+  overflow: 'auto',
+})
+;({
+  overflow: 'hidden',
+})
+;({
+  overflow: 'visible',
+})
+;({
+  overflow: 'scroll',
+})
+;({
+  overflowX: 'auto',
+})
+;({
+  overflowY: 'auto',
+})
+;({
+  overflowX: 'hidden',
+})
+;({
+  overflowY: 'hidden',
+})
+;({
+  overflowX: 'visible',
+})
+;({
+  overflowY: 'visible',
+})
+;({
+  overflowX: 'scroll',
+})
+;({
+  overflowY: 'scroll',
+})
+;({
+  WebkitOverflowScrolling: 'touch',
+})
+;({
+  WebkitOverflowScrolling: 'auto',
+}) // https://tailwindcss.com/docs/position
+
+;({
+  position: 'static',
+})
+;({
+  position: 'fixed',
+})
+;({
+  position: 'absolute',
+})
+;({
+  position: 'relative',
+})
+;({
+  position: 'sticky',
+}) // https://tailwindcss.com/docs/top-right-bottom-left
+
+;({
+  top: '0',
+  right: '0',
+  bottom: '0',
+  left: '0',
+})
+;({
+  top: '0',
+  bottom: '0',
+})
+;({
+  left: '0',
+  right: '0',
+})
+;({
+  top: '0',
+})
+;({
+  right: '0',
+})
+;({
+  bottom: '0',
+})
+;({
+  left: '0',
+})
+;({
+  top: 'auto',
+  right: 'auto',
+  bottom: 'auto',
+  left: 'auto',
+})
+;({
+  top: 'auto',
+  bottom: 'auto',
+})
+;({
+  left: 'auto',
+  right: 'auto',
+})
+;({
+  top: 'auto',
+})
+;({
+  bottom: 'auto',
+})
+;({
+  left: 'auto',
+})
+;({
+  right: 'auto',
+}) // https://tailwindcss.com/docs/visibility
+
+;({
+  visibility: 'visible',
+})
+;({
+  visibility: 'hidden',
+}) // https://tailwindcss.com/docs/z-index
+
+;({
+  zIndex: '0',
+})
+;({
+  zIndex: '10',
+})
+;({
+  zIndex: '20',
+})
+;({
+  zIndex: '30',
+})
+;({
+  zIndex: '40',
+})
+;({
+  zIndex: '50',
+})
+;({
+  zIndex: 'auto',
+}) // https://tailwindcss.com/docs/space
+
+;({
+  top: '0.25rem',
+  bottom: '0.25rem',
+})
+;({
+  left: '0.25rem',
+  right: '0.25rem',
+})
+;({
+  top: '0.5rem',
+  bottom: '0.5rem',
+})
+;({
+  left: '0.5rem',
+  right: '0.5rem',
+})
+;({
+  top: '1rem',
+  bottom: '1rem',
+})
+;({
+  left: '1rem',
+  right: '1rem',
+})
+;({
+  top: '2rem',
+  bottom: '2rem',
+})
+;({
+  left: '2rem',
+  right: '2rem',
+})
+
+
+`;
+
 exports[`twin.macro sizing.js: sizing.js 1`] = `
 
 import tw from './macro'
