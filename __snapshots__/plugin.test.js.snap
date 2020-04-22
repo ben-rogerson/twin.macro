@@ -444,6 +444,7 @@ tw\`bg-scroll\`
 
 // https://tailwindcss.com/docs/background-color
 tw\`bg-transparent\`
+tw\`bg-current\`
 tw\`bg-black\`
 tw\`bg-white\`
 tw\`bg-gray-100\`
@@ -563,6 +564,7 @@ tw\`bg-contain\`
 
 // https://tailwindcss.com/docs/border-color
 tw\`border-transparent\`
+tw\`border-current\`
 tw\`border-black\`
 tw\`border-white\`
 tw\`border-gray-100\`
@@ -753,6 +755,9 @@ tw\`rounded-bl-full\`
 
 ;({
   backgroundColor: 'transparent',
+})
+;({
+  backgroundColor: 'currentColor',
 })
 ;({
   backgroundColor: '#000',
@@ -1090,6 +1095,9 @@ tw\`rounded-bl-full\`
 
 ;({
   borderColor: 'transparent',
+})
+;({
+  borderColor: 'currentColor',
 })
 ;({
   borderColor: '#000',
@@ -2740,9 +2748,11 @@ tw\`hidden\`
 tw\`block\`
 tw\`inline-block\`
 tw\`inline\`
+tw\`flow-root\`
 tw\`flex\`
 tw\`inline-flex\`
 tw\`grid\`
+tw\`inline-grid\`
 tw\`table\`
 tw\`table-caption\`
 tw\`table-cell\`
@@ -2763,6 +2773,7 @@ tw\`clearfix\`
 tw\`clear-left\`
 tw\`clear-right\`
 tw\`clear-both\`
+tw\`clear-none\`
 
 // https://tailwindcss.com/docs/object-fit
 tw\`object-contain\`
@@ -2857,6 +2868,9 @@ tw\`z-auto\`
   display: 'inline',
 })
 ;({
+  display: 'flow-root',
+})
+;({
   display: 'flex',
 })
 ;({
@@ -2864,6 +2878,9 @@ tw\`z-auto\`
 })
 ;({
   display: 'grid',
+})
+;({
+  display: 'inline-grid',
 })
 ;({
   display: 'table',
@@ -2918,6 +2935,9 @@ tw\`z-auto\`
 })
 ;({
   clear: 'both',
+})
+;({
+  clear: 'none',
 }) // https://tailwindcss.com/docs/object-fit
 
 ;({
@@ -6092,6 +6112,7 @@ tw\`list-outside\`
 
 // https://tailwindcss.com/docs/placeholder-color
 tw\`placeholder-transparent\`
+tw\`placeholder-current\`
 tw\`placeholder-black\`
 tw\`placeholder-white\`
 tw\`placeholder-gray-100\`
@@ -6193,6 +6214,7 @@ tw\`text-justify\`
 
 // https://tailwindcss.com/docs/text-color
 tw\`text-transparent\`
+tw\`text-current\`
 tw\`text-black\`
 tw\`text-white\`
 tw\`text-gray-100\`
@@ -6294,6 +6316,7 @@ tw\`text-justify\`
 
 // https://tailwindcss.com/docs/text-color
 tw\`text-transparent\`
+tw\`text-current\`
 tw\`text-black\`
 tw\`text-white\`
 tw\`text-gray-100\`
@@ -6591,6 +6614,11 @@ tw\`truncate\`
 ;({
   '::placeholder': {
     color: 'transparent',
+  },
+})
+;({
+  '::placeholder': {
+    color: 'currentColor',
   },
 })
 ;({
@@ -7071,6 +7099,9 @@ tw\`truncate\`
   color: 'transparent',
 })
 ;({
+  color: 'currentColor',
+})
+;({
   color: '#000',
 })
 ;({
@@ -7362,6 +7393,9 @@ tw\`truncate\`
 
 ;({
   color: 'transparent',
+})
+;({
+  color: 'currentColor',
 })
 ;({
   color: '#000',

@@ -9,9 +9,11 @@ tw`hidden`
 tw`block`
 tw`inline-block`
 tw`inline`
+tw`flow-root`
 tw`flex`
 tw`inline-flex`
 tw`grid`
+tw`inline-grid`
 tw`table`
 tw`table-caption`
 tw`table-cell`
@@ -32,6 +34,7 @@ tw`clearfix`
 tw`clear-left`
 tw`clear-right`
 tw`clear-both`
+tw`clear-none`
 
 // https://tailwindcss.com/docs/object-fit
 tw`object-contain`

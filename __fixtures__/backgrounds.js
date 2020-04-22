@@ -7,6 +7,7 @@ tw`bg-scroll`
 
 // https://tailwindcss.com/docs/background-color
 tw`bg-transparent`
+tw`bg-current`
 tw`bg-black`
 tw`bg-white`
 tw`bg-gray-100`
@@ -126,6 +127,7 @@ tw`bg-contain`
 
 // https://tailwindcss.com/docs/border-color
 tw`border-transparent`
+tw`border-current`
 tw`border-black`
 tw`border-white`
 tw`border-gray-100`

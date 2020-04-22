@@ -16,6 +16,7 @@ const staticStyles = {
   block: { output: { display: 'block' } },
   'inline-block': { output: { display: 'inline-block' } },
   inline: { output: { display: 'inline' } },
+  'flow-root': { output: { display: 'flow-root' } },
   flex: { output: { display: 'flex' } },
   'inline-flex': { output: { display: 'inline-flex' } },
   grid: { output: { display: 'grid' } },
@@ -43,6 +44,7 @@ const staticStyles = {
   'clear-left': { output: { clear: 'left' } },
   'clear-right': { output: { clear: 'right' } },
   'clear-both': { output: { clear: 'both' } },
+  'clear-none': { output: { clear: 'none' } },
 
   // https://tailwindcss.com/docs/object-fit
   'object-contain': { output: { objectFit: 'contain' } },
