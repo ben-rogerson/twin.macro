@@ -46,6 +46,16 @@ const dynamicStyles = {
     config: 'space',
   },
 
+  // https://tailwindcss.com/docs/divide
+  'divide-y': {
+    prop: ['top', 'bottom'],
+    config: 'divideWidth',
+  },
+  'divide-x': {
+    prop: ['left', 'right'],
+    config: 'divideWidth',
+  },
+
   /**
    * ===========================================
    * Flexbox
