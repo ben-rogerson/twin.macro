@@ -37,7 +37,7 @@ const dynamicStyles = {
   z: { prop: 'zIndex', config: 'zIndex' },
 
   // https://tailwindcss.com/docs/space
-  space: { prop: 'space', config: 'space' },
+  space: { prop: 'space', config: 'spacing' },
 
   /**
    * ===========================================
