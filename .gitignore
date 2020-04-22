@@ -9,3 +9,4 @@ yarn.lock
 # artifacts from type tests
 *.tsbuildinfo
 types/build
+.eslintcache
