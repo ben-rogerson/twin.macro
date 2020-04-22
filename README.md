@@ -12,7 +12,7 @@ import tw from 'twin.macro'
 export default () => <input tw="border hover:border-black" />
 ```
 
-Or use `tw.` to define new elements and add styles:
+Or use `tw` to define new elements and add your styles:
 
 ```js
 import React from 'react'
@@ -20,6 +20,12 @@ import tw from 'twin.macro'
 
 const Input = tw.input`border hover:border-black`
 export default () => <Input />
+```
+
+You can also style and clone existing components by wrapping them:
+
+```js
+const PurpleInput = tw(Input)`border-purple-500`
 ```
 
 For features like conditional styling and css blocks, Twin works with styling libraries like [👩‍🎤 emotion](https://emotion.sh/docs/introduction) or [💅 styled-components](https://styled-components.com/):
@@ -44,7 +50,7 @@ const Input = styled.input([
 export default () => <Input hasDarkHover />
 ```
 
-But if you'd rather style on jsx elements then use a css prop:
+If you'd rather add conditional styles onto existing elements then use a css prop:
 
 ```js
 import React from 'react'
@@ -441,7 +447,7 @@ module.exports = {
 }
 ```
 
-### 5. Configure twin to use styled components
+### 5. Configure Twin to use Styled Components
 
 Add the config to your `package.json`:
 
@@ -518,7 +524,7 @@ yarn add twin.macro styled-components -D
 import 'tailwindcss/dist/base.css'
 ```
 
-### 4. Configure twin to use styled components
+### 4. Configure Twin to use Styled Components
 
 Add the config to your `package.json`:
 
@@ -684,7 +690,7 @@ yarn add twin.macro styled-components -D
 import 'tailwindcss/dist/base.css'
 ```
 
-### 4. Configure twin to use styled components
+### 4. Configure Twin to use Styled Components
 
 Add the config to your `package.json`:
 
