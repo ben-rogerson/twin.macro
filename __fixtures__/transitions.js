@@ -34,3 +34,13 @@ tw`ease-linear`
 tw`ease-in`
 tw`ease-out`
 tw`ease-in-out`
+
+// https://tailwindcss.com/docs/transition-delay
+tw`delay-75`
+tw`delay-100`
+tw`delay-150`
+tw`delay-200`
+tw`delay-300`
+tw`delay-500`
+tw`delay-700`
+tw`delay-1000`
