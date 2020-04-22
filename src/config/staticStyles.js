@@ -99,6 +99,9 @@ const staticStyles = {
   // https://tailwindcss.com/docs/z-index
   // See dynamicStyles.js
 
+  // https://tailwindcss.com/docs/space
+  // See dynamicStyles.js
+
   /**
    * ===========================================
    * Flexbox
@@ -196,7 +199,6 @@ const staticStyles = {
 
   // https://tailwindcss.com/docs/padding
   // https://tailwindcss.com/docs/margin
-  // https://tailwindcss.com/docs/space
   // See dynamicStyles.js
 
   /**

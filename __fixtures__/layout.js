@@ -102,3 +102,6 @@ tw`z-30`
 tw`z-40`
 tw`z-50`
 tw`z-auto`
+
+// https://tailwindcss.com/docs/space
+tw`space-y-4`

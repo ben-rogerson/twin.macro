@@ -36,6 +36,9 @@ const dynamicStyles = {
   // https://tailwindcss.com/docs/z-index
   z: { prop: 'zIndex', config: 'zIndex' },
 
+  // https://tailwindcss.com/docs/space
+  space: { prop: 'space', config: 'space' },
+
   /**
    * ===========================================
    * Flexbox
@@ -109,9 +112,6 @@ const dynamicStyles = {
   mx: { prop: ['marginLeft', 'marginRight'], config: 'margin' },
   my: { prop: ['marginTop', 'marginBottom'], config: 'margin' },
   m: { prop: 'margin', config: 'margin' },
-
-  // https://tailwindcss.com/docs/space
-  space: { prop: 'space', config: 'space' },
 
   /**
    * ===========================================
