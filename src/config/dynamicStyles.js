@@ -181,13 +181,7 @@ export default {
   // https://tailwindcss.com/docs/text-align
   // See staticStyles.js
 
-  text: [
-    // https://tailwindcss.com/docs/text-color
-    { prop: 'color', config: 'textColor' },
-    // https://tailwindcss.com/docs/font-size
-    { prop: 'fontSize', config: 'fontSize' },
-  ],
-
+  text: { plugin: 'text' },
   // https://tailwindcss.com/docs/text-decoration
   // https://tailwindcss.com/docs/text-transform
   // https://tailwindcss.com/docs/vertical-align
