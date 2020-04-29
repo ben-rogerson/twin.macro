@@ -5,6 +5,7 @@ export default {
    */
 
   // https://tailwindcss.com/docs/container
+  container: { plugin: 'container' },
 
   // https://tailwindcss.com/docs/box-sizing
   // https://tailwindcss.com/docs/display
