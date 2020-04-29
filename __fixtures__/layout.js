@@ -110,14 +110,104 @@ tw`z-50`
 tw`z-auto`
 
 // https://tailwindcss.com/docs/space
-tw`space-y-1`
+tw`space-x-0`
 tw`space-x-1`
-tw`space-y-2`
 tw`space-x-2`
-tw`space-y-4`
+tw`space-x-3`
 tw`space-x-4`
-tw`space-y-8`
+tw`space-x-5`
+tw`space-x-6`
 tw`space-x-8`
+tw`space-x-10`
+tw`space-x-12`
+tw`space-x-16`
+tw`space-x-20`
+tw`space-x-24`
+tw`space-x-32`
+tw`space-x-40`
+tw`space-x-48`
+tw`space-x-56`
+tw`space-x-64`
+tw`space-x-px`
+tw`space-y-0`
+tw`space-y-1`
+tw`space-y-2`
+tw`space-y-3`
+tw`space-y-4`
+tw`space-y-5`
+tw`space-y-6`
+tw`space-y-8`
+tw`space-y-10`
+tw`space-y-12`
+tw`space-y-16`
+tw`space-y-20`
+tw`space-y-24`
+tw`space-y-32`
+tw`space-y-40`
+tw`space-y-48`
+tw`space-y-56`
+tw`space-y-64`
+tw`space-y-px`
+tw`-space-x-0`
+tw`-space-x-1`
+tw`-space-x-2`
+tw`-space-x-3`
+tw`-space-x-4`
+tw`-space-x-5`
+tw`-space-x-6`
+tw`-space-x-8`
+tw`-space-x-10`
+tw`-space-x-12`
+tw`-space-x-16`
+tw`-space-x-20`
+tw`-space-x-24`
+tw`-space-x-32`
+tw`-space-x-40`
+tw`-space-x-48`
+tw`-space-x-56`
+tw`-space-x-64`
+tw`-space-x-px`
+tw`-space-y-0`
+tw`-space-y-1`
+tw`-space-y-2`
+tw`-space-y-3`
+tw`-space-y-4`
+tw`-space-y-5`
+tw`-space-y-6`
+tw`-space-y-8`
+tw`-space-y-10`
+tw`-space-y-12`
+tw`-space-y-16`
+tw`-space-y-20`
+tw`-space-y-24`
+tw`-space-y-32`
+tw`-space-y-40`
+tw`-space-y-48`
+tw`-space-y-56`
+tw`-space-y-64`
+tw`-space-y-px`
+tw`space-x-reverse`
+tw`space-y-reverse`
+
+tw`space-x-reverse space-x-0`
+tw`space-x-0 space-x-reverse`
+tw`space-y-reverse space-y-0`
+tw`space-y-0 space-y-reverse`
+
+tw`space-x-reverse space-x-32`
+tw`space-x-32 space-x-reverse`
+tw`space-y-reverse space-y-32`
+tw`space-y-32 space-y-reverse`
+
+tw`space-x-reverse space-x-px`
+tw`space-x-px space-x-reverse`
+tw`space-y-reverse space-y-px`
+tw`space-y-px space-y-reverse`
+
+tw`-space-x-reverse space-x-12`
+tw`space-x-12 -space-x-reverse`
+tw`-space-y-reverse space-y-12`
+tw`space-y-12 -space-y-reverse`
 
 // https://tailwindcss.com/docs/divide
 tw`divide-x-0`
