@@ -1,15 +1,19 @@
+import deepMerge from 'lodash.merge'
+
 /**
  * Add important to a value
+ * Only used for static and dynamic styles - not core plugins
  */
-const mergeImportant = (object, hasImportant) => {
-  if (!hasImportant) return object
-  return Object.entries(object).reduce((accumulator, item) => {
+const mergeImportant = (style, hasImportant) => {
+  if (!hasImportant) return style
+
+  return Object.entries(style).reduce((accumulator, item) => {
     const [key, value] = item
     if (typeof value === 'object') {
       return mergeImportant(value, hasImportant)
     }
 
-    return { ...accumulator, [key]: `${value} !important` }
+    return deepMerge(accumulator, { [key]: `${value} !important` })
   }, {})
 }
 
