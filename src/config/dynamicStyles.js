@@ -241,6 +241,11 @@ export default {
   'border-l': { prop: 'borderLeftWidth', config: 'borderWidth' },
   'border-r': { prop: 'borderRightWidth', config: 'borderWidth' },
 
+  'border-opacity': {
+    prop: '--border-opacity',
+    config: 'borderOpacity',
+    configFallback: 'opacity',
+  },
   border: [
     // https://tailwindcss.com/docs/border-width
     { prop: 'borderWidth', config: 'borderWidth' }, // keep above borderColor to support 'border'
