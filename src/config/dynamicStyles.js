@@ -187,6 +187,13 @@ export default {
   // https://tailwindcss.com/docs/text-align
   // See staticStyles.js
 
+  // https://tailwindcss.com/docs/text-color
+  // https://tailwindcss.com/docs/font-size
+  'text-opacity': {
+    prop: '--text-opacity',
+    config: 'textOpacity',
+    configFallback: 'opacity',
+  },
   text: { plugin: 'text' },
   // https://tailwindcss.com/docs/text-decoration
   // https://tailwindcss.com/docs/text-transform
