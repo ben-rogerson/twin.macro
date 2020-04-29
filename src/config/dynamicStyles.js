@@ -45,15 +45,9 @@ export default {
     config: 'space',
   },
 
-  // https://tailwindcss.com/docs/divide
-  'divide-y': {
-    prop: ['top', 'bottom'],
-    config: 'divideWidth',
-  },
-  'divide-x': {
-    prop: ['left', 'right'],
-    config: 'divideWidth',
-  },
+  // https://tailwindcss.com/docs/divide-width/
+  'divide-y': { plugin: 'divide' },
+  'divide-x': { plugin: 'divide' },
 
   /**
    * ===========================================
