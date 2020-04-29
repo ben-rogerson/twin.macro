@@ -1,4 +1,4 @@
-import { isEmpty } from './utils'
+import { isEmpty } from './../utils'
 
 const properties = type => ({
   left: `${type}Left`,
@@ -29,7 +29,18 @@ const getSpacingStyle = (type, values, key) => {
   }
 }
 
-const getContainerStyles = ({ screens, padding, margin, center }) => {
+export default ({
+  pieces: { hasVariants, hasImportant, hasNegative },
+  errors: { errorNoVariants, errorNoImportant, errorNoNegatives },
+  theme,
+}) => {
+  hasVariants && errorNoVariants()
+  hasImportant && errorNoImportant()
+  hasNegative && errorNoNegatives()
+
+  const { container, screens } = theme()
+  const { padding, margin, center } = container
+
   const mediaScreens = Object.entries(screens).reduce(
     (accumulator, [key, value]) => ({
       ...accumulator,
@@ -43,19 +54,13 @@ const getContainerStyles = ({ screens, padding, margin, center }) => {
   )
 
   const paddingStyles = Array.isArray(padding)
-    ? getSpacingFromArray({
-        values: padding,
-        ...properties('padding'),
-      })
+    ? getSpacingFromArray({ values: padding, ...properties('padding') })
     : typeof padding === 'object'
     ? getSpacingStyle('padding', padding, 'default')
     : { paddingLeft: padding, paddingRight: padding }
 
   let marginStyles = Array.isArray(margin)
-    ? getSpacingFromArray({
-        values: margin,
-        ...properties('margin'),
-      })
+    ? getSpacingFromArray({ values: margin, ...properties('margin') })
     : typeof margin === 'object'
     ? getSpacingStyle('margin', margin, 'default')
     : { marginLeft: margin, marginRight: margin }
@@ -70,5 +75,3 @@ const getContainerStyles = ({ screens, padding, margin, center }) => {
     ...mediaScreens,
   }
 }
-
-export { getContainerStyles }
