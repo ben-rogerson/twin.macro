@@ -74,22 +74,28 @@ const softMatchStaticClass = ({ className, obj, prefix }) => {
 const softMatchDynamicConfig = ({ className, configTheme, prefix }) => {
   const properties = { obj: dynamicStyles, configTheme, prefix }
   const config = softMatchDynamicClass({ ...properties, className })
-  const classNamePieceCheck = getClassNamePieces(className)
-  return !isEmpty(config)
-    ? config
-    : softMatchDynamicClass({
-        ...properties,
-        className: classNamePieceCheck,
-      })
+
+  if (isEmpty(config)) {
+    const classNamePieceCheck = getClassNamePieces(className)
+    return softMatchDynamicClass({
+      ...properties,
+      className: classNamePieceCheck,
+    })
+  }
+
+  return config
 }
 
 const softMatchStaticConfig = ({ className, prefix }) => {
   const properties = { obj: staticStyles, prefix }
   const config = softMatchStaticClass({ ...properties, className })
-  const classNamePieceCheck = getClassNamePieces(className)
-  return !isEmpty(config)
-    ? config
-    : softMatchStaticClass({ ...properties, className: classNamePieceCheck })
+
+  if (isEmpty(config)) {
+    const classNamePieceCheck = getClassNamePieces(className)
+    softMatchStaticClass({ ...properties, className: classNamePieceCheck })
+  }
+
+  return config
 }
 
 // Get soft matches from the static and dynamic configs for suggestions
