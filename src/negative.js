@@ -7,7 +7,9 @@ const splitNegative = ({ className, ...rest }) => {
     className = className.slice(1, className.length)
   }
 
-  return { ...rest, className, hasNegative }
+  const negative = hasNegative ? '-' : ''
+
+  return { ...rest, className, hasNegative, negative }
 }
 
 export { splitNegative }
