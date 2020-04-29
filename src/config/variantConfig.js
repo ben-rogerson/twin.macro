@@ -1,0 +1,22 @@
+export default {
+  'group-hover': '.group:hover &',
+  'group-focus': '.group:focus &',
+  'focus-within': ':focus-within',
+  first: ':first-child',
+  last: ':last-child',
+  odd: ':nth-child(odd)',
+  even: ':nth-child(even)',
+  hover: ':hover',
+  focus: ':focus',
+  active: ':active',
+  visited: ':visited',
+  disabled: ':disabled',
+  // Custom to Twin
+  'group-hocus': '.group:hover &, .group:focus &',
+  'group-active': '.group:active &',
+  'group-visited': '.group:visited &',
+  hocus: ':hover, :focus',
+  before: ':before',
+  after: ':after',
+  checked: ':checked',
+}

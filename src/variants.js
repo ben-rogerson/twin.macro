@@ -1,78 +1,32 @@
-import dset from 'dset'
+import { MacroError } from 'babel-plugin-macros'
 import dlv from 'dlv'
+import cleanSet from 'clean-set'
 import { stringifyScreen } from './screens'
 import { logNoVariant } from './logging'
-import { MacroError } from 'babel-plugin-macros'
-import { COMPUTED_ID } from './macroHelpers'
-
-const modifierList = {
-  'group-hover': '.group:hover &',
-  'focus-within': ':focus-within',
-  first: ':first-child',
-  last: ':last-child',
-  odd: ':nth-child(odd)',
-  even: ':nth-child(even)',
-  hover: ':hover',
-  focus: ':focus',
-  active: ':active',
-  visited: ':visited',
-  disabled: ':disabled',
-  // Custom to Twin
-  'group-hocus': '.group:hover &, .group:focus &',
-  'group-focus': '.group:focus &',
-  'group-active': '.group:active &',
-  'group-visited': '.group:visited &',
-  hocus: ':hover, :focus',
-  before: ':before',
-  after: ':after',
-}
+import { variantConfig } from './config'
 
 /**
- * Merge the modifiers
+ * Validate variants against the variants config key
  */
-const mergeVariants = ({ variants, objBase, objToMerge }) => {
-  if (!objToMerge) return objBase
-  if (variants.length === 0) {
-    return {
-      ...objBase,
-      ...objToMerge,
-    }
-  }
+const validateVariants = ({ variants, state }) => {
+  if (!variants) return []
 
-  // TODO: Replace dset
-  dset(objBase, variants, {
-    ...dlv(objBase, variants, {}),
-    ...objToMerge,
-  })
-  return objBase
-}
-
-/**
- * Validate modifiers against the variants config key
- */
-const validateVariants = ({ modifiers, state }) => {
-  if (!modifiers) return []
-
-  const themeScreens = dlv(state.config, ['theme', 'screens'])
-  const themeScreenKeys = Object.keys(themeScreens)
-  const validModifiers = [...Object.keys(modifierList), ...themeScreenKeys]
-
-  return modifiers
-    .map(modifier => {
-      const isModifierResponsive =
-        themeScreenKeys && themeScreenKeys.includes(modifier)
-      if (isModifierResponsive) {
-        return state.isProd
-          ? stringifyScreen(state.config, modifier)
-          : `${COMPUTED_ID}${state.tailwindUtilsIdentifier.name}.stringifyScreen(${state.tailwindConfigIdentifier.name}, "${modifier}")`
+  const screens = dlv(state.config, ['theme', 'screens'])
+  const screenNames = Object.keys(screens)
+  const validVariants = [...Object.keys(variantConfig), ...screenNames]
+  return variants
+    .map(variant => {
+      const isResponsive = screenNames && screenNames.includes(variant)
+      if (isResponsive) {
+        return stringifyScreen(state.config, variant)
       }
 
-      // Check modifier against available modifiers
-      if (modifierList[modifier]) {
-        return modifierList[modifier]
+      // Check variants against valid variants
+      if (variantConfig[variant]) {
+        return variantConfig[variant]
       }
 
-      throw new MacroError(logNoVariant(modifier, validModifiers))
+      throw new MacroError(logNoVariant(variant, validVariants))
     })
     .filter(Boolean)
 }
@@ -80,18 +34,38 @@ const validateVariants = ({ modifiers, state }) => {
 /**
  * Split the variant(s) from the className
  */
-const splitVariants = ({ className, ...rest }) => {
-  const modifiers = []
-  let modifier
-  while (modifier !== null) {
-    modifier = className.match(/^([_a-z-]+):/)
-    if (modifier) {
-      className = className.slice(modifier[0].length)
-      modifiers.push(modifier[1])
+const splitVariants = ({ className, state, ...rest }) => {
+  const variantsList = []
+  let variant
+  while (variant !== null) {
+    variant = className.match(/^([_a-z-]+):/)
+    if (variant) {
+      className = className.slice(variant[0].length)
+      variantsList.push(variant[1])
     }
   }
 
-  return { ...rest, className, modifiers }
+  // Match the filtered variants
+  const variants = validateVariants({
+    variants: variantsList,
+    state,
+  })
+
+  const hasVariants = variants.length > 0
+
+  return { ...rest, className, variants, hasVariants }
 }
 
-export { splitVariants, mergeVariants, validateVariants }
+const addVariants = ({ style, accumulator, pieces }) => {
+  const { variants } = pieces
+  if (variants.length === 0) return
+
+  const styleWithVariants = cleanSet(accumulator, variants, {
+    ...dlv(styleWithVariants, variants, {}),
+    ...style,
+  })
+
+  return styleWithVariants
+}
+
+export { splitVariants, addVariants }

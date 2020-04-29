@@ -24,7 +24,9 @@ const softMatchDynamicClass = ({ className, obj, configTheme, prefix }) => {
 
   const values = Object.entries(obj).map(([key, value]) => {
     if (!value.config) return []
-    const config = dlv(configTheme, value.config)
+    const config =
+      dlv(configTheme, value.config) || dlv(configTheme, value.configFallback)
+
     return Object.entries(config).map(([k, v]) => {
       const hasObjectValue = typeof v === 'object'
       const hasDefaultKey = k === 'default'
@@ -152,9 +154,14 @@ const suggestions = ({ config }) => {
 const logNoClass = ({ className, config, hasSuggestions }) =>
   spaced(
     `${warning(
-      `${className ? chalk.hex('#ffd3d3')(className) : 'Class'} was not found`
+      `${
+        className ? chalk.hex('#ffd3d3')(className) : 'Class'
+      } isn't a valid class`
     )}${hasSuggestions ? suggestions({ config }) : ''}`
   )
+
+const logNotAllowed = ({ className, error }) =>
+  spaced(warning(chalk.hex('#ffd3d3')(`${className} ${error}`)))
 
 const logNoTrailingDash = className =>
   spaced(warning(`Class “${className}” shouldn’t have a trailing dash.`))
@@ -164,11 +171,15 @@ const logBadGood = (bad, good) =>
     '✓ Good:'
   )} ${good}`
 
+const debug = (className, log) => console.log(logInOut(className, log))
+
 export {
   logInOut,
   logNoVariant,
   logNoClass,
+  logNotAllowed,
   logNoTrailingDash,
   logBadGood,
   softMatchConfigs,
+  debug,
 }
