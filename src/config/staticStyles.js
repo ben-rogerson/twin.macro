@@ -102,10 +102,38 @@ export default {
   // See dynamicStyles.js
 
   // https://tailwindcss.com/docs/space
-  // See dynamicStyles.js
+  // See dynamicStyles.js for the rest
+  'space-x-reverse': {
+    output: {
+      '> :not(template) ~ :not(template)': {
+        '--space-x-reverse': 1,
+      },
+    },
+  },
+  'space-y-reverse': {
+    output: {
+      '> :not(template) ~ :not(template)': {
+        '--space-y-reverse': 1,
+      },
+    },
+  },
 
-  // https://tailwindcss.com/docs/divider
-  // See dynamicStyles.js
+  // https://tailwindcss.com/docs/divide-width
+  // See dynamicStyles.js for the rest
+  'divide-x-reverse': {
+    output: {
+      '> :not(template) ~ :not(template)': {
+        '--divide-x-reverse': 1,
+      },
+    },
+  },
+  'divide-y-reverse': {
+    output: {
+      '> :not(template) ~ :not(template)': {
+        '--divide-y-reverse': 1,
+      },
+    },
+  },
 
   /**
    * ===========================================
