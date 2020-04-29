@@ -1,11 +1,11 @@
-const staticStyles = {
+export default {
   /**
    * ===========================================
    * Layout
    */
 
   // https://tailwindcss.com/docs/container
-  // TODO: Add container generation plugin
+  // See dynamicStyles.js
 
   // https://tailwindcss.com/docs/box-sizing
   'box-border': { output: { 'box-sizing': 'border-box' } },
@@ -517,5 +517,3 @@ const staticStyles = {
     config: false,
   },
 }
-
-export default staticStyles

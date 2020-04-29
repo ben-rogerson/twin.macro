@@ -1,11 +1,10 @@
-const dynamicStyles = {
+export default {
   /**
    * ===========================================
    * Layout
    */
 
   // https://tailwindcss.com/docs/container
-  // TODO: Add container generation plugin
 
   // https://tailwindcss.com/docs/box-sizing
   // https://tailwindcss.com/docs/display
@@ -369,5 +368,3 @@ const dynamicStyles = {
   // https://tailwindcss.com/docs/screen-readers
   // See staticStyles.js
 }
-
-export default dynamicStyles

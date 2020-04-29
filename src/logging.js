@@ -10,7 +10,7 @@ const isEmpty = value =>
   (typeof value === 'string' && value.trim().length === 0)
 
 const spaced = string => `\n\n${string}\n`
-const warning = string => chalk.bgBlack(chalk.hex('#ff8383')(`✕ ${string}`))
+const warning = string => chalk.hex('#ff8383')(`✕ ${string}`)
 
 const getClassNamePieces = className => {
   const classNamePieces = className.split('-')
@@ -21,6 +21,7 @@ const getClassNamePieces = className => {
 
 const softMatchDynamicClass = ({ className, obj, configTheme, prefix }) => {
   if (typeof obj !== 'object') return []
+
   const values = Object.entries(obj).map(([key, value]) => {
     if (!value.config) return []
     const config = dlv(configTheme, value.config)
@@ -28,6 +29,7 @@ const softMatchDynamicClass = ({ className, obj, configTheme, prefix }) => {
       const hasObjectValue = typeof v === 'object'
       const hasDefaultKey = k === 'default'
       const hasNegative = k.startsWith === '-'
+
       return {
         [`${hasNegative ? '-' : ''}${key}${
           hasDefaultKey ? '' : `${hasNegative ? '' : '-'}${k}`
@@ -37,6 +39,7 @@ const softMatchDynamicClass = ({ className, obj, configTheme, prefix }) => {
       }
     })
   })
+
   const combinedValues = [].concat(...values)
   const matches = combinedValues
     .filter(item => Object.keys(item)[0].startsWith(`${prefix}${className}`))
@@ -47,6 +50,7 @@ const softMatchDynamicClass = ({ className, obj, configTheme, prefix }) => {
       }),
       {}
     )
+
   return matches
 }
 
@@ -99,17 +103,15 @@ const logInOut = (input, output) =>
     JSON.stringify(output)
   )}`
 
-const logNoVariant = (variant, validModifiers) =>
+const logNoVariant = (variant, validVariants) =>
   spaced(
     `${warning(
       `The variant “${variant}:” is unavailable.`
-    )}\n\nTry one of these variants:\n${validModifiers
+    )}\n\nTry one of these variants:\n${validVariants
       .map(
         (item, index) =>
           `${
-            validModifiers.length > 6 && index % 6 === 0 && index > 0
-              ? '\n'
-              : ''
+            validVariants.length > 6 && index % 6 === 0 && index > 0 ? '\n' : ''
           }${chalk.yellowBright(item)}:`
       )
       .join(chalk.gray(' / '))}`

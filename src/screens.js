@@ -27,7 +27,10 @@ const stringifyScreen = (config, screenName) => {
   return string ? `@media ${string}` : ''
 }
 
-const orderByScreens = (classNames, screens) => {
+const orderByScreens = (className, state) => {
+  const classNames = className.match(/\S+/g) || []
+  const screens = Object.keys(state.config.theme.screens)
+
   const screenCompare = (a, b) => {
     const A = a.includes(':') ? a.split(':')[0] : a
     const B = b.includes(':') ? b.split(':')[0] : b

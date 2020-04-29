@@ -113,18 +113,6 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
         }
       : { import: 'default', from: '@emotion/styled' }
 
-  // state.existingStyledIdentifier =
-  //   state.styledIdentifier === null ? false : true
-  // state.styledIdentifier = findIdentifier({
-  //   program,
-  //   mod: styledImport.from,
-  //   name: styledImport.import
-  // })
-
-  // if (!state.existingStyledIdentifier) {
-  //   state.styledIdentifier = program.scope.generateUidIdentifier('styled')
-  // }
-
   state.existingStyledIdentifier = false
   state.styledIdentifier = findIdentifier({
     program,
