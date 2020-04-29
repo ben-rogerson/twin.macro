@@ -36,13 +36,14 @@ export default {
   z: { prop: 'zIndex', config: 'zIndex' },
 
   // https://tailwindcss.com/docs/space
-  'space-y': {
-    prop: ['top', 'bottom'],
-    config: 'space',
-  },
-  'space-x': {
-    prop: ['left', 'right'],
-    config: 'space',
+  // space-x-reverse + space-y-reverse are in staticStyles
+  'space-y': { plugin: 'space' },
+  'space-x': { plugin: 'space' },
+
+  'divide-opacity': {
+    prop: '--divide-opacity',
+    config: 'divideOpacity',
+    configFallback: 'opacity',
   },
 
   // https://tailwindcss.com/docs/divide-width/
