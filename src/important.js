@@ -23,7 +23,9 @@ const splitImportant = ({ className, ...rest }) => {
     className = className.slice(0, -1)
   }
 
-  return { ...rest, className, hasImportant }
+  const important = hasImportant ? ' !important' : ''
+
+  return { ...rest, className, hasImportant, important }
 }
 
 export { splitImportant, mergeImportant }
