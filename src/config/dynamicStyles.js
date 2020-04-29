@@ -208,8 +208,13 @@ export default {
    */
 
   // https://tailwindcss.com/docs/background-attachment
+  // https://tailwindcss.com/docs/background-opacity
   // See staticStyles.js
-
+  'bg-opacity': {
+    prop: '--background-opacity',
+    config: 'backgroundOpacity',
+    configFallback: 'opacity',
+  },
   bg: [
     // https://tailwindcss.com/docs/background-color
     { prop: 'backgroundColor', config: 'backgroundColor' },
