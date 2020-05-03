@@ -45,6 +45,7 @@ export default {
   'divide-opacity': { plugin: 'divide' },
   'divide-y': { plugin: 'divide' },
   'divide-x': { plugin: 'divide' },
+  divide: { plugin: 'divide' },
 
   /**
    * ===========================================

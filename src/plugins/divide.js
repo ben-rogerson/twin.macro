@@ -1,7 +1,23 @@
 import { addPxTo0 } from './../utils'
+import { withAlpha } from './../utils'
 
 const stripNegativePrefix = string =>
   string && string.slice(0, 1) === '-' ? string.slice(1, string.length) : string
+
+const handleColor = ({ configValue, important }) => {
+  const value =
+    configValue('divideColor') ||
+    configValue('borderColor') ||
+    configValue('colors')
+  if (!value) return
+
+  return withAlpha({
+    color: value,
+    property: 'color',
+    variable: '--divide-opacity',
+    important,
+  })
+}
 
 const handleOpacity = ({ configValue }) => {
   const opacity = configValue('divideOpacity') || configValue('opacity')
@@ -17,7 +33,7 @@ const handleWidth = ({
   errors: { errorNotFound },
 }) => {
   const width = configValue('divideWidth')
-  !width && errorNotFound({ config: theme('divideWidth') })
+  if (!width) return
 
   const value = `${negative}${addPxTo0(width)}`
   const isDivideX = className.startsWith('divide-x')
@@ -37,11 +53,18 @@ const handleWidth = ({
 
 export default properties => {
   const {
+    pieces: { important },
     errors: { errorNotFound },
     getConfigValue,
     theme,
     match,
   } = properties
+
+  const classValue = match(/(?<=(divide-))([^]*)/)
+  const configValue = config => getConfigValue(theme(config), classValue)
+
+  const color = handleColor({ configValue, important })
+  if (color) return color
 
   const opacityMatch =
     match(/(?<=(divide)-(opacity))([^]*)/) || match(/^divide-opacity$/)
@@ -53,7 +76,6 @@ export default properties => {
 
   const opacity = handleOpacity(opacityProperties)
   if (opacity) return opacity
-
   const widthMatch = match(/(?<=(divide)-(x|y))([^]*)/)
   const widthValue = stripNegativePrefix(widthMatch) || ''
   const widthProperties = {
