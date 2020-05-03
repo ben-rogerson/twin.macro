@@ -172,12 +172,8 @@ export default {
   // See staticStyles.js
 
   // https://tailwindcss.com/docs/placeholder-color
-  'placeholder-opacity': {
-    prop: '--placeholder-opacity',
-    config: 'placeholderOpacity',
-    configFallback: 'opacity',
-  },
-  placeholder: { prop: 'color', config: 'placeholderColor' },
+  // https://tailwindcss.com/docs/placeholder-opacity
+  placeholder: { plugin: 'placeholder' },
 
   // https://tailwindcss.com/docs/text-align
   // See staticStyles.js

@@ -287,6 +287,7 @@ export default {
   'list-outside': { output: { listStylePosition: 'outside' } },
 
   // https://tailwindcss.com/docs/placeholder-color
+  // https://tailwindcss.com/docs/placeholder-opacity
   // See dynamicStyles.js
 
   // https://tailwindcss.com/docs/text-align
@@ -296,6 +297,7 @@ export default {
   'text-justify': { output: { textAlign: 'justify' } },
 
   // https://tailwindcss.com/docs/text-color
+  // https://tailwindcss.com/docs/text-opacity
   // See dynamicStyles.js
 
   // https://tailwindcss.com/docs/text-decoration
