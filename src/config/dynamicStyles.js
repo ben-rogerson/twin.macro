@@ -202,7 +202,7 @@ export default {
   // https://tailwindcss.com/docs/background-opacity
   // See staticStyles.js
   'bg-opacity': {
-    prop: '--background-opacity',
+    prop: '--bg-opacity',
     config: 'backgroundOpacity',
     configFallback: 'opacity',
   },
