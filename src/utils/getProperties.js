@@ -17,27 +17,30 @@ const getDynamicProperties = className => {
     Object.keys(dynamicStyles).filter(
       k => className.startsWith(k + '-') || className === k
     ) || []
+
   // Get the best match from the match array
   const dynamicKey = dynamicKeyMatches.reduce(
     (r, match) => (r.length < match.length ? match : r),
     []
   )
-  const dynamicStyleset = dlv(dynamicStyles, dynamicKey)
+  const dynamicConfig = dlv(dynamicStyles, dynamicKey)
+
   // See if the config property is defined
   const isDynamicClass = Boolean(
-    Array.isArray(dynamicStyleset)
-      ? dynamicStyleset.map(i => dlv(i, 'config'))
+    Array.isArray(dynamicConfig)
+      ? dynamicConfig.map(i => dlv(i, 'config'))
       : dlv(dynamicStyles, [dynamicKey, 'config'])
   )
-  return { isDynamicClass, dynamicStyleset, dynamicKey }
+  return { isDynamicClass, dynamicConfig, dynamicKey }
 }
 
 const getProperties = className => {
+  if (!className) return
   const isStatic = isStaticClass(className)
-  const { isDynamicClass, dynamicStyleset, dynamicKey } = getDynamicProperties(
+  const { isDynamicClass, dynamicConfig, dynamicKey } = getDynamicProperties(
     className
   )
-  const corePlugin = dynamicStyleset.plugin
+  const corePlugin = dynamicConfig.plugin
 
   const type =
     (isStatic && 'static') ||
@@ -49,7 +52,7 @@ const getProperties = className => {
     corePlugin,
     hasNoMatches: !type,
     dynamicKey,
-    dynamicStyleset,
+    dynamicConfig,
   }
 }
 

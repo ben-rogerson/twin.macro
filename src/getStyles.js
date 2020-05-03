@@ -1,7 +1,7 @@
 import deepMerge from 'lodash.merge'
-import { assert, isEmpty, getProperties, getPieces } from './utils'
+import { assert, isEmpty, getProperties, getPieces, getTheme } from './utils'
 import { astify } from './macroHelpers'
-import doPrechecks, { precheckGroup, precheckTrailingSlash } from './prechecks'
+import doPrechecks, { precheckGroup } from './prechecks'
 import { logNoClass, softMatchConfigs } from './logging'
 import { orderByScreens } from './screens'
 import { debug } from './logging'
@@ -14,24 +14,26 @@ import {
   handleDynamic,
 } from './handlers'
 
-const getStyles = (input, t, state) => {
+// TODO: Remove 't' param
+export default (classes, t, state) => {
   // Move and sort the responsive items to the end of the list
-  const rawClassList = orderByScreens(input, state)
+  const classesOrdered = orderByScreens(classes, state)
+  const theme = getTheme(state.config.theme)
+  const hasUserPlugins = !isEmpty(state.config.plugins)
 
   // Merge styles into a single css object
-  const styles = rawClassList.reduce((accumulator, classNameRaw) => {
-    doPrechecks([precheckGroup, precheckTrailingSlash], { classNameRaw })
+  const styles = classesOrdered.reduce((results, classNameRaw) => {
+    doPrechecks([precheckGroup], { classNameRaw })
 
     const pieces = getPieces({ className: classNameRaw, state })
     const { className, negative } = pieces
 
     // Process addUtilities from plugins
-    const hasUserPlugins = !isEmpty(state.config.plugins)
     if (hasUserPlugins) {
       const style = handleUserPlugins({ config: state.config, className })
       if (!isEmpty(style)) {
         state.debug && debug(className, style)
-        return deepMerge(accumulator, style)
+        return deepMerge(results, style)
       }
     }
 
@@ -45,32 +47,30 @@ const getStyles = (input, t, state) => {
         hasSuggestions: state.hasSuggestions,
         config: softMatchConfigs({
           className,
-          configTheme: state.config.theme,
+          configTheme: theme(),
           prefix: negative,
         }),
       })
     )
 
-    const { dynamicKey, dynamicStyleset, corePlugin, type } = classProperties
+    const { dynamicKey, dynamicConfig, corePlugin, type } = classProperties
 
     const styleHandler = {
       static: () => handleStatic({ pieces }),
       dynamic: () =>
-        handleDynamic({ pieces, state, dynamicKey, dynamicStyleset }),
+        handleDynamic({ theme, pieces, state, dynamicKey, dynamicConfig }),
       corePlugin: () =>
-        handleCorePlugins({ pieces, state, corePlugin, classNameRaw }),
+        handleCorePlugins({ theme, pieces, state, corePlugin, classNameRaw }),
     }
 
     const style = applyTransforms({ type, pieces, style: styleHandler[type]() })
     state.debug && debug(className, style)
 
     return deepMerge(
-      accumulator,
-      pieces.hasVariants ? addVariants({ style, accumulator, pieces }) : style
+      results,
+      pieces.hasVariants ? addVariants({ results, style, pieces }) : style
     )
   }, {})
 
   return astify(isEmpty(styles) ? {} : styles, t)
 }
-
-export { getStyles as default }

@@ -1,5 +1,9 @@
 import tw from './macro'
 
+/**
+ * Misc usage tests
+ */
+
 const styles = tw`uppercase`
 const Box = tw.div`text-red-500`
 const BoxExtended = tw(Box)`bg-blue-500`

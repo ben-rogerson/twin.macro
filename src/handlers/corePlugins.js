@@ -1,6 +1,7 @@
 import dlv from 'dlv'
 import { MacroError } from 'babel-plugin-macros'
 import { logNoClass, logNotAllowed } from '../logging'
+import { getConfigValue } from './../utils'
 /* eslint import/namespace: [2, { allowComputed: true }] */
 /* eslint-disable-next-line unicorn/import-index */
 import * as plugins from '../plugins/index'
@@ -52,12 +53,17 @@ const callPlugin = (corePlugin, context) => {
   return handle(context)
 }
 
-export default ({ corePlugin, classNameRaw, pieces, state }) => {
+export default ({ corePlugin, classNameRaw, pieces, state, ...rest }) => {
   const errors = getErrors({ state, classNameRaw, ...pieces })
-  const theme = (grab, sub, theme = dlv(state, 'config.theme')) =>
-    grab ? dlv(theme, sub ? [grab, sub] : grab) : theme
   const match = regex => dlv(pieces.className.match(regex), [0]) || null
-  const context = { state: () => state, errors, theme, pieces, match }
+  const context = {
+    state: () => state,
+    errors,
+    pieces,
+    match,
+    getConfigValue,
+    ...rest,
+  }
 
   return callPlugin(corePlugin, context)
 }

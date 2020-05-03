@@ -5,11 +5,9 @@
   "main": "macro.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "dev": "nodemon --watch src -x \"npm run build:macro\"",
-    "build": "npm run build:all",
-    "build:all": "npm run build:macro && npm run build:util",
+    "dev": "nodemon --watch src -x \"npm run build:macro\" --delay .25",
+    "build": "npm run build:macro",
     "build:macro": "microbundle -i src/macro.js -f cjs -o ./macro.js --target node",
-    "build:util": "microbundle -i src/utils.js -f umd -o ./utils.js",
     "test:types": "tsc -b ./types/tsconfig.json",
     "test": "npm run build && jest && npm run test:types",
     "prepublishOnly": "npm run build"
@@ -30,7 +28,6 @@
   },
   "files": [
     "macro.js",
-    "utils.umd.js",
     "types/index.d.ts"
   ],
   "repository": {
