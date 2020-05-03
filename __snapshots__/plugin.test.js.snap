@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`twin.macro -general.js: -general.js 1`] = `
+exports[`twin.macro !general.js: !general.js 1`] = `
 
 import tw from './macro'
 
@@ -188,7 +188,7 @@ const JsxPlaceholderImportant = () => (
 
 `;
 
-exports[`twin.macro -ordering.js: -ordering.js 1`] = `
+exports[`twin.macro !ordering.js: !ordering.js 1`] = `
 
 import tw from './macro'
 
@@ -227,7 +227,7 @@ _styled.div({
 
 `;
 
-exports[`twin.macro -plugins.js: -plugins.js 1`] = `
+exports[`twin.macro !plugins.js: !plugins.js 1`] = `
 
 import tw from './macro'
 
@@ -247,7 +247,7 @@ tw\`type-sm\`
 
 `;
 
-exports[`twin.macro -prop.js: -prop.js 1`] = `
+exports[`twin.macro !prop.js: !prop.js 1`] = `
 
 import tw from './macro'
 
@@ -296,7 +296,7 @@ const Component3 = () => (
 
 `;
 
-exports[`twin.macro -variants.js: -variants.js 1`] = `
+exports[`twin.macro !variants.js: !variants.js 1`] = `
 
 import tw from './macro'
 
