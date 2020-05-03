@@ -208,17 +208,3 @@ tw`-space-x-reverse space-x-12`
 tw`space-x-12 -space-x-reverse`
 tw`-space-y-reverse space-y-12`
 tw`space-y-12 -space-y-reverse`
-
-// https://tailwindcss.com/docs/divide
-tw`divide-x-0`
-tw`divide-x-2`
-tw`divide-x-4`
-tw`divide-x-8`
-tw`divide-x`
-tw`divide-y-0`
-tw`divide-y-2`
-tw`divide-y-4`
-tw`divide-y-8`
-tw`divide-y`
-tw`divide-x-reverse`
-tw`divide-y-reverse`
