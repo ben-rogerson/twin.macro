@@ -16,6 +16,16 @@ module.exports = {
       },
     },
     extend: {
+      colors: {
+        number: 0,
+        'purple-hyphen': 'purple',
+        mycolors: {
+          default: 'blue',
+          'a-purple': 'purple',
+          'a-number': 0,
+          array: ['blue', 'purple', 'orange'],
+        },
+      },
       fontWeight: {
         customFontWeightAsString: '700',
         // Tailwind accepts numbers in configuration as well

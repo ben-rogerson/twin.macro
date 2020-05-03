@@ -1,5 +1,5 @@
 import { assert } from './utils'
-import { logNoTrailingDash, logBadGood } from './logging'
+import { logBadGood } from './logging'
 
 const precheckGroup = ({ classNameRaw }) =>
   assert(
@@ -10,13 +10,10 @@ const precheckGroup = ({ classNameRaw }) =>
     )}\n`
   )
 
-const precheckTrailingSlash = ({ classNameRaw }) =>
-  assert(classNameRaw.endsWith('-'), logNoTrailingDash(classNameRaw))
-
 const doPrechecks = (prechecks, context) => {
   for (const precheck of prechecks) {
     precheck(context)
   }
 }
 
-export { doPrechecks as default, precheckGroup, precheckTrailingSlash }
+export { doPrechecks as default, precheckGroup }

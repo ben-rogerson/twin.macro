@@ -1,81 +1,44 @@
-import { MacroError } from 'babel-plugin-macros'
-import { logNoClass, softMatchConfigs } from './../logging'
-import { assert, isEmpty } from './../utils'
-import { getMatch } from './dynamicUtils'
+import { logNoClass } from './../logging'
+import { assert, getConfigValue } from './../utils'
 
-function resolveStyle(properties) {
-  const {
-    styleList,
-    key,
-    className,
-    prefix,
-    config,
-    hasSuggestions,
-  } = properties
-  // Deal with Array items like 'font' or 'bg'
-  if (Array.isArray(styleList)) {
-    const resultsRaw = styleList.map(item => getMatch(item, ...properties))
-    const results = Object.values(resultsRaw).find(
-      x => x && Object.values(x)[0] !== undefined
-    )
-    assert(
-      !results,
-      // TODO: Add class suggestions for these types
-      logNoClass({
-        className: `${prefix}${className}`,
-        hasSuggestions,
-      })
-    )
-
-    return results
-  }
-
-  if (typeof styleList === 'object') {
-    const results = getMatch(styleList, ...properties)
-    assert(
-      isEmpty(results),
-      logNoClass({
-        className: `${prefix}${className}`,
-        hasSuggestions,
-        config: softMatchConfigs({
-          className,
-          configTheme: config.theme,
-          prefix,
-        }),
-      })
-    )
-
-    return results
-  }
-
-  throw new MacroError(
-    `"${className}" requires "${key}" in the Tailwind config`
-  )
+// Convert an array of objects into a single object
+// Shallow merger
+const styleify = ({ property, value, negative }) => {
+  value = Array.isArray(value) ? value.join(', ') : value
+  return Array.isArray(property)
+    ? property.reduce(
+        (results, item) => ({ ...results, [item]: `${negative}${value}` }),
+        {}
+      )
+    : { [property]: `${negative}${value}` }
 }
 
-const handleDynamic = ({ pieces, state, dynamicKey, dynamicStyleset }) => {
+export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
   const { className, negative } = pieces
   const key = className.slice(Number(dynamicKey.length) + 1)
+  const grabConfig = ({ config, configFallback }) =>
+    (config && theme(config)) || (configFallback && theme(configFallback))
 
-  const style = resolveStyle({
-    config: state.config,
-    styleList: dynamicStyleset,
-    key,
-    className,
-    matchedKey: dynamicKey,
-    prefix: negative,
-    hasSuggestions: state.hasSuggestions,
-  })
+  const styleSet = Array.isArray(dynamicConfig)
+    ? dynamicConfig
+    : [dynamicConfig]
+
+  const results = styleSet
+    .map(item => ({
+      property: item.prop,
+      value: getConfigValue(grabConfig(item), key),
+      negative,
+    }))
+    .filter(item => item.value)[0]
 
   assert(
-    !style,
+    !results,
     logNoClass({
       className: `${negative}${className}`,
-      hasSuggestions: false,
+      hasSuggestions: state.hasSuggestions,
+      config: (!results && styleSet.map(item => theme(item.config))) || {},
     })
   )
 
-  return style
+  return styleify(results)
 }
-
-export default handleDynamic
