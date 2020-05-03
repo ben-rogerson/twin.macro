@@ -28,7 +28,8 @@ export default properties => {
     errors: { errorNotFound },
   } = properties
 
-  const opacityMatch = match(/(?<=(placeholder-opacity-))([^]*)/)
+  const opacityMatch =
+    match(/(?<=(placeholder-opacity-))([^]*)/) || match(/^placeholder-opacity$/)
   const opacity = handleOpacity({
     configValue: config => getConfigValue(theme(config), opacityMatch),
   })
