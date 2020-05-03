@@ -41,13 +41,8 @@ export default {
   'space-y': { plugin: 'space' },
   'space-x': { plugin: 'space' },
 
-  'divide-opacity': {
-    prop: '--divide-opacity',
-    config: 'divideOpacity',
-    configFallback: 'opacity',
-  },
-
   // https://tailwindcss.com/docs/divide-width/
+  'divide-opacity': { plugin: 'divide' },
   'divide-y': { plugin: 'divide' },
   'divide-x': { plugin: 'divide' },
 
