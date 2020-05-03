@@ -21,3 +21,4 @@ const multiVariants = tw`xl:placeholder-bg-red-500! first:md:block sm:disabled:b
 tw`hocus:bg-red-500`
 tw`before:bg-red-500`
 tw`after:bg-red-500`
+tw`checked:bg-red-500`
