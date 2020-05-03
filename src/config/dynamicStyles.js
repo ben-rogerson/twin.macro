@@ -215,14 +215,7 @@ export default {
     config: 'backgroundOpacity',
     configFallback: 'opacity',
   },
-  bg: [
-    // https://tailwindcss.com/docs/background-color
-    { prop: 'backgroundColor', config: 'backgroundColor' },
-    // https://tailwindcss.com/docs/background-size
-    { prop: 'backgroundSize', config: 'backgroundSize' },
-    // https://tailwindcss.com/docs/background-position
-    { prop: 'backgroundPosition', config: 'backgroundPosition' },
-  ],
+  bg: { plugin: 'bg' },
 
   // https://tailwindcss.com/docs/background-repeat
   // See staticStyles.js

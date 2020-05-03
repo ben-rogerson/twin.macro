@@ -1,8 +1,184 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`twin.macro !config.js: !config.js 1`] = `
+
+import tw from './macro'
+
+/**
+ * Test the config nesting is working correctly
+ */
+
+tw\`text-number\`
+tw\`text-purple-hyphen\`
+tw\`text-mycolors\`
+tw\`text-mycolors-a-purple\`
+tw\`text-mycolors-a-number\`
+tw\`text-mycolors-array\`
+
+tw\`bg-number\`
+tw\`bg-purple-hyphen\`
+tw\`bg-mycolors\`
+tw\`bg-mycolors-a-purple\`
+tw\`bg-mycolors-a-number\`
+tw\`bg-mycolors-array\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+/**
+ * Test the config nesting is working correctly
+ */
+;({
+  color: '0',
+})
+;({
+  '--text-opacity': '1',
+  color: 'purple',
+  '&': {
+    color: 'rgba(128, 0, 128, var(--text-opacity))',
+  },
+})
+;({
+  '--text-opacity': '1',
+  color: 'blue',
+  '&': {
+    color: 'rgba(0, 0, 255, var(--text-opacity))',
+  },
+})
+;({
+  '--text-opacity': '1',
+  color: 'purple',
+  '&': {
+    color: 'rgba(128, 0, 128, var(--text-opacity))',
+  },
+})
+;({
+  color: '0',
+})
+;({
+  color: 'blue,purple,orange',
+})
+;({
+  backgroundColor: '0',
+})
+;({
+  '--bg-opacity': '1',
+  backgroundColor: 'purple',
+  '&': {
+    backgroundColor: 'rgba(128, 0, 128, var(--bg-opacity))',
+  },
+})
+;({
+  '--bg-opacity': '1',
+  backgroundColor: 'blue',
+  '&': {
+    backgroundColor: 'rgba(0, 0, 255, var(--bg-opacity))',
+  },
+})
+;({
+  '--bg-opacity': '1',
+  backgroundColor: 'purple',
+  '&': {
+    backgroundColor: 'rgba(128, 0, 128, var(--bg-opacity))',
+  },
+})
+;({
+  backgroundColor: '0',
+})
+;({
+  backgroundColor: 'blue,purple,orange',
+})
+
+
+`;
+
+exports[`twin.macro !custom.js: !custom.js 1`] = `
+
+import tw from './macro'
+
+/**
+ * Test custom Twin classes
+ */
+
+tw\`content\`
+
+tw\`font-customFontWeightAsString\`
+tw\`font-customFontWeightAsNumber\`
+
+tw\`group-hocus:bg-red-500\`
+tw\`group-focus:bg-red-500\`
+tw\`group-active:bg-red-500\`
+tw\`group-visited:bg-red-500\`
+
+tw\`clearfix\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+/**
+ * Test custom Twin classes
+ */
+;({
+  content: '""',
+})
+;({
+  fontWeight: '700',
+})
+;({
+  fontWeight: '800',
+})
+;({
+  '.group:hover &, .group:focus &': {
+    '--bg-opacity': '1',
+    backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
+  },
+})
+;({
+  '.group:focus &': {
+    '--bg-opacity': '1',
+    backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
+  },
+})
+;({
+  '.group:active &': {
+    '--bg-opacity': '1',
+    backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
+  },
+})
+;({
+  '.group:visited &': {
+    '--bg-opacity': '1',
+    backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
+  },
+})
+;({
+  '::after': {
+    content: '""',
+    display: 'table',
+    clear: 'both',
+  },
+})
+
+
+`;
+
 exports[`twin.macro !general.js: !general.js 1`] = `
 
 import tw from './macro'
+
+/**
+ * Misc usage tests
+ */
 
 const styles = tw\`uppercase\`
 const Box = tw.div\`text-red-500\`
@@ -37,6 +213,10 @@ const JsxPlaceholderImportant = () => <input tw="placeholder-text-red-500!" />
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _styled from '@emotion/styled'
+
+/**
+ * Misc usage tests
+ */
 const styles = {
   textTransform: 'uppercase',
 }
@@ -50,7 +230,11 @@ const Box = _styled.div({
 })
 
 const BoxExtended = _styled(Box)({
+  '--bg-opacity': '1',
   backgroundColor: '#4299e1',
+  '&': {
+    backgroundColor: 'rgba(66, 153, 225, var(--bg-opacity))',
+  },
 }) // Media queries
 
 const MediaProperty = {
@@ -71,13 +255,21 @@ const MediaColorProperty = _styled.div({
 
 const ElementMediaColorProperty = _styled(Box2)({
   '@media (min-width: 1024px)': {
+    '--bg-opacity': '1',
     backgroundColor: '#4299e1',
+    '&': {
+      backgroundColor: 'rgba(66, 153, 225, var(--bg-opacity))',
+    },
   },
 })
 
 const MediaPropertyDuplicates = {
   '@media (min-width: 1024px)': {
+    '--bg-opacity': '1',
     backgroundColor: '#000',
+    '&': {
+      backgroundColor: 'rgba(0, 0, 0, var(--bg-opacity))',
+    },
   },
 } // Important
 
@@ -99,7 +291,11 @@ const MediaImportant = _styled.div({
 
 const ElementMediaImportant = _styled(Box3)({
   '@media (min-width: 1024px)': {
+    '--bg-opacity': '1',
     backgroundColor: '#4299e1 !important',
+    '&': {
+      backgroundColor: 'rgba(66, 153, 225, var(--bg-opacity)) !important',
+    },
   },
 })
 
@@ -202,25 +398,43 @@ import _styled from '@emotion/styled'
 
 // This tests the screens end up in the order they are defined in the config
 _styled.div({
+  '--bg-opacity': '1',
   backgroundColor: '#48bb78',
+  '&': {
+    backgroundColor: 'rgba(72, 187, 120, var(--bg-opacity))',
+  },
   fill: 'currentColor',
   display: 'none',
   '@media (min-width: 640px)': {
+    '--bg-opacity': '1',
     backgroundColor: '#ed8936',
-    '--text-opacity': '1',
-    color: '#ecc94b',
     '&': {
+      backgroundColor: 'rgba(237, 137, 54, var(--bg-opacity))',
       color: 'rgba(236, 201, 75, var(--text-opacity))',
     },
+    '--text-opacity': '1',
+    color: '#ecc94b',
   },
   '@media (min-width: 768px)': {
+    '--bg-opacity': '1',
     backgroundColor: '#ed64a6',
+    '&': {
+      backgroundColor: 'rgba(237, 100, 166, var(--bg-opacity))',
+    },
   },
   '@media (min-width: 1024px)': {
+    '--bg-opacity': '1',
     backgroundColor: '#4299e1',
+    '&': {
+      backgroundColor: 'rgba(66, 153, 225, var(--bg-opacity))',
+    },
   },
   '@media (min-width: 1280px)': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 
@@ -235,6 +449,8 @@ import tw from './macro'
 
 tw\`type-sm\`
 
+const usageTest = tw\`type-sm text-red-500 lg:type-sm md:type-sm!\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // Tailwind plugin tests
@@ -243,6 +459,16 @@ tw\`type-sm\`
   'font-weight': '500',
   'line-height': '1.25',
 })
+const usageTest = {
+  'font-size': '0.875rem',
+  'font-weight': '500',
+  'line-height': '1.25',
+  '--text-opacity': '1',
+  color: '#f56565',
+  '&': {
+    color: 'rgba(245, 101, 101, var(--text-opacity))',
+  },
+}
 
 
 `;
@@ -327,57 +553,101 @@ tw\`after:bg-red-500\`
 // Test all variants
 ;({
   '.group:hover &': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 ;({
   ':focus-within': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 ;({
   ':first-child': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 ;({
   ':last-child': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 ;({
   ':nth-child(odd)': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 ;({
   ':nth-child(even)': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 ;({
   ':hover': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 ;({
   ':focus': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 ;({
   ':active': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 ;({
   ':visited': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 ;({
   ':disabled': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 const multiVariants = {
@@ -388,7 +658,11 @@ const multiVariants = {
   },
   '@media (min-width: 640px)': {
     ':disabled': {
+      '--bg-opacity': '1',
       backgroundColor: '#f56565',
+      '&': {
+        backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+      },
     },
   },
   '@media (min-width: 1280px)': {
@@ -400,17 +674,29 @@ const multiVariants = {
 
 ;({
   ':hover, :focus': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 ;({
   ':before': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 ;({
   ':after': {
+    '--bg-opacity': '1',
     backgroundColor: '#f56565',
+    '&': {
+      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    },
   },
 })
 
@@ -780,280 +1066,648 @@ tw\`rounded-bl-full\`
   backgroundColor: 'currentColor',
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#000',
+  '&': {
+    backgroundColor: 'rgba(0, 0, 0, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#fff',
+  '&': {
+    backgroundColor: 'rgba(255, 255, 255, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#f7fafc',
+  '&': {
+    backgroundColor: 'rgba(247, 250, 252, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#edf2f7',
+  '&': {
+    backgroundColor: 'rgba(237, 242, 247, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#e2e8f0',
+  '&': {
+    backgroundColor: 'rgba(226, 232, 240, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#cbd5e0',
+  '&': {
+    backgroundColor: 'rgba(203, 213, 224, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#a0aec0',
+  '&': {
+    backgroundColor: 'rgba(160, 174, 192, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#718096',
+  '&': {
+    backgroundColor: 'rgba(113, 128, 150, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#4a5568',
+  '&': {
+    backgroundColor: 'rgba(74, 85, 104, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#2d3748',
+  '&': {
+    backgroundColor: 'rgba(45, 55, 72, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#1a202c',
+  '&': {
+    backgroundColor: 'rgba(26, 32, 44, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#fff5f5',
+  '&': {
+    backgroundColor: 'rgba(255, 245, 245, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#fed7d7',
+  '&': {
+    backgroundColor: 'rgba(254, 215, 215, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#feb2b2',
+  '&': {
+    backgroundColor: 'rgba(254, 178, 178, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#fc8181',
+  '&': {
+    backgroundColor: 'rgba(252, 129, 129, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#f56565',
+  '&': {
+    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#e53e3e',
+  '&': {
+    backgroundColor: 'rgba(229, 62, 62, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#c53030',
+  '&': {
+    backgroundColor: 'rgba(197, 48, 48, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#9b2c2c',
+  '&': {
+    backgroundColor: 'rgba(155, 44, 44, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#742a2a',
+  '&': {
+    backgroundColor: 'rgba(116, 42, 42, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#fffaf0',
+  '&': {
+    backgroundColor: 'rgba(255, 250, 240, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#feebc8',
+  '&': {
+    backgroundColor: 'rgba(254, 235, 200, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#fbd38d',
+  '&': {
+    backgroundColor: 'rgba(251, 211, 141, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#f6ad55',
+  '&': {
+    backgroundColor: 'rgba(246, 173, 85, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#ed8936',
+  '&': {
+    backgroundColor: 'rgba(237, 137, 54, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#dd6b20',
+  '&': {
+    backgroundColor: 'rgba(221, 107, 32, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#c05621',
+  '&': {
+    backgroundColor: 'rgba(192, 86, 33, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#9c4221',
+  '&': {
+    backgroundColor: 'rgba(156, 66, 33, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#7b341e',
+  '&': {
+    backgroundColor: 'rgba(123, 52, 30, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#fffff0',
+  '&': {
+    backgroundColor: 'rgba(255, 255, 240, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#fefcbf',
+  '&': {
+    backgroundColor: 'rgba(254, 252, 191, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#faf089',
+  '&': {
+    backgroundColor: 'rgba(250, 240, 137, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#f6e05e',
+  '&': {
+    backgroundColor: 'rgba(246, 224, 94, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#ecc94b',
+  '&': {
+    backgroundColor: 'rgba(236, 201, 75, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#d69e2e',
+  '&': {
+    backgroundColor: 'rgba(214, 158, 46, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#b7791f',
+  '&': {
+    backgroundColor: 'rgba(183, 121, 31, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#975a16',
+  '&': {
+    backgroundColor: 'rgba(151, 90, 22, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#744210',
+  '&': {
+    backgroundColor: 'rgba(116, 66, 16, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#f0fff4',
+  '&': {
+    backgroundColor: 'rgba(240, 255, 244, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#c6f6d5',
+  '&': {
+    backgroundColor: 'rgba(198, 246, 213, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#9ae6b4',
+  '&': {
+    backgroundColor: 'rgba(154, 230, 180, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#68d391',
+  '&': {
+    backgroundColor: 'rgba(104, 211, 145, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#48bb78',
+  '&': {
+    backgroundColor: 'rgba(72, 187, 120, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#38a169',
+  '&': {
+    backgroundColor: 'rgba(56, 161, 105, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#2f855a',
+  '&': {
+    backgroundColor: 'rgba(47, 133, 90, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#276749',
+  '&': {
+    backgroundColor: 'rgba(39, 103, 73, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#22543d',
+  '&': {
+    backgroundColor: 'rgba(34, 84, 61, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#e6fffa',
+  '&': {
+    backgroundColor: 'rgba(230, 255, 250, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#b2f5ea',
+  '&': {
+    backgroundColor: 'rgba(178, 245, 234, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#81e6d9',
+  '&': {
+    backgroundColor: 'rgba(129, 230, 217, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#4fd1c5',
+  '&': {
+    backgroundColor: 'rgba(79, 209, 197, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#38b2ac',
+  '&': {
+    backgroundColor: 'rgba(56, 178, 172, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#319795',
+  '&': {
+    backgroundColor: 'rgba(49, 151, 149, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#2c7a7b',
+  '&': {
+    backgroundColor: 'rgba(44, 122, 123, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#285e61',
+  '&': {
+    backgroundColor: 'rgba(40, 94, 97, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#234e52',
+  '&': {
+    backgroundColor: 'rgba(35, 78, 82, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#ebf8ff',
+  '&': {
+    backgroundColor: 'rgba(235, 248, 255, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#bee3f8',
+  '&': {
+    backgroundColor: 'rgba(190, 227, 248, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#90cdf4',
+  '&': {
+    backgroundColor: 'rgba(144, 205, 244, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#63b3ed',
+  '&': {
+    backgroundColor: 'rgba(99, 179, 237, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#4299e1',
+  '&': {
+    backgroundColor: 'rgba(66, 153, 225, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#3182ce',
+  '&': {
+    backgroundColor: 'rgba(49, 130, 206, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#2b6cb0',
+  '&': {
+    backgroundColor: 'rgba(43, 108, 176, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#2c5282',
+  '&': {
+    backgroundColor: 'rgba(44, 82, 130, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#2a4365',
+  '&': {
+    backgroundColor: 'rgba(42, 67, 101, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#ebf4ff',
+  '&': {
+    backgroundColor: 'rgba(235, 244, 255, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#c3dafe',
+  '&': {
+    backgroundColor: 'rgba(195, 218, 254, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#a3bffa',
+  '&': {
+    backgroundColor: 'rgba(163, 191, 250, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#7f9cf5',
+  '&': {
+    backgroundColor: 'rgba(127, 156, 245, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#667eea',
+  '&': {
+    backgroundColor: 'rgba(102, 126, 234, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#5a67d8',
+  '&': {
+    backgroundColor: 'rgba(90, 103, 216, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#4c51bf',
+  '&': {
+    backgroundColor: 'rgba(76, 81, 191, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#434190',
+  '&': {
+    backgroundColor: 'rgba(67, 65, 144, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#3c366b',
+  '&': {
+    backgroundColor: 'rgba(60, 54, 107, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#faf5ff',
+  '&': {
+    backgroundColor: 'rgba(250, 245, 255, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#e9d8fd',
+  '&': {
+    backgroundColor: 'rgba(233, 216, 253, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#d6bcfa',
+  '&': {
+    backgroundColor: 'rgba(214, 188, 250, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#b794f4',
+  '&': {
+    backgroundColor: 'rgba(183, 148, 244, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#9f7aea',
+  '&': {
+    backgroundColor: 'rgba(159, 122, 234, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#805ad5',
+  '&': {
+    backgroundColor: 'rgba(128, 90, 213, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#6b46c1',
+  '&': {
+    backgroundColor: 'rgba(107, 70, 193, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#553c9a',
+  '&': {
+    backgroundColor: 'rgba(85, 60, 154, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#44337a',
+  '&': {
+    backgroundColor: 'rgba(68, 51, 122, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#fff5f7',
+  '&': {
+    backgroundColor: 'rgba(255, 245, 247, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#fed7e2',
+  '&': {
+    backgroundColor: 'rgba(254, 215, 226, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#fbb6ce',
+  '&': {
+    backgroundColor: 'rgba(251, 182, 206, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#f687b3',
+  '&': {
+    backgroundColor: 'rgba(246, 135, 179, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#ed64a6',
+  '&': {
+    backgroundColor: 'rgba(237, 100, 166, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#d53f8c',
+  '&': {
+    backgroundColor: 'rgba(213, 63, 140, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#b83280',
+  '&': {
+    backgroundColor: 'rgba(184, 50, 128, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#97266d',
+  '&': {
+    backgroundColor: 'rgba(151, 38, 109, var(--bg-opacity))',
+  },
 })
 ;({
+  '--bg-opacity': '1',
   backgroundColor: '#702459',
+  '&': {
+    backgroundColor: 'rgba(112, 36, 89, var(--bg-opacity))',
+  },
 }) // https://tailwindcss.com/docs/background-position
 
 ;({
@@ -1650,58 +2304,6 @@ tw\`rounded-bl-full\`
 
 `;
 
-exports[`twin.macro custom.js: custom.js 1`] = `
-
-import tw from './macro'
-
-// Classes native to Twin
-
-tw\`content\`
-
-tw\`font-customFontWeightAsString\`
-tw\`font-customFontWeightAsNumber\`
-
-tw\`group-hocus:bg-red-500\`
-tw\`group-focus:bg-red-500\`
-tw\`group-active:bg-red-500\`
-tw\`group-visited:bg-red-500\`
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-// Classes native to Twin
-;({
-  content: '""',
-})
-;({
-  fontWeight: '700',
-})
-;({
-  fontWeight: '800',
-})
-;({
-  '.group:hover &, .group:focus &': {
-    backgroundColor: '#f56565',
-  },
-})
-;({
-  '.group:focus &': {
-    backgroundColor: '#f56565',
-  },
-})
-;({
-  '.group:active &': {
-    backgroundColor: '#f56565',
-  },
-})
-;({
-  '.group:visited &': {
-    backgroundColor: '#f56565',
-  },
-})
-
-
-`;
-
 exports[`twin.macro effects.js: effects.js 1`] = `
 
 import tw from './macro'
@@ -1776,28 +2378,6 @@ tw\`opacity-0\`
 })
 ;({
   opacity: '0',
-})
-
-
-`;
-
-exports[`twin.macro extras.js: extras.js 1`] = `
-
-import tw from './macro'
-
-// Extra styles that aren't part of Tailwind
-
-tw\`clearfix\`
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-// Extra styles that aren't part of Tailwind
-;({
-  '::after': {
-    content: '""',
-    display: 'table',
-    clear: 'both',
-  },
 })
 
 
