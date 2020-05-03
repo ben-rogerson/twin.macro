@@ -1,55 +1,52 @@
-import dlv from 'dlv'
 import { withAlpha } from './../utils'
 
-const handleTextColor = ({ theme, match, pieces: { important } }) => {
-  const themeTextColor = theme('textColor')
-
-  const classNameValue = match(/(?<=(text-))([^]*)/)
-  if (!classNameValue) return
-
-  const value =
-    dlv(themeTextColor, classNameValue) ||
-    dlv(themeTextColor, classNameValue.replace(/-/g, '.'))
+const handleColor = ({ configValue, important }) => {
+  const value = configValue('textColor')
   if (!value) return
 
   return withAlpha({
-    color: `${value}`,
+    color: value,
     property: 'color',
     variable: '--text-opacity',
     important,
   })
 }
 
-const handleFontSize = ({ theme, match }) => {
-  const themeFontSize = theme('fontSize')
-  const classNameValue = match(/(?<=(text-))([^]*)/)
-  if (!classNameValue) return
-
-  const value = dlv(themeFontSize, classNameValue)
+const handleSize = ({ configValue, important }) => {
+  const value = configValue('fontSize')
   if (!value) return
 
   const [fontSize, lineHeight] = Array.isArray(value) ? value : [value]
-
   return {
-    fontSize,
+    fontSize: `${fontSize}${important}`,
     ...(lineHeight && {
-      lineHeight,
+      lineHeight: `${lineHeight}${important}`,
     }),
   }
 }
 
 export default properties => {
-  const colorStyle = handleTextColor(properties)
-  if (colorStyle) return colorStyle
+  const {
+    match,
+    theme,
+    getConfigValue,
+    pieces: { important },
+    errors: { errorNotFound },
+  } = properties
 
-  const fontStyle = handleFontSize(properties)
-  if (!fontStyle) {
-    const {
-      theme,
-      errors: { errorNotFound },
-    } = properties
-    errorNotFound({ config: { ...theme('textColor'), ...theme('fontSize') } })
-  }
+  const classValue = match(/(?<=(text-))([^]*)/)
+  const configValue = config => getConfigValue(theme(config), classValue)
 
-  return fontStyle
+  const color = handleColor({ configValue, important })
+  if (color) return color
+
+  const size = handleSize({ configValue, important })
+  if (size) return size
+
+  errorNotFound({
+    config: {
+      ...theme('textColor'),
+      ...theme('fontSize'),
+    },
+  })
 }

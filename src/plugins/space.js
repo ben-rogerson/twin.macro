@@ -6,7 +6,10 @@ export default ({
   theme,
   match,
 }) => {
-  const classNameValue = match(/(?<=(space)-(x|y)-)([^]*)/)
+  const classNameValue =
+    match(/(?<=(space)-(x|y)-)([^]*)/) ||
+    match(/^space-x$/) ||
+    match(/^space-y$/)
 
   const spaces = theme('space')
   const configValue = spaces[classNameValue || 'default']

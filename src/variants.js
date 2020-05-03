@@ -56,11 +56,11 @@ const splitVariants = ({ className, state, ...rest }) => {
   return { ...rest, className, variants, hasVariants }
 }
 
-const addVariants = ({ style, accumulator, pieces }) => {
+const addVariants = ({ results, style, pieces }) => {
   const { variants } = pieces
   if (variants.length === 0) return
 
-  const styleWithVariants = cleanSet(accumulator, variants, {
+  const styleWithVariants = cleanSet(results, variants, {
     ...dlv(styleWithVariants, variants, {}),
     ...style,
   })
