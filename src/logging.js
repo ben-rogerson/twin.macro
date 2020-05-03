@@ -106,7 +106,7 @@ const softMatchConfigs = properties => ({
   ...softMatchStaticConfig(properties),
 })
 
-const logInOut = (input, output) =>
+const inOut = (input, output) =>
   `${chalk.greenBright('✓')} ${input} ${chalk.greenBright(
     JSON.stringify(output)
   )}`
@@ -128,6 +128,17 @@ const logNoVariant = (variant, validVariants) =>
 const suggestions = ({ config }) => {
   if (!config) return ''
   if (Object.keys(config).length === 0) return ''
+
+  config = Array.isArray(config)
+    ? config.reduce(
+        (accumulator, item) => ({
+          ...accumulator,
+          ...item,
+        }),
+        {}
+      )
+    : config
+
   const configLength = Object.entries(config).length
   // Single suggestion
   if (configLength === 1)
@@ -163,23 +174,21 @@ const logNoClass = ({ className, config, hasSuggestions }) =>
 const logNotAllowed = ({ className, error }) =>
   spaced(warning(chalk.hex('#ffd3d3')(`${className} ${error}`)))
 
-const logNoTrailingDash = className =>
-  spaced(warning(`Class “${className}” shouldn’t have a trailing dash.`))
-
 const logBadGood = (bad, good) =>
   `${chalk.hex('#ff8383')('✕ Bad:')} ${bad}\n${chalk.greenBright(
     '✓ Good:'
   )} ${good}`
 
-const debug = (className, log) => console.log(logInOut(className, log))
+const logGeneralError = error => spaced(warning(error))
+
+const debug = (className, log) => console.log(inOut(className, log))
 
 export {
-  logInOut,
   logNoVariant,
   logNoClass,
   logNotAllowed,
-  logNoTrailingDash,
   logBadGood,
+  logGeneralError,
   softMatchConfigs,
   debug,
 }
