@@ -234,12 +234,7 @@ export default {
     config: 'borderOpacity',
     configFallback: 'opacity',
   },
-  border: [
-    // https://tailwindcss.com/docs/border-width
-    { prop: 'borderWidth', config: 'borderWidth' }, // keep above borderColor to support 'border'
-    // https://tailwindcss.com/docs/border-color
-    { prop: 'borderColor', config: 'borderColor' },
-  ],
+  border: { plugin: 'border' },
 
   // https://tailwindcss.com/docs/border-radius
   'rounded-tl': { prop: 'borderTopLeftRadius', config: 'borderRadius' },
