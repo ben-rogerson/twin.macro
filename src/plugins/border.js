@@ -1,5 +1,14 @@
 import { withAlpha } from './../utils'
 
+const handleWidth = ({ configValue, important }) => {
+  const value = configValue('borderWidth')
+  if (!value) return
+
+  return {
+    borderWidth: `${value}${important}`,
+  }
+}
+
 const handleColor = ({ configValue, important }) => {
   const value = configValue('borderColor')
   if (!value) return
@@ -10,15 +19,6 @@ const handleColor = ({ configValue, important }) => {
     variable: '--border-opacity',
     important,
   })
-}
-
-const handleWidth = ({ configValue, important }) => {
-  const value = configValue('borderWidth')
-  if (!value) return
-
-  return {
-    borderWidth: `${value}${important}`,
-  }
 }
 
 export default properties => {
@@ -33,11 +33,11 @@ export default properties => {
   const classValue = match(/(?<=(border-))([^]*)/)
   const configValue = config => getConfigValue(theme(config), classValue)
 
-  const color = handleColor({ configValue, important })
-  if (color) return color
-
   const width = handleWidth({ configValue, important })
   if (width) return width
+
+  const color = handleColor({ configValue, important })
+  if (color) return color
 
   errorNotFound({
     config: {
