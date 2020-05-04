@@ -60,7 +60,7 @@
     "chalk": "^4.0.0",
     "dlv": "^1.1.3",
     "dset": "^2.0.1",
-    "tailwindcss": "^1.3.4",
+    "tailwindcss": "^1.4.0",
     "timsort": "^0.3.0"
   },
   "devDependencies": {
