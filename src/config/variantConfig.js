@@ -1,4 +1,5 @@
 export default {
+  // Tailwind
   'group-hover': '.group:hover &',
   'group-focus': '.group:focus &',
   'focus-within': ':focus-within',
@@ -11,12 +12,14 @@ export default {
   active: ':active',
   visited: ':visited',
   disabled: ':disabled',
-  // Custom to Twin
+
+  // Twin
+  before: ':before',
+  after: ':after',
+  hocus: ':hover, :focus',
+  checked: ':checked',
+  // 'group' - add this within a className
   'group-hocus': '.group:hover &, .group:focus &',
   'group-active': '.group:active &',
   'group-visited': '.group:visited &',
-  hocus: ':hover, :focus',
-  before: ':before',
-  after: ':after',
-  checked: ':checked',
 }
