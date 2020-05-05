@@ -101,7 +101,7 @@ tw`hidden!`
 - Use `hocus:` to style an elements hover + focus at the same time
 - Use `checked:` on your form elements
 
-There's more, check the [variant config](https://github.com/ben-rogerson/twin.macro/blob/master/src/config/variantConfig.js) for the full list.
+There's more, check the [variant config](https://github.com/ben-rogerson/twin.macro/blob/master/src/variants.js#L8) for the full list.
 
 ## Installation
 
