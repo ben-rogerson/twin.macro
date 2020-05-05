@@ -3,6 +3,8 @@
   <h1 align="center">twin</h1>
 </p>
 
+![Join us on Discord](https://img.shields.io/discord/705884695400939552?label=discord&logo=discord)
+
 Use Twin's `tw` prop to add Tailwind styles on jsx elements:
 
 ```js
