@@ -2,7 +2,7 @@
   <img src="https://i.imgur.com/iWBWhY0.png" alt="emotion" width="360" height="135"><br>
     <br>Use Tailwind classes within any CSS-in-JS library<br><br>
     <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/dt/twin.macro.svg" alt="Total Downloads"></a>
-    <a href="https://github.com/twin.macro/twin.macro/releases"><img src="https://img.shields.io/npm/v/twin.macro.svg" alt="Latest Release"></a>
+    <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/v/twin.macro.svg" alt="Latest Release"></a>
     <a href="https://discord.gg/n8ZhNSb"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
 </p>
 
@@ -798,8 +798,6 @@ module.exports = {
 <hr />
 
 </details>
-
-<br />
 
 Twin comes packed with built-in TypeScript types. For additional features take a look at [typescript-plugin-tw-template](https://github.com/kingdaro/typescript-plugin-tw-template).
 
