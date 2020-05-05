@@ -1,34 +1,37 @@
 <p align="center">
-  <img src="https://i.imgur.com/iWBWhY0.png" alt="emotion" width="360" height="135">
-  <h1 align="center">twin</h1>
+  <img src="https://i.imgur.com/iWBWhY0.png" alt="emotion" width="360" height="135"><br>
+    <br>Use Tailwind classes within any CSS-in-JS library<br><br>
+    <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/dt/twin.macro.svg" alt="Total Downloads"></a>
+    <a href="https://github.com/twin.macro/twin.macro/releases"><img src="https://img.shields.io/npm/v/twin.macro.svg" alt="Latest Release"></a>
+    <a href="https://discord.gg/n8ZhNSb"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
 </p>
+
+---
 
 Use Twin's `tw` prop to add Tailwind styles on jsx elements:
 
 ```js
-import React from 'react'
 import tw from 'twin.macro'
 
-export default () => <input tw="border hover:border-black" />
+const default () => <input tw="border hover:border-black" />
 ```
 
-Or use `tw` to define new elements and add your styles:
+Use `tw` outside jsx to create and style new elements:
 
 ```js
-import React from 'react'
 import tw from 'twin.macro'
 
 const Input = tw.input`border hover:border-black`
 export default () => <Input />
 ```
 
-You can also style and clone existing components by wrapping them:
+`tw` can also clone and style existing components by wrapping them:
 
 ```js
 const PurpleInput = tw(Input)`border-purple-500`
 ```
 
-For features like conditional styling and css blocks, Twin works with styling libraries like [👩‍🎤 emotion](https://emotion.sh/docs/introduction) or [💅 styled-components](https://styled-components.com/):
+For features like conditional styling and vanilla css, Twin works with styling libraries like [👩‍🎤 emotion](https://emotion.sh/docs/introduction) or [💅 styled-components](https://styled-components.com/):
 
 ```js
 import React from 'react'
@@ -36,21 +39,15 @@ import tw from 'twin.macro'
 import styled from '@emotion/styled/macro'
 import { css } from '@emotion/core'
 
-const Input = styled.input([
-  tw`border`,
-  ({ hasDarkHover }) =>
-    hasDarkHover
-      ? tw`hover:border-black`
-      : css`
-          &:hover {
-            ${tw`border-white`}
-          }
-        `,
-])
-export default () => <Input hasDarkHover />
+const Input = styled.input`
+  ${tw`border`}
+  ${({ hasHover }) => hasHover && tw`hover:border-black`}
+  color: white;
+`
+export default () => <Input hasHover />
 ```
 
-If you'd rather add conditional styles onto existing elements then use a css prop:
+Add conditional styles onto jsx elements with a css prop:
 
 ```js
 import React from 'react'
@@ -59,16 +56,11 @@ import tw from 'twin.macro'
 
 const Input = ({ hasDarkHover }) => (
   <input
-    css={[
-      tw`border`,
-      hasDarkHover
-        ? tw`hover:border-black`
-        : css`
-            &:hover {
-              ${tw`border-white`}
-            }
-          `,
-    ]}
+    css={`
+      ${tw`border`}
+      ${({ hasHover }) => hasHover && tw`hover:border-black`}
+      color: white;
+    `}
   />
 )
 export default () => <Input hasDarkHover />
@@ -78,9 +70,11 @@ For more examples, head down to the [installation section](#installation).
 
 ## Features
 
-**👍 Supports Tailwind v1.2.0** - All classes are available (except [container](https://tailwindcss.com/docs/container)) with support for [custom utility plugins](https://tailwindcss.com/docs/plugins/#adding-utilities)
+**👍 Supports [Tailwind v1.2.0](https://github.com/tailwindcss/tailwindcss/releases/tag/v1.2.0)** ([1.4.0 coming soon](https://github.com/ben-rogerson/twin.macro/issues/45)) - Every class is available with support for [custom utility plugins](https://tailwindcss.com/docs/plugins/#adding-utilities)
 
-**🙅🏻 No PurgeCSS required** - Unlike Tailwind, there's no need to pre-generate a css file with all the possible styles. Instead, Twin converts used Tailwind classes into css object styles using Babel
+**👍 All variants, all the time** - Every variant is at your fingertips so you can focus more on styling and less on configuration
+
+**👍 Adds no size to your build** - Twin converts any classes you've used into css objects using Babel and then compiles itself away - no runtime required!
 
 **🛎 Helpful suggestions for mistypings** - Twin chimes in with class and variant examples from your Tailwind config:
 
@@ -93,23 +87,6 @@ ml-8 [2rem] / ml-10 [2.5rem] / ml-12 [3rem] / ml-16 [4rem] / ml-20 [5rem] / ml-2
 ml-40 [10rem] / ml-48 [12rem] / ml-56 [14rem] / ml-64 [16rem] / ml-auto [auto] / ml-px [1px]
 ```
 
-**🎲 Bring before and after elements to the game** - Style `::before` and `::after` pseudo-elements with custom variants:
-
-```js
-tw`before:content before:block after:content after:w-10`
-// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
-{
-  ":before": {
-    "content": "\"\"",
-    "display": "block"
-  },
-  ":after": {
-    "content": "\"\"",
-    "width": "2.5rem"
-  }
-}
-```
-
 **💥 Go important with a bang** - Add important to any class with a trailing bang!
 
 ```js
@@ -118,15 +95,13 @@ tw`hidden!`
 { "display": "none !important" }
 ```
 
-**🎩 A focus on hocus** - Style elements on hover + focus with one magic-sounding `hocus:` variant:
+**Twin comes with extra variants**
 
-```js
-tw`hocus:bg-red-500`
-// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
-{ ":hover, :focus": {
-  "backgroundColor": "#f56565"
-}}
-```
+- Use `before:` and `after:` to style pseudo-elements
+- Use `hocus:` to style an elements hover + focus at the same time
+- Use `checked:` on your form elements
+
+There's more, check the [variant config](https://github.com/ben-rogerson/twin.macro/blob/master/src/config/variantConfig.js) for the full list.
 
 ## Installation
 
@@ -220,22 +195,22 @@ yarn add twin.macro @emotion/core @emotion/styled -D
 
 ### 3. Import the Tailwind base styles
 
+Add the following to your `app.js` or `index.js`:
+(the dependency 'tailwindcss' is already in your node_modules)
+
 ```js
 // In your App.js or index.js entry
-// (the dependency 'tailwindcss' is already in your node_modules)
 import 'tailwindcss/dist/base.css'
 ```
 
 ### 4. Configure custom config location
 
-Add the config to your `package.json`:
+Place tailwind.config.js in the `src` folder. This allows it to be imported by a theme provider:
 
 ```js
 // package.json
 "babelMacros": {
   "twin": {
-    // Place tailwind.config.js in the src folder so
-    // it can be imported into your theme provider
     "config": "src/tailwind.config.js"
   }
 },
@@ -248,8 +223,6 @@ Add the config to your `package.json`:
 // babel-plugin-macros.config.js
 module.exports = {
   twin: {
-    // Place tailwind.config.js in the src folder so
-    // it can be imported into your theme provider
     config: 'src/tailwind.config.js',
   },
 }
@@ -381,9 +354,11 @@ yarn add twin.macro @emotion/core @emotion/styled -D
 
 ### 3. Import the Tailwind base styles
 
+Add the following to your `app.js` or `index.js`:
+(the dependency 'tailwindcss' is already in your node_modules)
+
 ```js
 // In your App.js or index.js entry
-// (the dependency 'tailwindcss' is already in your node_modules)
 import 'tailwindcss/dist/base.css'
 ```
 
@@ -518,23 +493,23 @@ yarn add twin.macro styled-components -D
 
 ### 3. Import the Tailwind base styles
 
+Add the following to your `app.js` or `index.js`:
+(the dependency 'tailwindcss' is already in your node_modules)
+
 ```js
 // In your App.js or index.js entry
-// (the dependency 'tailwindcss' is already in your node_modules)
 import 'tailwindcss/dist/base.css'
 ```
 
 ### 4. Configure Twin to use Styled Components
 
-Add the config to your `package.json`:
+Place tailwind.config.js in the `src` folder. This allows it to be imported by a theme provider:
 
 ```js
 // package.json
 "babelMacros": {
   "twin": {
     "styled": "styled-components",
-    // Place tailwind.config.js in the src folder so
-    // it can be imported into your theme provider
     "config": "src/tailwind.config.js"
   }
 },
@@ -684,9 +659,11 @@ yarn add twin.macro styled-components -D
 
 ### 3. Import the Tailwind base styles
 
+Add the following to your `app.js` or `index.js`:
+(the dependency 'tailwindcss' is already in your node_modules)
+
 ```js
 // In your App.js or index.js entry
-// (the dependency 'tailwindcss' is already in your node_modules)
 import 'tailwindcss/dist/base.css'
 ```
 
@@ -822,9 +799,13 @@ module.exports = {
 
 </details>
 
-## TypeScript support
+<br />
 
-Twin comes with built-in TypeScript types. For additional features take a look at [typescript-plugin-tw-template](https://github.com/kingdaro/typescript-plugin-tw-template).
+Twin comes packed with built-in TypeScript types. For additional features take a look at [typescript-plugin-tw-template](https://github.com/kingdaro/typescript-plugin-tw-template).
+
+## Community
+
+Join the [Twin Discord](https://discord.gg/n8ZhNSb) for help, site showcases, news and announcements.
 
 ## Resources
 
