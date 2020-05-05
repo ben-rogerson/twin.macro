@@ -11,19 +11,23 @@ const handleColor = ({ configValue, important }) => {
     configValue('colors')
   if (!value) return
 
-  return withAlpha({
+  const borderColor = withAlpha({
     color: value,
-    property: 'color',
+    property: 'borderColor',
     variable: '--divide-opacity',
     important,
   })
+
+  return { '> :not(template) ~ :not(template)': borderColor }
 }
 
 const handleOpacity = ({ configValue }) => {
   const opacity = configValue('divideOpacity') || configValue('opacity')
   if (!opacity) return
 
-  return { '--divide-opacity': `${opacity}` }
+  return {
+    '> :not(template) ~ :not(template)': { '--divide-opacity': `${opacity}` },
+  }
 }
 
 const handleWidth = ({
