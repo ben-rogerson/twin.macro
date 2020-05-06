@@ -75,7 +75,6 @@
     "eslint-config-import": "^0.13.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-xo": "^0.29.1",
-    "eslint-config-xo-react": "^0.23.0",
     "eslint-config-xo-space": "^0.24.0",
     "eslint-config-xo-typescript": "^0.27.0",
     "eslint-plugin-chai-friendly": "^0.5.0",
