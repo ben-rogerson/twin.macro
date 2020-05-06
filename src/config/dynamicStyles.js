@@ -293,6 +293,9 @@ export default {
     config: 'transitionTimingFunction',
   },
 
+  // https://tailwindcss.com/docs/transition-delay
+  delay: { prop: 'transitionDelay', config: 'transitionDelay' },
+
   /**
    * ===========================================
    * Transforms

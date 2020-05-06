@@ -8878,6 +8878,16 @@ tw\`ease-in\`
 tw\`ease-out\`
 tw\`ease-in-out\`
 
+// https://tailwindcss.com/docs/transition-delay
+tw\`delay-75\`
+tw\`delay-100\`
+tw\`delay-150\`
+tw\`delay-200\`
+tw\`delay-300\`
+tw\`delay-500\`
+tw\`delay-700\`
+tw\`delay-1000\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // https://tailwindcss.com/docs/transition-property
@@ -8940,6 +8950,31 @@ tw\`ease-in-out\`
 })
 ;({
   transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+}) // https://tailwindcss.com/docs/transition-delay
+
+;({
+  transitionDelay: '75ms',
+})
+;({
+  transitionDelay: '100ms',
+})
+;({
+  transitionDelay: '150ms',
+})
+;({
+  transitionDelay: '200ms',
+})
+;({
+  transitionDelay: '300ms',
+})
+;({
+  transitionDelay: '500ms',
+})
+;({
+  transitionDelay: '700ms',
+})
+;({
+  transitionDelay: '1000ms',
 })
 
 
