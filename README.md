@@ -70,7 +70,7 @@ For more examples, head down to the [installation section](#installation).
 
 ## Features
 
-**👍 Supports [Tailwind v1.2.0](https://github.com/tailwindcss/tailwindcss/releases/tag/v1.2.0)** ([1.4.0 coming soon](https://github.com/ben-rogerson/twin.macro/issues/45)) - Every class is available with support for [custom utility plugins](https://tailwindcss.com/docs/plugins/#adding-utilities)
+**👍 Supports [Tailwind v1.4.0](https://github.com/tailwindcss/tailwindcss/releases/tag/v1.4.0)** - Every class is available with support for [custom utility plugins](https://tailwindcss.com/docs/plugins/#adding-utilities)
 
 **👍 All variants, all the time** - Every variant is at your fingertips so you can focus more on styling and less on configuration
 
