@@ -1,115 +1,19 @@
-import dlv from 'dlv'
 import chalk from 'chalk'
-import { staticStyles, dynamicStyles } from './config'
+import getSuggestions from './suggestions'
 
-// Function duplicated in utils to resolve circular dependency
-const isEmpty = value =>
-  value === undefined ||
-  value === null ||
-  (typeof value === 'object' && Object.keys(value).length === 0) ||
-  (typeof value === 'string' && value.trim().length === 0)
+const color = {
+  error: chalk.hex('#ff8383'),
+  errorLight: chalk.hex('#ffd3d3'),
+  success: chalk.greenBright,
+  highlight: chalk.yellowBright,
+  subdued: chalk.hex('#999'),
+}
 
 const spaced = string => `\n\n${string}\n`
-const warning = string => chalk.hex('#ff8383')(`✕ ${string}`)
-
-const getClassNamePieces = className => {
-  const classNamePieces = className.split('-')
-  return classNamePieces.length > 1
-    ? classNamePieces.slice(0, -1).join('-')
-    : classNamePieces[0]
-}
-
-const softMatchDynamicClass = ({ className, obj, configTheme, prefix }) => {
-  if (typeof obj !== 'object') return []
-
-  const values = Object.entries(obj).map(([key, value]) => {
-    if (!value.config) return []
-    const config =
-      dlv(configTheme, value.config) || dlv(configTheme, value.configFallback)
-
-    return Object.entries(config).map(([k, v]) => {
-      const hasObjectValue = typeof v === 'object'
-      const hasDefaultKey = k === 'default'
-      const hasNegative = k.startsWith === '-'
-
-      return {
-        [`${hasNegative ? '-' : ''}${key}${
-          hasDefaultKey ? '' : `${hasNegative ? '' : '-'}${k}`
-        }${hasObjectValue ? chalk.hex('#999')('-xxx') : ''}`]: hasObjectValue
-          ? ''
-          : v,
-      }
-    })
-  })
-
-  const combinedValues = [].concat(...values)
-  const matches = combinedValues
-    .filter(item => Object.keys(item)[0].startsWith(`${prefix}${className}`))
-    .reduce(
-      (accumulator, item) => ({
-        ...accumulator,
-        ...item,
-      }),
-      {}
-    )
-
-  return matches
-}
-
-const softMatchStaticClass = ({ className, obj, prefix }) => {
-  if (typeof obj !== 'object') return {}
-  const matches = Object.entries(obj)
-    .filter(
-      ([key, value]) =>
-        !isEmpty(value) && key.startsWith(`${prefix}${className}`)
-    )
-    .reduce(
-      (accumulator, item) => ({
-        ...accumulator,
-        [item[0]]: '',
-      }),
-      {}
-    )
-  return matches
-}
-
-const softMatchDynamicConfig = ({ className, configTheme, prefix }) => {
-  const properties = { obj: dynamicStyles, configTheme, prefix }
-  const config = softMatchDynamicClass({ ...properties, className })
-
-  if (isEmpty(config)) {
-    const classNamePieceCheck = getClassNamePieces(className)
-    return softMatchDynamicClass({
-      ...properties,
-      className: classNamePieceCheck,
-    })
-  }
-
-  return config
-}
-
-const softMatchStaticConfig = ({ className, prefix }) => {
-  const properties = { obj: staticStyles, prefix }
-  const config = softMatchStaticClass({ ...properties, className })
-
-  if (isEmpty(config)) {
-    const classNamePieceCheck = getClassNamePieces(className)
-    softMatchStaticClass({ ...properties, className: classNamePieceCheck })
-  }
-
-  return config
-}
-
-// Get soft matches from the static and dynamic configs for suggestions
-const softMatchConfigs = properties => ({
-  ...softMatchDynamicConfig(properties),
-  ...softMatchStaticConfig(properties),
-})
+const warning = string => color.error(`✕ ${string}`)
 
 const inOut = (input, output) =>
-  `${chalk.greenBright('✓')} ${input} ${chalk.greenBright(
-    JSON.stringify(output)
-  )}`
+  `${color.success('✓')} ${input} ${color.success(JSON.stringify(output))}`
 
 const logNoVariant = (variant, validVariants) =>
   spaced(
@@ -120,68 +24,57 @@ const logNoVariant = (variant, validVariants) =>
         (item, index) =>
           `${
             validVariants.length > 6 && index % 6 === 0 && index > 0 ? '\n' : ''
-          }${chalk.yellowBright(item)}:`
+          }${color.highlight(item)}:`
       )
-      .join(chalk.gray(' / '))}`
-  )
-
-const suggestions = ({ config }) => {
-  if (!config) return ''
-  if (Object.keys(config).length === 0) return ''
-
-  config = Array.isArray(config)
-    ? config.reduce(
-        (accumulator, item) => ({
-          ...accumulator,
-          ...item,
-        }),
-        {}
-      )
-    : config
-
-  const configLength = Object.entries(config).length
-  // Single suggestion
-  if (configLength === 1)
-    return `\n\nDid you mean ${chalk.yellowBright(Object.keys(config).join())}?`
-  // Multiple suggestions
-  let lineLength = 0
-  return `\n\nTry one of these classes:\n${Object.entries(config)
-    .map(([key, value], index) => {
-      const displayValue = value ? ` ${chalk.hex('#999')(`[${value}]`)}` : ''
-      const result = `${key !== 'undefined' ? key : ''}${displayValue}`
-      lineLength = lineLength + `${key}${value}`.length
-      const divider =
-        lineLength > 60
-          ? '\n'
-          : index !== Object.entries(config).length - 1
-          ? chalk.gray(` / `)
-          : ''
-      if (lineLength > 60) lineLength = 0
-      return `${chalk.yellowBright(result)}${divider}`
-    })
-    .join('')}`
-}
-
-const logNoClass = ({ className, config, hasSuggestions }) =>
-  spaced(
-    `${warning(
-      `${
-        className ? chalk.hex('#ffd3d3')(className) : 'Class'
-      } isn't a valid class`
-    )}${hasSuggestions ? suggestions({ config }) : ''}`
+      .join(color.subdued(' / '))}`
   )
 
 const logNotAllowed = ({ className, error }) =>
-  spaced(warning(chalk.hex('#ffd3d3')(`${className} ${error}`)))
+  spaced(warning(`${color.errorLight(`${className}`)} ${error}`))
 
 const logBadGood = (bad, good) =>
-  `${chalk.hex('#ff8383')('✕ Bad:')} ${bad}\n${chalk.greenBright(
-    '✓ Good:'
-  )} ${good}`
+  `${color.error('✕ Bad:')} ${bad}\n${color.success('✓ Good:')} ${good}`
 
 const logGeneralError = error => spaced(warning(error))
 
 const debug = (className, log) => console.log(inOut(className, log))
+
+const formatSuggestions = suggestions =>
+  suggestions
+    .map(
+      s =>
+        `${color.highlight(s.target)}${
+          s.value ? color.subdued(` [${s.value}]`) : ''
+        }`
+    )
+    .join(color.subdued(' / '))
+
+const logNoClass = properties => {
+  const {
+    pieces: { className },
+    state: { hasSuggestions },
+  } = properties
+
+  const warningText = warning(
+    `${className ? color.errorLight(className) : 'Class'} was not found`
+  )
+  if (!hasSuggestions) return spaced(warningText)
+
+  const suggestions = getSuggestions(properties)
+  if (suggestions.length === 0) return spaced(warningText)
+
+  if (typeof suggestions === 'string')
+    return spaced(
+      `${warningText}\n\nDid you mean ${color.highlight(suggestions)}?`
+    )
+
+  const suggestionText =
+    suggestions.length === 1
+      ? `Did you mean ${color.highlight(suggestions.shift().target)}?`
+      : `Try one of these classes:\n${formatSuggestions(suggestions)}`
+
+  return spaced(`${warningText}\n\n${suggestionText}`)
+}
 
 export {
   logNoVariant,
@@ -189,6 +82,5 @@ export {
   logNotAllowed,
   logBadGood,
   logGeneralError,
-  softMatchConfigs,
   debug,
 }

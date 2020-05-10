@@ -2,7 +2,6 @@ import { logNoClass } from './../logging'
 import { assert, getConfigValue } from './../utils'
 
 // Convert an array of objects into a single object
-// Shallow merger
 const styleify = ({ property, value, negative }) => {
   value = Array.isArray(value) ? value.join(', ') : value
   return Array.isArray(property)
@@ -16,6 +15,7 @@ const styleify = ({ property, value, negative }) => {
 export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
   const { className, negative } = pieces
   const key = className.slice(Number(dynamicKey.length) + 1)
+
   const grabConfig = ({ config, configFallback }) =>
     (config && theme(config)) || (configFallback && theme(configFallback))
 
@@ -31,12 +31,12 @@ export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
     }))
     .filter(item => item.value)[0]
 
-  assert(
-    !results,
+  assert(!results || className.endsWith('-'), () =>
     logNoClass({
-      className: `${negative}${className}`,
-      hasSuggestions: state.hasSuggestions,
-      config: (!results && styleSet.map(item => theme(item.config))) || {},
+      pieces,
+      state,
+      config: styleSet.map(item => item.config) || [],
+      dynamicKey,
     })
   )
 

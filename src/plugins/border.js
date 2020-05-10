@@ -39,10 +39,5 @@ export default properties => {
   const color = handleColor({ configValue, important })
   if (color) return color
 
-  errorNotFound({
-    config: {
-      ...theme('borderColor'),
-      ...theme('borderWidth'),
-    },
-  })
+  errorNotFound({ config: ['borderColor', 'borderWidth'] })
 }

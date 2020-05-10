@@ -2,7 +2,7 @@ import deepMerge from 'lodash.merge'
 import { assert, isEmpty, getProperties, getPieces, getTheme } from './utils'
 import { astify } from './macroHelpers'
 import doPrechecks, { precheckGroup } from './prechecks'
-import { logNoClass, softMatchConfigs } from './logging'
+import { logNoClass } from './logging'
 import { orderByScreens } from './screens'
 import { debug } from './logging'
 import applyTransforms from './transforms'
@@ -14,7 +14,6 @@ import {
   handleDynamic,
 } from './handlers'
 
-// TODO: Remove 't' param
 export default (classes, t, state) => {
   // Move and sort the responsive items to the end of the list
   const classesOrdered = orderByScreens(classes, state)
@@ -26,7 +25,7 @@ export default (classes, t, state) => {
     doPrechecks([precheckGroup], { classNameRaw })
 
     const pieces = getPieces({ className: classNameRaw, state })
-    const { className, negative } = pieces
+    const { className } = pieces
 
     // Process addUtilities from plugins
     if (hasUserPlugins) {
@@ -40,17 +39,8 @@ export default (classes, t, state) => {
     const classProperties = getProperties(className)
 
     // Kick off suggestions when no class matches
-    assert(
-      classProperties.hasNoMatches,
-      logNoClass({
-        className: `${negative}${className}`,
-        hasSuggestions: state.hasSuggestions,
-        config: softMatchConfigs({
-          className,
-          configTheme: theme(),
-          prefix: negative,
-        }),
-      })
+    assert(!classProperties || classProperties.hasNoMatches, () =>
+      logNoClass({ pieces, state })
     )
 
     const { dynamicKey, dynamicConfig, corePlugin, type } = classProperties
@@ -60,7 +50,14 @@ export default (classes, t, state) => {
       dynamic: () =>
         handleDynamic({ theme, pieces, state, dynamicKey, dynamicConfig }),
       corePlugin: () =>
-        handleCorePlugins({ theme, pieces, state, corePlugin, classNameRaw }),
+        handleCorePlugins({
+          theme,
+          pieces,
+          state,
+          corePlugin,
+          classNameRaw,
+          dynamicKey,
+        }),
     }
 
     const style = applyTransforms({ type, pieces, style: styleHandler[type]() })

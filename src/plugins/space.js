@@ -13,7 +13,7 @@ export default ({
 
   const spaces = theme('space')
   const configValue = spaces[classNameValue || 'default']
-  !configValue && errorNotFound({ config: spaces })
+  !configValue && errorNotFound({ config: ['space'] })
 
   const value = `${negative}${addPxTo0(configValue)}`
   const isSpaceX = className.startsWith('space-x-') // 🚀

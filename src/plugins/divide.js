@@ -1,8 +1,4 @@
-import { addPxTo0 } from './../utils'
-import { withAlpha } from './../utils'
-
-const stripNegativePrefix = string =>
-  string && string.slice(0, 1) === '-' ? string.slice(1, string.length) : string
+import { addPxTo0, withAlpha, stripNegative } from './../utils'
 
 const handleColor = ({ configValue, important }) => {
   const value =
@@ -32,9 +28,7 @@ const handleOpacity = ({ configValue }) => {
 
 const handleWidth = ({
   configValue,
-  theme,
   pieces: { negative, className, important },
-  errors: { errorNotFound },
 }) => {
   const width = configValue('divideWidth')
   if (!width) return
@@ -71,29 +65,37 @@ export default properties => {
   if (color) return color
 
   const opacityMatch =
-    match(/(?<=(divide)-(opacity))([^]*)/) || match(/^divide-opacity$/)
-  const opacityValue = stripNegativePrefix(opacityMatch) || ''
-  const opacityProperties = {
-    configValue: config => getConfigValue(theme(config), opacityValue),
-    ...properties,
+    match(/(?<=(divide)-(opacity))([^]*)/) ||
+    (match(/^divide-opacity$/) && 'default')
+  if (opacityMatch) {
+    const opacityValue = stripNegative(opacityMatch) || ''
+    const opacityProperties = {
+      configValue: config => getConfigValue(theme(config), opacityValue),
+      ...properties,
+    }
+    const opacity = handleOpacity(opacityProperties)
+    if (opacity) return opacity
+
+    errorNotFound({
+      config: theme('divideOpacity') ? 'divideOpacity' : 'opacity',
+    })
   }
 
-  const opacity = handleOpacity(opacityProperties)
-  if (opacity) return opacity
-  const widthMatch = match(/(?<=(divide)-(x|y))([^]*)/)
-  const widthValue = stripNegativePrefix(widthMatch) || ''
-  const widthProperties = {
-    configValue: config => getConfigValue(theme(config), widthValue),
-    ...properties,
+  const widthMatch =
+    match(/(?<=(divide)-(x|y))([^]*)/) || (match(/^divide-(x|y)$/) && 'default')
+  if (widthMatch) {
+    const widthValue = stripNegative(widthMatch) || ''
+    const widthProperties = {
+      configValue: config => getConfigValue(theme(config), widthValue),
+      ...properties,
+    }
+    const width = handleWidth(widthProperties)
+    if (width) return width
+
+    errorNotFound({
+      config: 'divideWidth',
+    })
   }
 
-  const width = handleWidth(widthProperties)
-  if (width) return width
-
-  errorNotFound({
-    config: {
-      ...(theme('divideOpacity') || theme('opacity')),
-      ...theme('divideWidth'),
-    },
-  })
+  errorNotFound()
 }

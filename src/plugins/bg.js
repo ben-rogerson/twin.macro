@@ -16,18 +16,14 @@ const handleSize = ({ configValue, important }) => {
   const value = configValue('backgroundSize')
   if (!value) return
 
-  return {
-    backgroundSize: `${value}${important}`,
-  }
+  return { backgroundSize: `${value}${important}` }
 }
 
 const handlePosition = ({ configValue, important }) => {
   const value = configValue('backgroundPosition')
   if (!value) return
 
-  return {
-    backgroundPosition: `${value}${important}`,
-  }
+  return { backgroundPosition: `${value}${important}` }
 }
 
 export default properties => {
@@ -52,10 +48,6 @@ export default properties => {
   if (position) return position
 
   errorNotFound({
-    config: {
-      ...theme('backgroundColor'),
-      ...theme('backgroundSize'),
-      ...theme('backgroundPosition'),
-    },
+    config: ['backgroundColor', 'backgroundSize', 'backgroundPosition'],
   })
 }

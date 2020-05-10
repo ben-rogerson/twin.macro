@@ -128,7 +128,6 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   state.debug = config.debug || false
   state.configExists = configExists
 
-  // TODO: Disable suggestions in prod
   state.hasSuggestions =
     typeof config.hasSuggestions === 'undefined' ? true : config.hasSuggestions
 

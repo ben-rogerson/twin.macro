@@ -43,9 +43,9 @@ export default properties => {
   if (color) return { '::placeholder': color }
 
   errorNotFound({
-    config: {
-      ...theme('placeholderColor'),
-      ...(theme('placeholderOpacity') || theme('opacity')),
-    },
+    config: [
+      'placeholderColor',
+      theme('placeholderOpacity') ? 'placeholderOpacity' : 'opacity',
+    ],
   })
 }

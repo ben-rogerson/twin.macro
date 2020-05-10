@@ -11,7 +11,6 @@ function hasAlpha(color) {
 
 function toRgba(color) {
   const [r, g, b, a] = createColor(color).rgb().array()
-
   return [r, g, b, a === undefined && hasAlpha(color) ? 1 : a]
 }
 
@@ -21,17 +20,15 @@ export default ({ color, property, variable, important }) => {
     const [r, g, b, a] = toRgba(color)
 
     if (a !== undefined) {
-      return {
-        [property]: colorValue,
-      }
+      return { [property]: colorValue }
     }
 
     return {
       [variable]: '1',
-      [property]: colorValue,
       // Duplicate keys aren't possible in js objects, but totally fine in css
       // (eg: { "color": "#000", "color": "rgba(255,255,255,.5)" } = error
       // So nesting the duplicate key under the & is the workaround
+      [property]: colorValue,
       '&': {
         [property]: `rgba(${r}, ${g}, ${b}, var(${variable}))${important}`,
       },

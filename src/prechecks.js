@@ -4,10 +4,11 @@ import { logBadGood } from './logging'
 const precheckGroup = ({ classNameRaw }) =>
   assert(
     classNameRaw === 'group',
-    `"group" must be added as className:\n\n${logBadGood(
-      'tw`group`',
-      '<div className="group">'
-    )}\n`
+    () =>
+      `"group" must be added as className:\n\n${logBadGood(
+        'tw`group`',
+        '<div className="group">'
+      )}\n`
   )
 
 const doPrechecks = (prechecks, context) => {

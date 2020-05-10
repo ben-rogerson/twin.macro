@@ -30,9 +30,11 @@ export default properties => {
     match,
     theme,
     getConfigValue,
-    pieces: { important },
-    errors: { errorNotFound },
+    pieces: { important, hasNegative },
+    errors: { errorNotFound, errorNoNegatives },
   } = properties
+
+  hasNegative && errorNoNegatives()
 
   const classValue = match(/(?<=(text-))([^]*)/)
   const configValue = config => getConfigValue(theme(config), classValue)
@@ -43,10 +45,5 @@ export default properties => {
   const size = handleSize({ configValue, important })
   if (size) return size
 
-  errorNotFound({
-    config: {
-      ...theme('textColor'),
-      ...theme('fontSize'),
-    },
-  })
+  errorNotFound({ config: ['textColor', 'fontSize'] })
 }
