@@ -1,9 +1,10 @@
 import { staticStyles, dynamicStyles } from './config'
-import { getTheme } from './utils'
+import { getTheme, stripNegative } from './utils'
 import stringSimilarity from 'string-similarity'
 
 const getCustomSuggestions = className => {
   const suggestions = {
+    'align-center': 'items-center',
     'center-align': 'items-center',
     'flex-center': 'items-center / justify-center',
     'inline-block': 'block',
@@ -11,6 +12,10 @@ const getCustomSuggestions = className => {
     'display-inline': 'inline-block',
     'display-flex': 'flex',
     'border-radius': 'rounded',
+    'flex-column': 'flex-col',
+    'flex-column-reverse': 'flex-col-reverse',
+    'text-italic': 'italic',
+    'text-normal': 'not-italic',
   }[className]
   if (suggestions) return suggestions
 }
