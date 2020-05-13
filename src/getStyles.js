@@ -24,7 +24,7 @@ export default (classes, t, state) => {
   const styles = classesOrdered.reduce((results, classNameRaw) => {
     doPrechecks([precheckGroup], { classNameRaw })
 
-    const pieces = getPieces({ className: classNameRaw, state })
+    const pieces = getPieces({ classNameRaw, state })
     const { className } = pieces
 
     // Process addUtilities from plugins

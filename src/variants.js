@@ -34,9 +34,10 @@ const validateVariants = ({ variants, state }) => {
 /**
  * Split the variant(s) from the className
  */
-const splitVariants = ({ className, state, ...rest }) => {
+const splitVariants = ({ classNameRaw, state }) => {
   const variantsList = []
   let variant
+  let className = classNameRaw
   while (variant !== null) {
     variant = className.match(/^([_a-z-]+):/)
     if (variant) {
@@ -53,7 +54,12 @@ const splitVariants = ({ className, state, ...rest }) => {
 
   const hasVariants = variants.length > 0
 
-  return { ...rest, className, variants, hasVariants }
+  return {
+    classNameRawNoVariants: className,
+    className,
+    variants,
+    hasVariants,
+  }
 }
 
 const addVariants = ({ results, style, pieces }) => {

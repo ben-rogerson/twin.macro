@@ -20,7 +20,7 @@ const mergeImportant = (style, hasImportant) => {
 /**
  * Split the important from the className
  */
-const splitImportant = ({ className, ...rest }) => {
+const splitImportant = ({ className }) => {
   const lastCharacter = className.slice(-1)
   const hasImportant = lastCharacter === '!'
   if (hasImportant) {
@@ -29,7 +29,7 @@ const splitImportant = ({ className, ...rest }) => {
 
   const important = hasImportant ? ' !important' : ''
 
-  return { ...rest, className, hasImportant, important }
+  return { className, hasImportant, important }
 }
 
 export { splitImportant, mergeImportant }
