@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import tw from './macro'
 
 const Component1 = () => <div tw="uppercase" />
