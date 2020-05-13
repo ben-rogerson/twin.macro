@@ -52,7 +52,7 @@ const handleWidth = ({
 export default properties => {
   const {
     pieces: { important },
-    errors: { errorNotFound },
+    errors: { errorSuggestions },
     getConfigValue,
     theme,
     match,
@@ -76,7 +76,7 @@ export default properties => {
     const opacity = handleOpacity(opacityProperties)
     if (opacity) return opacity
 
-    errorNotFound({
+    errorSuggestions({
       config: theme('divideOpacity') ? 'divideOpacity' : 'opacity',
     })
   }
@@ -92,10 +92,10 @@ export default properties => {
     const width = handleWidth(widthProperties)
     if (width) return width
 
-    errorNotFound({
+    errorSuggestions({
       config: 'divideWidth',
     })
   }
 
-  errorNotFound()
+  errorSuggestions()
 }

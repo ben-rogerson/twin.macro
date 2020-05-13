@@ -1,9 +1,9 @@
 import deepMerge from 'lodash.merge'
-import { assert, isEmpty, getProperties, getPieces, getTheme } from './utils'
+import { assert, isEmpty, getProperties, getTheme } from './utils'
+import getPieces from './utils/getPieces'
 import { astify } from './macroHelpers'
 import doPrechecks, { precheckGroup } from './prechecks'
-import { logNoClass , logGeneralError, debug } from './logging'
-
+import { logGeneralError, errorSuggestions, debug } from './logging'
 import { orderByScreens } from './screens'
 import applyTransforms from './transforms'
 import { addVariants } from './variants'
@@ -46,7 +46,7 @@ export default (classes, t, state) => {
 
     // Kick off suggestions when no class matches
     assert(!classProperties || classProperties.hasNoMatches, () =>
-      logNoClass({ pieces, state })
+      errorSuggestions({ pieces, state })
     )
 
     const { dynamicKey, dynamicConfig, corePlugin, type } = classProperties

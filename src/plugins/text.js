@@ -31,7 +31,7 @@ export default properties => {
     theme,
     getConfigValue,
     pieces: { important, hasNegative },
-    errors: { errorNotFound, errorNoNegatives },
+    errors: { errorSuggestions, errorNoNegatives },
   } = properties
 
   hasNegative && errorNoNegatives()
@@ -45,5 +45,5 @@ export default properties => {
   const size = handleSize({ configValue, important })
   if (size) return size
 
-  errorNotFound({ config: ['textColor', 'fontSize'] })
+  errorSuggestions({ config: ['textColor', 'fontSize'] })
 }

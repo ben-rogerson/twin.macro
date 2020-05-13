@@ -27,7 +27,7 @@ export default properties => {
     theme,
     getConfigValue,
     pieces: { important },
-    errors: { errorNotFound },
+    errors: { errorSuggestions },
   } = properties
 
   const classValue = match(/(?<=(border-))([^]*)/)
@@ -39,5 +39,5 @@ export default properties => {
   const color = handleColor({ configValue, important })
   if (color) return color
 
-  errorNotFound({ config: ['borderColor', 'borderWidth'] })
+  errorSuggestions({ config: ['borderColor', 'borderWidth'] })
 }

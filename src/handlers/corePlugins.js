@@ -1,7 +1,7 @@
 import dlv from 'dlv'
 import { MacroError } from 'babel-plugin-macros'
-import { logNoClass, logNotAllowed } from '../logging'
-import { getConfigValue } from './../utils'
+import { logNotAllowed, errorSuggestions } from '../logging'
+import getConfigValue from './../utils/getConfigValue'
 /* eslint import/namespace: [2, { allowComputed: true }] */
 /* eslint-disable-next-line unicorn/import-index */
 import * as plugins from '../plugins/index'
@@ -9,9 +9,9 @@ import * as plugins from '../plugins/index'
 const getErrors = ({ pieces, state, dynamicKey }) => {
   const { className, variants } = pieces
   return {
-    errorNotFound: options => {
+    errorSuggestions: options => {
       throw new MacroError(
-        logNoClass({ pieces, state, dynamicKey, ...options })
+        errorSuggestions({ pieces, state, dynamicKey, ...options })
       )
     },
     errorNoVariants: () => {

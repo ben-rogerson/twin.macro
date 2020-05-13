@@ -59,24 +59,34 @@ const formatSuggestions = (suggestions, lineLength = 0, maxLineLength = 60) =>
 const logNoClass = properties => {
   const {
     pieces: { classNameRawNoVariants },
-    state: { hasSuggestions },
   } = properties
 
-  const warningText = warning(
+  const text = warning(
     `${
       classNameRawNoVariants
         ? color.errorLight(classNameRawNoVariants)
         : 'Class'
     } was not found`
   )
-  if (!hasSuggestions) return spaced(warningText)
+
+  return text
+}
+
+const errorSuggestions = properties => {
+  const {
+    state: { hasSuggestions },
+  } = properties
+
+  const textNotFound = logNoClass(properties)
+
+  if (!hasSuggestions) return spaced(textNotFound)
 
   const suggestions = getSuggestions(properties)
-  if (suggestions.length === 0) return spaced(warningText)
+  if (suggestions.length === 0) return spaced(textNotFound)
 
   if (typeof suggestions === 'string')
     return spaced(
-      `${warningText}\n\nDid you mean ${color.highlight(suggestions)}?`
+      `${textNotFound}\n\nDid you mean ${color.highlight(suggestions)}?`
     )
 
   const suggestionText =
@@ -84,7 +94,7 @@ const logNoClass = properties => {
       ? `Did you mean ${color.highlight(suggestions.shift().target)}?`
       : `Try one of these classes:\n${formatSuggestions(suggestions)}`
 
-  return spaced(`${warningText}\n\n${suggestionText}`)
+  return spaced(`${textNotFound}\n\n${suggestionText}`)
 }
 
 export {
@@ -94,4 +104,5 @@ export {
   logBadGood,
   logGeneralError,
   debug,
+  errorSuggestions,
 }

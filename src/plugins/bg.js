@@ -31,7 +31,7 @@ export default properties => {
     theme,
     match,
     getConfigValue,
-    errors: { errorNotFound },
+    errors: { errorSuggestions },
     pieces: { important },
   } = properties
 
@@ -47,7 +47,7 @@ export default properties => {
   const position = handlePosition({ configValue, important })
   if (position) return position
 
-  errorNotFound({
+  errorSuggestions({
     config: ['backgroundColor', 'backgroundSize', 'backgroundPosition'],
   })
 }

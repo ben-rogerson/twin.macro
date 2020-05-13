@@ -1,5 +1,6 @@
-import { logNoClass } from './../logging'
-import { assert, getConfigValue, stripNegative } from './../utils'
+import getConfigValue from './../utils/getConfigValue'
+import { assert, stripNegative } from './../utils'
+import { errorSuggestions } from './../logging'
 
 // Convert an array of objects into a single object
 const styleify = ({ property, value, negative }) => {
@@ -36,7 +37,7 @@ export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
     .filter(item => item.value)[0]
 
   assert(!results || className.endsWith('-'), () =>
-    logNoClass({
+    errorSuggestions({
       pieces,
       state,
       config: styleSet.map(item => item.config) || [],

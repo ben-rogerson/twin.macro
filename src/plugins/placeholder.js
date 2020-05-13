@@ -25,7 +25,7 @@ export default properties => {
     theme,
     getConfigValue,
     pieces: { important },
-    errors: { errorNotFound },
+    errors: { errorSuggestions },
   } = properties
 
   const opacityMatch =
@@ -42,7 +42,7 @@ export default properties => {
   })
   if (color) return { '::placeholder': color }
 
-  errorNotFound({
+  errorSuggestions({
     config: [
       'placeholderColor',
       theme('placeholderOpacity') ? 'placeholderOpacity' : 'opacity',

@@ -1,6 +1,4 @@
 export { assert, isEmpty, addPxTo0, getTheme, stripNegative } from './misc'
 export { default as resolveConfig } from './resolveConfig'
-export { default as getConfigValue } from './getConfigValue'
-export { default as getPieces } from './getPieces'
 export { default as getProperties } from './getProperties'
 export { default as withAlpha } from './withAlpha'

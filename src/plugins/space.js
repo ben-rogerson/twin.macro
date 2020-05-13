@@ -2,7 +2,7 @@ import { addPxTo0 } from './../utils'
 
 export default ({
   pieces: { negative, important, className },
-  errors: { errorNotFound },
+  errors: { errorSuggestions },
   theme,
   match,
 }) => {
@@ -13,7 +13,7 @@ export default ({
 
   const spaces = theme('space')
   const configValue = spaces[classNameValue || 'default']
-  !configValue && errorNotFound({ config: ['space'] })
+  !configValue && errorSuggestions({ config: ['space'] })
 
   const value = `${negative}${addPxTo0(configValue)}`
   const isSpaceX = className.startsWith('space-x-') // 🚀
