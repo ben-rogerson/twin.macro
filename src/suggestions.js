@@ -27,20 +27,36 @@ const flattenObject = (object, prefix = '') =>
 const targetTransforms = [
   ({ target }) => (target === 'default' ? '' : target),
   ({ target }) => (target.endsWith('-default') ? target.slice(0, -8) : target),
-  ({ dynamicKey, target }) => [dynamicKey, target].filter(Boolean).join('-'),
+  ({ dynamicKey, target }) => {
+    const prefix = target !== stripNegative(target) ? '-' : ''
+    return `${prefix}${[dynamicKey, stripNegative(target)]
+      .filter(Boolean)
+      .join('-')}`
+  },
 ]
 
-const normalizeDynamicConfig = ({ config, input, dynamicKey }) =>
-  Object.entries(flattenObject(config))
+const filterKeys = (object, negativesOnly) =>
+  Object.entries(object).reduce(
+    (result, [k, v]) => ({
+      ...result,
+      ...((negativesOnly ? k.startsWith('-') : !k.startsWith('-')) && {
+        [k]: v,
+      }),
+    }),
+    {}
+  )
+
+const normalizeDynamicConfig = ({ config, input, dynamicKey, hasNegative }) =>
+  Object.entries(filterKeys(flattenObject(config), hasNegative))
     .map(([target, value]) => ({
       ...(input && {
         rating: stringSimilarity.compareTwoStrings(`-${target}`, input),
       }),
       target: targetTransforms.reduce(
-        (result, transform) => transform({ dynamicKey, target: result }),
+        (result, transformer) => transformer({ dynamicKey, target: result }),
         target
       ),
-      value,
+      value: `${value}`,
     }))
     .filter(
       i =>
@@ -48,7 +64,7 @@ const normalizeDynamicConfig = ({ config, input, dynamicKey }) =>
         (typeof i.rating === 'undefined' || i.rating >= 0.15)
     )
 
-const matchConfig = ({ config, theme, className, dynamicKey }) =>
+const matchConfig = ({ config, theme, className, ...rest }) =>
   Object.values(
     [...config].reduce(
       (results, item) => ({
@@ -56,18 +72,18 @@ const matchConfig = ({ config, theme, className, dynamicKey }) =>
         ...normalizeDynamicConfig({
           config: theme(item),
           input: className,
-          dynamicKey,
+          ...rest,
         }),
       }),
       {}
     )
   ).sort((a, b) => b.rating - a.rating)
 
-const getConfig = ({ config, theme, dynamicKey }) =>
-  matchConfig({ config, theme, dynamicKey }).slice(0, 20)
+const getConfig = properties =>
+  matchConfig({ ...properties, className: null }).slice(0, 20)
 
 const getSuggestions = ({
-  pieces: { className },
+  pieces: { className, hasNegative },
   state,
   config,
   dynamicKey,
@@ -78,16 +94,17 @@ const getSuggestions = ({
   if (customSuggestions) return customSuggestions
 
   if (config) {
-    const dynamicMatches = matchConfig({
+    const properties = {
       config,
       theme,
       dynamicKey,
       className,
-    })
-    if (dynamicMatches.length === 0) {
-      return getConfig({ config, theme, dynamicKey })
+      hasNegative,
     }
+    const dynamicMatches = matchConfig(properties)
+    if (dynamicMatches.length === 0) return getConfig(properties)
 
+    // If there's a high rated suggestion then return it
     const trumpMatch = dynamicMatches.find(match => match.rating >= 0.6)
     if (trumpMatch) return trumpMatch.target
 

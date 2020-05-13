@@ -39,24 +39,35 @@ const logGeneralError = error => spaced(warning(error))
 
 const debug = (className, log) => console.log(inOut(className, log))
 
-const formatSuggestions = suggestions =>
+const formatSuggestions = (suggestions, lineLength = 0, maxLineLength = 60) =>
   suggestions
-    .map(
-      s =>
-        `${color.highlight(s.target)}${
-          s.value ? color.subdued(` [${s.value}]`) : ''
-        }`
-    )
-    .join(color.subdued(' / '))
+    .map((s, index) => {
+      lineLength = lineLength + `${s.target}${s.value}`.length
+      const divider =
+        lineLength > maxLineLength
+          ? '\n'
+          : index !== suggestions.length - 1
+          ? color.subdued(' / ')
+          : ''
+      if (lineLength > maxLineLength) lineLength = 0
+      return `${color.highlight(s.target)}${
+        s.value ? color.subdued(` [${s.value}]`) : ''
+      }${divider}`
+    })
+    .join('')
 
 const logNoClass = properties => {
   const {
-    pieces: { className },
+    pieces: { classNameRawNoVariants },
     state: { hasSuggestions },
   } = properties
 
   const warningText = warning(
-    `${className ? color.errorLight(className) : 'Class'} was not found`
+    `${
+      classNameRawNoVariants
+        ? color.errorLight(classNameRawNoVariants)
+        : 'Class'
+    } was not found`
   )
   if (!hasSuggestions) return spaced(warningText)
 

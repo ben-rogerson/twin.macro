@@ -74,7 +74,7 @@ For more examples, head down to the [installation section](#installation).
 
 **👍 All variants, all the time** - Every variant is at your fingertips so you can focus more on styling and less on configuration
 
-**👍 Adds no size to your build** - Twin converts any classes you've used into css objects using Babel and then compiles itself away - no runtime required!
+**👍 Adds no size to your build** - Twin converts any classes you've used into css objects using Babel and then compiles itself away, no runtime required
 
 **🛎 Helpful suggestions for mistypings** - Twin chimes in with class and variant examples from your Tailwind config:
 
@@ -82,7 +82,9 @@ For more examples, head down to the [installation section](#installation).
 ✕ ml-7 was not found
 
 Try one of these classes:
-ml-0 [0] / ml-1 [0.25rem] / ml-2 [0.5rem] / ml-3 [0.75rem] / ml-4 [1rem] / ml-5 [1.25rem] / ml-6 [1.5rem] / ml-8 [2rem] / ml-10 [2.5rem] / ml-12 [3rem] / ml-16 [4rem] / ml-20 [5rem] / ml-24 [6rem] / ml-32 [8rem] / ml-40 [10rem] / ml-48 [12rem] / ml-56 [14rem] / ml-64 [16rem] / ml-auto [auto] / ml-px [1px]
+ml-0 [0] / ml-1 [0.25rem] / ml-2 [0.5rem] / ml-3 [0.75rem] / ml-4 [1rem] / ml-5 [1.25rem] / ml-6 [1.5rem]
+ml-8 [2rem] / ml-10 [2.5rem] / ml-12 [3rem] / ml-16 [4rem] / ml-20 [5rem] / ml-24 [6rem] / ml-32 [8rem]
+ml-40 [10rem] / ml-48 [12rem] / ml-56 [14rem] / ml-64 [16rem] / ml-auto [auto] / ml-px [1px]
 ```
 
 **💥 Go important with a bang** - Add important to any class with a trailing bang!

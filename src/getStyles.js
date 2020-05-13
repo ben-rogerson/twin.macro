@@ -61,12 +61,15 @@ export default (classes, t, state) => {
     }
 
     const style = applyTransforms({ type, pieces, style: styleHandler[type]() })
-    state.debug && debug(className, style)
 
-    return deepMerge(
+    const result = deepMerge(
       results,
       pieces.hasVariants ? addVariants({ results, style, pieces }) : style
     )
+
+    state.debug && debug(classNameRaw, style)
+
+    return result
   }, {})
 
   return astify(isEmpty(styles) ? {} : styles, t)

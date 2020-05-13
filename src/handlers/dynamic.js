@@ -1,9 +1,13 @@
 import { logNoClass } from './../logging'
-import { assert, getConfigValue } from './../utils'
+import { assert, getConfigValue, stripNegative } from './../utils'
 
 // Convert an array of objects into a single object
 const styleify = ({ property, value, negative }) => {
-  value = Array.isArray(value) ? value.join(', ') : value
+  value = Array.isArray(value)
+    ? value.join(', ')
+    : negative
+    ? stripNegative(value)
+    : value
   return Array.isArray(property)
     ? property.reduce(
         (results, item) => ({ ...results, [item]: `${negative}${value}` }),
@@ -14,7 +18,7 @@ const styleify = ({ property, value, negative }) => {
 
 export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
   const { className, negative } = pieces
-  const key = className.slice(Number(dynamicKey.length) + 1)
+  const key = `${negative}${className.slice(Number(dynamicKey.length) + 1)}`
 
   const grabConfig = ({ config, configFallback }) =>
     (config && theme(config)) || (configFallback && theme(configFallback))
