@@ -179,6 +179,12 @@ const ElementMediaStateMultiplePropertiesImportant = tw(Box)\`lg:hover:truncate!
 const JsxPlaceholder = () => <input tw="placeholder-text-red-500" />
 const JsxPlaceholderImportant = () => <input tw="placeholder-text-red-500!" />
 
+// Only basic evaluations supported
+// No functions or "beyond basic" conditionals.
+const plainConditional = true && 'red'
+const plainVariable = \`bg-\${plainConditional}-500\`
+tw\`\${plainVariable}\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _styled from '@emotion/styled'
@@ -329,7 +335,15 @@ const JsxPlaceholderImportant = () => (
       },
     }}
   />
-)
+) // Only basic evaluations supported
+// No functions or "beyond basic" conditionals.
+
+const plainConditional = true && 'red'
+const plainVariable = \`bg-\${plainConditional}-500\`
+;({
+  '--bg-opacity': '1',
+  backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+})
 
 
 `;

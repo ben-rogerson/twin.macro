@@ -2,9 +2,9 @@ import deepMerge from 'lodash.merge'
 import { assert, isEmpty, getProperties, getPieces, getTheme } from './utils'
 import { astify } from './macroHelpers'
 import doPrechecks, { precheckGroup } from './prechecks'
-import { logNoClass } from './logging'
+import { logNoClass , logGeneralError, debug } from './logging'
+
 import { orderByScreens } from './screens'
-import { debug } from './logging'
 import applyTransforms from './transforms'
 import { addVariants } from './variants'
 import {
@@ -15,6 +15,12 @@ import {
 } from './handlers'
 
 export default (classes, t, state) => {
+  assert([null, 'null', undefined].includes(classes), () =>
+    logGeneralError(
+      'Only plain strings can be used with "tw".\nRead more at https://github.com/ben-rogerson/twin.macro/issues/17'
+    )
+  )
+
   // Move and sort the responsive items to the end of the list
   const classesOrdered = orderByScreens(classes, state)
   const theme = getTheme(state.config.theme)

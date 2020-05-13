@@ -149,7 +149,7 @@ function parseTte({ path, types: t, styledIdentifier, state }) {
   )
     return null
 
-  const string = path.get('quasi').get('quasis')[0].node.value.cooked
+  const string = path.get('quasi').evaluate().value
   const stringLoc = path.get('quasi').node.loc
 
   if (path.node.tag.type === 'CallExpression') {
