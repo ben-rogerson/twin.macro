@@ -74,9 +74,9 @@ For more examples, head down to the [installation section](#installation).
 
 **👍 All variants, all the time** - Every variant is at your fingertips so you can focus more on styling and less on configuration
 
-**👍 Adds no size to your build** - Twin converts any classes you've used into css objects using Babel and then compiles itself away, no runtime required
+**👍 Adds no size to your build** - Twin converts classes you’ve used into css objects using Babel and then compiles itself away, no runtime required
 
-**🛎 Helpful suggestions for mistypings** - Twin chimes in with class and variant examples from your Tailwind config:
+**🛎 Helpful suggestions for mistypings** - Twin chimes in with class and variant values from your Tailwind config:
 
 ```bash
 ✕ ml-7 was not found
@@ -101,7 +101,7 @@ tw`hidden!`
 - Use `hocus:` to style an elements hover + focus at the same time
 - Use `checked:` on your form elements
 
-There's more, check the [variant config](https://github.com/ben-rogerson/twin.macro/blob/master/src/variants.js#L8) for the full list.
+There's more, check the [variant config](https://github.com/ben-rogerson/twin.macro/blob/master/src/config/variantConfig.js) for the full list.
 
 ## Installation
 
