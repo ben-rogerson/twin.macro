@@ -18,7 +18,7 @@ const inOut = (input, output) =>
 const logNoVariant = (variant, validVariants) =>
   spaced(
     `${warning(
-      `The variant “${variant}:” is unavailable.`
+      `The variant “${variant}:” was not found`
     )}\n\nTry one of these variants:\n${validVariants
       .map(
         (item, index) =>
