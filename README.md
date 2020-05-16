@@ -95,13 +95,32 @@ tw`hidden!`
 { "display": "none !important" }
 ```
 
-**Twin comes with extra variants**
+## Plugins
 
-- Use `before:` and `after:` to style pseudo-elements
-- Use `hocus:` to style an elements hover + focus at the same time
-- Use `checked:` on your form elements
+Twin supports [adding custom utilities](https://tailwindcss.com/docs/plugins/#adding-utilities) with further [plugin support underway](https://github.com/ben-rogerson/twin.macro/issues/7).
 
-There's more, check the [variant config](https://github.com/ben-rogerson/twin.macro/blob/master/src/config/variantConfig.js) for the full list.
+<details>
+  <summary>View custom utility example</summary>
+
+```js
+// tailwind.config.js
+const plugin = require('tailwindcss/plugin')
+
+module.exports = {
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      const newUtilities = {
+        '.rotate-90': {
+          transform: 'rotate(90deg)',
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }),
+  ],
+}
+```
+
+</details>
 
 ## Installation
 
