@@ -70,9 +70,9 @@ For more examples, head down to the [installation section](#installation).
 
 ## Features
 
-**👍 Supports [Tailwind v1.4.0](https://github.com/tailwindcss/tailwindcss/releases/tag/v1.4.0)** - Every class is available with support for [custom utility plugins](https://tailwindcss.com/docs/plugins/#adding-utilities)
+**👍 Style with all classes and variants from [Tailwind v1.4.0](https://github.com/tailwindcss/tailwindcss/releases/tag/v1.4.0)** (May 2020)
 
-**👍 All variants, all the time** - Every variant is at your fingertips so you can focus more on styling and less on configuration
+**👍 All variants pre-enabled** - [Every variant](https://github.com/ben-rogerson/twin.macro/blob/master/src/config/variantConfig.js#L1) is at your fingertips so you can focus more on styling and less on configuration
 
 **👍 Adds no size to your build** - Twin converts classes you’ve used into css objects using Babel and then compiles itself away, no runtime required
 
