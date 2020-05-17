@@ -1,7 +1,7 @@
 import {
   resolveTailwindConfig,
   defaultTailwindConfig,
-} from './../tailwindHelpers'
+} from './../configHelpers'
 
 let resolvedConfig
 

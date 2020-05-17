@@ -4,23 +4,15 @@ const SPREAD_ID = '__spread__'
 const COMPUTED_ID = '__computed__'
 
 function addImport({ types: t, program, mod, name, identifier }) {
-  if (name === 'default') {
-    program.unshiftContainer(
-      'body',
-      t.importDeclaration(
-        [t.importDefaultSpecifier(identifier)],
-        t.stringLiteral(mod)
-      )
+  program.unshiftContainer(
+    'body',
+    t.importDeclaration(
+      name === 'default'
+        ? [t.importDefaultSpecifier(identifier)]
+        : [t.importSpecifier(identifier, t.identifier(name))],
+      t.stringLiteral(mod)
     )
-  } else {
-    program.unshiftContainer(
-      'body',
-      t.importDeclaration(
-        [t.importSpecifier(identifier, t.identifier(name))],
-        t.stringLiteral(mod)
-      )
-    )
-  }
+  )
 }
 
 function assignify(objectAst, t) {
@@ -115,7 +107,6 @@ function astify(literal, t) {
 
 function findIdentifier({ program, mod, name }) {
   let identifier = null
-
   program.traverse({
     ImportDeclaration(path) {
       if (path.node.source.value !== mod) return
@@ -126,7 +117,7 @@ function findIdentifier({ program, mod, name }) {
           return true
         }
 
-        if (specifier.imported.name === name) {
+        if (specifier.imported && specifier.imported.name === name) {
           identifier = specifier.local
           return true
         }
