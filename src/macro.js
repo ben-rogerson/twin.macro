@@ -12,68 +12,12 @@ import { resolveTailwindConfig, defaultTailwindConfig } from './tailwindHelpers'
 
 const TW_CONFIG_DEFAULT_FILENAME = 'tailwind.config.js'
 
-const addDevelopmentImports = ({
-  state,
-  configPath,
-  program,
-  t,
-  configExists,
-}) => {
-  const tailwindConfigUid = program.scope.generateUidIdentifier(
-    'tailwindConfig'
-  )
-  // Call resolveConfig function from the utils file
-  // For hot tailwind.config updates
-  // eg: const _tailwindConfig = _tailwindUtils.resolveConfig()
-  program.unshiftContainer(
-    'body',
-    t.variableDeclaration('const', [
-      t.variableDeclarator(
-        state.tailwindConfigIdentifier,
-        t.callExpression(
-          t.memberExpression(
-            state.tailwindUtilsIdentifier,
-            t.identifier('resolveConfig')
-          ),
-          [configExists ? tailwindConfigUid : t.objectExpression([])]
-        )
-      ),
-    ])
-  )
-  // Import users tailwind.config.js for hot config updates
-  if (configExists) {
-    const tailwindConfigImportPath = `./${relative(
-      dirname(state.file.opts.filename),
-      configPath
-    )}`
-    addImport({
-      types: t,
-      program,
-      mod: tailwindConfigImportPath,
-      name: 'default',
-      identifier: tailwindConfigUid,
-    })
-  }
-
-  // Import the utils
-  addImport({
-    types: t,
-    program,
-    mod: 'twin.macro/utils.umd',
-    name: 'default',
-    identifier: state.tailwindUtilsIdentifier,
-  })
-}
 
 const twinMacro = ({ babel: { types: t }, references, state, config }) => {
-  const sourceRoot = state.file.opts.sourceRoot || '.'
   const program = state.file.path
-  const configFile = config && config.config
-  const configPath = resolve(
-    sourceRoot,
-    configFile || `./${TW_CONFIG_DEFAULT_FILENAME}`
-  )
-  const configExists = existsSync(configPath)
+  const { configExists, tailwindConfig } = getConfigProperties(state, config)
+
+  state.config = tailwindConfig
 
   state.tailwindConfigIdentifier = program.scope.generateUidIdentifier(
     'tailwindConfig'
@@ -187,7 +131,6 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   }
 
   if (state.isDev) {
-    addDevelopmentImports({ state, configPath, program, t, configExists })
   }
 
   program.scope.crawl()
