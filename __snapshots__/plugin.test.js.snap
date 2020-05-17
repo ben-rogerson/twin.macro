@@ -348,6 +348,98 @@ const plainVariable = \`bg-\${plainConditional}-500\`
 
 `;
 
+exports[`twin.macro !imports.js: !imports.js 1`] = `
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import tw, { styled, css } from './macro'
+
+const twPropertyTest = <div tw="text-purple-500" />
+
+const twFunctionTest = tw.div\`text-purple-500\`
+
+const cssFunctionTest = (
+  <div
+    css={css\`
+      \${tw\`text-purple-500\`}
+      background-color: purple;
+    \`}
+  />
+)
+
+const styledFunctionTest = styled.div\`
+  \${css\`
+    \${tw\`text-purple-500\`}
+    background-color: purple;
+  \`}
+\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from '@emotion/styled'
+import { css as _css } from '@emotion/core'
+const twPropertyTest = (
+  <div
+    css={{
+      '--text-opacity': '1',
+      color: 'rgba(159, 122, 234, var(--text-opacity))',
+    }}
+  />
+)
+
+const twFunctionTest = _styled.div({
+  '--text-opacity': '1',
+  color: 'rgba(159, 122, 234, var(--text-opacity))',
+})
+
+const cssFunctionTest = (
+  <div
+    css={_css\`
+      \${{
+        '--text-opacity': '1',
+        color: 'rgba(159, 122, 234, var(--text-opacity))',
+      }}
+      background-color: purple;
+    \`}
+  />
+)
+const styledFunctionTest = _styled.div\`
+  \${_css\`
+    \${{
+      '--text-opacity': '1',
+      color: 'rgba(159, 122, 234, var(--text-opacity))',
+    }}
+    background-color: purple;
+  \`}
+\`
+
+
+`;
+
+exports[`twin.macro !namelessImport.js: !namelessImport.js 1`] = `
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable import/no-unassigned-import */
+import './macro'
+
+const twPropertyTest = <div tw="text-purple-500" />
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+/* eslint-disable import/no-unassigned-import */
+const twPropertyTest = (
+  <div
+    css={{
+      '--text-opacity': '1',
+      color: 'rgba(159, 122, 234, var(--text-opacity))',
+    }}
+  />
+)
+
+
+`;
+
 exports[`twin.macro !ordering.js: !ordering.js 1`] = `
 
 import tw from './macro'
