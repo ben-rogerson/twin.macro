@@ -1,5 +1,5 @@
 import { createMacro } from 'babel-plugin-macros'
-import { findIdentifier, parseTte, replaceWithLocation } from './macroHelpers'
+import { findIdentifier } from './macroHelpers'
 import { isEmpty } from './utils'
 import getStyles from './getStyles'
 import { getConfigProperties } from './configHelpers'
@@ -9,13 +9,18 @@ import {
   updateStyledReferences,
   addStyledImport,
 } from './macro/styled'
-import { handleTwProperty } from './macro/tw'
+import { handleTwProperty, handleTwFunction } from './macro/tw'
 
 const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   const program = state.file.path
   const { configExists, tailwindConfig } = getConfigProperties(state, config)
 
+  state.configExists = configExists
   state.config = tailwindConfig
+  state.hasSuggestions =
+    typeof config.hasSuggestions === 'undefined' ? true : config.hasSuggestions
+
+  state.debug = config.debug || false
 
   state.tailwindConfigIdentifier = program.scope.generateUidIdentifier(
     'tailwindConfig'
@@ -38,7 +43,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
     state.isProd = true
   }
 
-  // The { styled } import
+  // Styled import
   const styledImport = getStyledConfig(config)
   state.styledIdentifier = findIdentifier({
     program,
@@ -51,7 +56,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
     state.existingStyledIdentifier = true
   }
 
-  // The { css } import
+  // Css import
   const cssImport = getCssConfig(config)
   state.cssIdentifier = findIdentifier({
     program,
@@ -64,39 +69,18 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
     state.existingCssIdentifier = true
   }
 
-  state.debug = config.debug || false
-  state.configExists = configExists
-
-  state.hasSuggestions =
-    typeof config.hasSuggestions === 'undefined' ? true : config.hasSuggestions
-
+  // Tw prop/function
   handleTwProperty({ getStyles, program, t, state })
+  handleTwFunction({ getStyles, references, t, state })
 
-  // Tw import
-  const defaultImportReferences = references.default || []
-  defaultImportReferences.forEach(path => {
-    const parent = path.findParent(x => x.isTaggedTemplateExpression())
-    if (!parent) return
-
-    const parsed = parseTte({
-      path: parent,
-      types: t,
-      styledIdentifier: state.styledIdentifier,
-      state,
-    })
-    if (!parsed) return
-
-    replaceWithLocation(parsed.path, getStyles(parsed.string, t, state))
-  })
-
-  // { css } import
+  // Css import
   updateCssReferences(references.css, state)
   if (!isEmpty(references.css)) state.shouldImportCss = true
   if (state.shouldImportCss && !state.existingCssIdentifier) {
     addCssImport({ program, t, cssImport, state })
   }
 
-  // { styled } import
+  // Styled import
   updateStyledReferences(references.styled, state)
   if (!isEmpty(references.styled)) state.shouldImportStyled = true
   if (state.shouldImportStyled && !state.existingStyledIdentifier) {

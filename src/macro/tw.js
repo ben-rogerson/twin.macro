@@ -1,3 +1,5 @@
+import { parseTte, replaceWithLocation } from './../macroHelpers'
+
 const handleTwProperty = ({ getStyles, program, t, state }) =>
   program.traverse({
     JSXAttribute(path) {
@@ -30,4 +32,22 @@ const handleTwProperty = ({ getStyles, program, t, state }) =>
     },
   })
 
-export { handleTwProperty }
+const handleTwFunction = ({ getStyles, references, state, t }) => {
+  const defaultImportReferences = references.default || []
+  defaultImportReferences.forEach(path => {
+    const parent = path.findParent(x => x.isTaggedTemplateExpression())
+    if (!parent) return
+
+    const parsed = parseTte({
+      path: parent,
+      types: t,
+      styledIdentifier: state.styledIdentifier,
+      state,
+    })
+    if (!parsed) return
+
+    replaceWithLocation(parsed.path, getStyles(parsed.string, t, state))
+  })
+}
+
+export { handleTwProperty, handleTwFunction }
