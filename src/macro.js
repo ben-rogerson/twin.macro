@@ -73,7 +73,8 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   handleTwProperty({ getStyles, program, t, state })
 
   // Tw import
-  references.default.forEach(path => {
+  const defaultImportReferences = references.default || []
+  defaultImportReferences.forEach(path => {
     const parent = path.findParent(x => x.isTaggedTemplateExpression())
     if (!parent) return
 
