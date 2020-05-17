@@ -114,7 +114,7 @@ module.exports = {
           transform: 'rotate(90deg)',
         },
       }
-      addUtilities(newUtilities, ['responsive', 'hover'])
+      addUtilities(newUtilities)
     }),
   ],
 }
