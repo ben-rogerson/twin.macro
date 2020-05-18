@@ -33,7 +33,7 @@ const handleTwProperty = ({ getStyles, program, t, state }) =>
   })
 
 const handleTwFunction = ({ getStyles, references, state, t }) => {
-  const defaultImportReferences = references.default || []
+  const defaultImportReferences = references.default || references.tw || []
   defaultImportReferences.forEach(path => {
     const parent = path.findParent(x => x.isTaggedTemplateExpression())
     if (!parent) return
