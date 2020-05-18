@@ -13,7 +13,7 @@ Use Twin's `tw` prop to add Tailwind styles on jsx elements:
 ```js
 import tw from 'twin.macro'
 
-const default () => <input tw="border hover:border-black" />
+export default () => <input tw="border hover:border-black" />
 ```
 
 Use `tw` outside jsx to create and style new elements:
