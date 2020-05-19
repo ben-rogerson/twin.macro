@@ -1,13 +1,19 @@
 import { addImport } from './../macroHelpers'
 import { isEmpty } from './../utils'
+import userPresets from './../config/userPresets'
 
-const getStyledConfig = config =>
-  config && config.styled
-    ? {
-        import: config.styled.import || 'default',
-        from: config.styled.from || config.styled,
-      }
-    : { import: 'default', from: '@emotion/styled' }
+const getStyledConfig = config => {
+  const usedConfig =
+    userPresets[config.preset] ||
+    (config.styled && config) ||
+    userPresets.emotion
+
+  if (typeof usedConfig.styled === 'string') {
+    return { import: 'default', from: usedConfig.styled }
+  }
+
+  return usedConfig.styled
+}
 
 const updateStyledReferences = (references, state) => {
   if (isEmpty(references)) return

@@ -1,13 +1,17 @@
 import { addImport } from './../macroHelpers'
 import { isEmpty } from './../utils'
+import userPresets from './../config/userPresets'
 
-const getCssConfig = config =>
-  config && config.css
-    ? {
-        import: config.css.import || 'css',
-        from: config.css.from || config.css,
-      }
-    : { import: 'css', from: '@emotion/core' }
+const getCssConfig = config => {
+  const usedConfig =
+    userPresets[config.preset] || (config.css && config) || userPresets.emotion
+
+  if (typeof usedConfig.css === 'string') {
+    return { import: 'css', from: usedConfig.css }
+  }
+
+  return usedConfig.css
+}
 
 const updateCssReferences = (references, state) => {
   if (isEmpty(references)) return
