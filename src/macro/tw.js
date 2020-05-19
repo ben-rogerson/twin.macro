@@ -4,6 +4,10 @@ const handleTwProperty = ({ getStyles, program, t, state }) =>
   program.traverse({
     JSXAttribute(path) {
       if (path.node.name.name !== 'tw') return
+      if (!state.hasTwProp) {
+        state.hasTwProp = true
+      }
+
       const styles = getStyles(path.node.value.value, t, state)
 
       const attributes = path

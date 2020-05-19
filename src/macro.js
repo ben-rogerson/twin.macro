@@ -1,9 +1,14 @@
 import { createMacro } from 'babel-plugin-macros'
-import { findIdentifier } from './macroHelpers'
+import { findIdentifier, validateImports } from './macroHelpers'
 import { isEmpty } from './utils'
 import getStyles from './getStyles'
 import { getConfigProperties } from './configHelpers'
-import { getCssConfig, updateCssReferences, addCssImport } from './macro/css'
+import {
+  getCssConfig,
+  updateCssReferences,
+  addCssImport,
+  maybeAddCssProp,
+} from './macro/css'
 import {
   getStyledConfig,
   updateStyledReferences,
@@ -77,8 +82,9 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
 
   // Css import
   updateCssReferences(references.css, state)
-  if (!isEmpty(references.css)) state.shouldImportCss = true
-  if (state.shouldImportCss && !state.existingCssIdentifier) {
+  const isImportingCss =
+    !isEmpty(references.css) && !state.existingCssIdentifier
+  if (isImportingCss) {
     addCssImport({ program, t, cssImport, state })
   }
 
@@ -87,6 +93,15 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   if (!isEmpty(references.styled)) state.shouldImportStyled = true
   if (state.shouldImportStyled && !state.existingStyledIdentifier) {
     addStyledImport({ program, t, styledImport, state })
+  }
+
+  // Auto add css prop for styled components
+  if (
+    state.hasTwProp &&
+    config.autoCssProp === true &&
+    cssImport.from.includes('styled-components')
+  ) {
+    maybeAddCssProp({ program, t })
   }
 
   program.scope.crawl()
