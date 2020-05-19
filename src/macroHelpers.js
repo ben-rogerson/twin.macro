@@ -1,4 +1,6 @@
 import babylon from '@babel/parser'
+import { assert } from './utils'
+import { logGeneralError } from './logging'
 
 const SPREAD_ID = '__spread__'
 const COMPUTED_ID = '__computed__'
@@ -189,6 +191,18 @@ function replaceWithLocation(path, replacement) {
   return newPaths
 }
 
+const validImports = new Set(['default', 'tw', 'styled', 'css'])
+const validateImports = imports => {
+  const unsupportedImport = Object.keys(imports).find(
+    reference => !validImports.has(reference)
+  )
+  assert(unsupportedImport, () =>
+    logGeneralError(
+      `Twin doesn't recognize { ${unsupportedImport} }\n\nTry one of these imports:\nimport { tw, styled, css } from twin.macro`
+    )
+  )
+}
+
 export {
   SPREAD_ID,
   COMPUTED_ID,
@@ -198,4 +212,5 @@ export {
   findIdentifier,
   parseTte,
   replaceWithLocation,
+  validateImports,
 }

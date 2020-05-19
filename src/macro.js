@@ -12,6 +12,8 @@ import {
 import { handleTwProperty, handleTwFunction } from './macro/tw'
 
 const twinMacro = ({ babel: { types: t }, references, state, config }) => {
+  validateImports(references)
+
   const program = state.file.path
   const { configExists, tailwindConfig } = getConfigProperties(state, config)
 
