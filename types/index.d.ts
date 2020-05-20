@@ -1,3 +1,4 @@
+/* eslint-disable-next-line import/no-unassigned-import */
 import 'react'
 
 export interface TwStyle {
@@ -5,8 +6,10 @@ export interface TwStyle {
 }
 
 export type TemplateFn<R> = (
+  /* eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types */
   strings: TemplateStringsArray,
-  ...values: never[]
+  /* eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types */
+  ...values: string[]
 ) => R
 
 export type TwFn = TemplateFn<TwStyle>
