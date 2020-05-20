@@ -72,17 +72,13 @@ Your tailwind classes are converted into css objects which are accepted by most 
 ```js
 import tw from 'twin.macro'
 tw`text-sm md:text-lg`
-
 // ↓ ↓ ↓ ↓ ↓ ↓
-
-(
-  {
-    fontSize: '0.875rem',
-    '@media (min-width: 768px)': {
-      fontSize: '1.125rem',
-    },
-  }
-)
+{
+  fontSize: '0.875rem',
+  '@media (min-width: 768px)': {
+    fontSize: '1.125rem',
+  },
+}
 ```
 
 For usage examples in popular frameworks, head down to the [installation section](#installation).
@@ -354,7 +350,7 @@ More usage examples can be found in the [CRA + Emotion + Tailwind Twin starter](
 
 ```bash
 # React and Babel
-npm install -D react react-dom @babel/core @babel/plugin-transform-react-jsx babel-plugin-macros
+npm install -D react react-dom @babel/core @babel/plugin-transform-react-jsx @emotion/babel-plugin-jsx-pragmatic babel-plugin-macros
 # Twin and Emotion
 npm install -D twin.macro @emotion/core @emotion/styled
 ```
@@ -378,7 +374,15 @@ yarn add twin.macro @emotion/core @emotion/styled -D
 {
   "plugins": [
     "babel-plugin-macros",
-    "@babel/plugin-transform-react-jsx",
+    [
+      "@emotion/babel-plugin-jsx-pragmatic",
+      {
+        "export": "jsx",
+        "import": "__cssprop",
+        "module": "@emotion/core"
+      }
+    ],
+    ["babel-plugin-transform-react-jsx", { "pragma": "__cssprop" }]
   ]
 }
 ```
