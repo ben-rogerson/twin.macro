@@ -191,7 +191,7 @@ function replaceWithLocation(path, replacement) {
   return newPaths
 }
 
-const validImports = new Set(['default', 'tw', 'styled', 'css'])
+const validImports = new Set(['default', 'tw', 'styled', 'css', 'TwStyle'])
 const validateImports = imports => {
   const unsupportedImport = Object.keys(imports).find(
     reference => !validImports.has(reference)
