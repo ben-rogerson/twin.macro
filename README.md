@@ -71,9 +71,11 @@ Your tailwind classes are converted into css objects which are accepted by most 
 
 ```js
 import tw from 'twin.macro'
-tw`text-sm md:text-lg`(
-  // ↓ ↓ ↓ ↓ ↓ ↓
+tw`text-sm md:text-lg`
 
+// ↓ ↓ ↓ ↓ ↓ ↓
+
+(
   {
     fontSize: '0.875rem',
     '@media (min-width: 768px)': {
