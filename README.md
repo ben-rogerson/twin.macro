@@ -551,16 +551,6 @@ const App = ({ Component, pageProps }) => <Component {...pageProps} />
 export default App
 ```
 
-### 3. Import the Tailwind base styles
-
-Add the following to your `app.js` or `index.js`:
-(the dependency 'tailwindcss' is already in your node_modules)
-
-```js
-// In your App.js or index.js entry
-import 'tailwindcss/dist/base.css'
-```
-
 ### 4. Configure Twin to use Styled Components
 
 Add the config to your `package.json`:
