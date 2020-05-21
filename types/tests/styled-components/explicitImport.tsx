@@ -13,4 +13,4 @@ export const Container = styled.div`
 export const Link = tw.a``
 export const ComposedLink = styled(Link)``
 
-export const cssProp = <div css={tw`bg-red-100`} />
+export const cssProperty = <div css={tw`bg-red-100`} />

@@ -1,7 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import React from 'react'
 import tw from '../..'
 
 tw`text-gray-100 bg-blue-500`
+
+// basic variables
+const basic = 'bg-blue-500'
+tw`${basic}`
 
 // @ts-expect-error
 tw('')
@@ -27,16 +33,20 @@ const jsx = (
 const badJsx = <Button what="lol" />
 
 // @ts-expect-error
-tw.nonexistentelement``
+tw.nonexistentelement`` /* eslint-disable-line @typescript-eslint/no-unsafe-call */
 
 // @ts-expect-error
 tw('call syntax not supported')``
 
-function App({ children }: { children: React.ReactNode }) {
+const App = ({
+  children,
+}: {
+  readonly children: React.ReactNode
+}): React.ReactElement => {
   return <p>{children}</p>
 }
 
-const twProp = (
+const twProperty = (
   <App tw="prop">
     <div tw="prop">cool</div>
   </App>
