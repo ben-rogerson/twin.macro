@@ -95,6 +95,6 @@
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "styled-components": "^5.1.0",
-    "typescript": "^3.9.0-beta"
+    "typescript": "^3.9.3"
   }
 }
