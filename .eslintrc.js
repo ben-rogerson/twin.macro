@@ -9,6 +9,7 @@ module.exports = {
     'xo/browser',
     'xo/esnext',
     'xo-typescript/space',
+    'xo-react/space',
     'plugin:chai-friendly/recommended',
     'plugin:jest/recommended',
     'plugin:import/errors',
