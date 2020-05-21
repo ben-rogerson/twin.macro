@@ -73,8 +73,6 @@ const maybeAddCssProp = ({ program, t }) => {
       t.stringLiteral(styledComponentsMacroImport)
     )
   )
-
-  console.log('added css prop')
 }
 
 export { getCssConfig, updateCssReferences, addCssImport, maybeAddCssProp }
