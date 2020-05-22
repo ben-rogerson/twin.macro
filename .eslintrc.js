@@ -79,5 +79,13 @@ module.exports = {
         '@typescript-eslint/prefer-readonly-parameter-types': 0,
       },
     },
+    {
+      files: ['types/tests/**/*.ts', 'types/tests/**/*.tsx'],
+      rules: {
+        '@typescript-eslint/no-unused-vars': 0,
+        'import/no-unassigned-import': 0,
+        '@typescript-eslint/no-unsafe-call': 0,
+      },
+    },
   ],
 }

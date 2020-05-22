@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import React from 'react'
 import tw from '../..'
 
+// standard template literal
 tw`text-gray-100 bg-blue-500`
 
 // basic variables
@@ -33,7 +32,7 @@ const jsx = (
 const badJsx = <Button what="lol" />
 
 // @ts-expect-error
-tw.nonexistentelement`` /* eslint-disable-line @typescript-eslint/no-unsafe-call */
+tw.nonExistentElement``
 
 // @ts-expect-error
 tw('call syntax not supported')``

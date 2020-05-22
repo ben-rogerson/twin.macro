@@ -1,8 +1,5 @@
 import React from 'react'
-import tw, {
-  css /* eslint-disable-line @typescript-eslint/no-unused-vars */,
-  styled,
-} from '../..'
+import tw, { css, styled } from '../..'
 
 export const Container = styled.div`
   ${tw`flex flex-col w-full max-w-sm`}

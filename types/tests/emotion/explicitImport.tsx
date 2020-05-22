@@ -1,4 +1,4 @@
-import {} from '@emotion/core' /* eslint-disable-line import/no-unassigned-import */
+import {} from '@emotion/core'
 import styled from '@emotion/styled'
 import React from 'react'
 import tw from '../..'
