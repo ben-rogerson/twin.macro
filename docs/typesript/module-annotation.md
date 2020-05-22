@@ -5,9 +5,14 @@ In addition to the steps outlined in one of the quick start guides above, you ma
 Instead of having to do the following:
 
 ```typescript
+// for emotion
 import tw from 'twin.macro'
 import { css } from '@emotion/core'
 import { styled } from '@emotion/styled'
+
+// or, for styled-components
+import tw from 'twin.macro'
+import styled, { css } from 'styled-components'
 ```
 
 You can instead just use twin.macro's macro import feature:
