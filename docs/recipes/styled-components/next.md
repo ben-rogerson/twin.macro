@@ -2,7 +2,7 @@
 
 **🔥 View the [Next + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/next-tailwind-styled-components-starter-m1f6d) for setup and usage examples**
 
-**:exclamation: If you are using _TypeScript_ you should also check out [the module annotation instructions](../../typesript/module-annotation.md)**
+**:exclamation: If you are using _TypeScript_ you should also check out [the module annotation instructions](../../typesript/module-augmentation.md)**
 
 ### 1. Install the dependencies
 

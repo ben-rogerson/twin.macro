@@ -2,7 +2,7 @@
 
 **🔥 View the [React + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/react-tailwind-styled-components-starter-f87y7) for setup and usage examples**
 
-**:exclamation: If you are using _TypeScript_ you should also check out [the module annotation instructions](../../typesript/module-annotation.md)**
+**:exclamation: If you are using _TypeScript_ you should also check out [the module annotation instructions](../../typesript/module-augmentation.md)**
 
 ### 1. Install the dependencies
 

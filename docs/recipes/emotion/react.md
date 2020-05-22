@@ -2,7 +2,7 @@
 
 **🔥 View the [React + Emotion + Tailwind Twin starter](https://codesandbox.io/s/react-tailwind-emotion-starter-3d1dl) for setup and usage examples**
 
-**:exclamation: If you are using _TypeScript_ you should also check out [the module annotation instructions](../../typesript/module-annotation.md)**
+**:exclamation: If you are using _TypeScript_ you should also check out [the module annotation instructions](../../typesript/module-augmentation.md)**
 
 ### 1. Install the dependencies
 

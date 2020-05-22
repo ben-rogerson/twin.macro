@@ -148,7 +148,7 @@ Check out the quick start guides for:
 
 #### ❗️ Important: Emotion + Typescript
 
-You should [follow the instructions for module annotation in TypeScript](./docs/typescript/module-annotation.md) if you want to take advantage of Twin's macro import syntax.
+You should [follow the instructions for module annotation in TypeScript](./docs/typescript/module-augmentation.md) if you want to take advantage of Twin's macro import syntax.
 
 ### [Styled Components](https://styled-components.com/)
 
@@ -161,7 +161,7 @@ Check out the quick start guides for:
 
 #### ❗️ Important: Styled-Components + Typescript
 
-You should [follow the instructions for module annotation in TypeScript](./docs/typescript/module-annotation.md) if you want to take advantage of Twin's macro import syntax.
+You should [follow the instructions for module annotation in TypeScript](./docs/typescript/module-augmentation.md) if you want to take advantage of Twin's macro import syntax.
 
 ## Configuration
 
