@@ -49,5 +49,3 @@ export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
 More usage examples can be found in the [Gatsby + Emotion + Tailwind Twin starter](https://codesandbox.io/s/gatsby-tailwind-emotion-starter-z3hun).
-
-<hr />

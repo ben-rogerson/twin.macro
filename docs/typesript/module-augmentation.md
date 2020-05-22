@@ -33,10 +33,11 @@ In order to do this, you need to perform two steps:
 
 ```typescript
 // twin.d.t.s
-import 'twin.macro'
-import styled, { css } from 'styled-components'
+import 'twin.macro' /* eslint-disable-line import/no-unassigned-import */
+import styledComponent, { css as cssProperty } from 'styled-components'
 declare module 'twin.macro' {
-  export { css, styled }
+  const css: typeof cssProperty
+  const styled: typeof styledComponent
 }
 ```
 
@@ -47,10 +48,11 @@ declare module 'twin.macro' {
 ```typescript
 // twin.d.t.s
 import 'twin.macro'
-import styled from '@emotion/styled'
-import { css } from '@emotion/core'
+import styledComponent from '@emotion/styled'
+import { css as cssProperty } from '@emotion/core'
 declare module 'twin.macro' {
-  export { css, styled }
+  const css: typeof cssProperty
+  const styled: typeof styledComponent
 }
 ```
 
