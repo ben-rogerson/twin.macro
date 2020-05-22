@@ -1,6 +1,6 @@
 # Twin + TypeScript: Module Annotation
 
-In addition to the steps outlined in one of the quick start guides above, you may want to take advantage of Twin's ability to .
+In addition to the steps outlined in one of the quick start guides above, you may want to take advantage of Twin's ability to enable you to import `styled` and/or `css` methods from the macro rather than directly from your CSS-in-JS library of choice.
 
 Instead of having to do the following:
 
