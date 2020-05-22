@@ -11,43 +11,43 @@
 Use Twin's `tw` prop to add Tailwind classes onto jsx elements:
 
 ```js
-import "twin.macro";
+import 'twin.macro'
 
-export default () => <input tw="border hover:border-black" />;
+export default () => <input tw="border hover:border-black" />
 ```
 
 Create and style new elements using tw:
 
 ```js
-import tw from "twin.macro";
+import tw from 'twin.macro'
 
-const Input = tw.input`border hover:border-black`;
-export default () => <Input />;
+const Input = tw.input`border hover:border-black`
+export default () => <Input />
 ```
 
 Clone and style existing components:
 
 ```js
-const PurpleInput = tw(Input)`border-purple-500`;
+const PurpleInput = tw(Input)`border-purple-500`
 ```
 
 Add conditional styling and vanilla css with the styled import:
 
 ```js
-import { tw, styled } from "twin.macro";
+import tw, { styled } from 'twin.macro'
 
 const Input = styled.input`
   ${({ hasHover }) => hasHover && tw`hover:border-black`}
   ${tw`border`}
   color: purple;
-`;
-export default () => <Input hasHover />;
+`
+export default () => <Input hasHover />
 ```
 
 Add conditional styles on jsx elements with the css prop and import:
 
 ```js
-import { tw, css } from "twin.macro";
+import tw, { css } from 'twin.macro'
 
 const Input = ({ hasDarkHover }) => (
   <input
@@ -59,8 +59,8 @@ const Input = ({ hasDarkHover }) => (
       `,
     ]}
   />
-);
-export default () => <Input hasDarkHover />;
+)
+export default () => <Input hasDarkHover />
 ```
 
 ## How it works
@@ -123,14 +123,14 @@ module.exports = {
   plugins: [
     function ({ addUtilities, theme }) {
       const newUtilities = {
-        ".hotpink": {
-          color: "hotpink",
+        '.hotpink': {
+          color: 'hotpink',
         },
-      };
-      addUtilities(newUtilities);
+      }
+      addUtilities(newUtilities)
     },
   ],
-};
+}
 ```
 
 </details>
@@ -171,7 +171,7 @@ yarn add twin.macro @emotion/core @emotion/styled gatsby-plugin-emotion
 
 ```js
 // gatsby-browser.js
-import "tailwindcss/dist/base.css";
+import 'tailwindcss/dist/base.css'
 ```
 
 ### 4. Enable the Gatsby emotion plugin
@@ -180,14 +180,14 @@ import "tailwindcss/dist/base.css";
 // gatsby-config.js
 module.exports = {
   plugins: [`gatsby-plugin-emotion`],
-};
+}
 ```
 
 ### Basic usage example
 
 ```js
-import "twin.macro";
-export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>;
+import 'twin.macro'
+export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
 More usage examples can be found in the [Gatsby + Emotion + Tailwind Twin starter](https://codesandbox.io/s/gatsby-tailwind-emotion-starter-z3hun).
@@ -240,19 +240,19 @@ yarn add twin.macro @emotion/core @emotion/styled @emotion/babel-preset-css-prop
 In `pages/_app.js`, add the following:
 
 ```js
-import React from "react";
-import "tailwindcss/dist/base.css";
+import React from 'react'
+import 'tailwindcss/dist/base.css'
 
-const App = ({ Component, pageProps }) => <Component {...pageProps} />;
+const App = ({ Component, pageProps }) => <Component {...pageProps} />
 
-export default App;
+export default App
 ```
 
 ### Basic usage example
 
 ```js
-import "twin.macro";
-export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>;
+import 'twin.macro'
+export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
 More usage examples can be found in the [Next + Emotion + Tailwind Twin starter](hhttps://codesandbox.io/s/next-tailwind-emotion-starter-8h2b2).
@@ -296,7 +296,7 @@ Add the following to your `app.js` or `index.js`:
 
 ```js
 // In your App.js or index.js entry
-import "tailwindcss/dist/base.css";
+import 'tailwindcss/dist/base.css'
 ```
 
 ### 4. Configure custom config location
@@ -319,9 +319,9 @@ Place tailwind.config.js in the `src` folder. This allows it to be imported by a
 // babel-plugin-macros.config.js
 module.exports = {
   twin: {
-    config: "src/tailwind.config.js",
+    config: 'src/tailwind.config.js',
   },
-};
+}
 ```
 
 </details>
@@ -329,8 +329,8 @@ module.exports = {
 ### Basic usage example
 
 ```js
-import "twin.macro";
-export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>;
+import 'twin.macro'
+export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
 More usage examples can be found in the [CRA + Emotion + Tailwind Twin starter](https://codesandbox.io/s/cra-tailwind-emotion-starter-bi1kx).
@@ -396,14 +396,14 @@ Add the following to your `app.js` or `index.js`:
 
 ```js
 // In your App.js or index.js entry
-import "tailwindcss/dist/base.css";
+import 'tailwindcss/dist/base.css'
 ```
 
 ### Basic usage example
 
 ```js
-import "twin.macro";
-export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>;
+import 'twin.macro'
+export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
 More usage examples can be found in the [React + Emotion + Tailwind Twin starter](https://codesandbox.io/s/react-tailwind-emotion-starter-3d1dl).
@@ -446,7 +446,7 @@ yarn add twin.macro styled-components gatsby-plugin-styled-components
 
 ```js
 // gatsby-browser.js
-import "tailwindcss/dist/base.css";
+import 'tailwindcss/dist/base.css'
 ```
 
 ### 4. Enable the Gatsby Styled Components plugin
@@ -455,7 +455,7 @@ import "tailwindcss/dist/base.css";
 // gatsby-config.js
 module.exports = {
   plugins: [`gatsby-plugin-styled-components`],
-};
+}
 ```
 
 ### 5. Configure Twin to use Styled Components
@@ -478,9 +478,9 @@ Add the config to your `package.json`:
 // babel-plugin-macros.config.js
 module.exports = {
   twin: {
-    preset: "styled-components",
+    preset: 'styled-components',
   },
-};
+}
 ```
 
 </details>
@@ -488,8 +488,8 @@ module.exports = {
 ### Basic usage example
 
 ```js
-import "twin.macro";
-export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>;
+import 'twin.macro'
+export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
 More usage examples can be found in the [Gatsby + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/gatsby-tailwind-styled-components-starter-trrlp).
@@ -547,12 +547,12 @@ yarn add twin.macro styled-components
 In `pages/_app.js`, add the following:
 
 ```js
-import React from "react";
-import "tailwindcss/dist/base.css";
+import React from 'react'
+import 'tailwindcss/dist/base.css'
 
-const App = ({ Component, pageProps }) => <Component {...pageProps} />;
+const App = ({ Component, pageProps }) => <Component {...pageProps} />
 
-export default App;
+export default App
 ```
 
 ### 4. Configure Twin to use Styled Components
@@ -575,9 +575,9 @@ Add the config to your `package.json`:
 // babel-plugin-macros.config.js
 module.exports = {
   twin: {
-    preset: "styled-components",
+    preset: 'styled-components',
   },
-};
+}
 ```
 
 </details>
@@ -585,8 +585,8 @@ module.exports = {
 ### Basic usage example
 
 ```js
-import "twin.macro";
-export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>;
+import 'twin.macro'
+export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
 More usage examples can be found in the [Next + Styled Component + Tailwind Twin starter](https://codesandbox.io/s/next-tailwind-styled-components-starter-m1f6d).
@@ -630,7 +630,7 @@ Add the following to your `app.js` or `index.js`:
 
 ```js
 // In your App.js or index.js entry
-import "tailwindcss/dist/base.css";
+import 'tailwindcss/dist/base.css'
 ```
 
 ### 4. Configure Twin to use Styled Components
@@ -655,11 +655,11 @@ Place tailwind.config.js in the `src` folder. This allows it to be imported by a
 // babel-plugin-macros.config.js
 module.exports = {
   twin: {
-    preset: "styled-components",
-    config: "src/tailwind.config.js",
+    preset: 'styled-components',
+    config: 'src/tailwind.config.js',
     autoCssProp: true, // This adds the css prop when it's needed
   },
-};
+}
 ```
 
 </details>
@@ -667,8 +667,8 @@ module.exports = {
 ### Basic usage example
 
 ```js
-import "twin.macro";
-export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>;
+import 'twin.macro'
+export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
 More usage examples can be found in the [CRA + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/cra-tailwind-styled-components-starter-m8cyz).
@@ -724,7 +724,7 @@ Add the following to your `app.js` or `index.js`:
 
 ```js
 // In your App.js or index.js entry
-import "tailwindcss/dist/base.css";
+import 'tailwindcss/dist/base.css'
 ```
 
 ### 4. Configure Twin to use Styled Components
@@ -748,10 +748,10 @@ Add the config to your `package.json`:
 // babel-plugin-macros.config.js
 module.exports = {
   twin: {
-    preset: "styled-components",
+    preset: 'styled-components',
     autoCssProp: true, // This adds the css prop when it's needed
   },
-};
+}
 ```
 
 </details>
@@ -759,8 +759,8 @@ module.exports = {
 ### Basic usage example
 
 ```js
-import "twin.macro";
-export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>;
+import 'twin.macro'
+export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
 More usage examples can be found in the [React + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/react-tailwind-styled-components-starter-f87y7).
@@ -791,7 +791,7 @@ Choose from one of the following configs:
     theme: {
       extend: {},
     },
-  };
+  }
   ```
 
 - b) Start with a [full config](https://raw.githubusercontent.com/tailwindcss/tailwindcss/master/stubs/defaultConfig.stub.js):
@@ -839,13 +839,13 @@ Alternatively add the config to `babel-plugin-macros.config.js` in your project 
 // babel-plugin-macros.config.js
 module.exports = {
   twin: {
-    config: "./tailwind.config.js",
-    preset: "emotion",
+    config: './tailwind.config.js',
+    preset: 'emotion',
     hasSuggestions: true,
     debug: false,
     autoCssProp: false,
   },
-};
+}
 ```
 
 | Name           | Type      | Default                  | Description                                                                                                                                                                                                              |
