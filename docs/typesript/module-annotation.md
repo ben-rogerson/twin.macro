@@ -34,8 +34,8 @@ In order to do this, you need to perform two steps:
 ```typescript
 // twin.d.t.s
 import 'twin.macro'
+import styled, { css } from 'styled-components'
 declare module 'twin.macro' {
-  import styled, { css } from 'styled-components'
   export { css, styled }
 }
 ```
@@ -47,9 +47,9 @@ declare module 'twin.macro' {
 ```typescript
 // twin.d.t.s
 import 'twin.macro'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 declare module 'twin.macro' {
-  import styled from '@emotion/styled'
-  import { css } from '@emotion/core'
   export { css, styled }
 }
 ```
