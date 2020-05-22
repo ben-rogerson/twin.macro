@@ -1,14 +1,6 @@
 /* eslint-disable-next-line import/no-unassigned-import */
 import 'react'
 
-// TODO: check if emotionStyled / styledComponents is sensible? I doubt it!
-import emotionStyled from '@emotion/styled'
-import { css as emotionCss } from '@emotion/core'
-import styledComponents, { css as styledCss } from 'styled-components'
-
-export declare const styled: typeof emotionStyled & typeof styledComponents
-export declare const css: typeof emotionCss & typeof styledCss
-
 export interface TwStyle {
   [key: string]: string | number | TwStyle
 }
