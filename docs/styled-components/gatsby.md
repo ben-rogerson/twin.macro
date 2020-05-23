@@ -1,8 +1,13 @@
-# Using Twin with Gatsby + Styled Components
+# Use Twin with Gatsby + Styled Components
 
 **🔥 View the [Gatsby + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/gatsby-tailwind-styled-components-starter-trrlp) for setup and usage examples**
 
-**:exclamation: If you are using _TypeScript_ you should also check out [the module annotation instructions](../../typesript/module-augmentation.md)**
+## TypeScript
+
+Twin comes with built-in TypeScript types for `tw`.
+To support Twin's `css` and `styled` imports, check out our [Styled Components + TypeScript guide](typescript.md) once you've finished with the installation below.
+
+## Installation
 
 ### 1. Install Gatsby
 
@@ -76,3 +81,9 @@ export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
 More usage examples can be found in the [Gatsby + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/gatsby-tailwind-styled-components-starter-trrlp).
+
+## Other installation guides
+
+- ["Vanilla" React + Styled Components](react.md)
+- [Create React App + Styled Components](create-react-app.md)
+- [Next.js + Styled Components](next.md)

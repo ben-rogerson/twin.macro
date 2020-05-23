@@ -44,7 +44,7 @@ const Input = styled.input`
 export default () => <Input hasHover />
 ```
 
-Add conditional styles on jsx elements with the css prop and import:
+Add conditional styles on jsx elements with the css import and the css prop:
 
 ```js
 import tw, { css } from 'twin.macro'
@@ -65,14 +65,16 @@ export default () => <Input hasDarkHover />
 
 ## How it works
 
-When babel runs over your code, Twin's `css` and `styled` imports are swapped with the real imports from libraries like [👩‍🎤 emotion](https://emotion.sh/docs/introduction) and [💅 styled-components](https://styled-components.com/). Emotion is used by default.
+When babel runs over your code, Twin's `css` and `styled` imports are swapped with the real imports from libraries like [👩‍🎤 emotion](https://emotion.sh/docs/introduction) and [💅 styled-components](https://styled-components.com/).
 
-Your tailwind classes are converted into css objects which are accepted by most css-in-js libraries:
+When you use `tw`, Twin converts your classes into css objects which are accepted by most css-in-js libraries:
 
 ```js
 import tw from 'twin.macro'
 tw`text-sm md:text-lg`
+
 // ↓ ↓ ↓ ↓ ↓ ↓
+
 {
   fontSize: '0.875rem',
   '@media (min-width: 768px)': {
@@ -80,8 +82,6 @@ tw`text-sm md:text-lg`
   },
 }
 ```
-
-For usage examples in popular frameworks, head down to the [installation section](#installation).
 
 ## Features
 
@@ -110,6 +110,24 @@ tw`hidden!`
 { "display": "none !important" }
 ```
 
+## Installation
+
+Take a look at our quick-start guides for:
+
+### Emotion (default)
+
+- ["Vanilla" React + Emotion](docs/emotion/react.md)
+- [Create React App + Emotion](docs/emotion/create-react-app.md)
+- [Gatsby + Emotion](docs/emotion/gatsby.md)
+- [Next.js + Emotion](docs/emotion/next.md)
+
+### Styled Components
+
+- ["Vanilla" React + Styled Components](docs/styled-components/react.md)
+- [Create React App + Styled Components](docs/styled-components/create-react-app.md)
+- [Gatsby + Styled Components](docs/styled-components/gatsby.md)
+- [Next.js + Styled Components](docs/styled-components/next.md)
+
 ## Plugins
 
 Twin supports [adding custom utilities](https://tailwindcss.com/docs/plugins/#adding-utilities) with further [plugin support underway](https://github.com/ben-rogerson/twin.macro/issues/7).
@@ -135,138 +153,15 @@ module.exports = {
 
 </details>
 
-## Installation
-
-### [Emotion](https://emotion.sh/docs/introduction) (default)
-
-Check out the quick start guides for:
-
-- ['Vanilla' React + Emotion](docs/recipes/emotion/react.md)
-- [create-react-app + Emotion](docs/recipes/emotion/create-react-app.md)
-- [Gatsby + Emotion](docs/recipes/emotion/gatsby.md)
-- [Next.js + Emotion ](docs/recipes/emotion/next.md)
-
-#### ❗️ Important: Emotion + Typescript
-
-You should [follow the instructions for module annotation in TypeScript](./docs/typescript/module-augmentation.md) if you want to take advantage of Twin's macro import syntax.
-
-### [Styled Components](https://styled-components.com/)
-
-Check out the quick start guides for:
-
-- ['Vanilla' React + styled-components](docs/recipes/styled-components/react.md)
-- [create-react-app + styled-components](docs/recipes/styled-components/create-react-app.md)
-- [Gatsby + styled-components](docs/recipes/styled-components/gatsby.md)
-- [Next.js + styled-components ](docs/recipes/styled-components/next.md)
-
-#### ❗️ Important: Styled-Components + Typescript
-
-You should [follow the instructions for module annotation in TypeScript](./docs/typescript/module-augmentation.md) if you want to take advantage of Twin's macro import syntax.
-
-## Configuration
-
-<details>
-  <summary>Customize the Tailwind classes</summary>
-
-### Customize the Tailwind classes
-
-For style customizations, you’ll need to add a `tailwind.config.js` in your project root.
-
-> It’s important to know that you don’t need a `tailwind.config.js` to use Twin. You already have access to every class with every variant.
-> Unlike Tailwind, twin.macro only generates styles for the classes you use. This means you don’t need to use additional tools like purgeCSS.
-
-Choose from one of the following configs:
-
-- a) Start with an empty config:
-
-  ```js
-  // tailwind.config.js
-  module.exports = {
-    theme: {
-      extend: {},
-    },
-  }
-  ```
-
-- b) Start with a [full config](https://raw.githubusercontent.com/tailwindcss/tailwindcss/master/stubs/defaultConfig.stub.js):
-
-  ```bash
-  # cd into your project folder then:
-  curl https://raw.githubusercontent.com/tailwindcss/tailwindcss/master/stubs/defaultConfig.stub.js > tailwind.config.js
-  ```
-
-  In the config, there only needs to be a `theme: {...}` entry so feel free to cleanup.
-
-### Working with the config
-
-You can overwrite or extend classes the same way as Tailwind.<br/>
-Overwrite parts of the base config in `theme: { ... }` and extend in `theme: { extend: { ... } }`.<br/>
-Read more in the [Tailwind theme docs](https://tailwindcss.com/docs/theme).
-
-<hr />
-
-</details>
-
-<details>
-  <summary>Configure Twin</summary>
-
-### Configure Twin
-
-These defaults can be added to your `package.json`:
-
-```js
-// package.json
-"babelMacros": {
-    "twin": {
-      "config": "./tailwind.config.js",
-      "preset": "emotion",
-      "hasSuggestions": true,
-      "debug": false,
-      "autoCssProp": false,
-    }
-},
-```
-
-Alternatively add the config to `babel-plugin-macros.config.js` in your project root:
-
-```js
-// babel-plugin-macros.config.js
-module.exports = {
-  twin: {
-    config: './tailwind.config.js',
-    preset: 'emotion',
-    hasSuggestions: true,
-    debug: false,
-    autoCssProp: false,
-  },
-}
-```
-
-| Name           | Type      | Default                  | Description                                                                                                                                                                                                              |
-| -------------- | --------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| config         | `string`  | `"./tailwind.config.js"` | The path to your Tailwind config                                                                                                                                                                                         |
-| preset         | `string`  | `emotion`                | The css-in-js library to use behind the scenes\* - usually this is set to `styled-components`                                                                                                                            |
-| hasSuggestions | `boolean` | `true`                   | Display class suggestions when a class can't be found                                                                                                                                                                    |
-| debug          | `boolean` | `false`                  | Display information about the Tailwind class conversions                                                                                                                                                                 |
-| autoCssProp    | `boolean` | `false`                  | This code automates the import of 'styled-components/macro' so you can use their css prop. Enable it if you're using styled-components with CRA or Vanilla React. If you're using Emotion, setting to true does nothing. |
-
-- For tuning your imports, replace `preset` with the config keys `styled` and `css`.<br/>
-  eg: `styled: { import: "default", from: "@emotion/styled" }`
-
-<hr />
-
-</details>
-
-Twin comes packed with built-in TypeScript types. For additional features take a look at [typescript-plugin-tw-template](https://github.com/kingdaro/typescript-plugin-tw-template).
-
 ## Community
 
 Join us in the [Twin Discord](https://discord.gg/n8ZhNSb) for announcements, help and styling chat.
 
 ## Resources
 
-- [Nerdcave’s Tailwind cheat sheet](https://nerdcave.com/tailwind-cheat-sheet)
-- [Tailwind documentation](https://tailwindcss.com/docs/installation)
+- Lookup that elusive class on [Nerdcave’s Tailwind cheat sheet](https://nerdcave.com/tailwind-cheat-sheet)
+- Further docs at the [official Tailwind documentation](https://tailwindcss.com/docs/installation)
+- Add more TypeScript features with [typescript-plugin-tw-template](https://github.com/kingdaro/typescript-plugin-tw-template)
 
 ## Special thanks
 

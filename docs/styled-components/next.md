@@ -1,8 +1,13 @@
-# Using Twin with Next + Styled Components
+# Use Twin with Next + Styled Components
 
 **🔥 View the [Next + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/next-tailwind-styled-components-starter-m1f6d) for setup and usage examples**
 
-**:exclamation: If you are using _TypeScript_ you should also check out [the module annotation instructions](../../typesript/module-augmentation.md)**
+## TypeScript
+
+Twin comes with built-in TypeScript types for `tw`.
+To support Twin's `css` and `styled` imports, check out our [Styled Components + TypeScript guide](typescript.md) once you've finished with the installation below.
+
+## Installation
 
 ### 1. Install the dependencies
 
@@ -89,3 +94,9 @@ export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
 More usage examples can be found in the [Next + Styled Component + Tailwind Twin starter](https://codesandbox.io/s/next-tailwind-styled-components-starter-m1f6d).
+
+## Other installation guides
+
+- ["Vanilla" React + Styled Components](react.md)
+- [Create React App + Styled Components](create-react-app.md)
+- [Gatsby + Styled Components](gatsby.md)
