@@ -7,7 +7,7 @@ import {
   getCssConfig,
   updateCssReferences,
   addCssImport,
-  maybeAddCssProp,
+  maybeAddCssProperty,
 } from './macro/css'
 import {
   getStyledConfig,
@@ -101,7 +101,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
     config.autoCssProp === true &&
     cssImport.from.includes('styled-components')
   ) {
-    maybeAddCssProp({ program, t })
+    maybeAddCssProperty({ program, t })
   }
 
   program.scope.crawl()

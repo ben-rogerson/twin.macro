@@ -38,7 +38,7 @@ const addCssImport = ({ program, t, cssImport, state }) =>
  * added until you've imported the macro: "import 'styled-components/macro'".
  * This code aims to automate that import.
  */
-const maybeAddCssProp = ({ program, t }) => {
+const maybeAddCssProperty = ({ program, t }) => {
   let shouldAddImport = true
   let twinImportPath
   const styledComponentsMacroImport = 'styled-components/macro'
@@ -75,4 +75,4 @@ const maybeAddCssProp = ({ program, t }) => {
   )
 }
 
-export { getCssConfig, updateCssReferences, addCssImport, maybeAddCssProp }
+export { getCssConfig, updateCssReferences, addCssImport, maybeAddCssProperty }
