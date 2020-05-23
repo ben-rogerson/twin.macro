@@ -145,6 +145,7 @@ tw\`clearfix\`
 exports[`twin.macro !general.js: !general.js 1`] = `
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/react-in-jsx-scope */
 import tw from './macro'
 
 /**
@@ -351,6 +352,7 @@ const plainVariable = \`bg-\${plainConditional}-500\`
 exports[`twin.macro !imports.js: !imports.js 1`] = `
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/react-in-jsx-scope */
 import tw, { styled, css } from './macro'
 
 const twPropertyTest = <div tw="text-purple-500" />
@@ -419,6 +421,7 @@ exports[`twin.macro !namelessImport.js: !namelessImport.js 1`] = `
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable import/no-unassigned-import */
+/* eslint-disable react/react-in-jsx-scope */
 import './macro'
 
 const twPropertyTest = <div tw="text-purple-500" />
@@ -428,6 +431,8 @@ const twPropertyTest = <div tw="text-purple-500" />
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 /* eslint-disable import/no-unassigned-import */
+
+/* eslint-disable react/react-in-jsx-scope */
 const twPropertyTest = (
   <div
     css={{
@@ -515,6 +520,7 @@ const usageTest = {
 exports[`twin.macro !properties.js: !properties.js 1`] = `
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/react-in-jsx-scope */
 import tw from './macro'
 
 const Component1 = () => <div tw="uppercase" />
@@ -526,6 +532,8 @@ const Component3 = () => <div css={[{ display: 'flex' }]} tw="uppercase" />
       ↓ ↓ ↓ ↓ ↓ ↓
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
+/* eslint-disable react/react-in-jsx-scope */
 const Component1 = () => (
   <div
     css={{
