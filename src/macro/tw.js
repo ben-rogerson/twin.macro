@@ -1,4 +1,6 @@
 import { parseTte, replaceWithLocation } from './../macroHelpers'
+import { assert } from './../utils'
+import { logGeneralError } from './../logging'
 
 const handleTwProperty = ({ getStyles, program, t, state }) =>
   program.traverse({
@@ -8,7 +10,26 @@ const handleTwProperty = ({ getStyles, program, t, state }) =>
         state.hasTwProp = true
       }
 
-      const styles = getStyles(path.node.value.value, t, state)
+      const nodeValue = path.node.value
+
+      // Allow tw={"class"}
+      const expressionValue =
+        nodeValue.expression &&
+        nodeValue.expression.type === 'StringLiteral' &&
+        nodeValue.expression.value
+
+      // Feedback for unsupported usage
+      assert(nodeValue.expression && !expressionValue, () =>
+        logGeneralError(
+          `Only plain strings can be used with the "tw" prop.\nEg: <div tw="text-black" /> or <div tw={"text-black"} />`
+        )
+      )
+
+      const styles = getStyles(
+        expressionValue || nodeValue.value || '',
+        t,
+        state
+      )
 
       const attributes = path
         .findParent(p => p.isJSXOpeningElement())

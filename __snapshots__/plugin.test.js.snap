@@ -422,9 +422,11 @@ exports[`twin.macro !namelessImport.js: !namelessImport.js 1`] = `
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable import/no-unassigned-import */
 /* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/jsx-curly-brace-presence */
 import './macro'
 
-const twPropertyTest = <div tw="text-purple-500" />
+const twPropertyString = <div tw="text-purple-500" />
+const twPropertyExpression = <div tw={'text-purple-500'} />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -433,7 +435,17 @@ const twPropertyTest = <div tw="text-purple-500" />
 /* eslint-disable import/no-unassigned-import */
 
 /* eslint-disable react/react-in-jsx-scope */
-const twPropertyTest = (
+
+/* eslint-disable react/jsx-curly-brace-presence */
+const twPropertyString = (
+  <div
+    css={{
+      '--text-opacity': '1',
+      color: 'rgba(159, 122, 234, var(--text-opacity))',
+    }}
+  />
+)
+const twPropertyExpression = (
   <div
     css={{
       '--text-opacity': '1',
