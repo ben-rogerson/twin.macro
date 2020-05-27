@@ -140,11 +140,12 @@ module.exports = {
 }
 ```
 
-| Name           | Type      | Default                  | Description                                              |
-| -------------- | --------- | ------------------------ | -------------------------------------------------------- |
-| config         | `string`  | `"./tailwind.config.js"` | The path to your Tailwind config                         |
-| hasSuggestions | `boolean` | `true`                   | Display class suggestions when a class can't be found    |
-| debug          | `boolean` | `false`                  | Display information about the Tailwind class conversions |
+| Name           | Type      | Default                  | Description                                                                 |
+| -------------- | --------- | ------------------------ | --------------------------------------------------------------------------- |
+| config         | `string`  | `"./tailwind.config.js"` | The path to your Tailwind config                                            |
+| preset         | `string`  | `"emotion"`              | The css-in-js library behind the scenes - also supports 'styled-components' |
+| hasSuggestions | `boolean` | `true`                   | Display class suggestions when a class can't be found                       |
+| debug          | `boolean` | `false`                  | Display information about the Tailwind class conversions                    |
 
 If Twin's default `styled` and `css` imports need to be adjusted, you can do so with the following config:<br/>
 
@@ -154,6 +155,8 @@ If Twin's default `styled` and `css` imports need to be adjusted, you can do so 
   css: { import: "css", from: "@emotion/core" }
 }
 ```
+
+**Note:** Make sure you remove the `preset` option as that value disables the styled + css options.
 
 <hr />
 
