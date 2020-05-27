@@ -47,7 +47,7 @@ In `pages/_app.js`, add the following:
 
 ```js
 import React from 'react'
-import 'tailwindcss/dist/base.css'
+import 'tailwindcss/dist/base.min.css'
 
 const App = ({ Component, pageProps }) => <Component {...pageProps} />
 

@@ -34,7 +34,7 @@ yarn add twin.macro styled-components gatsby-plugin-styled-components
 
 ```js
 // gatsby-browser.js
-import 'tailwindcss/dist/base.css'
+import 'tailwindcss/dist/base.min.css'
 ```
 
 ### 4. Enable the Gatsby Styled Components plugin

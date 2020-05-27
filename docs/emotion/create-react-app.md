@@ -37,7 +37,7 @@ Add the following to your `app.js` or `index.js`:
 
 ```js
 // In your App.js or index.js entry
-import 'tailwindcss/dist/base.css'
+import 'tailwindcss/dist/base.min.css'
 ```
 
 ### 4. Configure custom config location
