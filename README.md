@@ -52,7 +52,7 @@ import tw, { css } from 'twin.macro'
 const Input = ({ hasDarkHover }) => (
   <input
     css={[
-      ({ hasHover }) => hasHover && tw`hover:border-black`,
+      hasDarkHover && tw`hover:border-black`,
       tw`border`,
       css`
         color: white;
