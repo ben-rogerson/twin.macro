@@ -1,5 +1,6 @@
 import dlv from 'dlv'
 import { staticStyles, dynamicStyles } from './../config'
+import { isEmpty } from './../utils'
 
 const isStaticClass = className => {
   const staticConfig = dlv(staticStyles, [className, 'config'])
@@ -34,13 +35,14 @@ const getDynamicProperties = className => {
   return { isDynamicClass, dynamicConfig, dynamicKey }
 }
 
-const getProperties = className => {
+const getProperties = (className, state) => {
   if (!className) return
   const isStatic = isStaticClass(className)
   const { isDynamicClass, dynamicConfig, dynamicKey } = getDynamicProperties(
     className
   )
   const corePlugin = dynamicConfig.plugin
+  const hasUserPlugins = !isEmpty(state.config.plugins)
 
   const type =
     (isStatic && 'static') ||
@@ -53,6 +55,7 @@ const getProperties = className => {
     hasNoMatches: !type,
     dynamicKey,
     dynamicConfig,
+    hasUserPlugins,
   }
 }
 
