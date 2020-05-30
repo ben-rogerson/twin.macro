@@ -49,10 +49,10 @@ Add conditional styles on jsx elements with the css import and the css prop:
 ```js
 import tw, { css } from 'twin.macro'
 
-const Input = ({ hasDarkHover }) => (
+const Input = ({ hasHover }) => (
   <input
     css={[
-      ({ hasHover }) => hasHover && tw`hover:border-black`,
+      hasHover && tw`hover:border-black`,
       tw`border`,
       css`
         color: white;
@@ -60,7 +60,7 @@ const Input = ({ hasDarkHover }) => (
     ]}
   />
 )
-export default () => <Input hasDarkHover />
+export default () => <Input hasHover />
 ```
 
 ## How it works
