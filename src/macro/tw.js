@@ -1,14 +1,13 @@
 import { parseTte, replaceWithLocation } from './../macroHelpers'
 import { assert } from './../utils'
 import { logGeneralError } from './../logging'
+import addDebugProperty from './debug'
 
 const handleTwProperty = ({ getStyles, program, t, state }) =>
   program.traverse({
     JSXAttribute(path) {
       if (path.node.name.name !== 'tw') return
-      if (!state.hasTwProp) {
-        state.hasTwProp = true
-      }
+      state.hasTwProp = true
 
       const nodeValue = path.node.value
 
@@ -25,11 +24,8 @@ const handleTwProperty = ({ getStyles, program, t, state }) =>
         )
       )
 
-      const styles = getStyles(
-        expressionValue || nodeValue.value || '',
-        t,
-        state
-      )
+      const rawClasses = expressionValue || nodeValue.value || ''
+      const styles = getStyles(rawClasses, t, state)
 
       const attributes = path
         .findParent(p => p.isJSXOpeningElement())
@@ -54,6 +50,8 @@ const handleTwProperty = ({ getStyles, program, t, state }) =>
           )
         )
       }
+
+      addDebugProperty({ t, attributes, rawClasses, program, path, state })
     },
   })
 
@@ -71,7 +69,9 @@ const handleTwFunction = ({ getStyles, references, state, t }) => {
     })
     if (!parsed) return
 
-    replaceWithLocation(parsed.path, getStyles(parsed.string, t, state))
+    const rawClasses = parsed.string
+
+    replaceWithLocation(parsed.path, getStyles(rawClasses, t, state))
   })
 }
 
