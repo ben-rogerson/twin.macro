@@ -51,7 +51,7 @@ const handleTwProperty = ({ getStyles, program, t, state }) =>
         )
       }
 
-      addDebugProperty({ t, attributes, rawClasses, program, path, state })
+      addDebugProperty({ t, attributes, rawClasses, path, state })
     },
   })
 

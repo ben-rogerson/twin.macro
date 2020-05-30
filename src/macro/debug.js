@@ -1,11 +1,4 @@
-const addDebugProperty = ({
-  t,
-  attributes,
-  rawClasses,
-  program,
-  path,
-  state,
-}) => {
+const addDebugProperty = ({ t, attributes, rawClasses, path, state }) => {
   if (state.isProd || !state.debugProp) return
 
   // Remove the existing debug attribute if you happen to have it
