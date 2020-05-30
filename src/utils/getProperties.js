@@ -1,6 +1,5 @@
 import dlv from 'dlv'
 import { staticStyles, dynamicStyles } from './../config'
-import { isEmpty } from './../utils'
 
 const isStaticClass = className => {
   const staticConfig = dlv(staticStyles, [className, 'config'])
@@ -34,6 +33,12 @@ const getDynamicProperties = className => {
   )
   return { isDynamicClass, dynamicConfig, dynamicKey }
 }
+
+const isEmpty = value =>
+  value === undefined ||
+  value === null ||
+  (typeof value === 'object' && Object.keys(value).length === 0) ||
+  (typeof value === 'string' && value.trim().length === 0)
 
 const getProperties = (className, state) => {
   if (!className) return
