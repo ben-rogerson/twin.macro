@@ -1,14 +1,14 @@
-# Using group
+# Using the group className
 
 There’s only one Tailwind class that can’t be used within `tw` prop or function and that’s the `group` class. It needs to be added as a className so variants like `group-hover:` will work correctly when added to the children.
 
 Here are the rest of the group variants you can use with Twin:
 
-- group-hover
-- group-focus
-- group-hocus (hover + focus)
-- group-active
-- group-visited
+- `group-hover`
+- `group-focus`
+- `group-hocus` - A combination of hover and focus
+- `group-active`
+- `group-visited`
 
 Using the group className with the `tw` prop is similar to vanilla Tailwind. Adding the group as a className on the parent allows the group variants to work as intended on the child elements:
 
@@ -18,7 +18,7 @@ import 'twin.macro'
 export default () => (
   <button className="group">
     <div tw="group-hover:bg-black">Child 1</div>
-    <div tw="group-hover:bg-white">Child 2</div>
+    <div tw="group-hover:font-bold">Child 2</div>
   </button>
 )
 ```
@@ -28,7 +28,7 @@ When working in Emotion and Styled Components without the `group` classes, the e
 ```js
 import tw, { styled } from 'twin.macro'
 
-const Group = tw.button`group`
+const Group = tw.button``
 Group.Child1 = styled.div`
   ${Group}:hover & {
     ${tw`bg-black`}
@@ -36,14 +36,14 @@ Group.Child1 = styled.div`
 `
 Group.Child2 = styled.div`
   ${Group}:hover & {
-    ${tw`bg-white`}
+    ${tw`font-bold`}
   }
 `
 
 export default () => (
   <Group>
-    <Group.Child1 />
-    <Group.Child2 />
+    <Group.Child1>Child 1</Group.Child1>
+    <Group.Child2>Child 2</Group.Child2>
   </Group>
 )
 ```
@@ -69,12 +69,12 @@ import tw, { styled } from 'twin.macro'
 const Group = styled.button.attrs({ className: 'group' })``
 
 Group.Child1 = tw.div`group-hover:bg-black`
-Group.Child2 = tw.div`group-hover:bg-white`
+Group.Child2 = tw.div`group-hover:font-bold`
 
 export default () => (
   <Group>
-    <Group.Child1 />
-    <Group.Child2 />
+    <Group.Child1>Child 1</Group.Child1>
+    <Group.Child2>Child 2</Group.Child2>
   </Group>
 )
 ```
@@ -88,12 +88,12 @@ import tw from 'twin.macro'
 
 const Group = tw.button``
 Group.Child1 = tw.div`group-hover:bg-black`
-Group.Child2 = tw.div`group-hover:bg-white`
+Group.Child2 = tw.div`group-hover:font-bold`
 
 export default () => (
   <Group className="group">
-    <Group.Child1 />
-    <Group.Child2 />
+    <Group.Child1>Child 1</Group.Child1>
+    <Group.Child2>Child 2</Group.Child2>
   </Group>
 )
 ```
@@ -111,12 +111,12 @@ const Button = tw.button``
 const Group = withAttrs(Button, { className: 'group' })
 
 Group.Child1 = tw.div`group-hover:bg-black`
-Group.Child2 = tw.div`group-hover:bg-white`
+Group.Child2 = tw.div`group-hover:font-bold`
 
 export default () => (
   <Group>
-    <Group.Child1 />
-    <Group.Child2 />
+    <Group.Child1>Child 1</Group.Child1>
+    <Group.Child2>Child 2</Group.Child2>
   </Group>
 )
 ```
@@ -130,12 +130,12 @@ const Group = tw.button``
 Group.defaultProps = { className: 'group' }
 
 Group.Child1 = tw.div`group-hover:bg-black`
-Group.Child2 = tw.div`group-hover:bg-white`
+Group.Child2 = tw.div`group-hover:font-bold`
 
 export default () => (
   <Group>
-    <Group.Child1 />
-    <Group.Child2 />
+    <Group.Child1>Child 1</Group.Child1>
+    <Group.Child2>Child 2</Group.Child2>
   </Group>
 )
 ```
