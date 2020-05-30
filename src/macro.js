@@ -25,9 +25,12 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   state.configExists = configExists
   state.config = tailwindConfig
   state.hasSuggestions =
-    typeof config.hasSuggestions === 'undefined' ? true : config.hasSuggestions
+    typeof config.hasSuggestions === 'undefined'
+      ? true
+      : Boolean(config.hasSuggestions)
 
-  state.debug = config.debug || false
+  state.debugProp = Boolean(config.debugProp)
+  state.debug = Boolean(config.debug)
 
   state.tailwindConfigIdentifier = program.scope.generateUidIdentifier(
     'tailwindConfig'
@@ -43,12 +46,6 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
     false
   state.isDev = isDev
   state.isProd = !isDev
-
-  // Dev mode coming soon
-  if (isDev) {
-    state.isDev = false
-    state.isProd = true
-  }
 
   // Styled import
   const styledImport = getStyledConfig(config)

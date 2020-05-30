@@ -23,8 +23,8 @@ export default (classes, t, state) => {
 
   // Move and sort the responsive items to the end of the list
   const classesOrdered = orderByScreens(classes, state)
+
   const theme = getTheme(state.config.theme)
-  const hasUserPlugins = !isEmpty(state.config.plugins)
 
   // Merge styles into a single css object
   const styles = classesOrdered.reduce((results, classNameRaw) => {
@@ -33,28 +33,25 @@ export default (classes, t, state) => {
     const pieces = getPieces({ classNameRaw, state })
     const { className } = pieces
 
-    // Process addUtilities from plugins
-    if (hasUserPlugins) {
-      const style = handleUserPlugins({ config: state.config, className })
-      if (!isEmpty(style)) {
-        state.debug && debug(className, style)
-        return deepMerge(results, style)
-      }
-    }
-
-    const classProperties = getProperties(className)
+    const {
+      hasNoMatches,
+      hasUserPlugins,
+      dynamicKey,
+      dynamicConfig,
+      corePlugin,
+      type,
+    } = getProperties(className, state)
 
     // Kick off suggestions when no class matches
-    assert(!classProperties || classProperties.hasNoMatches, () =>
+    assert(hasNoMatches && !hasUserPlugins, () =>
       errorSuggestions({ pieces, state })
     )
-
-    const { dynamicKey, dynamicConfig, corePlugin, type } = classProperties
 
     const styleHandler = {
       static: () => handleStatic({ pieces }),
       dynamic: () =>
         handleDynamic({ theme, pieces, state, dynamicKey, dynamicConfig }),
+      userPlugin: () => handleUserPlugins({ config: state.config, className }),
       corePlugin: () =>
         handleCorePlugins({
           theme,
@@ -66,7 +63,21 @@ export default (classes, t, state) => {
         }),
     }
 
-    const style = applyTransforms({ type, pieces, style: styleHandler[type]() })
+    let style
+
+    if (hasUserPlugins) {
+      style = applyTransforms({
+        type,
+        pieces,
+        style: styleHandler.userPlugin(),
+      })
+    }
+
+    // Check again there are no userPlugin matches
+    assert(hasNoMatches && !style, () => errorSuggestions({ pieces, state }))
+
+    style =
+      style || applyTransforms({ type, pieces, style: styleHandler[type]() })
 
     const result = deepMerge(
       results,

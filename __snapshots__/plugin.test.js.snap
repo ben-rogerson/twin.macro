@@ -524,6 +524,16 @@ const usageTest = {
   'line-height': '1.25',
   '--text-opacity': '1',
   color: 'rgba(245, 101, 101, var(--text-opacity))',
+  '@media (min-width: 768px)': {
+    'font-size': '0.875rem !important',
+    'font-weight': '500 !important',
+    'line-height': '1.25 !important',
+  },
+  '@media (min-width: 1024px)': {
+    'font-size': '0.875rem',
+    'font-weight': '500',
+    'line-height': '1.25',
+  },
 }
 
 

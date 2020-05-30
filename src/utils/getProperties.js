@@ -34,13 +34,20 @@ const getDynamicProperties = className => {
   return { isDynamicClass, dynamicConfig, dynamicKey }
 }
 
-const getProperties = className => {
+const isEmpty = value =>
+  value === undefined ||
+  value === null ||
+  (typeof value === 'object' && Object.keys(value).length === 0) ||
+  (typeof value === 'string' && value.trim().length === 0)
+
+const getProperties = (className, state) => {
   if (!className) return
   const isStatic = isStaticClass(className)
   const { isDynamicClass, dynamicConfig, dynamicKey } = getDynamicProperties(
     className
   )
   const corePlugin = dynamicConfig.plugin
+  const hasUserPlugins = !isEmpty(state.config.plugins)
 
   const type =
     (isStatic && 'static') ||
@@ -53,6 +60,7 @@ const getProperties = className => {
     hasNoMatches: !type,
     dynamicKey,
     dynamicConfig,
+    hasUserPlugins,
   }
 }
 
