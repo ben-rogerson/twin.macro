@@ -34,16 +34,55 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    function ({ addUtilities, theme }) {
-      const newUtilities = {
-        '.type-sm': {
-          fontSize: theme('fontSize.sm'),
-          fontWeight: theme('fontWeight.medium'),
-          lineHeight: theme('lineHeight.tight'),
-        },
-      }
-      addUtilities(newUtilities)
+  plugins: [addUtilitiesTest, addUtilitiesTest2, addComponentsTest],
+}
+
+function addUtilitiesTest({ addUtilities, theme }) {
+  const newUtilities = {
+    '.type-sm': {
+      fontSize: theme('fontSize.sm'),
+      fontWeight: theme('fontWeight.medium'),
+      lineHeight: theme('lineHeight.tight'),
     },
-  ],
+  }
+  addUtilities(newUtilities)
+}
+
+function addUtilitiesTest2({ addUtilities }) {
+  const newUtilities = {
+    '.skew-10deg': {
+      transform: 'skewY(-10deg)',
+    },
+    '.skew-15deg': {
+      transform: 'skewY(-15deg)',
+    },
+  }
+
+  addUtilities(newUtilities)
+}
+
+function addComponentsTest({ addComponents }) {
+  const buttons = {
+    '.btn': {
+      padding: '.5rem 1rem',
+      borderRadius: '.25rem',
+      fontWeight: '600',
+    },
+    '.btn-blue': {
+      backgroundColor: '#3490dc',
+      color: '#fff',
+      '&:hover': {
+        backgroundColor: '#2779bd',
+      },
+    },
+    '.btn-red': {
+      backgroundColor: '#e3342f',
+      color: '#fff',
+      '&:hover': {
+        backgroundColor: '#cc1f1a',
+      },
+    },
+  }
+
+  addComponents(buttons)
 }
