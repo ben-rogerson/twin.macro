@@ -197,6 +197,12 @@ If Twin's default `styled` and `css` imports need to be adjusted, you can do so 
 
 </details>
 
+## Styled components resources
+
+- [The css prop](https://styled-components.com/docs/api#css-prop)
+- [The css import](https://styled-components.com/docs/api#css)
+- [The styled import](https://styled-components.com/docs/api#styled)
+
 ## Other installation guides
 
 - ["Vanilla" React + Styled Components](react.md)

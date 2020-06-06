@@ -5,7 +5,7 @@
 ## TypeScript
 
 Twin comes with built-in TypeScript types for `tw`.
-To support Twin's `css` and `styled` imports, check out our [Styled Components + TypeScript guide](typescript.md) once you've finished with the installation below.
+To support Twin's `css` and `styled` imports, check out our [styled components + typescript guide](typescript.md) once you've finished with the installation below.
 
 ## Installation
 
@@ -191,6 +191,12 @@ If Twin's default `styled` and `css` imports need to be adjusted, you can do so 
 <hr />
 
 </details>
+
+## Styled Component resources
+
+- [The css prop](https://styled-components.com/docs/api#css-prop)
+- [The css import](https://styled-components.com/docs/api#css)
+- [The styled import](https://styled-components.com/docs/api#styled)
 
 ## Other installation guides
 

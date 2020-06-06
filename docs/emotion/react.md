@@ -170,6 +170,12 @@ If Twin's default `styled` and `css` imports need to be adjusted, you can do so 
 
 </details>
 
+## Emotion resources
+
+- [The css prop](https://emotion.sh/docs/css-prop)
+- [The css import](https://emotion.sh/docs/css-prop#string-styles)
+- [The styled import](https://emotion.sh/docs/styled)
+
 ## Other installation guides
 
 - [Create React App + Emotion](create-react-app.md)
