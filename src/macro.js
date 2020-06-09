@@ -1,7 +1,6 @@
 import { createMacro } from 'babel-plugin-macros'
 import { findIdentifier, validateImports } from './macroHelpers'
 import { isEmpty } from './utils'
-import getStyles from './getStyles'
 import { getConfigProperties } from './configHelpers'
 import {
   getCssConfig,
@@ -15,6 +14,7 @@ import {
   addStyledImport,
 } from './macro/styled'
 import { handleTwProperty, handleTwFunction } from './macro/tw'
+import getUserPluginData from './utils/getUserPluginData'
 
 const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   validateImports(references)
@@ -47,6 +47,8 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   state.isDev = isDev
   state.isProd = !isDev
 
+  state.userPluginData = getUserPluginData({ config: state.config })
+
   // Styled import
   const styledImport = getStyledConfig(config)
   state.styledIdentifier = findIdentifier({
@@ -74,8 +76,8 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   }
 
   // Tw prop/function
-  handleTwProperty({ getStyles, program, t, state })
-  handleTwFunction({ getStyles, references, t, state })
+  handleTwProperty({ program, t, state })
+  handleTwFunction({ references, t, state })
 
   // Css import
   updateCssReferences(references.css, state)

@@ -2,8 +2,9 @@ import { parseTte, replaceWithLocation } from './../macroHelpers'
 import { assert } from './../utils'
 import { logGeneralError } from './../logging'
 import addDebugProperty from './debug'
+import getStyles from './../getStyles'
 
-const handleTwProperty = ({ getStyles, program, t, state }) =>
+const handleTwProperty = ({ program, t, state }) =>
   program.traverse({
     JSXAttribute(path) {
       if (path.node.name.name !== 'tw') return
@@ -55,7 +56,7 @@ const handleTwProperty = ({ getStyles, program, t, state }) =>
     },
   })
 
-const handleTwFunction = ({ getStyles, references, state, t }) => {
+const handleTwFunction = ({ references, state, t }) => {
   const defaultImportReferences = references.default || references.tw || []
   defaultImportReferences.forEach(path => {
     const parent = path.findParent(x => x.isTaggedTemplateExpression())
