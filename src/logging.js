@@ -17,16 +17,21 @@ const inOut = (input, output) =>
 
 const logNoVariant = (variant, validVariants) =>
   spaced(
-    `${warning(
-      `The variant “${variant}:” was not found`
-    )}\n\nTry one of these variants:\n${validVariants
+    `${warning(`The variant “${variant}:” was not found`)}\n\n${Object.entries(
+      validVariants
+    )
       .map(
-        (item, index) =>
-          `${
-            validVariants.length > 6 && index % 6 === 0 && index > 0 ? '\n' : ''
-          }${color.highlight(item)}:`
+        ([k, v]) =>
+          `${k}\n${v
+            .map(
+              (item, index) =>
+                `${
+                  v.length > 6 && index % 6 === 0 && index > 0 ? '\n' : ''
+                }${color.highlight(item)}:`
+            )
+            .join(color.subdued(' / '))}`
       )
-      .join(color.subdued(' / '))}`
+      .join('\n\n')}`
   )
 
 const logNotAllowed = ({ className, error }) =>

@@ -13,7 +13,7 @@ const validateVariants = ({ variants, state }) => {
 
   const screens = dlv(state.config, ['theme', 'screens'])
   const screenNames = Object.keys(screens)
-  const validVariants = [...Object.keys(variantConfig), ...screenNames]
+
   return variants
     .map(variant => {
       const isResponsive = screenNames && screenNames.includes(variant)
@@ -21,11 +21,14 @@ const validateVariants = ({ variants, state }) => {
         return stringifyScreen(state.config, variant)
       }
 
-      // Check variants against valid variants
       if (variantConfig[variant]) {
         return variantConfig[variant]
       }
 
+      const validVariants = {
+        ...(screenNames.length > 0 && { 'Screen breakpoints': screenNames }),
+        'Built-in variants': Object.keys(variantConfig),
+      }
       throw new MacroError(logNoVariant(variant, validVariants))
     })
     .filter(Boolean)
