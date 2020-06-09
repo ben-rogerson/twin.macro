@@ -2,6 +2,7 @@ import dset from 'dset'
 import processPlugins from 'tailwindcss/lib/util/processPlugins'
 
 const parseSelector = selector => {
+  if (!selector) return
   if (selector.includes(','))
     throw new Error(`Only a single selector is supported: "${selector}"`)
   const matches = selector.trim().match(/^\.(\S+)(\s+.*?)?$/)
@@ -10,7 +11,7 @@ const parseSelector = selector => {
 }
 
 const camelize = string =>
-  string.replace(/\W+(.)/g, (match, chr) => chr.toUpperCase())
+  string && string.replace(/\W+(.)/g, (match, chr) => chr.toUpperCase())
 
 const getComponentRules = rules =>
   rules.reduce((result, rule) => {
@@ -51,9 +52,6 @@ export default ({ config, className }) => {
   }
 
   const processedPlugins = processPlugins(config.plugins, config)
-
-  // TODO
-  // const base = processedPlugins.base
 
   /**
    * Components
