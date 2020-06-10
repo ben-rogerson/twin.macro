@@ -10,7 +10,7 @@ Here are the rest of the group variants you can use with Twin:
 - `group-active`
 - `group-visited`
 
-Using the group className with the `tw` prop is similar to vanilla Tailwind. Adding the group as a className on the parent allows the group variants to work as intended on the child elements:
+Using the group className with the `tw` prop is similar to vanilla Tailwind. Adding the group as a className on an ancestor allows the group variants to work as intended on the child elements:
 
 ```js
 import 'twin.macro'

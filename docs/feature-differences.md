@@ -1,19 +1,18 @@
-# Twin and Tailwind differences
+# Feature differences
 
-This document outlines the feature differences between Twin and Tailwind.
+This document aims to outline some of the differences between Tailwind and Twin.
 
-## Additional features
+These Tailwind features are not available:
 
-- tw can be imported as a named import<br/>eg: `import { tw } from 'twin.macro'`<br/>You'll receive errors in a TypeScript project though
-- `container` has left/right margins
-- `container` has left/right paddings
-- Variants can be stacked<br/>eg: `md:before:flex!`
-- You can add a negative value to just about any measurement class
+- [Core plugins](https://tailwindcss.com/docs/configuration/#core-plugins) and [variants](https://tailwindcss.com/docs/configuration/#variants) can't be disabled<br/>Twin allows all classes and variants to be used without restriction
+- No built-in IE 11 compatibility<br/>CSS variables aren't supported but you can add support with [css-vars-ponyfill](https://jhildenbiddle.github.io/css-vars-ponyfill/#/) (6k minified + gzipped) [[Browser usage stats]](https://caniuse.com/usage-table)
+- No custom [class prefix](https://tailwindcss.com/docs/configuration/#prefix) option
+- No [custom separator](https://tailwindcss.com/docs/configuration/#separator) option
+- No [important option](https://tailwindcss.com/docs/configuration/#important)<br/>On individual classes add `!important` with a trailing bang instead, eg: `flex!`
+- No css `@apply`<br/>Use a reusable variable instead, eg: `` const styles = tw`bg-black w-4 h-4` ``
 
-## Twin doesn't have
+<!-- ### Additional features
 
-- [Class prefixes](https://tailwindcss.com/docs/configuration/#prefix)
-- [Custom separators](https://tailwindcss.com/docs/configuration/#separator)
-- You can't disable [core plugins](https://tailwindcss.com/docs/configuration/#core-plugins)
-- Twin doesn't have an `important` option in your config<br/>Use the trailing bang feature instead, eg: `flex!`
-- You can't limit the available variants on each class, all of them are always available
+- Independent [left and right margins and paddings can be added](https://tailwindcss.com/docs/container.md) on `container`
+- Multiple variants can be stacked<br/>eg: `md:before:flex`
+- The before: and after: variants can be activated with a content class<br>`before:content before:p-10` -->

@@ -16,7 +16,39 @@ import 'twin.macro'
 export default () => <input tw="border hover:border-black" />
 ```
 
-Create and style new elements using tw:
+Add conditional styles on jsx elements with the css prop:
+
+```js
+import tw from 'twin.macro'
+
+export default ({ hasHover }) => (
+  <input css={[tw`border`, hasHover && tw`hover:border-black`]} />
+)
+```
+
+Drop some classic css with the css import:
+
+```js
+import tw, { css } from 'twin.macro'
+
+export default ({ hasHover }) => (
+  <input
+    css={[
+      tw`border`,
+      hasHover &&
+        css`
+          &:hover {
+            border-color: black;
+          }
+        `,
+    ]}
+  />
+)
+```
+
+### Styled Components
+
+The tw import can also create and style new components:
 
 ```js
 import tw from 'twin.macro'
@@ -25,13 +57,13 @@ const Input = tw.input`border hover:border-black`
 export default () => <Input />
 ```
 
-Clone and style existing components:
+Or clone and style existing components:
 
 ```js
 const PurpleInput = tw(Input)`border-purple-500`
 ```
 
-Add conditional styling and vanilla css with the styled import:
+Add conditional styling and css with the styled import:
 
 ```js
 import tw, { styled } from 'twin.macro'
@@ -44,22 +76,16 @@ const Input = styled.input`
 export default () => <Input hasHover />
 ```
 
-Add conditional styles on jsx elements with the css import and the css prop:
+Or use an array to improve the readability:
 
 ```js
-import tw, { css } from 'twin.macro'
+import tw, { styled } from 'twin.macro'
 
-const Input = ({ hasHover }) => (
-  <input
-    css={[
-      hasHover && tw`hover:border-black`,
-      tw`border`,
-      css`
-        color: white;
-      `,
-    ]}
-  />
-)
+const Input = styled.input(({ hasHover }) => [
+  hasHover && tw`hover:border-black`,
+  tw`border`,
+  `color: purple;`,
+])
 export default () => <Input hasHover />
 ```
 
@@ -67,7 +93,9 @@ export default () => <Input hasHover />
 
 When babel runs over your code, Twin's `css` and `styled` imports are swapped with the real imports from libraries like [👩‍🎤 emotion](https://emotion.sh/docs/introduction) and [💅 styled-components](https://styled-components.com/).
 
-When you use `tw`, Twin converts your classes into css objects which are accepted by most css-in-js libraries:
+Twin offers import presets for both libraries or you can fully customise the imports.
+
+When you use `tw`, Twin converts your classes into css objects, ready for passing to your chosen css-in-js library:
 
 ```js
 import tw from 'twin.macro'
@@ -112,7 +140,7 @@ tw`hidden!`
 
 ## Installation
 
-Take a look at our quick-start guides for:
+Take a look at the quick-start guides for:
 
 ### Emotion (default)
 
@@ -128,34 +156,25 @@ Take a look at our quick-start guides for:
 - [Gatsby + Styled Components](docs/styled-components/gatsby.md)
 - [Next.js + Styled Components](docs/styled-components/next.md)
 
+### Other
+
+- Vue + Emotion: [CodeSandbox](https://codesandbox.io/s/vue-emotion-tailwind-twin-starter-2yd61?file=/src/App.vue)
+
 ## Plugins
 
-Twin supports [adding custom utilities](https://tailwindcss.com/docs/plugins/#adding-utilities) with further [plugin support underway](https://github.com/ben-rogerson/twin.macro/issues/7).
+Official Tailwind plugins like [Tailwind UI](https://tailwindui.com/components) and [Custom forms](https://github.com/tailwindcss/custom-forms) are compatible.
+Twin has no compatibility with Tailwind plugins that use the `addVariant` or `addBase` functions.
 
-<details>
-  <summary>How to add custom utilities</summary>
+Check out the [list of supported plugins](https://twin-docs.netlify.app/plugin-support) for more details.
 
-```js
-// In your tailwind.config.js
-module.exports = {
-  plugins: [
-    function ({ addUtilities, theme }) {
-      const newUtilities = {
-        '.hotpink': {
-          color: 'hotpink',
-        },
-      }
-      addUtilities(newUtilities)
-    },
-  ],
-}
-```
+## TypeScript
 
-</details>
+Twin comes with types for the `tw` import.
+You'll just need to [complete the TypeScript setup](docs/typescript.md) for `styled` and `css`.
 
 ## Community
 
-Join us in the [Twin Discord](https://discord.gg/n8ZhNSb) for announcements, help and styling chat.
+[Drop into our Discord server](https://discord.gg/n8ZhNSb) for announcements, help and styling chat.
 
 ## Resources
 
