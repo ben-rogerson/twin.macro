@@ -34,7 +34,7 @@ export default (classes, t, state) => {
     const { className } = pieces
 
     const {
-      hasNoMatches,
+      hasMatches,
       hasUserPlugins,
       dynamicKey,
       dynamicConfig,
@@ -43,7 +43,7 @@ export default (classes, t, state) => {
     } = getProperties(className, state)
 
     // Kick off suggestions when no class matches
-    assert(hasNoMatches && !hasUserPlugins, () =>
+    assert(!hasMatches && !hasUserPlugins, () =>
       errorSuggestions({ pieces, state })
     )
 
@@ -74,7 +74,7 @@ export default (classes, t, state) => {
     }
 
     // Check again there are no userPlugin matches
-    assert(hasNoMatches && !style, () => errorSuggestions({ pieces, state }))
+    assert(!hasMatches && !style, () => errorSuggestions({ pieces, state }))
 
     style =
       style || applyTransforms({ type, pieces, style: styleHandler[type]() })

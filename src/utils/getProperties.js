@@ -57,7 +57,7 @@ const getProperties = (className, state) => {
   return {
     type,
     corePlugin,
-    hasNoMatches: !type,
+    hasMatches: Boolean(type),
     dynamicKey,
     dynamicConfig,
     hasUserPlugins,
