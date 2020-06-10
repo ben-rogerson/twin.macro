@@ -21,8 +21,8 @@ export default (classes, t, state) => {
     )
   )
 
-  // Strip pipe characters | some users divide their classes with these
-  const classesNoPipe = classes.replace(/\|/g, ' ')
+  // Strip pipe dividers " | "
+  const classesNoPipe = classes.replace(/ \| /g, ' ')
 
   // Move and sort the responsive items to the end of the list
   const classesOrdered = orderByScreens(classesNoPipe, state)
