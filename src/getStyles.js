@@ -31,7 +31,15 @@ export default (classes, t, state) => {
     doPrechecks([precheckGroup], { classNameRaw })
 
     const pieces = getPieces({ classNameRaw, state })
-    const { className } = pieces
+    const { className, hasVariants } = pieces
+
+    assert(!className, () =>
+      logGeneralError(
+        hasVariants
+          ? `"${classNameRaw}" needs a class added on the end`
+          : 'That class was not found'
+      )
+    )
 
     const {
       hasMatches,
