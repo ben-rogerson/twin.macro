@@ -1,6 +1,5 @@
 import dset from 'dset'
 import processPlugins from 'tailwindcss/lib/util/processPlugins'
-import { root } from 'postcss'
 
 const parseSelector = selector => {
   if (!selector) return

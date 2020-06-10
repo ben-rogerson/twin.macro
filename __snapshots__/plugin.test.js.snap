@@ -700,26 +700,59 @@ import tw from './macro'
 
 // Test all variants
 
-tw\`group-hover:bg-red-500\`
-tw\`focus-within:bg-red-500\`
-tw\`first:bg-red-500\`
-tw\`last:bg-red-500\`
-tw\`odd:bg-red-500\`
-tw\`even:bg-red-500\`
-tw\`hover:bg-red-500\`
-tw\`focus:bg-red-500\`
-tw\`active:bg-red-500\`
-tw\`visited:bg-red-500\`
-tw\`disabled:bg-red-500\`
+tw\`group-hover:flex\`
+tw\`focus-within:flex\`
+tw\`first:flex\`
+tw\`last:flex\`
+tw\`odd:flex\`
+tw\`even:flex\`
+tw\`hover:flex\`
+tw\`focus:flex\`
+tw\`active:flex\`
+tw\`visited:flex\`
+tw\`disabled:flex\`
 
-const multiVariants = tw\`xl:placeholder-bg-red-500! first:md:block sm:disabled:bg-red-500\`
+const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
 
 // Native to Twin
 
-tw\`hocus:bg-red-500\`
-tw\`before:bg-red-500\`
-tw\`after:bg-red-500\`
-tw\`checked:bg-red-500\`
+// Before/after
+tw\`before:content\`
+tw\`after:content\`
+
+// Interactive links/buttons
+tw\`hocus:flex\`
+tw\`link:flex\`
+tw\`target:flex\`
+tw\`focus-visible:flex\`
+
+// Form element states
+tw\`checked:flex\`
+tw\`not-checked:flex\`
+tw\`default:flex\`
+tw\`enabled:flex\`
+tw\`indeterminate:flex\`
+tw\`invalid:flex\`
+tw\`valid:flex\`
+tw\`optional:flex\`
+tw\`required:flex\`
+tw\`placeholder-shown:flex\`
+tw\`read-only:flex\`
+tw\`read-write:flex\`
+
+// Not things
+tw\`not-first:flex\`
+tw\`not-last:flex\`
+tw\`not-only-child:flex\`
+
+// Only things
+tw\`only-child:flex\`
+tw\`only-of-type:flex\`
+
+// Group states
+tw\`group-hocus:flex\`
+tw\`group-active:flex\`
+tw\`group-visited:flex\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -727,68 +760,57 @@ tw\`checked:bg-red-500\`
 // Test all variants
 ;({
   '.group:hover &': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    display: 'flex',
   },
 })
 ;({
   ':focus-within': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    display: 'flex',
   },
 })
 ;({
   ':first-child': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    display: 'flex',
   },
 })
 ;({
   ':last-child': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    display: 'flex',
   },
 })
 ;({
   ':nth-child(odd)': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    display: 'flex',
   },
 })
 ;({
   ':nth-child(even)': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    display: 'flex',
   },
 })
 ;({
   ':hover': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    display: 'flex',
   },
 })
 ;({
   ':focus': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    display: 'flex',
   },
 })
 ;({
   ':active': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    display: 'flex',
   },
 })
 ;({
   ':visited': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    display: 'flex',
   },
 })
 ;({
   ':disabled': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    display: 'flex',
   },
 })
 const multiVariants = {
@@ -799,8 +821,7 @@ const multiVariants = {
   },
   '@media (min-width: 640px)': {
     ':disabled': {
-      '--bg-opacity': '1',
-      backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+      display: 'flex',
     },
   },
   '@media (min-width: 1280px)': {
@@ -810,29 +831,141 @@ const multiVariants = {
     },
   },
 } // Native to Twin
+// Before/after
 
 ;({
-  ':hover, :focus': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
-  },
-})
-;({
   ':before': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    content: '""',
   },
 })
 ;({
   ':after': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    content: '""',
+  },
+}) // Interactive links/buttons
+
+;({
+  ':hover, :focus': {
+    display: 'flex',
   },
 })
 ;({
+  ':link': {
+    display: 'flex',
+  },
+})
+;({
+  ':target': {
+    display: 'flex',
+  },
+})
+;({
+  ':focus-visible': {
+    display: 'flex',
+  },
+}) // Form element states
+
+;({
   ':checked': {
-    '--bg-opacity': '1',
-    backgroundColor: 'rgba(245, 101, 101, var(--bg-opacity))',
+    display: 'flex',
+  },
+})
+;({
+  ':not(:checked)': {
+    display: 'flex',
+  },
+})
+;({
+  ':default': {
+    display: 'flex',
+  },
+})
+;({
+  ':enabled': {
+    display: 'flex',
+  },
+})
+;({
+  ':indeterminate': {
+    display: 'flex',
+  },
+})
+;({
+  ':invalid': {
+    display: 'flex',
+  },
+})
+;({
+  ':valid': {
+    display: 'flex',
+  },
+})
+;({
+  ':optional': {
+    display: 'flex',
+  },
+})
+;({
+  ':required': {
+    display: 'flex',
+  },
+})
+;({
+  ':placeholder-shown': {
+    display: 'flex',
+  },
+})
+;({
+  ':read-only': {
+    display: 'flex',
+  },
+})
+;({
+  ':read-write': {
+    display: 'flex',
+  },
+}) // Not things
+
+;({
+  ':not(:first-child)': {
+    display: 'flex',
+  },
+})
+;({
+  ':not(:last-child)': {
+    display: 'flex',
+  },
+})
+;({
+  ':not(:only-child)': {
+    display: 'flex',
+  },
+}) // Only things
+
+;({
+  ':only-child': {
+    display: 'flex',
+  },
+})
+;({
+  ':only-of-type': {
+    display: 'flex',
+  },
+}) // Group states
+
+;({
+  '.group:hover &, .group:focus &': {
+    display: 'flex',
+  },
+})
+;({
+  '.group:active &': {
+    display: 'flex',
+  },
+})
+;({
+  '.group:visited &': {
+    display: 'flex',
   },
 })
 
