@@ -29,9 +29,6 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
       ? true
       : Boolean(config.hasSuggestions)
 
-  state.debugProp = Boolean(config.debugProp)
-  state.debug = Boolean(config.debug)
-
   state.tailwindConfigIdentifier = program.scope.generateUidIdentifier(
     'tailwindConfig'
   )
@@ -46,6 +43,9 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
     false
   state.isDev = isDev
   state.isProd = !isDev
+
+  state.debugProp = isDev ? Boolean(config.debugProp) : false
+  state.debug = isDev ? Boolean(config.debug) : false
 
   state.userPluginData = getUserPluginData({ config: state.config })
 
