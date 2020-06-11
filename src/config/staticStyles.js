@@ -8,8 +8,8 @@ export default {
   // See dynamicStyles.js
 
   // https://tailwindcss.com/docs/box-sizing
-  'box-border': { output: { 'box-sizing': 'border-box' } },
-  'box-content': { output: { 'box-sizing': 'content-box' } },
+  'box-border': { output: { boxSizing: 'border-box' } },
+  'box-content': { output: { boxSizing: 'content-box' } },
 
   // https://tailwindcss.com/docs/display
   hidden: { output: { display: 'none' } },
