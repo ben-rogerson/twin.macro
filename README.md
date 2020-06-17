@@ -8,7 +8,7 @@
 
 ---
 
-Use Twin's `tw` prop to add Tailwind classes onto jsx elements:
+Use Twin’s `tw` prop to add Tailwind classes onto jsx elements:
 
 ```js
 import 'twin.macro'
@@ -16,7 +16,7 @@ import 'twin.macro'
 export default () => <input tw="border hover:border-black" />
 ```
 
-Add conditional styles on jsx elements with the css prop:
+Nest Twin’s `tw` import within a css prop to add conditional styles:
 
 ```js
 import tw from 'twin.macro'
@@ -48,7 +48,7 @@ export default ({ hasHover }) => (
 
 ### Styled Components
 
-The tw import can also create and style new components:
+Use the tw import to create and style new components:
 
 ```js
 import tw from 'twin.macro'
@@ -57,7 +57,7 @@ const Input = tw.input`border hover:border-black`
 export default () => <Input />
 ```
 
-Or clone and style existing components:
+And clone and style existing components:
 
 ```js
 const PurpleInput = tw(Input)`border-purple-500`
@@ -76,7 +76,7 @@ const Input = styled.input`
 export default () => <Input hasHover />
 ```
 
-Or use an array to improve the readability:
+Or use an array instead of backticks to improve the readability:
 
 ```js
 import tw, { styled } from 'twin.macro'
@@ -91,7 +91,7 @@ export default () => <Input hasHover />
 
 ## How it works
 
-When babel runs over your code, Twin's `css` and `styled` imports are swapped with the real imports from libraries like [👩‍🎤 emotion](https://emotion.sh/docs/introduction) and [💅 styled-components](https://styled-components.com/).
+When babel runs over your code, Twin’s `css` and `styled` imports are swapped with the real imports from libraries like [👩‍🎤 emotion](https://emotion.sh/docs/introduction) and [💅 styled-components](https://styled-components.com/).
 
 Twin offers import presets for both libraries or you can fully customise the imports.
 
@@ -113,7 +113,7 @@ tw`text-sm md:text-lg`
 
 ## Features
 
-**🎨 Style with all classes and variants from [Tailwind v1.4.0](https://github.com/tailwindcss/tailwindcss/releases/tag/v1.4.0) (May 2020)**
+**🎨 Style with all classes and variants from [Tailwind v1.4.0](https://github.com/tailwindcss/tailwindcss/releases/tag/v1.4.0)** (May 2020)
 
 **🚥 All variants pre-enabled** - [Every variant](https://github.com/ben-rogerson/twin.macro/blob/master/src/config/variantConfig.js#L1) is at your fingertips so you can focus more on styling and less on configuration
 
@@ -174,7 +174,7 @@ Check out the [list of supported plugins](https://twin-docs.netlify.app/plugin-s
 ## TypeScript
 
 Twin comes with types for the `tw` import.
-You'll just need to [complete the TypeScript setup](docs/typescript.md) for `styled` and `css`.
+You’ll just need to [complete the TypeScript setup](docs/typescript.md) for `styled` and `css`.
 
 ## Community
 
