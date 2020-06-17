@@ -1,6 +1,6 @@
 # Use Twin with Create React App + Emotion
 
-**🔥 View the [CRA + Emotion + Tailwind Twin starter](https://codesandbox.io/s/cra-tailwind-emotion-starter-bi1kx) for setup and usage examples**
+**🔥 View the [CRA + Emotion + Tailwind Twin starter](https://codesandbox.io/embed/cra-tailwind-emotion-starter-bi1kx?module=%2Fsrc%2FApp.js) for setup and usage examples**
 
 ## TypeScript
 
@@ -74,7 +74,7 @@ import 'twin.macro'
 export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
-More usage examples can be found in the [CRA + Emotion + Tailwind Twin starter](https://codesandbox.io/s/cra-tailwind-emotion-starter-bi1kx).
+More usage examples can be found in the [CRA + Emotion + Tailwind Twin starter](https://codesandbox.io/embed/cra-tailwind-emotion-starter-bi1kx?module=%2Fsrc%2FApp.js).
 
 ## Configuration
 

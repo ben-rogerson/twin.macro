@@ -1,6 +1,6 @@
 # Use Twin with Next + Styled Components
 
-**🔥 View the [Next + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/next-tailwind-styled-components-starter-m1f6d) for setup and usage examples**
+**🔥 View the [Next + Styled Components + Tailwind Twin starter](https://codesandbox.io/embed/next-tailwind-styled-components-starter-m1f6d?module=%2Fpages%2Findex.js) for setup and usage examples**
 
 ## TypeScript
 
@@ -93,7 +93,7 @@ import 'twin.macro'
 export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
-More usage examples can be found in the [Next + Styled Component + Tailwind Twin starter](https://codesandbox.io/s/next-tailwind-styled-components-starter-m1f6d).
+More usage examples can be found in the [Next + Styled Component + Tailwind Twin starter](https://codesandbox.io/embed/next-tailwind-styled-components-starter-m1f6d?module=%2Fpages%2Findex.js).
 
 ## Configuration
 

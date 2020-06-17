@@ -1,6 +1,6 @@
 # Use Twin with Gatsby + Styled Components
 
-**🔥 View the [Gatsby + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/gatsby-tailwind-styled-components-starter-trrlp) for setup and usage examples**
+**🔥 View the [Gatsby + Styled Components + Tailwind Twin starter](https://codesandbox.io/embed/gatsby-tailwind-styled-components-starter-trrlp?module=%2Fsrc%2Fpages%2Findex.js) for setup and usage examples**
 
 ## TypeScript
 
@@ -80,7 +80,7 @@ import 'twin.macro'
 export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
-More usage examples can be found in the [Gatsby + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/gatsby-tailwind-styled-components-starter-trrlp).
+More usage examples can be found in the [Gatsby + Styled Components + Tailwind Twin starter](https://codesandbox.io/embed/gatsby-tailwind-styled-components-starter-trrlp?module=%2Fsrc%2Fpages%2Findex.js).
 
 ## Configuration
 

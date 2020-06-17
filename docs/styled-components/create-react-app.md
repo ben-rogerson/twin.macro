@@ -1,6 +1,6 @@
 # Use Twin with Create React App + Styled Components
 
-**🔥 View the [CRA + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/cra-tailwind-styled-components-starter-m8cyz) for setup and usage examples**
+**🔥 View the [CRA + Styled Components + Tailwind Twin starter](https://codesandbox.io/embed/react-tailwind-styled-components-starter-f87y7?module=%2Fsrc%2FApp.js) for setup and usage examples**
 
 ## TypeScript
 
@@ -78,7 +78,7 @@ import 'twin.macro'
 export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
-More usage examples can be found in the [CRA + Styled Components + Tailwind Twin starter](https://codesandbox.io/s/cra-tailwind-styled-components-starter-m8cyz).
+More usage examples can be found in the [CRA + Styled Components + Tailwind Twin starter](https://codesandbox.io/embed/react-tailwind-styled-components-starter-f87y7?module=%2Fsrc%2FApp.js).
 
 ## Configuration
 

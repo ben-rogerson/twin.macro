@@ -138,27 +138,31 @@ tw`hidden!`
 { "display": "none !important" }
 ```
 
-## Installation
+## Getting started
 
-Take a look at the quick-start guides for:
+| "Vanilla" React   |                                                                                                            |                                         |
+| ----------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| Emotion           | [Demo](https://codesandbox.io/embed/react-tailwind-emotion-starter-3d1dl?module=%2Fsrc%2FApp.js)           | [Docs](docs/emotion/react.md)           |
+| Styled Components | [Demo](https://codesandbox.io/embed/react-tailwind-styled-components-starter-f87y7?module=%2Fsrc%2FApp.js) | [Docs](docs/styled-components/react.md) |
 
-### Emotion (default)
+| Create React App  |                                                                                                               |                                                    |
+| ----------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| Emotion           | [Demo](https://codesandbox.io/embed/cra-tailwind-emotion-starter-bi1kx?module=%2Fsrc%2FApp.js)                | [Docs](docs/emotion/create-react-app.md)           |
+| Styled Components | [Demo](https://codesandbox.io/embed/cra-styled-components-tailwind-twin-starter-m8cyz?module=%2Fsrc%2FApp.js) | [Docs](docs/styled-components/create-react-app.md) |
 
-- ["Vanilla" React + Emotion](docs/emotion/react.md)
-- [Create React App + Emotion](docs/emotion/create-react-app.md)
-- [Gatsby + Emotion](docs/emotion/gatsby.md)
-- [Next.js + Emotion](docs/emotion/next.md)
+| Gatsby            |                                                                                                                       |                                          |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| Emotion           | [Demo](https://codesandbox.io/embed/gatsby-tailwind-emotion-starter-z3hun?module=%2Fsrc%2Fpages%2Findex.js)           | [Docs](docs/emotion/gatsby.md)           |
+| Styled Components | [Demo](https://codesandbox.io/embed/gatsby-tailwind-styled-components-starter-trrlp?module=%2Fsrc%2Fpages%2Findex.js) | [Docs](docs/styled-components/gatsby.md) |
 
-### Styled Components
+| Next.js           |                                                                                                               |                                        |
+| ----------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| Emotion           | [Demo](https://codesandbox.io/embed/next-tailwind-emotion-starter-8h2b2?module=%2Fpages%2Findex.js)           | [Docs](docs/emotion/next.md)           |
+| Styled Components | [Demo](https://codesandbox.io/embed/next-tailwind-styled-components-starter-m1f6d?module=%2Fpages%2Findex.js) | [Docs](docs/styled-components/next.md) |
 
-- ["Vanilla" React + Styled Components](docs/styled-components/react.md)
-- [Create React App + Styled Components](docs/styled-components/create-react-app.md)
-- [Gatsby + Styled Components](docs/styled-components/gatsby.md)
-- [Next.js + Styled Components](docs/styled-components/next.md)
-
-### Other
-
-- Vue + Emotion: [CodeSandbox](https://codesandbox.io/s/vue-emotion-tailwind-twin-starter-2yd61?file=/src/App.vue)
+| Vue     |                                                                                                      |
+| ------- | ---------------------------------------------------------------------------------------------------- |
+| Emotion | [Demo](https://codesandbox.io/embed/vue-emotion-tailwind-twin-starter-2yd61?module=%2Fsrc%2FApp.vue) |
 
 ## Plugins
 

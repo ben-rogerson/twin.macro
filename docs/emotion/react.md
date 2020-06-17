@@ -1,6 +1,6 @@
 # Use Twin with "Vanilla" React + Emotion
 
-**🔥 View the [React + Emotion + Tailwind Twin starter](https://codesandbox.io/s/react-tailwind-emotion-starter-3d1dl) for setup and usage examples**
+**🔥 View the [React + Emotion + Tailwind Twin starter](https://codesandbox.io/embed/react-tailwind-emotion-starter-3d1dl?module=%2Fsrc%2FApp.js) for setup and usage examples**
 
 ## TypeScript
 
@@ -69,7 +69,7 @@ import 'twin.macro'
 export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
-More usage examples can be found in the [React + Emotion + Tailwind Twin starter](https://codesandbox.io/s/react-tailwind-emotion-starter-3d1dl).
+More usage examples can be found in the [React + Emotion + Tailwind Twin starter](https://codesandbox.io/embed/react-tailwind-emotion-starter-3d1dl?module=%2Fsrc%2FApp.js).
 
 ## Configuration
 

@@ -1,6 +1,6 @@
 ## Use Twin with Next + Emotion
 
-**🔥 View the [Next + Emotion + Tailwind Twin starter](https://codesandbox.io/s/next-tailwind-emotion-starter-8h2b2) for setup and usage examples**
+**🔥 View the [Next + Emotion + Tailwind Twin starter](https://codesandbox.io/embed/next-tailwind-emotion-starter-8h2b2?module=%2Fpages%2Findex.js) for setup and usage examples**
 
 ## TypeScript
 
@@ -61,7 +61,7 @@ import 'twin.macro'
 export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
 ```
 
-More usage examples can be found in the [Next + Emotion + Tailwind Twin starter](https://codesandbox.io/s/next-tailwind-emotion-starter-8h2b2).
+More usage examples can be found in the [Next + Emotion + Tailwind Twin starter](https://codesandbox.io/embed/next-tailwind-emotion-starter-8h2b2?module=%2Fpages%2Findex.js).
 
 ## Configuration
 
