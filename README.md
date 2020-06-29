@@ -31,24 +31,19 @@ Drop some classic css with the css import:
 ```js
 import tw, { css } from 'twin.macro'
 
+const hoverStyles = css`
+  &:hover {
+    border-color: black;
+  }
+`
 export default ({ hasHover }) => (
-  <input
-    css={[
-      tw`border`,
-      hasHover &&
-        css`
-          &:hover {
-            border-color: black;
-          }
-        `,
-    ]}
-  />
+  <input css={[tw`border`, hasHover && hoverStyles]} />
 )
 ```
 
 ### Styled Components
 
-Use the tw import to create and style new components:
+You can also use the tw import to create and style new components:
 
 ```js
 import tw from 'twin.macro'
@@ -63,7 +58,7 @@ And clone and style existing components:
 const PurpleInput = tw(Input)`border-purple-500`
 ```
 
-Add conditional styling and css with the styled import:
+Switch to the styled import to add conditional styling:
 
 ```js
 import tw, { styled } from 'twin.macro'
@@ -91,7 +86,7 @@ export default () => <Input hasHover />
 
 ## How it works
 
-When babel runs over your code, Twin’s `css` and `styled` imports are swapped with the real imports from libraries like [👩‍🎤 emotion](https://emotion.sh/docs/introduction) and [💅 styled-components](https://styled-components.com/).
+When babel runs over your code, Twin’s `css` and `styled` imports are swapped with the real imports from libraries like [👩‍🎤&nbsp;emotion](https://emotion.sh/docs/introduction) and [💅&nbsp;styled&#8209;components](https://styled-components.com/).
 
 Twin offers import presets for both libraries or you can fully customise the imports.
 
@@ -113,11 +108,9 @@ tw`text-sm md:text-lg`
 
 ## Features
 
-**🎨 Style with all classes and variants from [Tailwind v1.4.0](https://github.com/tailwindcss/tailwindcss/releases/tag/v1.4.0)** (May 2020)
+**🎨 Style with all classes and variants in [Tailwind v1.4.0](https://github.com/tailwindcss/tailwindcss/releases/tag/v1.4.0)** (May 2020)
 
-**🚥 All variants pre-enabled** - [Every variant](https://github.com/ben-rogerson/twin.macro/blob/master/src/config/variantConfig.js#L1) is at your fingertips so you can focus more on styling and less on configuration
-
-**🐹 Adds no size to your build** - Twin converts classes you’ve used into css objects using Babel and then compiles itself away, no runtime required
+**🐹 Adds no size to your build** - Twin converts classes you’ve used into css objects using Babel and then compiles away, leaving no runtime code
 
 **🛎 Helpful suggestions for mistypings** - Twin chimes in with class and variant values from your Tailwind config:
 
@@ -137,6 +130,15 @@ tw`hidden!`
 // ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
 { "display": "none !important" }
 ```
+
+**🚥 Over 30 variants to prefix on your classes** - Unlike Tailwind, the prefixes are always available to add to your classes
+
+- Prefix with `before:` and `after:` to style pseudo-elements
+- Prefix with `hocus:` to style hover + focus at the same time
+- Style with extra group states like `group-hocus:` and `group-active:`
+- Style form field states with `checked:`, `invalid:` and `required:`
+
+Check out the [full list of variants →](https://github.com/ben-rogerson/twin.macro/blob/master/src/config/variantConfig.js)
 
 ## Getting started
 
@@ -167,7 +169,7 @@ tw`hidden!`
 ## Plugins
 
 Official Tailwind plugins like [Tailwind UI](https://tailwindui.com/components) and [Custom forms](https://github.com/tailwindcss/custom-forms) are compatible.
-Twin has no compatibility with Tailwind plugins that use the `addVariant` or `addBase` functions.
+There's no compatibility with Tailwind plugins that use the `addVariant` or `addBase` functions.
 
 Check out the [list of supported plugins](https://twin-docs.netlify.app/plugin-support) for more details.
 
@@ -179,6 +181,8 @@ You’ll just need to [complete the TypeScript setup](docs/typescript.md) for `s
 ## Community
 
 [Drop into our Discord server](https://discord.gg/n8ZhNSb) for announcements, help and styling chat.
+
+<a href="https://discord.gg/n8ZhNSb"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
 
 ## Resources
 
