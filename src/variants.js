@@ -22,7 +22,13 @@ const validateVariants = ({ variants, state }) => {
       }
 
       if (variantConfig[variant]) {
-        return variantConfig[variant]
+        const foundVariant = variantConfig[variant]
+
+        if (state.sassyPseudo) {
+          return foundVariant.replace(/(?<= ):|^:/g, '&:')
+        }
+
+        return foundVariant
       }
 
       const validVariants = {

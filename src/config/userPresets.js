@@ -1,8 +1,16 @@
 /**
  * Config presets
  *
- * Usage in package.json/babel macro config:
+ * To use, add the preset in package.json/babel macro config:
+ *
+ * Styled components
  * module.exports = { twin: { preset: "styled-components" } }
+ *
+ * Emotion
+ * module.exports = { twin: { preset: "emotion" } }
+ *
+ * Goober
+ * module.exports = { twin: { preset: "goober" } }
  */
 
 export default {
@@ -24,6 +32,16 @@ export default {
     css: {
       import: 'css',
       from: '@emotion/core',
+    },
+  },
+  goober: {
+    styled: {
+      import: 'styled',
+      from: 'goober',
+    },
+    css: {
+      import: 'css',
+      from: 'goober',
     },
   },
 }

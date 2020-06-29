@@ -51,6 +51,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
 
   // Styled import
   const styledImport = getStyledConfig(config)
+  state.styledImport = styledImport
   state.styledIdentifier = findIdentifier({
     program,
     mod: styledImport.from,
@@ -64,6 +65,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
 
   // Css import
   const cssImport = getCssConfig(config)
+  state.cssImport = cssImport
   state.cssIdentifier = findIdentifier({
     program,
     name: cssImport.import,
@@ -74,6 +76,12 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   } else {
     state.existingCssIdentifier = true
   }
+
+  state.sassyPseudo =
+    config.sassyPseudo !== undefined
+      ? config.sassyPseudo === true
+      : state.styledImport.from.includes('goober') ||
+        state.cssImport.from.includes('goober')
 
   // Tw prop/function
   handleTwProperty({ program, t, state })
