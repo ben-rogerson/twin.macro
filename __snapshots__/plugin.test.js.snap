@@ -4506,10 +4506,10 @@ tw\`space-y-12 -space-y-reverse\`
 }) // https://tailwindcss.com/docs/box-sizing
 
 ;({
-  'box-sizing': 'border-box',
+  boxSizing: 'border-box',
 })
 ;({
-  'box-sizing': 'content-box',
+  boxSizing: 'content-box',
 }) // https://tailwindcss.com/docs/display
 
 ;({
