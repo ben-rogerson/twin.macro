@@ -16,3 +16,5 @@ const addComponentsTest = tw`btn btn-blue btn-red`
 // const addComponentsTestImportant = tw`btn! btn-blue!` // Issue showing sub selectors and important
 const addComponentsTestMedia = tw`xl:btn sm:btn-blue lg:btn-red`
 const addComponentsTestVariants = tw`hover:active:btn hocus:before:btn-blue even:visited:btn-red`
+
+const addComponentsTestMediaQueriesVariants = tw`fluid-container ml-10`

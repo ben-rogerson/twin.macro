@@ -1,5 +1,6 @@
 import dset from 'dset'
 import processPlugins from 'tailwindcss/lib/util/processPlugins'
+import deepMerge from 'lodash.merge'
 
 const parseSelector = selector => {
   if (!selector) return
@@ -15,8 +16,19 @@ const camelize = string =>
 
 const getComponentRules = rules =>
   rules.reduce((result, rule) => {
+    // Rule is a media query
+    if (rule.type === 'atrule') {
+      return deepMerge(result, {
+        [`@${rule.name} ${rule.params}`]: getComponentRules(rule.nodes),
+      })
+    }
+
     const selector = parseSelector(rule.selector)
+
+    // Rule isn't formatted correctly
     if (selector === null) return null
+
+    // Combine the chilren styles
     const values = rule.nodes.reduce(
       (result, rule) => ({
         ...result,
@@ -24,6 +36,7 @@ const getComponentRules = rules =>
       }),
       {}
     )
+
     return {
       ...result,
       [selector]: values,
@@ -35,12 +48,13 @@ const getUserPluginData = ({ config }) => {
     return
   }
 
+  // Use Tailwind (using PostCss) to process the plugin data
   const processedPlugins = processPlugins(config.plugins, config)
 
   /**
    * Variants
-   * No support for Tailwind's addVariant() function
    */
+  // No support for Tailwind's addVariant() function
 
   /**
    * Components

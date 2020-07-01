@@ -62,7 +62,7 @@ export default (classes, t, state) => {
       static: () => handleStatic({ pieces }),
       dynamic: () =>
         handleDynamic({ theme, pieces, state, dynamicKey, dynamicConfig }),
-      userPlugin: () => handleUserPlugins({ config: state.config, className }),
+      userPlugin: () => handleUserPlugins({ state, className }),
       corePlugin: () =>
         handleCorePlugins({
           theme,

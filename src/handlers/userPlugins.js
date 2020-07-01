@@ -1,92 +1,76 @@
-import dset from 'dset'
-import processPlugins from 'tailwindcss/lib/util/processPlugins'
+import { isEmpty } from './../utils'
 
-const parseSelector = selector => {
-  if (!selector) return
-  if (selector.includes(','))
-    throw new Error(`Only a single selector is supported: "${selector}"`)
-  const matches = selector.trim().match(/^\.(\S+)(\s+.*?)?$/)
-  if (matches === null) return
-  return matches[1]
-}
+const matchSubKeys = (values, className, sassyPseudo) =>
+  values.reduce((result, data) => {
+    const [key, value] = data
 
-const camelize = string =>
-  string && string.replace(/\W+(.)/g, (match, chr) => chr.toUpperCase())
+    const newKey = formatKey(key, className, sassyPseudo)
 
-const getComponentRules = rules =>
-  rules.reduce((result, rule) => {
-    const selector = parseSelector(rule.selector)
-    if (selector === null) return null
-    const values = rule.nodes.reduce(
-      (result, rule) => ({
-        ...result,
-        [camelize(rule.prop)]: rule.value,
-      }),
-      {}
+    const newValue =
+      typeof value === 'object' &&
+      (key === className || key.startsWith(`${className}:`)) &&
+      (newKey ? { [newKey]: value } : value)
+
+    return {
+      ...result,
+      ...newValue,
+    }
+  }, {})
+
+const getComponentMatches = ({ className, components, sassyPseudo }) =>
+  Object.entries(components).reduce((result, data) => {
+    const [key, value] = data
+    const subKeyMatch = matchSubKeys(
+      Object.entries(value),
+      className,
+      sassyPseudo
     )
-    return {
-      ...result,
-      [selector]: values,
+    const newKey = formatKey(key, className, sassyPseudo)
+
+    if (!isEmpty(subKeyMatch)) {
+      return { ...result, [newKey]: subKeyMatch }
     }
+
+    if (key === className || key.startsWith(`${className}:`)) {
+      return newKey ? { ...result, [newKey]: value } : { ...result, ...value }
+    }
+
+    return result
   }, {})
 
-const getComponentMatches = (className, componentRules) =>
-  Object.entries(componentRules).filter(
-    ([key]) => key === className || key.startsWith(`${className}:`)
-  )
+const formatKey = (selector, className, sassyPseudo) =>
+  sassyPseudo && selector.startsWith && selector.startsWith(':')
+    ? `&${selector.replace(className, '')}`
+    : selector.replace(className, '')
 
-const formatComponentMatches = (matches, className) =>
-  matches.reduce((result, match) => {
-    const [key, value] = match
-    const selector = key.replace(className, '')
-    const style = selector ? { [selector]: value } : value
-    return {
-      ...result,
-      ...style,
-    }
-  }, {})
-
-export default ({ config, className }) => {
-  if (!config.plugins || config.plugins.length === 0) {
-    return
-  }
-
-  const processedPlugins = processPlugins(config.plugins, config)
-
+export default ({
+  state: {
+    sassyPseudo,
+    userPluginData: { components, utilities },
+  },
+  className,
+}) => {
   /**
    * Components
    */
-  const componentRules = getComponentRules(processedPlugins.components)
-  const componentMatches = getComponentMatches(className, componentRules)
-  if (componentMatches.length > 0)
-    return formatComponentMatches(componentMatches, className)
+  if (components) {
+    const componentMatches = getComponentMatches({
+      className,
+      components,
+      sassyPseudo,
+    })
+    if (!isEmpty(componentMatches)) {
+      return componentMatches
+    }
+  }
 
   /**
    * Utilities
-   * TODO: Update to new functions as the components
    */
-  const pluginClassNames = {}
-  processedPlugins.utilities.forEach(rule => {
-    if (rule.type !== 'atrule' || rule.name !== 'variants') {
-      return
-    }
+  if (!utilities) return
 
-    rule.each(x => {
-      const name = parseSelector(x.selector)
-      if (name === null) {
-        return
-      }
-
-      dset(pluginClassNames, [name], {})
-      x.walkDecls(decl => {
-        dset(pluginClassNames, [name].concat(camelize(decl.prop)), decl.value)
-      })
-    })
-  })
   const output =
-    typeof pluginClassNames[className] !== 'undefined'
-      ? pluginClassNames[className]
-      : null
+    typeof utilities[className] !== 'undefined' ? utilities[className] : null
 
   return output
 }

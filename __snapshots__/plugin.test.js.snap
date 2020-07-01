@@ -519,6 +519,8 @@ const addComponentsTest = tw\`btn btn-blue btn-red\`
 const addComponentsTestMedia = tw\`xl:btn sm:btn-blue lg:btn-red\`
 const addComponentsTestVariants = tw\`hover:active:btn hocus:before:btn-blue even:visited:btn-red\`
 
+const addComponentsTestMediaQueriesVariants = tw\`fluid-container ml-10\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -633,6 +635,35 @@ const addComponentsTestVariants = {
         backgroundColor: '#cc1f1a',
       },
     },
+  },
+}
+const addComponentsTestMediaQueriesVariants = {
+  marginLeft: '2.5rem',
+  marginRight: 'auto',
+  width: '10%',
+  ':focus': {
+    marginLeft: '10rem',
+    marginRight: '11rem',
+    width: '10%',
+  },
+  '@media (min-width: 1440px)': {
+    display: 'block',
+    width: '75%',
+    backgroundColor: 'black',
+  },
+  '@media (min-width: 768px)': {
+    ':hover': {
+      width: '25%',
+    },
+    ':focus': {
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '10%',
+    },
+  },
+  '@media only screen and (max-width: 540px)': {
+    width: '33%',
+    backgroundColor: 'red',
   },
 }
 
