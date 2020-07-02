@@ -23,7 +23,7 @@ npm install --save twin.macro styled-components
 
 ```bash
 # React and Babel
-yarn add react react-dom @babel/core
+yarn add react react-dom @babel/core @babel/plugin-transform-react-jsx
 # Twin and Styled Components
 yarn add twin.macro styled-components
 ```
