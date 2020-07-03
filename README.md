@@ -182,7 +182,7 @@ You’ll just need to [complete the TypeScript setup](docs/typescript.md) for `s
 
 [Drop into our Discord server](https://discord.gg/Xj6x9z7) for announcements, help and styling chat.
 
-<a href="https://discord.gg/n8ZhNSb"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
+<a href="https://discord.gg/Xj6x9z7"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
 
 ## Resources
 
