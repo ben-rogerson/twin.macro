@@ -15,6 +15,7 @@ import {
 } from './macro/styled'
 import { handleTwProperty, handleTwFunction } from './macro/tw'
 import getUserPluginData from './utils/getUserPluginData'
+import { debugPlugins } from './logging'
 
 const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   validateImports(references)
@@ -48,6 +49,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   state.debug = isDev ? Boolean(config.debug) : false
 
   state.userPluginData = getUserPluginData({ config: state.config })
+  isDev && Boolean(config.debugPlugins) && debugPlugins(state.userPluginData)
 
   // Styled import
   const styledImport = getStyledConfig(config)

@@ -6,11 +6,17 @@ const color = {
   errorLight: chalk.hex('#ffd3d3'),
   success: chalk.greenBright,
   highlight: chalk.yellowBright,
+  highlight2: chalk.blue,
   subdued: chalk.hex('#999'),
 }
 
 const spaced = string => `\n\n${string}\n`
 const warning = string => color.error(`✕ ${string}`)
+
+const inOutPlugins = (input, output) =>
+  `${color.highlight2('→')} ${input} ${color.highlight2(
+    JSON.stringify(output)
+  )}`
 
 const inOut = (input, output) =>
   `${color.success('✓')} ${input} ${color.success(JSON.stringify(output))}`
@@ -43,6 +49,18 @@ const logBadGood = (bad, good) =>
 const logGeneralError = error => spaced(warning(error))
 
 const debug = (className, log) => console.log(inOut(className, log))
+
+const debugPlugins = processedPlugins => {
+  console.log(
+    Object.entries(processedPlugins)
+      .map(([, group]) =>
+        Object.entries(group)
+          .map(([className, styles]) => inOutPlugins(className, styles))
+          .join('\n')
+      )
+      .join(`\n`)
+  )
+}
 
 const formatSuggestions = (suggestions, lineLength = 0, maxLineLength = 60) =>
   suggestions
@@ -109,5 +127,7 @@ export {
   logBadGood,
   logGeneralError,
   debug,
+  debugPlugins,
+  inOutPlugins,
   errorSuggestions,
 }
