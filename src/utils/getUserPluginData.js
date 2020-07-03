@@ -4,22 +4,31 @@ import deepMerge from 'lodash.merge'
 
 const parseSelector = selector => {
   if (!selector) return
-  if (selector.includes(','))
-    throw new Error(`Only a single selector is supported: "${selector}"`)
-  const matches = selector.trim().match(/^\.(\S+)(\s+.*?)?$/)
+  const matches = selector.trim().match(/^(\S+)(\s+.*?)?$/)
   if (matches === null) return
-  return matches[1]
+  return matches[0].replace(/\./g, '')
 }
 
 const camelize = string =>
   string && string.replace(/\W+(.)/g, (match, chr) => chr.toUpperCase())
 
-const getComponentRules = rules =>
+const buildAtSelector = (name, values, screens) => {
+  // Support @screen selectors
+  if (name === 'screen') {
+    const screenValue = screens[values]
+    if (screenValue) return `@media (min-width: ${screenValue})`
+  }
+
+  return `@${name} ${values}`
+}
+
+const getComponentRules = (rules, screens) =>
   rules.reduce((result, rule) => {
     // Rule is a media query
     if (rule.type === 'atrule') {
+      const atSelector = buildAtSelector(rule.name, rule.params, screens)
       return deepMerge(result, {
-        [`@${rule.name} ${rule.params}`]: getComponentRules(rule.nodes),
+        [atSelector]: getComponentRules(rule.nodes, screens),
       })
     }
 
@@ -37,9 +46,14 @@ const getComponentRules = rules =>
       {}
     )
 
+    // Separate comma separated selectors
+    const separatedSelectors = selector
+      .split(',')
+      .reduce((r, i) => ({ ...r, [i.trim()]: values }), {})
+
     return {
       ...result,
-      [selector]: values,
+      ...separatedSelectors,
     }
   }, {})
 
@@ -59,7 +73,10 @@ const getUserPluginData = ({ config }) => {
   /**
    * Components
    */
-  const components = getComponentRules(processedPlugins.components)
+  const components = getComponentRules(
+    processedPlugins.components,
+    config.theme.screens
+  )
 
   /**
    * Utilities

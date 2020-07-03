@@ -1,4 +1,69 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // Used for tests (see '/__fixtures__/-plugins.js')
+
+const textStyles = theme => ({
+  heading: {
+    output: false,
+    fontWeight: theme('fontWeight.bold'),
+    lineHeight: theme('lineHeight.tight'),
+  },
+  h1: {
+    extends: 'heading',
+    fontSize: theme('fontSize.5xl'),
+    '@screen sm': {
+      fontSize: theme('fontSize.6xl'),
+    },
+  },
+  h2: {
+    extends: 'heading',
+    fontSize: theme('fontSize.4xl'),
+    '@screen sm': {
+      fontSize: theme('fontSize.5xl'),
+      lineHeight: '50px',
+    },
+  },
+  '@screen sm': {
+    h3: {
+      extends: 'heading',
+      fontSize: theme('fontSize.4xl'),
+    },
+    ':hover': {
+      color: theme('colors.blue.300'),
+    },
+  },
+  link: {
+    fontWeight: theme('fontWeight.bold'),
+    color: theme('colors.blue.400'),
+    '&:hover, &:focus': {
+      color: theme('colors.blue.600'),
+      textDecoration: 'underline',
+    },
+    '&:active': {
+      color: theme('colors.orange.600'),
+    },
+  },
+  richText: {
+    fontWeight: theme('fontWeight.normal'),
+    fontSize: theme('fontSize.base'),
+    lineHeight: theme('lineHeight.relaxed'),
+    '> * + *': {
+      marginTop: '1em',
+    },
+    h1: {
+      extends: 'h1',
+    },
+    a: {
+      extends: 'link',
+    },
+    'b, strong': {
+      fontWeight: theme('fontWeight.bold'),
+    },
+    'i, em': {
+      fontStyle: 'italic',
+    },
+  },
+})
+
 module.exports = {
   theme: {
     container: {
@@ -20,6 +85,7 @@ module.exports = {
       small: '25%',
       large: '75%',
     },
+    textStyles,
     extend: {
       colors: {
         number: 0,
@@ -44,6 +110,15 @@ module.exports = {
     addUtilitiesTest2,
     addComponentsTest,
     fluidContainer,
+    addComponentsTestElementPrefixes,
+    addComponentsTestElementScreenReplacements,
+    require('tailwindcss-typography')({
+      ellipsis: false,
+      hyphens: false,
+      kerning: false,
+      textUnset: false,
+      componentPrefix: '',
+    }),
   ],
 }
 
@@ -149,6 +224,58 @@ function fluidContainer({ addComponents, theme }) {
         '@media only screen and (max-width: 540px)': {
           width: '33%',
           backgroundColor: 'red',
+        },
+      },
+    },
+  ]
+
+  addComponents(styles)
+}
+
+function addComponentsTestElementPrefixes({ addComponents }) {
+  const styles = [
+    {
+      '.prefixes': {
+        h1: {
+          margin: 'auto',
+          marginRight: '10px',
+        },
+        'h2:hover': {
+          color: 'red',
+        },
+        'h3:hover, h3:active': {
+          color: 'green',
+        },
+        ':focus': {
+          display: 'none',
+        },
+      },
+    },
+  ]
+
+  addComponents(styles)
+}
+
+function addComponentsTestElementScreenReplacements({ addComponents }) {
+  const styles = [
+    {
+      '.screenies': {
+        '@screen sm': {
+          display: 'block',
+        },
+        '@screen lg': {
+          display: 'inline-block',
+        },
+        '@screen md': {
+          display: 'flex',
+        },
+        '@screen xl': {
+          h1: {
+            color: 'red',
+            ':hover': {
+              color: 'blue',
+            },
+          },
         },
       },
     },

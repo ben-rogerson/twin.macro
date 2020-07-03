@@ -1,6 +1,6 @@
 import { isEmpty } from './../utils'
 
-const matchSubKeys = (values, className, sassyPseudo) =>
+const matchKeys = (values, className, sassyPseudo) =>
   values.reduce((result, data) => {
     const [key, value] = data
 
@@ -8,7 +8,9 @@ const matchSubKeys = (values, className, sassyPseudo) =>
 
     const newValue =
       typeof value === 'object' &&
-      (key === className || key.startsWith(`${className}:`)) &&
+      (key === className ||
+        key.startsWith(`${className}:`) ||
+        key.startsWith(`${className} `)) &&
       (newKey ? { [newKey]: value } : value)
 
     return {
@@ -17,31 +19,44 @@ const matchSubKeys = (values, className, sassyPseudo) =>
     }
   }, {})
 
+const reorderAtRules = className =>
+  Object.entries(className)
+    .sort((a, b) => {
+      const [aKey] = a
+      const [bKey] = b
+      const A = aKey.startsWith('@') ? 1 : 0
+      const B = bKey.startsWith('@') ? 1 : 0
+      return B > A ? -1 : 0
+    })
+    .reduce((r, [k, v]) => ({ ...r, [k]: v }), {})
+
 const getComponentMatches = ({ className, components, sassyPseudo }) =>
   Object.entries(components).reduce((result, data) => {
     const [key, value] = data
-    const subKeyMatch = matchSubKeys(
-      Object.entries(value),
-      className,
-      sassyPseudo
-    )
+    const subKeyMatch = matchKeys(Object.entries(value), className, sassyPseudo)
     const newKey = formatKey(key, className, sassyPseudo)
 
     if (!isEmpty(subKeyMatch)) {
       return { ...result, [newKey]: subKeyMatch }
     }
 
-    if (key === className || key.startsWith(`${className}:`)) {
+    if (
+      key === className ||
+      key.startsWith(`${className}:`) ||
+      key.startsWith(`${className} `)
+    ) {
       return newKey ? { ...result, [newKey]: value } : { ...result, ...value }
     }
 
     return result
   }, {})
 
-const formatKey = (selector, className, sassyPseudo) =>
-  sassyPseudo && selector.startsWith && selector.startsWith(':')
-    ? `&${selector.replace(className, '')}`
-    : selector.replace(className, '')
+const formatKey = (selector, className, sassyPseudo) => {
+  const newSelector = selector.replace(className, '').trim()
+  return newSelector.startsWith(':')
+    ? `${sassyPseudo ? '&' : ''}${newSelector}`
+    : newSelector
+}
 
 export default ({
   state: {
@@ -60,7 +75,7 @@ export default ({
       sassyPseudo,
     })
     if (!isEmpty(componentMatches)) {
-      return componentMatches
+      return reorderAtRules(componentMatches)
     }
   }
 

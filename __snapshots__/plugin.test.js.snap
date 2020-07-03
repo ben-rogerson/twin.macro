@@ -520,6 +520,9 @@ const addComponentsTestMedia = tw\`xl:btn sm:btn-blue lg:btn-red\`
 const addComponentsTestVariants = tw\`hover:active:btn hocus:before:btn-blue even:visited:btn-red\`
 
 const addComponentsTestMediaQueriesVariants = tw\`fluid-container ml-10\`
+const addComponentsTestElementSelectors = tw\`rich-text\`
+const addComponentsTestElementPrefixes = tw\`prefixes\`
+const addComponentsTestElementScreenReplacements = tw\`screenies\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -664,6 +667,88 @@ const addComponentsTestMediaQueriesVariants = {
   '@media only screen and (max-width: 540px)': {
     width: '33%',
     backgroundColor: 'red',
+  },
+}
+const addComponentsTestElementSelectors = {
+  fontWeight: '400',
+  fontSize: '1rem',
+  lineHeight: '1.625',
+  '> * + *': {
+    marginTop: '1em',
+  },
+  h1: {
+    fontWeight: '700',
+    lineHeight: '1.25',
+    fontSize: '3rem',
+  },
+  a: {
+    fontWeight: '700',
+    color: '#63b3ed',
+  },
+  'a:hover': {
+    color: '#3182ce',
+    textDecoration: 'underline',
+  },
+  'a:focus': {
+    color: '#3182ce',
+    textDecoration: 'underline',
+  },
+  'a:active': {
+    color: '#dd6b20',
+  },
+  b: {
+    fontWeight: '700',
+  },
+  strong: {
+    fontWeight: '700',
+  },
+  i: {
+    fontStyle: 'italic',
+  },
+  em: {
+    fontStyle: 'italic',
+  },
+  '@media (min-width: 640px)': {
+    h1: {
+      fontSize: '4rem',
+    },
+  },
+}
+const addComponentsTestElementPrefixes = {
+  h1: {
+    margin: 'auto',
+    marginRight: '10px',
+  },
+  'h2:hover': {
+    color: 'red',
+  },
+  'h3:hover': {
+    color: 'green',
+  },
+  'h3:active': {
+    color: 'green',
+  },
+  ':focus': {
+    display: 'none',
+  },
+}
+const addComponentsTestElementScreenReplacements = {
+  '@media (min-width: 768px)': {
+    display: 'flex',
+  },
+  '@media (min-width: 640px)': {
+    display: 'block',
+  },
+  '@media (min-width: 1024px)': {
+    display: 'inline-block',
+  },
+  '@media (min-width: 1280px)': {
+    h1: {
+      color: 'red',
+    },
+    'h1 :hover': {
+      color: 'blue',
+    },
   },
 }
 
