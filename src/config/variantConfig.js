@@ -35,6 +35,12 @@ export default {
   before: ':before',
   after: ':after',
 
+  // Of-type
+  'first-of-type': ':first-of-type',
+  'last-of-type': ':last-of-type',
+  'odd-of-type': ':nth-of-type(odd)',
+  'even-of-type': ':nth-of-type(even)',
+
   // Interactive links/buttons
   hocus: ':hover, :focus',
   link: ':link',
@@ -59,6 +65,9 @@ export default {
   'not-first': ':not(:first-child)',
   'not-last': ':not(:last-child)',
   'not-only-child': ':not(:only-child)',
+  'not-first-of-type': ':not(:first-of-type)',
+  'not-last-of-type': ':not(:last-of-type)',
+  'not-only-of-type': ':not(:only-of-type)',
 
   // Only things
   'only-child': ':only-child',

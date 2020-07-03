@@ -23,6 +23,12 @@ const multiVariants = tw`xl:placeholder-red-500! first:md:block sm:disabled:flex
 tw`before:content`
 tw`after:content`
 
+// Of-type
+tw`first-of-type:flex`
+tw`last-of-type:flex`
+tw`odd-of-type:flex`
+tw`even-of-type:flex`
+
 // Interactive links/buttons
 tw`hocus:flex`
 tw`link:flex`
@@ -47,6 +53,9 @@ tw`read-write:flex`
 tw`not-first:flex`
 tw`not-last:flex`
 tw`not-only-child:flex`
+tw`not-first-of-type:flex`
+tw`not-last-of-type:flex`
+tw`not-only-of-type:flex`
 
 // Only things
 tw`only-child:flex`
