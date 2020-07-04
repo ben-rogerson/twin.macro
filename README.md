@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/iWBWhY0.png" alt="emotion" width="360" height="135"><br>
+  <img src="https://i.imgur.com/iWBWhY0.png" alt="twin logo" width="360" height="135"><br>
     <br>Use Tailwind classes within css-in-js libraries<br><br>
     <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/dt/twin.macro.svg" alt="Total Downloads"></a>
     <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/v/twin.macro.svg" alt="Latest Release"></a>
@@ -26,7 +26,7 @@ export default ({ hasHover }) => (
 )
 ```
 
-Drop some classic css with the css import:
+Or mix sass styles with the css import:
 
 ```js
 import tw, { css } from 'twin.macro'
@@ -34,6 +34,7 @@ import tw, { css } from 'twin.macro'
 const hoverStyles = css`
   &:hover {
     border-color: black;
+    ${tw`text-black`}
   }
 `
 export default ({ hasHover }) => (
@@ -63,24 +64,24 @@ Switch to the styled import to add conditional styling:
 ```js
 import tw, { styled } from 'twin.macro'
 
-const Input = styled.input`
-  ${({ hasHover }) => hasHover && tw`hover:border-black`}
-  ${tw`border`}
-  color: purple;
-`
+const Input = styled.input(({ hasHover }) => [
+  `color: purple;`,
+  tw`border rounded`,
+  hasHover && tw`hover:border-black`,
+])
 export default () => <Input hasHover />
 ```
 
-Or use an array instead of backticks to improve the readability:
+Or use backticks to mix with sass styles:
 
 ```js
 import tw, { styled } from 'twin.macro'
 
-const Input = styled.input(({ hasHover }) => [
-  hasHover && tw`hover:border-black`,
-  tw`border`,
-  `color: purple;`,
-])
+const Input = styled.input`
+  color: purple;
+  ${tw`border rounded`}
+  ${({ hasHover }) => hasHover && tw`hover:border-black`}
+`
 export default () => <Input hasHover />
 ```
 
