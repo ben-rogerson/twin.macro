@@ -746,7 +746,10 @@ const addComponentsTestElementScreenReplacements = {
     h1: {
       color: 'red',
     },
-    'h1 :hover': {
+    'h1:hover': {
+      color: 'blue',
+    },
+    'h1:focus': {
       color: 'blue',
     },
   },

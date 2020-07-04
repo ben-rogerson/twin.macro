@@ -272,7 +272,7 @@ function addComponentsTestElementScreenReplacements({ addComponents }) {
         '@screen xl': {
           h1: {
             color: 'red',
-            ':hover': {
+            '&:hover, &:focus': {
               color: 'blue',
             },
           },
