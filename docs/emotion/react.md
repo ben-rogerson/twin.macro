@@ -23,7 +23,7 @@ npm install --save twin.macro @emotion/core @emotion/styled
 
 ```bash
 # React and Babel
-yarn add react react-dom @babel/core @babel/plugin-transform-react-jsx babel-plugin-macros
+yarn add react react-dom @babel/core @babel/plugin-transform-react-jsx @emotion/babel-plugin-jsx-pragmatic babel-plugin-macros
 # Twin and Emotion
 yarn add twin.macro @emotion/core @emotion/styled
 ```
