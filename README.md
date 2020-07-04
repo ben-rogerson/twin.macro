@@ -3,7 +3,7 @@
     <br>Use Tailwind classes within css-in-js libraries<br><br>
     <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/dt/twin.macro.svg" alt="Total Downloads"></a>
     <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/v/twin.macro.svg" alt="Latest Release"></a>
-    <a href="https://discord.gg/n8ZhNSb"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
+    <a href="https://discord.gg/Xj6x9z7"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
 </p>
 
 ---
@@ -181,9 +181,9 @@ You’ll just need to [complete the TypeScript setup](docs/typescript.md) for `s
 
 ## Community
 
-[Drop into our Discord server](https://discord.gg/n8ZhNSb) for announcements, help and styling chat.
+[Drop into our Discord server](https://discord.gg/Xj6x9z7) for announcements, help and styling chat.
 
-<a href="https://discord.gg/n8ZhNSb"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
+<a href="https://discord.gg/Xj6x9z7"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
 
 ## Resources
 
