@@ -1,6 +1,6 @@
 {
   "name": "twin.macro",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Use Tailwind classes within css-in-js libraries",
   "main": "macro.js",
   "types": "types/index.d.ts",
