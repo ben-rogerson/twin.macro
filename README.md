@@ -132,7 +132,7 @@ tw`hidden!`
 { "display": "none !important" }
 ```
 
-**🚥 Over 30 variants to prefix on your classes** - Unlike Tailwind, the prefixes are always available to add to your classes
+**🚥 Over 40 variants to prefix on your classes** - Unlike Tailwind, the prefixes are always available to add to your classes
 
 - Prefix with `before:` and `after:` to style pseudo-elements
 - Prefix with `hocus:` to style hover + focus at the same time
