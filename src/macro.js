@@ -13,6 +13,7 @@ import {
   updateStyledReferences,
   addStyledImport,
 } from './macro/styled'
+import { handleThemeFunction } from './macro/theme'
 import { handleTwProperty, handleTwFunction } from './macro/tw'
 import getUserPluginData from './utils/getUserPluginData'
 import { debugPlugins } from './logging'
@@ -103,6 +104,9 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   if (state.shouldImportStyled && !state.existingStyledIdentifier) {
     addStyledImport({ program, t, styledImport, state })
   }
+
+  // Theme import
+  handleThemeFunction({ references, t, state })
 
   // Auto add css prop for styled components
   if (

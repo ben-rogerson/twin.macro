@@ -124,6 +124,14 @@ ml-8 [2rem] / ml-10 [2.5rem] / ml-12 [3rem] / ml-16 [4rem] / ml-20 [5rem] / ml-2
 ml-40 [10rem] / ml-48 [12rem] / ml-56 [14rem] / ml-64 [16rem] / ml-auto [auto] / ml-px [1px]
 ```
 
+**🖌️ Use the theme import to add values from your tailwind config**
+
+```js
+import { theme, css } from 'twin.macro'
+
+const Input = () => <input css={css({ color: theme`colors.purple.500` })} />
+```
+
 **💥 Go important with a bang** - Add important to any class with a trailing bang!
 
 ```js

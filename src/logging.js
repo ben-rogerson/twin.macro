@@ -142,6 +142,43 @@ const errorSuggestions = properties => {
   return spaced(`${textNotFound}\n\n${suggestionText}`)
 }
 
+const themeErrorNotString = ({ themeValue, input }) => {
+  const textNotFound = warning(
+    `${color.errorLight(input)} didn’t bring back a string theme value`
+  )
+  const suggestionText = `Try adding one of these values after a dot:\n${formatSuggestions(
+    Object.entries(themeValue).map(([k, v]) => ({
+      target: k,
+      value: typeof v === 'string' ? v : '...',
+    }))
+  )}`
+
+  return spaced(`${textNotFound}\n\n${suggestionText}`)
+}
+
+const themeErrorNotFound = ({ theme, input, trimInput }) => {
+  if (typeof theme === 'string') {
+    return spaced(logBadGood(input, trimInput))
+  }
+
+  const textNotFound = warning(
+    `${color.errorLight(input)} was not found in your theme`
+  )
+
+  if (!theme) {
+    return spaced(textNotFound)
+  }
+
+  const suggestionText = `Try one of these values:\n${formatSuggestions(
+    Object.entries(theme).map(([k, v]) => ({
+      target: k,
+      value: typeof v === 'string' ? v : '...',
+    }))
+  )}`
+
+  return spaced(`${textNotFound}\n\n${suggestionText}`)
+}
+
 export {
   logNoVariant,
   logNoClass,
@@ -152,4 +189,6 @@ export {
   debugPlugins,
   inOutPlugins,
   errorSuggestions,
+  themeErrorNotString,
+  themeErrorNotFound,
 }
