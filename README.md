@@ -163,9 +163,9 @@ Check out the [full list of variants →](https://github.com/ben-rogerson/twin.m
 | Emotion           | [Demo](https://codesandbox.io/embed/next-tailwind-emotion-starter-8h2b2?module=%2Fpages%2Findex.js)           | [Docs](docs/emotion/next.md)           |
 | Styled Components | [Demo](https://codesandbox.io/embed/next-tailwind-styled-components-starter-m1f6d?module=%2Fpages%2Findex.js) | [Docs](docs/styled-components/next.md) |
 
-| Vue     |                                                                                                      |
-| :------ | ---------------------------------------------------------------------------------------------------- |
-| Emotion | [Demo](https://codesandbox.io/embed/vue-emotion-tailwind-twin-starter-2yd61?module=%2Fsrc%2FApp.vue) |
+| Vue     |                                                                                                                     |
+| :------ | ------------------------------------------------------------------------------------------------------------------- |
+| Emotion | [Demo](https://codesandbox.io/embed/vue-emotion-tailwind-twin-starter-2yd61?module=%2Fsrc%2FApp.vue) (Experimental) |
 
 ## Plugins
 
