@@ -95,9 +95,26 @@ const logNoClass = properties => {
   return text
 }
 
+const logDeeplyNestedClass = properties => {
+  const {
+    pieces: { classNameRawNoVariants },
+  } = properties
+
+  const text = warning(
+    `${
+      classNameRawNoVariants
+        ? color.errorLight(classNameRawNoVariants)
+        : 'Class'
+    } is too deeply nested in your tailwind.config.js`
+  )
+
+  return text
+}
+
 const errorSuggestions = properties => {
   const {
     state: { hasSuggestions },
+    pieces: { className },
   } = properties
 
   const textNotFound = logNoClass(properties)
@@ -107,10 +124,15 @@ const errorSuggestions = properties => {
   const suggestions = getSuggestions(properties)
   if (suggestions.length === 0) return spaced(textNotFound)
 
-  if (typeof suggestions === 'string')
+  if (typeof suggestions === 'string') {
+    if (suggestions === className) {
+      return spaced(logDeeplyNestedClass(properties))
+    }
+
     return spaced(
       `${textNotFound}\n\nDid you mean ${color.highlight(suggestions)}?`
     )
+  }
 
   const suggestionText =
     suggestions.length === 1

@@ -11,8 +11,8 @@ const handleWidth = ({ configValue, important }) => {
 
 const handleColor = ({ configValue, important }) => {
   const value = configValue('borderColor')
-  if (!value) return
 
+  if (!value) return
   return withAlpha({
     color: value,
     property: 'borderColor',
@@ -29,8 +29,8 @@ export default properties => {
     pieces: { important },
     errors: { errorSuggestions },
   } = properties
-
   const classValue = match(/(?<=(border-))([^]*)/)
+
   const configValue = config => getConfigValue(theme(config), classValue)
 
   const width = handleWidth({ configValue, important })
