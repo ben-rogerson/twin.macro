@@ -31,7 +31,7 @@ export default {
    */
 
   // Before/after pseudo elements
-  // Usage: tw`before:content before:bg-black`
+  // Usage: tw`before:(content block w-10 h-10 bg-black)`
   before: ':before',
   after: ':after',
 

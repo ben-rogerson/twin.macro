@@ -95,6 +95,7 @@ When you use `tw`, Twin converts your classes into css objects, ready for passin
 
 ```js
 import tw from 'twin.macro'
+
 tw`text-sm md:text-lg`
 
 // ↓ ↓ ↓ ↓ ↓ ↓
@@ -124,7 +125,7 @@ ml-8 [2rem] / ml-10 [2.5rem] / ml-12 [3rem] / ml-16 [4rem] / ml-20 [5rem] / ml-2
 ml-40 [10rem] / ml-48 [12rem] / ml-56 [14rem] / ml-64 [16rem] / ml-auto [auto] / ml-px [1px]
 ```
 
-**💥 Go important with a bang** - Add important to any class with a trailing bang!
+**💥 Add important to any class with a trailing bang!**
 
 ```js
 tw`hidden!`
@@ -138,8 +139,27 @@ tw`hidden!`
 - Prefix with `hocus:` to style hover + focus at the same time
 - Style with extra group states like `group-hocus:` and `group-active:`
 - Style form field states with `checked:`, `invalid:` and `required:`
+- Stack variants for nested styles `sm:hover:`
 
 Check out the [full list of variants →](https://github.com/ben-rogerson/twin.macro/blob/master/src/config/variantConfig.js)
+
+**🍱 Apply variants to multiple classes at once with variant groups**
+
+```js
+import 'twin.macro'
+
+const interactionStyles = () => (
+  <div tw="hover:(text-black underline) focus:(text-blue-500 underline)" />
+)
+
+const mediaStyles = () => <div tw="sm:(w-4 mt-3) lg:(w-8 mt-6)" />
+
+const pseudoElementStyles = () => (
+  <div tw="before:(content block w-10 h-10 bg-black)" />
+)
+
+const stackedVariants = () => <div tw="sm:hover:(bg-black text-white)" />
+```
 
 ## Getting started
 

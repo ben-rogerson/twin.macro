@@ -83,4 +83,27 @@ const addVariants = ({ results, style, pieces }) => {
   return styleWithVariants
 }
 
-export { splitVariants, addVariants }
+const handleVariantGroups = classes => {
+  const groupedMatches = classes.match(/(\S*):\(([^\n\r()]*)\)/g)
+  if (!groupedMatches) return classes
+
+  let newClasses = classes.slice()
+
+  groupedMatches.forEach(group => {
+    const match = group.match(/(\S*):\(([^\n\r()]*)\)/)
+    if (!match) return ''
+
+    const [, variant, unwrappedClasses] = match
+    const wrapped = unwrappedClasses
+      .trim()
+      .split(' ')
+      .filter(Boolean) // remove double spaces '  '
+      .map(unwrappedClass => `${variant}:${unwrappedClass}`)
+      .join(' ')
+    newClasses = newClasses.replace(group, wrapped)
+  })
+
+  return newClasses
+}
+
+export { splitVariants, addVariants, handleVariantGroups }

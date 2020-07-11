@@ -142,6 +142,18 @@ const errorSuggestions = properties => {
   return spaced(`${textNotFound}\n\n${suggestionText}`)
 }
 
+const logNotFoundVariant = ({ classNameRaw }) =>
+  spaced(
+    logBadGood(
+      `${classNameRaw}`,
+      [`${classNameRaw}flex`, `${classNameRaw}(flex bg-black)`].join(
+        color.subdued(' / ')
+      )
+    )
+  )
+
+const logNotFoundClass = logGeneralError('That class was not found')
+
 export {
   logNoVariant,
   logNoClass,
@@ -152,4 +164,6 @@ export {
   debugPlugins,
   inOutPlugins,
   errorSuggestions,
+  logNotFoundVariant,
+  logNotFoundClass,
 }
