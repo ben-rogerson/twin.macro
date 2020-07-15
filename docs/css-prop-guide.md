@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="header.png" width="800" alt="The css prop guide">
+  <img src="https://i.imgur.com/wSiM0LL.png" width="800" alt="The css prop guide">
 </p>
 
 **The quickest way to style is not with the css prop, it’s with the tw prop.**
