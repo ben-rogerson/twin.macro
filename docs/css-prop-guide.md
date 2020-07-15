@@ -245,7 +245,7 @@ export default ({ isFancy, ...rest }) => (
 )
 ```
 
-### Summing up
+## Summing up
 
 The css prop gives us ways to compose styles that we simply can’t do in normal html. With a little amount of code, we can couple styles in or out of our components and create common style sets whenever we need.
 
@@ -253,8 +253,9 @@ If you have any further questions, feel free to [drop into our Discord server](h
 
 <a href="https://discord.gg/Xj6x9z7"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
 
-## More about the css prop
+## Next steps
 
+- [Learn about using the styled import](./styled-import-guide.md)
 - [The css prop in emotion](https://emotion.sh/docs/css-prop)
 - [The css prop in styled-components](https://styled-components.com/docs/api#css-prop)
 

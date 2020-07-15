@@ -101,7 +101,7 @@ While twin comes with types for the tw import, you’ll need to add the types fo
 | debugProp      | `boolean` | `false`                | Add a prop to your elements in development so you can see the original tailwind classes, eg: `<div data-tw="bg-black" />`                                                                                                |
 | debug          | `boolean` | `false`                | Display information in your terminal about the Tailwind class conversions                                                                                                                                                |
 
-If twin’s default `styled` and `css` imports need to be adjusted, you can do so with the following config:<br/>
+If twin’s default `styled` and `css` imports need to be adjusted, you can do so with the following config:
 
 ```js
 {
@@ -114,13 +114,20 @@ If twin’s default `styled` and `css` imports need to be adjusted, you can do s
 
 ## Next steps
 
-- See how to [customize your classes →](../customizing-config.md)
-- Learn how to use the styled-components library<br/>
-  The [css prop](https://styled-components.com/docs/api#css-prop) / [css import](https://styled-components.com/docs/api#css) / [styled import](https://styled-components.com/docs/api#styled)
+- [Customize your classes](../customizing-config.md)
+- [Learn about using the css prop](../css-prop-guide.md)
+- [Learn about using the styled import](../styled-import-guide.md)
+- [React + Styled Components + Tailwind Twin starter](https://codesandbox.io/embed/react-tailwind-styled-components-starter-f87y7)
 
-## Installation guides
+### Installation guides
 
 - React + Styled Components (current)
 - [Create React App + Styled Components](create-react-app.md)
 - [Gatsby + Styled Components](gatsby.md)
 - [Next.js + Styled Components](next.md)
+
+### Official resources
+
+- [Styled Components: The css prop](https://styled-components.com/docs/api#css-prop)
+- [Styled Components: The css import](https://styled-components.com/docs/api#css)
+- [Styled Components: The styled import](https://styled-components.com/docs/api#styled)

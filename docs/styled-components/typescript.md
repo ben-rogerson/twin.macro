@@ -63,7 +63,7 @@ import tw, { css, styled } from 'twin.macro'
 
 ## Installation guides
 
-- ["Vanilla" React + Styled Components](react.md)
-- [Create React App + Styled Components](create-react-app.md)
-- [Gatsby + Styled Components](gatsby.md)
-- [Next.js + Styled Components](next.md)
+- [Twin + "Vanilla" React + Styled Components](react.md)
+- [Twin + Create React App + Styled Components](create-react-app.md)
+- [Twin + Gatsby + Styled Components](gatsby.md)
+- [Twin + Next.js + Styled Components](next.md)

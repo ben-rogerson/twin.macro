@@ -227,7 +227,7 @@ const styles = css`
 export default styled.input(styles)
 ```
 
-### Summing up
+## Summing up
 
 The styled prop gives us ways to compose styles that we simply can’t do in normal html. With a little amount of code, we can couple styles in or out of our components and create common style sets whenever we need.
 
@@ -235,7 +235,8 @@ If you have any further questions, feel free to [drop into our Discord server](h
 
 <a href="https://discord.gg/Xj6x9z7"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
 
-## More about the styled import
+## Next steps
 
+- [Learn about using the css prop](./css-prop-guide.md)
 - [The styled import in emotion](https://emotion.sh/docs/styled)
 - [The styled import in styled-components](https://styled-components.com/docs/api#styled)
