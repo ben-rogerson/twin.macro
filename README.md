@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/iWBWhY0.png" alt="twin logo" width="360" height="135"><br>
+  <img src="https://i.imgur.com/dIwewYI.png" alt="twin logo" width="360"><br>
     <br>Use Tailwind classes within css-in-js libraries<br><br>
     <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/dt/twin.macro.svg" alt="Total Downloads"></a>
     <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/v/twin.macro.svg" alt="Latest Release"></a>
@@ -188,8 +188,8 @@ You’ll just need to [complete the TypeScript setup](docs/typescript.md) for `s
 ## Resources
 
 - Lookup that elusive class on [Nerdcave’s Tailwind cheat sheet](https://nerdcave.com/tailwind-cheat-sheet)
-- Further docs at the [official Tailwind documentation](https://tailwindcss.com/docs/installation)
 - Add more TypeScript features with [typescript-plugin-tw-template](https://github.com/kingdaro/typescript-plugin-tw-template)
+- [Why I Write CSS in JavaScript](https://mxstbr.com/thoughts/css-in-js) by Max Stoiber
 
 ## Special thanks
 
