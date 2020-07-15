@@ -1,41 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import tw from './macro'
 
-// Test all variants
+// Before/after pseudo elements
+tw`before:content`
+tw`after:content`
 
-tw`group-hover:flex`
-tw`focus-within:flex`
-tw`first:flex`
-tw`last:flex`
-tw`odd:flex`
-tw`even:flex`
+// Interactive links/buttons
 tw`hover:flex`
 tw`focus:flex`
 tw`active:flex`
 tw`visited:flex`
-tw`disabled:flex`
-
-const multiVariants = tw`xl:placeholder-red-500! first:md:block sm:disabled:flex`
-
-// Native to Twin
-
-// Before/after
-tw`before:content`
-tw`after:content`
-
-// Of-type
-tw`first-of-type:flex`
-tw`last-of-type:flex`
-tw`odd-of-type:flex`
-tw`even-of-type:flex`
-
-// Interactive links/buttons
 tw`hocus:flex`
 tw`link:flex`
 tw`target:flex`
 tw`focus-visible:flex`
 
 // Form element states
+tw`disabled:flex`
 tw`checked:flex`
 tw`not-checked:flex`
 tw`default:flex`
@@ -49,19 +30,30 @@ tw`placeholder-shown:flex`
 tw`read-only:flex`
 tw`read-write:flex`
 
-// Not things
-tw`not-first:flex`
-tw`not-last:flex`
-tw`not-only-child:flex`
+// Child selectors
+tw`first-of-type:flex`
 tw`not-first-of-type:flex`
+tw`last-of-type:flex`
 tw`not-last-of-type:flex`
-tw`not-only-of-type:flex`
-
-// Only things
+tw`first:flex`
+tw`not-first:flex`
+tw`last:flex`
+tw`not-last:flex`
 tw`only-child:flex`
+tw`not-only-child:flex`
 tw`only-of-type:flex`
+tw`not-only-of-type:flex`
+tw`even:flex`
+tw`odd:flex`
+tw`odd-of-type:flex`
+tw`even-of-type:flex`
 
 // Group states
+tw`group-hover:flex`
+tw`group-focus:flex`
 tw`group-hocus:flex`
 tw`group-active:flex`
 tw`group-visited:flex`
+tw`focus-within:flex`
+
+const multiVariants = tw`xl:placeholder-red-500! first:md:block sm:disabled:flex`
