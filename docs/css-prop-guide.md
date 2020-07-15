@@ -14,7 +14,9 @@ The tw prop is similar to a html attribute as it only accepts a string of tailwi
 
 import 'twin.macro'
 
-export default () => <input tw="text-black hover:text-purple-500" />
+export default props => (
+  <input tw="text-black hover:text-purple-500" {...props} />
+)
 ```
 
 This is fine for basic styling but we often need to add styles based on props or state.
@@ -29,11 +31,11 @@ To open up new styling options we need to move our styles to the tw import and s
 
 import tw from 'twin.macro'
 
-export default ({ isDark }) => {
+export default ({ isDark, ...rest }) => {
   const styles = isDark
     ? tw`bg-black text-white border border-white placeholder-gray-500 tracking-tight rounded`
     : tw`bg-white text-black border border-black placeholder-gray-700 tracking-wide rounded`
-  return <input css={styles} />
+  return <input css={styles} {...rest} />
 }
 ```
 
@@ -45,7 +47,9 @@ import tw from 'twin.macro'
 const darkStyles = tw`bg-black text-white border border-white placeholder-gray-500 tracking-tight rounded`
 const lightStyles = tw`bg-white text-black border border-black placeholder-gray-700 tracking-wide rounded`
 
-export default ({ isDark }) => <input css={isDark ? darkStyles : lightStyles} />
+export default ({ isDark, ...rest }) => (
+  <input css={isDark ? darkStyles : lightStyles} {...rest} />
+)
 ```
 
 Or we could group them in an object:
@@ -58,8 +62,8 @@ const styles = {
   light: tw`bg-white text-black border border-black placeholder-gray-700 tracking-wide rounded`,
 }
 
-export default ({ isDark }) => (
-  <input css={isDark ? styles.dark : styles.light} />
+export default ({ isDark, ...rest }) => (
+  <input css={isDark ? styles.dark : styles.light} {...rest} />
 )
 ```
 
@@ -85,8 +89,8 @@ const styles = {
   light: [inputBase.light, inputText.dark],
 }
 
-export default ({ isDark }) => (
-  <input css={isDark ? styles.dark : styles.light} />
+export default ({ isDark, ...rest }) => (
+  <input css={isDark ? styles.dark : styles.light} {...rest} />
 )
 ```
 
@@ -112,7 +116,7 @@ Styles inside the component:
 ```js
 import tw from 'twin.macro'
 
-export default ({ isDark }) => {
+export default ({ isDark, ...rest }) => {
   const styles = [
     // Common base styles
     tw`rounded border`,
@@ -122,7 +126,7 @@ export default ({ isDark }) => {
     !isDark &&
       tw`bg-white text-black border-black placeholder-gray-700 tracking-wide`,
   ]
-  return <input css={styles} />
+  return <input css={styles} {...rest} />
 }
 ```
 
@@ -141,7 +145,9 @@ const styles = ({ isDark }) => [
     tw`bg-white text-black border-black placeholder-gray-700 tracking-wide`,
 ]
 
-export default props => <input css={styles(props)} />
+export default ({ isDark, ...rest }) => (
+  <input css={styles({ isDark })} {...rest} />
+)
 ```
 
 ## Styling within an object
@@ -163,12 +169,12 @@ const inputStyles = {
   light: tw`bg-white text-black border-black placeholder-gray-700 tracking-wide`,
 }
 
-export default ({ isDark }) => {
+export default ({ isDark, ...rest }) => {
   const styles = {
     ...inputStyles.common,
     ...(isDark ? inputStyles.dark : inputStyles.light),
   }
-  return <input css={styles} />
+  return <input css={styles} {...rest} />
 }
 ```
 
@@ -188,7 +194,9 @@ const styles = ({ isDark }) => ({
   ...(isDark ? inputStyles.dark : inputStyles.light),
 })
 
-export default props => <input css={styles(props)} />
+export default ({ isDark, ...rest }) => (
+  <input css={styles({ isDark })} {...rest} />
+)
 ```
 
 ## Styling within a template string
@@ -205,7 +213,7 @@ Styles inside the component:
 ```js
 import tw, { css } from 'twin.macro'
 
-export default ({ isFancy }) => {
+export default ({ isFancy, ...rest }) => {
   const styles = css`
     caret-color: purple;
     ${tw`rounded px-6`}
@@ -214,7 +222,7 @@ export default ({ isFancy }) => {
       ${isFancy && tw`bg-purple-500`}
     }
   `
-  return <input css={styles} />
+  return <input css={styles} {...rest} />
 }
 ```
 
@@ -232,12 +240,14 @@ const styles = ({ isFancy }) => css`
   }
 `
 
-export default props => <input css={styles(props)} />
+export default ({ isFancy, ...rest }) => (
+  <input css={styles({ isFancy })} {...rest} />
+)
 ```
 
-### Summary
+### Summing up
 
-The style prop gives us ways to compose styles that we simply can’t do in normal html. With a little amount of code, we can couple styles in or out of our components and create common style sets whenever we need.
+The css prop gives us ways to compose styles that we simply can’t do in normal html. With a little amount of code, we can couple styles in or out of our components and create common style sets whenever we need.
 
 If you have any further questions, feel free to [drop into our Discord server](https://discord.gg/Xj6x9z7).
 
