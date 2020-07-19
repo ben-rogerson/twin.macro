@@ -96,6 +96,9 @@ module.exports = {
           'a-number': 0,
           array: ['blue', 'purple', 'orange'],
         },
+        'my-blue': {
+          100: 'blue',
+        },
       },
       fontWeight: {
         customFontWeightAsString: '700',

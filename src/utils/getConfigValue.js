@@ -19,10 +19,13 @@ const normalizeValue = value => {
 
 const matchChildKey = (from, matcher) => {
   if (!matcher) return
-
   for (const entry of Object.entries(from)) {
     const [key, value] = entry
+
     if (typeof value !== 'object') continue
+
+    // Fixes https://github.com/ben-rogerson/twin.macro/issues/104
+    if (!matcher.startsWith(key)) continue
 
     const splitMatcher = matcher.split(key)
     if (isEmpty(splitMatcher[1])) continue
