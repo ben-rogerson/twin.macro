@@ -1,4 +1,3 @@
-import dset from 'dset'
 import processPlugins from 'tailwindcss/lib/util/processPlugins'
 import deepMerge from 'lodash.merge'
 
@@ -22,13 +21,20 @@ const buildAtSelector = (name, values, screens) => {
   return `@${name} ${values}`
 }
 
-const getComponentRules = (rules, screens) =>
+const getUserPluginRules = (rules, screens) =>
   rules.reduce((result, rule) => {
-    // Rule is a media query
+    // Build the media queries
     if (rule.type === 'atrule') {
+      // Remove a bunch of nodes that tailwind uses for limiting rule generation
+      // https://github.com/tailwindlabs/tailwindcss/commit/b69e46cc1b32608d779dad35121077b48089485d#diff-808341f38c6f7093a7979961a53f5922R20
+      if (['layer', 'variants', 'responsive'].includes(rule.name)) {
+        return deepMerge(result, ...getUserPluginRules(rule.nodes, screens))
+      }
+
       const atSelector = buildAtSelector(rule.name, rule.params, screens)
+
       return deepMerge(result, {
-        [atSelector]: getComponentRules(rule.nodes, screens),
+        [atSelector]: getUserPluginRules(rule.nodes, screens),
       })
     }
 
@@ -47,14 +53,15 @@ const getComponentRules = (rules, screens) =>
     )
 
     // Separate comma separated selectors
-    const separatedSelectors = selector
-      .split(',')
-      .reduce((r, i) => ({ ...r, [i.trim()]: values }), {})
+    const separatedSelectors = selector.split(',').reduce(
+      (r, i) => ({
+        ...r,
+        [i.replace(/\\\//g, '/').trim()]: values,
+      }),
+      {}
+    )
 
-    return {
-      ...result,
-      ...separatedSelectors,
-    }
+    return deepMerge(result, separatedSelectors)
   }, {})
 
 const getUserPluginData = ({ config }) => {
@@ -73,33 +80,18 @@ const getUserPluginData = ({ config }) => {
   /**
    * Components
    */
-  const components = getComponentRules(
+  const components = getUserPluginRules(
     processedPlugins.components,
     config.theme.screens
   )
 
   /**
    * Utilities
-   * TODO: Convert this to a reduce like getComponentRules
    */
-  const utilities = {}
-  processedPlugins.utilities.forEach(rule => {
-    if (rule.type !== 'atrule' || rule.name !== 'variants') {
-      return
-    }
-
-    rule.each(x => {
-      const name = parseSelector(x.selector)
-      if (name === null) {
-        return
-      }
-
-      dset(utilities, [name], {})
-      x.walkDecls(decl => {
-        dset(utilities, [name].concat(camelize(decl.prop)), decl.value)
-      })
-    })
-  })
+  const utilities = getUserPluginRules(
+    processedPlugins.utilities,
+    config.theme.screens
+  )
 
   return { components, utilities }
 }

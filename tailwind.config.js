@@ -115,6 +115,7 @@ module.exports = {
     fluidContainer,
     addComponentsTestElementPrefixes,
     addComponentsTestElementScreenReplacements,
+    require('@tailwindcss/typography'),
     require('tailwindcss-typography')({
       ellipsis: false,
       hyphens: false,

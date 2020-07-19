@@ -21,3 +21,5 @@ const addComponentsTestMediaQueriesVariants = tw`fluid-container ml-10`
 const addComponentsTestElementSelectors = tw`rich-text`
 const addComponentsTestElementPrefixes = tw`prefixes`
 const addComponentsTestElementScreenReplacements = tw`screenies`
+
+const addComponentsResponsiveScoping = tw`prose sm:prose-sm lg:prose-lg xl:prose-xl`

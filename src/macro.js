@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import { createMacro } from 'babel-plugin-macros'
 import { findIdentifier, validateImports } from './macroHelpers'
 import { isEmpty } from './utils'
@@ -50,7 +51,10 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   state.debug = isDev ? Boolean(config.debug) : false
 
   state.userPluginData = getUserPluginData({ config: state.config })
-  isDev && Boolean(config.debugPlugins) && debugPlugins(state.userPluginData)
+  isDev &&
+    Boolean(config.debugPlugins) &&
+    state.userPluginData &&
+    debugPlugins(state.userPluginData)
 
   // Styled import
   const styledImport = getStyledConfig(config)
