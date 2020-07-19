@@ -52,12 +52,12 @@ Not as great right?
 
 Here’s some ways you can improve upon that:
 
-## Attrs in Styled Components
+## Attrs in 💅&nbsp;styled&#8209;components
 
 In styled-components we have a `styled` function called `attrs`.
 Here’s what the docs have to say about it:
 
-> The rule of thumb is to use attrs when you want every instance of a styled component to have that prop, and pass props directly when every instance needs a different one.<br/>[Styled Components Docs](https://styled-components.com/docs/faqs#when-to-use-attrs)
+> The rule of thumb is to use attrs when you want every instance of a styled component to have that prop, and pass props directly when every instance needs a different one.<br/>- [styled-components docs](https://styled-components.com/docs/faqs#when-to-use-attrs)
 
 But we can also put it to use to define the `group` class in Tailwind.
 

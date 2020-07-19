@@ -10,7 +10,7 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 ```
 
-You can utilize Twin's auto import feature:
+You can utilize Twin’s auto import feature:
 
 ```typescript
 import tw, { css, styled } from 'twin.macro'
@@ -18,7 +18,7 @@ import tw, { css, styled } from 'twin.macro'
 
 ## Setup
 
-Without types defined, you'll receive an error like this:
+Without types defined, you’ll receive an error like this:
 
 ```js
 Module '"../node_modules/twin.macro/types"' has no exported member 'styled'.
@@ -26,11 +26,11 @@ Module '"../node_modules/twin.macro/types"' has no exported member 'styled'.
 Module '"../node_modules/twin.macro/types"' has no exported member 'css'.
 ```
 
-So to fix this, we'll need to setup our type definitions:
+So to fix this, we’ll need to setup our type definitions:
 
 ### 1. Define the types in a new file
 
-Create a new file named `twin.d.ts` and place it in your project root or your src directory (for create-react-app):
+Create a new file named `twin.d.ts` and place it in your project root (or your src directory for create-react-app):
 
 ```typescript
 // twin.d.ts
