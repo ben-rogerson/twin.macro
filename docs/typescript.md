@@ -1,8 +1,8 @@
 # TypeScript
 
-Because Twin can be coupled with different css-in-js libraries, the types for `styled` and `css` aren't built-in.
+Because Twin can be coupled with different css-in-js libraries, the types for `styled` and `css` aren't included.
 
-Follow these instructions to add support for the types:
+Choose the guide to match your css-in-js library:
 
-- [Setup Emotion + TypeScript](emotion/typescript.md)
-- [Setup Styled components + TypeScript](styled-components/typescript.md)
+- [👩‍🎤&nbsp;Emotion + TypeScript](emotion/typescript.md)
+- [💅&nbsp;Styled&#8209;components + TypeScript](styled-components/typescript.md)

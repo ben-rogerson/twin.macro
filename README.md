@@ -169,8 +169,7 @@ Check out the [full list of variants →](https://github.com/ben-rogerson/twin.m
 
 ## Plugins
 
-Official Tailwind plugins like [Tailwind UI](https://tailwindui.com/components) and [Custom forms](https://github.com/tailwindcss/custom-forms) are compatible.
-But there's no compatibility with Tailwind plugins that use the `addVariant` or `addBase` functions.
+You can use many Tailwind plugins with twin, like [Tailwind UI](https://tailwindui.com/components) and [Custom forms](https://github.com/tailwindcss/custom-forms) but there’s no compatibility with other plugins that use the `addVariant` or `addBase` functions.
 
 Check out the [list of supported plugins →](https://twin-docs.netlify.app/plugin-support)
 

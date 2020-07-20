@@ -1,13 +1,8 @@
 # Use Twin with Next + Styled Components
 
-**🔥 View the [Next + Styled Components + Tailwind Twin starter](https://codesandbox.io/embed/next-tailwind-styled-components-starter-m1f6d?module=%2Fpages%2Findex.js) for setup and usage examples**
+**🔥 View the [Next + Styled Components + Tailwind Twin starter](https://codesandbox.io/embed/next-tailwind-styled-components-starter-m1f6d?module=%2Fpages%2Findex.js) for usage examples**
 
-## TypeScript
-
-Twin comes with built-in TypeScript types for `tw`.
-To support Twin's `css` and `styled` imports, check out our [Styled Components + TypeScript guide](typescript.md) once you've finished with the installation below.
-
-## Installation
+## Getting started
 
 ### 1. Install the dependencies
 
@@ -59,130 +54,58 @@ const App = ({ Component, pageProps }) => <Component {...pageProps} />
 export default App
 ```
 
-### 4. Configure Twin to use Styled Components
+### 4. Add the recommended config
 
-Add the config to your `package.json`:
+Twin’s recommended config can be added in a couple of different places.
 
-```js
-// package.json
-"babelMacros": {
-  "twin": {
-    "preset": "styled-components"
-  }
-},
-```
-
-<details>
-  <summary>Alternatively add config to babel-plugin-macros.config.js</summary>
-
-```js
-// babel-plugin-macros.config.js
-module.exports = {
-  twin: {
-    preset: 'styled-components',
-  },
-}
-```
-
-</details>
-
-### Basic usage example
-
-```js
-import 'twin.macro'
-export default () => <button tw="text-lg px-8 py-2 rounded">Success</button>
-```
-
-More usage examples can be found in the [Next + Styled Component + Tailwind Twin starter](https://codesandbox.io/embed/next-tailwind-styled-components-starter-m1f6d?module=%2Fpages%2Findex.js).
-
-## Configuration
-
-<details>
-  <summary>Customize the Tailwind classes</summary>
-
-### Customize the Tailwind classes
-
-For style customizations, you’ll need to add a `tailwind.config.js` in your project root.
-
-> It’s important to know that you don’t need a `tailwind.config.js` to use Twin. You already have access to every class with every variant.
-> Unlike Tailwind, twin.macro only generates styles for the classes you use. This means you don’t need to use additional tools like purgeCSS.
-
-Choose from one of the following configs:
-
-- a) Start with an empty config:
-
-  ```js
-  // tailwind.config.js
-  module.exports = {
-    theme: {
-      extend: {},
-    },
-  }
-  ```
-
-- b) Start with a [full config](https://raw.githubusercontent.com/tailwindcss/tailwindcss/master/stubs/defaultConfig.stub.js):
-
-  ```bash
-  # cd into your project folder then:
-  curl https://raw.githubusercontent.com/tailwindcss/tailwindcss/master/stubs/defaultConfig.stub.js > tailwind.config.js
-  ```
-
-  In the config, there only needs to be a `theme: {...}` entry so feel free to cleanup.
-
-### Working with the config
-
-You can overwrite or extend classes the same way as Tailwind.<br/>
-Overwrite parts of the base config in `theme: { ... }` and extend in `theme: { extend: { ... } }`.<br/>
-Read more in the [Tailwind theme docs](https://tailwindcss.com/docs/theme).
-
-<hr />
-
-</details>
-
-<details>
-  <summary>Configure Twin</summary>
-
-### Configure Twin
-
-These options can be added to your `package.json`:
+a) In your `package.json`:
 
 ```js
 // package.json
 "babelMacros": {
     "twin": {
-      "config": "./tailwind.config.js",
+      "config": "tailwind.config.js",
       "preset": "styled-components",
-      "autoCssProp": false,
-      "hasSuggestions": true,
+      "debugProp": true,
+      "debugPlugins": false,
       "debug": false,
     }
 },
 ```
 
-Alternatively add the config to `babel-plugin-macros.config.js` in your project root:
+b) Or in a new file named `babel-plugin-macros.config.js` placed in your project root:
 
 ```js
 // babel-plugin-macros.config.js
 module.exports = {
   twin: {
-    config: './tailwind.config.js',
+    config: 'tailwind.config.js',
     preset: 'styled-components',
-    autoCssProp: false,
-    hasSuggestions: true,
+    debugProp: true,
+    debugPlugins: false,
     debug: false,
   },
 }
 ```
 
-| Name           | Type      | Default                  | Description                                                                                                                                                                                                              |
-| -------------- | --------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| config         | `string`  | `"./tailwind.config.js"` | The path to your Tailwind config                                                                                                                                                                                         |
-| preset         | `string`  | `emotion`                | The css-in-js library to use behind the scenes - you should set this to `styled-components`                                                                                                                              |
-| hasSuggestions | `boolean` | `true`                   | Display class suggestions when a class can't be found                                                                                                                                                                    |
-| debug          | `boolean` | `false`                  | Display information about the Tailwind class conversions                                                                                                                                                                 |
-| autoCssProp    | `boolean` | `false`                  | This code automates the import of 'styled-components/macro' so you can use their css prop. Enable it if you're using styled-components with CRA or Vanilla React. If you're using Emotion, setting to true does nothing. |
+### 5. Complete the TypeScript support (optional)
 
-If Twin's default `styled` and `css` imports need to be adjusted, you can do so with the following config:<br/>
+While twin comes with types for the tw import, you’ll need to add the types for the `css` and `styled` imports.
+
+[Read how to add the remaining types →](typescript.md)
+
+## Options
+
+| Name           | Type      | Default                | Description                                                                                                               |
+| -------------- | --------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| config         | `string`  | `"tailwind.config.js"` | The path to your Tailwind config                                                                                          |
+| preset         | `string`  | `"emotion"`            | The css-in-js library behind the scenes - also supports 'styled-components' and 'goober'                                  |
+| hasSuggestions | `boolean` | `true`                 | Display class suggestions when a class can't be found                                                                     |
+| debugPlugins   | `boolean` | `false`                | Display generated class information in your terminal from your plugins                                                    |
+| debugProp      | `boolean` | `false`                | Add a prop to your elements in development so you can see the original tailwind classes, eg: `<div data-tw="bg-black" />` |
+| debug          | `boolean` | `false`                | Display information in your terminal about the Tailwind class conversions                                                 |
+
+If twin’s default `styled` and `css` imports need to be adjusted, you can do so with the following config:<br/>
 
 ```js
 {
@@ -193,18 +116,15 @@ If Twin's default `styled` and `css` imports need to be adjusted, you can do so 
 
 **Note:** Make sure you remove the `preset` option as that value disables the styled + css options.
 
-<hr />
+## Next steps
 
-</details>
+- See how to [customize your classes →](../customizing-config)
+- Learn how to use the styled-components library<br/>
+  The [css prop](https://styled-components.com/docs/api#css-prop) / [css import](https://styled-components.com/docs/api#css) / [styled import](https://styled-components.com/docs/api#styled)
 
-## Styled components resources
-
-- [The css prop](https://styled-components.com/docs/api#css-prop)
-- [The css import](https://styled-components.com/docs/api#css)
-- [The styled import](https://styled-components.com/docs/api#styled)
-
-## Other installation guides
+## Installation guides
 
 - ["Vanilla" React + Styled Components](react.md)
 - [Create React App + Styled Components](create-react-app.md)
 - [Gatsby + Styled Components](gatsby.md)
+- Next.js + Styled Components (current)
