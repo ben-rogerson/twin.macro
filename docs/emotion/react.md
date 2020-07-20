@@ -121,7 +121,7 @@ If twin’s default `styled` and `css` imports need to be adjusted, you can do s
 
 ## Next steps
 
-- See how to [customize your classes →](../customizing-config)
+- See how to [customize your classes →](../customizing-config.md)
 - Learn how to use the emotion library<br/>
   The [css prop](https://emotion.sh/docs/css-prop) / [css import](https://emotion.sh/docs/css-prop#string-styles) / [styled import](https://emotion.sh/docs/styled)
 

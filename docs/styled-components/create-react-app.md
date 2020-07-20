@@ -102,7 +102,7 @@ If twin’s default `styled` and `css` imports need to be adjusted, you can do s
 
 ## Next steps
 
-- See how to [customize your classes →](../customizing-config)
+- See how to [customize your classes →](../customizing-config.md)
 - Learn how to use the styled-components library<br/>
   The [css prop](https://styled-components.com/docs/api#css-prop) / [css import](https://styled-components.com/docs/api#css) / [styled import](https://styled-components.com/docs/api#styled)
 
