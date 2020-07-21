@@ -5,12 +5,24 @@ export interface TwStyle {
   [key: string]: string | number | TwStyle
 }
 
+export interface ThemeStyle {
+  [key: string]: string | number | ThemeStyle
+}
+
 export type TemplateFn<R> = (
   strings: Readonly<TemplateStringsArray>,
   ...values: readonly string[]
 ) => R
 
 export type TwFn = TemplateFn<TwStyle>
+
+export type ThemeSearchFn<R> = (...values: readonly string[]) => R
+export type ThemeSearchTaggedFn<R> = (
+  strings: Readonly<TemplateStringsArray>
+) => R
+
+export type ThemeFn = ThemeSearchFn<ThemeStyle> &
+  ThemeSearchTaggedFn<ThemeStyle>
 
 export type TwComponent<K extends keyof JSX.IntrinsicElements> = (
   props: JSX.IntrinsicElements[K]
@@ -36,3 +48,6 @@ declare global {
     }
   }
 }
+
+declare const theme: ThemeFn
+export { theme }

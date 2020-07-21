@@ -191,7 +191,14 @@ function replaceWithLocation(path, replacement) {
   return newPaths
 }
 
-const validImports = new Set(['default', 'styled', 'css', 'TwStyle'])
+const validImports = new Set([
+  'default',
+  'styled',
+  'css',
+  'theme',
+  'TwStyle',
+  'ThemeStyle',
+])
 const validateImports = imports => {
   const unsupportedImport = Object.keys(imports).find(
     reference => !validImports.has(reference)
@@ -206,7 +213,7 @@ const validateImports = imports => {
   })
   assert(unsupportedImport, () =>
     logGeneralError(
-      `Twin doesn't recognize { ${unsupportedImport} }\n\nTry one of these imports:\nimport tw, { styled, css } from 'twin.macro'`
+      `Twin doesn't recognize { ${unsupportedImport} }\n\nTry one of these imports:\nimport tw, { styled, css, theme } from 'twin.macro'`
     )
   )
 }
