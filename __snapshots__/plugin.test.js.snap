@@ -827,41 +827,22 @@ exports[`twin.macro !variants.js: !variants.js 1`] = `
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import tw from './macro'
 
-// Test all variants
+// Before/after pseudo elements
+tw\`before:content\`
+tw\`after:content\`
 
-tw\`group-hover:flex\`
-tw\`focus-within:flex\`
-tw\`first:flex\`
-tw\`last:flex\`
-tw\`odd:flex\`
-tw\`even:flex\`
+// Interactive links/buttons
 tw\`hover:flex\`
 tw\`focus:flex\`
 tw\`active:flex\`
 tw\`visited:flex\`
-tw\`disabled:flex\`
-
-const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
-
-// Native to Twin
-
-// Before/after
-tw\`before:content\`
-tw\`after:content\`
-
-// Of-type
-tw\`first-of-type:flex\`
-tw\`last-of-type:flex\`
-tw\`odd-of-type:flex\`
-tw\`even-of-type:flex\`
-
-// Interactive links/buttons
 tw\`hocus:flex\`
 tw\`link:flex\`
 tw\`target:flex\`
 tw\`focus-visible:flex\`
 
 // Form element states
+tw\`disabled:flex\`
 tw\`checked:flex\`
 tw\`not-checked:flex\`
 tw\`default:flex\`
@@ -875,57 +856,49 @@ tw\`placeholder-shown:flex\`
 tw\`read-only:flex\`
 tw\`read-write:flex\`
 
-// Not things
-tw\`not-first:flex\`
-tw\`not-last:flex\`
-tw\`not-only-child:flex\`
+// Child selectors
+tw\`first-of-type:flex\`
 tw\`not-first-of-type:flex\`
+tw\`last-of-type:flex\`
 tw\`not-last-of-type:flex\`
-tw\`not-only-of-type:flex\`
-
-// Only things
+tw\`first:flex\`
+tw\`not-first:flex\`
+tw\`last:flex\`
+tw\`not-last:flex\`
 tw\`only-child:flex\`
+tw\`not-only-child:flex\`
 tw\`only-of-type:flex\`
+tw\`not-only-of-type:flex\`
+tw\`even:flex\`
+tw\`odd:flex\`
+tw\`odd-of-type:flex\`
+tw\`even-of-type:flex\`
 
 // Group states
+tw\`group-hover:flex\`
+tw\`group-focus:flex\`
 tw\`group-hocus:flex\`
 tw\`group-active:flex\`
 tw\`group-visited:flex\`
+tw\`focus-within:flex\`
+
+const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
-// Test all variants
+// Before/after pseudo elements
 ;({
-  '.group:hover &': {
-    display: 'flex',
+  ':before': {
+    content: '""',
   },
 })
 ;({
-  ':focus-within': {
-    display: 'flex',
+  ':after': {
+    content: '""',
   },
-})
-;({
-  ':first-child': {
-    display: 'flex',
-  },
-})
-;({
-  ':last-child': {
-    display: 'flex',
-  },
-})
-;({
-  ':nth-child(odd)': {
-    display: 'flex',
-  },
-})
-;({
-  ':nth-child(even)': {
-    display: 'flex',
-  },
-})
+}) // Interactive links/buttons
+
 ;({
   ':hover': {
     display: 'flex',
@@ -947,63 +920,6 @@ tw\`group-visited:flex\`
   },
 })
 ;({
-  ':disabled': {
-    display: 'flex',
-  },
-})
-const multiVariants = {
-  ':first-child': {
-    '@media (min-width: 768px)': {
-      display: 'block',
-    },
-  },
-  '@media (min-width: 640px)': {
-    ':disabled': {
-      display: 'flex',
-    },
-  },
-  '@media (min-width: 1280px)': {
-    '::placeholder': {
-      '--placeholder-opacity': '1',
-      color: 'rgba(245, 101, 101, var(--placeholder-opacity)) !important',
-    },
-  },
-} // Native to Twin
-// Before/after
-
-;({
-  ':before': {
-    content: '""',
-  },
-})
-;({
-  ':after': {
-    content: '""',
-  },
-}) // Of-type
-
-;({
-  ':first-of-type': {
-    display: 'flex',
-  },
-})
-;({
-  ':last-of-type': {
-    display: 'flex',
-  },
-})
-;({
-  ':nth-of-type(odd)': {
-    display: 'flex',
-  },
-})
-;({
-  ':nth-of-type(even)': {
-    display: 'flex',
-  },
-}) // Interactive links/buttons
-
-;({
   ':hover, :focus': {
     display: 'flex',
   },
@@ -1024,6 +940,11 @@ const multiVariants = {
   },
 }) // Form element states
 
+;({
+  ':disabled': {
+    display: 'flex',
+  },
+})
 ;({
   ':checked': {
     display: 'flex',
@@ -1083,20 +1004,10 @@ const multiVariants = {
   ':read-write': {
     display: 'flex',
   },
-}) // Not things
+}) // Child selectors
 
 ;({
-  ':not(:first-child)': {
-    display: 'flex',
-  },
-})
-;({
-  ':not(:last-child)': {
-    display: 'flex',
-  },
-})
-;({
-  ':not(:only-child)': {
+  ':first-of-type': {
     display: 'flex',
   },
 })
@@ -1106,18 +1017,42 @@ const multiVariants = {
   },
 })
 ;({
+  ':last-of-type': {
+    display: 'flex',
+  },
+})
+;({
   ':not(:last-of-type)': {
     display: 'flex',
   },
 })
 ;({
-  ':not(:only-of-type)': {
+  ':first-child': {
     display: 'flex',
   },
-}) // Only things
-
+})
+;({
+  ':not(:first-child)': {
+    display: 'flex',
+  },
+})
+;({
+  ':last-child': {
+    display: 'flex',
+  },
+})
+;({
+  ':not(:last-child)': {
+    display: 'flex',
+  },
+})
 ;({
   ':only-child': {
+    display: 'flex',
+  },
+})
+;({
+  ':not(:only-child)': {
     display: 'flex',
   },
 })
@@ -1125,8 +1060,43 @@ const multiVariants = {
   ':only-of-type': {
     display: 'flex',
   },
+})
+;({
+  ':not(:only-of-type)': {
+    display: 'flex',
+  },
+})
+;({
+  ':nth-child(even)': {
+    display: 'flex',
+  },
+})
+;({
+  ':nth-child(odd)': {
+    display: 'flex',
+  },
+})
+;({
+  ':nth-of-type(odd)': {
+    display: 'flex',
+  },
+})
+;({
+  ':nth-of-type(even)': {
+    display: 'flex',
+  },
 }) // Group states
 
+;({
+  '.group:hover &': {
+    display: 'flex',
+  },
+})
+;({
+  '.group:focus &': {
+    display: 'flex',
+  },
+})
 ;({
   '.group:hover &, .group:focus &': {
     display: 'flex',
@@ -1142,6 +1112,29 @@ const multiVariants = {
     display: 'flex',
   },
 })
+;({
+  ':focus-within': {
+    display: 'flex',
+  },
+})
+const multiVariants = {
+  ':first-child': {
+    '@media (min-width: 768px)': {
+      display: 'block',
+    },
+  },
+  '@media (min-width: 640px)': {
+    ':disabled': {
+      display: 'flex',
+    },
+  },
+  '@media (min-width: 1280px)': {
+    '::placeholder': {
+      '--placeholder-opacity': '1',
+      color: 'rgba(245, 101, 101, var(--placeholder-opacity)) !important',
+    },
+  },
+}
 
 
 `;

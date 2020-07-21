@@ -7,48 +7,25 @@
  */
 
 export default {
-  /**
-   * Tailwind default variants
-   */
-  hover: ':hover',
-  focus: ':focus',
-  active: ':active',
-  visited: ':visited',
-  disabled: ':disabled',
-  first: ':first-child',
-  last: ':last-child',
-  odd: ':nth-child(odd)',
-  even: ':nth-child(even)',
-  // Group states
-  // Add className="group" to an ancestor and add these on the children
-  // https://github.com/ben-rogerson/twin.macro/blob/master/docs/group.md
-  'group-hover': '.group:hover &',
-  'group-focus': '.group:focus &',
-  'focus-within': ':focus-within',
-
-  /**
-   * Twin variants
-   */
-
   // Before/after pseudo elements
   // Usage: tw`before:content before:bg-black`
   before: ':before',
   after: ':after',
 
-  // Of-type
-  'first-of-type': ':first-of-type',
-  'last-of-type': ':last-of-type',
-  'odd-of-type': ':nth-of-type(odd)',
-  'even-of-type': ':nth-of-type(even)',
-
   // Interactive links/buttons
+  hover: ':hover', // Tailwind
+  focus: ':focus', // Tailwind
+  active: ':active', // Tailwind
+  visited: ':visited', // Tailwind
   hocus: ':hover, :focus',
   link: ':link',
   target: ':target',
-  'focus-visible': ':focus-visible',
+  'focus-visible': ':focus-visible', // Tailwind
+  'focus-within': ':focus-within', // Tailwind
 
   // Form element states
-  checked: ':checked',
+  disabled: ':disabled', // Tailwind
+  checked: ':checked', // Tailwind
   'not-checked': ':not(:checked)',
   default: ':default',
   enabled: ':enabled',
@@ -61,21 +38,29 @@ export default {
   'read-only': ':read-only',
   'read-write': ':read-write',
 
-  // Not things
-  'not-first': ':not(:first-child)',
-  'not-last': ':not(:last-child)',
-  'not-only-child': ':not(:only-child)',
+  // Child selectors
+  'first-of-type': ':first-of-type',
   'not-first-of-type': ':not(:first-of-type)',
+  'last-of-type': ':last-of-type',
   'not-last-of-type': ':not(:last-of-type)',
-  'not-only-of-type': ':not(:only-of-type)',
-
-  // Only things
+  first: ':first-child', // Tailwind
+  'not-first': ':not(:first-child)',
+  last: ':last-child', // Tailwind
+  'not-last': ':not(:last-child)',
   'only-child': ':only-child',
+  'not-only-child': ':not(:only-child)',
   'only-of-type': ':only-of-type',
+  'not-only-of-type': ':not(:only-of-type)',
+  even: ':nth-child(even)', // Tailwind
+  odd: ':nth-child(odd)', // Tailwind
+  'even-of-type': ':nth-of-type(even)',
+  'odd-of-type': ':nth-of-type(odd)',
 
   // Group states
   // Add className="group" to an ancestor and add these on the children
   // https://github.com/ben-rogerson/twin.macro/blob/master/docs/group.md
+  'group-hover': '.group:hover &', // Tailwind
+  'group-focus': '.group:focus &', // Tailwind
   'group-hocus': '.group:hover &, .group:focus &',
   'group-active': '.group:active &',
   'group-visited': '.group:visited &',
