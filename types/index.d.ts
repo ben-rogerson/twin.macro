@@ -1,5 +1,4 @@
-/* eslint-disable-next-line import/no-unassigned-import */
-import 'react'
+import { ComponentType } from 'react'
 
 export interface TwStyle {
   [key: string]: string | number | TwStyle
@@ -32,7 +31,12 @@ export type TwComponentMap = {
   [K in keyof JSX.IntrinsicElements]: TemplateFn<TwComponent<K>>
 }
 
-declare const tw: TwFn & TwComponentMap
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+type TwComponentWrapper = <T extends ComponentType<any>>(
+  component: T
+) => TemplateFn<T>
+
+declare const tw: TwFn & TwComponentMap & TwComponentWrapper
 export default tw
 
 declare module 'react' {
