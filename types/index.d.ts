@@ -1,4 +1,3 @@
-/* eslint-disable-next-line import/no-unassigned-import */
 import { ComponentType } from 'react'
 
 export interface TwStyle {
