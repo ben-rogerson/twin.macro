@@ -3,10 +3,16 @@ import { assert, isEmpty, getProperties, getTheme } from './utils'
 import getPieces from './utils/getPieces'
 import { astify } from './macroHelpers'
 import doPrechecks, { precheckGroup } from './prechecks'
-import { logGeneralError, errorSuggestions, debug } from './logging'
+import {
+  logGeneralError,
+  errorSuggestions,
+  logNotFoundVariant,
+  logNotFoundClass,
+  debug,
+} from './logging'
 import { orderByScreens } from './screens'
 import applyTransforms from './transforms'
-import { addVariants } from './variants'
+import { addVariants, handleVariantGroups } from './variants'
 import {
   handleUserPlugins,
   handleCorePlugins,
@@ -22,10 +28,13 @@ export default (classes, t, state) => {
   )
 
   // Strip pipe dividers " | "
-  const classesNoPipe = classes.replace(/ \| /g, ' ')
+  classes = classes.replace(/ \| /g, ' ')
+
+  // Unwrap grouped variants
+  classes = handleVariantGroups(classes)
 
   // Move and sort the responsive items to the end of the list
-  const classesOrdered = orderByScreens(classesNoPipe, state)
+  const classesOrdered = orderByScreens(classes, state)
 
   const theme = getTheme(state.config.theme)
 
@@ -37,11 +46,7 @@ export default (classes, t, state) => {
     const { className, hasVariants } = pieces
 
     assert(!className, () =>
-      logGeneralError(
-        hasVariants
-          ? `"${classNameRaw}" needs a class added on the end`
-          : 'That class was not found'
-      )
+      hasVariants ? logNotFoundVariant({ classNameRaw }) : logNotFoundClass
     )
 
     const {
