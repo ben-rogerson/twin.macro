@@ -363,7 +363,7 @@ exports[`twin.macro !imports.js: !imports.js 1`] = `
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
-import tw, { styled, css } from './macro'
+import tw, { theme, styled, css } from './macro'
 
 const twPropertyTest = <div tw="text-purple-500" />
 
@@ -384,6 +384,30 @@ const styledFunctionTest = styled.div\`
     background-color: purple;
   \`}
 \`
+
+const themeObjectPurple = (
+  <input css={css({ color: theme\`colors.purple.500\` })} />
+)
+
+const themeStringFont = (
+  <input
+    css={css\`
+      fontfamily: \${theme\`fontFamily.sans\`};
+    \`}
+  />
+)
+
+const themeFunctionObjectPurple = (
+  <input css={css({ color: theme('colors.black') })} />
+)
+
+const themeFunctionStringHeight = (
+  <input
+    css={css\`
+      height: \${theme('height.24')};
+    \`}
+  />
+)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -423,6 +447,34 @@ const styledFunctionTest = _styled.div\`
     background-color: purple;
   \`}
 \`
+const themeObjectPurple = (
+  <input
+    css={_css({
+      color: '#9f7aea',
+    })}
+  />
+)
+const themeStringFont = (
+  <input
+    css={_css\`
+      fontfamily: \${'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'};
+    \`}
+  />
+)
+const themeFunctionObjectPurple = (
+  <input
+    css={_css({
+      color: '#000',
+    })}
+  />
+)
+const themeFunctionStringHeight = (
+  <input
+    css={_css\`
+      height: \${'6rem'};
+    \`}
+  />
+)
 
 
 `;

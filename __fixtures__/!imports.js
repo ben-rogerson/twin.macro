@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
-import tw, { styled, css } from './macro'
+import tw, { theme, styled, css } from './macro'
 
 const twPropertyTest = <div tw="text-purple-500" />
 
@@ -21,3 +21,27 @@ const styledFunctionTest = styled.div`
     background-color: purple;
   `}
 `
+
+const themeObjectPurple = (
+  <input css={css({ color: theme`colors.purple.500` })} />
+)
+
+const themeStringFont = (
+  <input
+    css={css`
+      fontfamily: ${theme`fontFamily.sans`};
+    `}
+  />
+)
+
+const themeFunctionObjectPurple = (
+  <input css={css({ color: theme('colors.black') })} />
+)
+
+const themeFunctionStringHeight = (
+  <input
+    css={css`
+      height: ${theme('height.24')};
+    `}
+  />
+)
