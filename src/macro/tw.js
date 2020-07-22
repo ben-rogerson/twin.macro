@@ -1,7 +1,8 @@
 import { parseTte, replaceWithLocation } from './../macroHelpers'
 import { assert } from './../utils'
 import { logGeneralError } from './../logging'
-import addDebugProperty from './debug'
+/* eslint-disable-next-line unicorn/prevent-abbreviations */
+import { addDebugPropToPath, addDebugPropToExistingPath } from './debug'
 import getStyles from './../getStyles'
 
 const handleTwProperty = ({ program, t, state }) =>
@@ -28,9 +29,8 @@ const handleTwProperty = ({ program, t, state }) =>
       const rawClasses = expressionValue || nodeValue.value || ''
       const styles = getStyles(rawClasses, t, state)
 
-      const attributes = path
-        .findParent(p => p.isJSXOpeningElement())
-        .get('attributes')
+      const jsxPath = path.findParent(p => p.isJSXOpeningElement())
+      const attributes = jsxPath.get('attributes')
       const cssAttributes = attributes.filter(
         p => p.node.name && p.node.name.name === 'css'
       )
@@ -39,10 +39,26 @@ const handleTwProperty = ({ program, t, state }) =>
         path.remove()
         const expr = cssAttributes[0].get('value').get('expression')
         if (expr.isArrayExpression()) {
+          // TODO: unshiftContainer could also be supported here so we can
+          // preserve the original position of the css prop.
+          // But it would break the specificity of existing css+tw combinations.
           expr.pushContainer('elements', styles)
         } else {
+          assert(!expr.node, () =>
+            logGeneralError(
+              `An empty css prop (css="") isn’t supported alongside the tw prop (tw="...")`
+            )
+          )
           expr.replaceWith(t.arrayExpression([expr.node, styles]))
         }
+
+        addDebugPropToExistingPath({
+          t,
+          attributes,
+          rawClasses,
+          path: jsxPath,
+          state,
+        })
       } else {
         path.replaceWith(
           t.jsxAttribute(
@@ -50,9 +66,8 @@ const handleTwProperty = ({ program, t, state }) =>
             t.jsxExpressionContainer(styles)
           )
         )
+        addDebugPropToPath({ t, attributes, rawClasses, path, state })
       }
-
-      addDebugProperty({ t, attributes, rawClasses, path, state })
     },
   })
 
