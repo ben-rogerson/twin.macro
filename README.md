@@ -133,6 +133,8 @@ import { theme, css } from 'twin.macro'
 const Input = () => <input css={css({ color: theme`colors.purple.500` })} />
 ```
 
+See more examples [using the theme import →](https://github.com/ben-rogerson/twin.macro/pull/106)
+
 **💥 Add important to any class with a trailing bang!**
 
 ```js
