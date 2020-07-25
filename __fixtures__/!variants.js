@@ -56,4 +56,8 @@ tw`group-active:flex`
 tw`group-visited:flex`
 tw`focus-within:flex`
 
+// Motion control
+tw`motion-safe:flex`
+tw`motion-reduce:flex`
+
 const multiVariants = tw`xl:placeholder-red-500! first:md:block sm:disabled:flex`

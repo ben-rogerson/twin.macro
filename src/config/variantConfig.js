@@ -64,4 +64,9 @@ export default {
   'group-hocus': '.group:hover &, .group:focus &',
   'group-active': '.group:active &',
   'group-visited': '.group:visited &',
+
+  // Motion control
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
+  'motion-safe': '@media (prefers-reduced-motion: no-preference)',
+  'motion-reduce': '@media (prefers-reduced-motion: reduce)',
 }
