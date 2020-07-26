@@ -4,6 +4,9 @@ export default {
    * Layout
    */
 
+  // https://tailwindcss.com/docs/animation
+  animate: { plugin: 'animation' },
+
   // https://tailwindcss.com/docs/container
   container: { plugin: 'container' },
 

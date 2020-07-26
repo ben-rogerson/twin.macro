@@ -2173,6 +2173,39 @@ tw\`not-sr-only\`
 
 `;
 
+exports[`twin.macro animation.js: animation.js 1`] = `
+
+import tw from './macro'
+
+// https://tailwindcss.com/docs/animation
+tw\`animate-none\`
+tw\`animate-spin\`
+tw\`animate-ping\`
+tw\`animate-pulse\`
+tw\`animate-bounce\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// https://tailwindcss.com/docs/animation
+;({
+  animation: 'none',
+})
+;({
+  animation: 'spin 1s linear infinite',
+})
+;({
+  animation: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
+})
+;({
+  animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+})
+;({
+  animation: 'bounce 1s infinite',
+})
+
+
+`;
+
 exports[`twin.macro backgrounds.js: backgrounds.js 1`] = `
 
 import tw from './macro'
