@@ -102,17 +102,10 @@ You can adjust which imports `styled` and `css` use with the following config:
 
 ## Next steps
 
-- [Customize your classes](../customizing-config.md)
-- [Learn about using the css prop](../css-prop-guide.md)
-- [Learn about using the styled import](../styled-import-guide.md)
+- [Customize your config](../customizing-config.md)
+- [Styling with the css prop](../css-prop-guide.md)
+- [Styling with the styled import](../styled-import-guide.md)
 - [CRA + Styled Components + Tailwind Twin starter](https://codesandbox.io/embed/react-tailwind-styled-components-starter-f87y7?module=%2Fsrc%2FApp.js)
-
-### Installation guides
-
-- ["Vanilla" React + Styled Components](react.md)
-- Create React App + Styled Components (current)
-- [Gatsby + Styled Components](gatsby.md)
-- [Next.js + Styled Components](next.md)
 
 ### Official resources
 

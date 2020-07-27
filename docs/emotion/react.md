@@ -121,13 +121,13 @@ If twin’s default `styled` and `css` imports need to be adjusted, you can do s
 
 ## Next steps
 
-- See how to [customize your classes →](../customizing-config.md)
-- Learn how to use the emotion library<br/>
-  The [css prop](https://emotion.sh/docs/css-prop) / [css import](https://emotion.sh/docs/css-prop#string-styles) / [styled import](https://emotion.sh/docs/styled)
+- [Customize your config](../customizing-config.md)
+- [Styling with the css prop](../css-prop-guide.md)
+- [Styling with the styled import](../styled-import-guide.md)
+- [React + Emotion + Tailwind Twin starter](https://codesandbox.io/embed/react-tailwind-emotion-starter-3d1dl?module=%2Fsrc%2FApp.js)
 
-## Installation guides
+### Official resources
 
-- "Vanilla" React + Emotion (current)
-- [Create React App + Emotion](create-react-app.md)
-- [Gatsby + Emotion](gatsby.md)
-- [Next.js + Emotion](next.md)
+- [Emotion: The css prop](https://emotion.sh/docs/css-prop)
+- [Emotion: The css import](https://emotion.sh/docs/css-prop#string-styles)
+- [Emotion: The styled import](https://emotion.sh/docs/styled)

@@ -118,17 +118,10 @@ If twin’s default `styled` and `css` imports need to be adjusted, you can do s
 
 ## Next steps
 
-- [Customize your classes](../customizing-config.md)
-- [Learn about using the css prop](../css-prop-guide.md)
-- [Learn about using the styled import](../styled-import-guide.md)
+- [Customize your config](../customizing-config.md)
+- [Styling with the css prop](../css-prop-guide.md)
+- [Styling with the styled import](../styled-import-guide.md)
 - [Next + Styled Component + Tailwind Twin starter](https://codesandbox.io/embed/next-tailwind-styled-components-starter-m1f6d?module=%2Fpages%2Findex.js)
-
-### Installation guides
-
-- ["Vanilla" React + Styled Components](react.md)
-- [Create React App + Styled Components](create-react-app.md)
-- [Gatsby + Styled Components](gatsby.md)
-- Next.js + Styled Components (current)
 
 ### Official resources
 

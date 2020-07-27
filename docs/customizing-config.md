@@ -1,4 +1,4 @@
-# Customizing the Tailwind config
+# Customizing your Tailwind config
 
 For style customizations, add a `tailwind.config.js` in your project root (or in `src` if you’re using create-react-app).
 
@@ -28,14 +28,17 @@ Choose from one of the following configs:
   curl https://raw.githubusercontent.com/tailwindcss/tailwindcss/master/stubs/defaultConfig.stub.js > tailwind.config.js
   ```
 
-  In the config, twin only reads from the `theme: {}` and the `plugins: []` entries, so strip the rest.
+  In the config, twin only reads from the `theme: {}` and the `plugins: []` entries, so you can strip the rest.
+
+Read the official [Tailwind theme docs](https://tailwindcss.com/docs/theme) for more information.
 
 ## Plugins
 
-You can use many Tailwind plugins with twin, like [Tailwind UI](https://tailwindui.com/components) and [Custom forms](https://github.com/tailwindcss/custom-forms) but there’s no compatibility with other plugins that use the `addVariant` or `addBase` functions.
+You can use Tailwind plugins like [Tailwind UI](https://tailwindui.com/components) and [Custom forms](https://github.com/tailwindcss/custom-forms) but there’s no compatibility with other plugins that use the `addVariant` or `addBase` functions.
 
 Check out the [list of supported plugins →](https://twin-docs.netlify.app/plugin-support)
 
-## Resources
+## Next steps
 
-- Official [Tailwind theme docs](https://tailwindcss.com/docs/theme)
+- [Styling with the css prop](../css-prop-guide.md)
+- [Styling with the styled import](../styled-import-guide.md)
