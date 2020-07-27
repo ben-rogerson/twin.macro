@@ -114,7 +114,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
 
   // Auto add css prop for styled components
   if (
-    state.hasTwProp &&
+    (state.hasTwProp || state.hasCssProp) &&
     config.autoCssProp === true &&
     cssImport.from.includes('styled-components')
   ) {

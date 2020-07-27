@@ -8,6 +8,9 @@ import getStyles from './../getStyles'
 const handleTwProperty = ({ program, t, state }) =>
   program.traverse({
     JSXAttribute(path) {
+      if (path.node.name.name === 'css') state.hasCssProp = true
+      // TODO: Add tw-prop for css attributes
+
       if (path.node.name.name !== 'tw') return
       state.hasTwProp = true
 
