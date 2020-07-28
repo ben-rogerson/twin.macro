@@ -1880,6 +1880,10 @@ tw\`group-active:flex\`
 tw\`group-visited:flex\`
 tw\`focus-within:flex\`
 
+// Motion control
+tw\`motion-safe:flex\`
+tw\`motion-reduce:flex\`
+
 const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -2112,6 +2116,17 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
 })
 ;({
   ':focus-within': {
+    display: 'flex',
+  },
+}) // Motion control
+
+;({
+  '@media (prefers-reduced-motion: no-preference)': {
+    display: 'flex',
+  },
+})
+;({
+  '@media (prefers-reduced-motion: reduce)': {
     display: 'flex',
   },
 })
