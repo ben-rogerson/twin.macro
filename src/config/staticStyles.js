@@ -516,6 +516,17 @@ export default {
     config: 'accessibility',
   },
 
+  // Overscroll
+  'overscroll-auto': { output: { 'overscroll-behavior': 'auto' } },
+  'overscroll-contain': { output: { 'overscroll-behavior': 'contain' } },
+  'overscroll-none': { output: { 'overscroll-behavior': 'none' } },
+  'overscroll-y-auto': { output: { 'overscroll-behavior-y': 'auto' } },
+  'overscroll-y-contain': { output: { 'overscroll-behavior-y': 'contain' } },
+  'overscroll-y-none': { output: { 'overscroll-behavior-y': 'none' } },
+  'overscroll-x-auto': { output: { 'overscroll-behavior-x': 'auto' } },
+  'overscroll-x-contain': { output: { 'overscroll-behavior-x': 'contain' } },
+  'overscroll-x-none': { output: { 'overscroll-behavior-x': 'none' } },
+
   /**
    * ===========================================
    * Special classes

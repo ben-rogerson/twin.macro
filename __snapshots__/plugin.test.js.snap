@@ -6638,6 +6638,53 @@ tw\`space-y-12 -space-y-reverse\`
 
 `;
 
+exports[`twin.macro overscroll.js: overscroll.js 1`] = `
+
+import tw from './macro'
+
+tw\`overscroll-auto\`
+tw\`overscroll-contain\`
+tw\`overscroll-none\`
+tw\`overscroll-y-auto\`
+tw\`overscroll-y-contain\`
+tw\`overscroll-y-none\`
+tw\`overscroll-x-auto\`
+tw\`overscroll-x-contain\`
+tw\`overscroll-x-none\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+;({
+  'overscroll-behavior': 'auto',
+})
+;({
+  'overscroll-behavior': 'contain',
+})
+;({
+  'overscroll-behavior': 'none',
+})
+;({
+  'overscroll-behavior-y': 'auto',
+})
+;({
+  'overscroll-behavior-y': 'contain',
+})
+;({
+  'overscroll-behavior-y': 'none',
+})
+;({
+  'overscroll-behavior-x': 'auto',
+})
+;({
+  'overscroll-behavior-x': 'contain',
+})
+;({
+  'overscroll-behavior-x': 'none',
+})
+
+
+`;
+
 exports[`twin.macro sizing.js: sizing.js 1`] = `
 
 import tw from './macro'
