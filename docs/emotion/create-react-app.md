@@ -45,7 +45,7 @@ a) In your `package.json`:
 // package.json
 "babelMacros": {
     "twin": {
-      "config": "src/tailwind.config.js",
+      "config": "tailwind.config.js",
       "preset": "emotion",
       "debugProp": true,
       "debugPlugins": false,
@@ -60,7 +60,7 @@ b) Or in a new file named `babel-plugin-macros.config.js` placed in your project
 // babel-plugin-macros.config.js
 module.exports = {
   twin: {
-    config: 'src/tailwind.config.js',
+    config: 'tailwind.config.js',
     preset: 'emotion',
     debugProp: true,
     debugPlugins: false,
@@ -79,7 +79,7 @@ While twin comes with types for the tw import, you’ll need to add the types fo
 
 | Name           | Type      | Default                | Description                                                                                                               |
 | -------------- | --------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| config         | `string`  | `"tailwind.config.js"` | The path to your Tailwind config. (Set to `src/tailwind.config.js` in create-react-app)                                   |
+| config         | `string`  | `"tailwind.config.js"` | The path to your Tailwind config                                                                                          |
 | preset         | `string`  | `"emotion"`            | The css-in-js library behind the scenes - also supports 'styled-components' and 'goober'                                  |
 | hasSuggestions | `boolean` | `true`                 | Display class suggestions when a class can't be found                                                                     |
 | debugPlugins   | `boolean` | `false`                | Display generated class information in your terminal from your plugins                                                    |

@@ -45,7 +45,7 @@ a) In your `package.json`:
 // package.json
 "babelMacros": {
     "twin": {
-      "config": "src/tailwind.config.js",
+      "config": "tailwind.config.js",
       "preset": "styled-components",
       "autoCssProp": true,
       "debugProp": true,
@@ -61,7 +61,7 @@ b) Or in a new file named `babel-plugin-macros.config.js` placed in your project
 // babel-plugin-macros.config.js
 module.exports = {
   twin: {
-    config: 'src/tailwind.config.js',
+    config: 'tailwind.config.js',
     preset: 'styled-components',
     autoCssProp: true,
     debugProp: true,
@@ -81,7 +81,7 @@ While twin comes with types for the tw import, you’ll need to add the types fo
 
 | Name           | Type      | Default                | Description                                                                                                                                                                                                              |
 | -------------- | --------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| config         | `string`  | `"tailwind.config.js"` | The path to your Tailwind config. (Set it to `src/tailwind.config.js` in create-react-app)                                                                                                                               |
+| config         | `string`  | `"tailwind.config.js"` | The path to your Tailwind config                                                                                                                                                                                         |
 | preset         | `string`  | `"emotion"`            | The css-in-js library behind the scenes - also supports 'styled-components' and 'goober'                                                                                                                                 |
 | autoCssProp    | `boolean` | `false`                | This code automates the import of 'styled-components/macro' so you can use their css prop. Enable it if you're using styled-components with CRA or Vanilla React. If you're using Emotion, setting to true does nothing. |
 | hasSuggestions | `boolean` | `true`                 | Display class suggestions when a class can't be found                                                                                                                                                                    |
