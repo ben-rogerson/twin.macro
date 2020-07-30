@@ -51,7 +51,7 @@ Update your `tsconfig.json` file with your new type file location:
 ```typescript
 // tsconfig.json
 {
-  "files": ["twin.d.ts"]
+  "files": ["twin.d.ts"],
   // or
   "include": ["twin.d.ts"],
 }
@@ -60,7 +60,7 @@ Update your `tsconfig.json` file with your new type file location:
 You can now use the following imports in TypeScript:
 
 ```typescript
-import tw, { css, styled } from 'twin.macro'
+import tw, { css, styled, theme } from 'twin.macro'
 ```
 
 ## Installation guides
