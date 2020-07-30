@@ -49,7 +49,7 @@ const App = ({ Component, pageProps }) => <Component {...pageProps} />
 export default App
 ```
 
-### 5. Add the recommended config
+### 4. Add the recommended config
 
 Twin’s recommended config can be added in a couple of different places.
 
@@ -83,7 +83,7 @@ module.exports = {
 }
 ```
 
-### 6. Complete the TypeScript support (optional)
+### 5. Complete the TypeScript support (optional)
 
 While twin comes with types for the tw import, you’ll need to add the types for the `css` and `styled` imports.
 

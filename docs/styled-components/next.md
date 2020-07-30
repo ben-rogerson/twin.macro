@@ -94,6 +94,42 @@ While twin comes with types for the tw import, you’ll need to add the types fo
 
 [Read how to add the remaining types →](typescript.md)
 
+### 6. Add the server stylesheet (optional)
+
+To avoid the ugly Flash Of Unstyled Content (FOUC), add a server stylesheet in `pages/_document.js` that gets read by Next.js:
+
+```js
+// pages/_document.js
+import Document from 'next/document'
+import { ServerStyleSheet } from 'styled-components'
+
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    const sheet = new ServerStyleSheet()
+    const originalRenderPage = ctx.renderPage
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+        })
+      const initialProps = await Document.getInitialProps(ctx)
+
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      }
+    } finally {
+      sheet.seal()
+    }
+  }
+}
+```
+
 ## Options
 
 | Name           | Type      | Default                | Description                                                                                                               |
