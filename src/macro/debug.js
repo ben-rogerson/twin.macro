@@ -24,13 +24,27 @@ const addDebugPropToExistingPath = ({
 }) => {
   if (state.isProd || !state.debugProp) return
 
-  // Remove the existing debug attribute if you happen to have it
-  const debugProperty = attributes.filter(
+  // Append to the existing debug attribute
+  const debugProperty = attributes.find(
+    // TODO: Use @babel/plugin-proposal-optional-chaining
     p => p.node && p.node.name && p.node.name.name === 'data-tw'
   )
-  debugProperty.forEach(path => path.remove())
+  if (debugProperty) {
+    try {
+      // Existing data-tw
+      if (debugProperty.node.value.value) {
+        debugProperty.node.value.value = `${debugProperty.node.value.value} | ${rawClasses}`
+        return
+      }
 
-  // Add the attribute
+      // New data-tw
+      debugProperty.node.value.expression.value = `${debugProperty.node.value.expression.value} | ${rawClasses}`
+    } catch (_) {}
+
+    return
+  }
+
+  // Add a new attribute
   path.pushContainer(
     'attributes',
     t.jSXAttribute(

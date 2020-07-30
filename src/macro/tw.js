@@ -9,7 +9,6 @@ const handleTwProperty = ({ program, t, state }) =>
   program.traverse({
     JSXAttribute(path) {
       if (path.node.name.name === 'css') state.hasCssProp = true
-      // TODO: Add tw-prop for css attributes
 
       if (path.node.name.name !== 'tw') return
       state.hasTwProp = true
@@ -89,6 +88,17 @@ const handleTwFunction = ({ references, state, t }) => {
     if (!parsed) return
 
     const rawClasses = parsed.string
+
+    // Add tw-prop for css attributes
+    const jsxPath = path.findParent(p => p.isJSXOpeningElement())
+    const attributes = jsxPath.get('attributes')
+    addDebugPropToExistingPath({
+      t,
+      attributes,
+      rawClasses,
+      path: jsxPath,
+      state,
+    })
 
     replaceWithLocation(parsed.path, getStyles(rawClasses, t, state))
   })
