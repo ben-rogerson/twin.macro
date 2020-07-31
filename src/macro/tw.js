@@ -91,14 +91,16 @@ const handleTwFunction = ({ references, state, t }) => {
 
     // Add tw-prop for css attributes
     const jsxPath = path.findParent(p => p.isJSXOpeningElement())
-    const attributes = jsxPath.get('attributes')
-    addDebugPropToExistingPath({
-      t,
-      attributes,
-      rawClasses,
-      path: jsxPath,
-      state,
-    })
+    if (jsxPath) {
+      const attributes = jsxPath.get('attributes')
+      addDebugPropToExistingPath({
+        t,
+        attributes,
+        rawClasses,
+        path: jsxPath,
+        state,
+      })
+    }
 
     replaceWithLocation(parsed.path, getStyles(rawClasses, t, state))
   })
