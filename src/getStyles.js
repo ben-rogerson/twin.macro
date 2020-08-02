@@ -1,7 +1,6 @@
 import deepMerge from 'lodash.merge'
 import { assert, isEmpty, getProperties, getTheme } from './utils'
 import getPieces from './utils/getPieces'
-import { astify } from './macroHelpers'
 import doPrechecks, { precheckGroup } from './prechecks'
 import {
   logGeneralError,
@@ -20,7 +19,7 @@ import {
   handleDynamic,
 } from './handlers'
 
-export default (classes, t, state) => {
+export default (classes, state) => {
   assert([null, 'null', undefined].includes(classes), () =>
     logGeneralError(
       'Only plain strings can be used with "tw".\nRead more at https://github.com/ben-rogerson/twin.macro/issues/17'
@@ -105,5 +104,5 @@ export default (classes, t, state) => {
     return result
   }, {})
 
-  return astify(isEmpty(styles) ? {} : styles, t)
+  return isEmpty(styles) ? {} : styles
 }

@@ -1,11 +1,41 @@
-import { parseTte, replaceWithLocation } from './../macroHelpers'
-import { assert } from './../utils'
-import { logGeneralError } from './../logging'
+import { parseTte, replaceWithLocation, astify } from './../macroHelpers'
+import { assert, isEmpty } from './../utils'
+import { logErrorGood, logGeneralError } from './../logging'
 /* eslint-disable-next-line unicorn/prevent-abbreviations */
 import { addDebugPropToPath, addDebugPropToExistingPath } from './debug'
 import getStyles from './../getStyles'
+import { updateCssReferences } from './../macro/css'
 
-const handleTwProperty = ({ program, t, state }) =>
+const setValueByNodeType = type =>
+  ({
+    StringLiteral: (node, state) => {
+      node.value = getStyles(node.value, state)
+    },
+    TemplateLiteral: (node, state) => {
+      const styles = getStyles(node.quasis[0].value.raw, state)
+      // Convert node to a stringLiteral
+      node.value = styles
+      node.type = 'StringLiteral'
+      // Clean up data from old node type
+      delete node.quasis
+      delete node.expressions
+    },
+    LogicalExpression: (node, state, t) =>
+      setValueByNodeType(node.right.type)(node.right, state, t),
+    ConditionalExpression: (node, state, t) => [
+      setValueByNodeType(node.consequent.type)(node.consequent, state, t),
+      setValueByNodeType(node.alternate.type)(node.alternate, state, t),
+    ],
+    NullLiteral: () => null,
+  }[type] || (() => ({})))
+
+const convertTwArrayElements = (elements, state, t) => {
+  if (elements.length === 0) return
+
+  elements.map(node => setValueByNodeType(node.type)(node, state, t))
+}
+
+const handleTwProperty = ({ program, state, t }) =>
   program.traverse({
     JSXAttribute(path) {
       if (path.node.name.name === 'css') state.hasCssProp = true
@@ -15,22 +45,39 @@ const handleTwProperty = ({ program, t, state }) =>
       state.hasTwProp = true
 
       const nodeValue = path.node.value
+      const nodeExpression = nodeValue.expression
 
-      // Allow tw={"class"}
+      // Handle variables used within the tw prop
+      if (
+        nodeExpression &&
+        ['Identifier', 'CallExpression'].includes(nodeExpression.type)
+      ) {
+        path.node.name.name = 'css'
+        return
+      }
+
+      // Handle arrays used within the tw prop
+      if (nodeExpression && nodeExpression.type === 'ArrayExpression') {
+        convertTwArrayElements(nodeExpression.elements, state, t)
+        path.node.name.name = 'css'
+        return
+      }
+
       const expressionValue =
-        nodeValue.expression &&
-        nodeValue.expression.type === 'StringLiteral' &&
-        nodeValue.expression.value
+        nodeExpression &&
+        nodeExpression.type === 'StringLiteral' &&
+        nodeExpression.value
 
       // Feedback for unsupported usage
-      assert(nodeValue.expression && !expressionValue, () =>
-        logGeneralError(
-          `Only plain strings can be used with the "tw" prop.\nEg: <div tw="text-black" /> or <div tw={"text-black"} />`
+      assert(nodeExpression && !expressionValue, () =>
+        logErrorGood(
+          `Only plain strings or arrays can be used with the "tw" prop.`,
+          `<div tw="text-black" /> / <div tw={"text-black"} /> / <div tw={[isBlack && "text-black"]} />`
         )
       )
 
       const rawClasses = expressionValue || nodeValue.value || ''
-      const styles = getStyles(rawClasses, t, state)
+      const styles = astify(getStyles(rawClasses, state), t)
 
       const jsxPath = path.findParent(p => p.isJSXOpeningElement())
       const attributes = jsxPath.get('attributes')
@@ -69,7 +116,13 @@ const handleTwProperty = ({ program, t, state }) =>
             t.jsxExpressionContainer(styles)
           )
         )
-        addDebugPropToPath({ t, attributes, rawClasses, path, state })
+        addDebugPropToPath({
+          t,
+          attributes,
+          rawClasses,
+          path,
+          state,
+        })
       }
     },
   })
@@ -77,6 +130,41 @@ const handleTwProperty = ({ program, t, state }) =>
 const handleTwFunction = ({ references, state, t }) => {
   const defaultImportReferences = references.default || references.tw || []
   defaultImportReferences.forEach(path => {
+    // Handle function calls - tw(...)
+    if (path.container.type === 'CallExpression') {
+      const callExpression = path.findParent(x => x.isCallExpression())
+      if (!callExpression) return
+
+      // Handle arrays - tw([...])
+      const nodeExpression = callExpression.get('arguments')[0].node
+      if (!nodeExpression) return
+
+      if (
+        ['ArrayExpression', 'ArrowFunctionExpression'].includes(
+          nodeExpression.type
+        )
+      ) {
+        const elements =
+          (nodeExpression.body && nodeExpression.body.elements) ||
+          nodeExpression.elements
+        assert(isEmpty(elements), () =>
+          logErrorGood(
+            `The tw import can’t be called that way`,
+            `tw(() => [...]) / tw([...])${
+              state.cssImport.from.includes('styled-components')
+                ? `\n\n💅 Styled Components tip: Use an arrow function or only the first array item will work, eg: tw(() => [...])`
+                : ''
+            }`
+          )
+        )
+
+        convertTwArrayElements(elements, state, t)
+        updateCssReferences(path, state)
+        state.shouldImportCss = true
+        return
+      }
+    }
+
     const parent = path.findParent(x => x.isTaggedTemplateExpression())
     if (!parent) return
 
@@ -90,7 +178,7 @@ const handleTwFunction = ({ references, state, t }) => {
 
     const rawClasses = parsed.string
 
-    replaceWithLocation(parsed.path, getStyles(rawClasses, t, state))
+    replaceWithLocation(parsed.path, astify(getStyles(rawClasses, state), t))
   })
 }
 

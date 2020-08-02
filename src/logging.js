@@ -44,7 +44,10 @@ const logNotAllowed = ({ className, error }) =>
   spaced(warning(`${color.errorLight(`${className}`)} ${error}`))
 
 const logBadGood = (bad, good) =>
-  `${color.error('✕ Bad:')} ${bad}\n${color.success('✓ Good:')} ${good}`
+  spaced(`${color.error('✕ Bad:')} ${bad}\n${color.success('✓ Good:')} ${good}`)
+
+const logErrorGood = (message, good) =>
+  spaced(`${color.error(message)}\n\n${color.success('✓ Good:')} ${good}`)
 
 const logGeneralError = error => spaced(warning(error))
 
@@ -158,7 +161,7 @@ const themeErrorNotString = ({ themeValue, input }) => {
 
 const themeErrorNotFound = ({ theme, input, trimInput }) => {
   if (typeof theme === 'string') {
-    return spaced(logBadGood(input, trimInput))
+    return logBadGood(input, trimInput)
   }
 
   const textNotFound = warning(
@@ -180,12 +183,10 @@ const themeErrorNotFound = ({ theme, input, trimInput }) => {
 }
 
 const logNotFoundVariant = ({ classNameRaw }) =>
-  spaced(
-    logBadGood(
-      `${classNameRaw}`,
-      [`${classNameRaw}flex`, `${classNameRaw}(flex bg-black)`].join(
-        color.subdued(' / ')
-      )
+  logBadGood(
+    `${classNameRaw}`,
+    [`${classNameRaw}flex`, `${classNameRaw}(flex bg-black)`].join(
+      color.subdued(' / ')
     )
   )
 
@@ -196,6 +197,7 @@ export {
   logNoClass,
   logNotAllowed,
   logBadGood,
+  logErrorGood,
   logGeneralError,
   debug,
   debugPlugins,

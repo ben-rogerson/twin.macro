@@ -98,7 +98,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   updateCssReferences(references.css, state)
   const isImportingCss =
     !isEmpty(references.css) && !state.existingCssIdentifier
-  if (isImportingCss) {
+  if (isImportingCss || state.shouldImportCss) {
     addCssImport({ program, t, cssImport, state })
   }
 

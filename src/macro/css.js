@@ -17,7 +17,8 @@ const updateCssReferences = (references, state) => {
   if (isEmpty(references)) return
   if (state.existingCssIdentifier) return
 
-  references.forEach(path => {
+  const paths = Array.isArray(references) ? references : [references]
+  paths.forEach(path => {
     path.node.name = state.cssIdentifier.name
   })
 }
