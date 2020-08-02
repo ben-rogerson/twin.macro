@@ -71,8 +71,8 @@ const handleTwProperty = ({ program, state, t }) =>
       // Feedback for unsupported usage
       assert(nodeExpression && !expressionValue, () =>
         logErrorGood(
-          `Only plain strings or arrays can be used with the "tw" prop.`,
-          `<div tw="text-black" /> / <div tw={"text-black"} /> / <div tw={[isBlack && "text-black"]} />`
+          `Only functions, arrays and strings can be used with the tw prop.`,
+          `<div tw={[boxStyles(isDark)]} /> / <div tw={[isDark && "text-black"]} /> / <div tw={"text-black"} /> / <div tw="text-black" />`
         )
       )
 
