@@ -43,7 +43,7 @@ const getUserPluginRules = (rules, screens) =>
     // Rule isn't formatted correctly
     if (selector === null) return null
 
-    // Combine the chilren styles
+    // Combine the children styles
     const values = rule.nodes.reduce(
       (result, rule) => ({
         ...result,

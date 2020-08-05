@@ -192,6 +192,16 @@ const logNotFoundVariant = ({ classNameRaw }) =>
 
 const logNotFoundClass = logGeneralError('That class was not found')
 
+const logTwImportUsageError = logErrorGood(
+  `The tw import can’t be used that way`,
+  `tw.div\`\` / tw(() => [...]) / tw([...]) / tw[...]`
+)
+
+const logTwPropertyUsageError = logErrorGood(
+  `Only functions, arrays and strings can be used with the tw prop.`,
+  `<div tw={[boxStyles(isDark)]} /> / <div tw={[isDark && "text-black"]} /> / <div tw={"text-black"} /> / <div tw="text-black" />`
+)
+
 export {
   logNoVariant,
   logNoClass,
@@ -207,4 +217,6 @@ export {
   themeErrorNotFound,
   logNotFoundVariant,
   logNotFoundClass,
+  logTwImportUsageError,
+  logTwPropertyUsageError,
 }

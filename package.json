@@ -5,7 +5,7 @@
   "main": "macro.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "dev": "nodemon --watch src -x \"npm run build:macro\" --delay .2",
+    "dev": "nodemon --watch src -x \"npm run build:macro\" --delay .1",
     "build": "npm run build:macro",
     "build:macro": "microbundle -i src/macro.js -f cjs -o ./macro.js --target node",
     "test:types": "tsc -b ./types/tsconfig.json",

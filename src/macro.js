@@ -19,6 +19,17 @@ import { handleTwProperty, handleTwFunction } from './macro/tw'
 import getUserPluginData from './utils/getUserPluginData'
 import { debugPlugins } from './logging'
 
+const setLibraryType = state => {
+  const styledFrom = state.styledImport.from
+  const cssFrom = state.styledImport.from
+  state.isStyledComponents =
+    styledFrom.includes('styled-components') ||
+    cssFrom.includes('styled-components')
+  state.isEmotion =
+    styledFrom.includes('emotion') || cssFrom.includes('emotion')
+  state.isGoober = styledFrom.includes('goober') || cssFrom.includes('goober')
+}
+
 const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   validateImports(references)
 
@@ -84,11 +95,12 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
     state.existingCssIdentifier = true
   }
 
+  setLibraryType(state)
+
   state.sassyPseudo =
     config.sassyPseudo !== undefined
       ? config.sassyPseudo === true
-      : state.styledImport.from.includes('goober') ||
-        state.cssImport.from.includes('goober')
+      : state.isGoober
 
   // Tw prop/function
   handleTwProperty({ program, t, state })
@@ -116,7 +128,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   if (
     (state.hasTwProp || state.hasCssProp) &&
     config.autoCssProp === true &&
-    cssImport.from.includes('styled-components')
+    state.isStyledComponents
   ) {
     maybeAddCssProperty({ program, t })
   }
