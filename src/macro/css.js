@@ -44,6 +44,7 @@ const maybeAddCssProperty = ({ program, t }) => {
   const styledComponentsMacroImport = 'styled-components/macro'
 
   // Search for a styled-components import
+  // TODO: Merge this traversal into ImportDeclaration traversal for perf
   program.traverse({
     ImportDeclaration(path) {
       // Find the twin import path

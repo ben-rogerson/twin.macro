@@ -1,6 +1,10 @@
 /* eslint-disable complexity */
 import { createMacro } from 'babel-plugin-macros'
-import { findIdentifier, validateImports } from './macroHelpers'
+import {
+  validateImports,
+  setStyledIdentifier,
+  setCssIdentifier,
+} from './macroHelpers'
 import { isEmpty } from './utils'
 import { getConfigProperties } from './configHelpers'
 import {
@@ -59,39 +63,45 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   // Styled import
   const styledImport = getStyledConfig(config)
   state.styledImport = styledImport
-  state.styledIdentifier = findIdentifier({
-    program,
-    mod: styledImport.from,
-    name: styledImport.import,
-  })
-  if (state.styledIdentifier === null) {
-    state.styledIdentifier = program.scope.generateUidIdentifier('styled')
-  } else {
-    state.existingStyledIdentifier = true
-  }
+
+  // Init identifiers
+  state.styledIdentifier = null
+  state.cssIdentifier = null
 
   // Css import
   const cssImport = getCssConfig(config)
   state.cssImport = cssImport
-  state.cssIdentifier = findIdentifier({
-    program,
-    name: cssImport.import,
-    mod: cssImport.from,
-  })
-  if (state.cssIdentifier === null) {
-    state.cssIdentifier = program.scope.generateUidIdentifier('css')
-  } else {
-    state.existingCssIdentifier = true
-  }
 
+  // Sassy pseudo prefix (eg: the & in &:hover)
   state.sassyPseudo =
     config.sassyPseudo !== undefined
       ? config.sassyPseudo === true
       : state.styledImport.from.includes('goober') ||
         state.cssImport.from.includes('goober')
 
-  // Tw prop/function
-  handleTwProperty({ program, t, state })
+  // Group traversals together for better performance
+  program.traverse({
+    ImportDeclaration(path) {
+      setStyledIdentifier({ state, path, styledImport })
+      setCssIdentifier({ state, path, cssImport })
+    },
+    JSXAttribute(path) {
+      handleTwProperty({ path, t, state })
+    },
+  })
+
+  if (state.styledIdentifier === null) {
+    state.styledIdentifier = program.scope.generateUidIdentifier('styled')
+  } else {
+    state.existingStyledIdentifier = true
+  }
+
+  if (state.cssIdentifier === null) {
+    state.cssIdentifier = program.scope.generateUidIdentifier('css')
+  } else {
+    state.existingCssIdentifier = true
+  }
+
   handleTwFunction({ references, t, state })
 
   // Css import

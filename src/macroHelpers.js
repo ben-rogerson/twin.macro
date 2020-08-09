@@ -107,29 +107,50 @@ function astify(literal, t) {
   }
 }
 
-function findIdentifier({ program, mod, name }) {
-  let identifier = null
-  program.traverse({
-    ImportDeclaration(path) {
-      if (path.node.source.value !== mod) return
+const setStyledIdentifier = ({ state, path, styledImport }) => {
+  if (path.node.source.value !== styledImport.from) return
 
-      path.node.specifiers.some(specifier => {
-        if (specifier.type === 'ImportDefaultSpecifier' && name === 'default') {
-          identifier = specifier.local
-          return true
-        }
+  // Look for an existing import that matches the config,
+  // if found then reuse it for the rest of the function calls
+  path.node.specifiers.some(specifier => {
+    if (
+      specifier.type === 'ImportDefaultSpecifier' &&
+      styledImport.import === 'default'
+    ) {
+      state.styledIdentifier = specifier.local
+      return true
+    }
 
-        if (specifier.imported && specifier.imported.name === name) {
-          identifier = specifier.local
-          return true
-        }
+    if (specifier.imported && specifier.imported.name === styledImport.import) {
+      state.styledIdentifier = specifier.local
+      return true
+    }
 
-        return false
-      })
-    },
+    return false
   })
+}
 
-  return identifier
+const setCssIdentifier = ({ state, path, cssImport }) => {
+  if (path.node.source.value !== cssImport.from) return
+
+  // Look for an existing import that matches the config,
+  // if found then reuse it for the rest of the function calls
+  path.node.specifiers.some(specifier => {
+    if (
+      specifier.type === 'ImportDefaultSpecifier' &&
+      cssImport.import === 'default'
+    ) {
+      state.cssIdentifier = specifier.local
+      return true
+    }
+
+    if (specifier.imported && specifier.imported.name === cssImport.import) {
+      state.cssIdentifier = specifier.local
+      return true
+    }
+
+    return false
+  })
 }
 
 function parseTte({ path, types: t, styledIdentifier, state }) {
@@ -224,8 +245,9 @@ export {
   addImport,
   assignify,
   astify,
-  findIdentifier,
   parseTte,
   replaceWithLocation,
   validateImports,
+  setStyledIdentifier,
+  setCssIdentifier,
 }
