@@ -1736,6 +1736,68 @@ const Component3 = () => (
 
 `;
 
+exports[`twin.macro !twimport.js: !twimport.js 1`] = `
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/react-in-jsx-scope */
+import tw from './macro'
+
+const basic = tw\`hover:text-black\`
+
+const basicInnerInterpolation = tw\`\${\`hover:text-black\`}\`
+
+const styled = tw.div\`hover:text-black\`
+
+const styledInnerInterpolation = tw.div\`\${\`hover:text-black\`}\`
+
+const advanced = tw(() => true && [\`mt-6\`, false && 'flex'])
+
+const multiLevelConditionals = tw(() => true && [\`mt-6\`, false && 'flex'])
+
+// const styledTw = tw.div\`\${tw\`hover:black\`}\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from '@emotion/styled'
+import { css as _css } from '@emotion/core'
+const basic = {
+  ':hover': {
+    '--text-opacity': '1',
+    color: 'rgba(0, 0, 0, var(--text-opacity))',
+  },
+}
+const basicInnerInterpolation = {
+  ':hover': {
+    '--text-opacity': '1',
+    color: 'rgba(0, 0, 0, var(--text-opacity))',
+  },
+}
+
+const styled = _styled.div({
+  ':hover': {
+    '--text-opacity': '1',
+    color: 'rgba(0, 0, 0, var(--text-opacity))',
+  },
+})
+
+const styledInnerInterpolation = _styled.div({
+  ':hover': {
+    '--text-opacity': '1',
+    color: 'rgba(0, 0, 0, var(--text-opacity))',
+  },
+})
+
+const advanced = _css(
+  () => true && [{ marginTop: '1.5rem' }, false && { display: 'flex' }]
+)
+
+const multiLevelConditionals = _css(
+  () => true && [{ marginTop: '1.5rem' }, false && { display: 'flex' }]
+) // const styledTw = tw.div\`\${tw\`hover:black\`}\`
+
+
+`;
+
 exports[`twin.macro !variantGrouping.js: !variantGrouping.js 1`] = `
 
 /* eslint-disable @typescript-eslint/no-unused-vars */

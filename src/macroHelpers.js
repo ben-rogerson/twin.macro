@@ -109,6 +109,7 @@ function astify(literal, t) {
 
 function findIdentifier({ program, mod, name }) {
   let identifier = null
+  // TODO:
   program.traverse({
     ImportDeclaration(path) {
       if (path.node.source.value !== mod) return
@@ -132,18 +133,11 @@ function findIdentifier({ program, mod, name }) {
   return identifier
 }
 
-function parseTte({ path, types: t, styledIdentifier, state }) {
+function parseTte({ path, types: t, state }) {
   const cloneNode = t.cloneNode || t.cloneDeep
-
-  if (
-    path.node.tag.type !== 'Identifier' &&
-    path.node.tag.type !== 'MemberExpression' &&
-    path.node.tag.type !== 'CallExpression'
-  )
-    return null
-
   const string = path.get('quasi').evaluate().value
   const stringLoc = path.get('quasi').node.loc
+  const { styledIdentifier } = state
 
   if (path.node.tag.type === 'CallExpression') {
     replaceWithLocation(

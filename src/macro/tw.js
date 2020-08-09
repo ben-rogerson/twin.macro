@@ -1,3 +1,4 @@
+import dlv from 'dlv'
 import { parseTte, replaceWithLocation, astify } from './../macroHelpers'
 import { assert, isEmpty } from './../utils'
 import {
@@ -153,31 +154,77 @@ const handleTwProperty = ({ program, state, t }) =>
 const getExpressions = type =>
   ({
     Identifier: ({ e }) => console.log(e.node),
-    // tw([() => ''])
-    ArrayExpression: ({ e }) => {
-      if (e.node.type === 'CallExpression') {
-        // getExpressions(e.node.type)({e: })
-        // console.log({ args: e.get('arguments') })
-        return e.get('arguments.0.elements')
+
+    // tw['']
+    StringLiteral: ({ e }) => [e],
+    // console.log({ e }) || [dlv(e, 'extra.rawValue')] || [
+    //   dlv(e, 'node.property'),
+    // ],
+    TemplateElement: ({ e }) => [e],
+    TemplateLiteral: ({ e }) => {
+      // console.log({ type2: e.type })
+      // tw(``)
+      if (e.type === 'CallExpression') {
+        const result = dlv(e, 'container.body.arguments.0.quasis')
+        // console.log({ TemplateLiteral: result })
+        return result
       }
 
-      console.log({ node: e.node })
-      return e.node.arguments[0].elements[0]
-        ? [e.node.arguments[0].elements[0].body]
-        : ['']
+      // tw[``]
+      if (e.type === 'MemberExpression') {
+        const result = dlv(e, 'container.body.property.quasis')
+        // console.log({ TemplateLiteral: result })
+        return result
+      }
+
+      // [``]
+      if (e.type === 'TemplateLiteral') {
+        const result = dlv(e, 'quasis.0')
+        // console.log({ result })
+        return result
+      }
+
+      console.log('!! TemplateLiteral')
+
+      // dlv(
+      //       e,
+      //       'container.init.property.quasis'
+      //     ),
     },
-    // tw['']
-    StringLiteral: ({ e }) => [e.node.property],
-    // tw[``]
-    TemplateLiteral: ({ e }) => e.container.init.property.quasis,
     // tw['', '']
-    SequenceExpression: ({ e }) => e.node.property.expressions,
+    SequenceExpression: ({ e }) => dlv(e, 'node.property.expressions'),
+    // tw(() => true && [''])
+    LogicalExpression: ({ e }) => getExpressions(e.right.type)({ e: e.right }),
+    // tw(() => [''])
+    ArrayExpression: ({ e }) => {
+      // console.log({
+      //   yella: e.elements.map(element =>
+      //     getExpressions(element.type)({ e: element })
+      //   ),
+      // })
+      // console.log({ array: e.elements })
+      return e.elements
+      // console.log({ type2: e.type })
+      // // tw([''])
+
+      // e.elements
+      // if (e.node.type === 'CallExpression') {
+      //   return e.get('arguments.0.elements')
+      // }
+
+      // console.log('!! ArrayExpression')
+      // return [e.get('arguments.0.elements.body') || '']
+    },
+
     // tw[() => '']
     ArrowFunctionExpression: ({ e }) => {
-      console.log({ arrayType: e.node.property.body.type })
+      // console.log({ arrayType: e.node })
+      // console.log({ arrayType: dlv(e, 'node.property.body.type') })
 
       if (
-        ['StringLiteral', 'TemplateLiteral'].includes(e.node.property.body.type)
+        ['StringLiteral', 'TemplateLiteral'].includes(
+          dlv(e, 'node.property.body.type')
+        )
       ) {
         return [e.node.property.body]
       }
@@ -189,34 +236,14 @@ const getExpressions = type =>
 
 const handler = type =>
   ({
+    // tw``
     TaggedTemplateExpression: ({ path, state, t }) => {
       const parent = path.findParent(x => x.isTaggedTemplateExpression())
-      // assert(isEmpty(parent), () => logTwImportUsageError)
-
-      const parsed = parseTte({
-        path: parent,
-        types: t,
-        styledIdentifier: state.styledIdentifier,
-        state,
-      })
-      if (!parsed) return
-
-      const rawClasses = parsed.string
-
-      replaceWithLocation(parsed.path, astify(getStyles(rawClasses, state), t))
-    },
-    // tw()
-    CallExpression: ({ path, state, t }) => {
-      const callExpression = path.findParent(p => p.isCallExpression())
-
-      const expression = callExpression.get('arguments')[0].node
-      if (!expression) return
 
       assert(
-        ['ConditionalExpression', 'LogicalExpression'].includes(
-          expression.type
-        ) ||
-          (expression.body && !expression.body.elements),
+        !['Identifier', 'MemberExpression', 'CallExpression'].includes(
+          parent.node.tag.type
+        ),
         () =>
           logErrorGood(
             'Any conditionals must be within an array',
@@ -224,31 +251,153 @@ const handler = type =>
           )
       )
 
+      // Replace tw with external lib imports
+      const parsed = parseTte({ path: parent, types: t, state })
+      if (isEmpty(parsed)) return
+
+      const styles = getStyles(parsed.string, state)
+
+      const astifiedStyles = astify(styles, t)
+      replaceWithLocation(parsed.path, astifiedStyles)
+
+      return styles
+    },
+    // tw()
+    CallExpression: ({ path, state, t }) => {
+      const callExpression = path.findParent(p => p.isCallExpression())
+
+      const expressionArguments = callExpression.get('arguments.0')
+
+      console.log({
+        type: expressionArguments.type,
+      })
+
       assert(
         ![
-          'StringLiteral',
-          'TemplateLiteral',
-          'ArrayExpression',
-          'ArrowFunctionExpression',
-        ].includes(expression.type),
+          'Identifier', // tw(WrappedComponent)
+          'StringLiteral', // tw('bg-black')
+          'TemplateLiteral', // tw(`bg-black`)
+          'ArrayExpression', // tw([bg-black])
+          'LogicalExpression', // tw(true && [bg-black])
+          'ConditionalExpression', // tw(true ? [bg-black] : [bg-white])
+          'ArrowFunctionExpression', // tw(() => [bg-black]) / tw(() => `bg-black`) / tw(() => [`bg-black`])
+        ].includes(expressionArguments.type),
         () => logTwImportUsageError
       )
-      console.log({ ype: expression.type })
-      const elements = getExpressions(expression.type)({ e: callExpression })
+
+      let elements
+
+      if (expressionArguments.type === 'Identifier') {
+        // updateStyledReferences(path, state)
+        // expressionArguments.parentPath.node.callee.name = 'styled'
+        // TODO: Convert tw() to styled()
+        state.shouldImportStyled = true
+        const { node } = expressionArguments
+        // console.log({ parent: expressionArguments.parentPath.node.callee.name })
+        console.log({ node })
+        // const { body } = expressionArguments.node
+        // console.log({ body })
+        // elements = getExpressions(body.type)({ e: body })
+
+        // console.log({ elements })
+      }
+
+      if (expressionArguments.type === 'StringLiteral') {
+        // updateStyledReferences(path, state)
+        // expressionArguments.parentPath.node.callee.name = 'styled'
+        // TODO: Convert tw() to styled()
+        // state.shouldImportStyled = true
+        // console.log({ parent: expressionArguments.parentPath.node.callee.name })
+        const { node } = expressionArguments
+        elements = getExpressions(node.type)({ e: node })
+      }
+
+      if (expressionArguments.type === 'TemplateLiteral') {
+        const { node } = expressionArguments
+        const quasis = node.quasis[0]
+        elements = getExpressions(quasis.type)({ e: quasis })
+      }
+
+      if (expressionArguments.type === 'ArrayExpression') {
+        const { node } = expressionArguments
+        elements = getExpressions(node.type)({ e: node })
+      }
+
+      if (expressionArguments.type === 'LogicalExpression') {
+        const { node } = expressionArguments
+        elements = getExpressions(node.type)({ e: node })
+      }
+
+      if (expressionArguments.type === 'ConditionalExpression') {
+        const { node } = expressionArguments
+        console.log({ node: expressionArguments.node })
+        elements = getExpressions(node.type)({ e: node })
+      }
+
+      if (expressionArguments.type === 'ArrowFunctionExpression') {
+        const { body } = expressionArguments.node
+        elements = getExpressions(body.type)({ e: body })
+      }
 
       console.log({ elements })
+
+      assert(isEmpty(elements), () =>
+        logErrorGood(`Oops. "${path.type}" not covered`, ``)
+      )
+
+      // tw('bg-black')
+      // if (path.type === 'CallExpression') {
+      //   console.log('CallExpression')
+      // }
+
+      // tw(`bg-black`) / tw([`bg-black`])
+      // if (path.type === 'Identifier') {
+      //   const arrayExpression = dlv(path, 'container.arguments.0')
+      //   const elements = getExpressions(arrayExpression.type)({
+      //     e: arrayExpression,
+      //   })
+      //   return elements
+      // }
+
+      // const expression = callExpression.get('arguments.0.node')[0]
+      // if (!expression) return
+
+      // assert(
+      //   ['ConditionalExpression', 'LogicalExpression'].includes(
+      //     expression.type
+      //   ) ||
+      //     (expression.body && !expression.body.elements),
+      //   () =>
+      //     logErrorGood(
+      //       'Put all the conditionals within the array',
+      //       `tw([isBlock && \`block\`])`
+      //     )
+      // )
+
+      // assert(
+      //   ![
+      //     'StringLiteral',
+      //     'TemplateLiteral',
+      //     'ArrayExpression',
+      //     'ArrowFunctionExpression',
+      //   ].includes(expression.type),
+      //   () => logTwImportUsageError
+      // )
+
+      // const elements = getExpressions(expression.type)({ e: callExpression })
+
       // const elements =
       //   (expression.value && [expression]) ||
       //   (expression.body && expression.body.elements) ||
       //   expression.elements ||
       //   expression.quasis
-      assert(isEmpty(elements), () => logTwImportUsageError)
+      // assert(isEmpty(elements), () => logTwImportUsageError)
 
       // Convert to an arrow function, required by styled-components
       // eg: this: tw([...]) to this: tw(() => [...])
-      state.isStyledComponents &&
-        expression.type === 'ArrayExpression' &&
-        callExpression.replaceWith(t.arrowFunctionExpression([], expression))
+      // state.isStyledComponents &&
+      //   expression.type === 'ArrayExpression' &&
+      //   callExpression.replaceWith(t.arrowFunctionExpression([], expression))
 
       convertTwArrayElements(elements, state, t)
       updateCssReferences(path, state)
@@ -269,7 +418,7 @@ const handler = type =>
 
       const expressions = getExpressions(property.type)({ e: memberExpression })
 
-      console.log({ type: property.type, expressions })
+      // console.log({ type: property.type, expressions })
 
       assert(isEmpty(expressions), () => 'error. no expressions')
 
@@ -293,26 +442,26 @@ const handler = type =>
       // console.log({ expressions })
       return expressions
     },
-  }[type] || (() => ({})))
+  }[type])
 
 const handleTwFunction = ({ references, state, t }) => {
   // TODO: Remove references.tw
   const defaultImportReferences = references.default || references.tw || []
   defaultImportReferences.forEach(path => {
-    // console.log({ type: path.container.type })
     assert(
       ![
+        'TaggedTemplateExpression',
         'CallExpression',
         'MemberExpression',
-        'TaggedTemplateExpression',
       ].includes(path.container.type),
       () => logTwImportUsageError
     )
 
+    // console.log({ type: path.container.type })
     // Handle tw() / tw[]
-    const elements = handler(path.container.type)({ path, state, t })
+    handler(path.container.type)({ path, state, t })
 
-    console.log({ is1: 'end', elements, type: path.container.type, is: 'end' })
+    // console.log(`================ EL FINITO`)
 
     // return
 
