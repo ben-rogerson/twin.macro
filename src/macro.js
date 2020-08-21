@@ -15,7 +15,8 @@ import {
   addStyledImport,
 } from './macro/styled'
 import { handleThemeFunction } from './macro/theme'
-import { handleTwProperty, handleTwFunction } from './macro/tw'
+import { handleTwProperty } from './macro/tw/property'
+import { handleTwFunction } from './macro/tw/function'
 import getUserPluginData from './utils/getUserPluginData'
 import { debugPlugins } from './logging'
 

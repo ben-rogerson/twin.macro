@@ -1,5 +1,5 @@
 import babylon from '@babel/parser'
-import { assert } from './utils'
+import { throwIf } from './utils'
 import { logGeneralError } from './logging'
 
 const SPREAD_ID = '__spread__'
@@ -109,7 +109,6 @@ function astify(literal, t) {
 
 function findIdentifier({ program, mod, name }) {
   let identifier = null
-  // TODO:
   program.traverse({
     ImportDeclaration(path) {
       if (path.node.source.value !== mod) return
@@ -135,6 +134,7 @@ function findIdentifier({ program, mod, name }) {
 
 function parseTte({ path, types: t, state }) {
   const cloneNode = t.cloneNode || t.cloneDeep
+
   const string = path.get('quasi').evaluate().value
   const stringLoc = path.get('quasi').node.loc
   const { styledIdentifier } = state
@@ -200,12 +200,12 @@ const validateImports = imports => {
   const importTwAsNamedNotDefault = Object.keys(imports).find(
     reference => reference === 'tw'
   )
-  assert(importTwAsNamedNotDefault, () => {
+  throwIf(importTwAsNamedNotDefault, () => {
     logGeneralError(
       `Please use the default export for twin.macro, i.e:\nimport tw from 'twin.macro'\nNOT import { tw } from 'twin.macro'`
     )
   })
-  assert(unsupportedImport, () =>
+  throwIf(unsupportedImport, () =>
     logGeneralError(
       `Twin doesn't recognize { ${unsupportedImport} }\n\nTry one of these imports:\nimport tw, { styled, css, theme } from 'twin.macro'`
     )
@@ -213,8 +213,6 @@ const validateImports = imports => {
 }
 
 export {
-  SPREAD_ID,
-  COMPUTED_ID,
   addImport,
   assignify,
   astify,

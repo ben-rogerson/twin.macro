@@ -19,10 +19,11 @@ const updateCssReferences = (references, state) => {
 
   const paths = Array.isArray(references) ? references : [references]
   paths.forEach(path => {
+    // Avoid replacing a previously replaced node name
+    if (path.node.name === state.styledIdentifier.name) return
     path.node.name = state.cssIdentifier.name
+    state.shouldImportCss = true
   })
-
-  if (paths.length > 0) state.shouldImportCss = true
 }
 
 const addCssImport = ({ program, t, cssImport, state }) =>

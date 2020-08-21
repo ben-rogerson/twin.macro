@@ -194,7 +194,12 @@ const logNotFoundClass = logGeneralError('That class was not found')
 
 const logTwImportUsageError = logErrorGood(
   `The tw import can’t be used that way`,
-  `tw.div\`\` / tw(() => [...]) / tw([...]) / tw[...]`
+  "tw`` / tw(() => ['...']) / tw.div`...` / tw(StyledComponent)`...`"
+)
+
+const logTwWrappedImportUsageError = logErrorGood(
+  `The tw import can’t be used that way`,
+  "tw.div`...` / tw.div(() => ['...']) / tw.div(StyledComponent)`...`"
 )
 
 const logTwPropertyUsageError = logErrorGood(
@@ -218,5 +223,6 @@ export {
   logNotFoundVariant,
   logNotFoundClass,
   logTwImportUsageError,
+  logTwWrappedImportUsageError,
   logTwPropertyUsageError,
 }

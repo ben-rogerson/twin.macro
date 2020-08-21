@@ -1,5 +1,5 @@
 import deepMerge from 'lodash.merge'
-import { assert, isEmpty, getProperties, getTheme } from './utils'
+import { throwIf, isEmpty, getProperties, getTheme } from './utils'
 import getPieces from './utils/getPieces'
 import doPrechecks, { precheckGroup } from './prechecks'
 import {
@@ -20,9 +20,9 @@ import {
 } from './handlers'
 
 export default (classes, state) => {
-  assert([null, 'null', undefined].includes(classes), () =>
+  throwIf([null, 'null', undefined].includes(classes), () =>
     logGeneralError(
-      'Only plain strings can be used with "tw".\nRead more at https://github.com/ben-rogerson/twin.macro/issues/17'
+      'Only strings can be used within tw template literals.\nRead more at https://twinredirect.page.link/template-literals'
     )
   )
 
@@ -44,7 +44,7 @@ export default (classes, state) => {
     const pieces = getPieces({ classNameRaw, state })
     const { className, hasVariants } = pieces
 
-    assert(!className, () =>
+    throwIf(!className, () =>
       hasVariants ? logNotFoundVariant({ classNameRaw }) : logNotFoundClass
     )
 
@@ -58,7 +58,7 @@ export default (classes, state) => {
     } = getProperties(className, state)
 
     // Kick off suggestions when no class matches
-    assert(!hasMatches && !hasUserPlugins, () =>
+    throwIf(!hasMatches && !hasUserPlugins, () =>
       errorSuggestions({ pieces, state })
     )
 
@@ -89,7 +89,7 @@ export default (classes, state) => {
     }
 
     // Check again there are no userPlugin matches
-    assert(!hasMatches && !style, () => errorSuggestions({ pieces, state }))
+    throwIf(!hasMatches && !style, () => errorSuggestions({ pieces, state }))
 
     style =
       style || applyTransforms({ type, pieces, style: styleHandler[type]() })

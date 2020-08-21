@@ -1,5 +1,5 @@
 import getConfigValue from './../utils/getConfigValue'
-import { assert, stripNegative } from './../utils'
+import { throwIf, stripNegative } from './../utils'
 import { errorSuggestions } from './../logging'
 
 // Convert an array of objects into a single object
@@ -36,7 +36,7 @@ export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
     }))
     .filter(item => item.value)[0]
 
-  assert(!results || className.endsWith('-'), () =>
+  throwIf(!results || className.endsWith('-'), () =>
     errorSuggestions({
       pieces,
       state,

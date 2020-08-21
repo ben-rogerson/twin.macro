@@ -1739,61 +1739,129 @@ const Component3 = () => (
 exports[`twin.macro !twimport.js: !twimport.js 1`] = `
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/react-in-jsx-scope */
-import tw from './macro'
+// import tw from './macro'
 
-const basic = tw\`hover:text-black\`
+/**
+ * Basic
+ */
 
-const basicInnerInterpolation = tw\`\${\`hover:text-black\`}\`
+// const Basic = tw\`hover:bg-black\`
+// const BasicInterpolation = tw\`\${'hover:bg-black'}\`
 
-const styled = tw.div\`hover:text-black\`
+/**
+ * Styled
+ */
 
-const styledInnerInterpolation = tw.div\`\${\`hover:text-black\`}\`
+// const Styled = tw.div\`hover:bg-black\`
+// const StyledInterpolation = tw.div\`\${'hover:bg-black'}\`
 
-const advanced = tw(() => true && [\`mt-6\`, false && 'flex'])
+/**
+ * Call expressions
+ */
 
-const multiLevelConditionals = tw(() => true && [\`mt-6\`, false && 'flex'])
+// const CallBasicString = tw('block')
 
-// const styledTw = tw.div\`\${tw\`hover:black\`}\`
+// const CallBasicLiteral = tw(\`block\`)
+
+// const CallIdentifier = tw(Basic)\`\`
+
+// const CallIdentifierStyled = tw(Basic)\`hover:bg-black\`
+
+// const CallArrayIdentifier = tw([Basic])\`\`
+
+// const CallArrayLogicalIdentifier = tw([true && Basic])
+
+// const CallArrayTurnaryIdentifier = ({ isSpaced }) =>
+//   tw([isSpaced ? 'mt-6' : Basic])
+
+// const CallLogical = tw(({ isSpaced }) => [isSpaced && \`mt-6\`])
+// const CallLogicalAlternative = tw(({ isSpaced }) => isSpaced && [\`mt-6\`])
+
+// const CallLogicalNestedLogical = tw(
+//   ({ isSpaced }) => isSpaced && [\`mt-6\`, false && 'hover:bg-black']
+// )
+
+// const CallLogicalTurnary = tw(({ isSpaced }) => [isSpaced ? 'mt-6' : 'mt-3'])
+
+// const CallLogicalNestedTurnary = tw(
+//   ({ isSpaced }) => isSpaced && [isSpaced ? 'mt-6' : 'mt-3']
+// )
+
+// const CallTemplateLogicalLiteral = tw(
+//   \`\${({ isSpaced }) => isSpaced && 'hover:bg-black'}\`
+// )
+
+// const CallTemplateLogicalTurnary = tw(
+//   \`\${({ isSpaced }) => (isSpaced ? 'hover:bg-black' : 'mt-6')}\`
+// )
+
+/**
+ * Array
+ */
+
+// const ArrayIdentifier = tw[Basic]
+
+// const Array = tw['hover:bg-black']
+
+// const ArrayLogicalNestedLogical = ({ isSpaced }) =>
+//   isSpaced && tw[('mt-6', true && 'hover:bg-black')]
+
+// const ArrayLogicalNestedTurnary = ({ isSpaced }) =>
+//   isSpaced && tw[('mt-6', isSpaced ? 'hover:bg-black' : 'mt-6')]
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from '@emotion/styled'
-import { css as _css } from '@emotion/core'
-const basic = {
-  ':hover': {
-    '--text-opacity': '1',
-    color: 'rgba(0, 0, 0, var(--text-opacity))',
-  },
-}
-const basicInnerInterpolation = {
-  ':hover': {
-    '--text-opacity': '1',
-    color: 'rgba(0, 0, 0, var(--text-opacity))',
-  },
-}
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// import tw from './macro'
 
-const styled = _styled.div({
-  ':hover': {
-    '--text-opacity': '1',
-    color: 'rgba(0, 0, 0, var(--text-opacity))',
-  },
-})
+/**
+ * Basic
+ */
+// const Basic = tw\`hover:bg-black\`
+// const BasicInterpolation = tw\`\${'hover:bg-black'}\`
 
-const styledInnerInterpolation = _styled.div({
-  ':hover': {
-    '--text-opacity': '1',
-    color: 'rgba(0, 0, 0, var(--text-opacity))',
-  },
-})
+/**
+ * Styled
+ */
+// const Styled = tw.div\`hover:bg-black\`
+// const StyledInterpolation = tw.div\`\${'hover:bg-black'}\`
 
-const advanced = _css(
-  () => true && [{ marginTop: '1.5rem' }, false && { display: 'flex' }]
-)
+/**
+ * Call expressions
+ */
+// const CallBasicString = tw('block')
+// const CallBasicLiteral = tw(\`block\`)
+// const CallIdentifier = tw(Basic)\`\`
+// const CallIdentifierStyled = tw(Basic)\`hover:bg-black\`
+// const CallArrayIdentifier = tw([Basic])\`\`
+// const CallArrayLogicalIdentifier = tw([true && Basic])
+// const CallArrayTurnaryIdentifier = ({ isSpaced }) =>
+//   tw([isSpaced ? 'mt-6' : Basic])
+// const CallLogical = tw(({ isSpaced }) => [isSpaced && \`mt-6\`])
+// const CallLogicalAlternative = tw(({ isSpaced }) => isSpaced && [\`mt-6\`])
+// const CallLogicalNestedLogical = tw(
+//   ({ isSpaced }) => isSpaced && [\`mt-6\`, false && 'hover:bg-black']
+// )
+// const CallLogicalTurnary = tw(({ isSpaced }) => [isSpaced ? 'mt-6' : 'mt-3'])
+// const CallLogicalNestedTurnary = tw(
+//   ({ isSpaced }) => isSpaced && [isSpaced ? 'mt-6' : 'mt-3']
+// )
+// const CallTemplateLogicalLiteral = tw(
+//   \`\${({ isSpaced }) => isSpaced && 'hover:bg-black'}\`
+// )
+// const CallTemplateLogicalTurnary = tw(
+//   \`\${({ isSpaced }) => (isSpaced ? 'hover:bg-black' : 'mt-6')}\`
+// )
 
-const multiLevelConditionals = _css(
-  () => true && [{ marginTop: '1.5rem' }, false && { display: 'flex' }]
-) // const styledTw = tw.div\`\${tw\`hover:black\`}\`
+/**
+ * Array
+ */
+// const ArrayIdentifier = tw[Basic]
+// const Array = tw['hover:bg-black']
+// const ArrayLogicalNestedLogical = ({ isSpaced }) =>
+//   isSpaced && tw[('mt-6', true && 'hover:bg-black')]
+// const ArrayLogicalNestedTurnary = ({ isSpaced }) =>
+//   isSpaced && tw[('mt-6', isSpaced ? 'hover:bg-black' : 'mt-6')]
 
 
 `;
