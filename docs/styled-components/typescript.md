@@ -1,65 +1,65 @@
 # Use Twin with TypeScript + Styled Components
 
-To make working with [Styled Components](https://styled-components.com/) easier, Twin has the ability to import `styled` and/or `css` methods on your behalf.
-
-So instead of adding these imports each time:
-
-```typescript
-import tw from 'twin.macro'
-import styled, { css } from 'styled-components'
-```
-
-You can utilize Twin’s auto import feature:
-
-```typescript
-import tw, { css, styled } from 'twin.macro'
-```
-
-## Setup
-
-Without types defined, you’ll receive an error like this:
+Twin needs some type declarations added, otherwise you’ll see errors like this:
 
 ```js
 Module '"../node_modules/twin.macro/types"' has no exported member 'styled'.
 // or
 Module '"../node_modules/twin.macro/types"' has no exported member 'css'.
+// or
+Property 'css' does not exist on type 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
 ```
 
-So to fix this, we’ll need to setup our type definitions:
-
-### 1. Define the types in a new file
-
-Create a new file named `twin.d.ts` and place it in your project root (or your src directory for create-react-app):
+So to fix this, create a `twin.d.ts` file in your project root (`src/twin.d.ts` with create-react-app) and add these declarations:
 
 ```typescript
 // twin.d.ts
 import 'twin.macro'
-import styledComponent, { css as cssProperty } from 'styled-components'
+import styledImport, { CSSProp, css as cssImport } from 'styled-components'
 
 declare module 'twin.macro' {
-  const css: typeof cssProperty
-  const styled: typeof styledComponent
+  // The styled and css imports
+  const styled: typeof styledImport
+  const css: typeof cssImport
+}
+
+declare module 'react' {
+  // The css prop
+  interface HTMLAttributes<T> extends DOMAttributes<T> {
+    css?: CSSProp
+  }
+  // The inline svg css prop
+  interface SVGProps<T> extends SVGProps<SVGSVGElement> {
+    css?: CSSProp
+  }
 }
 ```
 
-### 2. Include the file in your TypeScript config
-
-Update your `tsconfig.json` file with your new type file location:
+Then add the following in `tsconfig.json`:
 
 ```typescript
 // tsconfig.json
 {
   "files": ["twin.d.ts"],
   // or
-  "include": ["twin.d.ts"],
+  // "include": ["twin.d.ts"],
 }
 ```
 
-You can now use the following imports in TypeScript:
+Now that you’ve added the definitions, you can use these imports:
 
 ```typescript
 import tw, { css, styled, theme } from 'twin.macro'
 ```
+
+And these props:
+
+```typescript
+<div tw="">
+<div css={}>
+```
+
+---
 
 ## Installation guides
 
