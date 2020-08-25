@@ -26,6 +26,13 @@ const handlePosition = ({ configValue, important }) => {
   return { backgroundPosition: `${value}${important}` }
 }
 
+const handleImage = ({ configValue, important }) => {
+  const value = configValue('backgroundImage')
+  if (!value) return
+
+  return { backgroundImage: `${value}${important}` }
+}
+
 export default properties => {
   const {
     theme,
@@ -47,7 +54,15 @@ export default properties => {
   const position = handlePosition({ configValue, important })
   if (position) return position
 
+  const image = handleImage({ configValue, important })
+  if (image) return image
+
   errorSuggestions({
-    config: ['backgroundColor', 'backgroundSize', 'backgroundPosition'],
+    config: [
+      'backgroundColor',
+      'backgroundSize',
+      'backgroundPosition',
+      'backgroundImage',
+    ],
   })
 }

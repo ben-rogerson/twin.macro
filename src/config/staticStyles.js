@@ -371,6 +371,9 @@ export default {
   // https://tailwindcss.com/docs/background-size
   // See dynamicStyles.js
 
+  // https://tailwindcss.com/docs/gradient-color-stops
+  // See dynamicStyles.js
+
   /**
    * ===========================================
    * Borders

@@ -4760,6 +4760,1653 @@ tw\`order-12\`
 
 `;
 
+exports[`twin.macro gradients.js: gradients.js 1`] = `
+
+import tw from './macro'
+
+// https://tailwindcss.com/docs/gradient-color-stops
+tw\`bg-none\`
+tw\`bg-gradient-to-t\`
+tw\`bg-gradient-to-tr\`
+tw\`bg-gradient-to-r\`
+tw\`bg-gradient-to-br\`
+tw\`bg-gradient-to-b\`
+tw\`bg-gradient-to-bl\`
+tw\`bg-gradient-to-l\`
+tw\`bg-gradient-to-tl\`
+
+tw\`sm:focus:bg-gradient-to-tl\`
+tw\`md:hover:bg-gradient-to-tl\`
+
+tw\`from-transparent\`
+tw\`from-current\`
+tw\`from-black\`
+tw\`from-white\`
+tw\`from-gray-100\`
+tw\`from-gray-200\`
+tw\`from-gray-300\`
+tw\`from-gray-400\`
+tw\`from-gray-500\`
+tw\`from-gray-600\`
+tw\`from-gray-700\`
+tw\`from-gray-800\`
+tw\`from-gray-900\`
+tw\`from-red-100\`
+tw\`from-red-200\`
+tw\`from-red-300\`
+tw\`from-red-400\`
+tw\`from-red-500\`
+tw\`from-red-600\`
+tw\`from-red-700\`
+tw\`from-red-800\`
+tw\`from-red-900\`
+tw\`from-orange-100\`
+tw\`from-orange-200\`
+tw\`from-orange-300\`
+tw\`from-orange-400\`
+tw\`from-orange-500\`
+tw\`from-orange-600\`
+tw\`from-orange-700\`
+tw\`from-orange-800\`
+tw\`from-orange-900\`
+tw\`from-yellow-100\`
+tw\`from-yellow-200\`
+tw\`from-yellow-300\`
+tw\`from-yellow-400\`
+tw\`from-yellow-500\`
+tw\`from-yellow-600\`
+tw\`from-yellow-700\`
+tw\`from-yellow-800\`
+tw\`from-yellow-900\`
+tw\`from-green-100\`
+tw\`from-green-200\`
+tw\`from-green-300\`
+tw\`from-green-400\`
+tw\`from-green-500\`
+tw\`from-green-600\`
+tw\`from-green-700\`
+tw\`from-green-800\`
+tw\`from-green-900\`
+tw\`from-teal-100\`
+tw\`from-teal-200\`
+tw\`from-teal-300\`
+tw\`from-teal-400\`
+tw\`from-teal-500\`
+tw\`from-teal-600\`
+tw\`from-teal-700\`
+tw\`from-teal-800\`
+tw\`from-teal-900\`
+tw\`from-blue-100\`
+tw\`from-blue-200\`
+tw\`from-blue-300\`
+tw\`from-blue-400\`
+tw\`from-blue-500\`
+tw\`from-blue-600\`
+tw\`from-blue-700\`
+tw\`from-blue-800\`
+tw\`from-blue-900\`
+tw\`from-indigo-100\`
+tw\`from-indigo-200\`
+tw\`from-indigo-300\`
+tw\`from-indigo-400\`
+tw\`from-indigo-500\`
+tw\`from-indigo-600\`
+tw\`from-indigo-700\`
+tw\`from-indigo-800\`
+tw\`from-indigo-900\`
+tw\`from-purple-100\`
+tw\`from-purple-200\`
+tw\`from-purple-300\`
+tw\`from-purple-400\`
+tw\`from-purple-500\`
+tw\`from-purple-600\`
+tw\`from-purple-700\`
+tw\`from-purple-800\`
+tw\`from-purple-900\`
+tw\`from-pink-100\`
+tw\`from-pink-200\`
+tw\`from-pink-300\`
+tw\`from-pink-400\`
+tw\`from-pink-500\`
+tw\`from-pink-600\`
+tw\`from-pink-700\`
+tw\`from-pink-800\`
+tw\`from-pink-900\`
+
+tw\`sm:focus:from-pink-800\`
+tw\`md:hover:from-pink-900\`
+
+tw\`via-transparent\`
+tw\`via-current\`
+tw\`via-black\`
+tw\`via-white\`
+tw\`via-gray-100\`
+tw\`via-gray-200\`
+tw\`via-gray-300\`
+tw\`via-gray-400\`
+tw\`via-gray-500\`
+tw\`via-gray-600\`
+tw\`via-gray-700\`
+tw\`via-gray-800\`
+tw\`via-gray-900\`
+tw\`via-red-100\`
+tw\`via-red-200\`
+tw\`via-red-300\`
+tw\`via-red-400\`
+tw\`via-red-500\`
+tw\`via-red-600\`
+tw\`via-red-700\`
+tw\`via-red-800\`
+tw\`via-red-900\`
+tw\`via-orange-100\`
+tw\`via-orange-200\`
+tw\`via-orange-300\`
+tw\`via-orange-400\`
+tw\`via-orange-500\`
+tw\`via-orange-600\`
+tw\`via-orange-700\`
+tw\`via-orange-800\`
+tw\`via-orange-900\`
+tw\`via-yellow-100\`
+tw\`via-yellow-200\`
+tw\`via-yellow-300\`
+tw\`via-yellow-400\`
+tw\`via-yellow-500\`
+tw\`via-yellow-600\`
+tw\`via-yellow-700\`
+tw\`via-yellow-800\`
+tw\`via-yellow-900\`
+tw\`via-green-100\`
+tw\`via-green-200\`
+tw\`via-green-300\`
+tw\`via-green-400\`
+tw\`via-green-500\`
+tw\`via-green-600\`
+tw\`via-green-700\`
+tw\`via-green-800\`
+tw\`via-green-900\`
+tw\`via-teal-100\`
+tw\`via-teal-200\`
+tw\`via-teal-300\`
+tw\`via-teal-400\`
+tw\`via-teal-500\`
+tw\`via-teal-600\`
+tw\`via-teal-700\`
+tw\`via-teal-800\`
+tw\`via-teal-900\`
+tw\`via-blue-100\`
+tw\`via-blue-200\`
+tw\`via-blue-300\`
+tw\`via-blue-400\`
+tw\`via-blue-500\`
+tw\`via-blue-600\`
+tw\`via-blue-700\`
+tw\`via-blue-800\`
+tw\`via-blue-900\`
+tw\`via-indigo-100\`
+tw\`via-indigo-200\`
+tw\`via-indigo-300\`
+tw\`via-indigo-400\`
+tw\`via-indigo-500\`
+tw\`via-indigo-600\`
+tw\`via-indigo-700\`
+tw\`via-indigo-800\`
+tw\`via-indigo-900\`
+tw\`via-purple-100\`
+tw\`via-purple-200\`
+tw\`via-purple-300\`
+tw\`via-purple-400\`
+tw\`via-purple-500\`
+tw\`via-purple-600\`
+tw\`via-purple-700\`
+tw\`via-purple-800\`
+tw\`via-purple-900\`
+tw\`via-pink-100\`
+tw\`via-pink-200\`
+tw\`via-pink-300\`
+tw\`via-pink-400\`
+tw\`via-pink-500\`
+tw\`via-pink-600\`
+tw\`via-pink-700\`
+tw\`via-pink-800\`
+tw\`via-pink-900\`
+
+tw\`sm:focus:via-pink-800\`
+tw\`md:hover:via-pink-900\`
+
+tw\`to-transparent\`
+tw\`to-current\`
+tw\`to-black\`
+tw\`to-white\`
+tw\`to-gray-100\`
+tw\`to-gray-200\`
+tw\`to-gray-300\`
+tw\`to-gray-400\`
+tw\`to-gray-500\`
+tw\`to-gray-600\`
+tw\`to-gray-700\`
+tw\`to-gray-800\`
+tw\`to-gray-900\`
+tw\`to-red-100\`
+tw\`to-red-200\`
+tw\`to-red-300\`
+tw\`to-red-400\`
+tw\`to-red-500\`
+tw\`to-red-600\`
+tw\`to-red-700\`
+tw\`to-red-800\`
+tw\`to-red-900\`
+tw\`to-orange-100\`
+tw\`to-orange-200\`
+tw\`to-orange-300\`
+tw\`to-orange-400\`
+tw\`to-orange-500\`
+tw\`to-orange-600\`
+tw\`to-orange-700\`
+tw\`to-orange-800\`
+tw\`to-orange-900\`
+tw\`to-yellow-100\`
+tw\`to-yellow-200\`
+tw\`to-yellow-300\`
+tw\`to-yellow-400\`
+tw\`to-yellow-500\`
+tw\`to-yellow-600\`
+tw\`to-yellow-700\`
+tw\`to-yellow-800\`
+tw\`to-yellow-900\`
+tw\`to-green-100\`
+tw\`to-green-200\`
+tw\`to-green-300\`
+tw\`to-green-400\`
+tw\`to-green-500\`
+tw\`to-green-600\`
+tw\`to-green-700\`
+tw\`to-green-800\`
+tw\`to-green-900\`
+tw\`to-teal-100\`
+tw\`to-teal-200\`
+tw\`to-teal-300\`
+tw\`to-teal-400\`
+tw\`to-teal-500\`
+tw\`to-teal-600\`
+tw\`to-teal-700\`
+tw\`to-teal-800\`
+tw\`to-teal-900\`
+tw\`to-blue-100\`
+tw\`to-blue-200\`
+tw\`to-blue-300\`
+tw\`to-blue-400\`
+tw\`to-blue-500\`
+tw\`to-blue-600\`
+tw\`to-blue-700\`
+tw\`to-blue-800\`
+tw\`to-blue-900\`
+tw\`to-indigo-100\`
+tw\`to-indigo-200\`
+tw\`to-indigo-300\`
+tw\`to-indigo-400\`
+tw\`to-indigo-500\`
+tw\`to-indigo-600\`
+tw\`to-indigo-700\`
+tw\`to-indigo-800\`
+tw\`to-indigo-900\`
+tw\`to-purple-100\`
+tw\`to-purple-200\`
+tw\`to-purple-300\`
+tw\`to-purple-400\`
+tw\`to-purple-500\`
+tw\`to-purple-600\`
+tw\`to-purple-700\`
+tw\`to-purple-800\`
+tw\`to-purple-900\`
+tw\`to-pink-100\`
+tw\`to-pink-200\`
+tw\`to-pink-300\`
+tw\`to-pink-400\`
+tw\`to-pink-500\`
+tw\`to-pink-600\`
+tw\`to-pink-700\`
+tw\`to-pink-800\`
+tw\`to-pink-900\`
+
+tw\`sm:focus:to-pink-800\`
+tw\`md:hover:to-pink-900\`
+
+tw\`bg-gradient-to-t from-electric to-electric text-purple-500 text-opacity-50\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// https://tailwindcss.com/docs/gradient-color-stops
+;({
+  backgroundImage: 'none',
+})
+;({
+  backgroundImage: 'linear-gradient(to top, var(--gradient-color-stops))',
+})
+;({
+  backgroundImage: 'linear-gradient(to top right, var(--gradient-color-stops))',
+})
+;({
+  backgroundImage: 'linear-gradient(to right, var(--gradient-color-stops))',
+})
+;({
+  backgroundImage:
+    'linear-gradient(to bottom right, var(--gradient-color-stops))',
+})
+;({
+  backgroundImage: 'linear-gradient(to bottom, var(--gradient-color-stops))',
+})
+;({
+  backgroundImage:
+    'linear-gradient(to bottom left, var(--gradient-color-stops))',
+})
+;({
+  backgroundImage: 'linear-gradient(to left, var(--gradient-color-stops))',
+})
+;({
+  backgroundImage: 'linear-gradient(to top left, var(--gradient-color-stops))',
+})
+;({
+  '@media (min-width: 640px)': {
+    ':focus': {
+      backgroundImage:
+        'linear-gradient(to top left, var(--gradient-color-stops))',
+    },
+  },
+})
+;({
+  '@media (min-width: 768px)': {
+    ':hover': {
+      backgroundImage:
+        'linear-gradient(to top left, var(--gradient-color-stops))',
+    },
+  },
+})
+;({
+  '--gradient-from-color': 'transparent',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0))',
+})
+;({
+  '--gradient-from-color': 'currentColor',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0))',
+})
+;({
+  '--gradient-from-color': '#000',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0))',
+})
+;({
+  '--gradient-from-color': '#fff',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0))',
+})
+;({
+  '--gradient-from-color': '#f7fafc',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(247, 250, 252, 0))',
+})
+;({
+  '--gradient-from-color': '#edf2f7',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(237, 242, 247, 0))',
+})
+;({
+  '--gradient-from-color': '#e2e8f0',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(226, 232, 240, 0))',
+})
+;({
+  '--gradient-from-color': '#cbd5e0',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(203, 213, 224, 0))',
+})
+;({
+  '--gradient-from-color': '#a0aec0',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(160, 174, 192, 0))',
+})
+;({
+  '--gradient-from-color': '#718096',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(113, 128, 150, 0))',
+})
+;({
+  '--gradient-from-color': '#4a5568',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(74, 85, 104, 0))',
+})
+;({
+  '--gradient-from-color': '#2d3748',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(45, 55, 72, 0))',
+})
+;({
+  '--gradient-from-color': '#1a202c',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(26, 32, 44, 0))',
+})
+;({
+  '--gradient-from-color': '#fff5f5',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(255, 245, 245, 0))',
+})
+;({
+  '--gradient-from-color': '#fed7d7',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(254, 215, 215, 0))',
+})
+;({
+  '--gradient-from-color': '#feb2b2',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(254, 178, 178, 0))',
+})
+;({
+  '--gradient-from-color': '#fc8181',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(252, 129, 129, 0))',
+})
+;({
+  '--gradient-from-color': '#f56565',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(245, 101, 101, 0))',
+})
+;({
+  '--gradient-from-color': '#e53e3e',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(229, 62, 62, 0))',
+})
+;({
+  '--gradient-from-color': '#c53030',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(197, 48, 48, 0))',
+})
+;({
+  '--gradient-from-color': '#9b2c2c',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(155, 44, 44, 0))',
+})
+;({
+  '--gradient-from-color': '#742a2a',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(116, 42, 42, 0))',
+})
+;({
+  '--gradient-from-color': '#fffaf0',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(255, 250, 240, 0))',
+})
+;({
+  '--gradient-from-color': '#feebc8',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(254, 235, 200, 0))',
+})
+;({
+  '--gradient-from-color': '#fbd38d',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(251, 211, 141, 0))',
+})
+;({
+  '--gradient-from-color': '#f6ad55',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(246, 173, 85, 0))',
+})
+;({
+  '--gradient-from-color': '#ed8936',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(237, 137, 54, 0))',
+})
+;({
+  '--gradient-from-color': '#dd6b20',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(221, 107, 32, 0))',
+})
+;({
+  '--gradient-from-color': '#c05621',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(192, 86, 33, 0))',
+})
+;({
+  '--gradient-from-color': '#9c4221',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(156, 66, 33, 0))',
+})
+;({
+  '--gradient-from-color': '#7b341e',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(123, 52, 30, 0))',
+})
+;({
+  '--gradient-from-color': '#fffff0',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 240, 0))',
+})
+;({
+  '--gradient-from-color': '#fefcbf',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(254, 252, 191, 0))',
+})
+;({
+  '--gradient-from-color': '#faf089',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(250, 240, 137, 0))',
+})
+;({
+  '--gradient-from-color': '#f6e05e',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(246, 224, 94, 0))',
+})
+;({
+  '--gradient-from-color': '#ecc94b',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(236, 201, 75, 0))',
+})
+;({
+  '--gradient-from-color': '#d69e2e',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(214, 158, 46, 0))',
+})
+;({
+  '--gradient-from-color': '#b7791f',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(183, 121, 31, 0))',
+})
+;({
+  '--gradient-from-color': '#975a16',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(151, 90, 22, 0))',
+})
+;({
+  '--gradient-from-color': '#744210',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(116, 66, 16, 0))',
+})
+;({
+  '--gradient-from-color': '#f0fff4',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(240, 255, 244, 0))',
+})
+;({
+  '--gradient-from-color': '#c6f6d5',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(198, 246, 213, 0))',
+})
+;({
+  '--gradient-from-color': '#9ae6b4',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(154, 230, 180, 0))',
+})
+;({
+  '--gradient-from-color': '#68d391',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(104, 211, 145, 0))',
+})
+;({
+  '--gradient-from-color': '#48bb78',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(72, 187, 120, 0))',
+})
+;({
+  '--gradient-from-color': '#38a169',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(56, 161, 105, 0))',
+})
+;({
+  '--gradient-from-color': '#2f855a',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(47, 133, 90, 0))',
+})
+;({
+  '--gradient-from-color': '#276749',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(39, 103, 73, 0))',
+})
+;({
+  '--gradient-from-color': '#22543d',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(34, 84, 61, 0))',
+})
+;({
+  '--gradient-from-color': '#e6fffa',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(230, 255, 250, 0))',
+})
+;({
+  '--gradient-from-color': '#b2f5ea',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(178, 245, 234, 0))',
+})
+;({
+  '--gradient-from-color': '#81e6d9',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(129, 230, 217, 0))',
+})
+;({
+  '--gradient-from-color': '#4fd1c5',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(79, 209, 197, 0))',
+})
+;({
+  '--gradient-from-color': '#38b2ac',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(56, 178, 172, 0))',
+})
+;({
+  '--gradient-from-color': '#319795',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(49, 151, 149, 0))',
+})
+;({
+  '--gradient-from-color': '#2c7a7b',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(44, 122, 123, 0))',
+})
+;({
+  '--gradient-from-color': '#285e61',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(40, 94, 97, 0))',
+})
+;({
+  '--gradient-from-color': '#234e52',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(35, 78, 82, 0))',
+})
+;({
+  '--gradient-from-color': '#ebf8ff',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(235, 248, 255, 0))',
+})
+;({
+  '--gradient-from-color': '#bee3f8',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(190, 227, 248, 0))',
+})
+;({
+  '--gradient-from-color': '#90cdf4',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(144, 205, 244, 0))',
+})
+;({
+  '--gradient-from-color': '#63b3ed',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(99, 179, 237, 0))',
+})
+;({
+  '--gradient-from-color': '#4299e1',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(66, 153, 225, 0))',
+})
+;({
+  '--gradient-from-color': '#3182ce',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(49, 130, 206, 0))',
+})
+;({
+  '--gradient-from-color': '#2b6cb0',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(43, 108, 176, 0))',
+})
+;({
+  '--gradient-from-color': '#2c5282',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(44, 82, 130, 0))',
+})
+;({
+  '--gradient-from-color': '#2a4365',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(42, 67, 101, 0))',
+})
+;({
+  '--gradient-from-color': '#ebf4ff',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(235, 244, 255, 0))',
+})
+;({
+  '--gradient-from-color': '#c3dafe',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(195, 218, 254, 0))',
+})
+;({
+  '--gradient-from-color': '#a3bffa',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(163, 191, 250, 0))',
+})
+;({
+  '--gradient-from-color': '#7f9cf5',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(127, 156, 245, 0))',
+})
+;({
+  '--gradient-from-color': '#667eea',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(102, 126, 234, 0))',
+})
+;({
+  '--gradient-from-color': '#5a67d8',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(90, 103, 216, 0))',
+})
+;({
+  '--gradient-from-color': '#4c51bf',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(76, 81, 191, 0))',
+})
+;({
+  '--gradient-from-color': '#434190',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(67, 65, 144, 0))',
+})
+;({
+  '--gradient-from-color': '#3c366b',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(60, 54, 107, 0))',
+})
+;({
+  '--gradient-from-color': '#faf5ff',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(250, 245, 255, 0))',
+})
+;({
+  '--gradient-from-color': '#e9d8fd',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(233, 216, 253, 0))',
+})
+;({
+  '--gradient-from-color': '#d6bcfa',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(214, 188, 250, 0))',
+})
+;({
+  '--gradient-from-color': '#b794f4',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(183, 148, 244, 0))',
+})
+;({
+  '--gradient-from-color': '#9f7aea',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(159, 122, 234, 0))',
+})
+;({
+  '--gradient-from-color': '#805ad5',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(128, 90, 213, 0))',
+})
+;({
+  '--gradient-from-color': '#6b46c1',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(107, 70, 193, 0))',
+})
+;({
+  '--gradient-from-color': '#553c9a',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(85, 60, 154, 0))',
+})
+;({
+  '--gradient-from-color': '#44337a',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(68, 51, 122, 0))',
+})
+;({
+  '--gradient-from-color': '#fff5f7',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(255, 245, 247, 0))',
+})
+;({
+  '--gradient-from-color': '#fed7e2',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(254, 215, 226, 0))',
+})
+;({
+  '--gradient-from-color': '#fbb6ce',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(251, 182, 206, 0))',
+})
+;({
+  '--gradient-from-color': '#f687b3',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(246, 135, 179, 0))',
+})
+;({
+  '--gradient-from-color': '#ed64a6',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(237, 100, 166, 0))',
+})
+;({
+  '--gradient-from-color': '#d53f8c',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(213, 63, 140, 0))',
+})
+;({
+  '--gradient-from-color': '#b83280',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(184, 50, 128, 0))',
+})
+;({
+  '--gradient-from-color': '#97266d',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(151, 38, 109, 0))',
+})
+;({
+  '--gradient-from-color': '#702459',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(112, 36, 89, 0))',
+})
+;({
+  '@media (min-width: 640px)': {
+    ':focus': {
+      '--gradient-from-color': '#97266d',
+      '--gradient-color-stops':
+        'var(--gradient-from-color), var(--gradient-to-color, rgba(151, 38, 109, 0))',
+    },
+  },
+})
+;({
+  '@media (min-width: 768px)': {
+    ':hover': {
+      '--gradient-from-color': '#702459',
+      '--gradient-color-stops':
+        'var(--gradient-from-color), var(--gradient-to-color, rgba(112, 36, 89, 0))',
+    },
+  },
+})
+;({
+  '--gradient-via-color': 'transparent',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0))',
+})
+;({
+  '--gradient-via-color': 'currentColor',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0))',
+})
+;({
+  '--gradient-via-color': '#000',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0))',
+})
+;({
+  '--gradient-via-color': '#fff',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0))',
+})
+;({
+  '--gradient-via-color': '#f7fafc',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(247, 250, 252, 0))',
+})
+;({
+  '--gradient-via-color': '#edf2f7',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(237, 242, 247, 0))',
+})
+;({
+  '--gradient-via-color': '#e2e8f0',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(226, 232, 240, 0))',
+})
+;({
+  '--gradient-via-color': '#cbd5e0',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(203, 213, 224, 0))',
+})
+;({
+  '--gradient-via-color': '#a0aec0',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(160, 174, 192, 0))',
+})
+;({
+  '--gradient-via-color': '#718096',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(113, 128, 150, 0))',
+})
+;({
+  '--gradient-via-color': '#4a5568',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(74, 85, 104, 0))',
+})
+;({
+  '--gradient-via-color': '#2d3748',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(45, 55, 72, 0))',
+})
+;({
+  '--gradient-via-color': '#1a202c',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(26, 32, 44, 0))',
+})
+;({
+  '--gradient-via-color': '#fff5f5',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 245, 245, 0))',
+})
+;({
+  '--gradient-via-color': '#fed7d7',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(254, 215, 215, 0))',
+})
+;({
+  '--gradient-via-color': '#feb2b2',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(254, 178, 178, 0))',
+})
+;({
+  '--gradient-via-color': '#fc8181',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(252, 129, 129, 0))',
+})
+;({
+  '--gradient-via-color': '#f56565',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(245, 101, 101, 0))',
+})
+;({
+  '--gradient-via-color': '#e53e3e',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(229, 62, 62, 0))',
+})
+;({
+  '--gradient-via-color': '#c53030',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(197, 48, 48, 0))',
+})
+;({
+  '--gradient-via-color': '#9b2c2c',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(155, 44, 44, 0))',
+})
+;({
+  '--gradient-via-color': '#742a2a',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(116, 42, 42, 0))',
+})
+;({
+  '--gradient-via-color': '#fffaf0',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 250, 240, 0))',
+})
+;({
+  '--gradient-via-color': '#feebc8',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(254, 235, 200, 0))',
+})
+;({
+  '--gradient-via-color': '#fbd38d',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(251, 211, 141, 0))',
+})
+;({
+  '--gradient-via-color': '#f6ad55',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(246, 173, 85, 0))',
+})
+;({
+  '--gradient-via-color': '#ed8936',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(237, 137, 54, 0))',
+})
+;({
+  '--gradient-via-color': '#dd6b20',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(221, 107, 32, 0))',
+})
+;({
+  '--gradient-via-color': '#c05621',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(192, 86, 33, 0))',
+})
+;({
+  '--gradient-via-color': '#9c4221',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(156, 66, 33, 0))',
+})
+;({
+  '--gradient-via-color': '#7b341e',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(123, 52, 30, 0))',
+})
+;({
+  '--gradient-via-color': '#fffff0',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 240, 0))',
+})
+;({
+  '--gradient-via-color': '#fefcbf',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(254, 252, 191, 0))',
+})
+;({
+  '--gradient-via-color': '#faf089',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(250, 240, 137, 0))',
+})
+;({
+  '--gradient-via-color': '#f6e05e',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(246, 224, 94, 0))',
+})
+;({
+  '--gradient-via-color': '#ecc94b',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(236, 201, 75, 0))',
+})
+;({
+  '--gradient-via-color': '#d69e2e',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(214, 158, 46, 0))',
+})
+;({
+  '--gradient-via-color': '#b7791f',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(183, 121, 31, 0))',
+})
+;({
+  '--gradient-via-color': '#975a16',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(151, 90, 22, 0))',
+})
+;({
+  '--gradient-via-color': '#744210',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(116, 66, 16, 0))',
+})
+;({
+  '--gradient-via-color': '#f0fff4',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(240, 255, 244, 0))',
+})
+;({
+  '--gradient-via-color': '#c6f6d5',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(198, 246, 213, 0))',
+})
+;({
+  '--gradient-via-color': '#9ae6b4',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(154, 230, 180, 0))',
+})
+;({
+  '--gradient-via-color': '#68d391',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(104, 211, 145, 0))',
+})
+;({
+  '--gradient-via-color': '#48bb78',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(72, 187, 120, 0))',
+})
+;({
+  '--gradient-via-color': '#38a169',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(56, 161, 105, 0))',
+})
+;({
+  '--gradient-via-color': '#2f855a',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(47, 133, 90, 0))',
+})
+;({
+  '--gradient-via-color': '#276749',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(39, 103, 73, 0))',
+})
+;({
+  '--gradient-via-color': '#22543d',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(34, 84, 61, 0))',
+})
+;({
+  '--gradient-via-color': '#e6fffa',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(230, 255, 250, 0))',
+})
+;({
+  '--gradient-via-color': '#b2f5ea',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(178, 245, 234, 0))',
+})
+;({
+  '--gradient-via-color': '#81e6d9',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(129, 230, 217, 0))',
+})
+;({
+  '--gradient-via-color': '#4fd1c5',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(79, 209, 197, 0))',
+})
+;({
+  '--gradient-via-color': '#38b2ac',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(56, 178, 172, 0))',
+})
+;({
+  '--gradient-via-color': '#319795',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(49, 151, 149, 0))',
+})
+;({
+  '--gradient-via-color': '#2c7a7b',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(44, 122, 123, 0))',
+})
+;({
+  '--gradient-via-color': '#285e61',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(40, 94, 97, 0))',
+})
+;({
+  '--gradient-via-color': '#234e52',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(35, 78, 82, 0))',
+})
+;({
+  '--gradient-via-color': '#ebf8ff',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(235, 248, 255, 0))',
+})
+;({
+  '--gradient-via-color': '#bee3f8',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(190, 227, 248, 0))',
+})
+;({
+  '--gradient-via-color': '#90cdf4',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(144, 205, 244, 0))',
+})
+;({
+  '--gradient-via-color': '#63b3ed',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(99, 179, 237, 0))',
+})
+;({
+  '--gradient-via-color': '#4299e1',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(66, 153, 225, 0))',
+})
+;({
+  '--gradient-via-color': '#3182ce',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(49, 130, 206, 0))',
+})
+;({
+  '--gradient-via-color': '#2b6cb0',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(43, 108, 176, 0))',
+})
+;({
+  '--gradient-via-color': '#2c5282',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(44, 82, 130, 0))',
+})
+;({
+  '--gradient-via-color': '#2a4365',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(42, 67, 101, 0))',
+})
+;({
+  '--gradient-via-color': '#ebf4ff',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(235, 244, 255, 0))',
+})
+;({
+  '--gradient-via-color': '#c3dafe',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(195, 218, 254, 0))',
+})
+;({
+  '--gradient-via-color': '#a3bffa',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(163, 191, 250, 0))',
+})
+;({
+  '--gradient-via-color': '#7f9cf5',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(127, 156, 245, 0))',
+})
+;({
+  '--gradient-via-color': '#667eea',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(102, 126, 234, 0))',
+})
+;({
+  '--gradient-via-color': '#5a67d8',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(90, 103, 216, 0))',
+})
+;({
+  '--gradient-via-color': '#4c51bf',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(76, 81, 191, 0))',
+})
+;({
+  '--gradient-via-color': '#434190',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(67, 65, 144, 0))',
+})
+;({
+  '--gradient-via-color': '#3c366b',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(60, 54, 107, 0))',
+})
+;({
+  '--gradient-via-color': '#faf5ff',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(250, 245, 255, 0))',
+})
+;({
+  '--gradient-via-color': '#e9d8fd',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(233, 216, 253, 0))',
+})
+;({
+  '--gradient-via-color': '#d6bcfa',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(214, 188, 250, 0))',
+})
+;({
+  '--gradient-via-color': '#b794f4',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(183, 148, 244, 0))',
+})
+;({
+  '--gradient-via-color': '#9f7aea',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(159, 122, 234, 0))',
+})
+;({
+  '--gradient-via-color': '#805ad5',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(128, 90, 213, 0))',
+})
+;({
+  '--gradient-via-color': '#6b46c1',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(107, 70, 193, 0))',
+})
+;({
+  '--gradient-via-color': '#553c9a',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(85, 60, 154, 0))',
+})
+;({
+  '--gradient-via-color': '#44337a',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(68, 51, 122, 0))',
+})
+;({
+  '--gradient-via-color': '#fff5f7',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 245, 247, 0))',
+})
+;({
+  '--gradient-via-color': '#fed7e2',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(254, 215, 226, 0))',
+})
+;({
+  '--gradient-via-color': '#fbb6ce',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(251, 182, 206, 0))',
+})
+;({
+  '--gradient-via-color': '#f687b3',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(246, 135, 179, 0))',
+})
+;({
+  '--gradient-via-color': '#ed64a6',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(237, 100, 166, 0))',
+})
+;({
+  '--gradient-via-color': '#d53f8c',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(213, 63, 140, 0))',
+})
+;({
+  '--gradient-via-color': '#b83280',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(184, 50, 128, 0))',
+})
+;({
+  '--gradient-via-color': '#97266d',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(151, 38, 109, 0))',
+})
+;({
+  '--gradient-via-color': '#702459',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(112, 36, 89, 0))',
+})
+;({
+  '@media (min-width: 640px)': {
+    ':focus': {
+      '--gradient-via-color': '#97266d',
+      '--gradient-color-stops':
+        'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(151, 38, 109, 0))',
+    },
+  },
+})
+;({
+  '@media (min-width: 768px)': {
+    ':hover': {
+      '--gradient-via-color': '#702459',
+      '--gradient-color-stops':
+        'var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(112, 36, 89, 0))',
+    },
+  },
+})
+;({
+  '--gradient-to-color': 'transparent',
+})
+;({
+  '--gradient-to-color': 'currentColor',
+})
+;({
+  '--gradient-to-color': '#000',
+})
+;({
+  '--gradient-to-color': '#fff',
+})
+;({
+  '--gradient-to-color': '#f7fafc',
+})
+;({
+  '--gradient-to-color': '#edf2f7',
+})
+;({
+  '--gradient-to-color': '#e2e8f0',
+})
+;({
+  '--gradient-to-color': '#cbd5e0',
+})
+;({
+  '--gradient-to-color': '#a0aec0',
+})
+;({
+  '--gradient-to-color': '#718096',
+})
+;({
+  '--gradient-to-color': '#4a5568',
+})
+;({
+  '--gradient-to-color': '#2d3748',
+})
+;({
+  '--gradient-to-color': '#1a202c',
+})
+;({
+  '--gradient-to-color': '#fff5f5',
+})
+;({
+  '--gradient-to-color': '#fed7d7',
+})
+;({
+  '--gradient-to-color': '#feb2b2',
+})
+;({
+  '--gradient-to-color': '#fc8181',
+})
+;({
+  '--gradient-to-color': '#f56565',
+})
+;({
+  '--gradient-to-color': '#e53e3e',
+})
+;({
+  '--gradient-to-color': '#c53030',
+})
+;({
+  '--gradient-to-color': '#9b2c2c',
+})
+;({
+  '--gradient-to-color': '#742a2a',
+})
+;({
+  '--gradient-to-color': '#fffaf0',
+})
+;({
+  '--gradient-to-color': '#feebc8',
+})
+;({
+  '--gradient-to-color': '#fbd38d',
+})
+;({
+  '--gradient-to-color': '#f6ad55',
+})
+;({
+  '--gradient-to-color': '#ed8936',
+})
+;({
+  '--gradient-to-color': '#dd6b20',
+})
+;({
+  '--gradient-to-color': '#c05621',
+})
+;({
+  '--gradient-to-color': '#9c4221',
+})
+;({
+  '--gradient-to-color': '#7b341e',
+})
+;({
+  '--gradient-to-color': '#fffff0',
+})
+;({
+  '--gradient-to-color': '#fefcbf',
+})
+;({
+  '--gradient-to-color': '#faf089',
+})
+;({
+  '--gradient-to-color': '#f6e05e',
+})
+;({
+  '--gradient-to-color': '#ecc94b',
+})
+;({
+  '--gradient-to-color': '#d69e2e',
+})
+;({
+  '--gradient-to-color': '#b7791f',
+})
+;({
+  '--gradient-to-color': '#975a16',
+})
+;({
+  '--gradient-to-color': '#744210',
+})
+;({
+  '--gradient-to-color': '#f0fff4',
+})
+;({
+  '--gradient-to-color': '#c6f6d5',
+})
+;({
+  '--gradient-to-color': '#9ae6b4',
+})
+;({
+  '--gradient-to-color': '#68d391',
+})
+;({
+  '--gradient-to-color': '#48bb78',
+})
+;({
+  '--gradient-to-color': '#38a169',
+})
+;({
+  '--gradient-to-color': '#2f855a',
+})
+;({
+  '--gradient-to-color': '#276749',
+})
+;({
+  '--gradient-to-color': '#22543d',
+})
+;({
+  '--gradient-to-color': '#e6fffa',
+})
+;({
+  '--gradient-to-color': '#b2f5ea',
+})
+;({
+  '--gradient-to-color': '#81e6d9',
+})
+;({
+  '--gradient-to-color': '#4fd1c5',
+})
+;({
+  '--gradient-to-color': '#38b2ac',
+})
+;({
+  '--gradient-to-color': '#319795',
+})
+;({
+  '--gradient-to-color': '#2c7a7b',
+})
+;({
+  '--gradient-to-color': '#285e61',
+})
+;({
+  '--gradient-to-color': '#234e52',
+})
+;({
+  '--gradient-to-color': '#ebf8ff',
+})
+;({
+  '--gradient-to-color': '#bee3f8',
+})
+;({
+  '--gradient-to-color': '#90cdf4',
+})
+;({
+  '--gradient-to-color': '#63b3ed',
+})
+;({
+  '--gradient-to-color': '#4299e1',
+})
+;({
+  '--gradient-to-color': '#3182ce',
+})
+;({
+  '--gradient-to-color': '#2b6cb0',
+})
+;({
+  '--gradient-to-color': '#2c5282',
+})
+;({
+  '--gradient-to-color': '#2a4365',
+})
+;({
+  '--gradient-to-color': '#ebf4ff',
+})
+;({
+  '--gradient-to-color': '#c3dafe',
+})
+;({
+  '--gradient-to-color': '#a3bffa',
+})
+;({
+  '--gradient-to-color': '#7f9cf5',
+})
+;({
+  '--gradient-to-color': '#667eea',
+})
+;({
+  '--gradient-to-color': '#5a67d8',
+})
+;({
+  '--gradient-to-color': '#4c51bf',
+})
+;({
+  '--gradient-to-color': '#434190',
+})
+;({
+  '--gradient-to-color': '#3c366b',
+})
+;({
+  '--gradient-to-color': '#faf5ff',
+})
+;({
+  '--gradient-to-color': '#e9d8fd',
+})
+;({
+  '--gradient-to-color': '#d6bcfa',
+})
+;({
+  '--gradient-to-color': '#b794f4',
+})
+;({
+  '--gradient-to-color': '#9f7aea',
+})
+;({
+  '--gradient-to-color': '#805ad5',
+})
+;({
+  '--gradient-to-color': '#6b46c1',
+})
+;({
+  '--gradient-to-color': '#553c9a',
+})
+;({
+  '--gradient-to-color': '#44337a',
+})
+;({
+  '--gradient-to-color': '#fff5f7',
+})
+;({
+  '--gradient-to-color': '#fed7e2',
+})
+;({
+  '--gradient-to-color': '#fbb6ce',
+})
+;({
+  '--gradient-to-color': '#f687b3',
+})
+;({
+  '--gradient-to-color': '#ed64a6',
+})
+;({
+  '--gradient-to-color': '#d53f8c',
+})
+;({
+  '--gradient-to-color': '#b83280',
+})
+;({
+  '--gradient-to-color': '#97266d',
+})
+;({
+  '--gradient-to-color': '#702459',
+})
+;({
+  '@media (min-width: 640px)': {
+    ':focus': {
+      '--gradient-to-color': '#97266d',
+    },
+  },
+})
+;({
+  '@media (min-width: 768px)': {
+    ':hover': {
+      '--gradient-to-color': '#702459',
+    },
+  },
+})
+;({
+  backgroundImage: 'linear-gradient(to top, var(--gradient-color-stops))',
+  '--gradient-from-color': 'rgb(219, 0, 255)',
+  '--gradient-color-stops':
+    'var(--gradient-from-color), var(--gradient-to-color, rgba(219, 0, 255, 0))',
+  '--gradient-to-color': 'rgb(219, 0, 255)',
+  '--text-opacity': '0.5',
+  color: 'rgba(159, 122, 234, var(--text-opacity))',
+})
+
+
+`;
+
 exports[`twin.macro grid.js: grid.js 1`] = `
 
 import tw from './macro'
