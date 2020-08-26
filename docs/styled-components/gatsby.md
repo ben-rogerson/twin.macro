@@ -45,7 +45,7 @@ module.exports = {
 
 Twin’s recommended config can be added in a couple of different places.
 
-a) In your `package.json`:
+**a) In your `package.json`:**
 
 ```js
 // package.json
@@ -61,7 +61,7 @@ a) In your `package.json`:
 },
 ```
 
-b) Or in a new file named `babel-plugin-macros.config.js` placed in your project root:
+**b) Or in a new file named `babel-plugin-macros.config.js` placed in your project root:**
 
 ```js
 // babel-plugin-macros.config.js

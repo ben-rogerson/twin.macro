@@ -39,7 +39,7 @@ import 'tailwindcss/dist/base.min.css'
 
 Twin’s recommended config can be added in a couple of different places.
 
-a) In your `package.json`:
+**a) In your `package.json`:**
 
 ```js
 // package.json
@@ -54,7 +54,7 @@ a) In your `package.json`:
 },
 ```
 
-b) Or in a new file named `babel-plugin-macros.config.js` placed in your project root:
+**b) Or in a new file named `babel-plugin-macros.config.js` placed in your project root:**
 
 ```js
 // babel-plugin-macros.config.js
@@ -73,7 +73,7 @@ module.exports = {
 
 To use the `tw` and `css` props, emotion must first extend jsx with a [jsx pragma](https://emotion.sh/docs/css-prop#jsx-pragma).
 
-a) Add the jsx pragma manually:
+**a) Add the jsx pragma manually:**
 
 ```js
 // In .babelrc
@@ -90,14 +90,14 @@ Then when styling with the tw/css prop, add the two lines for the pragma at the 
 ```js
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import 'twin.macro'
+import tw from 'twin.macro'
 
 const Input = () => <input tw="bg-black" />
 // or
 const Input = () => <input css={tw`bg-black`} />
 ```
 
-b) Or auto inject the pragma:
+**b) Or auto inject the pragma:**
 
 You can avoid adding the pragma yourself with the following babel config:
 
