@@ -17,6 +17,11 @@ tw`text-4xl`
 tw`text-5xl`
 tw`text-6xl`
 
+// Extended config
+tw`text-size`
+tw`text-sizeLineHeight`
+tw`text-sizeLineHeightLetterSpacing`
+
 // https://tailwindcss.com/docs/font-smoothing
 tw`antialiased`
 tw`subpixel-antialiased`

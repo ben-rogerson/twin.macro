@@ -16,11 +16,18 @@ const handleSize = ({ configValue, important }) => {
   const value = configValue('fontSize')
   if (!value) return
 
-  const [fontSize, lineHeight] = Array.isArray(value) ? value : [value]
+  const [fontSize, options] = Array.isArray(value) ? value : [value]
+
+  const lineHeight = options instanceof Object ? options.lineHeight : options
+  const letterSpacing = options && options.letterSpacing
+
   return {
     fontSize: `${fontSize}${important}`,
     ...(lineHeight && {
       lineHeight: `${lineHeight}${important}`,
+    }),
+    ...(letterSpacing && {
+      letterSpacing: `${letterSpacing}${important}`,
     }),
   }
 }
