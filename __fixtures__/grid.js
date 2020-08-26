@@ -112,6 +112,50 @@ tw`gap-48`
 tw`gap-56`
 tw`gap-64`
 tw`gap-px`
+
+// https://tailwindcss.com/docs/gap
+tw`gap-x-0`
+tw`gap-x-1`
+tw`gap-x-2`
+tw`gap-x-3`
+tw`gap-x-4`
+tw`gap-x-5`
+tw`gap-x-6`
+tw`gap-x-8`
+tw`gap-x-10`
+tw`gap-x-12`
+tw`gap-x-16`
+tw`gap-x-20`
+tw`gap-x-24`
+tw`gap-x-32`
+tw`gap-x-40`
+tw`gap-x-48`
+tw`gap-x-56`
+tw`gap-x-64`
+tw`gap-x-px`
+
+// https://tailwindcss.com/docs/gap
+tw`gap-y-0`
+tw`gap-y-1`
+tw`gap-y-2`
+tw`gap-y-3`
+tw`gap-y-4`
+tw`gap-y-5`
+tw`gap-y-6`
+tw`gap-y-8`
+tw`gap-y-10`
+tw`gap-y-12`
+tw`gap-y-16`
+tw`gap-y-20`
+tw`gap-y-24`
+tw`gap-y-32`
+tw`gap-y-40`
+tw`gap-y-48`
+tw`gap-y-56`
+tw`gap-y-64`
+tw`gap-y-px`
+
+// Deprecated since tailwindcss v1.7.0
 tw`row-gap-0`
 tw`row-gap-1`
 tw`row-gap-2`
@@ -131,6 +175,8 @@ tw`row-gap-48`
 tw`row-gap-56`
 tw`row-gap-64`
 tw`row-gap-px`
+
+// Deprecated since tailwindcss v1.7.0
 tw`col-gap-0`
 tw`col-gap-1`
 tw`col-gap-2`

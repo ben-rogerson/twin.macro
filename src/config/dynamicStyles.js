@@ -98,6 +98,18 @@ export default {
 
   // https://tailwindcss.com/docs/gap
   gap: { prop: 'gap', config: 'gap' },
+  'gap-x': {
+    prop: 'columnGap',
+    config: 'gap',
+    configFallback: 'spacing',
+  },
+  'gap-y': {
+    prop: 'rowGap',
+    config: 'gap',
+    configFallback: 'spacing',
+  },
+
+  // Deprecated since tailwindcss v1.7.0
   'col-gap': { prop: 'columnGap', config: 'gap' },
   'row-gap': { prop: 'rowGap', config: 'gap' },
 
