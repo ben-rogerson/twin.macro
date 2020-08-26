@@ -25,29 +25,7 @@ yarn add twin.macro @emotion/core @emotion/styled
 
 </details>
 
-### 2. Enable babel macros and jsx
-
-```js
-// In .babelrc
-{
-  "plugins": [
-    "babel-plugin-macros",
-    [
-      "@emotion/babel-plugin-jsx-pragmatic",
-      {
-        "export": "jsx",
-        "import": "__cssprop",
-        "module": "@emotion/core"
-      }
-    ],
-    ["babel-plugin-transform-react-jsx", { "pragma": "__cssprop" }]
-  ]
-}
-```
-
-> Note: After build, if you’re seeing "process is not defined" then npm install and add `"babel-plugin-transform-inline-environment-variables"` to .babelrc
-
-### 3. Import the Tailwind base styles
+### 2. Import the Tailwind base styles
 
 Add the following to your `app.js` or `index.js`:
 (the dependency 'tailwindcss' is already in your node_modules)
@@ -57,7 +35,7 @@ Add the following to your `app.js` or `index.js`:
 import 'tailwindcss/dist/base.min.css'
 ```
 
-### 4. Add the recommended config
+### 3. Add the recommended config
 
 Twin’s recommended config can be added in a couple of different places.
 
@@ -91,7 +69,70 @@ module.exports = {
 }
 ```
 
-### 5. Complete the TypeScript support (optional)
+### 4. Enable babel macros and the jsx pragma
+
+To use the `tw` and `css` props, emotion must first extend jsx with a [jsx pragma](https://emotion.sh/docs/css-prop#jsx-pragma).
+
+a) Add the jsx pragma manually:
+
+```js
+// In .babelrc
+{
+  "plugins": [
+    "babel-plugin-macros",
+    "babel-plugin-transform-react-jsx"
+  ]
+}
+```
+
+Then when styling with the tw/css prop, add the two lines for the pragma at the top of your file. This will replace the react import:
+
+```js
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
+import 'twin.macro'
+
+const Input = () => <input tw="bg-black" />
+// or
+const Input = () => <input css={tw`bg-black`} />
+```
+
+b) Or auto inject the pragma:
+
+You can avoid adding the pragma yourself with the following babel config:
+
+```js
+// In .babelrc
+{
+  "plugins": [
+    "babel-plugin-macros",
+    [
+      "@emotion/babel-plugin-jsx-pragmatic",
+      {
+        "export": "jsx",
+        "import": "__cssprop",
+        "module": "@emotion/core"
+      }
+    ],
+    ["babel-plugin-transform-react-jsx", { "pragma": "__cssprop" }]
+  ]
+}
+```
+
+Then you can import react like normal:
+
+```js
+import React from 'react'
+import 'twin.macro'
+
+const Input = () => <input tw="bg-black" />
+// or
+const Input = () => <input css={tw`bg-black`} />
+```
+
+> Note: After build, if you’re seeing "process is not defined" then npm install and add `"babel-plugin-transform-inline-environment-variables"` to .babelrc
+
+### 5. Add the types for `css` and `styled` (TypeScript only)
 
 While twin comes with types for the tw import, you’ll need to add the types for the `css` and `styled` imports.
 

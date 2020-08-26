@@ -69,7 +69,37 @@ module.exports = {
 }
 ```
 
-### 5. Complete the TypeScript support (optional)
+### 5. Enable babel macros and the jsx pragma
+
+To use the `tw` and `css` props, emotion must first extend jsx with a [jsx pragma](https://emotion.sh/docs/css-prop#jsx-pragma).
+
+```js
+// In .babelrc
+{
+  "plugins": [
+    "babel-plugin-macros",
+    "babel-plugin-transform-react-jsx"
+  ]
+}
+```
+
+Then when styling with the tw/css prop, add the two lines for the pragma at the top of your file. This will replace the react import:
+
+```js
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
+import 'twin.macro'
+
+const Input = () => <input tw="bg-black" />
+// or
+const Input = () => <input css={tw`bg-black`} />
+```
+
+You can automate the injection of the jsx pragma but you’ll need to use a package like [rewire create react app](https://github.com/timarney/react-app-rewired) to allow changes to the project `.babelrc`. Check the [emotion + react docs](./react.md) for the babel config.
+
+> Note: After build, if you’re seeing "process is not defined" then npm install and add `"babel-plugin-transform-inline-environment-variables"` to .babelrc
+
+### 6. Add the types for `css` and `styled` (TypeScript only)
 
 While twin comes with types for the tw import, you’ll need to add the types for the `css` and `styled` imports.
 
