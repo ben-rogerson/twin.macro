@@ -13,6 +13,10 @@ jobs:
       - name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          DISCORD_USERNAME: twin
-          DISCORD_AVATAR: https://i.imgur.com/lUMLFrH.png
+        uses: Ilshidur/action-discord@master
+        with:
+          args: 'A commit was pushed to master'
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
