@@ -123,7 +123,7 @@ Then you can import react like normal:
 
 ```js
 import React from 'react'
-import 'twin.macro'
+import tw from 'twin.macro'
 
 const Input = () => <input tw="bg-black" />
 // or
