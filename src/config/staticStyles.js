@@ -14,6 +14,7 @@ export default {
   // https://tailwindcss.com/docs/display
   hidden: { output: { display: 'none' } },
   block: { output: { display: 'block' } },
+  contents: { output: { display: 'contents' } },
   'inline-block': { output: { display: 'inline-block' } },
   inline: { output: { display: 'inline' } },
   'flow-root': { output: { display: 'flow-root' } },
@@ -354,6 +355,12 @@ export default {
   'bg-fixed': { output: { backgroundAttachment: 'fixed' } },
   'bg-local': { output: { backgroundAttachment: 'local' } },
   'bg-scroll': { output: { backgroundAttachment: 'scroll' } },
+
+  // https://tailwindcss.com/docs/background-clip
+  'bg-clip-border': { output: { backgroundClip: 'border-box' } },
+  'bg-clip-padding': { output: { backgroundClip: 'padding-box' } },
+  'bg-clip-content': { output: { backgroundClip: 'content-box' } },
+  'bg-clip-text': { output: { backgroundClip: 'text' } },
 
   // https://tailwindcss.com/docs/background-color
   // https://tailwindcss.com/docs/background-size

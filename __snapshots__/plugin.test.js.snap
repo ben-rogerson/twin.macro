@@ -2230,6 +2230,12 @@ tw\`bg-fixed\`
 tw\`bg-local\`
 tw\`bg-scroll\`
 
+// https://tailwindcss.com/docs/background-clip
+tw\`bg-clip-border\`
+tw\`bg-clip-padding\`
+tw\`bg-clip-content\`
+tw\`bg-clip-text\`
+
 // https://tailwindcss.com/docs/background-color
 tw\`bg-transparent\`
 tw\`bg-current\`
@@ -2370,6 +2376,19 @@ tw\`bg-contain\`
 })
 ;({
   backgroundAttachment: 'scroll',
+}) // https://tailwindcss.com/docs/background-clip
+
+;({
+  backgroundClip: 'border-box',
+})
+;({
+  backgroundClip: 'padding-box',
+})
+;({
+  backgroundClip: 'content-box',
+})
+;({
+  backgroundClip: 'text',
 }) // https://tailwindcss.com/docs/background-color
 
 ;({
@@ -5486,6 +5505,7 @@ tw\`box-content\`
 // https://tailwindcss.com/docs/display
 tw\`hidden\`
 tw\`block\`
+tw\`contents\`
 tw\`inline-block\`
 tw\`inline\`
 tw\`flow-root\`
@@ -5730,6 +5750,9 @@ tw\`space-y-12 -space-y-reverse\`
 })
 ;({
   display: 'block',
+})
+;({
+  display: 'contents',
 })
 ;({
   display: 'inline-block',
