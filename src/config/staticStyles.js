@@ -135,6 +135,43 @@ export default {
     },
   },
 
+  // https://tailwindcss.com/docs/divide-style
+  'divide-solid': {
+    output: {
+      '> :not(template) ~ :not(template)': {
+        borderStyle: 'solid',
+      },
+    },
+  },
+  'divide-dashed': {
+    output: {
+      '> :not(template) ~ :not(template)': {
+        borderStyle: 'dashed',
+      },
+    },
+  },
+  'divide-dotted': {
+    output: {
+      '> :not(template) ~ :not(template)': {
+        borderStyle: 'dotted',
+      },
+    },
+  },
+  'divide-double': {
+    output: {
+      '> :not(template) ~ :not(template)': {
+        borderStyle: 'double',
+      },
+    },
+  },
+  'divide-none': {
+    output: {
+      '> :not(template) ~ :not(template)': {
+        borderStyle: 'none',
+      },
+    },
+  },
+
   /**
    * ===========================================
    * Flexbox
