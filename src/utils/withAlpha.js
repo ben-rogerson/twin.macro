@@ -15,6 +15,12 @@ function toRgba(color) {
 }
 
 export default ({ color, property, variable, important }) => {
+  if (typeof color === 'function') {
+    return {
+      [property]: `${color({ opacityVariable: variable })}${important}`,
+    }
+  }
+
   const colorValue = `${color}${important}`
   try {
     const [r, g, b, a] = toRgba(color)

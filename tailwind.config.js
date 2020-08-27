@@ -134,6 +134,8 @@ module.exports = {
         'my-blue': {
           100: 'blue',
         },
+        'color-opacity': ({ opacityVariable }) =>
+          `rgba(var(--color-primary), var(${opacityVariable}, 1))`,
       },
       fontWeight: {
         customFontWeightAsString: '700',
