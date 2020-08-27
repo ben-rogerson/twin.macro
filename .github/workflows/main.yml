@@ -14,5 +14,3 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
-        with:
-          args: 'A new commit was pushed to master'
