@@ -2,7 +2,7 @@ import { isEmpty, assert, stripNegative } from './misc'
 import { logGeneralError } from './../logging'
 
 const normalizeValue = value => {
-  if (typeof value === 'string' || Array.isArray(value)) {
+  if (['string', 'function'].includes(typeof value) || Array.isArray(value)) {
     return value
   }
 
@@ -13,7 +13,7 @@ const normalizeValue = value => {
   logGeneralError(
     `The config value "${Object.stringify(
       value
-    )}" is unsupported - try a string, array or number`
+    )}" is unsupported - try a string, function, array, or number`
   )
 }
 
@@ -65,8 +65,7 @@ const getConfigValue = (from, matcher) => {
 
   const match = from[matcher]
   if (
-    typeof match === 'string' ||
-    typeof match === 'number' ||
+    ['string', 'number', 'function'].includes(typeof match) ||
     Array.isArray(match)
   ) {
     return normalizeValue(match)

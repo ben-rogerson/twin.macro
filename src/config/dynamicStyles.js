@@ -203,17 +203,24 @@ export default {
    */
 
   // https://tailwindcss.com/docs/background-attachment
-  // https://tailwindcss.com/docs/background-opacity
   // See staticStyles.js
+
+  // https://tailwindcss.com/docs/background-repeat
+  // See staticStyles.js
+
+  // https://tailwindcss.com/docs/background-opacity
   'bg-opacity': {
     prop: '--bg-opacity',
     config: 'backgroundOpacity',
     configFallback: 'opacity',
   },
+  // https://tailwindcss.com/docs/gradient-color-stops
   bg: { plugin: 'bg' },
 
-  // https://tailwindcss.com/docs/background-repeat
-  // See staticStyles.js
+  // https://tailwindcss.com/docs/gradient-color-stops
+  from: { plugin: 'gradient' },
+  via: { plugin: 'gradient' },
+  to: { plugin: 'gradient' },
 
   /**
    * ===========================================
