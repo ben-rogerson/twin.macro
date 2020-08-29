@@ -10,6 +10,7 @@ tw`box-content`
 // https://tailwindcss.com/docs/display
 tw`hidden`
 tw`block`
+tw`contents`
 tw`inline-block`
 tw`inline`
 tw`flow-root`
