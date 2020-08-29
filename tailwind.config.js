@@ -145,6 +145,8 @@ module.exports = {
 
           return `rgb(219, 0, 255)`
         },
+        'color-opacity': ({ opacityVariable }) =>
+          `rgba(var(--color-primary), var(${opacityVariable}, 1))`,
       },
       fontWeight: {
         customFontWeightAsString: '700',

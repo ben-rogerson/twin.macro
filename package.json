@@ -60,7 +60,7 @@
     "dset": "^2.0.1",
     "lodash.merge": "^4.6.2",
     "string-similarity": "^4.0.1",
-    "tailwindcss": "^1.7.3",
+    "tailwindcss": "^1.7.5",
     "timsort": "^0.3.0"
   },
   "peerDependencies": {

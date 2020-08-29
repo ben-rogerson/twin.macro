@@ -15,6 +15,7 @@ tw\`text-mycolors-a-purple\`
 tw\`text-mycolors-a-number\`
 tw\`text-mycolors-array\`
 tw\`text-my-blue-100\`
+tw\`text-color-opacity\`
 
 tw\`bg-number\`
 tw\`bg-purple-hyphen\`
@@ -23,6 +24,7 @@ tw\`bg-mycolors-a-purple\`
 tw\`bg-mycolors-a-number\`
 tw\`bg-mycolors-array\`
 tw\`bg-my-blue-100\`
+tw\`bg-color-opacity\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -55,6 +57,9 @@ tw\`bg-my-blue-100\`
   color: 'rgba(0, 0, 255, var(--text-opacity))',
 })
 ;({
+  color: 'rgba(var(--color-primary), var(--text-opacity, 1))',
+})
+;({
   backgroundColor: '0',
 })
 ;({
@@ -78,6 +83,9 @@ tw\`bg-my-blue-100\`
 ;({
   '--bg-opacity': '1',
   backgroundColor: 'rgba(0, 0, 255, var(--bg-opacity))',
+})
+;({
+  backgroundColor: 'rgba(var(--color-primary), var(--bg-opacity, 1))',
 })
 
 
