@@ -295,6 +295,12 @@ tw`divide-pink-700`
 tw`divide-pink-800`
 tw`divide-pink-900`
 
+tw`divide-solid`
+tw`divide-dashed`
+tw`divide-dotted`
+tw`divide-double`
+tw`divide-none`
+
 // https://tailwindcss.com/docs/divide-opacity
 tw`border-opacity-0`
 tw`border-opacity-25`
