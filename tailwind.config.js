@@ -152,6 +152,17 @@ module.exports = {
         // https://tailwindcss.com/docs/font-weight#font-weights
         customFontWeightAsNumber: 800,
       },
+      fontSize: {
+        size: '24px',
+        sizeLineHeight: ['24px', '15px'],
+        sizeLineHeightLetterSpacing: [
+          '32px',
+          {
+            lineHeight: '40px',
+            letterSpacing: '-0.02em',
+          },
+        ],
+      },
     },
   },
   plugins: [

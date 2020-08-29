@@ -11312,6 +11312,11 @@ tw\`text-4xl\`
 tw\`text-5xl\`
 tw\`text-6xl\`
 
+// Extended config
+tw\`text-size\`
+tw\`text-sizeLineHeight\`
+tw\`text-sizeLineHeightLetterSpacing\`
+
 // https://tailwindcss.com/docs/font-smoothing
 tw\`antialiased\`
 tw\`subpixel-antialiased\`
@@ -11756,6 +11761,19 @@ tw\`truncate\`
 })
 ;({
   fontSize: '4rem',
+}) // Extended config
+
+;({
+  fontSize: '24px',
+})
+;({
+  fontSize: '24px',
+  lineHeight: '15px',
+})
+;({
+  fontSize: '32px',
+  lineHeight: '40px',
+  letterSpacing: '-0.02em',
 }) // https://tailwindcss.com/docs/font-smoothing
 
 ;({
