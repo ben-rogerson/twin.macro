@@ -2387,15 +2387,19 @@ tw\`bg-contain\`
 }) // https://tailwindcss.com/docs/background-clip
 
 ;({
+  '-webkitBackgroundClip': 'border-box',
   backgroundClip: 'border-box',
 })
 ;({
+  '-webkitBackgroundClip': 'padding-box',
   backgroundClip: 'padding-box',
 })
 ;({
+  '-webkitBackgroundClip': 'content-box',
   backgroundClip: 'content-box',
 })
 ;({
+  '-webkitBackgroundClip': 'text',
   backgroundClip: 'text',
 }) // https://tailwindcss.com/docs/background-color
 
