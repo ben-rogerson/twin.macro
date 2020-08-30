@@ -43,8 +43,12 @@ const logNoVariant = (variant, validVariants) =>
 const logNotAllowed = ({ className, error }) =>
   spaced(warning(`${color.errorLight(`${className}`)} ${error}`))
 
+// TODO: Wrap this in spaced
 const logBadGood = (bad, good) =>
   `${color.error('✕ Bad:')} ${bad}\n${color.success('✓ Good:')} ${good}`
+
+const logErrorFix = (error, good) =>
+  `${color.error(error)}\n${color.success('Fix:')} ${good}`
 
 const logGeneralError = error => spaced(warning(error))
 
@@ -191,6 +195,13 @@ const logNotFoundVariant = ({ classNameRaw }) =>
 
 const logNotFoundClass = logGeneralError('That class was not found')
 
+const logStylePropertyError = spaced(
+  logErrorFix(
+    'Styles shouldn’t be added within a `style={...}` prop',
+    'Use the tw or css prop instead: <div tw="" /> or <div css={tw``} />\n\nDisable this error by adding this in your twin config: `{ "allowStyleProp": true }`\nRead more at https://twinredirect.page.link/style-prop'
+  )
+)
+
 export {
   logNoVariant,
   logNoClass,
@@ -205,4 +216,5 @@ export {
   themeErrorNotFound,
   logNotFoundVariant,
   logNotFoundClass,
+  logStylePropertyError,
 }
