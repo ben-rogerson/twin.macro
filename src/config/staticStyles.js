@@ -394,10 +394,30 @@ export default {
   'bg-scroll': { output: { backgroundAttachment: 'scroll' } },
 
   // https://tailwindcss.com/docs/background-clip
-  'bg-clip-border': { output: { backgroundClip: 'border-box' } },
-  'bg-clip-padding': { output: { backgroundClip: 'padding-box' } },
-  'bg-clip-content': { output: { backgroundClip: 'content-box' } },
-  'bg-clip-text': { output: { backgroundClip: 'text' } },
+  'bg-clip-border': {
+    output: {
+      '-webkitBackgroundClip': 'border-box',
+      backgroundClip: 'border-box',
+    },
+  },
+  'bg-clip-padding': {
+    output: {
+      '-webkitBackgroundClip': 'padding-box',
+      backgroundClip: 'padding-box',
+    },
+  },
+  'bg-clip-content': {
+    output: {
+      '-webkitBackgroundClip': 'content-box',
+      backgroundClip: 'content-box',
+    },
+  },
+  'bg-clip-text': {
+    output: {
+      '-webkitBackgroundClip': 'text',
+      backgroundClip: 'text',
+    },
+  },
 
   // https://tailwindcss.com/docs/background-color
   // https://tailwindcss.com/docs/background-size
