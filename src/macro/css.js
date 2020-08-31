@@ -1,4 +1,4 @@
-import { addImport } from './../macroHelpers'
+import { addImport, generateUid } from './../macroHelpers'
 import { isEmpty } from './../utils'
 import userPresets from './../config/userPresets'
 
@@ -65,11 +65,7 @@ const maybeAddCssProperty = ({ program, t }) => {
    */
   twinImportPath.insertAfter(
     t.importDeclaration(
-      [
-        t.importDefaultSpecifier(
-          program.scope.generateUidIdentifier('cssPropImport')
-        ),
-      ],
+      [t.importDefaultSpecifier(generateUid('cssPropImport', program))],
       t.stringLiteral(styledComponentsMacroImport)
     )
   )
