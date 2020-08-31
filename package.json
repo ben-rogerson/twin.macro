@@ -20,7 +20,7 @@
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
       "eslint --cache --fix",
-      "jest"
+      "jest --findRelatedTests"
     ],
     "*.{js,ts,jsx,tsx,json,md}": [
       "prettier --write"
