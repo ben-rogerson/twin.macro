@@ -8,7 +8,7 @@
 
 ```bash
 # React and Babel
-npm install --save react react-dom @babel/core @babel/plugin-transform-react-jsx @emotion/babel-plugin-jsx-pragmatic babel-plugin-macros
+npm install --save react react-dom @babel/core @emotion/babel-plugin-jsx-pragmatic babel-plugin-macros
 # Twin and Emotion
 npm install --save twin.macro @emotion/core @emotion/styled
 ```
@@ -18,7 +18,7 @@ npm install --save twin.macro @emotion/core @emotion/styled
 
 ```bash
 # React and Babel
-yarn add react react-dom @babel/core @babel/plugin-transform-react-jsx @emotion/babel-plugin-jsx-pragmatic babel-plugin-macros
+yarn add react react-dom @babel/core @emotion/babel-plugin-jsx-pragmatic babel-plugin-macros
 # Twin and Emotion
 yarn add twin.macro @emotion/core @emotion/styled
 ```
@@ -73,7 +73,29 @@ module.exports = {
 
 To use the `tw` and `css` props, emotion must first extend jsx with a [jsx pragma](https://emotion.sh/docs/css-prop#jsx-pragma).
 
-**a) Add the jsx pragma manually:**
+**a) Auto inject the pragma:**
+
+You can avoid adding the pragma yourself with the following babel config:
+
+```js
+// In .babelrc
+{
+  "plugins": [
+    "babel-plugin-macros",
+    [
+      "@emotion/babel-plugin-jsx-pragmatic",
+      {
+        "export": "jsx",
+        "import": "__cssprop",
+        "module": "@emotion/core"
+      }
+    ],
+    ["babel-plugin-transform-react-jsx", { "pragma": "__cssprop" }]
+  ]
+}
+```
+
+**b) Or add the jsx pragma manually:**
 
 ```js
 // In .babelrc
@@ -95,28 +117,6 @@ import tw from 'twin.macro'
 const Input = () => <input tw="bg-black" />
 // or
 const Input = () => <input css={tw`bg-black`} />
-```
-
-**b) Or auto inject the pragma:**
-
-You can avoid adding the pragma yourself with the following babel config:
-
-```js
-// In .babelrc
-{
-  "plugins": [
-    "babel-plugin-macros",
-    [
-      "@emotion/babel-plugin-jsx-pragmatic",
-      {
-        "export": "jsx",
-        "import": "__cssprop",
-        "module": "@emotion/core"
-      }
-    ],
-    ["babel-plugin-transform-react-jsx", { "pragma": "__cssprop" }]
-  ]
-}
 ```
 
 Then you can import react like normal:
