@@ -38,6 +38,7 @@ tw`justify-center`
 tw`justify-end`
 tw`justify-between`
 tw`justify-around`
+tw`justify-evenly`
 
 // https://tailwindcss.com/docs/flex
 tw`flex-initial`

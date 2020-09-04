@@ -238,6 +238,9 @@ export default {
   'justify-around': {
     output: { justifyContent: 'space-around' },
   },
+  'justify-evenly': {
+    output: { justifyContent: 'space-evenly' },
+  },
 
   // https://tailwindcss.com/docs/flex
   // https://tailwindcss.com/docs/flex-grow
