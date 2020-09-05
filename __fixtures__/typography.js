@@ -421,3 +421,14 @@ tw`break-normal`
 tw`break-words`
 tw`break-all`
 tw`truncate`
+
+// font-variant-numeric
+tw`ordinal`
+tw`slashed-zero`
+tw`lining-nums`
+tw`oldstyle-nums`
+tw`proportional-nums`
+tw`tabular-nums`
+tw`diagonal-fractions`
+tw`stacked-fractions`
+tw`normal-nums`

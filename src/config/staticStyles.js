@@ -1,3 +1,16 @@
+// https://tailwindcss.com/docs/font-variant-numeric
+// This feature uses var+comment hacks to get around property stripping:
+// https://github.com/tailwindlabs/tailwindcss.com/issues/522#issuecomment-687667238
+const fontVariants = {
+  '--font-variant-numeric-ordinal': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-slashed-zero': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-figure': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-spacing': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-fraction': 'var(--twin-empty,/*!*/ /*!*/)',
+  fontVariantNumeric:
+    'var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction)',
+}
+
 export default {
   /**
    * ===========================================
@@ -318,6 +331,57 @@ export default {
   'not-italic': { output: { fontStyle: 'normal' } },
 
   // https://tailwindcss.com/docs/font-weight
+  // See dynamicStyles.js
+
+  // https://tailwindcss.com/docs/font-variant-numeric
+  ordinal: {
+    output: { ...fontVariants, '--font-variant-numeric-ordinal': 'ordinal' },
+  },
+  'slashed-zero': {
+    output: {
+      ...fontVariants,
+      '--font-variant-numeric-slashed-zero': 'slashed-zero',
+    },
+  },
+  'lining-nums': {
+    output: { ...fontVariants, '--font-variant-numeric-figure': 'lining-nums' },
+  },
+  'oldstyle-nums': {
+    output: {
+      ...fontVariants,
+      '--font-variant-numeric-figure': 'oldstyle-nums',
+    },
+  },
+  'proportional-nums': {
+    output: {
+      ...fontVariants,
+      '--font-variant-numeric-spacing': 'proportional-nums',
+    },
+  },
+  'tabular-nums': {
+    output: {
+      ...fontVariants,
+      '--font-variant-numeric-spacing': 'tabular-nums',
+    },
+  },
+  'diagonal-fractions': {
+    output: {
+      ...fontVariants,
+      '--font-variant-numeric-fraction': 'diagonal-fractions',
+    },
+  },
+  'stacked-fractions': {
+    output: {
+      ...fontVariants,
+      '--font-variant-numeric-fraction': 'stacked-fractions',
+    },
+  },
+  'normal-nums': {
+    output: {
+      fontVariantNumeric: 'normal',
+    },
+  },
+
   // https://tailwindcss.com/docs/letter-spacing
   // https://tailwindcss.com/docs/line-height
   // https://tailwindcss.com/docs/list-style-type
