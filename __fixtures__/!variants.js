@@ -60,4 +60,12 @@ tw`focus-within:flex`
 tw`motion-safe:flex`
 tw`motion-reduce:flex`
 
+// Dark/Light themes
+tw`dark:bg-black`
+tw`light:bg-black`
+tw`dark:sm:bg-black`
+tw`light:sm:bg-black`
+tw`dark:group-hover:sm:bg-black`
+tw`light:group-hocus:sm:bg-black`
+
 const multiVariants = tw`xl:placeholder-red-500! first:md:block sm:disabled:flex`

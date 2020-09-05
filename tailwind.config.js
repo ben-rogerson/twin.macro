@@ -99,6 +99,7 @@ const animations = {
 }
 
 module.exports = {
+  dark: 'class',
   theme: {
     ...animations,
     container: {
