@@ -6680,6 +6680,41 @@ tw\`grid-flow-col\`
 tw\`grid-flow-row-dense\`
 tw\`grid-flow-col-dense\`
 
+// Grid alignment utilities
+// https://github.com/tailwindlabs/tailwindcss/pull/2306
+
+tw\`justify-items-auto\`
+tw\`justify-items-start\`
+tw\`justify-items-end\`
+tw\`justify-items-center\`
+tw\`justify-items-stretch\`
+
+tw\`justify-self-auto\`
+tw\`justify-self-start\`
+tw\`justify-self-end\`
+tw\`justify-self-center\`
+tw\`justify-self-stretch\`
+
+tw\`place-content-center\`
+tw\`place-content-start\`
+tw\`place-content-end\`
+tw\`place-content-between\`
+tw\`place-content-around\`
+tw\`place-content-evenly\`
+tw\`place-content-stretch\`
+
+tw\`place-items-auto\`
+tw\`place-items-start\`
+tw\`place-items-end\`
+tw\`place-items-center\`
+tw\`place-items-stretch\`
+
+tw\`place-self-auto\`
+tw\`place-self-start\`
+tw\`place-self-end\`
+tw\`place-self-center\`
+tw\`place-self-stretch\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // https://tailwindcss.com/docs/grid-template-columns
@@ -7240,6 +7275,89 @@ tw\`grid-flow-col-dense\`
 })
 ;({
   gridAutoFlow: 'col dense',
+}) // Grid alignment utilities
+// https://github.com/tailwindlabs/tailwindcss/pull/2306
+
+;({
+  justifyItems: 'auto',
+})
+;({
+  justifyItems: 'start',
+})
+;({
+  justifyItems: 'end',
+})
+;({
+  justifyItems: 'center',
+})
+;({
+  justifyItems: 'stretch',
+})
+;({
+  justifySelf: 'auto',
+})
+;({
+  justifySelf: 'start',
+})
+;({
+  justifySelf: 'end',
+})
+;({
+  justifySelf: 'center',
+})
+;({
+  justifySelf: 'stretch',
+})
+;({
+  placeContent: 'center',
+})
+;({
+  placeContent: 'start',
+})
+;({
+  placeContent: 'end',
+})
+;({
+  placeContent: 'space-between',
+})
+;({
+  placeContent: 'space-around',
+})
+;({
+  placeContent: 'space-evenly',
+})
+;({
+  placeContent: 'stretch',
+})
+;({
+  placeItems: 'auto',
+})
+;({
+  placeItems: 'start',
+})
+;({
+  placeItems: 'end',
+})
+;({
+  placeItems: 'center',
+})
+;({
+  placeItems: 'stretch',
+})
+;({
+  placeSelf: 'auto',
+})
+;({
+  placeSelf: 'start',
+})
+;({
+  placeSelf: 'end',
+})
+;({
+  placeSelf: 'center',
+})
+;({
+  placeSelf: 'stretch',
 })
 
 

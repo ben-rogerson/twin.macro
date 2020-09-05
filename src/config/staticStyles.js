@@ -597,6 +597,36 @@ export default {
   'overscroll-x-contain': { output: { 'overscroll-behavior-x': 'contain' } },
   'overscroll-x-none': { output: { 'overscroll-behavior-x': 'none' } },
 
+  // Grid alignment utilities
+  // https://github.com/tailwindlabs/tailwindcss/pull/2306
+  'justify-items-auto': { output: { justifyItems: 'auto' } },
+  'justify-items-start': { output: { justifyItems: 'start' } },
+  'justify-items-end': { output: { justifyItems: 'end' } },
+  'justify-items-center': { output: { justifyItems: 'center' } },
+  'justify-items-stretch': { output: { justifyItems: 'stretch' } },
+  'justify-self-auto': { output: { justifySelf: 'auto' } },
+  'justify-self-start': { output: { justifySelf: 'start' } },
+  'justify-self-end': { output: { justifySelf: 'end' } },
+  'justify-self-center': { output: { justifySelf: 'center' } },
+  'justify-self-stretch': { output: { justifySelf: 'stretch' } },
+  'place-content-center': { output: { placeContent: 'center' } },
+  'place-content-start': { output: { placeContent: 'start' } },
+  'place-content-end': { output: { placeContent: 'end' } },
+  'place-content-between': { output: { placeContent: 'space-between' } },
+  'place-content-around': { output: { placeContent: 'space-around' } },
+  'place-content-evenly': { output: { placeContent: 'space-evenly' } },
+  'place-content-stretch': { output: { placeContent: 'stretch' } },
+  'place-items-auto': { output: { placeItems: 'auto' } },
+  'place-items-start': { output: { placeItems: 'start' } },
+  'place-items-end': { output: { placeItems: 'end' } },
+  'place-items-center': { output: { placeItems: 'center' } },
+  'place-items-stretch': { output: { placeItems: 'stretch' } },
+  'place-self-auto': { output: { placeSelf: 'auto' } },
+  'place-self-start': { output: { placeSelf: 'start' } },
+  'place-self-end': { output: { placeSelf: 'end' } },
+  'place-self-center': { output: { placeSelf: 'center' } },
+  'place-self-stretch': { output: { placeSelf: 'stretch' } },
+
   /**
    * ===========================================
    * Special classes
