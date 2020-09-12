@@ -107,6 +107,9 @@ module.exports = {
         sm: ['2rem'],
         lg: '4rem',
         xl: '6rem',
+        object: '8rem',
+        'object-width': '10rem',
+        'object-min-max': '12rem',
       },
       margin: {
         default: ['2rem', '3rem'],
@@ -122,6 +125,11 @@ module.exports = {
     },
     textStyles,
     extend: {
+      screens: {
+        object: { min: '968px' },
+        'object-width': { 'min-width': '992px' },
+        'object-min-max': { min: '1200px', max: '1600px' },
+      },
       colors: {
         number: 0,
         'purple-hyphen': 'purple',

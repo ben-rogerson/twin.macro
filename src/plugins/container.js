@@ -38,18 +38,26 @@ export default ({
   hasImportant && errorNoImportant()
   hasNegative && errorNoNegatives()
 
-  const { container, screens } = theme()
+  const { container, screens: screensRaw } = theme()
   const { padding, margin, center } = container
 
+  const screens = container.screens || screensRaw
+
   const mediaScreens = Object.entries(screens).reduce(
-    (accumulator, [key, value]) => ({
-      ...accumulator,
-      [`@media (min-width: ${value})`]: {
-        maxWidth: value,
-        ...getSpacingStyle('padding', padding, key),
-        ...(!center && getSpacingStyle('margin', margin, key)),
-      },
-    }),
+    (accumulator, [key, rawValue]) => {
+      const value =
+        typeof rawValue === 'object'
+          ? rawValue.min || rawValue['min-width']
+          : rawValue
+      return {
+        ...accumulator,
+        [`@media (min-width: ${value})`]: {
+          maxWidth: value,
+          ...(padding && getSpacingStyle('padding', padding, key)),
+          ...(!center && margin && getSpacingStyle('margin', margin, key)),
+        },
+      }
+    },
     {}
   )
 
