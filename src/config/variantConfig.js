@@ -57,16 +57,90 @@ export default {
   'odd-of-type': ':nth-of-type(odd)',
 
   // Group states
-  // Add className="group" to an ancestor and add these on the children
+  // You'll need to add className="group" to an ancestor to make these work
   // https://github.com/ben-rogerson/twin.macro/blob/master/docs/group.md
-  'group-hover': '.group:hover &', // Tailwind
-  'group-focus': '.group:focus &', // Tailwind
-  'group-hocus': '.group:hover &, .group:focus &',
-  'group-active': '.group:active &',
-  'group-visited': '.group:visited &',
+  'group-hover': variantData =>
+    generateGroupSelector('.group:hover &', variantData), // Tailwind
+  'group-focus': variantData =>
+    generateGroupSelector('.group:focus &', variantData), // Tailwind
+  'group-hocus': variantData =>
+    generateGroupSelector('.group:hover &, .group:focus &', variantData),
+  'group-active': variantData =>
+    generateGroupSelector('.group:active &', variantData),
+  'group-visited': variantData =>
+    generateGroupSelector('.group:visited &', variantData),
 
   // Motion control
   // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
   'motion-safe': '@media (prefers-reduced-motion: no-preference)',
   'motion-reduce': '@media (prefers-reduced-motion: reduce)',
+
+  // Dark theme
+  dark: ({ hasGroupVariant, config, errorCustom }) => {
+    const styles =
+      {
+        // Media strategy: The default when you prepend with dark, tw`dark:block`
+        media: '@media (prefers-color-scheme: dark)',
+        // Class strategy: In your tailwind.config.js, add `{ dark: 'class' }
+        // then add a `className="dark"` on a parent element.
+        class: !hasGroupVariant && '.dark &',
+      }[config('dark') || 'media'] || null
+
+    if (!styles && !hasGroupVariant) {
+      errorCustom(
+        "The `dark` config option must be either `{ dark: 'media' }` (default) or `{ dark: 'class' }`"
+      )
+    }
+
+    return styles
+  },
+
+  // Light theme
+  light: ({ hasGroupVariant, config, errorCustom }) => {
+    const styles =
+      {
+        // Media strategy: The default when you prepend with light, tw`light:block`
+        media: '@media (prefers-color-scheme: light)',
+        // Class strategy: In your tailwind.config.js, add `{ light: 'class' }
+        // then add a `className="light"` on a parent element.
+        class: !hasGroupVariant && '.light &',
+      }[config('light') || config('dark') || 'media'] || null
+
+    if (!styles && !hasGroupVariant) {
+      if (config('light')) {
+        errorCustom(
+          "The `light` config option must be either `{ light: 'media' }` (default) or `{ light: 'class' }`"
+        )
+      }
+
+      errorCustom(
+        "The `dark` config option must be either `{ dark: 'media' }` (default) or `{ dark: 'class' }`"
+      )
+    }
+
+    return styles
+  },
+}
+
+const generateGroupSelector = (
+  className,
+  { hasDarkVariant, hasLightVariant, config }
+) => {
+  const themeVariant =
+    (hasDarkVariant && config('dark') === 'class' && ['dark ', 'dark']) ||
+    (hasLightVariant &&
+      (config('light') === 'class' || config('dark') === 'class') && [
+        'light ',
+        'light',
+      ])
+  return themeVariant
+    ? themeVariant
+        .map(v =>
+          className
+            .split(', ')
+            .map(cn => `.${v}${cn}`)
+            .join(', ')
+        )
+        .join(', ')
+    : className
 }

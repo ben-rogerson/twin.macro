@@ -2,13 +2,13 @@ import { MacroError } from 'babel-plugin-macros'
 import dlv from 'dlv'
 import cleanSet from 'clean-set'
 import { stringifyScreen } from './screens'
-import { logNoVariant } from './logging'
+import { logNoVariant, logGeneralError } from './logging'
 import { variantConfig } from './config'
 
 /**
  * Validate variants against the variants config key
  */
-const validateVariants = ({ variants, state }) => {
+const validateVariants = ({ variants, state, ...rest }) => {
   if (!variants) return []
 
   const screens = dlv(state.config, ['theme', 'screens'])
@@ -22,7 +22,18 @@ const validateVariants = ({ variants, state }) => {
       }
 
       if (variantConfig[variant]) {
-        const foundVariant = variantConfig[variant]
+        let foundVariant = variantConfig[variant]
+
+        if (typeof foundVariant === 'function') {
+          const context = {
+            ...rest,
+            config: item => state.config[item] || null,
+            errorCustom: message => {
+              throw new MacroError(logGeneralError(message))
+            },
+          }
+          foundVariant = foundVariant(context)
+        }
 
         if (state.sassyPseudo) {
           return foundVariant.replace(/(?<= ):|^:/g, '&:')
@@ -55,10 +66,26 @@ const splitVariants = ({ classNameRaw, state }) => {
     }
   }
 
+  // dark: and light: variants
+  const hasDarkVariant = variantsList.some(v => v === 'dark')
+  const hasLightVariant = variantsList.some(v => v === 'light')
+  if (hasDarkVariant && hasLightVariant) {
+    throw new MacroError(
+      logGeneralError(
+        'The light: and dark: variants can’t be used on the same element'
+      )
+    )
+  }
+
+  const hasGroupVariant = variantsList.some(v => v.startsWith('group-'))
+
   // Match the filtered variants
   const variants = validateVariants({
     variants: variantsList,
     state,
+    hasDarkVariant,
+    hasLightVariant,
+    hasGroupVariant,
   })
 
   const hasVariants = variants.length > 0
