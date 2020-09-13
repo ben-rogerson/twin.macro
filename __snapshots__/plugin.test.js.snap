@@ -7712,6 +7712,21 @@ tw\`space-y-12 -space-y-reverse\`
     marginLeft: '7rem',
     marginRight: '7rem',
   },
+  '@media (min-width: 968px)': {
+    maxWidth: '968px',
+    paddingLeft: '8rem',
+    paddingRight: '8rem',
+  },
+  '@media (min-width: 992px)': {
+    maxWidth: '992px',
+    paddingLeft: '10rem',
+    paddingRight: '10rem',
+  },
+  '@media (min-width: 1200px)': {
+    maxWidth: '1200px',
+    paddingLeft: '12rem',
+    paddingRight: '12rem',
+  },
 }) // https://tailwindcss.com/docs/box-sizing
 
 ;({
