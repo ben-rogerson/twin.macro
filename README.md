@@ -110,7 +110,7 @@ tw`text-sm md:text-lg`
 
 ## Features
 
-**🎨 Style with all classes and variants available in [Tailwind v1.7.6](https://github.com/tailwindcss/tailwindcss/releases)**
+**🎨 Style with all classes and variants available in [Tailwind v1.8.8](https://github.com/tailwindcss/tailwindcss/releases)**
 
 **🐹 Adds no size to your build** - Twin converts classes you’ve used into css objects using Babel and then compiles away, leaving no runtime code
 
