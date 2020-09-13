@@ -12137,6 +12137,17 @@ tw\`break-words\`
 tw\`break-all\`
 tw\`truncate\`
 
+// font-variant-numeric
+tw\`ordinal\`
+tw\`slashed-zero\`
+tw\`lining-nums\`
+tw\`oldstyle-nums\`
+tw\`proportional-nums\`
+tw\`tabular-nums\`
+tw\`diagonal-fractions\`
+tw\`stacked-fractions\`
+tw\`normal-nums\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // https://tailwindcss.com/docs/font-family
@@ -13776,6 +13787,82 @@ tw\`truncate\`
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
+}) // font-variant-numeric
+
+;({
+  '--font-variant-numeric-ordinal': 'ordinal',
+  '--font-variant-numeric-slashed-zero': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-figure': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-spacing': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-fraction': 'var(--twin-empty,/*!*/ /*!*/)',
+  fontVariantNumeric:
+    'var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction)',
+})
+;({
+  '--font-variant-numeric-ordinal': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-slashed-zero': 'slashed-zero',
+  '--font-variant-numeric-figure': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-spacing': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-fraction': 'var(--twin-empty,/*!*/ /*!*/)',
+  fontVariantNumeric:
+    'var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction)',
+})
+;({
+  '--font-variant-numeric-ordinal': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-slashed-zero': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-figure': 'lining-nums',
+  '--font-variant-numeric-spacing': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-fraction': 'var(--twin-empty,/*!*/ /*!*/)',
+  fontVariantNumeric:
+    'var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction)',
+})
+;({
+  '--font-variant-numeric-ordinal': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-slashed-zero': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-figure': 'oldstyle-nums',
+  '--font-variant-numeric-spacing': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-fraction': 'var(--twin-empty,/*!*/ /*!*/)',
+  fontVariantNumeric:
+    'var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction)',
+})
+;({
+  '--font-variant-numeric-ordinal': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-slashed-zero': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-figure': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-spacing': 'proportional-nums',
+  '--font-variant-numeric-fraction': 'var(--twin-empty,/*!*/ /*!*/)',
+  fontVariantNumeric:
+    'var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction)',
+})
+;({
+  '--font-variant-numeric-ordinal': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-slashed-zero': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-figure': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-spacing': 'tabular-nums',
+  '--font-variant-numeric-fraction': 'var(--twin-empty,/*!*/ /*!*/)',
+  fontVariantNumeric:
+    'var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction)',
+})
+;({
+  '--font-variant-numeric-ordinal': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-slashed-zero': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-figure': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-spacing': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-fraction': 'diagonal-fractions',
+  fontVariantNumeric:
+    'var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction)',
+})
+;({
+  '--font-variant-numeric-ordinal': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-slashed-zero': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-figure': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-spacing': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--font-variant-numeric-fraction': 'stacked-fractions',
+  fontVariantNumeric:
+    'var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction)',
+})
+;({
+  fontVariantNumeric: 'normal',
 })
 
 
