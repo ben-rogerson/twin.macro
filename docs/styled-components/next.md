@@ -130,6 +130,8 @@ export default class MyDocument extends Document {
 }
 ```
 
+Note: Adding styles within this file won’t work like you would expect, [take a look at this issue for a work around](https://github.com/ben-rogerson/twin.macro/issues/146#issuecomment-691737363).
+
 ## Options
 
 | Name           | Type      | Default                | Description                                                                                                               |
