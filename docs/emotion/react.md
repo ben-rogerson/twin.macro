@@ -95,6 +95,18 @@ You can avoid adding the pragma yourself with the following babel config:
 }
 ```
 
+Then you can import react like normal:
+
+```js
+import React from 'react'
+import tw from 'twin.macro'
+
+const Input = () => <input tw="bg-black" />
+// or
+const Input = () => <input css={tw`bg-black`} />
+```
+
+
 **b) Or add the jsx pragma manually:**
 
 ```js
@@ -112,17 +124,6 @@ Then when styling with the tw/css prop, add the two lines for the pragma at the 
 ```js
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import tw from 'twin.macro'
-
-const Input = () => <input tw="bg-black" />
-// or
-const Input = () => <input css={tw`bg-black`} />
-```
-
-Then you can import react like normal:
-
-```js
-import React from 'react'
 import tw from 'twin.macro'
 
 const Input = () => <input tw="bg-black" />
