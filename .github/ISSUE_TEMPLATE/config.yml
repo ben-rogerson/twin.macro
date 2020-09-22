@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Help / Question / Feature request
+    url: https://github.com/tailwindcss/tailwindcss/discussions/new
+    about: 'If you have a question, need help or have an idea please ask a question in the discussion forum.'
