@@ -1,6 +1,6 @@
 import { parseTte, replaceWithLocation } from './../macroHelpers'
 import { assert } from './../utils'
-import { logGeneralError } from './../logging'
+import { logGeneralError, logStylePropertyError } from './../logging'
 /* eslint-disable-next-line unicorn/prevent-abbreviations */
 import { addDebugPropToPath, addDebugPropToExistingPath } from './debug'
 import getStyles from './../getStyles'
@@ -73,6 +73,14 @@ const handleTwFunction = ({ references, state, t }) => {
   defaultImportReferences.forEach(path => {
     const parent = path.findParent(x => x.isTaggedTemplateExpression())
     if (!parent) return
+
+    // Check if the style attribute is being used
+    if (!state.allowStyleProp) {
+      const jsxAttribute = parent.findParent(x => x.isJSXAttribute())
+      const attributeName =
+        jsxAttribute && jsxAttribute.get('name').get('name').node
+      assert(attributeName === 'style', () => logStylePropertyError)
+    }
 
     const parsed = parseTte({
       path: parent,

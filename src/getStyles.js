@@ -23,7 +23,7 @@ import {
 export default (classes, t, state) => {
   assert([null, 'null', undefined].includes(classes), () =>
     logGeneralError(
-      'Only plain strings can be used with "tw".\nRead more at https://github.com/ben-rogerson/twin.macro/issues/17'
+      'Only plain strings can be used with "tw".\nRead more at https://twinredirect.page.link/template-literals'
     )
   )
 
