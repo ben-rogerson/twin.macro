@@ -4,12 +4,15 @@
  * To use, add the preset in package.json/babel macro config:
  *
  * Styled components
+ * { "babelMacros": { "twin": { "preset": "styled-components" } } }
  * module.exports = { twin: { preset: "styled-components" } }
  *
  * Emotion
+ * { "babelMacros": { "twin": { "preset": "emotion" } } }
  * module.exports = { twin: { preset: "emotion" } }
  *
  * Goober
+ * { "babelMacros": { "twin": { "preset": "goober" } } }
  * module.exports = { twin: { preset: "goober" } }
  */
 
@@ -23,6 +26,10 @@ export default {
       import: 'css',
       from: 'styled-components/macro',
     },
+    global: {
+      import: 'createGlobalStyle',
+      from: 'styled-components',
+    },
   },
   emotion: {
     styled: {
@@ -33,6 +40,10 @@ export default {
       import: 'css',
       from: '@emotion/core',
     },
+    global: {
+      import: 'Global',
+      from: '@emotion/core',
+    },
   },
   goober: {
     styled: {
@@ -41,6 +52,10 @@ export default {
     },
     css: {
       import: 'css',
+      from: 'goober',
+    },
+    global: {
+      import: 'glob',
       from: 'goober',
     },
   },

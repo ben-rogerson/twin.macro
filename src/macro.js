@@ -4,6 +4,7 @@ import {
   validateImports,
   setStyledIdentifier,
   setCssIdentifier,
+  generateUid,
 } from './macroHelpers'
 import { isEmpty } from './utils'
 import { getConfigProperties } from './configHelpers'
@@ -19,9 +20,21 @@ import {
   addStyledImport,
 } from './macro/styled'
 import { handleThemeFunction } from './macro/theme'
+import { handleGlobalStylesFunction } from './macro/GlobalStyles'
 import { handleTwProperty, handleTwFunction } from './macro/tw'
 import getUserPluginData from './utils/getUserPluginData'
 import { debugPlugins } from './logging'
+
+const getPackageUsed = ({ config: { preset }, cssImport, styledImport }) => ({
+  isEmotion: preset === 'emotion' || cssImport.from.includes('emotion'),
+  isStyledComponents:
+    preset === 'styled-components' ||
+    cssImport.from.includes('styled-components'),
+  isGoober:
+    preset === 'goober' ||
+    styledImport.from.includes('goober') ||
+    cssImport.from.includes('goober'),
+})
 
 const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   validateImports(references)
@@ -36,12 +49,8 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
       ? true
       : Boolean(config.hasSuggestions)
 
-  state.tailwindConfigIdentifier = program.scope.generateUidIdentifier(
-    'tailwindConfig'
-  )
-  state.tailwindUtilsIdentifier = program.scope.generateUidIdentifier(
-    'tailwindUtils'
-  )
+  state.tailwindConfigIdentifier = generateUid('tailwindConfig', program)
+  state.tailwindUtilsIdentifier = generateUid('tailwindUtils', program)
 
   /* eslint-disable-next-line unicorn/prevent-abbreviations */
   const isDev =
@@ -72,12 +81,14 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   const cssImport = getCssConfig(config)
   state.cssImport = cssImport
 
+  const packageUsed = getPackageUsed({ config, cssImport, styledImport })
+  for (const [key, value] of Object.entries(packageUsed)) state[key] = value
+
   // Sassy pseudo prefix (eg: the & in &:hover)
   state.sassyPseudo =
     config.sassyPseudo !== undefined
       ? config.sassyPseudo === true
-      : state.styledImport.from.includes('goober') ||
-        state.cssImport.from.includes('goober')
+      : state.isGoober
 
   // Group traversals together for better performance
   program.traverse({
@@ -91,24 +102,28 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   })
 
   if (state.styledIdentifier === null) {
-    state.styledIdentifier = program.scope.generateUidIdentifier('styled')
+    state.styledIdentifier = generateUid('styled', program)
   } else {
     state.existingStyledIdentifier = true
   }
 
   if (state.cssIdentifier === null) {
-    state.cssIdentifier = program.scope.generateUidIdentifier('css')
+    state.cssIdentifier = generateUid('css', program)
   } else {
     state.existingCssIdentifier = true
   }
 
   handleTwFunction({ references, t, state })
 
+  state.isImportingCss =
+    !isEmpty(references.css) && !state.existingCssIdentifier
+
+  // GlobalStyles import
+  handleGlobalStylesFunction({ references, program, t, state, config })
+
   // Css import
   updateCssReferences(references.css, state)
-  const isImportingCss =
-    !isEmpty(references.css) && !state.existingCssIdentifier
-  if (isImportingCss) {
+  if (state.isImportingCss) {
     addCssImport({ program, t, cssImport, state })
   }
 
@@ -126,7 +141,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   if (
     (state.hasTwProp || state.hasCssProp) &&
     config.autoCssProp === true &&
-    cssImport.from.includes('styled-components')
+    state.isStyledComponents
   ) {
     maybeAddCssProperty({ program, t })
   }

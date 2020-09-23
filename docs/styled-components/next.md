@@ -41,18 +41,28 @@ yarn add twin.macro styled-components
 }
 ```
 
-### 3. Import the Tailwind base styles
+### 3. Add the global styles
 
-In `pages/_app.js`, add the following:
+Projects using Twin also use the Tailwind [preflight base styles](https://unpkg.com/tailwindcss/dist/base.css) to smooth over cross-browser inconsistencies.
+
+Twin adds the preflight base styles with the `GlobalStyles` import which you can add in `pages/_app.js`:
 
 ```js
+// page/_app.js
 import React from 'react'
-import 'tailwindcss/dist/base.min.css'
+import { GlobalStyles } from 'twin.macro'
 
-const App = ({ Component, pageProps }) => <Component {...pageProps} />
+const App = ({ Component, pageProps }) => (
+  <>
+    <GlobalStyles />
+    <Component {...pageProps} />
+  </>
+)
 
 export default App
 ```
+
+`GlobalStyles` also includes some [@keyframes](https://github.com/ben-rogerson/twin.macro/blob/master/src/config/globalStyles.js) so the `animate-xxx` classes have animations. But if you’re not using the animate classes then you can [avoid adding the extra keyframes](https://github.com/ben-rogerson/twin.macro/blob/master/docs/extra-keyframes.md).
 
 ### 4. Add the recommended config
 

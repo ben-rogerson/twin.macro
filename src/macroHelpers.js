@@ -6,14 +6,15 @@ const SPREAD_ID = '__spread__'
 const COMPUTED_ID = '__computed__'
 
 function addImport({ types: t, program, mod, name, identifier }) {
+  const importName =
+    name === 'default'
+      ? [t.importDefaultSpecifier(identifier)]
+      : name
+      ? [t.importSpecifier(identifier, t.identifier(name))]
+      : []
   program.unshiftContainer(
     'body',
-    t.importDeclaration(
-      name === 'default'
-        ? [t.importDefaultSpecifier(identifier)]
-        : [t.importSpecifier(identifier, t.identifier(name))],
-      t.stringLiteral(mod)
-    )
+    t.importDeclaration(importName, t.stringLiteral(mod))
   )
 }
 
@@ -219,6 +220,7 @@ const validImports = new Set([
   'theme',
   'TwStyle',
   'ThemeStyle',
+  'GlobalStyles',
 ])
 const validateImports = imports => {
   const unsupportedImport = Object.keys(imports).find(
@@ -239,6 +241,8 @@ const validateImports = imports => {
   )
 }
 
+const generateUid = (name, program) => program.scope.generateUidIdentifier(name)
+
 export {
   SPREAD_ID,
   COMPUTED_ID,
@@ -250,4 +254,5 @@ export {
   validateImports,
   setStyledIdentifier,
   setCssIdentifier,
+  generateUid,
 }
