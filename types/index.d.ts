@@ -8,6 +8,8 @@ export interface ThemeStyle {
   [key: string]: string | number | ThemeStyle
 }
 
+export const GlobalStyles: string
+
 export type TemplateFn<R> = (
   strings: Readonly<TemplateStringsArray>,
   ...values: readonly string[]
