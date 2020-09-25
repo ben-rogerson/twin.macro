@@ -102,9 +102,9 @@ module.exports = {
 
 ### 6. Complete the TypeScript support (optional)
 
-While twin comes with types for the tw import, you’ll need to add the types for the `css` and `styled` imports.
+Twin comes with types for every import except the `css` and `styled` imports.
 
-[Read how to add the remaining types →](typescript.md)
+[Add the remaining types →](typescript.md)
 
 ## Options
 

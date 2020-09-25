@@ -147,9 +147,9 @@ const Input = () => <input css={tw`bg-black`} />
 
 ### 5. Add the types for `css` and `styled` (TypeScript only)
 
-While twin comes with types for the tw import, you’ll need to add the types for the `css` and `styled` imports.
+Twin comes with types for every import except the `css` and `styled` imports.
 
-[Read how to add the remaining types →](typescript.md)
+[Add the remaining types →](typescript.md)
 
 ## Options
 

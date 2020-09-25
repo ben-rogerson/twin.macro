@@ -201,12 +201,13 @@ const stackedVariants = () => <div tw="sm:hover:(bg-black text-white)" />
 
 You can use many Tailwind plugins with twin, like [Tailwind UI](https://tailwindui.com/components) and [Custom forms](https://github.com/tailwindcss/custom-forms) but there’s no compatibility with other plugins that use the `addVariant` or `addBase` functions.
 
-Check out the [list of supported plugins →](https://twin-docs.netlify.app/plugin-support)
+[See list of supported plugins →](https://twin-docs.netlify.app/plugin-support)
 
 ## TypeScript
 
-Twin comes with types for the `tw` import.
-You’ll just need to [complete the TypeScript setup](docs/typescript.md) for `styled` and `css`.
+Twin fully supports TypeScript projects and includes types for every import _except_ the `css` and `styled` imports.
+
+[How to add the missing `css` and `styled` types →](typescript.md)
 
 ## Community
 

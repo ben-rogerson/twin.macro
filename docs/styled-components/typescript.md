@@ -10,7 +10,7 @@ Module '"../node_modules/twin.macro/types"' has no exported member 'css'.
 Property 'css' does not exist on type 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
 ```
 
-So to fix this, create a `twin.d.ts` file in your project root (`src/twin.d.ts` with create-react-app) and add these declarations:
+To fix this, create a `twin.d.ts` file in your project root (`src/twin.d.ts` with create-react-app) and add these declarations:
 
 ```typescript
 // twin.d.ts
