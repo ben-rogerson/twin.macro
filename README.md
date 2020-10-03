@@ -87,7 +87,7 @@ export default () => <Input hasHover />
 
 ## How it works
 
-When babel runs over your code, Twin’s `css` and `styled` imports are swapped with the real imports from libraries like [👩‍🎤&nbsp;emotion](https://emotion.sh/docs/introduction) and [💅&nbsp;styled&#8209;components](https://styled-components.com/).
+When babel runs over your code, Twin’s `css` and `styled` imports are swapped with the real imports from libraries like [💅&nbsp;styled&#8209;components](https://styled-components.com/) and [👩‍🎤&nbsp;emotion](https://emotion.sh/docs/introduction).
 
 Twin offers import presets for both libraries or you can fully customise the imports.
 
@@ -169,29 +169,31 @@ const pseudoElementStyles = () => (
 )
 
 const stackedVariants = () => <div tw="sm:hover:(bg-black text-white)" />
+
+const variantsInGroups = () => <div tw="sm:(bg-black hover:bg-white)">
 ```
 
 ## Getting started
 
 | "Vanilla" React   |                                                                                                            |                                         |
 | :---------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| Emotion           | [Demo](https://codesandbox.io/embed/react-tailwind-emotion-starter-3d1dl?module=%2Fsrc%2FApp.js)           | [Docs](docs/emotion/react.md)           |
 | Styled Components | [Demo](https://codesandbox.io/embed/react-tailwind-styled-components-starter-f87y7?module=%2Fsrc%2FApp.js) | [Docs](docs/styled-components/react.md) |
+| Emotion           | [Demo](https://codesandbox.io/embed/react-tailwind-emotion-starter-3d1dl?module=%2Fsrc%2FApp.js)           | [Docs](docs/emotion/react.md)           |
 
 | Create React App  |                                                                                                               |                                                    |
 | :---------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| Emotion           | [Demo](https://codesandbox.io/embed/cra-tailwind-emotion-starter-bi1kx?module=%2Fsrc%2FApp.js)                | [Docs](docs/emotion/create-react-app.md)           |
 | Styled Components | [Demo](https://codesandbox.io/embed/cra-styled-components-tailwind-twin-starter-m8cyz?module=%2Fsrc%2FApp.js) | [Docs](docs/styled-components/create-react-app.md) |
+| Emotion           | [Demo](https://codesandbox.io/embed/cra-tailwind-emotion-starter-bi1kx?module=%2Fsrc%2FApp.js)                | [Docs](docs/emotion/create-react-app.md)           |
 
 | Gatsby            |                                                                                                                       |                                          |
 | :---------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| Emotion           | [Demo](https://codesandbox.io/embed/gatsby-tailwind-emotion-starter-z3hun?module=%2Fsrc%2Fpages%2Findex.js)           | [Docs](docs/emotion/gatsby.md)           |
 | Styled Components | [Demo](https://codesandbox.io/embed/gatsby-tailwind-styled-components-starter-trrlp?module=%2Fsrc%2Fpages%2Findex.js) | [Docs](docs/styled-components/gatsby.md) |
+| Emotion           | [Demo](https://codesandbox.io/embed/gatsby-tailwind-emotion-starter-z3hun?module=%2Fsrc%2Fpages%2Findex.js)           | [Docs](docs/emotion/gatsby.md)           |
 
 | Next.js           |                                                                                                               |                                        |
 | :---------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| Emotion           | [Demo](https://codesandbox.io/embed/next-tailwind-emotion-starter-8h2b2?module=%2Fpages%2Findex.js)           | [Docs](docs/emotion/next.md)           |
 | Styled Components | [Demo](https://codesandbox.io/embed/next-tailwind-styled-components-starter-m1f6d?module=%2Fpages%2Findex.js) | [Docs](docs/styled-components/next.md) |
+| Emotion           | [Demo](https://codesandbox.io/embed/next-tailwind-emotion-starter-8h2b2?module=%2Fpages%2Findex.js)           | [Docs](docs/emotion/next.md)           |
 
 | Vue     |                                                                                                                     |
 | :------ | ------------------------------------------------------------------------------------------------------------------- |
