@@ -195,6 +195,11 @@ const variantsInGroups = () => <div tw="sm:(bg-black hover:bg-white)">
 | Styled Components | [Demo](https://codesandbox.io/embed/next-tailwind-styled-components-starter-m1f6d?module=%2Fpages%2Findex.js) | [Docs](docs/styled-components/next.md) |
 | Emotion           | [Demo](https://codesandbox.io/embed/next-tailwind-emotion-starter-8h2b2?module=%2Fpages%2Findex.js)           | [Docs](docs/emotion/next.md)           |
 
+| Snowpack          |                                                                                                    |
+| :---------------- | -------------------------------------------------------------------------------------------------- |
+| Styled Components | [Repo](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components) |
+| Emotion           | [Repo](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion)           |
+
 | Vue     |                                                                                                                     |
 | :------ | ------------------------------------------------------------------------------------------------------------------- |
 | Emotion | [Demo](https://codesandbox.io/embed/vue-emotion-tailwind-twin-starter-2yd61?module=%2Fsrc%2FApp.vue) (Experimental) |
