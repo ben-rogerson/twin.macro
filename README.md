@@ -213,7 +213,7 @@ You can use many Tailwind plugins with twin, like [Tailwind UI](https://tailwind
 
 Twin fully supports TypeScript projects and includes types for every import _except_ the `css` and `styled` imports.
 
-[How to add the missing `css` and `styled` types →](typescript.md)
+[How to add the missing `css` and `styled` types →](docs/typescript.md)
 
 ## Community
 
