@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://i.imgur.com/dIwewYI.png" alt="twin logo" width="360"><br>
-    <br>Use Tailwind classes within css-in-js libraries<br><br>
+    <br>Twin blends the magic of Tailwind with the flexibility of css-in-js<br><br>
     <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/dt/twin.macro.svg" alt="Total Downloads"></a>
     <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/v/twin.macro.svg" alt="Latest Release"></a>
     <a href="https://discord.gg/Xj6x9z7"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
@@ -13,7 +13,7 @@ Use Twin’s `tw` prop to add Tailwind classes onto jsx elements:
 ```js
 import 'twin.macro'
 
-export default () => <input tw="border hover:border-black" />
+const Input = () => <input tw="border hover:border-black" />
 ```
 
 Nest Twin’s `tw` import within a css prop to add conditional styles:
@@ -21,7 +21,7 @@ Nest Twin’s `tw` import within a css prop to add conditional styles:
 ```js
 import tw from 'twin.macro'
 
-export default ({ hasHover }) => (
+const Input = ({ hasHover }) => (
   <input css={[tw`border`, hasHover && tw`hover:border-black`]} />
 )
 ```
@@ -37,7 +37,7 @@ const hoverStyles = css`
     ${tw`text-black`}
   }
 `
-export default ({ hasHover }) => (
+const Input = ({ hasHover }) => (
   <input css={[tw`border`, hasHover && hoverStyles]} />
 )
 ```
@@ -50,7 +50,6 @@ You can also use the tw import to create and style new components:
 import tw from 'twin.macro'
 
 const Input = tw.input`border hover:border-black`
-export default () => <Input />
 ```
 
 And clone and style existing components:
@@ -69,7 +68,7 @@ const Input = styled.input(({ hasHover }) => [
   tw`border rounded`,
   hasHover && tw`hover:border-black`,
 ])
-export default () => <Input hasHover />
+const Component = () => <Input hasHover />
 ```
 
 Or use backticks to mix with sass styles:
@@ -82,12 +81,12 @@ const Input = styled.input`
   ${tw`border rounded`}
   ${({ hasHover }) => hasHover && tw`hover:border-black`}
 `
-export default () => <Input hasHover />
+const Component = () => <Input hasHover />
 ```
 
 ## How it works
 
-When babel runs over your code, Twin’s `css` and `styled` imports are swapped with the real imports from libraries like [💅&nbsp;styled&#8209;components](https://styled-components.com/) and [👩‍🎤&nbsp;emotion](https://emotion.sh/docs/introduction).
+When babel runs over your code, Twin’s `css` and `styled` imports get swapped with the real imports from libraries like [💅&nbsp;styled&#8209;components](https://styled-components.com/) and [👩‍🎤&nbsp;emotion](https://emotion.sh/docs/introduction).
 
 Twin offers import presets for both libraries or you can fully customise the imports.
 

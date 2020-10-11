@@ -38,7 +38,7 @@ module.exports = {
 ```js
 import 'twin.macro'
 
-export default ({ children, ...rest }) => (
+const Container = ({ children, ...rest }) => (
   <div {...rest} tw="container">
     {children}
   </div>
@@ -52,7 +52,7 @@ import tw from 'twin.macro'
 
 const Container = tw.div`container`
 
-export default ({ children, ...rest }) => (
+const Component = ({ children, ...rest }) => (
   <Container {...rest}>{children}</Container>
 )
 ```
