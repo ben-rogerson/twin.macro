@@ -581,10 +581,8 @@ export default {
   'appearance-none': { output: { appearance: 'none' } },
 
   // https://tailwindcss.com/docs/cursor
-  // See dynamicStyles.js
-
   // https://tailwindcss.com/docs/outline
-  'outline-none': { output: { outline: 0 } },
+  // See dynamicStyles.js
 
   // https://tailwindcss.com/docs/pointer-events
   'pointer-events-none': {

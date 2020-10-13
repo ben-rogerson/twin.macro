@@ -7434,6 +7434,8 @@ tw\`cursor-not-allowed\`
 
 // https://tailwindcss.com/docs/outline
 tw\`outline-none\`
+tw\`outline-white\`
+tw\`outline-black\`
 
 // https://tailwindcss.com/docs/pointer-events
 tw\`pointer-events-none\`
@@ -7481,7 +7483,16 @@ tw\`select-auto\`
 }) // https://tailwindcss.com/docs/outline
 
 ;({
-  outline: 0,
+  outline: '2px solid transparent',
+  outlineOffset: '2px',
+})
+;({
+  outline: '2px dotted white',
+  outlineOffset: '2px',
+})
+;({
+  outline: '2px dotted black',
+  outlineOffset: '2px',
 }) // https://tailwindcss.com/docs/pointer-events
 
 ;({

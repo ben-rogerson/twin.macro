@@ -23,9 +23,18 @@ const getCustomSuggestions = className => {
 const flattenObject = (object, prefix = '') =>
   Object.keys(object).reduce((result, k) => {
     const pre = prefix.length > 0 ? prefix + '-' : ''
-    if (typeof object[k] === 'object')
-      Object.assign(result, flattenObject(object[k], pre + k))
-    else result[pre + k] = object[k]
+
+    const value = object[k]
+    const fullKey = pre + k
+
+    if (Array.isArray(value)) {
+      result[fullKey] = value
+    } else if (typeof value !== 'object') {
+      Object.assign(result, flattenObject(value, fullKey))
+    } else {
+      result[fullKey] = value
+    }
+
     return result
   }, {})
 

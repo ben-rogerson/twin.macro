@@ -357,6 +357,8 @@ export default {
   cursor: { prop: 'cursor', config: 'cursor' },
 
   // https://tailwindcss.com/docs/outline
+  outline: { plugin: 'outline' },
+
   // https://tailwindcss.com/docs/pointer-events
   // https://tailwindcss.com/docs/resize
   // https://tailwindcss.com/docs/user-select
