@@ -56,4 +56,5 @@ declare global {
 }
 
 declare const theme: ThemeFn
-export { theme }
+declare const css;
+export { theme, css }
