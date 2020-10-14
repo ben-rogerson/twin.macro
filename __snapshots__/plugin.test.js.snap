@@ -6733,6 +6733,18 @@ tw\`grid-flow-col\`
 tw\`grid-flow-row-dense\`
 tw\`grid-flow-col-dense\`
 
+// https://tailwindcss.com/docs/grid-auto-columns
+tw\`auto-cols-auto\`
+tw\`auto-cols-min\`
+tw\`auto-cols-max\`
+tw\`auto-cols-fr\`
+
+// https://tailwindcss.com/docs/grid-auto-rows
+tw\`auto-rows-auto\`
+tw\`auto-rows-min\`
+tw\`auto-rows-max\`
+tw\`auto-rows-fr\`
+
 // Grid alignment utilities
 // https://github.com/tailwindlabs/tailwindcss/pull/2306
 
@@ -7328,6 +7340,32 @@ tw\`place-self-stretch\`
 })
 ;({
   gridAutoFlow: 'col dense',
+}) // https://tailwindcss.com/docs/grid-auto-columns
+
+;({
+  gridAutoColumns: 'auto',
+})
+;({
+  gridAutoColumns: 'min-content',
+})
+;({
+  gridAutoColumns: 'max-content',
+})
+;({
+  gridAutoColumns: 'minmax(0, 1fr)',
+}) // https://tailwindcss.com/docs/grid-auto-rows
+
+;({
+  gridAutoRows: 'auto',
+})
+;({
+  gridAutoRows: 'min-content',
+})
+;({
+  gridAutoRows: 'max-content',
+})
+;({
+  gridAutoRows: 'minmax(0, 1fr)',
 }) // Grid alignment utilities
 // https://github.com/tailwindlabs/tailwindcss/pull/2306
 
