@@ -34,12 +34,22 @@ tw`scale-y-150`
 
 // https://tailwindcss.com/docs/rotate
 tw`rotate-0`
+tw`rotate-1`
+tw`rotate-2`
+tw`rotate-3`
+tw`rotate-6`
+tw`rotate-12`
 tw`rotate-45`
 tw`rotate-90`
 tw`rotate-180`
-tw`-rotate-180`
-tw`-rotate-90`
+tw`-rotate-1`
+tw`-rotate-2`
+tw`-rotate-3`
+tw`-rotate-6`
+tw`-rotate-12`
 tw`-rotate-45`
+tw`-rotate-90`
+tw`-rotate-180`
 
 // https://tailwindcss.com/docs/translate
 tw`translate-x-0`
@@ -127,19 +137,27 @@ tw`translate-y-full`
 
 // https://tailwindcss.com/docs/skew
 tw`skew-x-0`
+tw`skew-x-1`
+tw`skew-x-2`
 tw`skew-x-3`
 tw`skew-x-6`
 tw`skew-x-12`
-tw`-skew-x-12`
-tw`-skew-x-6`
+tw`-skew-x-1`
+tw`-skew-x-2`
 tw`-skew-x-3`
+tw`-skew-x-6`
+tw`-skew-x-12`
 tw`skew-y-0`
+tw`skew-y-1`
+tw`skew-y-2`
 tw`skew-y-3`
 tw`skew-y-6`
 tw`skew-y-12`
-tw`-skew-y-12`
-tw`-skew-y-6`
+tw`-skew-y-1`
+tw`-skew-y-2`
 tw`-skew-y-3`
+tw`-skew-y-6`
+tw`-skew-y-12`
 
 // https://tailwindcss.com/docs/transform-origin
 tw`origin-center`
