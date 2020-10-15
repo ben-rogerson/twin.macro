@@ -2921,6 +2921,9 @@ tw\`rounded-sm\`
 tw\`rounded\`
 tw\`rounded-md\`
 tw\`rounded-lg\`
+tw\`rounded-xl\`
+tw\`rounded-2xl\`
+tw\`rounded-3xl\`
 tw\`rounded-full\`
 tw\`rounded-t-none\`
 tw\`rounded-r-none\`
@@ -2938,6 +2941,18 @@ tw\`rounded-t-lg\`
 tw\`rounded-r-lg\`
 tw\`rounded-b-lg\`
 tw\`rounded-l-lg\`
+tw\`rounded-t-xl\`
+tw\`rounded-r-xl\`
+tw\`rounded-b-xl\`
+tw\`rounded-l-xl\`
+tw\`rounded-t-2xl\`
+tw\`rounded-r-2xl\`
+tw\`rounded-b-2xl\`
+tw\`rounded-l-2xl\`
+tw\`rounded-t-3xl\`
+tw\`rounded-r-3xl\`
+tw\`rounded-b-3xl\`
+tw\`rounded-l-3xl\`
 tw\`rounded-t-full\`
 tw\`rounded-r-full\`
 tw\`rounded-b-full\`
@@ -2958,6 +2973,18 @@ tw\`rounded-tl-lg\`
 tw\`rounded-tr-lg\`
 tw\`rounded-br-lg\`
 tw\`rounded-bl-lg\`
+tw\`rounded-tl-xl\`
+tw\`rounded-tr-xl\`
+tw\`rounded-br-xl\`
+tw\`rounded-bl-xl\`
+tw\`rounded-tl-2xl\`
+tw\`rounded-tr-2xl\`
+tw\`rounded-br-2xl\`
+tw\`rounded-bl-2xl\`
+tw\`rounded-tl-3xl\`
+tw\`rounded-tr-3xl\`
+tw\`rounded-br-3xl\`
+tw\`rounded-bl-3xl\`
 tw\`rounded-tl-full\`
 tw\`rounded-tr-full\`
 tw\`rounded-br-full\`
@@ -3242,6 +3269,15 @@ tw\`border-opacity-100\`
   borderRadius: '0.5rem',
 })
 ;({
+  borderRadius: '0.75rem',
+})
+;({
+  borderRadius: '1rem',
+})
+;({
+  borderRadius: '1.5rem',
+})
+;({
   borderRadius: '9999px',
 })
 ;({
@@ -3309,6 +3345,54 @@ tw\`border-opacity-100\`
   borderBottomLeftRadius: '0.5rem',
 })
 ;({
+  borderTopLeftRadius: '0.75rem',
+  borderTopRightRadius: '0.75rem',
+})
+;({
+  borderTopRightRadius: '0.75rem',
+  borderBottomRightRadius: '0.75rem',
+})
+;({
+  borderBottomLeftRadius: '0.75rem',
+  borderBottomRightRadius: '0.75rem',
+})
+;({
+  borderTopLeftRadius: '0.75rem',
+  borderBottomLeftRadius: '0.75rem',
+})
+;({
+  borderTopLeftRadius: '1rem',
+  borderTopRightRadius: '1rem',
+})
+;({
+  borderTopRightRadius: '1rem',
+  borderBottomRightRadius: '1rem',
+})
+;({
+  borderBottomLeftRadius: '1rem',
+  borderBottomRightRadius: '1rem',
+})
+;({
+  borderTopLeftRadius: '1rem',
+  borderBottomLeftRadius: '1rem',
+})
+;({
+  borderTopLeftRadius: '1.5rem',
+  borderTopRightRadius: '1.5rem',
+})
+;({
+  borderTopRightRadius: '1.5rem',
+  borderBottomRightRadius: '1.5rem',
+})
+;({
+  borderBottomLeftRadius: '1.5rem',
+  borderBottomRightRadius: '1.5rem',
+})
+;({
+  borderTopLeftRadius: '1.5rem',
+  borderBottomLeftRadius: '1.5rem',
+})
+;({
   borderTopLeftRadius: '9999px',
   borderTopRightRadius: '9999px',
 })
@@ -3371,6 +3455,42 @@ tw\`border-opacity-100\`
 })
 ;({
   borderBottomLeftRadius: '0.5rem',
+})
+;({
+  borderTopLeftRadius: '0.75rem',
+})
+;({
+  borderTopRightRadius: '0.75rem',
+})
+;({
+  borderBottomRightRadius: '0.75rem',
+})
+;({
+  borderBottomLeftRadius: '0.75rem',
+})
+;({
+  borderTopLeftRadius: '1rem',
+})
+;({
+  borderTopRightRadius: '1rem',
+})
+;({
+  borderBottomRightRadius: '1rem',
+})
+;({
+  borderBottomLeftRadius: '1rem',
+})
+;({
+  borderTopLeftRadius: '1.5rem',
+})
+;({
+  borderTopRightRadius: '1.5rem',
+})
+;({
+  borderBottomRightRadius: '1.5rem',
+})
+;({
+  borderBottomLeftRadius: '1.5rem',
 })
 ;({
   borderTopLeftRadius: '9999px',
