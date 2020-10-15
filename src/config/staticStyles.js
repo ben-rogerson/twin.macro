@@ -279,6 +279,10 @@ export default {
   'grid-flow-row-dense': { output: { gridAutoFlow: 'row dense' } },
   'grid-flow-col-dense': { output: { gridAutoFlow: 'col dense' } },
 
+  // https://tailwindcss.com/docs/grid-auto-columns
+  // https://tailwindcss.com/docs/grid-auto-rows#app
+  // See dynamicStyles.js
+
   /**
    * ===========================================
    * Spacing

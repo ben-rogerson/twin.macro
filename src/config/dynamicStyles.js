@@ -96,6 +96,12 @@ export default {
   'row-start': { prop: 'gridRowStart', config: 'gridRowStart' },
   'row-end': { prop: 'gridRowEnd', config: 'gridRowEnd' },
 
+  // https://tailwindcss.com/docs/grid-auto-columns
+  'auto-cols': { prop: 'gridAutoColumns', config: 'gridAutoColumns' },
+
+  // https://tailwindcss.com/docs/grid-auto-rows
+  'auto-rows': { prop: 'gridAutoRows', config: 'gridAutoRows' },
+
   // https://tailwindcss.com/docs/gap
   gap: { prop: 'gap', config: 'gap' },
   'gap-x': {

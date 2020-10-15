@@ -205,6 +205,18 @@ tw`grid-flow-col`
 tw`grid-flow-row-dense`
 tw`grid-flow-col-dense`
 
+// https://tailwindcss.com/docs/grid-auto-columns
+tw`auto-cols-auto`
+tw`auto-cols-min`
+tw`auto-cols-max`
+tw`auto-cols-fr`
+
+// https://tailwindcss.com/docs/grid-auto-rows
+tw`auto-rows-auto`
+tw`auto-rows-min`
+tw`auto-rows-max`
+tw`auto-rows-fr`
+
 // Grid alignment utilities
 // https://github.com/tailwindlabs/tailwindcss/pull/2306
 
