@@ -29,6 +29,7 @@ tw`col-span-9`
 tw`col-span-10`
 tw`col-span-11`
 tw`col-span-12`
+tw`col-span-full`
 tw`col-start-1`
 tw`col-start-2`
 tw`col-start-3`
@@ -75,6 +76,7 @@ tw`row-span-3`
 tw`row-span-4`
 tw`row-span-5`
 tw`row-span-6`
+tw`row-span-full`
 tw`row-start-1`
 tw`row-start-2`
 tw`row-start-3`
