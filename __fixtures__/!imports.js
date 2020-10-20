@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
-import tw, { theme, styled, css } from './macro'
+import tw, { theme, styled, css, GlobalStyles } from './macro'
 
 const twPropertyTest = <div tw="text-purple-500" />
 
@@ -45,3 +45,5 @@ const themeFunctionStringHeight = (
     `}
   />
 )
+
+const GlobalStylesTest = () => <GlobalStyles />

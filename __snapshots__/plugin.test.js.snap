@@ -371,7 +371,7 @@ exports[`twin.macro !imports.js: !imports.js 1`] = `
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
-import tw, { theme, styled, css } from './macro'
+import tw, { theme, styled, css, GlobalStyles } from './macro'
 
 const twPropertyTest = <div tw="text-purple-500" />
 
@@ -417,10 +417,45 @@ const themeFunctionStringHeight = (
   />
 )
 
+const GlobalStylesTest = () => <GlobalStyles />
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _styled from '@emotion/styled'
 import { css as _css } from '@emotion/core'
+import { Global as _globalImport } from '@emotion/core'
+import 'tailwindcss/dist/base.min.css'
+
+const _GlobalStyles = () => (
+  <_globalImport
+    styles={_css\`
+      @keyframes spin {
+          to { 
+            transform: rotate(360deg);
+          }
+        }
+      @keyframes ping {
+          75%, 100% { 
+            transform: scale(2); opacity: 0;
+          }
+        }
+      @keyframes pulse {
+          50% { 
+            opacity: .5;
+          }
+        }
+      @keyframes bounce {
+          0%, 100% { 
+            transform: translateY(-25%); animationTimingFunction: cubic-bezier(0.8,0,1,1);
+          }
+        
+          50% { 
+            transform: none; animationTimingFunction: cubic-bezier(0,0,0.2,1);
+          }
+        }\`}
+  />
+)
+
 const twPropertyTest = (
   <div
     css={{
@@ -483,6 +518,8 @@ const themeFunctionStringHeight = (
     \`}
   />
 )
+
+const GlobalStylesTest = () => <_GlobalStyles />
 
 
 `;

@@ -1,7 +1,7 @@
+/* eslint-disable unicorn/filename-case */
 import { addImport, generateUid } from '../macroHelpers'
 import { assert } from '../utils'
 import { logGeneralError } from './../logging'
-import globalStyles from './../config/globalStyles'
 import userPresets from './../config/userPresets'
 
 const getGlobalStylesConfig = config => {
@@ -31,10 +31,10 @@ const addGlobalCssImport = ({ identifier, t, program }) =>
     identifier,
   })
 
-const generateTaggedTemplateExpression = ({ identifier, t }) => {
+const generateTaggedTemplateExpression = ({ identifier, t, keyframes }) => {
   const backtickStyles = t.templateElement({
-    raw: `${globalStyles}`,
-    cooked: `${globalStyles}`,
+    raw: `${keyframes}`,
+    cooked: `${keyframes}`,
   })
   const ttExpression = t.taggedTemplateExpression(
     identifier,
@@ -43,21 +43,32 @@ const generateTaggedTemplateExpression = ({ identifier, t }) => {
   return ttExpression
 }
 
-const getGlobalDeclarationTte = ({ t, stylesUid, globalUid }) =>
+const getGlobalDeclarationTte = ({ t, stylesUid, globalUid, keyframes }) =>
   t.variableDeclaration('const', [
     t.variableDeclarator(
       globalUid,
-      generateTaggedTemplateExpression({ t, identifier: stylesUid })
+      generateTaggedTemplateExpression({
+        t,
+        identifier: stylesUid,
+        keyframes,
+      })
     ),
   ])
 
-const getGlobalTte = ({ t, stylesUid }) =>
-  generateTaggedTemplateExpression({ t, identifier: stylesUid })
+const getGlobalTte = ({ t, stylesUid, keyframes }) =>
+  generateTaggedTemplateExpression({ t, identifier: stylesUid, keyframes })
 
-const getGlobalDeclarationProperty = ({ t, stylesUid, globalUid, state }) => {
+const getGlobalDeclarationProperty = ({
+  t,
+  stylesUid,
+  globalUid,
+  state,
+  keyframes,
+}) => {
   const ttExpression = generateTaggedTemplateExpression({
     t,
     identifier: state.cssIdentifier,
+    keyframes,
   })
 
   const openingElement = t.jsxOpeningElement(
@@ -85,6 +96,24 @@ const getGlobalDeclarationProperty = ({ t, stylesUid, globalUid, state }) => {
   return code
 }
 
+const getKeyframesString = keyframes =>
+  Object.entries(keyframes)
+    .map(
+      ([name, frames]) => `
+      @keyframes ${name} {${Object.entries(frames)
+        .map(
+          ([offset, styles]) => `
+          ${offset} { 
+            ${Object.entries(styles)
+              .map(([key, value]) => `${key}: ${value};`)
+              .join(' ')}
+          }
+        `
+        )
+        .join('')}}`
+    )
+    .join('')
+
 const handleGlobalStylesFunction = ({
   references,
   program,
@@ -108,6 +137,9 @@ const handleGlobalStylesFunction = ({
     )
   )
 
+  const themeKeyframes = state.config.theme.keyframes || {}
+  const keyframes = getKeyframesString(themeKeyframes)
+
   const globalUid = generateUid('GlobalStyles', program)
   const stylesUid = generateUid('globalImport', program)
 
@@ -116,6 +148,7 @@ const handleGlobalStylesFunction = ({
       t,
       globalUid,
       stylesUid,
+      keyframes,
     })
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
@@ -127,6 +160,7 @@ const handleGlobalStylesFunction = ({
       globalUid,
       stylesUid,
       state,
+      keyframes,
     })
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
@@ -134,7 +168,7 @@ const handleGlobalStylesFunction = ({
   }
 
   if (state.isGoober) {
-    const declaration = getGlobalTte({ t, stylesUid })
+    const declaration = getGlobalTte({ t, stylesUid, keyframes })
     program.unshiftContainer('body', declaration)
     parentPath.remove()
   }
