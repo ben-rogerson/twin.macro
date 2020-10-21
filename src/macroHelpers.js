@@ -1,5 +1,5 @@
 import babylon from '@babel/parser'
-import { assert } from './utils'
+import { throwIf } from './utils'
 import { logGeneralError } from './logging'
 
 const SPREAD_ID = '__spread__'
@@ -229,12 +229,12 @@ const validateImports = imports => {
   const importTwAsNamedNotDefault = Object.keys(imports).find(
     reference => reference === 'tw'
   )
-  assert(importTwAsNamedNotDefault, () => {
+  throwIf(importTwAsNamedNotDefault, () => {
     logGeneralError(
       `Please use the default export for twin.macro, i.e:\nimport tw from 'twin.macro'\nNOT import { tw } from 'twin.macro'`
     )
   })
-  assert(unsupportedImport, () =>
+  throwIf(unsupportedImport, () =>
     logGeneralError(
       `Twin doesn't recognize { ${unsupportedImport} }\n\nTry one of these imports:\nimport tw, { styled, css, theme } from 'twin.macro'`
     )

@@ -1,8 +1,8 @@
-import { assert } from './utils'
+import { throwIf } from './utils'
 import { logBadGood } from './logging'
 
 const precheckGroup = ({ classNameRaw }) =>
-  assert(
+  throwIf(
     classNameRaw === 'group',
     () =>
       `"group" must be added as className:\n\n${logBadGood(

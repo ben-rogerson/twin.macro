@@ -1,6 +1,6 @@
 import dlv from 'dlv'
 import { replaceWithLocation, astify } from './../macroHelpers'
-import { getTheme, assert } from './../utils'
+import { getTheme, throwIf } from './../utils'
 import {
   logGeneralError,
   themeErrorNotString,
@@ -56,14 +56,14 @@ const handleThemeFunction = ({ references, t, state }) => {
       return replaceWithLocation(parent, astify('', t))
     }
 
-    assert(!parent || !input, () =>
+    throwIf(!parent || !input, () =>
       logGeneralError(
         "The theme value doesn’t look right\n\nTry using it like this: theme`colors.black` or theme('colors.black')"
       )
     )
 
     const themeValue = dlv(theme(), input)
-    assert(!themeValue, () =>
+    throwIf(!themeValue, () =>
       themeErrorNotFound({
         theme: input.includes('.') ? dlv(theme(), trimInput(input)) : theme(),
         input,
@@ -72,7 +72,7 @@ const handleThemeFunction = ({ references, t, state }) => {
     )
 
     const normalizedValue = normalizeThemeValue(themeValue)
-    assert(typeof normalizedValue !== 'string', () =>
+    throwIf(typeof normalizedValue !== 'string', () =>
       themeErrorNotString({ themeValue, input })
     )
 

@@ -1,7 +1,7 @@
 import dlv from 'dlv'
 import { MacroError } from 'babel-plugin-macros'
 
-const assert = (expression, callBack) => {
+const throwIf = (expression, callBack) => {
   if (!expression) return
   throw new MacroError(callBack())
 }
@@ -22,4 +22,4 @@ const stripNegative = string =>
     ? string.slice(1, string.length)
     : string
 
-export { assert, isEmpty, addPxTo0, getTheme, stripNegative }
+export { throwIf, isEmpty, addPxTo0, getTheme, stripNegative }

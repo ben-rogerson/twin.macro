@@ -1,5 +1,5 @@
 import { addImport, generateUid } from '../macroHelpers'
-import { assert } from '../utils'
+import { throwIf } from '../utils'
 import { logGeneralError } from './../logging'
 import globalStyles from './../config/globalStyles'
 import userPresets from './../config/userPresets'
@@ -95,14 +95,14 @@ const handleGlobalStylesFunction = ({
   if (!references.GlobalStyles) return
   if (references.GlobalStyles.length === 0) return
 
-  assert(references.GlobalStyles.length > 1, () =>
+  throwIf(references.GlobalStyles.length > 1, () =>
     logGeneralError('Only one GlobalStyles import can be used')
   )
 
   const path = references.GlobalStyles[0]
   const parentPath = path.findParent(x => x.isJSXElement())
 
-  assert(state.isStyledComponents && !parentPath, () =>
+  throwIf(state.isStyledComponents && !parentPath, () =>
     logGeneralError(
       'GlobalStyles must be added as a JSX element, eg: <GlobalStyles />'
     )
