@@ -60,7 +60,7 @@ const formatKey = (selector, className, sassyPseudo) => {
 
 export default ({
   state: {
-    sassyPseudo,
+    configTwin: { sassyPseudo },
     userPluginData: { components, utilities },
   },
   className,

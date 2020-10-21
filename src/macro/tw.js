@@ -75,7 +75,7 @@ const handleTwFunction = ({ references, state, t }) => {
     if (!parent) return
 
     // Check if the style attribute is being used
-    if (!state.allowStyleProp) {
+    if (!state.configTwin.allowStyleProp) {
       const jsxAttribute = parent.findParent(x => x.isJSXAttribute())
       const attributeName =
         jsxAttribute && jsxAttribute.get('name').get('name').node
