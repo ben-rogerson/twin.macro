@@ -25,7 +25,7 @@ export default ({ color, property, variable, important }) => {
   try {
     const [r, g, b, a] = toRgba(color)
 
-    if (a !== undefined) {
+    if (a !== undefined || !variable) {
       return { [property]: colorValue }
     }
 

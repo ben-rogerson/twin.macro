@@ -1,6 +1,6 @@
 import { addPxTo0, withAlpha, stripNegative } from './../utils'
 
-const handleColor = ({ configValue, important }) => {
+const handleColor = ({ configValue, important, disableColorVariables }) => {
   const value =
     configValue('divideColor') ||
     configValue('borderColor') ||
@@ -10,7 +10,7 @@ const handleColor = ({ configValue, important }) => {
   const borderColor = withAlpha({
     color: value,
     property: 'borderColor',
-    variable: '--divide-opacity',
+    variable: !disableColorVariables && '--divide-opacity',
     important,
   })
 
@@ -53,6 +53,7 @@ export default properties => {
   const {
     pieces: { important },
     errors: { errorSuggestions },
+    configTwin: { disableColorVariables },
     getConfigValue,
     theme,
     match,
@@ -61,7 +62,7 @@ export default properties => {
   const classValue = match(/(?<=(divide-))([^]*)/)
   const configValue = config => getConfigValue(theme(config), classValue)
 
-  const color = handleColor({ configValue, important })
+  const color = handleColor({ configValue, important, disableColorVariables })
   if (color) return color
 
   const opacityMatch =

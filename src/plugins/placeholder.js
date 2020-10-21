@@ -1,13 +1,13 @@
 import { withAlpha } from './../utils'
 
-const handleColor = ({ configValue, important }) => {
+const handleColor = ({ configValue, important, disableColorVariables }) => {
   const value = configValue('placeholderColor')
   if (!value) return
 
   return withAlpha({
     color: value,
     property: 'color',
-    variable: '--placeholder-opacity',
+    variable: !disableColorVariables && '--placeholder-opacity',
     important,
   })
 }
@@ -24,6 +24,7 @@ export default properties => {
     match,
     theme,
     getConfigValue,
+    configTwin: { disableColorVariables },
     pieces: { important },
     errors: { errorSuggestions },
   } = properties
@@ -39,6 +40,7 @@ export default properties => {
   const color = handleColor({
     configValue: config => getConfigValue(theme(config), colorMatch),
     important,
+    disableColorVariables,
   })
   if (color) return { '::placeholder': color }
 

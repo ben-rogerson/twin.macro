@@ -9,14 +9,14 @@ const handleWidth = ({ configValue, important }) => {
   }
 }
 
-const handleColor = ({ configValue, important }) => {
+const handleColor = ({ configValue, important, disableColorVariables }) => {
   const value = configValue('borderColor')
 
   if (!value) return
   return withAlpha({
     color: value,
     property: 'borderColor',
-    variable: '--border-opacity',
+    variable: !disableColorVariables && '--border-opacity',
     important,
   })
 }
@@ -26,6 +26,7 @@ export default properties => {
     match,
     theme,
     getConfigValue,
+    configTwin: { disableColorVariables },
     pieces: { important },
     errors: { errorSuggestions },
   } = properties
@@ -36,7 +37,7 @@ export default properties => {
   const width = handleWidth({ configValue, important })
   if (width) return width
 
-  const color = handleColor({ configValue, important })
+  const color = handleColor({ configValue, important, disableColorVariables })
   if (color) return color
 
   errorSuggestions({ config: ['borderColor', 'borderWidth'] })

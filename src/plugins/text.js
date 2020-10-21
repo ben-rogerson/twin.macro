@@ -1,13 +1,13 @@
 import { withAlpha } from './../utils'
 
-const handleColor = ({ configValue, important }) => {
+const handleColor = ({ configValue, important, disableColorVariables }) => {
   const value = configValue('textColor')
   if (!value) return
 
   return withAlpha({
     color: value,
     property: 'color',
-    variable: '--text-opacity',
+    variable: !disableColorVariables && '--text-opacity',
     important,
   })
 }
@@ -37,6 +37,7 @@ export default properties => {
     match,
     theme,
     getConfigValue,
+    configTwin: { disableColorVariables },
     pieces: { important, hasNegative },
     errors: { errorSuggestions, errorNoNegatives },
   } = properties
@@ -46,7 +47,7 @@ export default properties => {
   const classValue = match(/(?<=(text-))([^]*)/)
   const configValue = config => getConfigValue(theme(config), classValue)
 
-  const color = handleColor({ configValue, important })
+  const color = handleColor({ configValue, important, disableColorVariables })
   if (color) return color
 
   const size = handleSize({ configValue, important })
