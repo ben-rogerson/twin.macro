@@ -1,5 +1,5 @@
 import deepMerge from 'lodash.merge'
-import { assert, isEmpty, getProperties, getTheme } from './utils'
+import { throwIf, isEmpty, getProperties, getTheme } from './utils'
 import getPieces from './utils/getPieces'
 import { astify } from './macroHelpers'
 import doPrechecks, { precheckGroup } from './prechecks'
@@ -21,7 +21,7 @@ import {
 } from './handlers'
 
 export default (classes, t, state) => {
-  assert([null, 'null', undefined].includes(classes), () =>
+  throwIf([null, 'null', undefined].includes(classes), () =>
     logGeneralError(
       'Only plain strings can be used with "tw".\nRead more at https://twinredirect.page.link/template-literals'
     )
@@ -45,7 +45,7 @@ export default (classes, t, state) => {
     const pieces = getPieces({ classNameRaw, state })
     const { className, hasVariants } = pieces
 
-    assert(!className, () =>
+    throwIf(!className, () =>
       hasVariants ? logNotFoundVariant({ classNameRaw }) : logNotFoundClass
     )
 
@@ -59,7 +59,7 @@ export default (classes, t, state) => {
     } = getProperties(className, state)
 
     // Kick off suggestions when no class matches
-    assert(!hasMatches && !hasUserPlugins, () =>
+    throwIf(!hasMatches && !hasUserPlugins, () =>
       errorSuggestions({ pieces, state })
     )
 
@@ -90,7 +90,7 @@ export default (classes, t, state) => {
     }
 
     // Check again there are no userPlugin matches
-    assert(!hasMatches && !style, () => errorSuggestions({ pieces, state }))
+    throwIf(!hasMatches && !style, () => errorSuggestions({ pieces, state }))
 
     style =
       style || applyTransforms({ type, pieces, style: styleHandler[type]() })

@@ -1,4 +1,4 @@
-import { isEmpty, assert, stripNegative } from './misc'
+import { isEmpty, throwIf, stripNegative } from './misc'
 import { logGeneralError } from './../logging'
 
 const normalizeValue = value => {
@@ -39,7 +39,7 @@ const matchChildKey = (from, matcher) => {
       typeof objectMatch === 'number' ||
       Array.isArray(objectMatch)
 
-    assert(!isValueReturnable, () =>
+    throwIf(!isValueReturnable, () =>
       logGeneralError(
         `The tailwind config is nested too deep\nReplace this with a string, number or array:\n${JSON.stringify(
           objectMatch

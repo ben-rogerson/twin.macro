@@ -1,5 +1,5 @@
 import { parseTte, replaceWithLocation } from './../macroHelpers'
-import { assert } from './../utils'
+import { throwIf } from './../utils'
 import { logGeneralError, logStylePropertyError } from './../logging'
 /* eslint-disable-next-line unicorn/prevent-abbreviations */
 import { addDebugPropToPath, addDebugPropToExistingPath } from './debug'
@@ -21,7 +21,7 @@ const handleTwProperty = ({ path, t, state }) => {
     nodeValue.expression.value
 
   // Feedback for unsupported usage
-  assert(nodeValue.expression && !expressionValue, () =>
+  throwIf(nodeValue.expression && !expressionValue, () =>
     logGeneralError(
       `Only plain strings can be used with the "tw" prop.\nEg: <div tw="text-black" /> or <div tw={"text-black"} />`
     )
@@ -45,7 +45,7 @@ const handleTwProperty = ({ path, t, state }) => {
       // But it would break the specificity of existing css+tw combinations.
       expr.pushContainer('elements', styles)
     } else {
-      assert(!expr.node, () =>
+      throwIf(!expr.node, () =>
         logGeneralError(
           `An empty css prop (css="") isn’t supported alongside the tw prop (tw="...")`
         )
@@ -79,7 +79,7 @@ const handleTwFunction = ({ references, state, t }) => {
       const jsxAttribute = parent.findParent(x => x.isJSXAttribute())
       const attributeName =
         jsxAttribute && jsxAttribute.get('name').get('name').node
-      assert(attributeName === 'style', () => logStylePropertyError)
+      throwIf(attributeName === 'style', () => logStylePropertyError)
     }
 
     const parsed = parseTte({

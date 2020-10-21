@@ -5,7 +5,7 @@ import resolveTailwindConfig from 'tailwindcss/lib/util/resolveConfig'
 import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
 import { configTwinValidators, configTwinDefaults } from './config/twinConfig'
 import { logGeneralError } from './logging'
-import { assert } from './utils'
+import { throwIf } from './utils'
 
 const getConfigTailwindProperties = (state, config) => {
   const sourceRoot = state.file.opts.sourceRoot || '.'
@@ -29,7 +29,7 @@ const runConfigValidator = ([item, value]) => {
 
   const [validator, errorMessage] = validatorConfig
 
-  assert(validator(value) !== true, () => logGeneralError(errorMessage))
+  throwIf(validator(value) !== true, () => logGeneralError(errorMessage))
 
   return true
 }
