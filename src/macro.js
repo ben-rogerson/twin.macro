@@ -7,7 +7,10 @@ import {
   generateUid,
 } from './macroHelpers'
 import { isEmpty } from './utils'
-import { getConfigProperties } from './configHelpers'
+import {
+  getConfigTailwindProperties,
+  getConfigTwinValidated,
+} from './configHelpers'
 import {
   getCssConfig,
   updateCssReferences,
@@ -40,18 +43,24 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   validateImports(references)
 
   const program = state.file.path
-  const { configExists, tailwindConfig } = getConfigProperties(state, config)
+  const { configExists, configTailwind } = getConfigTailwindProperties(
+    state,
+    config
+  )
+
+  // Get import presets
+  const styledImport = getStyledConfig(config)
+  const cssImport = getCssConfig(config)
+
+  // Identify the css-in-js library being used
+  const packageUsed = getPackageUsed({ config, cssImport, styledImport })
+  for (const [key, value] of Object.entries(packageUsed)) state[key] = value
+
+  const configTwin = getConfigTwinValidated(config, state)
 
   state.configExists = configExists
-  state.config = tailwindConfig
-  state.hasSuggestions =
-    typeof config.hasSuggestions === 'undefined'
-      ? true
-      : Boolean(config.hasSuggestions)
-  state.allowStyleProp =
-    typeof config.allowStyleProp === 'undefined'
-      ? false
-      : Boolean(config.allowStyleProp)
+  state.config = configTailwind
+  state.configTwin = configTwin
 
   state.tailwindConfigIdentifier = generateUid('tailwindConfig', program)
   state.tailwindUtilsIdentifier = generateUid('tailwindUtils', program)
@@ -73,26 +82,12 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
     state.userPluginData &&
     debugPlugins(state.userPluginData)
 
-  // Styled import
-  const styledImport = getStyledConfig(config)
   state.styledImport = styledImport
+  state.cssImport = cssImport
 
   // Init identifiers
   state.styledIdentifier = null
   state.cssIdentifier = null
-
-  // Css import
-  const cssImport = getCssConfig(config)
-  state.cssImport = cssImport
-
-  const packageUsed = getPackageUsed({ config, cssImport, styledImport })
-  for (const [key, value] of Object.entries(packageUsed)) state[key] = value
-
-  // Sassy pseudo prefix (eg: the & in &:hover)
-  state.sassyPseudo =
-    config.sassyPseudo !== undefined
-      ? config.sassyPseudo === true
-      : state.isGoober
 
   // Group traversals together for better performance
   program.traverse({
@@ -144,7 +139,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   // Auto add css prop for styled components
   if (
     (state.hasTwProp || state.hasCssProp) &&
-    config.autoCssProp === true &&
+    configTwin.autoCssProp === true &&
     state.isStyledComponents
   ) {
     maybeAddCssProperty({ program, t })

@@ -117,7 +117,9 @@ const logDeeplyNestedClass = properties => {
 
 const errorSuggestions = properties => {
   const {
-    state: { hasSuggestions },
+    state: {
+      configTwin: { hasSuggestions },
+    },
     pieces: { className },
   } = properties
 

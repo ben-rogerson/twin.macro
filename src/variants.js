@@ -35,7 +35,7 @@ const validateVariants = ({ variants, state, ...rest }) => {
           foundVariant = foundVariant(context)
         }
 
-        if (state.sassyPseudo) {
+        if (state.configTwin.sassyPseudo) {
           return foundVariant.replace(/(?<= ):|^:/g, '&:')
         }
 
