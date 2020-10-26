@@ -29,7 +29,7 @@ const flattenObject = (object, prefix = '') =>
 
     if (Array.isArray(value)) {
       result[fullKey] = value
-    } else if (typeof value !== 'object') {
+    } else if (typeof value === 'object') {
       Object.assign(result, flattenObject(value, fullKey))
     } else {
       result[fullKey] = value
