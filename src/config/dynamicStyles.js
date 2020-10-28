@@ -378,12 +378,9 @@ export default {
   // https://tailwindcss.com/docs/fill
   fill: { prop: 'fill', config: 'fill' },
 
-  stroke: [
-    // https://tailwindcss.com/docs/stroke
-    { prop: 'stroke', config: 'stroke' },
-    // https://tailwindcss.com/docs/stroke
-    { prop: 'strokeWidth', config: 'strokeWidth' },
-  ],
+  // https://tailwindcss.com/docs/stroke
+  // https://tailwindcss.com/docs/stroke
+  stroke: { plugin: 'stroke' },
 
   /**
    * ===========================================
