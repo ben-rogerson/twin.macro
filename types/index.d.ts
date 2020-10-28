@@ -4,10 +4,6 @@ export interface TwStyle {
   [key: string]: string | number | TwStyle
 }
 
-export interface ThemeStyle {
-  [key: string]: string | number | ThemeStyle
-}
-
 export const GlobalStyles: string
 
 export type TemplateFn<R> = (
@@ -22,8 +18,7 @@ export type ThemeSearchTaggedFn<R> = (
   strings: Readonly<TemplateStringsArray>
 ) => R
 
-export type ThemeFn = ThemeSearchFn<ThemeStyle> &
-  ThemeSearchTaggedFn<ThemeStyle>
+export type ThemeFn = <T = string>(arg?: string | TemplateStringsArray) => T
 
 export type TwComponent<K extends keyof JSX.IntrinsicElements> = (
   props: JSX.IntrinsicElements[K]
