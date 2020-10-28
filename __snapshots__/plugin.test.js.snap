@@ -1900,6 +1900,7 @@ tw\`read-only:flex\`
 tw\`read-write:flex\`
 
 // Child selectors
+tw\`not-disabled:flex\`
 tw\`first-of-type:flex\`
 tw\`not-first-of-type:flex\`
 tw\`last-of-type:flex\`
@@ -1916,6 +1917,9 @@ tw\`even:flex\`
 tw\`odd:flex\`
 tw\`odd-of-type:flex\`
 tw\`even-of-type:flex\`
+tw\`svg:flex\`
+tw\`all:flex\`
+tw\`all-child:flex\`
 
 // Group states
 tw\`group-hover:flex\`
@@ -2062,6 +2066,11 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
 }) // Child selectors
 
 ;({
+  ':not(:disabled)': {
+    display: 'flex',
+  },
+})
+;({
   ':first-of-type': {
     display: 'flex',
   },
@@ -2138,6 +2147,21 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
 })
 ;({
   ':nth-of-type(even)': {
+    display: 'flex',
+  },
+})
+;({
+  svg: {
+    display: 'flex',
+  },
+})
+;({
+  '*': {
+    display: 'flex',
+  },
+})
+;({
+  '> *': {
     display: 'flex',
   },
 }) // Group states

@@ -39,6 +39,7 @@ export default {
   'read-write': ':read-write',
 
   // Child selectors
+  'not-disabled': ':not(:disabled)',
   'first-of-type': ':first-of-type',
   'not-first-of-type': ':not(:first-of-type)',
   'last-of-type': ':last-of-type',
@@ -55,6 +56,9 @@ export default {
   odd: ':nth-child(odd)', // Tailwind
   'even-of-type': ':nth-of-type(even)',
   'odd-of-type': ':nth-of-type(odd)',
+  svg: 'svg',
+  all: '*',
+  'all-child': '> *',
 
   // Group states
   // You'll need to add className="group" to an ancestor to make these work

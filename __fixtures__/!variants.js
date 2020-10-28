@@ -31,6 +31,7 @@ tw`read-only:flex`
 tw`read-write:flex`
 
 // Child selectors
+tw`not-disabled:flex`
 tw`first-of-type:flex`
 tw`not-first-of-type:flex`
 tw`last-of-type:flex`
@@ -47,6 +48,9 @@ tw`even:flex`
 tw`odd:flex`
 tw`odd-of-type:flex`
 tw`even-of-type:flex`
+tw`svg:flex`
+tw`all:flex`
+tw`all-child:flex`
 
 // Group states
 tw`group-hover:flex`
