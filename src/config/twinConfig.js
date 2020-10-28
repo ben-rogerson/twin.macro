@@ -3,6 +3,7 @@ const configGooberDefaults = { sassyPseudo: true }
 const configTwinDefaults = state => ({
   allowStyleProp: false, // Allows styles within style="blah" without throwing an error
   autoCssProp: false, // Automates the import of styled-components so you can use their css prop
+  disableColorVariables: false, // Disable css variables in colors (except gradients) to support older browsers/react native
   hasSuggestions: true, // Switch suggestions on/off when you use a tailwind class that's not found
   sassyPseudo: false, // Sets selectors like hover to &:hover
   // ...
@@ -20,6 +21,10 @@ const configTwinValidators = {
   autoCssProp: [
     isBoolean,
     'The config “autoCssProp” can only be true or false',
+  ],
+  disableColorVariables: [
+    isBoolean,
+    'The config “disableColorVariables” can only be true or false',
   ],
   hasSuggestions: [
     isBoolean,
