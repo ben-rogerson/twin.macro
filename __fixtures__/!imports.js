@@ -29,10 +29,12 @@ const themeObjectPurple = (
 const themeStringFont = (
   <input
     css={css`
-      fontfamily: ${theme`fontFamily.sans`};
+      fontfamily: ${theme`fontFamily.sans`.join(', ')};
     `}
   />
 )
+
+const colorsRed = Object.values(theme`colors.red`)
 
 const themeFunctionObjectPurple = (
   <input css={css({ color: theme('colors.black') })} />
