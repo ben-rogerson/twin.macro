@@ -6,20 +6,21 @@ labels: ''
 assignees: ''
 ---
 
-#### The problem
-
 <!--
 
-  Explain the buggy behavior you’re experiencing and explain what you expected instead.
+  Thanks for taking the time to post a bug or issue!
+  
+  Could you please include some information like:
+  
+  - The buggy behavior you’re experiencing
 
--->
+  - What should be happening instead
 
-#### Bug reproduction
+  - If you're using styled-components, emotion, or something else
 
-<!--
+  - A link to a minimal demo showing the bug in action
 
-  Please provide a link to a GitHub repository or CodeSandbox that reliably reproduces the issue
-  with the least amount of extraneous code possible.
-  You could fork one of these CodeSandboxes for your own bug demo: https://codesandbox.io/u/ben-rogerson/sandboxes
+    Try forking one of these CodeSandboxes to get started:
+    https://codesandbox.io/u/ben-rogerson/sandboxes
 
 -->
