@@ -11,6 +11,14 @@ const parseSelector = selector => {
 const camelize = string =>
   string && string.replace(/\W+(.)/g, (match, chr) => chr.toUpperCase())
 
+const parseRuleProperty = string => {
+  if (string && string.match(/^--[a-z-]*$/i)) {
+    return string
+  }
+
+  return camelize(string)
+}
+
 const buildAtSelector = (name, values, screens) => {
   // Support @screen selectors
   if (name === 'screen') {
@@ -43,11 +51,11 @@ const getUserPluginRules = (rules, screens) =>
     // Rule isn't formatted correctly
     if (selector === null) return null
 
-    // Combine the chilren styles
+    // Combine the children styles
     const values = rule.nodes.reduce(
       (result, rule) => ({
         ...result,
-        [camelize(rule.prop)]: rule.value,
+        [parseRuleProperty(rule.prop)]: rule.value,
       }),
       {}
     )
