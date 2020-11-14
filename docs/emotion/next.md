@@ -4,6 +4,8 @@
 
 ## Getting started
 
+> **Important:** Emotion version 11 (released 12th November 2020) changed the imports and broke the default Twin preset. After following the installation instructions below, you'll need to [make a couple of tweaks to use Emotion version 11](https://github.com/ben-rogerson/twin.macro/issues/184#issuecomment-725810203).
+
 ### 1. Install the dependencies
 
 After creating your next app:

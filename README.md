@@ -174,10 +174,10 @@ const variantsInGroups = () => <div tw="sm:(bg-black hover:bg-white)">
 
 ## Getting started
 
-| "Vanilla" React   |                                                                                                            |                                         |
-| :---------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| Styled Components | [Demo](https://codesandbox.io/embed/react-tailwind-styled-components-starter-f87y7?module=%2Fsrc%2FApp.js) | [Docs](docs/styled-components/react.md) |
-| Emotion           | [Demo](https://codesandbox.io/embed/react-tailwind-emotion-starter-3d1dl?module=%2Fsrc%2FApp.js)           | [Docs](docs/emotion/react.md)           |
+| "Vanilla" React   |                                                                                                                   |                                                                                                            |
+| :---------------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Styled Components | [Demo](https://codesandbox.io/embed/react-tailwind-styled-components-starter-f87y7?module=%2Fsrc%2FApp.js)        | [Docs](docs/styled-components/react.md)                                                                    |
+| Emotion           | [Demo](https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/react-emotion?file=/src/App.js) | [Docs](<[docs/emotion/react.md](https://github.com/ben-rogerson/twin.examples/tree/master/react-emotion)>) |
 
 | Create React App  |                                                                                                               |                                                    |
 | :---------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
