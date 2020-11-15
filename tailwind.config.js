@@ -148,6 +148,7 @@ module.exports = {
     fluidContainer,
     addComponentsTestElementPrefixes,
     addComponentsTestElementScreenReplacements,
+    addComponentsTestCssVariableAsRuleProperty,
     require('@tailwindcss/typography'),
     require('tailwindcss-typography')({
       ellipsis: false,
@@ -314,6 +315,18 @@ function addComponentsTestElementScreenReplacements({ addComponents }) {
             },
           },
         },
+      },
+    },
+  ]
+
+  addComponents(styles)
+}
+
+function addComponentsTestCssVariableAsRuleProperty({ addComponents }) {
+  const styles = [
+    {
+      '.css-class-with-variable-as-rule-property': {
+        '--some-css-variable-as-rule-prop': 'blue',
       },
     },
   ]
