@@ -184,15 +184,15 @@ const variantsInGroups = () => <div tw="sm:(bg-black hover:bg-white)">
 | Styled Components | [Demo](https://codesandbox.io/embed/cra-styled-components-tailwind-twin-starter-m8cyz?module=%2Fsrc%2FApp.js)   | [Docs](docs/styled-components/create-react-app.md)                            |
 | Emotion           | [Demo](https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/cra-emotion?file=/src/App.js) | [Docs](https://github.com/ben-rogerson/twin.examples/tree/master/cra-emotion) |
 
-| Gatsby            |                                                                                                                       |                                          |
-| :---------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| Styled Components | [Demo](https://codesandbox.io/embed/gatsby-tailwind-styled-components-starter-trrlp?module=%2Fsrc%2Fpages%2Findex.js) | [Docs](docs/styled-components/gatsby.md) |
-| Emotion           | [Demo](https://codesandbox.io/embed/gatsby-tailwind-emotion-starter-z3hun?module=%2Fsrc%2Fpages%2Findex.js)           | [Docs](docs/emotion/gatsby.md)           |
+| Gatsby            |                                                                                                                            |                                                                                  |
+| :---------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Styled Components | [Demo](https://codesandbox.io/embed/gatsby-tailwind-styled-components-starter-trrlp?module=%2Fsrc%2Fpages%2Findex.js)      | [Docs](docs/styled-components/gatsby.md)                                         |
+| Emotion           | [Demo](https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/gatsby-emotion?file=/src/pages/index.js) | [Docs](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-emotion) |
 
-| Next.js           |                                                                                                               |                                        |
-| :---------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| Styled Components | [Demo](https://codesandbox.io/embed/next-tailwind-styled-components-starter-m1f6d?module=%2Fpages%2Findex.js) | [Docs](docs/styled-components/next.md) |
-| Emotion           | [Demo](https://codesandbox.io/embed/next-tailwind-emotion-starter-8h2b2?module=%2Fpages%2Findex.js)           | [Docs](docs/emotion/next.md)           |
+| Next.js           |                                                                                                                  |                                                                                |
+| :---------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Styled Components | [Demo](https://codesandbox.io/embed/next-tailwind-styled-components-starter-m1f6d?module=%2Fpages%2Findex.js)    | [Docs](docs/styled-components/next.md)                                         |
+| Emotion           | [Demo](https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/next-emotion?file=/src/App.js) | [Docs](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion) |
 
 | Snowpack          |                                                                                                    |
 | :---------------- | -------------------------------------------------------------------------------------------------- |
