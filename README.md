@@ -174,15 +174,15 @@ const variantsInGroups = () => <div tw="sm:(bg-black hover:bg-white)">
 
 ## Getting started
 
-| "Vanilla" React   |                                                                                                                   |                                                                               |
-| :---------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Styled Components | [Demo](https://codesandbox.io/embed/react-tailwind-styled-components-starter-f87y7?module=%2Fsrc%2FApp.js)        | [Docs](docs/styled-components/react.md)                                       |
-| Emotion           | [Demo](https://codesandbox.io/emotion/github/ben-rogerson/twin.examples/tree/master/cra-emotion?file=/src/App.js) | [Docs](https://github.com/ben-rogerson/twin.examples/tree/master/cra-emotion) |
+| "Vanilla" React   |                                                                                                                   |                                                                                 |
+| :---------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Styled Components | [Demo](https://codesandbox.io/embed/react-tailwind-styled-components-starter-f87y7?module=%2Fsrc%2FApp.js)        | [Docs](docs/styled-components/react.md)                                         |
+| Emotion           | [Demo](https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/react-emotion?file=/src/App.js) | [Docs](https://github.com/ben-rogerson/twin.examples/tree/master/react-emotion) |
 
-| Create React App  |                                                                                                               |                                                    |
-| :---------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| Styled Components | [Demo](https://codesandbox.io/embed/cra-styled-components-tailwind-twin-starter-m8cyz?module=%2Fsrc%2FApp.js) | [Docs](docs/styled-components/create-react-app.md) |
-| Emotion           | [Demo](https://codesandbox.io/embed/cra-tailwind-emotion-starter-bi1kx?module=%2Fsrc%2FApp.js)                | [Docs](docs/emotion/create-react-app.md)           |
+| Create React App  |                                                                                                                 |                                                                               |
+| :---------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Styled Components | [Demo](https://codesandbox.io/embed/cra-styled-components-tailwind-twin-starter-m8cyz?module=%2Fsrc%2FApp.js)   | [Docs](docs/styled-components/create-react-app.md)                            |
+| Emotion           | [Demo](https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/cra-emotion?file=/src/App.js) | [Docs](https://github.com/ben-rogerson/twin.examples/tree/master/cra-emotion) |
 
 | Gatsby            |                                                                                                                       |                                          |
 | :---------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
