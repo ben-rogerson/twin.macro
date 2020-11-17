@@ -16,7 +16,7 @@ To fix this, create a `twin.d.ts` file in your project root (`src/twin.d.ts` wit
 // twin.d.ts
 import 'twin.macro'
 import styledImport from '@emotion/styled'
-import { css as cssImport } from '@emotion/core'
+import { css as cssImport } from '@emotion/react'
 
 declare module 'twin.macro' {
   // The styled and css imports
