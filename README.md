@@ -172,36 +172,45 @@ const stackedVariants = () => <div tw="sm:hover:(bg-black text-white)" />
 const variantsInGroups = () => <div tw="sm:(bg-black hover:bg-white)">
 ```
 
-## Getting started
+## Get started
 
-| "Vanilla" React   |                                                                                                                   |                                                                                 |
-| :---------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| Styled Components | [Demo](https://codesandbox.io/embed/react-tailwind-styled-components-starter-f87y7?module=%2Fsrc%2FApp.js)        | [Docs](docs/styled-components/react.md)                                         |
-| Emotion           | [Demo](https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/react-emotion?file=/src/App.js) | [Docs](https://github.com/ben-rogerson/twin.examples/tree/master/react-emotion) |
+Take a look at these examples to get started:
 
-| Create React App  |                                                                                                                 |                                                                               |
-| :---------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Styled Components | [Demo](https://codesandbox.io/embed/cra-styled-components-tailwind-twin-starter-m8cyz?module=%2Fsrc%2FApp.js)   | [Docs](docs/styled-components/create-react-app.md)                            |
-| Emotion           | [Demo](https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/cra-emotion?file=/src/App.js) | [Docs](https://github.com/ben-rogerson/twin.examples/tree/master/cra-emotion) |
+#### React
 
-| Gatsby            |                                                                                                                            |                                                                                  |
-| :---------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Styled Components | [Demo](https://codesandbox.io/embed/gatsby-tailwind-styled-components-starter-trrlp?module=%2Fsrc%2Fpages%2Findex.js)      | [Docs](docs/styled-components/gatsby.md)                                         |
-| Emotion           | [Demo](https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/gatsby-emotion?file=/src/pages/index.js) | [Docs](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-emotion) |
+[💅 Styled Components](https://github.com/ben-rogerson/twin.examples/tree/master/react-styled-components) &nbsp; [👩‍🎤 Emotion](https://github.com/ben-rogerson/twin.examples/tree/master/react-emotion)
 
-| Next.js           |                                                                                                                  |                                                                                |
-| :---------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| Styled Components | [Demo](https://codesandbox.io/embed/next-tailwind-styled-components-starter-m1f6d?module=%2Fpages%2Findex.js)    | [Docs](docs/styled-components/next.md)                                         |
-| Emotion           | [Demo](https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/next-emotion?file=/src/App.js) | [Docs](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion) |
+#### Preact
 
-| Snowpack          |                                                                                                    |
-| :---------------- | -------------------------------------------------------------------------------------------------- |
-| Styled Components | [Repo](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components) |
-| Emotion           | [Repo](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion)           |
+[💅 Styled Components](https://github.com/ben-rogerson/twin.examples/tree/master/preact-styled-components)
 
-| Vue     |                                                                                                                     |
-| :------ | ------------------------------------------------------------------------------------------------------------------- |
-| Emotion | [Demo](https://codesandbox.io/embed/vue-emotion-tailwind-twin-starter-2yd61?module=%2Fsrc%2FApp.vue) (Experimental) |
+#### Create React App
+
+[💅 Styled Components](https://github.com/ben-rogerson/twin.examples/tree/master/cra-styled-components) &nbsp; [👩‍🎤 Emotion](https://github.com/ben-rogerson/twin.examples/tree/master/cra-emotion)
+
+#### Gatsby
+
+[💅 Styled Components](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-styled-components) &nbsp; [👩‍🎤 Emotion](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-emotion)
+
+#### Next.js
+
+[💅 Styled Components](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components) &nbsp; [👩‍🎤 Emotion](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion)
+
+#### Snowpack
+
+[💅 Styled Components](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components) &nbsp; [👩‍🎤 Emotion](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion)
+
+#### Storybook
+
+[👩‍🎤 Emotion](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-emotion)
+
+#### Laravel
+
+[💅 Styled Components](https://github.com/ben-rogerson/twin.examples/tree/master/laravel-styled-components-typescript)
+
+#### Vue
+
+[👩‍🎤 Emotion](https://github.com/ben-rogerson/twin.examples/tree/master/vue-emotion) (Experimental)
 
 ## Plugins
 
