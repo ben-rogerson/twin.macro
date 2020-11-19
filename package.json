@@ -17,6 +17,9 @@
       "pre-commit": "lint-staged"
     }
   },
+  "engines": {
+    "node": ">=12.13.0"
+  },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
       "eslint --cache --fix",
