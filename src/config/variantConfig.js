@@ -88,11 +88,11 @@ export default {
         // Class strategy: In your tailwind.config.js, add `{ dark: 'class' }
         // then add a `className="dark"` on a parent element.
         class: !hasGroupVariant && '.dark &',
-      }[config('dark') || 'media'] || null
+      }[config('darkMode') || 'media'] || null
 
     if (!styles && !hasGroupVariant) {
       errorCustom(
-        "The `dark` config option must be either `{ dark: 'media' }` (default) or `{ dark: 'class' }`"
+        "The `darkMode` config option must be either `{ darkMode: 'media' }` (default) or `{ darkMode: 'class' }`"
       )
     }
 
@@ -108,17 +108,17 @@ export default {
         // Class strategy: In your tailwind.config.js, add `{ light: 'class' }
         // then add a `className="light"` on a parent element.
         class: !hasGroupVariant && '.light &',
-      }[config('light') || config('dark') || 'media'] || null
+      }[config('lightMode') || config('darkMode') || 'media'] || null
 
     if (!styles && !hasGroupVariant) {
-      if (config('light')) {
+      if (config('lightMode')) {
         errorCustom(
-          "The `light` config option must be either `{ light: 'media' }` (default) or `{ light: 'class' }`"
+          "The `lightMode` config option must be either `{ lightMode: 'media' }` (default) or `{ lightMode: 'class' }`"
         )
       }
 
       errorCustom(
-        "The `dark` config option must be either `{ dark: 'media' }` (default) or `{ dark: 'class' }`"
+        "The `darkMode` config option must be either `{ darkMode: 'media' }` (default) or `{ darkMode: 'class' }`"
       )
     }
 
@@ -131,9 +131,9 @@ const generateGroupSelector = (
   { hasDarkVariant, hasLightVariant, config }
 ) => {
   const themeVariant =
-    (hasDarkVariant && config('dark') === 'class' && ['dark ', 'dark']) ||
+    (hasDarkVariant && config('darkMode') === 'class' && ['dark ', 'dark']) ||
     (hasLightVariant &&
-      (config('light') === 'class' || config('dark') === 'class') && [
+      (config('lightMode') === 'class' || config('darkMode') === 'class') && [
         'light ',
         'light',
       ])

@@ -65,7 +65,7 @@ const textStyles = theme => ({
 })
 
 module.exports = {
-  dark: 'class',
+  darkMode: 'media',
   theme: {
     container: {
       padding: {
