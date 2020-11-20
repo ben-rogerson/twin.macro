@@ -200,7 +200,7 @@ export default {
   },
 
   // https://tailwindcss.com/docs/flex-wrap
-  'flex-no-wrap': { output: { flexWrap: 'nowrap' } },
+  'flex-nowrap': { output: { flexWrap: 'nowrap' } },
   'flex-wrap': { output: { flexWrap: 'wrap' } },
   'flex-wrap-reverse': { output: { flexWrap: 'wrap-reverse' } },
 
