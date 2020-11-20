@@ -430,7 +430,7 @@ export default {
 
   // https://tailwindcss.com/docs/whitespace
   'whitespace-normal': { output: { whiteSpace: 'normal' } },
-  'whitespace-no-wrap': { output: { whiteSpace: 'nowrap' } },
+  'whitespace-nowrap': { output: { whiteSpace: 'nowrap' } },
   'whitespace-pre': { output: { whiteSpace: 'pre' } },
   'whitespace-pre-line': { output: { whiteSpace: 'pre-line' } },
   'whitespace-pre-wrap': { output: { whiteSpace: 'pre-wrap' } },
