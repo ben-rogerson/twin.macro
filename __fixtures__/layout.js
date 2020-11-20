@@ -32,7 +32,6 @@ tw`table-row`
 tw`float-right`
 tw`float-left`
 tw`float-none`
-tw`clearfix`
 
 // https://tailwindcss.com/docs/clear
 tw`clear-left`
