@@ -119,14 +119,14 @@ export default {
   // See dynamicStyles.js for the rest
   'space-x-reverse': {
     output: {
-      '> :not(template) ~ :not(template)': {
+      '> :not([hidden]) ~ :not([hidden])': {
         '--space-x-reverse': 1,
       },
     },
   },
   'space-y-reverse': {
     output: {
-      '> :not(template) ~ :not(template)': {
+      '> :not([hidden]) ~ :not([hidden])': {
         '--space-y-reverse': 1,
       },
     },
@@ -136,14 +136,14 @@ export default {
   // See dynamicStyles.js for the rest
   'divide-x-reverse': {
     output: {
-      '> :not(template) ~ :not(template)': {
+      '> :not([hidden]) ~ :not([hidden])': {
         '--divide-x-reverse': 1,
       },
     },
   },
   'divide-y-reverse': {
     output: {
-      '> :not(template) ~ :not(template)': {
+      '> :not([hidden]) ~ :not([hidden])': {
         '--divide-y-reverse': 1,
       },
     },
@@ -152,35 +152,35 @@ export default {
   // https://tailwindcss.com/docs/divide-style
   'divide-solid': {
     output: {
-      '> :not(template) ~ :not(template)': {
+      '> :not([hidden]) ~ :not([hidden])': {
         borderStyle: 'solid',
       },
     },
   },
   'divide-dashed': {
     output: {
-      '> :not(template) ~ :not(template)': {
+      '> :not([hidden]) ~ :not([hidden])': {
         borderStyle: 'dashed',
       },
     },
   },
   'divide-dotted': {
     output: {
-      '> :not(template) ~ :not(template)': {
+      '> :not([hidden]) ~ :not([hidden])': {
         borderStyle: 'dotted',
       },
     },
   },
   'divide-double': {
     output: {
-      '> :not(template) ~ :not(template)': {
+      '> :not([hidden]) ~ :not([hidden])': {
         borderStyle: 'double',
       },
     },
   },
   'divide-none': {
     output: {
-      '> :not(template) ~ :not(template)': {
+      '> :not([hidden]) ~ :not([hidden])': {
         borderStyle: 'none',
       },
     },
