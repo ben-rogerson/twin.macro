@@ -34,7 +34,7 @@ export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
       value: getConfigValue(grabConfig(item), key),
       negative,
     }))
-    .filter(item => item.value)[0]
+    .find(item => item.value)
 
   throwIf(!results || className.endsWith('-'), () =>
     errorSuggestions({

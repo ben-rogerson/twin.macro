@@ -62,9 +62,9 @@ const getUserPluginRules = (rules, screens) =>
 
     // Separate comma separated selectors
     const separatedSelectors = selector.split(',').reduce(
-      (r, i) => ({
+      (r, item) => ({
         ...r,
-        [i.replace(/\\\//g, '/').trim()]: values,
+        [item.replace(/\\\//g, '/').trim()]: values,
       }),
       {}
     )

@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import { createMacro } from 'babel-plugin-macros'
 import {
   validateImports,
