@@ -3,15 +3,15 @@
  *
  * To use, add the preset in package.json/babel macro config:
  *
- * Styled components
+ * styled-components
  * { "babelMacros": { "twin": { "preset": "styled-components" } } }
  * module.exports = { twin: { preset: "styled-components" } }
  *
- * Emotion
+ * emotion
  * { "babelMacros": { "twin": { "preset": "emotion" } } }
  * module.exports = { twin: { preset: "emotion" } }
  *
- * Goober
+ * goober
  * { "babelMacros": { "twin": { "preset": "goober" } } }
  * module.exports = { twin: { preset: "goober" } }
  */
