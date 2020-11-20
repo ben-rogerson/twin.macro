@@ -83,7 +83,7 @@ export default properties => {
   }
 
   const widthMatch =
-    match(/(?<=(divide)-(x|y))([^]*)/) || (match(/^divide-(x|y)$/) && 'default')
+    match(/(?<=(divide)-(x|y))([^]*)/) || (match(/^divide-(x|y)$/) && 'DEFAULT')
   if (widthMatch) {
     const widthValue = stripNegative(widthMatch) || ''
     const widthProperties = {

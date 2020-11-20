@@ -40,7 +40,7 @@ const flattenObject = (object, prefix = '') =>
 
 const targetTransforms = [
   ({ target }) => (target === 'default' ? '' : target),
-  ({ target }) => (target.endsWith('-default') ? target.slice(0, -8) : target),
+  ({ target }) => (target.endsWith('-DEFAULT') ? target.slice(0, -8) : target),
   ({ dynamicKey, target }) => {
     const prefix = target !== stripNegative(target) ? '-' : ''
     return `${prefix}${[dynamicKey, stripNegative(target)]
