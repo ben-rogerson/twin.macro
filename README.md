@@ -178,39 +178,39 @@ Take a look at these examples to get started:
 
 #### React
 
-[💅 Styled Components](https://github.com/ben-rogerson/twin.examples/tree/master/react-styled-components) &nbsp; [👩‍🎤 Emotion](https://github.com/ben-rogerson/twin.examples/tree/master/react-emotion)
+[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/react-styled-components) &nbsp; [👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/react-emotion)
 
 #### Preact
 
-[💅 Styled Components](https://github.com/ben-rogerson/twin.examples/tree/master/preact-styled-components) &nbsp; [🥜 Goober](https://github.com/ben-rogerson/twin.examples/tree/master/preact-goober)
+[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/preact-styled-components) &nbsp; [🥜 goober](https://github.com/ben-rogerson/twin.examples/tree/master/preact-goober)
 
 #### Create React App
 
-[💅 Styled Components](https://github.com/ben-rogerson/twin.examples/tree/master/cra-styled-components) &nbsp; [👩‍🎤 Emotion](https://github.com/ben-rogerson/twin.examples/tree/master/cra-emotion)
+[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/cra-styled-components) &nbsp; [👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/cra-emotion)
 
 #### Gatsby
 
-[💅 Styled Components](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-styled-components) &nbsp; [👩‍🎤 Emotion](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-emotion)
+[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-styled-components) &nbsp; [👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-emotion)
 
 #### Next.js
 
-[💅 Styled Components](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components) &nbsp; [👩‍🎤 Emotion](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion)
+[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components) &nbsp; [👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion)
 
 #### Snowpack
 
-[💅 Styled Components](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components) &nbsp; [👩‍🎤 Emotion](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion)
+[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components) &nbsp; [👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion)
 
 #### Storybook
 
-[👩‍🎤 Emotion](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-emotion)
+[👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-emotion)
 
 #### Laravel
 
-[💅 Styled Components](https://github.com/ben-rogerson/twin.examples/tree/master/laravel-styled-components-typescript)
+[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/laravel-styled-components-typescript)
 
 #### Vue
 
-[👩‍🎤 Emotion](https://github.com/ben-rogerson/twin.examples/tree/master/vue-emotion) (Experimental)
+[👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/vue-emotion) (Experimental)
 
 ## Plugins
 

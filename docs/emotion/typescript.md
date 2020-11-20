@@ -1,4 +1,4 @@
-# Use Twin with TypeScript + Emotion
+# Use Twin with TypeScript + emotion
 
 Twin needs some type declarations added, otherwise you’ll see errors like this:
 
@@ -53,7 +53,7 @@ And these props:
 
 ## Installation guides
 
-- ["Vanilla" React + Emotion](react.md)
-- [Create React App + Emotion](create-react-app.md)
-- [Gatsby + Emotion](gatsby.md)
-- [Next.js + Emotion](next.md)
+- ["Vanilla" React + emotion](react.md)
+- [Create React App + emotion](create-react-app.md)
+- [Gatsby + emotion](gatsby.md)
+- [Next.js + emotion](next.md)
