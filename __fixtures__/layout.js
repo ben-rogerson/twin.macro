@@ -71,8 +71,6 @@ tw`overflow-x-visible`
 tw`overflow-y-visible`
 tw`overflow-x-scroll`
 tw`overflow-y-scroll`
-tw`scrolling-touch`
-tw`scrolling-auto`
 
 // https://tailwindcss.com/docs/position
 tw`static`
