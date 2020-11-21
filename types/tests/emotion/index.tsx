@@ -1,4 +1,8 @@
-import {} from '@emotion/core'
+/// <reference types="@emotion/react/types/css-prop" />
+// this also works:
+// import {} from '@emotion/react/types/css-prop'
+
+import {} from '@emotion/react'
 import styled from '@emotion/styled'
 import React from 'react'
 import tw from '../..'
