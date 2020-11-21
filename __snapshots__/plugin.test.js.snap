@@ -428,8 +428,8 @@ const GlobalStylesTest = () => <GlobalStyles />
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _styled from '@emotion/styled'
-import { css as _css } from '@emotion/core'
-import { Global as _globalImport } from '@emotion/core'
+import { css as _css } from '@emotion/react'
+import { Global as _globalImport } from '@emotion/react'
 import 'tailwindcss/dist/base.min.css'
 
 const _GlobalStyles = () => (

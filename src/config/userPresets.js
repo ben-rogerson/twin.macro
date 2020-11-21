@@ -38,11 +38,11 @@ export default {
     },
     css: {
       import: 'css',
-      from: '@emotion/core',
+      from: '@emotion/react',
     },
     global: {
       import: 'Global',
-      from: '@emotion/core',
+      from: '@emotion/react',
     },
   },
   goober: {
