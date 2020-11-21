@@ -23,9 +23,9 @@ tw`pointer-events-auto`
 
 // https://tailwindcss.com/docs/resize
 tw`resize-none`
-tw`resize`
 tw`resize-y`
 tw`resize-x`
+tw`resize`
 
 // https://tailwindcss.com/docs/user-select
 tw`select-none`
