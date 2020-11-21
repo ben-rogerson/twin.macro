@@ -16,7 +16,7 @@ const handleColor = ({ configValue, important, disableColorVariables }) => {
   return withAlpha({
     color: value,
     property: 'borderColor',
-    variable: !disableColorVariables && '--border-opacity',
+    variable: !disableColorVariables && '--tw-border-opacity',
     important,
   })
 }

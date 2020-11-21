@@ -2,13 +2,13 @@
 // This feature uses var+comment hacks to get around property stripping:
 // https://github.com/tailwindlabs/tailwindcss.com/issues/522#issuecomment-687667238
 const fontVariants = {
-  '--font-variant-numeric-ordinal': 'var(--twin-empty,/*!*/ /*!*/)',
-  '--font-variant-numeric-slashed-zero': 'var(--twin-empty,/*!*/ /*!*/)',
-  '--font-variant-numeric-figure': 'var(--twin-empty,/*!*/ /*!*/)',
-  '--font-variant-numeric-spacing': 'var(--twin-empty,/*!*/ /*!*/)',
-  '--font-variant-numeric-fraction': 'var(--twin-empty,/*!*/ /*!*/)',
+  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
   fontVariantNumeric:
-    'var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction)',
+    'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 }
 
 export default {
@@ -120,14 +120,14 @@ export default {
   'space-x-reverse': {
     output: {
       '> :not(template) ~ :not(template)': {
-        '--space-x-reverse': 1,
+        '--tw-space-x-reverse': 1,
       },
     },
   },
   'space-y-reverse': {
     output: {
       '> :not(template) ~ :not(template)': {
-        '--space-y-reverse': 1,
+        '--tw-space-y-reverse': 1,
       },
     },
   },
@@ -137,14 +137,14 @@ export default {
   'divide-x-reverse': {
     output: {
       '> :not(template) ~ :not(template)': {
-        '--divide-x-reverse': 1,
+        '--tw-divide-x-reverse': 1,
       },
     },
   },
   'divide-y-reverse': {
     output: {
       '> :not(template) ~ :not(template)': {
-        '--divide-y-reverse': 1,
+        '--tw-divide-y-reverse': 1,
       },
     },
   },
@@ -339,45 +339,45 @@ export default {
 
   // https://tailwindcss.com/docs/font-variant-numeric
   ordinal: {
-    output: { ...fontVariants, '--font-variant-numeric-ordinal': 'ordinal' },
+    output: { ...fontVariants, '--tw-ordinal': 'ordinal' },
   },
   'slashed-zero': {
     output: {
       ...fontVariants,
-      '--font-variant-numeric-slashed-zero': 'slashed-zero',
+      '--tw-slashed-zero': 'slashed-zero',
     },
   },
   'lining-nums': {
-    output: { ...fontVariants, '--font-variant-numeric-figure': 'lining-nums' },
+    output: { ...fontVariants, '--tw-numeric-figure': 'lining-nums' },
   },
   'oldstyle-nums': {
     output: {
       ...fontVariants,
-      '--font-variant-numeric-figure': 'oldstyle-nums',
+      '--tw-numeric-figure': 'oldstyle-nums',
     },
   },
   'proportional-nums': {
     output: {
       ...fontVariants,
-      '--font-variant-numeric-spacing': 'proportional-nums',
+      '--tw-numeric-spacing': 'proportional-nums',
     },
   },
   'tabular-nums': {
     output: {
       ...fontVariants,
-      '--font-variant-numeric-spacing': 'tabular-nums',
+      '--tw-numeric-spacing': 'tabular-nums',
     },
   },
   'diagonal-fractions': {
     output: {
       ...fontVariants,
-      '--font-variant-numeric-fraction': 'diagonal-fractions',
+      '--tw-numeric-fraction': 'diagonal-fractions',
     },
   },
   'stacked-fractions': {
     output: {
       ...fontVariants,
-      '--font-variant-numeric-fraction': 'stacked-fractions',
+      '--tw-numeric-fraction': 'stacked-fractions',
     },
   },
   'normal-nums': {
@@ -700,15 +700,15 @@ export default {
 
   transform: {
     output: {
-      '--transform-translate-x': '0',
-      '--transform-translate-y': '0',
-      '--transform-rotate': '0',
-      '--transform-skew-x': '0',
-      '--transform-skew-y': '0',
-      '--transform-scale-x': '1',
-      '--transform-scale-y': '1',
+      '--tw-translate-x': '0',
+      '--tw-translate-y': '0',
+      '--tw-rotate': '0',
+      '--tw-skew-x': '0',
+      '--tw-skew-y': '0',
+      '--tw-scale-x': '1',
+      '--tw-scale-y': '1',
       transform:
-        'translateX(var(--transform-translate-x)) translateY(var(--transform-translate-y)) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y))',
+        'translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
     },
     config: false,
   },

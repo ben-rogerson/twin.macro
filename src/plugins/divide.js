@@ -10,7 +10,7 @@ const handleColor = ({ configValue, important, disableColorVariables }) => {
   const borderColor = withAlpha({
     color: value,
     property: 'borderColor',
-    variable: !disableColorVariables && '--divide-opacity',
+    variable: !disableColorVariables && '--tw-divide-opacity',
     important,
   })
 
@@ -22,7 +22,9 @@ const handleOpacity = ({ configValue }) => {
   if (!opacity) return
 
   return {
-    '> :not(template) ~ :not(template)': { '--divide-opacity': `${opacity}` },
+    '> :not(template) ~ :not(template)': {
+      '--tw-divide-opacity': `${opacity}`,
+    },
   }
 }
 
@@ -35,7 +37,9 @@ const handleWidth = ({
 
   const value = `${negative}${addPxTo0(width)}`
   const isDivideX = className.startsWith('divide-x')
-  const cssVariableKey = isDivideX ? '--divide-x-reverse' : '--divide-y-reverse'
+  const cssVariableKey = isDivideX
+    ? '--tw-divide-x-reverse'
+    : '--tw-divide-y-reverse'
 
   const borderFirst = `calc(${value} * var(${cssVariableKey}))${important}`
   const borderSecond = `calc(${value} * calc(1 - var(${cssVariableKey})))${important}`
