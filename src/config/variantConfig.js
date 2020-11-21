@@ -59,6 +59,7 @@ export default {
   svg: 'svg',
   all: '*',
   'all-child': '> *',
+  sibling: '~ *',
 
   // Group states
   // You'll need to add className="group" to an ancestor to make these work

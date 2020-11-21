@@ -51,6 +51,7 @@ tw`even-of-type:flex`
 tw`svg:flex`
 tw`all:flex`
 tw`all-child:flex`
+tw`sibling:flex`
 
 // Group states
 tw`group-hover:flex`

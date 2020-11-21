@@ -1958,6 +1958,7 @@ tw\`even-of-type:flex\`
 tw\`svg:flex\`
 tw\`all:flex\`
 tw\`all-child:flex\`
+tw\`sibling:flex\`
 
 // Group states
 tw\`group-hover:flex\`
@@ -2200,6 +2201,11 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
 })
 ;({
   '> *': {
+    display: 'flex',
+  },
+})
+;({
+  '~ *': {
     display: 'flex',
   },
 }) // Group states
