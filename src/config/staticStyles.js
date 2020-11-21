@@ -445,6 +445,8 @@ export default {
     config: 'wordbreak',
   },
   'break-all': { output: { wordBreak: 'break-all' }, config: 'wordbreak' },
+
+  // https://tailwindcss.com/docs/text-overflow
   truncate: {
     output: {
       overflow: 'hidden',
@@ -453,6 +455,8 @@ export default {
     },
     config: false,
   },
+  'overflow-ellipsis': { output: { textOverflow: 'ellipsis' } },
+  'overflow-clip': { output: { textOverflow: 'clip' } },
 
   /**
    * ===========================================
