@@ -1,6 +1,5 @@
-import dlv from 'dlv'
 import { replaceWithLocation, astify } from './../macroHelpers'
-import { getTheme, throwIf } from './../utils'
+import { getTheme, throwIf, get } from './../utils'
 import { logGeneralError, themeErrorNotFound } from './../logging'
 
 const getFunctionValue = path => {
@@ -28,7 +27,10 @@ const getTaggedTemplateValue = path => {
 }
 
 const trimInput = themeValue => {
-  const arrayValues = themeValue.split('.').filter(Boolean)
+  const arrayValues = themeValue
+    // Split at dots outside of square brackets
+    .split(/\.(?=(((?!]).)*\[)|[^[\]]*$)/)
+    .filter(Boolean)
   if (arrayValues.length === 1) {
     return arrayValues[0]
   }
@@ -54,7 +56,7 @@ const handleThemeFunction = ({ references, t, state }) => {
     const themeValue = theme(input)
     throwIf(!themeValue, () =>
       themeErrorNotFound({
-        theme: input.includes('.') ? dlv(theme(), trimInput(input)) : theme(),
+        theme: input.includes('.') ? get(theme(), trimInput(input)) : theme(),
         input,
         trimInput: trimInput(input),
       })

@@ -1,5 +1,19 @@
-import dlv from 'dlv'
 import { MacroError } from 'babel-plugin-macros'
+
+// Get function from lodash
+const get = (object, path, defaultValue) => {
+  const travel = regexp =>
+    String.prototype.split
+      .call(path, regexp)
+      .filter(Boolean)
+      .reduce(
+        (result, key) =>
+          result !== null && result !== undefined ? result[key] : result,
+        object
+      )
+  const result = travel(/[,[\]]+?/) || travel(/[,.[\]]+?/)
+  return result === undefined || result === object ? defaultValue : result
+}
 
 const throwIf = (expression, callBack) => {
   if (!expression) return
@@ -46,7 +60,7 @@ const getTheme = configTheme => (grab, sub, theme = configTheme) => {
   const themeGrab = sub ? [grab, sub] : grab
 
   const themeSection = themeGrab.split('.')[0]
-  const value = dlv(theme, themeGrab)
+  const value = get(theme, themeGrab)
 
   const result = transformThemeValue(themeSection)(value)
   return result
@@ -57,4 +71,4 @@ const stripNegative = string =>
     ? string.slice(1, string.length)
     : string
 
-export { throwIf, isEmpty, addPxTo0, getTheme, stripNegative }
+export { throwIf, isEmpty, addPxTo0, getTheme, stripNegative, get }

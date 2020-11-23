@@ -4,10 +4,7 @@ import stringSimilarity from 'string-similarity'
 
 const getCustomSuggestions = className => {
   const suggestions = {
-    'align-center': 'items-center',
-    'center-align': 'items-center',
     'flex-center': 'items-center / justify-center',
-    'inline-block': 'block',
     'display-none': 'hidden',
     'display-inline': 'inline-block',
     'display-flex': 'flex',
@@ -15,7 +12,7 @@ const getCustomSuggestions = className => {
     'flex-column': 'flex-col',
     'flex-column-reverse': 'flex-col-reverse',
     'text-italic': 'italic',
-    'text-normal': 'not-italic',
+    'text-normal': 'font-normal / not-italic',
   }[className]
   if (suggestions) return suggestions
 }
@@ -102,19 +99,12 @@ const getSuggestions = ({
   config,
   dynamicKey,
 }) => {
-  const theme = getTheme(state.config.theme)
-
   const customSuggestions = getCustomSuggestions(className)
   if (customSuggestions) return customSuggestions
 
   if (config) {
-    const properties = {
-      config,
-      theme,
-      dynamicKey,
-      className,
-      hasNegative,
-    }
+    const theme = getTheme(state.config.theme)
+    const properties = { config, theme, dynamicKey, className, hasNegative }
     const dynamicMatches = matchConfig(properties)
     if (dynamicMatches.length === 0) return getConfig(properties)
 
@@ -140,10 +130,12 @@ const getSuggestions = ({
   const hasNoMatches = matches.every(match => match.rating === 0)
   if (hasNoMatches) return []
 
-  const trumpMatch = matches.find(match => match.rating >= 0.6)
+  const sortedMatches = matches.sort((a, b) => b.rating - a.rating)
+
+  const trumpMatch = sortedMatches.find(match => match.rating >= 0.6)
   if (trumpMatch) return trumpMatch.target
 
-  return matches.sort((a, b) => b.rating - a.rating).slice(0, 6)
+  return sortedMatches.slice(0, 6)
 }
 
 export { getSuggestions as default }
