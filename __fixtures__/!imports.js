@@ -64,4 +64,12 @@ const themeFunctionStringHeight = (
   />
 )
 
+const themeSquareBrackets = (
+  <input
+    css={css`
+      height: ${theme('spacing[2.5]')};
+    `}
+  />
+)
+
 const GlobalStylesTest = () => <GlobalStyles />
