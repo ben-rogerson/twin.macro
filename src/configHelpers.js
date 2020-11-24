@@ -3,7 +3,7 @@ import { resolve } from 'path'
 import { existsSync } from 'fs'
 import resolveTailwindConfig from 'tailwindcss/lib/util/resolveConfig'
 import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
-import { configTwinValidators, configTwinDefaults } from './config/twinConfig'
+import { configTwinValidators, configDefaultsTwin } from './config/twinConfig'
 import { logGeneralError } from './logging'
 import { throwIf } from './utils'
 
@@ -35,7 +35,7 @@ const runConfigValidator = ([item, value]) => {
 }
 
 const getConfigTwin = (config, state) => ({
-  ...configTwinDefaults(state),
+  ...configDefaultsTwin(state),
   ...config,
 })
 
