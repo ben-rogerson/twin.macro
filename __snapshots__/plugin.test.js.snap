@@ -1777,6 +1777,10 @@ const Component2 = () => <div css={{ display: 'flex' }} tw="uppercase" />
 
 const Component3 = () => <div css={[{ display: 'flex' }]} tw="uppercase" />
 
+const Component4 = () => <div tw="uppercase" css={[tw\`flex\`]} />
+
+const Component5 = () => <div css={[tw\`flex\`]} tw="uppercase" />
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -1804,6 +1808,32 @@ const Component2 = () => (
 )
 
 const Component3 = () => (
+  <div
+    css={[
+      {
+        display: 'flex',
+      },
+      {
+        textTransform: 'uppercase',
+      },
+    ]}
+  />
+)
+
+const Component4 = () => (
+  <div
+    css={[
+      {
+        textTransform: 'uppercase',
+      },
+      {
+        display: 'flex',
+      },
+    ]}
+  />
+)
+
+const Component5 = () => (
   <div
     css={[
       {
