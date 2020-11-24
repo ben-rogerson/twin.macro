@@ -23,7 +23,7 @@ const handleTwProperty = ({ path, t, state }) => {
   // Feedback for unsupported usage
   throwIf(nodeValue.expression && !expressionValue, () =>
     logGeneralError(
-      `Only plain strings can be used with the "tw" prop.\nEg: <div tw="text-black" /> or <div tw={"text-black"} />`
+      `Only plain strings can be used with the "tw" prop.\nEg: <div tw="text-black" /> or <div tw={"text-black"} />\nRead more at https://twinredirect.page.link/template-literals`
     )
   )
 
