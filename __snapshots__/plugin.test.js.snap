@@ -150,13 +150,6 @@ tw\`stroke-non-scaling\`
   },
 })
 ;({
-  '::after': {
-    content: '""',
-    display: 'table',
-    clear: 'both',
-  },
-})
-;({
   vectorEffect: 'non-scaling-stroke',
 })
 
@@ -435,26 +428,26 @@ const _GlobalStyles = () => (
   <_globalImport
     styles={_css\`
       @keyframes spin {
-          to {
+          to { 
             transform: rotate(360deg);
           }
         }
       @keyframes ping {
-          75%, 100% {
+          75%, 100% { 
             transform: scale(2); opacity: 0;
           }
         }
       @keyframes pulse {
-          50% {
+          50% { 
             opacity: .5;
           }
         }
       @keyframes bounce {
-          0%, 100% {
+          0%, 100% { 
             transform: translateY(-25%); animationTimingFunction: cubic-bezier(0.8,0,1,1);
           }
-
-          50% {
+        
+          50% { 
             transform: none; animationTimingFunction: cubic-bezier(0,0,0.2,1);
           }
         }\`}
@@ -4543,10 +4536,6 @@ tw\`border-pink-700\`
 tw\`border-pink-800\`
 tw\`border-pink-900\`
 
-// https://tailwindcss.com/docs/flex-wrap
-tw\`flex-nowrap\`
-tw\`flex-wrap\`
-
 // https://tailwindcss.com/docs/border-opacity
 tw\`border-opacity-0\`
 tw\`border-opacity-5\`
@@ -6510,9 +6499,9 @@ tw\`flex-col\`
 tw\`flex-col-reverse\`
 
 // https://tailwindcss.com/docs/flex-wrap
+tw\`flex-nowrap\`
 tw\`flex-wrap-reverse\`
 tw\`flex-wrap\`
-tw\`flex-no-wrap\`
 
 // https://tailwindcss.com/docs/flex
 tw\`flex-1\`
@@ -6562,13 +6551,13 @@ tw\`order-none\`
 }) // https://tailwindcss.com/docs/flex-wrap
 
 ;({
+  flexWrap: 'nowrap',
+})
+;({
   flexWrap: 'wrap-reverse',
 })
 ;({
   flexWrap: 'wrap',
-})
-;({
-  flexWrap: 'nowrap',
 }) // https://tailwindcss.com/docs/flex
 
 ;({
