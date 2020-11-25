@@ -89,14 +89,6 @@ export default {
   },
   'overflow-x-scroll': { output: { overflowX: 'scroll' }, config: 'overflow' },
   'overflow-y-scroll': { output: { overflowY: 'scroll' }, config: 'overflow' },
-  'scrolling-touch': {
-    output: { WebkitOverflowScrolling: 'touch' },
-    config: false,
-  },
-  'scrolling-auto': {
-    output: { WebkitOverflowScrolling: 'auto' },
-    config: false,
-  },
 
   // https://tailwindcss.com/docs/position
   static: { output: { position: 'static' } },
