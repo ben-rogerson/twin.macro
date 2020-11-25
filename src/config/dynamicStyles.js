@@ -203,7 +203,7 @@ export default {
   // https://tailwindcss.com/docs/text-color
   // https://tailwindcss.com/docs/font-size
   'text-opacity': {
-    prop: '--text-opacity',
+    prop: '--tw-text-opacity',
     config: 'textOpacity',
     configFallback: 'opacity',
   },
@@ -228,7 +228,7 @@ export default {
 
   // https://tailwindcss.com/docs/background-opacity
   'bg-opacity': {
-    prop: '--bg-opacity',
+    prop: '--tw-bg-opacity',
     config: 'backgroundOpacity',
     configFallback: 'opacity',
   },
@@ -255,7 +255,7 @@ export default {
   'border-r': { prop: 'borderRightWidth', config: 'borderWidth' },
 
   'border-opacity': {
-    prop: '--border-opacity',
+    prop: '--tw-border-opacity',
     config: 'borderOpacity',
     configFallback: 'opacity',
   },
@@ -330,23 +330,23 @@ export default {
    */
 
   // https://tailwindcss.com/docs/scale
-  'scale-x': { prop: '--transform-scale-x', config: 'scale' },
-  'scale-y': { prop: '--transform-scale-y', config: 'scale' },
+  'scale-x': { prop: '--tw-transform-scale-x', config: 'scale' },
+  'scale-y': { prop: '--tw-transform-scale-y', config: 'scale' },
   scale: {
-    prop: ['--transform-scale-x', '--transform-scale-y'],
+    prop: ['--tw-transform-scale-x', '--tw-transform-scale-y'],
     config: 'scale',
   },
 
   // https://tailwindcss.com/docs/rotate
-  rotate: { prop: '--transform-rotate', config: 'rotate' },
+  rotate: { prop: '--tw-rotate', config: 'rotate' },
 
   // https://tailwindcss.com/docs/translate
-  'translate-x': { prop: '--transform-translate-x', config: 'translate' },
-  'translate-y': { prop: '--transform-translate-y', config: 'translate' },
+  'translate-x': { prop: '--tw-translate-x', config: 'translate' },
+  'translate-y': { prop: '--tw-translate-y', config: 'translate' },
 
   // https://tailwindcss.com/docs/skew
-  'skew-x': { prop: '--transform-skew-x', config: 'skew' },
-  'skew-y': { prop: '--transform-skew-y', config: 'skew' },
+  'skew-x': { prop: '--tw-skew-x', config: 'skew' },
+  'skew-y': { prop: '--tw-skew-y', config: 'skew' },
 
   // https://tailwindcss.com/docs/transform-origin
   origin: { prop: 'transformOrigin', config: 'transformOrigin' },

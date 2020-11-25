@@ -17,7 +17,9 @@ export default ({
 
   const value = `${negative}${addPxTo0(configValue)}`
   const isSpaceX = className.startsWith('space-x-') // 🚀
-  const cssVariableKey = isSpaceX ? '--space-x-reverse' : '--space-y-reverse'
+  const cssVariableKey = isSpaceX
+    ? '--tw-space-x-reverse'
+    : '--tw-space-y-reverse'
 
   const marginFirst = `calc(${value} * var(${cssVariableKey}))${important}`
   const marginSecond = `calc(${value} * calc(1 - var(${cssVariableKey})))${important}`

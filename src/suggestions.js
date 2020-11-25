@@ -40,7 +40,7 @@ const flattenObject = (object, prefix = '') =>
 
 const targetTransforms = [
   ({ target }) => (target === 'default' ? '' : target),
-  ({ target }) => (target.endsWith('-default') ? target.slice(0, -8) : target),
+  ({ target }) => (target.endsWith('-DEFAULT') ? target.slice(0, -8) : target),
   ({ dynamicKey, target }) => {
     const prefix = target !== stripNegative(target) ? '-' : ''
     return `${prefix}${[dynamicKey, stripNegative(target)]
@@ -73,9 +73,9 @@ const normalizeDynamicConfig = ({ config, input, dynamicKey, hasNegative }) =>
       value: `${value}`,
     }))
     .filter(
-      i =>
-        !i.target.includes('-array-') &&
-        (typeof i.rating === 'undefined' || i.rating >= 0.15)
+      item =>
+        !item.target.includes('-array-') &&
+        (typeof item.rating === 'undefined' || item.rating >= 0.15)
     )
 
 const matchConfig = ({ config, theme, className, ...rest }) =>
@@ -135,9 +135,9 @@ const getSuggestions = ({
 
   const matches = stringSimilarity
     .findBestMatch(className, [...staticClassNames, ...dynamicClassMatches])
-    .ratings.filter(i => i.rating > 0.25)
+    .ratings.filter(item => item.rating > 0.25)
 
-  const hasNoMatches = matches.every(i => i.rating === 0)
+  const hasNoMatches = matches.every(match => match.rating === 0)
   if (hasNoMatches) return []
 
   const trumpMatch = matches.find(match => match.rating >= 0.6)

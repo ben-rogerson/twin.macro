@@ -7,7 +7,7 @@ const handleColor = ({ configValue, important, disableColorVariables }) => {
   return withAlpha({
     color: value,
     property: 'color',
-    variable: !disableColorVariables && '--placeholder-opacity',
+    variable: !disableColorVariables && '--tw-placeholder-opacity',
     important,
   })
 }
@@ -16,7 +16,7 @@ const handleOpacity = ({ configValue }) => {
   const value = configValue('placeholderOpacity') || configValue('opacity')
   if (!value) return
 
-  return { '--placeholder-opacity': `${value}` }
+  return { '--tw-placeholder-opacity': `${value}` }
 }
 
 export default properties => {

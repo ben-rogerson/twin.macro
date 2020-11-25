@@ -1,4 +1,4 @@
-# Use Twin with TypeScript + Styled Components
+# Use Twin with TypeScript + styled-components
 
 Twin needs some type declarations added, otherwise you’ll see errors like this:
 
@@ -33,6 +33,15 @@ declare module 'react' {
     css?: CSSProp
   }
 }
+
+// The 'as' prop on styled components
+declare global {
+  namespace JSX {
+    interface IntrinsicAttributes<T> extends DOMAttributes<T> {
+      as?: string
+    }
+  }
+}
 ```
 
 Then add the following in `tsconfig.json`:
@@ -63,7 +72,7 @@ And these props:
 
 ## Installation guides
 
-- ["Vanilla" React + Styled Components](react.md)
-- [Create React App + Styled Components](create-react-app.md)
-- [Gatsby + Styled Components](gatsby.md)
-- [Next.js + Styled Components](next.md)
+- ["Vanilla" React + styled-components](react.md)
+- [Create React App + styled-components](create-react-app.md)
+- [Gatsby + styled-components](gatsby.md)
+- [Next.js + styled-components](next.md)

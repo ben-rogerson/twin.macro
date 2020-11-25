@@ -4,5 +4,5 @@ Because Twin can be coupled with different css-in-js libraries, the types for `s
 
 Choose the guide to match your css-in-js library:
 
-- [👩‍🎤&nbsp;Emotion + TypeScript](emotion/typescript.md)
-- [💅&nbsp;Styled&#8209;components + TypeScript](styled-components/typescript.md)
+- [👩‍🎤&nbsp;emotion + TypeScript](emotion/typescript.md)
+- [💅&nbsp;styled-components + TypeScript](styled-components/typescript.md)

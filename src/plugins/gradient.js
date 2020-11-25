@@ -35,19 +35,19 @@ export default properties => {
 
   const styleDefinitions = {
     from: {
-      '--gradient-from-color': getColorValue(value, 'from'),
-      '--gradient-color-stops': `var(--gradient-from-color), var(--gradient-to-color, ${transparentTo(
+      '--tw-gradient-from': getColorValue(value, 'from'),
+      '--tw-gradient-stops': `var(--tw-gradient-from), var(--tw-gradient-to, ${transparentTo(
         value
       )})`,
     },
     via: {
-      '--gradient-via-color': getColorValue(value, 'via'),
-      '--gradient-color-stops': `var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, ${transparentTo(
-        value
-      )})`,
+      '--tw-gradient-stops': `var(--tw-gradient-from), ${getColorValue(
+        value,
+        'via'
+      )}, var(--tw-gradient-to, ${transparentTo(value)})`,
     },
     to: {
-      '--gradient-to-color': getColorValue(value, 'to'),
+      '--tw-gradient-to': getColorValue(value, 'to'),
     },
   }
 

@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import { createMacro } from 'babel-plugin-macros'
 import {
   validateImports,
@@ -136,7 +135,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   // Theme import
   handleThemeFunction({ references, t, state })
 
-  // Auto add css prop for styled components
+  // Auto add css prop for styled-components
   if (
     (state.hasTwProp || state.hasCssProp) &&
     configTwin.autoCssProp === true &&

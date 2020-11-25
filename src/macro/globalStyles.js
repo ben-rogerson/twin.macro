@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/filename-case */
 import { addImport, generateUid } from '../macroHelpers'
 import { throwIf } from '../utils'
 import { logGeneralError } from './../logging'

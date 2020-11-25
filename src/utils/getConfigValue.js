@@ -59,8 +59,8 @@ const getConfigValue = (from, matcher) => {
   if (!from) return
 
   // Match default value from current object
-  if (isEmpty(matcher) && !isEmpty(from.default)) {
-    return normalizeValue(from.default)
+  if (isEmpty(matcher) && !isEmpty(from.DEFAULT)) {
+    return normalizeValue(from.DEFAULT)
   }
 
   const match = from[matcher]
@@ -72,7 +72,7 @@ const getConfigValue = (from, matcher) => {
   }
 
   // Match default value from child object
-  const defaultMatch = typeof match === 'object' && match.default
+  const defaultMatch = typeof match === 'object' && match.DEFAULT
   if (defaultMatch) {
     return normalizeValue(defaultMatch)
   }

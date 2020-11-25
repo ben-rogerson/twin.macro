@@ -1,5 +1,6 @@
 import chalk from 'chalk'
 import getSuggestions from './suggestions'
+import { checkDarkLightClasses } from './darkLightMode'
 
 const color = {
   error: chalk.hex('#ff8383'),
@@ -123,8 +124,9 @@ const errorSuggestions = properties => {
     pieces: { className },
   } = properties
 
-  const textNotFound = logNoClass(properties)
+  checkDarkLightClasses(className)
 
+  const textNotFound = logNoClass(properties)
   if (!hasSuggestions) return spaced(textNotFound)
 
   const suggestions = getSuggestions(properties)

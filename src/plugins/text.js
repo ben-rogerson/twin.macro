@@ -7,7 +7,7 @@ const handleColor = ({ configValue, important, disableColorVariables }) => {
   return withAlpha({
     color: value,
     property: 'color',
-    variable: !disableColorVariables && '--text-opacity',
+    variable: !disableColorVariables && '--tw-text-opacity',
     important,
   })
 }

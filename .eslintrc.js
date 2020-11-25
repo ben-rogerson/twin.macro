@@ -38,6 +38,8 @@ module.exports = {
     '@typescript-eslint/restrict-template-expressions': 0,
     '@typescript-eslint/default-param-last': 0,
     '@typescript-eslint/prefer-optional-chain': 0,
+    '@typescript-eslint/explicit-module-boundary-types': 0,
+    '@typescript-eslint/no-var-requires': 0,
     'react/prop-types': 0,
     'jest/prefer-expect-assertions': 0,
     'capitalized-comments': 0,
@@ -61,6 +63,10 @@ module.exports = {
       },
     ],
     'unicorn/prefer-type-error': 0,
+    'unicorn/no-reduce': 0,
+    'unicorn/import-style': 0,
+    'unicorn/prefer-optional-catch-binding': 0,
+    'unicorn/no-null': 0,
   },
   overrides: [
     {

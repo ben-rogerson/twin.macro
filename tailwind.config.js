@@ -65,11 +65,11 @@ const textStyles = theme => ({
 })
 
 module.exports = {
-  dark: 'class',
+  darkMode: 'media',
   theme: {
     container: {
       padding: {
-        default: ['1rem', '2rem'],
+        DEFAULT: ['1rem', '2rem'],
         sm: ['2rem'],
         lg: '4rem',
         xl: '6rem',
@@ -78,14 +78,14 @@ module.exports = {
         'object-min-max': '12rem',
       },
       margin: {
-        default: ['2rem', '3rem'],
+        DEFAULT: ['2rem', '3rem'],
         sm: ['auto'],
         lg: '5rem',
         xl: '7rem',
       },
     },
     fluidContainer: {
-      default: '10%',
+      DEFAULT: '10%',
       small: '25%',
       large: '75%',
     },
@@ -100,7 +100,7 @@ module.exports = {
         number: 0,
         'purple-hyphen': 'purple',
         mycolors: {
-          default: 'blue',
+          DEFAULT: 'blue',
           'a-purple': 'purple',
           'a-number': 0,
           array: ['blue', 'purple', 'orange'],

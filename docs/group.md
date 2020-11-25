@@ -23,7 +23,7 @@ export default () => (
 )
 ```
 
-When working in Emotion and Styled Components without the `group` classes, the equivalent looks like this:
+When working in emotion and styled-components without the `group` classes, the equivalent looks like this:
 
 ```js
 import tw, { styled } from 'twin.macro'
@@ -79,9 +79,9 @@ export default () => (
 )
 ```
 
-## Attrs in Emotion
+## Attrs in emotion
 
-Unfortunately Emotion [doesn’t have any plans](https://github.com/emotion-js/emotion/issues/821) to add `attrs` so the easiest option is just to add `className="group"` directly on the jsx element:
+Unfortunately emotion [doesn’t have any plans](https://github.com/emotion-js/emotion/issues/821) to add `attrs` so the easiest option is to add `className="group"` directly on the jsx element:
 
 ```js
 import tw from 'twin.macro'
@@ -142,5 +142,5 @@ export default () => (
 
 ## Further resources
 
-- [Quick Start Guide to Attrs in Styled Components](https://scalablecss.com/styled-components-attrs/)
+- [Quick Start Guide to Attrs in styled-components](https://scalablecss.com/styled-components-attrs/)
 - [Emotion issue: .attrs equivalent](https://github.com/emotion-js/emotion/issues/821)

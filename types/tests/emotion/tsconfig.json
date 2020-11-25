@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "types": ["react", "@emotion/core", "@emotion/styled"]
+    "types": ["react", "@emotion/react", "@emotion/styled"]
   }
 }
