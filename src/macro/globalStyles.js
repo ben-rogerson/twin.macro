@@ -5,8 +5,8 @@ import userPresets from './../config/userPresets'
 
 const getGlobalStylesConfig = config => {
   const usedConfig =
-    userPresets[config.preset] ||
     (config.global && config) ||
+    userPresets[config.preset] ||
     userPresets.emotion
   return usedConfig.global
 }

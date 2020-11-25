@@ -4,8 +4,8 @@ import userPresets from './../config/userPresets'
 
 const getStyledConfig = config => {
   const usedConfig =
-    userPresets[config.preset] ||
     (config.styled && config) ||
+    userPresets[config.preset] ||
     userPresets.emotion
 
   if (typeof usedConfig.styled === 'string') {
