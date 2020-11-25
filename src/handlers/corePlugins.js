@@ -1,7 +1,7 @@
-import dlv from 'dlv'
 import { MacroError } from 'babel-plugin-macros'
 import { logNotAllowed, errorSuggestions } from '../logging'
 import getConfigValue from './../utils/getConfigValue'
+import { get } from './../utils'
 /* eslint import/namespace: [2, { allowComputed: true }] */
 /* eslint-disable-next-line unicorn/import-index */
 import * as plugins from '../plugins/index'
@@ -61,7 +61,7 @@ export default ({
   ...rest
 }) => {
   const errors = getErrors({ state, pieces, dynamicKey })
-  const match = regex => dlv(pieces.className.match(regex), [0]) || null
+  const match = regex => get(pieces.className.match(regex), [0]) || null
   const context = {
     state: () => state,
     errors,
