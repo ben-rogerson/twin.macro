@@ -109,7 +109,6 @@ tw\`group-focus:bg-red-500\`
 tw\`group-active:bg-red-500\`
 tw\`group-visited:bg-red-500\`
 
-tw\`clearfix\`
 tw\`stroke-non-scaling\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -148,13 +147,6 @@ tw\`stroke-non-scaling\`
   '.group:visited &': {
     '--tw-bg-opacity': '1',
     backgroundColor: 'rgba(239, 68, 68, var(--tw-bg-opacity))',
-  },
-})
-;({
-  '::after': {
-    content: '""',
-    display: 'table',
-    clear: 'both',
   },
 })
 ;({
@@ -404,7 +396,23 @@ const themeObjectPurple = (
 const themeStringFont = (
   <input
     css={css\`
-      fontfamily: \${theme\`fontFamily.sans\`.join(', ')};
+      font-family: \${theme\`fontFamily.sans\`};
+    \`}
+  />
+)
+
+const themeFirstFromArray = (
+  <input
+    css={css\`
+      outline: \${theme\`outline.black\`};
+    \`}
+  />
+)
+
+const themeFontNoLineheight = (
+  <input
+    css={css\`
+      outline: \${theme\`fontSize.sm\`};
     \`}
   />
 )
@@ -423,6 +431,14 @@ const themeFunctionStringHeight = (
   />
 )
 
+const themeSquareBrackets = (
+  <input
+    css={css\`
+      height: \${theme('spacing[2.5]')};
+    \`}
+  />
+)
+
 const GlobalStylesTest = () => <GlobalStyles />
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -436,29 +452,30 @@ const _GlobalStyles = () => (
   <_globalImport
     styles={_css\`
       @keyframes spin {
-          to { 
+          to {
             transform: rotate(360deg);
           }
         }
       @keyframes ping {
-          75%, 100% { 
+          75%, 100% {
             transform: scale(2); opacity: 0;
           }
         }
       @keyframes pulse {
-          50% { 
+          50% {
             opacity: .5;
           }
         }
       @keyframes bounce {
-          0%, 100% { 
+          0%, 100% {
             transform: translateY(-25%); animationTimingFunction: cubic-bezier(0.8,0,1,1);
           }
-        
-          50% { 
+
+          50% {
             transform: none; animationTimingFunction: cubic-bezier(0,0,0.2,1);
           }
-        }\`}
+        }
+\`}
   />
 )
 
@@ -506,22 +523,21 @@ const themeObjectPurple = (
 const themeStringFont = (
   <input
     css={_css\`
-      fontfamily: \${[
-        'ui-sans-serif',
-        'system-ui',
-        '-apple-system',
-        'BlinkMacSystemFont',
-        '"Segoe UI"',
-        'Roboto',
-        '"Helvetica Neue"',
-        'Arial',
-        '"Noto Sans"',
-        'sans-serif',
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-        '"Noto Color Emoji"',
-      ].join(', ')};
+      font-family: \${'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'};
+    \`}
+  />
+)
+const themeFirstFromArray = (
+  <input
+    css={_css\`
+      outline: \${'2px dotted black'};
+    \`}
+  />
+)
+const themeFontNoLineheight = (
+  <input
+    css={_css\`
+      outline: \${'0.875rem'};
     \`}
   />
 )
@@ -548,6 +564,13 @@ const themeFunctionStringHeight = (
   <input
     css={_css\`
       height: \${'6rem'};
+    \`}
+  />
+)
+const themeSquareBrackets = (
+  <input
+    css={_css\`
+      height: \${'0.625rem'};
     \`}
   />
 )
@@ -1777,6 +1800,10 @@ const Component2 = () => <div css={{ display: 'flex' }} tw="uppercase" />
 
 const Component3 = () => <div css={[{ display: 'flex' }]} tw="uppercase" />
 
+const Component4 = () => <div tw="uppercase" css={[tw\`flex\`]} />
+
+const Component5 = () => <div css={[tw\`flex\`]} tw="uppercase" />
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -1804,6 +1831,32 @@ const Component2 = () => (
 )
 
 const Component3 = () => (
+  <div
+    css={[
+      {
+        display: 'flex',
+      },
+      {
+        textTransform: 'uppercase',
+      },
+    ]}
+  />
+)
+
+const Component4 = () => (
+  <div
+    css={[
+      {
+        textTransform: 'uppercase',
+      },
+      {
+        display: 'flex',
+      },
+    ]}
+  />
+)
+
+const Component5 = () => (
   <div
     css={[
       {
@@ -1958,6 +2011,7 @@ tw\`even-of-type:flex\`
 tw\`svg:flex\`
 tw\`all:flex\`
 tw\`all-child:flex\`
+tw\`sibling:flex\`
 
 // Group states
 tw\`group-hover:flex\`
@@ -2200,6 +2254,11 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
 })
 ;({
   '> *': {
+    display: 'flex',
+  },
+})
+;({
+  '~ *': {
     display: 'flex',
   },
 }) // Group states
@@ -4693,19 +4752,206 @@ tw\`divide-double\`
 tw\`divide-none\`
 
 // https://tailwindcss.com/docs/ring-width
-// ...
+tw\`ring-0\`
+tw\`ring-1\`
+tw\`ring-2\`
+tw\`ring-4\`
+tw\`ring-8\`
+tw\`ring\`
+tw\`ring-inset\`
 
 // https://tailwindcss.com/docs/ring-color
-// ...
+tw\`ring-transparent\`
+tw\`ring-current\`
+tw\`ring-black\`
+tw\`ring-white\`
+tw\`ring-gray-50\`
+tw\`ring-gray-100\`
+tw\`ring-gray-200\`
+tw\`ring-gray-300\`
+tw\`ring-gray-400\`
+tw\`ring-gray-500\`
+tw\`ring-gray-600\`
+tw\`ring-gray-700\`
+tw\`ring-gray-800\`
+tw\`ring-gray-900\`
+tw\`ring-red-50\`
+tw\`ring-red-100\`
+tw\`ring-red-200\`
+tw\`ring-red-300\`
+tw\`ring-red-400\`
+tw\`ring-red-500\`
+tw\`ring-red-600\`
+tw\`ring-red-700\`
+tw\`ring-red-800\`
+tw\`ring-red-900\`
+tw\`ring-yellow-50\`
+tw\`ring-yellow-100\`
+tw\`ring-yellow-200\`
+tw\`ring-yellow-300\`
+tw\`ring-yellow-400\`
+tw\`ring-yellow-500\`
+tw\`ring-yellow-600\`
+tw\`ring-yellow-700\`
+tw\`ring-yellow-800\`
+tw\`ring-yellow-900\`
+tw\`ring-green-50\`
+tw\`ring-green-100\`
+tw\`ring-green-200\`
+tw\`ring-green-300\`
+tw\`ring-green-400\`
+tw\`ring-green-500\`
+tw\`ring-green-600\`
+tw\`ring-green-700\`
+tw\`ring-green-800\`
+tw\`ring-green-900\`
+tw\`ring-blue-50\`
+tw\`ring-blue-100\`
+tw\`ring-blue-200\`
+tw\`ring-blue-300\`
+tw\`ring-blue-400\`
+tw\`ring-blue-500\`
+tw\`ring-blue-600\`
+tw\`ring-blue-700\`
+tw\`ring-blue-800\`
+tw\`ring-blue-900\`
+tw\`ring-indigo-50\`
+tw\`ring-indigo-100\`
+tw\`ring-indigo-200\`
+tw\`ring-indigo-300\`
+tw\`ring-indigo-400\`
+tw\`ring-indigo-500\`
+tw\`ring-indigo-600\`
+tw\`ring-indigo-700\`
+tw\`ring-indigo-800\`
+tw\`ring-indigo-900\`
+tw\`ring-purple-50\`
+tw\`ring-purple-100\`
+tw\`ring-purple-200\`
+tw\`ring-purple-300\`
+tw\`ring-purple-400\`
+tw\`ring-purple-500\`
+tw\`ring-purple-600\`
+tw\`ring-purple-700\`
+tw\`ring-purple-800\`
+tw\`ring-purple-900\`
+tw\`ring-pink-50\`
+tw\`ring-pink-100\`
+tw\`ring-pink-200\`
+tw\`ring-pink-300\`
+tw\`ring-pink-400\`
+tw\`ring-pink-500\`
+tw\`ring-pink-600\`
+tw\`ring-pink-700\`
+tw\`ring-pink-800\`
+tw\`ring-pink-900\`
 
 // https://tailwindcss.com/docs/ring-opacity
-// ...
+tw\`ring-opacity-0\`
+tw\`ring-opacity-5\`
+tw\`ring-opacity-10\`
+tw\`ring-opacity-20\`
+tw\`ring-opacity-25\`
+tw\`ring-opacity-30\`
+tw\`ring-opacity-40\`
+tw\`ring-opacity-50\`
+tw\`ring-opacity-60\`
+tw\`ring-opacity-70\`
+tw\`ring-opacity-75\`
+tw\`ring-opacity-80\`
+tw\`ring-opacity-90\`
+tw\`ring-opacity-95\`
+tw\`ring-opacity-100\`
 
 // https://tailwindcss.com/docs/ring-offset-width
-// ...
+tw\`ring-offset-0\`
+tw\`ring-offset-1\`
+tw\`ring-offset-2\`
+tw\`ring-offset-4\`
+tw\`ring-offset-8\`
 
 // https://tailwindcss.com/docs/ring-offset-color
-// ...
+tw\`ring-offset-transparent\`
+tw\`ring-offset-current\`
+tw\`ring-offset-black\`
+tw\`ring-offset-white\`
+tw\`ring-offset-gray-50\`
+tw\`ring-offset-gray-100\`
+tw\`ring-offset-gray-200\`
+tw\`ring-offset-gray-300\`
+tw\`ring-offset-gray-400\`
+tw\`ring-offset-gray-500\`
+tw\`ring-offset-gray-600\`
+tw\`ring-offset-gray-700\`
+tw\`ring-offset-gray-800\`
+tw\`ring-offset-gray-900\`
+tw\`ring-offset-red-50\`
+tw\`ring-offset-red-100\`
+tw\`ring-offset-red-200\`
+tw\`ring-offset-red-300\`
+tw\`ring-offset-red-400\`
+tw\`ring-offset-red-500\`
+tw\`ring-offset-red-600\`
+tw\`ring-offset-red-700\`
+tw\`ring-offset-red-800\`
+tw\`ring-offset-red-900\`
+tw\`ring-offset-yellow-50\`
+tw\`ring-offset-yellow-100\`
+tw\`ring-offset-yellow-200\`
+tw\`ring-offset-yellow-300\`
+tw\`ring-offset-yellow-400\`
+tw\`ring-offset-yellow-500\`
+tw\`ring-offset-yellow-600\`
+tw\`ring-offset-yellow-700\`
+tw\`ring-offset-yellow-800\`
+tw\`ring-offset-yellow-900\`
+tw\`ring-offset-green-50\`
+tw\`ring-offset-green-100\`
+tw\`ring-offset-green-200\`
+tw\`ring-offset-green-300\`
+tw\`ring-offset-green-400\`
+tw\`ring-offset-green-500\`
+tw\`ring-offset-green-600\`
+tw\`ring-offset-green-700\`
+tw\`ring-offset-green-800\`
+tw\`ring-offset-green-900\`
+tw\`ring-offset-blue-50\`
+tw\`ring-offset-blue-100\`
+tw\`ring-offset-blue-200\`
+tw\`ring-offset-blue-300\`
+tw\`ring-offset-blue-400\`
+tw\`ring-offset-blue-500\`
+tw\`ring-offset-blue-600\`
+tw\`ring-offset-blue-700\`
+tw\`ring-offset-blue-800\`
+tw\`ring-offset-blue-900\`
+tw\`ring-offset-purple-50\`
+tw\`ring-offset-purple-100\`
+tw\`ring-offset-purple-200\`
+tw\`ring-offset-purple-300\`
+tw\`ring-offset-purple-400\`
+tw\`ring-offset-purple-500\`
+tw\`ring-offset-purple-600\`
+tw\`ring-offset-purple-700\`
+tw\`ring-offset-purple-800\`
+tw\`ring-offset-purple-900\`
+tw\`ring-offset-pink-50\`
+tw\`ring-offset-pink-100\`
+tw\`ring-offset-pink-200\`
+tw\`ring-offset-pink-300\`
+tw\`ring-offset-pink-400\`
+tw\`ring-offset-pink-500\`
+tw\`ring-offset-pink-600\`
+tw\`ring-offset-pink-700\`
+tw\`ring-offset-pink-800\`
+tw\`ring-offset-pink-900\`
+
+// Combined ring classes
+tw\`ring ring-inset ring-purple-500 ring-offset-black ring-offset-4 ring-opacity-50\`
+tw\`ring ring-inset ring-purple-500 ring-offset-black ring-offset-4\`
+tw\`ring ring-purple-500 ring-offset-black ring-offset-4\`
+tw\`ring ring-offset-black ring-offset-4\`
+tw\`ring ring-offset-4\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -5436,699 +5682,1422 @@ tw\`divide-none\`
 }) // https://tailwindcss.com/docs/divide
 
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-x-reverse': 0,
     borderRightWidth: 'calc(0px * var(--tw-divide-x-reverse))',
     borderLeftWidth: 'calc(0px * calc(1 - var(--tw-divide-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-x-reverse': 0,
     borderRightWidth: 'calc(2px * var(--tw-divide-x-reverse))',
     borderLeftWidth: 'calc(2px * calc(1 - var(--tw-divide-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-x-reverse': 0,
     borderRightWidth: 'calc(4px * var(--tw-divide-x-reverse))',
     borderLeftWidth: 'calc(4px * calc(1 - var(--tw-divide-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-x-reverse': 0,
     borderRightWidth: 'calc(8px * var(--tw-divide-x-reverse))',
     borderLeftWidth: 'calc(8px * calc(1 - var(--tw-divide-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-x-reverse': 0,
     borderRightWidth: 'calc(1px * var(--tw-divide-x-reverse))',
     borderLeftWidth: 'calc(1px * calc(1 - var(--tw-divide-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-y-reverse': 0,
     borderTopWidth: 'calc(0px * calc(1 - var(--tw-divide-y-reverse)))',
     borderBottomWidth: 'calc(0px * var(--tw-divide-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-y-reverse': 0,
     borderTopWidth: 'calc(2px * calc(1 - var(--tw-divide-y-reverse)))',
     borderBottomWidth: 'calc(2px * var(--tw-divide-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-y-reverse': 0,
     borderTopWidth: 'calc(4px * calc(1 - var(--tw-divide-y-reverse)))',
     borderBottomWidth: 'calc(4px * var(--tw-divide-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-y-reverse': 0,
     borderTopWidth: 'calc(8px * calc(1 - var(--tw-divide-y-reverse)))',
     borderBottomWidth: 'calc(8px * var(--tw-divide-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-y-reverse': 0,
     borderTopWidth: 'calc(1px * calc(1 - var(--tw-divide-y-reverse)))',
     borderBottomWidth: 'calc(1px * var(--tw-divide-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-x-reverse': 1,
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-x-reverse': 1,
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-y-reverse': 1,
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-y-reverse': 1,
   },
 }) // https://tailwindcss.com/docs/divide-color
 
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     borderColor: 'transparent',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     borderColor: 'currentColor',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(0, 0, 0, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(255, 255, 255, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(249, 250, 251, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(243, 244, 246, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(229, 231, 235, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(209, 213, 219, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(156, 163, 175, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(107, 114, 128, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(75, 85, 99, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(55, 65, 81, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(31, 41, 55, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(17, 24, 39, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(254, 242, 242, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(254, 226, 226, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(254, 202, 202, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(252, 165, 165, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(248, 113, 113, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(239, 68, 68, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(220, 38, 38, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(185, 28, 28, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(153, 27, 27, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(127, 29, 29, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(255, 251, 235, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(254, 243, 199, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(253, 230, 138, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(252, 211, 77, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(251, 191, 36, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(245, 158, 11, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(217, 119, 6, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(180, 83, 9, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(146, 64, 14, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(120, 53, 15, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(236, 253, 245, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(209, 250, 229, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(167, 243, 208, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(110, 231, 183, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(52, 211, 153, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(16, 185, 129, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(5, 150, 105, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(4, 120, 87, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(6, 95, 70, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(6, 78, 59, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(239, 246, 255, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(219, 234, 254, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(191, 219, 254, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(147, 197, 253, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(96, 165, 250, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(59, 130, 246, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(37, 99, 235, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(29, 78, 216, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(30, 64, 175, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(30, 58, 138, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(238, 242, 255, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(224, 231, 255, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(199, 210, 254, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(165, 180, 252, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(129, 140, 248, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(99, 102, 241, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(79, 70, 229, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(67, 56, 202, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(55, 48, 163, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(49, 46, 129, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(245, 243, 255, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(237, 233, 254, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(221, 214, 254, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(196, 181, 253, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(167, 139, 250, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(139, 92, 246, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(124, 58, 237, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(109, 40, 217, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(91, 33, 182, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(76, 29, 149, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(253, 242, 248, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(252, 231, 243, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(251, 207, 232, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(249, 168, 212, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(244, 114, 182, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(236, 72, 153, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(219, 39, 119, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(190, 24, 93, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(157, 23, 77, var(--tw-divide-opacity))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-divide-opacity': '1',
     borderColor: 'rgba(131, 24, 67, var(--tw-divide-opacity))',
   },
 }) // https://tailwindcss.com/docs/divide-opacity
 
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '0',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '0',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '0.05',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '0.05',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '0.1',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '0.1',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '0.2',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '0.2',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '0.25',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '0.25',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '0.3',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '0.3',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '0.4',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '0.4',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '0.5',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '0.5',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '0.6',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '0.6',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '0.7',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '0.7',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '0.75',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '0.75',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '0.8',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '0.8',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '0.9',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '0.9',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '0.95',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '0.95',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-divide-opacity': '1',
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--divide-opacity': '1',
   },
 }) // https://tailwindcss.com/docs/divide-style
 
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     borderStyle: 'solid',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     borderStyle: 'dashed',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     borderStyle: 'dotted',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     borderStyle: 'double',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     borderStyle: 'none',
   },
 }) // https://tailwindcss.com/docs/ring-width
-// ...
-// https://tailwindcss.com/docs/ring-color
-// ...
-// https://tailwindcss.com/docs/ring-opacity
-// ...
-// https://tailwindcss.com/docs/ring-offset-width
-// ...
-// https://tailwindcss.com/docs/ring-offset-color
-// ...
+
+;({
+  '--tw-ring-offset-shadow':
+    'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
+  '--tw-ring-shadow':
+    'var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
+  boxShadow:
+    'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
+})
+;({
+  '--tw-ring-offset-shadow':
+    'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
+  '--tw-ring-shadow':
+    'var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
+  boxShadow:
+    'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
+})
+;({
+  '--tw-ring-offset-shadow':
+    'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
+  '--tw-ring-shadow':
+    'var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
+  boxShadow:
+    'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
+})
+;({
+  '--tw-ring-offset-shadow':
+    'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
+  '--tw-ring-shadow':
+    'var(--tw-ring-inset) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
+  boxShadow:
+    'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
+})
+;({
+  '--tw-ring-offset-shadow':
+    'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
+  '--tw-ring-shadow':
+    'var(--tw-ring-inset) 0 0 0 calc(8px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
+  boxShadow:
+    'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
+})
+;({
+  '--tw-ring-offset-shadow':
+    'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
+  '--tw-ring-shadow':
+    'var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
+  boxShadow:
+    'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
+})
+;({
+  '--tw-ring-inset': 'inset',
+}) // https://tailwindcss.com/docs/ring-color
+
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'transparent',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'currentColor',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(0, 0, 0, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(255, 255, 255, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(249, 250, 251, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(243, 244, 246, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(229, 231, 235, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(209, 213, 219, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(156, 163, 175, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(107, 114, 128, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(75, 85, 99, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(55, 65, 81, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(31, 41, 55, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(17, 24, 39, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(254, 242, 242, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(254, 226, 226, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(254, 202, 202, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(252, 165, 165, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(248, 113, 113, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(239, 68, 68, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(220, 38, 38, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(185, 28, 28, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(153, 27, 27, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(127, 29, 29, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(255, 251, 235, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(254, 243, 199, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(253, 230, 138, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(252, 211, 77, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(251, 191, 36, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(245, 158, 11, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(217, 119, 6, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(180, 83, 9, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(146, 64, 14, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(120, 53, 15, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(236, 253, 245, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(209, 250, 229, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(167, 243, 208, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(110, 231, 183, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(52, 211, 153, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(16, 185, 129, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(5, 150, 105, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(4, 120, 87, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(6, 95, 70, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(6, 78, 59, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(239, 246, 255, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(219, 234, 254, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(191, 219, 254, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(147, 197, 253, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(96, 165, 250, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(59, 130, 246, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(37, 99, 235, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(29, 78, 216, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(30, 64, 175, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(30, 58, 138, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(238, 242, 255, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(224, 231, 255, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(199, 210, 254, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(165, 180, 252, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(129, 140, 248, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(99, 102, 241, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(79, 70, 229, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(67, 56, 202, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(55, 48, 163, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(49, 46, 129, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(245, 243, 255, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(237, 233, 254, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(221, 214, 254, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(196, 181, 253, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(167, 139, 250, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(139, 92, 246, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(124, 58, 237, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(109, 40, 217, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(91, 33, 182, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(76, 29, 149, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(253, 242, 248, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(252, 231, 243, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(251, 207, 232, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(249, 168, 212, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(244, 114, 182, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(236, 72, 153, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(219, 39, 119, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(190, 24, 93, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(157, 23, 77, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(131, 24, 67, var(--tw-ring-opacity))',
+}) // https://tailwindcss.com/docs/ring-opacity
+
+;({
+  '--tw-ring-opacity': '0',
+})
+;({
+  '--tw-ring-opacity': '0.05',
+})
+;({
+  '--tw-ring-opacity': '0.1',
+})
+;({
+  '--tw-ring-opacity': '0.2',
+})
+;({
+  '--tw-ring-opacity': '0.25',
+})
+;({
+  '--tw-ring-opacity': '0.3',
+})
+;({
+  '--tw-ring-opacity': '0.4',
+})
+;({
+  '--tw-ring-opacity': '0.5',
+})
+;({
+  '--tw-ring-opacity': '0.6',
+})
+;({
+  '--tw-ring-opacity': '0.7',
+})
+;({
+  '--tw-ring-opacity': '0.75',
+})
+;({
+  '--tw-ring-opacity': '0.8',
+})
+;({
+  '--tw-ring-opacity': '0.9',
+})
+;({
+  '--tw-ring-opacity': '0.95',
+})
+;({
+  '--tw-ring-opacity': '1',
+}) // https://tailwindcss.com/docs/ring-offset-width
+
+;({
+  '--tw-ring-offset-width': '0px',
+})
+;({
+  '--tw-ring-offset-width': '1px',
+})
+;({
+  '--tw-ring-offset-width': '2px',
+})
+;({
+  '--tw-ring-offset-width': '4px',
+})
+;({
+  '--tw-ring-offset-width': '8px',
+}) // https://tailwindcss.com/docs/ring-offset-color
+
+;({
+  '--tw-ring-offset-color': 'transparent',
+})
+;({
+  '--tw-ring-offset-color': 'currentColor',
+})
+;({
+  '--tw-ring-offset-color': '#000',
+})
+;({
+  '--tw-ring-offset-color': '#fff',
+})
+;({
+  '--tw-ring-offset-color': '#f9fafb',
+})
+;({
+  '--tw-ring-offset-color': '#f3f4f6',
+})
+;({
+  '--tw-ring-offset-color': '#e5e7eb',
+})
+;({
+  '--tw-ring-offset-color': '#d1d5db',
+})
+;({
+  '--tw-ring-offset-color': '#9ca3af',
+})
+;({
+  '--tw-ring-offset-color': '#6b7280',
+})
+;({
+  '--tw-ring-offset-color': '#4b5563',
+})
+;({
+  '--tw-ring-offset-color': '#374151',
+})
+;({
+  '--tw-ring-offset-color': '#1f2937',
+})
+;({
+  '--tw-ring-offset-color': '#111827',
+})
+;({
+  '--tw-ring-offset-color': '#fef2f2',
+})
+;({
+  '--tw-ring-offset-color': '#fee2e2',
+})
+;({
+  '--tw-ring-offset-color': '#fecaca',
+})
+;({
+  '--tw-ring-offset-color': '#fca5a5',
+})
+;({
+  '--tw-ring-offset-color': '#f87171',
+})
+;({
+  '--tw-ring-offset-color': '#ef4444',
+})
+;({
+  '--tw-ring-offset-color': '#dc2626',
+})
+;({
+  '--tw-ring-offset-color': '#b91c1c',
+})
+;({
+  '--tw-ring-offset-color': '#991b1b',
+})
+;({
+  '--tw-ring-offset-color': '#7f1d1d',
+})
+;({
+  '--tw-ring-offset-color': '#fffbeb',
+})
+;({
+  '--tw-ring-offset-color': '#fef3c7',
+})
+;({
+  '--tw-ring-offset-color': '#fde68a',
+})
+;({
+  '--tw-ring-offset-color': '#fcd34d',
+})
+;({
+  '--tw-ring-offset-color': '#fbbf24',
+})
+;({
+  '--tw-ring-offset-color': '#f59e0b',
+})
+;({
+  '--tw-ring-offset-color': '#d97706',
+})
+;({
+  '--tw-ring-offset-color': '#b45309',
+})
+;({
+  '--tw-ring-offset-color': '#92400e',
+})
+;({
+  '--tw-ring-offset-color': '#78350f',
+})
+;({
+  '--tw-ring-offset-color': '#ecfdf5',
+})
+;({
+  '--tw-ring-offset-color': '#d1fae5',
+})
+;({
+  '--tw-ring-offset-color': '#a7f3d0',
+})
+;({
+  '--tw-ring-offset-color': '#6ee7b7',
+})
+;({
+  '--tw-ring-offset-color': '#34d399',
+})
+;({
+  '--tw-ring-offset-color': '#10b981',
+})
+;({
+  '--tw-ring-offset-color': '#059669',
+})
+;({
+  '--tw-ring-offset-color': '#047857',
+})
+;({
+  '--tw-ring-offset-color': '#065f46',
+})
+;({
+  '--tw-ring-offset-color': '#064e3b',
+})
+;({
+  '--tw-ring-offset-color': '#eff6ff',
+})
+;({
+  '--tw-ring-offset-color': '#dbeafe',
+})
+;({
+  '--tw-ring-offset-color': '#bfdbfe',
+})
+;({
+  '--tw-ring-offset-color': '#93c5fd',
+})
+;({
+  '--tw-ring-offset-color': '#60a5fa',
+})
+;({
+  '--tw-ring-offset-color': '#3b82f6',
+})
+;({
+  '--tw-ring-offset-color': '#2563eb',
+})
+;({
+  '--tw-ring-offset-color': '#1d4ed8',
+})
+;({
+  '--tw-ring-offset-color': '#1e40af',
+})
+;({
+  '--tw-ring-offset-color': '#1e3a8a',
+})
+;({
+  '--tw-ring-offset-color': '#f5f3ff',
+})
+;({
+  '--tw-ring-offset-color': '#ede9fe',
+})
+;({
+  '--tw-ring-offset-color': '#ddd6fe',
+})
+;({
+  '--tw-ring-offset-color': '#c4b5fd',
+})
+;({
+  '--tw-ring-offset-color': '#a78bfa',
+})
+;({
+  '--tw-ring-offset-color': '#8b5cf6',
+})
+;({
+  '--tw-ring-offset-color': '#7c3aed',
+})
+;({
+  '--tw-ring-offset-color': '#6d28d9',
+})
+;({
+  '--tw-ring-offset-color': '#5b21b6',
+})
+;({
+  '--tw-ring-offset-color': '#4c1d95',
+})
+;({
+  '--tw-ring-offset-color': '#fdf2f8',
+})
+;({
+  '--tw-ring-offset-color': '#fce7f3',
+})
+;({
+  '--tw-ring-offset-color': '#fbcfe8',
+})
+;({
+  '--tw-ring-offset-color': '#f9a8d4',
+})
+;({
+  '--tw-ring-offset-color': '#f472b6',
+})
+;({
+  '--tw-ring-offset-color': '#ec4899',
+})
+;({
+  '--tw-ring-offset-color': '#db2777',
+})
+;({
+  '--tw-ring-offset-color': '#be185d',
+})
+;({
+  '--tw-ring-offset-color': '#9d174d',
+})
+;({
+  '--tw-ring-offset-color': '#831843',
+}) // Combined ring classes
+
+;({
+  '--tw-ring-offset-shadow':
+    'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
+  '--tw-ring-shadow':
+    'var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
+  boxShadow:
+    'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
+  '--tw-ring-inset': 'inset',
+  '--tw-ring-opacity': '0.5',
+  '--tw-ring-color': 'rgba(139, 92, 246, var(--tw-ring-opacity))',
+  '--tw-ring-offset-color': '#000',
+  '--tw-ring-offset-width': '4px',
+})
+;({
+  '--tw-ring-offset-shadow':
+    'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
+  '--tw-ring-shadow':
+    'var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
+  boxShadow:
+    'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
+  '--tw-ring-inset': 'inset',
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(139, 92, 246, var(--tw-ring-opacity))',
+  '--tw-ring-offset-color': '#000',
+  '--tw-ring-offset-width': '4px',
+})
+;({
+  '--tw-ring-offset-shadow':
+    'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
+  '--tw-ring-shadow':
+    'var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
+  boxShadow:
+    'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(139, 92, 246, var(--tw-ring-opacity))',
+  '--tw-ring-offset-color': '#000',
+  '--tw-ring-offset-width': '4px',
+})
+;({
+  '--tw-ring-offset-shadow':
+    'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
+  '--tw-ring-shadow':
+    'var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
+  boxShadow:
+    'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
+  '--tw-ring-offset-color': '#000',
+  '--tw-ring-offset-width': '4px',
+})
+;({
+  '--tw-ring-offset-shadow':
+    'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
+  '--tw-ring-shadow':
+    'var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
+  boxShadow:
+    'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
+  '--tw-ring-offset-width': '4px',
+})
 
 
 `;
@@ -6507,9 +7476,9 @@ tw\`flex-col\`
 tw\`flex-col-reverse\`
 
 // https://tailwindcss.com/docs/flex-wrap
+tw\`flex-nowrap\`
 tw\`flex-wrap-reverse\`
 tw\`flex-wrap\`
-tw\`flex-no-wrap\`
 
 // https://tailwindcss.com/docs/flex
 tw\`flex-1\`
@@ -6559,13 +7528,13 @@ tw\`order-none\`
 }) // https://tailwindcss.com/docs/flex-wrap
 
 ;({
+  flexWrap: 'nowrap',
+})
+;({
   flexWrap: 'wrap-reverse',
 })
 ;({
   flexWrap: 'wrap',
-})
-;({
-  flexWrap: 'nowrap',
 }) // https://tailwindcss.com/docs/flex
 
 ;({
@@ -14844,1077 +15813,1093 @@ tw\`space-y-12 -space-y-reverse\`
 }) // https://tailwindcss.com/docs/space
 
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(0px * var(--tw-space-x-reverse))',
     marginLeft: 'calc(0px * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(0.125rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(0.125rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(0.25rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(0.25rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(0.375rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(0.375rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(0.5rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(0.625rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(0.625rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(0.75rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(0.75rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(0.875rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(0.875rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(1rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(1rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(1.25rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(1.25rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(1.5rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(1.75rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(1.75rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(2rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(2rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(2.25rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(2.25rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(2.5rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(2.5rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(2.75rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(2.75rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(3rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(3rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(3.5rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(3.5rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(4rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(4rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(5rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(5rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(6rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(6rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(7rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(7rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(8rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(8rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(9rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(9rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(10rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(10rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(11rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(11rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(12rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(12rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(13rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(13rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(14rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(14rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(15rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(15rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(16rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(16rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(18rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(18rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(20rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(20rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(24rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(24rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(1px * var(--tw-space-x-reverse))',
     marginLeft: 'calc(1px * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(0px * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(0px * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(0.125rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(0.125rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(0.25rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(0.25rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(0.375rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(0.375rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(0.5rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(0.5rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(0.625rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(0.625rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(0.75rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(0.75rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(0.875rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(0.875rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(1rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(1rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(1.25rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(1.25rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(1.5rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(1.5rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(1.75rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(1.75rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(2rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(2rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(2.25rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(2.25rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(2.5rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(2.5rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(3rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(3rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(3.5rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(3.5rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(4rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(4rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(5rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(5rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(6rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(6rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(7rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(7rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(8rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(8rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(9rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(9rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(10rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(10rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(11rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(11rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(12rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(12rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(13rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(13rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(14rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(14rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(15rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(15rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(16rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(16rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(18rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(18rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(20rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(20rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(1px * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(1px * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-0px * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-0px * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-0.125rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-0.125rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-0.25rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-0.25rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-0.375rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-0.375rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-0.5rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-0.5rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-0.625rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-0.625rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-0.75rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-0.75rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-0.875rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-0.875rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-1rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-1rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-1.25rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-1.25rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-1.5rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-1.5rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-1.75rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-1.75rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-2rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-2rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-2.25rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-2.25rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-2.5rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-2.5rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-3rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-3rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-3.5rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-3.5rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-4rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-4rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-5rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-5rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-6rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-6rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-7rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-7rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-8rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-8rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-9rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-9rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-10rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-10rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-11rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-11rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-12rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-12rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-13rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-13rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-14rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-14rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-15rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-15rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-16rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-16rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-18rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-18rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-20rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-20rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-24rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-24rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(-1px * var(--tw-space-x-reverse))',
     marginLeft: 'calc(-1px * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-0px * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-0px * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-0.125rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-0.125rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-0.25rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-0.25rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-0.375rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-0.375rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-0.5rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-0.5rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-0.625rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-0.625rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-0.75rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-0.75rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-0.875rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-0.875rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-1rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-1rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-1.25rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-1.25rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-1.5rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-1.5rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-1.75rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-1.75rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-2rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-2rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-2.25rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-2.25rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-2.5rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-2.5rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-3rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-3rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-3.5rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-3.5rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-4rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-4rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-5rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-5rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-6rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-6rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-7rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-7rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-8rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-8rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-9rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-9rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-10rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-10rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-11rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-11rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-12rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-12rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-13rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-13rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-14rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-14rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-15rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-15rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-16rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-16rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-18rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-18rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-20rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-20rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-24rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-24rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(-1px * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(-1px * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-space-x-reverse': 1,
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--space-x-reverse': 1,
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-space-y-reverse': 1,
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--space-y-reverse': 1,
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--space-x-reverse': 1,
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(0px * var(--tw-space-x-reverse))',
     marginLeft: 'calc(0px * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-space-x-reverse': 1,
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--tw-space-x-reverse': 0,
     marginRight: 'calc(0px * var(--tw-space-x-reverse))',
     marginLeft: 'calc(0px * calc(1 - var(--tw-space-x-reverse)))',
+    '--space-x-reverse': 1,
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--space-y-reverse': 1,
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(0px * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(0px * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-space-y-reverse': 1,
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--tw-space-y-reverse': 0,
     marginTop: 'calc(0px * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(0px * var(--tw-space-y-reverse))',
+    '--space-y-reverse': 1,
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--space-x-reverse': 1,
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(8rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(8rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-space-x-reverse': 1,
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--tw-space-x-reverse': 0,
     marginRight: 'calc(8rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(8rem * calc(1 - var(--tw-space-x-reverse)))',
+    '--space-x-reverse': 1,
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--space-y-reverse': 1,
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(8rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(8rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-space-y-reverse': 1,
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--tw-space-y-reverse': 0,
     marginTop: 'calc(8rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(8rem * var(--tw-space-y-reverse))',
+    '--space-y-reverse': 1,
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--space-x-reverse': 1,
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(1px * var(--tw-space-x-reverse))',
     marginLeft: 'calc(1px * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-space-x-reverse': 1,
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--tw-space-x-reverse': 0,
     marginRight: 'calc(1px * var(--tw-space-x-reverse))',
     marginLeft: 'calc(1px * calc(1 - var(--tw-space-x-reverse)))',
+    '--space-x-reverse': 1,
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--space-y-reverse': 1,
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(1px * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(1px * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-space-y-reverse': 1,
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--tw-space-y-reverse': 0,
     marginTop: 'calc(1px * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(1px * var(--tw-space-y-reverse))',
+    '--space-y-reverse': 1,
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--space-x-reverse': 1,
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(3rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(3rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-space-x-reverse': 1,
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--tw-space-x-reverse': 0,
     marginRight: 'calc(3rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(3rem * calc(1 - var(--tw-space-x-reverse)))',
+    '--space-x-reverse': 1,
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--space-y-reverse': 1,
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(3rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(3rem * var(--tw-space-y-reverse))',
   },
 })
 ;({
-  '> :not(template) ~ :not(template)': {
-    '--tw-space-y-reverse': 1,
+  '> :not([hidden]) ~ :not([hidden])': {
+    '--tw-space-y-reverse': 0,
     marginTop: 'calc(3rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(3rem * var(--tw-space-y-reverse))',
+    '--space-y-reverse': 1,
   },
 })
 
@@ -15998,8 +16983,8 @@ import tw from './macro'
 
 // https://tailwindcss.com/docs/transform
 tw\`transform\`
-// tw\`transform-gpu\`
-// tw\`transform-none\`
+tw\`transform-gpu\`
+tw\`transform-none\`
 
 // https://tailwindcss.com/docs/transform-origin
 tw\`origin-center\`
@@ -16270,9 +17255,21 @@ tw\`-skew-y-1\`
   '--tw-scale-y': '1',
   transform:
     'translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-}) // tw\`transform-gpu\`
-// tw\`transform-none\`
-// https://tailwindcss.com/docs/transform-origin
+})
+;({
+  '--transform-translate-x': '0',
+  '--transform-translate-y': '0',
+  '--transform-rotate': '0',
+  '--transform-skew-x': '0',
+  '--transform-skew-y': '0',
+  '--transform-scale-x': '1',
+  '--transform-scale-y': '1',
+  transform:
+    'translate3d(var(--transform-translate-x), var(--transform-translate-y), 0) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y))',
+})
+;({
+  transform: 'none',
+}) // https://tailwindcss.com/docs/transform-origin
 
 ;({
   transformOrigin: 'center',
@@ -17077,22 +18074,34 @@ tw\`delay-1000\`
 })
 ;({
   transitionProperty: 'all',
+  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  transitionDuration: '150ms',
 })
 ;({
   transitionProperty:
     'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
+  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  transitionDuration: '150ms',
 })
 ;({
   transitionProperty: 'background-color, border-color, color, fill, stroke',
+  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  transitionDuration: '150ms',
 })
 ;({
   transitionProperty: 'opacity',
+  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  transitionDuration: '150ms',
 })
 ;({
   transitionProperty: 'box-shadow',
+  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  transitionDuration: '150ms',
 })
 ;({
   transitionProperty: 'transform',
+  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  transitionDuration: '150ms',
 }) // https://tailwindcss.com/docs/transition-duration
 
 ;({
@@ -17477,8 +18486,10 @@ tw\`lowercase\`
 tw\`capitalize\`
 tw\`normal-case\`
 
-// https://tailwindcss.com/docs/word-break
+// https://tailwindcss.com/docs/text-overflow
 tw\`truncate\`
+tw\`overflow-ellipsis\`
+tw\`overflow-clip\`
 
 // https://tailwindcss.com/docs/vertical-align
 tw\`align-baseline\`
@@ -17490,7 +18501,7 @@ tw\`align-text-bottom\`
 
 // https://tailwindcss.com/docs/whitespace
 tw\`whitespace-normal\`
-tw\`whitespace-no-wrap\`
+tw\`whitespace-nowrap\`
 tw\`whitespace-pre\`
 tw\`whitespace-pre-line\`
 tw\`whitespace-pre-wrap\`
@@ -18777,12 +19788,18 @@ tw\`break-all\`
 })
 ;({
   textTransform: 'none',
-}) // https://tailwindcss.com/docs/word-break
+}) // https://tailwindcss.com/docs/text-overflow
 
 ;({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
+})
+;({
+  textOverflow: 'ellipsis',
+})
+;({
+  textOverflow: 'clip',
 }) // https://tailwindcss.com/docs/vertical-align
 
 ;({

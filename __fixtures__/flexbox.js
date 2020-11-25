@@ -7,9 +7,9 @@ tw`flex-col`
 tw`flex-col-reverse`
 
 // https://tailwindcss.com/docs/flex-wrap
+tw`flex-nowrap`
 tw`flex-wrap-reverse`
 tw`flex-wrap`
-tw`flex-no-wrap`
 
 // https://tailwindcss.com/docs/flex
 tw`flex-1`

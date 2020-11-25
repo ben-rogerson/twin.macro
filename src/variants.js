@@ -1,9 +1,9 @@
 import { MacroError } from 'babel-plugin-macros'
-import dlv from 'dlv'
 import cleanSet from 'clean-set'
 import { stringifyScreen } from './screens'
 import { logNoVariant, logGeneralError } from './logging'
 import { variantConfig } from './config'
+import { get } from './utils'
 
 /**
  * Validate variants against the variants config key
@@ -11,7 +11,7 @@ import { variantConfig } from './config'
 const validateVariants = ({ variants, state, ...rest }) => {
   if (!variants) return []
 
-  const screens = dlv(state.config, ['theme', 'screens'])
+  const screens = get(state.config, ['theme', 'screens'])
   const screenNames = Object.keys(screens)
 
   return variants
@@ -103,7 +103,7 @@ const addVariants = ({ results, style, pieces }) => {
   if (variants.length === 0) return
 
   const styleWithVariants = cleanSet(results, variants, {
-    ...dlv(styleWithVariants, variants, {}),
+    ...get(styleWithVariants, variants, {}),
     ...style,
   })
 

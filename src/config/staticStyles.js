@@ -49,10 +49,6 @@ export default {
   'float-right': { output: { float: 'right' } },
   'float-left': { output: { float: 'left' } },
   'float-none': { output: { float: 'none' } },
-  clearfix: {
-    output: { '::after': { content: '""', display: 'table', clear: 'both' } },
-    config: false,
-  },
 
   // https://tailwindcss.com/docs/clear
   'clear-left': { output: { clear: 'left' } },
@@ -89,14 +85,6 @@ export default {
   },
   'overflow-x-scroll': { output: { overflowX: 'scroll' }, config: 'overflow' },
   'overflow-y-scroll': { output: { overflowY: 'scroll' }, config: 'overflow' },
-  'scrolling-touch': {
-    output: { WebkitOverflowScrolling: 'touch' },
-    config: false,
-  },
-  'scrolling-auto': {
-    output: { WebkitOverflowScrolling: 'auto' },
-    config: false,
-  },
 
   // https://tailwindcss.com/docs/position
   static: { output: { position: 'static' } },
@@ -119,15 +107,15 @@ export default {
   // See dynamicStyles.js for the rest
   'space-x-reverse': {
     output: {
-      '> :not(template) ~ :not(template)': {
-        '--tw-space-x-reverse': 1,
+      '> :not([hidden]) ~ :not([hidden])': {
+        '--space-x-reverse': 1,
       },
     },
   },
   'space-y-reverse': {
     output: {
-      '> :not(template) ~ :not(template)': {
-        '--tw-space-y-reverse': 1,
+      '> :not([hidden]) ~ :not([hidden])': {
+        '--space-y-reverse': 1,
       },
     },
   },
@@ -136,15 +124,15 @@ export default {
   // See dynamicStyles.js for the rest
   'divide-x-reverse': {
     output: {
-      '> :not(template) ~ :not(template)': {
-        '--tw-divide-x-reverse': 1,
+      '> :not([hidden]) ~ :not([hidden])': {
+        '--divide-x-reverse': 1,
       },
     },
   },
   'divide-y-reverse': {
     output: {
-      '> :not(template) ~ :not(template)': {
-        '--tw-divide-y-reverse': 1,
+      '> :not([hidden]) ~ :not([hidden])': {
+        '--divide-y-reverse': 1,
       },
     },
   },
@@ -152,35 +140,35 @@ export default {
   // https://tailwindcss.com/docs/divide-style
   'divide-solid': {
     output: {
-      '> :not(template) ~ :not(template)': {
+      '> :not([hidden]) ~ :not([hidden])': {
         borderStyle: 'solid',
       },
     },
   },
   'divide-dashed': {
     output: {
-      '> :not(template) ~ :not(template)': {
+      '> :not([hidden]) ~ :not([hidden])': {
         borderStyle: 'dashed',
       },
     },
   },
   'divide-dotted': {
     output: {
-      '> :not(template) ~ :not(template)': {
+      '> :not([hidden]) ~ :not([hidden])': {
         borderStyle: 'dotted',
       },
     },
   },
   'divide-double': {
     output: {
-      '> :not(template) ~ :not(template)': {
+      '> :not([hidden]) ~ :not([hidden])': {
         borderStyle: 'double',
       },
     },
   },
   'divide-none': {
     output: {
-      '> :not(template) ~ :not(template)': {
+      '> :not([hidden]) ~ :not([hidden])': {
         borderStyle: 'none',
       },
     },
@@ -200,7 +188,7 @@ export default {
   },
 
   // https://tailwindcss.com/docs/flex-wrap
-  'flex-no-wrap': { output: { flexWrap: 'nowrap' } },
+  'flex-nowrap': { output: { flexWrap: 'nowrap' } },
   'flex-wrap': { output: { flexWrap: 'wrap' } },
   'flex-wrap-reverse': { output: { flexWrap: 'wrap-reverse' } },
 
@@ -430,7 +418,7 @@ export default {
 
   // https://tailwindcss.com/docs/whitespace
   'whitespace-normal': { output: { whiteSpace: 'normal' } },
-  'whitespace-no-wrap': { output: { whiteSpace: 'nowrap' } },
+  'whitespace-nowrap': { output: { whiteSpace: 'nowrap' } },
   'whitespace-pre': { output: { whiteSpace: 'pre' } },
   'whitespace-pre-line': { output: { whiteSpace: 'pre-line' } },
   'whitespace-pre-wrap': { output: { whiteSpace: 'pre-wrap' } },
@@ -445,6 +433,8 @@ export default {
     config: 'wordbreak',
   },
   'break-all': { output: { wordBreak: 'break-all' }, config: 'wordbreak' },
+
+  // https://tailwindcss.com/docs/text-overflow
   truncate: {
     output: {
       overflow: 'hidden',
@@ -453,6 +443,8 @@ export default {
     },
     config: false,
   },
+  'overflow-ellipsis': { output: { textOverflow: 'ellipsis' } },
+  'overflow-clip': { output: { textOverflow: 'clip' } },
 
   /**
    * ===========================================
@@ -709,6 +701,28 @@ export default {
       '--tw-scale-y': '1',
       transform:
         'translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+    },
+    config: false,
+  },
+
+  'transform-gpu': {
+    output: {
+      '--transform-translate-x': '0',
+      '--transform-translate-y': '0',
+      '--transform-rotate': '0',
+      '--transform-skew-x': '0',
+      '--transform-skew-y': '0',
+      '--transform-scale-x': '1',
+      '--transform-scale-y': '1',
+      transform:
+        'translate3d(var(--transform-translate-x), var(--transform-translate-y), 0) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y))',
+    },
+    config: false,
+  },
+
+  'transform-none': {
+    output: {
+      transform: 'none',
     },
     config: false,
   },

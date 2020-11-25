@@ -1,8 +1,8 @@
-import dlv from 'dlv'
 import timSort from 'timsort'
+import { get } from './utils'
 
 const stringifyScreen = (config, screenName) => {
-  const screen = dlv(config, ['theme', 'screens', screenName])
+  const screen = get(config, ['theme', 'screens', screenName])
   if (typeof screen === 'undefined') {
     throw new Error(
       `Couldn’t find Tailwind the screen "${screenName}" in the Tailwind config`

@@ -7,7 +7,6 @@ import getStyles from './../getStyles'
 
 const handleTwProperty = ({ path, t, state }) => {
   if (path.node.name.name === 'css') state.hasCssProp = true
-  // TODO: Add tw-prop for css attributes
 
   if (path.node.name.name !== 'tw') return
   state.hasTwProp = true
@@ -32,6 +31,7 @@ const handleTwProperty = ({ path, t, state }) => {
 
   const jsxPath = path.findParent(p => p.isJSXOpeningElement())
   const attributes = jsxPath.get('attributes')
+  const attributeList = attributes.map(p => p.node.name && p.node.name.name)
   const cssAttributes = attributes.filter(
     p => p.node.name && p.node.name.name === 'css'
   )
@@ -40,10 +40,15 @@ const handleTwProperty = ({ path, t, state }) => {
     path.remove()
     const expr = cssAttributes[0].get('value').get('expression')
     if (expr.isArrayExpression()) {
-      // TODO: unshiftContainer could also be supported here so we can
-      // preserve the original position of the css prop.
-      // But it would break the specificity of existing css+tw combinations.
-      expr.pushContainer('elements', styles)
+      // Maintain the ordering of jsx props
+      // <div css={[tw`mt-3`]} tw="block" />
+      const shouldPush =
+        attributeList.indexOf('tw') > attributeList.indexOf('css')
+      if (shouldPush) {
+        expr.pushContainer('elements', styles)
+      } else {
+        expr.unshiftContainer('elements', styles)
+      }
     } else {
       throwIf(!expr.node, () =>
         logGeneralError(

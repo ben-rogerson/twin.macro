@@ -2,8 +2,8 @@ import tw from './macro'
 
 // https://tailwindcss.com/docs/transform
 tw`transform`
-// tw`transform-gpu`
-// tw`transform-none`
+tw`transform-gpu`
+tw`transform-none`
 
 // https://tailwindcss.com/docs/transform-origin
 tw`origin-center`

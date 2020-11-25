@@ -1,9 +1,9 @@
-import dlv from 'dlv'
 import { staticStyles, dynamicStyles } from './../config'
+import { get } from './misc'
 
 const isStaticClass = className => {
-  const staticConfig = dlv(staticStyles, [className, 'config'])
-  const staticConfigOutput = dlv(staticStyles, [className, 'output'])
+  const staticConfig = get(staticStyles, [className, 'config'])
+  const staticConfigOutput = get(staticStyles, [className, 'output'])
   const staticConfigKey = staticConfigOutput
     ? Object.keys(staticConfigOutput).shift()
     : null
@@ -23,14 +23,15 @@ const getDynamicProperties = className => {
     (r, match) => (r.length < match.length ? match : r),
     []
   )
-  const dynamicConfig = dlv(dynamicStyles, dynamicKey)
+  const dynamicConfig = dynamicStyles[dynamicKey] || {}
 
   // See if the config property is defined
   const isDynamicClass = Boolean(
     Array.isArray(dynamicConfig)
-      ? dynamicConfig.map(item => dlv(item, 'config'))
-      : dlv(dynamicStyles, [dynamicKey, 'config'])
+      ? dynamicConfig.map(item => get(item, 'config'))
+      : get(dynamicStyles, [dynamicKey, 'config'])
   )
+
   return { isDynamicClass, dynamicConfig, dynamicKey }
 }
 

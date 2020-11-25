@@ -29,7 +29,23 @@ const themeObjectPurple = (
 const themeStringFont = (
   <input
     css={css`
-      fontfamily: ${theme`fontFamily.sans`.join(', ')};
+      font-family: ${theme`fontFamily.sans`};
+    `}
+  />
+)
+
+const themeFirstFromArray = (
+  <input
+    css={css`
+      outline: ${theme`outline.black`};
+    `}
+  />
+)
+
+const themeFontNoLineheight = (
+  <input
+    css={css`
+      outline: ${theme`fontSize.sm`};
     `}
   />
 )
@@ -44,6 +60,14 @@ const themeFunctionStringHeight = (
   <input
     css={css`
       height: ${theme('height.24')};
+    `}
+  />
+)
+
+const themeSquareBrackets = (
+  <input
+    css={css`
+      height: ${theme('spacing[2.5]')};
     `}
   />
 )

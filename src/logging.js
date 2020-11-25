@@ -165,7 +165,7 @@ const themeErrorNotFound = ({ theme, input, trimInput }) => {
 
   const suggestionText = `Try one of these values:\n${formatSuggestions(
     Object.entries(theme).map(([k, v]) => ({
-      target: k,
+      target: k.includes && k.includes('.') ? `[${k}]` : k,
       value: typeof v === 'string' ? v : '...',
     }))
   )}`

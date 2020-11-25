@@ -284,6 +284,21 @@ export default {
   },
   rounded: { prop: 'borderRadius', config: 'borderRadius' },
 
+  // https://tailwindcss.com/docs/ring-opacity
+  'ring-opacity': {
+    prop: '--tw-ring-opacity',
+    config: 'ringOpacity',
+    configFallback: 'opacity',
+  },
+
+  // https://tailwindcss.com/docs/ring-offset-width
+  // https://tailwindcss.com/docs/ring-offset-color
+  'ring-offset': { plugin: 'ringOffset' },
+
+  // https://tailwindcss.com/docs/ring-width
+  // https://tailwindcss.com/docs/ring-color
+  ring: { plugin: 'ring' },
+
   /**
    * ===========================================
    * Tables
@@ -310,7 +325,7 @@ export default {
    */
 
   // https://tailwindcss.com/docs/transition-property
-  transition: { prop: 'transitionProperty', config: 'transitionProperty' },
+  transition: { plugin: 'transition' },
 
   // https://tailwindcss.com/docs/transition-duration
   duration: { prop: 'transitionDuration', config: 'transitionDuration' },
