@@ -28,9 +28,13 @@ import getUserPluginData from './utils/getUserPluginData'
 import { debugPlugins } from './logging'
 
 const getPackageUsed = ({ config: { preset }, cssImport, styledImport }) => ({
-  isEmotion: preset === 'emotion' || cssImport.from.includes('emotion'),
+  isEmotion:
+    preset === 'emotion' ||
+    styledImport.from.includes('emotion') ||
+    cssImport.from.includes('emotion'),
   isStyledComponents:
     preset === 'styled-components' ||
+    styledImport.from.includes('styled-components') ||
     cssImport.from.includes('styled-components'),
   isGoober:
     preset === 'goober' ||

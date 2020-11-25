@@ -4,7 +4,7 @@ import userPresets from './../config/userPresets'
 
 const getCssConfig = config => {
   const usedConfig =
-    userPresets[config.preset] || (config.css && config) || userPresets.emotion
+    (config.css && config) || userPresets[config.preset] || userPresets.emotion
 
   if (typeof usedConfig.css === 'string') {
     return { import: 'css', from: usedConfig.css }
