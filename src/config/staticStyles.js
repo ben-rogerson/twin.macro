@@ -49,10 +49,6 @@ export default {
   'float-right': { output: { float: 'right' } },
   'float-left': { output: { float: 'left' } },
   'float-none': { output: { float: 'none' } },
-  clearfix: {
-    output: { '::after': { content: '""', display: 'table', clear: 'both' } },
-    config: false,
-  },
 
   // https://tailwindcss.com/docs/clear
   'clear-left': { output: { clear: 'left' } },
