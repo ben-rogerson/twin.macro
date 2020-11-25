@@ -30,5 +30,5 @@ export default ({
 
   const innerStyles = { [cssVariableKey]: 0, ...styleKey }
 
-  return { '> :not(template) ~ :not(template)': innerStyles }
+  return { '> :not([hidden]) ~ :not([hidden])': innerStyles }
 }

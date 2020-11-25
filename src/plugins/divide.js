@@ -14,7 +14,7 @@ const handleColor = ({ configValue, important, disableColorVariables }) => {
     important,
   })
 
-  return { '> :not(template) ~ :not(template)': borderColor }
+  return { '> :not([hidden]) ~ :not([hidden])': borderColor }
 }
 
 const handleOpacity = ({ configValue }) => {
@@ -22,9 +22,7 @@ const handleOpacity = ({ configValue }) => {
   if (!opacity) return
 
   return {
-    '> :not(template) ~ :not(template)': {
-      '--tw-divide-opacity': `${opacity}`,
-    },
+    '> :not([hidden]) ~ :not([hidden])': { '--divide-opacity': `${opacity}` },
   }
 }
 
@@ -50,7 +48,7 @@ const handleWidth = ({
 
   const innerStyles = { [cssVariableKey]: 0, ...styleKey }
 
-  return { '> :not(template) ~ :not(template)': innerStyles }
+  return { '> :not([hidden]) ~ :not([hidden])': innerStyles }
 }
 
 export default properties => {
