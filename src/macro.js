@@ -60,6 +60,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   state.configExists = configExists
   state.config = configTailwind
   state.configTwin = configTwin
+  state.globalStyles = new Map()
 
   state.tailwindConfigIdentifier = generateUid('tailwindConfig', program)
   state.tailwindUtilsIdentifier = generateUid('tailwindUtils', program)

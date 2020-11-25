@@ -30,10 +30,10 @@ const addGlobalCssImport = ({ identifier, t, program }) =>
     identifier,
   })
 
-const generateTaggedTemplateExpression = ({ identifier, t, keyframes }) => {
+const generateTaggedTemplateExpression = ({ identifier, t, globalStyles }) => {
   const backtickStyles = t.templateElement({
-    raw: `${keyframes}`,
-    cooked: `${keyframes}`,
+    raw: `${globalStyles}`,
+    cooked: `${globalStyles}`,
   })
   const ttExpression = t.taggedTemplateExpression(
     identifier,
@@ -42,32 +42,32 @@ const generateTaggedTemplateExpression = ({ identifier, t, keyframes }) => {
   return ttExpression
 }
 
-const getGlobalDeclarationTte = ({ t, stylesUid, globalUid, keyframes }) =>
+const getGlobalDeclarationTte = ({ t, stylesUid, globalUid, globalStyles }) =>
   t.variableDeclaration('const', [
     t.variableDeclarator(
       globalUid,
       generateTaggedTemplateExpression({
         t,
         identifier: stylesUid,
-        keyframes,
+        globalStyles,
       })
     ),
   ])
 
-const getGlobalTte = ({ t, stylesUid, keyframes }) =>
-  generateTaggedTemplateExpression({ t, identifier: stylesUid, keyframes })
+const getGlobalTte = ({ t, stylesUid, globalStyles }) =>
+  generateTaggedTemplateExpression({ t, identifier: stylesUid, globalStyles })
 
 const getGlobalDeclarationProperty = ({
   t,
   stylesUid,
   globalUid,
   state,
-  keyframes,
+  globalStyles,
 }) => {
   const ttExpression = generateTaggedTemplateExpression({
     t,
     identifier: state.cssIdentifier,
-    keyframes,
+    globalStyles,
   })
 
   const openingElement = t.jsxOpeningElement(
@@ -95,7 +95,7 @@ const getGlobalDeclarationProperty = ({
   return code
 }
 
-const getKeyframesString = keyframes =>
+const makeKeyframesFromConfig = keyframes =>
   Object.entries(keyframes)
     .map(
       ([name, frames]) => `
@@ -112,6 +112,8 @@ const getKeyframesString = keyframes =>
         .join('')}}`
     )
     .join('')
+
+const makeGlobalStylesString = styles => Array.from(styles).join(' ') // eslint-disable-line unicorn/prefer-spread
 
 const handleGlobalStylesFunction = ({
   references,
@@ -136,18 +138,20 @@ const handleGlobalStylesFunction = ({
     )
   )
 
-  const themeKeyframes = state.config.theme.keyframes || {}
-  const keyframes = getKeyframesString(themeKeyframes)
-
   const globalUid = generateUid('GlobalStyles', program)
   const stylesUid = generateUid('globalImport', program)
+
+  const globalStyles = [
+    makeKeyframesFromConfig(state.config.theme.keyframes || {}),
+    makeGlobalStylesString(state.globalStyles.values() || ''),
+  ].join(`\n`)
 
   if (state.isStyledComponents) {
     const declaration = getGlobalDeclarationTte({
       t,
       globalUid,
       stylesUid,
-      keyframes,
+      globalStyles,
     })
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
@@ -159,7 +163,7 @@ const handleGlobalStylesFunction = ({
       globalUid,
       stylesUid,
       state,
-      keyframes,
+      globalStyles,
     })
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
@@ -167,7 +171,7 @@ const handleGlobalStylesFunction = ({
   }
 
   if (state.isGoober) {
-    const declaration = getGlobalTte({ t, stylesUid, keyframes })
+    const declaration = getGlobalTte({ t, stylesUid, globalStyles })
     program.unshiftContainer('body', declaration)
     parentPath.remove()
   }

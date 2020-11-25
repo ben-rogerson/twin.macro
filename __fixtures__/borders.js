@@ -337,16 +337,203 @@ tw`divide-double`
 tw`divide-none`
 
 // https://tailwindcss.com/docs/ring-width
-// ...
+tw`ring-0`
+tw`ring-1`
+tw`ring-2`
+tw`ring-4`
+tw`ring-8`
+tw`ring`
+tw`ring-inset`
 
 // https://tailwindcss.com/docs/ring-color
-// ...
+tw`ring-transparent`
+tw`ring-current`
+tw`ring-black`
+tw`ring-white`
+tw`ring-gray-50`
+tw`ring-gray-100`
+tw`ring-gray-200`
+tw`ring-gray-300`
+tw`ring-gray-400`
+tw`ring-gray-500`
+tw`ring-gray-600`
+tw`ring-gray-700`
+tw`ring-gray-800`
+tw`ring-gray-900`
+tw`ring-red-50`
+tw`ring-red-100`
+tw`ring-red-200`
+tw`ring-red-300`
+tw`ring-red-400`
+tw`ring-red-500`
+tw`ring-red-600`
+tw`ring-red-700`
+tw`ring-red-800`
+tw`ring-red-900`
+tw`ring-yellow-50`
+tw`ring-yellow-100`
+tw`ring-yellow-200`
+tw`ring-yellow-300`
+tw`ring-yellow-400`
+tw`ring-yellow-500`
+tw`ring-yellow-600`
+tw`ring-yellow-700`
+tw`ring-yellow-800`
+tw`ring-yellow-900`
+tw`ring-green-50`
+tw`ring-green-100`
+tw`ring-green-200`
+tw`ring-green-300`
+tw`ring-green-400`
+tw`ring-green-500`
+tw`ring-green-600`
+tw`ring-green-700`
+tw`ring-green-800`
+tw`ring-green-900`
+tw`ring-blue-50`
+tw`ring-blue-100`
+tw`ring-blue-200`
+tw`ring-blue-300`
+tw`ring-blue-400`
+tw`ring-blue-500`
+tw`ring-blue-600`
+tw`ring-blue-700`
+tw`ring-blue-800`
+tw`ring-blue-900`
+tw`ring-indigo-50`
+tw`ring-indigo-100`
+tw`ring-indigo-200`
+tw`ring-indigo-300`
+tw`ring-indigo-400`
+tw`ring-indigo-500`
+tw`ring-indigo-600`
+tw`ring-indigo-700`
+tw`ring-indigo-800`
+tw`ring-indigo-900`
+tw`ring-purple-50`
+tw`ring-purple-100`
+tw`ring-purple-200`
+tw`ring-purple-300`
+tw`ring-purple-400`
+tw`ring-purple-500`
+tw`ring-purple-600`
+tw`ring-purple-700`
+tw`ring-purple-800`
+tw`ring-purple-900`
+tw`ring-pink-50`
+tw`ring-pink-100`
+tw`ring-pink-200`
+tw`ring-pink-300`
+tw`ring-pink-400`
+tw`ring-pink-500`
+tw`ring-pink-600`
+tw`ring-pink-700`
+tw`ring-pink-800`
+tw`ring-pink-900`
 
 // https://tailwindcss.com/docs/ring-opacity
-// ...
+tw`ring-opacity-0`
+tw`ring-opacity-5`
+tw`ring-opacity-10`
+tw`ring-opacity-20`
+tw`ring-opacity-25`
+tw`ring-opacity-30`
+tw`ring-opacity-40`
+tw`ring-opacity-50`
+tw`ring-opacity-60`
+tw`ring-opacity-70`
+tw`ring-opacity-75`
+tw`ring-opacity-80`
+tw`ring-opacity-90`
+tw`ring-opacity-95`
+tw`ring-opacity-100`
 
 // https://tailwindcss.com/docs/ring-offset-width
-// ...
+tw`ring-offset-0`
+tw`ring-offset-1`
+tw`ring-offset-2`
+tw`ring-offset-4`
+tw`ring-offset-8`
 
 // https://tailwindcss.com/docs/ring-offset-color
-// ...
+tw`ring-offset-transparent`
+tw`ring-offset-current`
+tw`ring-offset-black`
+tw`ring-offset-white`
+tw`ring-offset-gray-50`
+tw`ring-offset-gray-100`
+tw`ring-offset-gray-200`
+tw`ring-offset-gray-300`
+tw`ring-offset-gray-400`
+tw`ring-offset-gray-500`
+tw`ring-offset-gray-600`
+tw`ring-offset-gray-700`
+tw`ring-offset-gray-800`
+tw`ring-offset-gray-900`
+tw`ring-offset-red-50`
+tw`ring-offset-red-100`
+tw`ring-offset-red-200`
+tw`ring-offset-red-300`
+tw`ring-offset-red-400`
+tw`ring-offset-red-500`
+tw`ring-offset-red-600`
+tw`ring-offset-red-700`
+tw`ring-offset-red-800`
+tw`ring-offset-red-900`
+tw`ring-offset-yellow-50`
+tw`ring-offset-yellow-100`
+tw`ring-offset-yellow-200`
+tw`ring-offset-yellow-300`
+tw`ring-offset-yellow-400`
+tw`ring-offset-yellow-500`
+tw`ring-offset-yellow-600`
+tw`ring-offset-yellow-700`
+tw`ring-offset-yellow-800`
+tw`ring-offset-yellow-900`
+tw`ring-offset-green-50`
+tw`ring-offset-green-100`
+tw`ring-offset-green-200`
+tw`ring-offset-green-300`
+tw`ring-offset-green-400`
+tw`ring-offset-green-500`
+tw`ring-offset-green-600`
+tw`ring-offset-green-700`
+tw`ring-offset-green-800`
+tw`ring-offset-green-900`
+tw`ring-offset-blue-50`
+tw`ring-offset-blue-100`
+tw`ring-offset-blue-200`
+tw`ring-offset-blue-300`
+tw`ring-offset-blue-400`
+tw`ring-offset-blue-500`
+tw`ring-offset-blue-600`
+tw`ring-offset-blue-700`
+tw`ring-offset-blue-800`
+tw`ring-offset-blue-900`
+tw`ring-offset-purple-50`
+tw`ring-offset-purple-100`
+tw`ring-offset-purple-200`
+tw`ring-offset-purple-300`
+tw`ring-offset-purple-400`
+tw`ring-offset-purple-500`
+tw`ring-offset-purple-600`
+tw`ring-offset-purple-700`
+tw`ring-offset-purple-800`
+tw`ring-offset-purple-900`
+tw`ring-offset-pink-50`
+tw`ring-offset-pink-100`
+tw`ring-offset-pink-200`
+tw`ring-offset-pink-300`
+tw`ring-offset-pink-400`
+tw`ring-offset-pink-500`
+tw`ring-offset-pink-600`
+tw`ring-offset-pink-700`
+tw`ring-offset-pink-800`
+tw`ring-offset-pink-900`
+
+// Combined ring classes
+tw`ring ring-inset ring-purple-500 ring-offset-black ring-offset-4 ring-opacity-50`
+tw`ring ring-inset ring-purple-500 ring-offset-black ring-offset-4`
+tw`ring ring-purple-500 ring-offset-black ring-offset-4`
+tw`ring ring-offset-black ring-offset-4`
+tw`ring ring-offset-4`
