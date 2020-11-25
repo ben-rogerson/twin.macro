@@ -701,6 +701,28 @@ export default {
     config: false,
   },
 
+  'transform-gpu': {
+    output: {
+      '--transform-translate-x': '0',
+      '--transform-translate-y': '0',
+      '--transform-rotate': '0',
+      '--transform-skew-x': '0',
+      '--transform-skew-y': '0',
+      '--transform-scale-x': '1',
+      '--transform-scale-y': '1',
+      transform:
+        'translate3d(var(--transform-translate-x), var(--transform-translate-y), 0) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y))',
+    },
+    config: false,
+  },
+
+  'transform-none': {
+    output: {
+      transform: 'none',
+    },
+    config: false,
+  },
+
   /**
    * ===========================================
    * Extras
