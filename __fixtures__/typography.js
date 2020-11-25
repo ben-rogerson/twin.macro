@@ -312,8 +312,10 @@ tw`lowercase`
 tw`capitalize`
 tw`normal-case`
 
-// https://tailwindcss.com/docs/word-break
+// https://tailwindcss.com/docs/text-overflow
 tw`truncate`
+tw`overflow-ellipsis`
+tw`overflow-clip`
 
 // https://tailwindcss.com/docs/vertical-align
 tw`align-baseline`
