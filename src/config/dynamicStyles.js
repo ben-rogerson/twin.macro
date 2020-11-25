@@ -310,7 +310,7 @@ export default {
    */
 
   // https://tailwindcss.com/docs/transition-property
-  transition: { prop: 'transitionProperty', config: 'transitionProperty' },
+  transition: { plugin: 'transition' },
 
   // https://tailwindcss.com/docs/transition-duration
   duration: { prop: 'transitionDuration', config: 'transitionDuration' },
