@@ -2,7 +2,7 @@ import { parseTte, replaceWithLocation } from './../macroHelpers'
 import { throwIf } from './../utils'
 import { logGeneralError, logStylePropertyError } from './../logging'
 /* eslint-disable-next-line unicorn/prevent-abbreviations */
-import { addDebugPropToPath, addDebugPropToExistingPath } from './debug'
+import { addDataTwPropToPath, addDataTwPropToExistingPath } from './debug'
 import getStyles from './../getStyles'
 
 const handleTwProperty = ({ path, t, state }) => {
@@ -53,7 +53,7 @@ const handleTwProperty = ({ path, t, state }) => {
       expr.replaceWith(t.arrayExpression([expr.node, styles]))
     }
 
-    addDebugPropToExistingPath({
+    addDataTwPropToExistingPath({
       t,
       attributes,
       rawClasses,
@@ -64,7 +64,7 @@ const handleTwProperty = ({ path, t, state }) => {
     path.replaceWith(
       t.jsxAttribute(t.jsxIdentifier('css'), t.jsxExpressionContainer(styles))
     )
-    addDebugPropToPath({ t, attributes, rawClasses, path, state })
+    addDataTwPropToPath({ t, attributes, rawClasses, path, state })
   }
 }
 
@@ -96,7 +96,7 @@ const handleTwFunction = ({ references, state, t }) => {
     const jsxPath = path.findParent(p => p.isJSXOpeningElement())
     if (jsxPath) {
       const attributes = jsxPath.get('attributes')
-      addDebugPropToExistingPath({
+      addDataTwPropToExistingPath({
         t,
         attributes,
         rawClasses,

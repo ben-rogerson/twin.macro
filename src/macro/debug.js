@@ -1,12 +1,12 @@
 /* eslint-disable-next-line unicorn/prevent-abbreviations */
-const addDebugPropToPath = ({ t, attributes, rawClasses, path, state }) => {
-  if (state.isProd || !state.debugProp) return
+const addDataTwPropToPath = ({ t, attributes, rawClasses, path, state }) => {
+  if (state.isProd || !state.configTwin.dataTwProp) return
 
   // Remove the existing debug attribute if you happen to have it
-  const debugProperty = attributes.filter(
+  const dataTwProperty = attributes.filter(
     p => p.node && p.node.name && p.node.name.name === 'data-tw'
   )
-  debugProperty.forEach(path => path.remove())
+  dataTwProperty.forEach(path => path.remove())
 
   // Add the attribute
   path.insertAfter(
@@ -15,30 +15,30 @@ const addDebugPropToPath = ({ t, attributes, rawClasses, path, state }) => {
 }
 
 /* eslint-disable-next-line unicorn/prevent-abbreviations */
-const addDebugPropToExistingPath = ({
+const addDataTwPropToExistingPath = ({
   t,
   attributes,
   rawClasses,
   path,
   state,
 }) => {
-  if (state.isProd || !state.debugProp) return
+  if (state.isProd || !state.configTwin.dataTwProp) return
 
   // Append to the existing debug attribute
-  const debugProperty = attributes.find(
+  const dataTwProperty = attributes.find(
     // TODO: Use @babel/plugin-proposal-optional-chaining
     p => p.node && p.node.name && p.node.name.name === 'data-tw'
   )
-  if (debugProperty) {
+  if (dataTwProperty) {
     try {
       // Existing data-tw
-      if (debugProperty.node.value.value) {
-        debugProperty.node.value.value = `${debugProperty.node.value.value} | ${rawClasses}`
+      if (dataTwProperty.node.value.value) {
+        dataTwProperty.node.value.value = `${dataTwProperty.node.value.value} | ${rawClasses}`
         return
       }
 
       // New data-tw
-      debugProperty.node.value.expression.value = `${debugProperty.node.value.expression.value} | ${rawClasses}`
+      dataTwProperty.node.value.expression.value = `${dataTwProperty.node.value.expression.value} | ${rawClasses}`
     } catch (_) {}
 
     return
@@ -54,4 +54,4 @@ const addDebugPropToExistingPath = ({
   )
 }
 
-export { addDebugPropToPath, addDebugPropToExistingPath }
+export { addDataTwPropToPath, addDataTwPropToExistingPath }

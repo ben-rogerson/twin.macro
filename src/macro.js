@@ -42,6 +42,15 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   validateImports(references)
 
   const program = state.file.path
+
+  /* eslint-disable-next-line unicorn/prevent-abbreviations */
+  const isDev =
+    process.env.NODE_ENV === 'development' ||
+    process.env.NODE_ENV === 'dev' ||
+    false
+  state.isDev = isDev
+  state.isProd = !isDev
+
   const { configExists, configTailwind } = getConfigTailwindProperties(
     state,
     config
@@ -64,15 +73,6 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   state.tailwindConfigIdentifier = generateUid('tailwindConfig', program)
   state.tailwindUtilsIdentifier = generateUid('tailwindUtils', program)
 
-  /* eslint-disable-next-line unicorn/prevent-abbreviations */
-  const isDev =
-    process.env.NODE_ENV === 'development' ||
-    process.env.NODE_ENV === 'dev' ||
-    false
-  state.isDev = isDev
-  state.isProd = !isDev
-
-  state.debugProp = isDev ? Boolean(config.debugProp) : false
   state.debug = isDev ? Boolean(config.debug) : false
 
   state.userPluginData = getUserPluginData({ config: state.config })
