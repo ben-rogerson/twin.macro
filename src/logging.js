@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import getSuggestions from './suggestions'
-import { checkDarkLightClasses } from './darkLightMode'
+import { throwIf } from './utils'
 
 const color = {
   error: chalk.hex('#ff8383'),
@@ -38,7 +38,7 @@ const logNoVariant = (variant, validVariants) =>
             )
             .join(color.subdued(' / '))}`
       )
-      .join('\n\n')}`
+      .join('\n\n')}\n\nRead more at https://twinredirect.page.link/variantList`
   )
 
 const logNotAllowed = ({ className, error }) =>
@@ -115,6 +115,16 @@ const logDeeplyNestedClass = properties => {
 
   return text
 }
+
+const checkDarkLightClasses = className =>
+  throwIf(
+    ['dark', 'light'].includes(className),
+    () =>
+      `\n\n"${className}" must be added as className:\n\n${logBadGood(
+        `tw\`${className}\``,
+        `<div className="${className}">`
+      )}\n\nRead more at https://twinredirect.page.link/darkLightMode\n`
+  )
 
 const errorSuggestions = properties => {
   const {

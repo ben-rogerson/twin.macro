@@ -4,6 +4,17 @@ import { stringifyScreen } from './screens'
 import { logNoVariant, logGeneralError } from './logging'
 import { variantConfig } from './config'
 import { get } from './utils'
+import {
+  variantDarkMode,
+  variantLightMode,
+  prefixDarkLightModeClass,
+} from './darkLightMode'
+
+const fullVariantConfig = variantConfig({
+  variantDarkMode,
+  variantLightMode,
+  prefixDarkLightModeClass,
+})
 
 /**
  * Validate variants against the variants config key
@@ -21,8 +32,8 @@ const validateVariants = ({ variants, state, ...rest }) => {
         return stringifyScreen(state.config, variant)
       }
 
-      if (variantConfig[variant]) {
-        let foundVariant = variantConfig[variant]
+      if (fullVariantConfig[variant]) {
+        let foundVariant = fullVariantConfig[variant]
 
         if (typeof foundVariant === 'function') {
           const context = {
@@ -44,7 +55,7 @@ const validateVariants = ({ variants, state, ...rest }) => {
 
       const validVariants = {
         ...(screenNames.length > 0 && { 'Screen breakpoints': screenNames }),
-        'Built-in variants': Object.keys(variantConfig),
+        'Built-in variants': Object.keys(fullVariantConfig),
       }
       throw new MacroError(logNoVariant(variant, validVariants))
     })

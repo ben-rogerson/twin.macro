@@ -1,5 +1,5 @@
-import { staticStyles, dynamicStyles } from './../config'
-import { get } from './misc'
+import { staticStyles, dynamicStyles } from './config'
+import { get } from './utils/misc'
 
 const isStaticClass = className => {
   const staticConfig = get(staticStyles, [className, 'config'])

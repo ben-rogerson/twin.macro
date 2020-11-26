@@ -1,5 +1,6 @@
 import deepMerge from 'lodash.merge'
-import { throwIf, isEmpty, getProperties, getTheme } from './utils'
+import { throwIf, isEmpty, getTheme } from './utils'
+import getProperties from './getProperties'
 import getPieces from './utils/getPieces'
 import { astify } from './macroHelpers'
 import doPrechecks, { precheckGroup } from './prechecks'
