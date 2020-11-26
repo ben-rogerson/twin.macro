@@ -69,6 +69,9 @@ function objectExpressionElements(literal, t, spreadType) {
     })
 }
 
+/**
+ * Convert plain js into babel ast
+ */
 function astify(literal, t) {
   if (literal === null) {
     return t.nullLiteral()
@@ -90,12 +93,12 @@ function astify(literal, t) {
 
       return t.stringLiteral(literal)
     default:
-      // TODO: When is the literal an array? It's only an object/string
+      // Assuming literal is an object
+
       if (Array.isArray(literal)) {
         return t.arrayExpression(literal.map(x => astify(x, t)))
       }
 
-      // TODO: This is horrible, clean it up
       try {
         return t.objectExpression(
           objectExpressionElements(literal, t, 'spreadElement')
@@ -154,38 +157,40 @@ const setCssIdentifier = ({ state, path, cssImport }) => {
   })
 }
 
+/**
+ * Parse tagged template arrays (``)
+ */
 function parseTte({ path, types: t, styledIdentifier, state }) {
   const cloneNode = t.cloneNode || t.cloneDeep
+  const tagType = path.node.tag.type
 
   if (
-    path.node.tag.type !== 'Identifier' &&
-    path.node.tag.type !== 'MemberExpression' &&
-    path.node.tag.type !== 'CallExpression'
+    tagType !== 'Identifier' &&
+    tagType !== 'MemberExpression' &&
+    tagType !== 'CallExpression'
   )
     return null
 
+  // Convert *very* basic interpolated variables
   const string = path.get('quasi').evaluate().value
+  // Grab the path location before changing it
   const stringLoc = path.get('quasi').node.loc
 
-  if (path.node.tag.type === 'CallExpression') {
+  if (tagType === 'CallExpression') {
     replaceWithLocation(
       path.get('tag').get('callee'),
       cloneNode(styledIdentifier)
     )
     state.shouldImportStyled = true
-  } else if (path.node.tag.type === 'MemberExpression') {
+  } else if (tagType === 'MemberExpression') {
     replaceWithLocation(
       path.get('tag').get('object'),
       cloneNode(styledIdentifier)
     )
-
     state.shouldImportStyled = true
   }
 
-  if (
-    path.node.tag.type === 'CallExpression' ||
-    path.node.tag.type === 'MemberExpression'
-  ) {
+  if (tagType === 'CallExpression' || tagType === 'MemberExpression') {
     replaceWithLocation(
       path,
       t.callExpression(cloneNode(path.node.tag), [
@@ -196,6 +201,7 @@ function parseTte({ path, types: t, styledIdentifier, state }) {
     path = path.get('arguments')[0]
   }
 
+  // Restore the original path location
   path.node.loc = stringLoc
 
   return { string, path }

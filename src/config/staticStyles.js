@@ -308,14 +308,12 @@ export default {
       WebkitFontSmoothing: 'antialiased',
       MozOsxFontSmoothing: 'grayscale',
     },
-    config: false,
   },
   'subpixel-antialiased': {
     output: {
       WebkitFontSmoothing: 'auto',
       MozOsxFontSmoothing: 'auto',
     },
-    config: false,
   },
 
   // https://tailwindcss.com/docs/font-style
@@ -441,7 +439,6 @@ export default {
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
     },
-    config: false,
   },
   'overflow-ellipsis': { output: { textOverflow: 'ellipsis' } },
   'overflow-clip': { output: { textOverflow: 'clip' } },
@@ -702,7 +699,6 @@ export default {
       transform:
         'translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
     },
-    config: false,
   },
 
   'transform-gpu': {
@@ -717,14 +713,12 @@ export default {
       transform:
         'translate3d(var(--transform-translate-x), var(--transform-translate-y), 0) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y))',
     },
-    config: false,
   },
 
   'transform-none': {
     output: {
       transform: 'none',
     },
-    config: false,
   },
 
   /**
@@ -735,6 +729,5 @@ export default {
 
   content: {
     output: { content: '""' },
-    config: false,
   },
 }

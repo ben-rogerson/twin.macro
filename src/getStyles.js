@@ -103,7 +103,7 @@ export default (classes, t, state) => {
       pieces.hasVariants ? addVariants({ results, style, pieces }) : style
     )
 
-    state.debug && debug(classNameRaw, style)
+    state.configTwin.debug && debug(classNameRaw, result)
 
     return result
   }, {})

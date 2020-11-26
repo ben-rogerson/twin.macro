@@ -2,15 +2,14 @@
 const configDefaultsStyledComponents = { autoCssProp: true } // Automates the import of styled-components when you use their css prop
 const configDefaultsGoober = { sassyPseudo: true } // Sets selectors like hover to &:hover
 
-const configTwinDefaults = ({ isStyledComponents, isGoober, isDev }) => ({
+const configDefaultsTwin = ({ isStyledComponents, isGoober, isDev }) => ({
   allowStyleProp: false, // Allows styles within style="blah" without throwing an error
   autoCssProp: false, // Automates the import of styled-components when you use their css prop
   dataTwProp: isDev, // During development, add a data-tw="" prop containing your tailwind classes for backtracing
   disableColorVariables: false, // Disable css variables in colors (except gradients) to support older browsers/react native
   hasSuggestions: true, // Switch suggestions on/off when you use a tailwind class that's not found
   sassyPseudo: false, // Sets selectors like hover to &:hover
-  // ...
-  // TODO: Add the rest of the twin config items here (ongoing migration)
+  debug: false, // Show the output of the classes twin converts
   ...(isStyledComponents && configDefaultsStyledComponents),
   ...(isGoober && configDefaultsGoober),
 })

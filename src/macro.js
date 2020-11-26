@@ -78,8 +78,6 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   state.tailwindConfigIdentifier = generateUid('tailwindConfig', program)
   state.tailwindUtilsIdentifier = generateUid('tailwindUtils', program)
 
-  state.debug = isDev ? Boolean(config.debug) : false
-
   state.userPluginData = getUserPluginData({ config: state.config })
   isDev &&
     Boolean(config.debugPlugins) &&
