@@ -452,26 +452,26 @@ const _GlobalStyles = () => (
   <_globalImport
     styles={_css\`
       @keyframes spin {
-          to {
+          to { 
             transform: rotate(360deg);
           }
         }
       @keyframes ping {
-          75%, 100% {
+          75%, 100% { 
             transform: scale(2); opacity: 0;
           }
         }
       @keyframes pulse {
-          50% {
+          50% { 
             opacity: .5;
           }
         }
       @keyframes bounce {
-          0%, 100% {
+          0%, 100% { 
             transform: translateY(-25%); animationTimingFunction: cubic-bezier(0.8,0,1,1);
           }
-
-          50% {
+        
+          50% { 
             transform: none; animationTimingFunction: cubic-bezier(0,0,0.2,1);
           }
         }
@@ -1804,6 +1804,24 @@ const Component4 = () => <div tw="uppercase" css={[tw\`flex\`]} />
 
 const Component5 = () => <div css={[tw\`flex\`]} tw="uppercase" />
 
+const Component6 = () => (
+  <div
+    tw="uppercase"
+    css={\`
+      color: red;
+    \`}
+  />
+)
+
+const Component7 = () => (
+  <div
+    css={\`
+      color: red;
+    \`}
+    tw="uppercase"
+  />
+)
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -1862,6 +1880,32 @@ const Component5 = () => (
       {
         display: 'flex',
       },
+      {
+        textTransform: 'uppercase',
+      },
+    ]}
+  />
+)
+
+const Component6 = () => (
+  <div
+    css={[
+      {
+        textTransform: 'uppercase',
+      },
+      \`
+      color: red;
+    \`,
+    ]}
+  />
+)
+
+const Component7 = () => (
+  <div
+    css={[
+      \`
+      color: red;
+    \`,
       {
         textTransform: 'uppercase',
       },

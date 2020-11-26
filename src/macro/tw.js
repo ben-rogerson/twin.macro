@@ -31,46 +31,66 @@ const handleTwProperty = ({ path, t, state }) => {
 
   const jsxPath = path.findParent(p => p.isJSXOpeningElement())
   const attributes = jsxPath.get('attributes')
-  const attributeList = attributes.map(p => p.node.name && p.node.name.name)
   const cssAttributes = attributes.filter(
     p => p.node.name && p.node.name.name === 'css'
   )
 
-  if (cssAttributes.length > 0) {
-    path.remove()
-    const expr = cssAttributes[0].get('value').get('expression')
-    if (expr.isArrayExpression()) {
-      // Maintain the ordering of jsx props
-      // <div css={[tw`mt-3`]} tw="block" />
-      const shouldPush =
-        attributeList.indexOf('tw') > attributeList.indexOf('css')
-      if (shouldPush) {
-        expr.pushContainer('elements', styles)
-      } else {
-        expr.unshiftContainer('elements', styles)
-      }
-    } else {
-      throwIf(!expr.node, () =>
-        logGeneralError(
-          `An empty css prop (css="") isn’t supported alongside the tw prop (tw="...")`
-        )
-      )
-      expr.replaceWith(t.arrayExpression([expr.node, styles]))
-    }
-
-    addDataTwPropToExistingPath({
-      t,
-      attributes,
-      rawClasses,
-      path: jsxPath,
-      state,
-    })
-  } else {
+  if (cssAttributes.length === 0) {
+    // Replace the tw prop with the css prop
     path.replaceWith(
       t.jsxAttribute(t.jsxIdentifier('css'), t.jsxExpressionContainer(styles))
     )
     addDataTwPropToPath({ t, attributes, rawClasses, path, state })
+    return
   }
+
+  const attributeList = attributes.map(p => p.node.name && p.node.name.name)
+
+  path.remove() // remove the tw prop
+
+  const expr = cssAttributes[0].get('value').get('expression')
+
+  const hasCssFirst = attributeList.indexOf('tw') > attributeList.indexOf('css')
+
+  if (expr.isArrayExpression()) {
+    // css prop is an array
+    // <div css={[ ... ]} tw="..." />
+    if (hasCssFirst) {
+      expr.pushContainer('elements', styles)
+    } else {
+      expr.unshiftContainer('elements', styles)
+    }
+  } else {
+    // css prop is either:
+    // TemplateLiteral
+    // <div css={`...`} tw="..." />
+    // or an ObjectExpression
+    // <div css={{ ... }} tw="..." />
+    // or ArrowFunctionExpression/FunctionExpression
+    // <div css={() => (...)} tw="..." />
+
+    const cssProperty = expr.node
+
+    throwIf(!cssProperty, () =>
+      logGeneralError(
+        `An empty css prop (css="") isn’t supported alongside the tw prop (tw="...")`
+      )
+    )
+
+    expr.replaceWith(
+      t.arrayExpression(
+        hasCssFirst ? [cssProperty, styles] : [styles, cssProperty]
+      )
+    )
+  }
+
+  addDataTwPropToExistingPath({
+    t,
+    attributes,
+    rawClasses,
+    path: jsxPath,
+    state,
+  })
 }
 
 const handleTwFunction = ({ references, state, t }) => {
