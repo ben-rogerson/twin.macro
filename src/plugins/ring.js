@@ -8,25 +8,20 @@ function safeCall(callback, defaultValue) {
   }
 }
 
-export const addGlobalWidthStyles = ({ theme, globalStyles }) => {
-  if (globalStyles.has('ring')) return
-
+export const globalRingStyles = ({ theme }) => {
   const ringColorDefault = (([r, g, b]) =>
-    `rgba(${r}, ${g}, ${b}, ${theme('ringOpacity.DEFAULT') || '0.5'})`)(
-    safeCall(() => toRgba(theme('ringColor.DEFAULT')), ['147', '197', '253'])
+    `rgba(${r}, ${g}, ${b}, ${theme`ringOpacity.DEFAULT` || '0.5'})`)(
+    safeCall(() => toRgba(theme`ringColor.DEFAULT`), ['147', '197', '253'])
   )
 
-  globalStyles.set(
-    'ring',
-    `* {
-        --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
-        --tw-ring-offset-width: 0px;
-        --tw-ring-offset-color: #fff;
-        --tw-ring-color: ${ringColorDefault};
-        --tw-ring-offset-shadow: 0 0 #0000;
-        --tw-ring-shadow: 0 0 #0000;
-      }`
-  )
+  return `* {
+    --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: ${ringColorDefault};
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+  }`
 }
 
 const handleWidth = ({ configValue, important }) => {
@@ -64,7 +59,6 @@ export default properties => {
     theme,
     match,
     getConfigValue,
-    globalStyles,
     configTwin: { disableColorVariables },
     errors: { errorSuggestions },
     pieces: { important },
@@ -76,10 +70,7 @@ export default properties => {
   if (classValue === 'inset') return { '--tw-ring-inset': 'inset' }
 
   const width = handleWidth({ configValue, important })
-  if (width) {
-    addGlobalWidthStyles({ theme, globalStyles })
-    return width
-  }
+  if (width) return width
 
   const color = handleColor({ configValue, important, disableColorVariables })
   if (color) return color

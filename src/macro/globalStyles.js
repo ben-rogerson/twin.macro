@@ -1,9 +1,10 @@
 import { addImport, generateUid } from '../macroHelpers'
-import { throwIf } from '../utils'
+import { throwIf, getTheme } from '../utils'
 import { logGeneralError } from './../logging'
 import userPresets from './../config/userPresets'
+import globalStyles from './../config/globalStyles'
 
-const getGlobalStylesConfig = config => {
+const getGlobalConfig = config => {
   const usedConfig =
     (config.global && config) ||
     userPresets[config.preset] ||
@@ -12,13 +13,13 @@ const getGlobalStylesConfig = config => {
 }
 
 const addGlobalStylesImport = ({ program, t, identifier, config }) => {
-  const globalStyleConfig = getGlobalStylesConfig(config)
+  const globalConfig = getGlobalConfig(config)
   return addImport({
     types: t,
     program,
     identifier,
-    name: globalStyleConfig.import,
-    mod: globalStyleConfig.from,
+    name: globalConfig.import,
+    mod: globalConfig.from,
   })
 }
 
@@ -30,10 +31,10 @@ const addGlobalCssImport = ({ identifier, t, program }) =>
     identifier,
   })
 
-const generateTaggedTemplateExpression = ({ identifier, t, globalStyles }) => {
+const generateTaggedTemplateExpression = ({ identifier, t, styles }) => {
   const backtickStyles = t.templateElement({
-    raw: `${globalStyles}`,
-    cooked: `${globalStyles}`,
+    raw: `${styles}`,
+    cooked: `${styles}`,
   })
   const ttExpression = t.taggedTemplateExpression(
     identifier,
@@ -42,32 +43,32 @@ const generateTaggedTemplateExpression = ({ identifier, t, globalStyles }) => {
   return ttExpression
 }
 
-const getGlobalDeclarationTte = ({ t, stylesUid, globalUid, globalStyles }) =>
+const getGlobalDeclarationTte = ({ t, stylesUid, globalUid, styles }) =>
   t.variableDeclaration('const', [
     t.variableDeclarator(
       globalUid,
       generateTaggedTemplateExpression({
         t,
         identifier: stylesUid,
-        globalStyles,
+        styles,
       })
     ),
   ])
 
-const getGlobalTte = ({ t, stylesUid, globalStyles }) =>
-  generateTaggedTemplateExpression({ t, identifier: stylesUid, globalStyles })
+const getGlobalTte = ({ t, stylesUid, styles }) =>
+  generateTaggedTemplateExpression({ t, identifier: stylesUid, styles })
 
 const getGlobalDeclarationProperty = ({
   t,
   stylesUid,
   globalUid,
   state,
-  globalStyles,
+  styles,
 }) => {
   const ttExpression = generateTaggedTemplateExpression({
     t,
     identifier: state.cssIdentifier,
-    globalStyles,
+    styles,
   })
 
   const openingElement = t.jsxOpeningElement(
@@ -95,26 +96,6 @@ const getGlobalDeclarationProperty = ({
   return code
 }
 
-const makeKeyframesFromConfig = keyframes =>
-  Object.entries(keyframes)
-    .map(
-      ([name, frames]) => `
-      @keyframes ${name} {${Object.entries(frames)
-        .map(
-          ([offset, styles]) => `
-          ${offset} { 
-            ${Object.entries(styles)
-              .map(([key, value]) => `${key}: ${value};`)
-              .join(' ')}
-          }
-        `
-        )
-        .join('')}}`
-    )
-    .join('')
-
-const makeGlobalStylesString = styles => Array.from(styles).join(' ') // eslint-disable-line unicorn/prefer-spread
-
 const handleGlobalStylesFunction = ({
   references,
   program,
@@ -141,17 +122,20 @@ const handleGlobalStylesFunction = ({
   const globalUid = generateUid('GlobalStyles', program)
   const stylesUid = generateUid('globalImport', program)
 
-  const globalStyles = [
-    makeKeyframesFromConfig(state.config.theme.keyframes || {}),
-    makeGlobalStylesString(state.globalStyles.values() || ''),
-  ].join(`\n`)
+  // Create the magic theme function
+  const theme = getTheme(state.config.theme)
+
+  // Provide each global style function with context and convert to a string
+  const styles = globalStyles
+    .map(globalFunction => globalFunction({ theme }))
+    .join('\n')
 
   if (state.isStyledComponents) {
     const declaration = getGlobalDeclarationTte({
       t,
       globalUid,
       stylesUid,
-      globalStyles,
+      styles,
     })
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
@@ -163,7 +147,7 @@ const handleGlobalStylesFunction = ({
       globalUid,
       stylesUid,
       state,
-      globalStyles,
+      styles,
     })
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
@@ -171,7 +155,7 @@ const handleGlobalStylesFunction = ({
   }
 
   if (state.isGoober) {
-    const declaration = getGlobalTte({ t, stylesUid, globalStyles })
+    const declaration = getGlobalTte({ t, stylesUid, styles })
     program.unshiftContainer('body', declaration)
     parentPath.remove()
   }

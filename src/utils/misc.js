@@ -54,16 +54,16 @@ function transformThemeValue(themeSection) {
   return value => value
 }
 
-const getTheme = configTheme => (grab, sub, theme = configTheme) => {
-  if (!grab) return theme
-
-  const themeGrab = sub ? [grab, sub] : grab
-
-  const themeSection = themeGrab.split('.')[0]
-  const value = get(theme, themeGrab)
-
-  const result = transformThemeValue(themeSection)(value)
-  return result
+const getTheme = configTheme => grab => {
+  if (!grab) return configTheme
+  // Allow theme`` which gets supplied as an array
+  const value = Array.isArray(grab) ? grab[0] : grab
+  // Get the theme key so we can apply certain rules in transformThemeValue
+  const themeKey = value.split('.')[0]
+  // Get the resulting value from the config
+  const themeValue = get(configTheme, value)
+  // Treat values differently depending on the key name
+  return transformThemeValue(themeKey)(themeValue)
 }
 
 const stripNegative = string =>

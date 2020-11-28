@@ -45,7 +45,7 @@ export default (classes, t, state) => {
 
     const pieces = getPieces({ classNameRaw, state })
     const { className, hasVariants } = pieces
-    const { configTwin, globalStyles } = state
+    const { configTwin } = state
 
     throwIf(!className, () =>
       hasVariants ? logNotFoundVariant({ classNameRaw }) : logNotFoundClass
@@ -79,7 +79,6 @@ export default (classes, t, state) => {
           corePlugin,
           classNameRaw,
           dynamicKey,
-          globalStyles,
         }),
     }
 

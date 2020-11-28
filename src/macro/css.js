@@ -41,8 +41,9 @@ const addCssImport = ({ program, t, cssImport, state }) =>
 const maybeAddCssProperty = ({ program, t }) => {
   let shouldAddImport = true
   let twinImportPath
-  const styledComponentsMacroImport =
-    userPresets['styled-components'].styled.from
+
+  // Intentionally hardcoded
+  const styledComponentsMacroImport = 'styled-components/macro'
 
   // Search for a styled-components import
   // TODO: Merge this traversal into ImportDeclaration traversal for perf
