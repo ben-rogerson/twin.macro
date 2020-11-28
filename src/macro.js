@@ -122,17 +122,23 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   // GlobalStyles import
   handleGlobalStylesFunction({ references, program, t, state, config })
 
-  // Css import
-  updateCssReferences(references.css, state)
-  if (state.isImportingCss) {
-    addCssImport({ program, t, cssImport, state })
-  }
-
   // Styled import
   updateStyledReferences(references.styled, state)
   if (!isEmpty(references.styled)) state.shouldImportStyled = true
   if (state.shouldImportStyled && !state.existingStyledIdentifier) {
     addStyledImport({ program, t, styledImport, state })
+  }
+
+  /**
+   * Css import
+   * Gotchya: The css import must be inserted above the styled import when using
+   * styled-components/macro or issues arrise with the way theme`` styles get
+   * transpiled. I've placed this under the styled import so the
+   * addImport (using unshift container) will add it above correctly.
+   */
+  updateCssReferences(references.css, state)
+  if (state.isImportingCss) {
+    addCssImport({ program, t, cssImport, state })
   }
 
   // Theme import
