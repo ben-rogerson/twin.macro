@@ -17,6 +17,12 @@ const configDefaultsTwin = ({ isStyledComponents, isGoober, isDev }) => ({
 const isBoolean = value => typeof value === 'boolean'
 
 const configTwinValidators = {
+  preset: [
+    value =>
+      value === undefined ||
+      ['styled-components', 'emotion', 'goober'].includes(value),
+    `The config “preset” can only be set to ‘emotion’ (default), ‘styled-components’ or ‘goober’`,
+  ],
   allowStyleProp: [
     isBoolean,
     'The config “allowStyleProp” can only be true or false',
