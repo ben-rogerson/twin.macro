@@ -119,9 +119,8 @@ const getSuggestions = ({
     if (defaultFound) return defaultFound.target
 
     // If there's a high rated suggestion then return it
-    const trumpMatches = dynamicMatches.filter(match => match.rating >= 0.6)
-    if (trumpMatches.length === 1) return trumpMatch.target
-    if (trumpMatches.length > 1) return trumpMatches
+    const trumpMatches = dynamicMatches.filter(match => match.rating >= 0.5)
+    if (trumpMatches) return trumpMatches
 
     return dynamicMatches
   }

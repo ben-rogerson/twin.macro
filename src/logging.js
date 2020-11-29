@@ -166,7 +166,7 @@ const errorSuggestions = properties => {
       ? `Did you mean ${color.highlight(suggestions.shift().target)}?`
       : `Try one of these classes:\n${formatSuggestions(suggestions)}`
 
-  return spaced(`${textNotFound}\n\n${suggestionText}\n`)
+  return spaced(`${textNotFound}\n\n${suggestionText}`)
 }
 
 const themeErrorNotFound = ({ theme, input, trimInput }) => {
