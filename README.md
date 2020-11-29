@@ -148,7 +148,7 @@ tw`hidden!`
 - Prefix with `hocus:` to style hover + focus at the same time
 - Style with extra group states like `group-hocus:` and `group-active:`
 - Style form field states with `checked:`, `invalid:` and `required:`
-- Stack variants for nested styles `sm:hover:`
+- Stack up variants whenever you need them `sm:hover:first:bg-black`
 
 Check out the [full list of variants →](https://github.com/ben-rogerson/twin.macro/blob/master/src/config/variantConfig.js)
 
@@ -198,15 +198,19 @@ Take a look at these examples to get started:
 
 #### Snowpack
 
-[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components) &nbsp; [👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion)
+[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components) &nbsp; [💅 styled-components (TypeScript)](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion-typescript) &nbsp; [👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion)
 
 #### Storybook
 
 [👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-emotion)
 
+#### Monorepo component library
+
+[💅 styled-components (TypeScript)](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-styled-components)
+
 #### Laravel
 
-[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/laravel-styled-components-typescript)
+[💅 styled-components (TypeScript)](https://github.com/ben-rogerson/twin.examples/tree/master/laravel-styled-components-typescript)
 
 #### Vue
 
@@ -214,7 +218,7 @@ Take a look at these examples to get started:
 
 ## Plugins
 
-You can use many Tailwind plugins with twin, like [Tailwind UI](https://tailwindui.com/components) and [Custom forms](https://github.com/tailwindcss/custom-forms) but there’s no compatibility with other plugins that use the `addVariant` or `addBase` functions.
+You can use many Tailwind plugins with twin, like [Tailwind UI](https://tailwindui.com/components) and [Custom forms](https://github.com/tailwindcss/custom-forms) but there’s no compatibility with other plugins that use the `addVariant` or `addBase` functions - those features are coming soon.
 
 [See list of supported plugins →](https://twin-docs.netlify.app/plugin-support)
 
