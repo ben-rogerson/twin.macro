@@ -28,7 +28,7 @@ const matchChildKey = (from, matcher) => {
     if (!matcher.startsWith(key)) continue
 
     const splitMatcher = matcher.split(key)
-    if (isEmpty(splitMatcher[1])) continue
+    if (isEmpty(splitMatcher[1]) || !splitMatcher[1].startsWith('-')) continue
 
     const match = stripNegative(splitMatcher[1])
     const objectMatch = value[match]
