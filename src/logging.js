@@ -147,6 +147,15 @@ const errorSuggestions = properties => {
       return spaced(logDeeplyNestedClass(properties))
     }
 
+    // Provide a suggestion for the default key update
+    if (suggestions.endsWith('-default')) {
+      return spaced(
+        `${textNotFound}\n\n${color.highlight(
+          `To fix this, rename the 'default' key to 'DEFAULT' in your tailwind config or use the class '${className}-default'`
+        )}\nRead more at https://twinredirect.page.link/default-to-DEFAULT`
+      )
+    }
+
     return spaced(
       `${textNotFound}\n\nDid you mean ${color.highlight(suggestions)}?`
     )
@@ -157,7 +166,7 @@ const errorSuggestions = properties => {
       ? `Did you mean ${color.highlight(suggestions.shift().target)}?`
       : `Try one of these classes:\n${formatSuggestions(suggestions)}`
 
-  return spaced(`${textNotFound}\n\n${suggestionText}`)
+  return spaced(`${textNotFound}\n\n${suggestionText}\n`)
 }
 
 const themeErrorNotFound = ({ theme, input, trimInput }) => {

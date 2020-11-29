@@ -110,9 +110,18 @@ const getSuggestions = ({
     const dynamicMatches = matchConfig(properties)
     if (dynamicMatches.length === 0) return getConfig(properties)
 
+    // Check if the user means to select a default class
+    const defaultFound = dynamicMatches.find(
+      match =>
+        match.target.endsWith('-default') &&
+        match.target.replace('-default', '') === className
+    )
+    if (defaultFound) return defaultFound.target
+
     // If there's a high rated suggestion then return it
-    const trumpMatch = dynamicMatches.find(match => match.rating >= 0.6)
-    if (trumpMatch) return trumpMatch.target
+    const trumpMatches = dynamicMatches.filter(match => match.rating >= 0.6)
+    if (trumpMatches.length === 1) return trumpMatch.target
+    if (trumpMatches.length > 1) return trumpMatches
 
     return dynamicMatches
   }
