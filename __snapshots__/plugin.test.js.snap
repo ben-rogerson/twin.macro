@@ -1923,6 +1923,47 @@ const Component7 = () => (
 
 `;
 
+exports[`twin.macro !screens.js: !screens.js 1`] = `
+
+import tw from './macro'
+
+tw\`sm:block\`
+tw\`md:block\`
+tw\`lg:block\`
+tw\`xl:block\`
+tw\`2xl:block\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+;({
+  '@media (min-width: 640px)': {
+    display: 'block',
+  },
+})
+;({
+  '@media (min-width: 768px)': {
+    display: 'block',
+  },
+})
+;({
+  '@media (min-width: 1024px)': {
+    display: 'block',
+  },
+})
+;({
+  '@media (min-width: 1280px)': {
+    display: 'block',
+  },
+})
+;({
+  '@media (min-width: 1536px)': {
+    display: 'block',
+  },
+})
+
+
+`;
+
 exports[`twin.macro !variantGrouping.js: !variantGrouping.js 1`] = `
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
