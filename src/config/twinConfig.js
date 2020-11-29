@@ -46,7 +46,7 @@ const configTwinValidators = {
   dataTwProp: [isBoolean, 'The config “dataTwProp” can only be true or false'],
   debugProp: [
     value => value === undefined,
-    `The “debugProp” option was renamed to “dataTwProp”`,
+    `The “debugProp” option was renamed to “dataTwProp”, please rename it in your twin config`,
   ],
 }
 
