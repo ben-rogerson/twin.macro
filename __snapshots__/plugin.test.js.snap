@@ -17349,15 +17349,15 @@ tw\`-skew-y-1\`
     'translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
-  '--transform-translate-x': '0',
-  '--transform-translate-y': '0',
-  '--transform-rotate': '0',
-  '--transform-skew-x': '0',
-  '--transform-skew-y': '0',
-  '--transform-scale-x': '1',
-  '--transform-scale-y': '1',
+  '--tw-translate-x': '0',
+  '--tw-translate-y': '0',
+  '--tw-rotate': '0',
+  '--tw-skew-x': '0',
+  '--tw-skew-y': '0',
+  '--tw-scale-x': '1',
+  '--tw-scale-y': '1',
   transform:
-    'translate3d(var(--transform-translate-x), var(--transform-translate-y), 0) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y))',
+    'translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   transform: 'none',
@@ -17392,104 +17392,104 @@ tw\`-skew-y-1\`
 }) // https://tailwindcss.com/docs/scale
 
 ;({
-  '--tw-transform-scale-x': '0',
-  '--tw-transform-scale-y': '0',
+  '--tw-scale-x': '0',
+  '--tw-scale-y': '0',
 })
 ;({
-  '--tw-transform-scale-x': '.5',
-  '--tw-transform-scale-y': '.5',
+  '--tw-scale-x': '.5',
+  '--tw-scale-y': '.5',
 })
 ;({
-  '--tw-transform-scale-x': '.75',
-  '--tw-transform-scale-y': '.75',
+  '--tw-scale-x': '.75',
+  '--tw-scale-y': '.75',
 })
 ;({
-  '--tw-transform-scale-x': '.9',
-  '--tw-transform-scale-y': '.9',
+  '--tw-scale-x': '.9',
+  '--tw-scale-y': '.9',
 })
 ;({
-  '--tw-transform-scale-x': '.95',
-  '--tw-transform-scale-y': '.95',
+  '--tw-scale-x': '.95',
+  '--tw-scale-y': '.95',
 })
 ;({
-  '--tw-transform-scale-x': '1',
-  '--tw-transform-scale-y': '1',
+  '--tw-scale-x': '1',
+  '--tw-scale-y': '1',
 })
 ;({
-  '--tw-transform-scale-x': '1.05',
-  '--tw-transform-scale-y': '1.05',
+  '--tw-scale-x': '1.05',
+  '--tw-scale-y': '1.05',
 })
 ;({
-  '--tw-transform-scale-x': '1.1',
-  '--tw-transform-scale-y': '1.1',
+  '--tw-scale-x': '1.1',
+  '--tw-scale-y': '1.1',
 })
 ;({
-  '--tw-transform-scale-x': '1.25',
-  '--tw-transform-scale-y': '1.25',
+  '--tw-scale-x': '1.25',
+  '--tw-scale-y': '1.25',
 })
 ;({
-  '--tw-transform-scale-x': '1.5',
-  '--tw-transform-scale-y': '1.5',
+  '--tw-scale-x': '1.5',
+  '--tw-scale-y': '1.5',
 })
 ;({
-  '--tw-transform-scale-x': '0',
+  '--tw-scale-x': '0',
 })
 ;({
-  '--tw-transform-scale-x': '.5',
+  '--tw-scale-x': '.5',
 })
 ;({
-  '--tw-transform-scale-x': '.75',
+  '--tw-scale-x': '.75',
 })
 ;({
-  '--tw-transform-scale-x': '.9',
+  '--tw-scale-x': '.9',
 })
 ;({
-  '--tw-transform-scale-x': '.95',
+  '--tw-scale-x': '.95',
 })
 ;({
-  '--tw-transform-scale-x': '1',
+  '--tw-scale-x': '1',
 })
 ;({
-  '--tw-transform-scale-x': '1.05',
+  '--tw-scale-x': '1.05',
 })
 ;({
-  '--tw-transform-scale-x': '1.1',
+  '--tw-scale-x': '1.1',
 })
 ;({
-  '--tw-transform-scale-x': '1.25',
+  '--tw-scale-x': '1.25',
 })
 ;({
-  '--tw-transform-scale-x': '1.5',
+  '--tw-scale-x': '1.5',
 })
 ;({
-  '--tw-transform-scale-y': '0',
+  '--tw-scale-y': '0',
 })
 ;({
-  '--tw-transform-scale-y': '.5',
+  '--tw-scale-y': '.5',
 })
 ;({
-  '--tw-transform-scale-y': '.75',
+  '--tw-scale-y': '.75',
 })
 ;({
-  '--tw-transform-scale-y': '.9',
+  '--tw-scale-y': '.9',
 })
 ;({
-  '--tw-transform-scale-y': '.95',
+  '--tw-scale-y': '.95',
 })
 ;({
-  '--tw-transform-scale-y': '1',
+  '--tw-scale-y': '1',
 })
 ;({
-  '--tw-transform-scale-y': '1.05',
+  '--tw-scale-y': '1.05',
 })
 ;({
-  '--tw-transform-scale-y': '1.1',
+  '--tw-scale-y': '1.1',
 })
 ;({
-  '--tw-transform-scale-y': '1.25',
+  '--tw-scale-y': '1.25',
 })
 ;({
-  '--tw-transform-scale-y': '1.5',
+  '--tw-scale-y': '1.5',
 }) // https://tailwindcss.com/docs/rotate
 
 ;({
