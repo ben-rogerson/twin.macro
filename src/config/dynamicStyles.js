@@ -345,10 +345,10 @@ export default {
    */
 
   // https://tailwindcss.com/docs/scale
-  'scale-x': { prop: '--tw-transform-scale-x', config: 'scale' },
-  'scale-y': { prop: '--tw-transform-scale-y', config: 'scale' },
+  'scale-x': { prop: '--tw-scale-x', config: 'scale' },
+  'scale-y': { prop: '--tw-scale-y', config: 'scale' },
   scale: {
-    prop: ['--tw-transform-scale-x', '--tw-transform-scale-y'],
+    prop: ['--tw-scale-x', '--tw-scale-y'],
     config: 'scale',
   },
 
