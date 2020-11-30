@@ -314,7 +314,7 @@ export default {
    */
 
   // https://tailwindcss.com/docs/box-shadow
-  shadow: { prop: 'boxShadow', config: 'boxShadow' },
+  shadow: { plugin: 'boxShadow' },
 
   // https://tailwindcss.com/docs/opacity
   opacity: { prop: 'opacity', config: 'opacity' },
@@ -324,7 +324,7 @@ export default {
    * Transitions
    */
 
-  // https://tailwindcss.com/docs/transition-property
+  // https://tailwindcss.com/docs/transtiion-property
   transition: { plugin: 'transition' },
 
   // https://tailwindcss.com/docs/transition-duration

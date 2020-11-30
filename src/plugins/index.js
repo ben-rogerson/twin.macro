@@ -1,6 +1,7 @@
 export { default as animation } from './animation'
 export { default as bg } from './bg'
 export { default as border } from './border'
+export { default as boxShadow } from './boxShadow'
 export { default as container } from './container'
 export { default as divide } from './divide'
 export { default as gradient } from './gradient'
