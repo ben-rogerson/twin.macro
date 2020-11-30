@@ -66,9 +66,6 @@
     "tailwindcss": "^2.0.1",
     "timsort": "^0.3.0"
   },
-  "peerDependencies": {
-    "@types/react": "^16.9.34"
-  },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.12.1",
     "@emotion/react": "^11.1.1",
