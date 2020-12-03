@@ -4,6 +4,9 @@
     <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/dt/twin.macro.svg" alt="Total Downloads"></a>
     <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/v/twin.macro.svg" alt="Latest Release"></a>
     <a href="https://discord.gg/Xj6x9z7"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
+    <br>
+    <br>
+    <a href="https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/react-styled-components?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&theme=dark">Demo twin on CodeSandbox →</a>
 </p>
 
 ---
@@ -83,10 +86,6 @@ const Input = styled.input`
 `;
 const Component = () => <Input hasHover />;
 ```
-
-## Demo
-
-**[🔥 Demo twin on CodeSandbox →](https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/react-styled-components?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&theme=dark)**
 
 ## How it works
 
