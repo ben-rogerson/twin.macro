@@ -46,10 +46,19 @@ const getUserPluginRules = (rules, screens) =>
       })
     }
 
-    const selector = parseSelector(rule.selector)
+    // Prep comma spaced selectors for parsing
+    const selectorArray = rule.selector.split(',')
+
+    // Validate each selector
+    const selectorParsed = selectorArray
+      .map(s => parseSelector(s))
+      .filter(Boolean)
+
+    // Join them back into a string
+    const selector = selectorParsed.join(',')
 
     // Rule isn't formatted correctly
-    if (selector === null) return null
+    if (!selector) return null
 
     // Combine the children styles
     const values = rule.nodes.reduce(

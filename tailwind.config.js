@@ -90,6 +90,11 @@ module.exports = {
       large: '75%',
     },
     textStyles,
+    aspectRatio: {
+      2: '2',
+      4: '4',
+      6: '6',
+    },
     extend: {
       screens: {
         object: { min: '968px' },
@@ -157,6 +162,7 @@ module.exports = {
       textUnset: false,
       componentPrefix: '',
     }),
+    pluginBaseSelectors,
   ],
 }
 
@@ -332,4 +338,15 @@ function addComponentsTestCssVariableAsRuleProperty({ addComponents }) {
   ]
 
   addComponents(styles)
+}
+
+// tests introducing a config item and using the items as base selectors
+function pluginBaseSelectors({ addComponents, theme, e }) {
+  const values = theme('aspectRatio')
+
+  const baseSelectors = Object.entries(values)
+    .map(([key]) => `.${e(`aspect-test-${key}`)}`)
+    .join(',\n')
+
+  addComponents([{ [baseSelectors]: { content: 'test' } }])
 }

@@ -23,3 +23,7 @@ const addComponentsTestElementPrefixes = tw`prefixes`
 const addComponentsTestElementScreenReplacements = tw`screenies`
 
 const addComponentsResponsiveScoping = tw`prose sm:prose-sm lg:prose-lg xl:prose-xl`
+
+tw`aspect-test-2`
+tw`aspect-test-4`
+tw`aspect-test-6`
