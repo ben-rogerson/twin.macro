@@ -49,7 +49,7 @@ const getUserPluginRules = (rules, screens) =>
     const selector = parseSelector(rule.selector)
 
     // Rule isn't formatted correctly
-    if (selector === null) return null
+    if (!selector) return null
 
     // Combine the children styles
     const values = rule.nodes.reduce(
