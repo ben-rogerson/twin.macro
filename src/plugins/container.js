@@ -64,13 +64,13 @@ export default ({
   const paddingStyles = Array.isArray(padding)
     ? getSpacingFromArray({ values: padding, ...properties('padding') })
     : typeof padding === 'object'
-    ? getSpacingStyle('padding', padding, 'default')
+    ? getSpacingStyle('padding', padding, 'DEFAULT')
     : { paddingLeft: padding, paddingRight: padding }
 
   let marginStyles = Array.isArray(margin)
     ? getSpacingFromArray({ values: margin, ...properties('margin') })
     : typeof margin === 'object'
-    ? getSpacingStyle('margin', margin, 'default')
+    ? getSpacingStyle('margin', margin, 'DEFAULT')
     : { marginLeft: margin, marginRight: margin }
 
   // { center: true } overrides any margin styles
