@@ -9339,6 +9339,10 @@ tw\`z-auto\`
 // https://tailwindcss.com/docs/container
 ;({
   width: '100%',
+  paddingLeft: '1rem',
+  paddingRight: '2rem',
+  marginLeft: '2rem',
+  marginRight: '3rem',
   '@media (min-width: 640px)': {
     maxWidth: '640px',
     paddingLeft: '2rem',
