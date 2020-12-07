@@ -13,13 +13,13 @@ module.exports = {
   theme: {
     container: {
       margin: {
-        default: '1rem',
+        DEFAULT: '1rem',
         sm: ['2rem', '3rem'],
         lg: ['4rem', '5rem'],
         xl: ['5rem', '6rem'],
       },
       padding: {
-        default: '1rem',
+        DEFAULT: '1rem',
         sm: ['2rem', '3rem'],
         lg: ['4rem', '5rem'],
         xl: ['5rem', '6rem'],
