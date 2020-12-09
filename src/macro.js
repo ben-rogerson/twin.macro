@@ -40,6 +40,10 @@ const getPackageUsed = ({ config: { preset }, cssImport, styledImport }) => ({
     preset === 'goober' ||
     styledImport.from.includes('goober') ||
     cssImport.from.includes('goober'),
+  isLinaria:
+    preset === 'linaria' ||
+    styledImport.from.includes('linaria') ||
+    cssImport.from.includes('linaria'),
 })
 
 const twinMacro = ({ babel: { types: t }, references, state, config }) => {

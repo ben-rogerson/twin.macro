@@ -14,6 +14,10 @@
  * goober
  * { "babelMacros": { "twin": { "preset": "goober" } } }
  * module.exports = { twin: { preset: "goober" } }
+ *
+ * linaria
+ * { "babelMacros": { "twin": { "preset": "linaria" } } }
+ * module.exports = { twin: { preset: "linaria" } }
  */
 
 export default {
@@ -57,6 +61,20 @@ export default {
     global: {
       import: 'glob',
       from: 'goober',
+    },
+  },
+  linaria: {
+    styled: {
+      import: 'styled',
+      from: '@linaria/react',
+    },
+    css: {
+      import: 'css',
+      from: '@linaria/core',
+    },
+    global: {
+      import: 'css',
+      from: '@linaria/core',
     },
   },
 }
