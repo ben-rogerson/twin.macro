@@ -8,7 +8,7 @@ const precheckGroup = ({ classNameRaw }) =>
       `\n\n"group" must be added as className:\n\n${logBadGood(
         'tw`group`',
         '<div className="group">'
-      )}\n`
+      )}\n\nRead more at https://twinredirect.page.link/group\n`
   )
 
 const doPrechecks = (prechecks, context) => {
