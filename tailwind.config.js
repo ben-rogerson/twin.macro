@@ -154,6 +154,7 @@ module.exports = {
     addComponentsTestElementPrefixes,
     addComponentsTestElementScreenReplacements,
     addComponentsTestCssVariableAsRuleProperty,
+    require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('tailwindcss-typography')({
       ellipsis: false,
@@ -163,6 +164,7 @@ module.exports = {
       componentPrefix: '',
     }),
     pluginBaseSelectors,
+    baseSelectorTest,
   ],
 }
 
@@ -315,7 +317,7 @@ function addComponentsTestElementScreenReplacements({ addComponents }) {
         },
         '@screen xl': {
           h1: {
-            color: 'red',
+            marginTop: '50px',
             '&:hover, &:focus': {
               color: 'blue',
             },
@@ -349,4 +351,21 @@ function pluginBaseSelectors({ addComponents, theme, e }) {
     .join(',\n')
 
   addComponents([{ [baseSelectors]: { content: 'test' } }])
+}
+
+function baseSelectorTest({ addBase }) {
+  const newBaseSelector = {
+    '.base-selector': {
+      content: "'test selector format is retained'",
+    },
+    '.base-selector2, .base-selector3': {
+      content: "'test selector format is retained'",
+      '@screen sm': {
+        '&:hover': {
+          marginTop: '50px',
+        },
+      },
+    },
+  }
+  addBase(newBaseSelector)
 }

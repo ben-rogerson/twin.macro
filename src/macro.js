@@ -22,7 +22,7 @@ import {
   addStyledImport,
 } from './macro/styled'
 import { handleThemeFunction } from './macro/theme'
-import { handleGlobalStylesFunction } from './macro/GlobalStyles'
+import { handleGlobalStylesFunction } from './macro/globalStyles'
 import { handleTwProperty, handleTwFunction } from './macro/tw'
 import getUserPluginData from './utils/getUserPluginData'
 import { debugPlugins } from './logging'

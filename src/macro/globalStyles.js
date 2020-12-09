@@ -96,6 +96,23 @@ const getGlobalDeclarationProperty = ({
   return code
 }
 
+const kebabize = string =>
+  string.replace(/([\da-z]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase()
+
+const convertCssObjectToString = cssObject => {
+  if (!cssObject) return
+
+  return Object.entries(cssObject)
+    .map(([k, v]) =>
+      typeof v === 'string'
+        ? `${kebabize(k)}: ${v};`
+        : `${k} {
+${convertCssObjectToString(v)}
+        }`
+    )
+    .join('\n')
+}
+
 const handleGlobalStylesFunction = ({
   references,
   program,
@@ -126,8 +143,15 @@ const handleGlobalStylesFunction = ({
   const theme = getTheme(state.config.theme)
 
   // Provide each global style function with context and convert to a string
-  const styles = globalStyles
-    .map(globalFunction => globalFunction({ theme }))
+  const baseStyles = convertCssObjectToString(
+    state.userPluginData && state.userPluginData.base
+  )
+
+  const styles = [
+    globalStyles.map(globalFunction => globalFunction({ theme })).join('\n'),
+    baseStyles,
+  ]
+    .filter(Boolean)
     .join('\n')
 
   if (state.isStyledComponents) {

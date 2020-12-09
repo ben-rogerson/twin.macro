@@ -70,6 +70,7 @@
     "@babel/plugin-syntax-jsx": "^7.12.1",
     "@emotion/react": "^11.1.1",
     "@emotion/styled": "^11.0.0",
+    "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.3.1",
     "@types/react": "^17.0.0",
     "@types/styled-components": "^5.1.4",
