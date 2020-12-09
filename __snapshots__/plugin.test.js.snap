@@ -484,7 +484,7 @@ const _GlobalStyles = () => (
     --tw-ring-shadow: 0 0 #0000;
   }
 * {
-  --tw-shadow': '0 0 #0000; }
+  --tw-shadow: 0 0 #0000; }
 
 [type='text'],[type='email'],[type='url'],[type='password'],[type='number'],[type='date'],[type='datetime-local'],[type='month'],[type='search'],[type='tel'],[type='time'],[type='week'],[multiple],textarea,select {
 appearance: none;
