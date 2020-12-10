@@ -66,15 +66,11 @@ export default {
   linaria: {
     styled: {
       import: 'styled',
-      from: '@linaria/react',
+      from: 'linaria/react',
     },
     css: {
       import: 'css',
-      from: '@linaria/core',
-    },
-    global: {
-      import: 'css',
-      from: '@linaria/core',
+      from: 'linaria',
     },
   },
 }

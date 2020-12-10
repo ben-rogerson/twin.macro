@@ -1,5 +1,5 @@
-import { css } from '@linaria/core'
-import { styled } from '@linaria/react'
+import { styled } from 'linaria/react'
+import { css } from 'linaria'
 import React from 'react'
 import tw from '../..'
 
