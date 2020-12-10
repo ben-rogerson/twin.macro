@@ -108,14 +108,14 @@ export default {
   'space-x-reverse': {
     output: {
       '> :not([hidden]) ~ :not([hidden])': {
-        '--space-x-reverse': 1,
+        '--tw-space-x-reverse': 1,
       },
     },
   },
   'space-y-reverse': {
     output: {
       '> :not([hidden]) ~ :not([hidden])': {
-        '--space-y-reverse': 1,
+        '--tw-space-y-reverse': 1,
       },
     },
   },
@@ -125,14 +125,14 @@ export default {
   'divide-x-reverse': {
     output: {
       '> :not([hidden]) ~ :not([hidden])': {
-        '--divide-x-reverse': 1,
+        '--tw-divide-x-reverse': 1,
       },
     },
   },
   'divide-y-reverse': {
     output: {
       '> :not([hidden]) ~ :not([hidden])': {
-        '--divide-y-reverse': 1,
+        '--tw-divide-y-reverse': 1,
       },
     },
   },

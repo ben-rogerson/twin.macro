@@ -22,7 +22,7 @@ const handleOpacity = ({ configValue }) => {
   if (!opacity) return
 
   return {
-    '> :not([hidden]) ~ :not([hidden])': { '--divide-opacity': `${opacity}` },
+    '> :not([hidden]) ~ :not([hidden])': { '--tw-divide-opacity': `${opacity}` },
   }
 }
 

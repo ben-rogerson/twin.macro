@@ -5997,12 +5997,12 @@ tw\`ring ring-offset-4\`
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-x-reverse': 1,
+    '--tw-divide-x-reverse': 1,
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-y-reverse': 1,
+    '--tw-divide-y-reverse': 1,
   },
 }) // https://tailwindcss.com/docs/divide-color
 
@@ -6511,77 +6511,77 @@ tw\`ring ring-offset-4\`
 
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '0',
+    '--tw-divide-opacity': '0',
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '0.05',
+    '--tw-divide-opacity': '0.05',
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '0.1',
+    '--tw-divide-opacity': '0.1',
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '0.2',
+    '--tw-divide-opacity': '0.2',
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '0.25',
+    '--tw-divide-opacity': '0.25',
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '0.3',
+    '--tw-divide-opacity': '0.3',
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '0.4',
+    '--tw-divide-opacity': '0.4',
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '0.5',
+    '--tw-divide-opacity': '0.5',
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '0.6',
+    '--tw-divide-opacity': '0.6',
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '0.7',
+    '--tw-divide-opacity': '0.7',
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '0.75',
+    '--tw-divide-opacity': '0.75',
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '0.8',
+    '--tw-divide-opacity': '0.8',
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '0.9',
+    '--tw-divide-opacity': '0.9',
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '0.95',
+    '--tw-divide-opacity': '0.95',
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--divide-opacity': '1',
+    '--tw-divide-opacity': '1',
   },
 }) // https://tailwindcss.com/docs/divide-style
 
@@ -17031,20 +17031,12 @@ tw\`space-y-12 -space-y-reverse\`
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--space-x-reverse': 1,
+    '--tw-space-x-reverse': 1,
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--space-y-reverse': 1,
-  },
-})
-;({
-  '> :not([hidden]) ~ :not([hidden])': {
-    '--space-x-reverse': 1,
-    '--tw-space-x-reverse': 0,
-    marginRight: 'calc(0px * var(--tw-space-x-reverse))',
-    marginLeft: 'calc(0px * calc(1 - var(--tw-space-x-reverse)))',
+    '--tw-space-y-reverse': 1,
   },
 })
 ;({
@@ -17052,12 +17044,17 @@ tw\`space-y-12 -space-y-reverse\`
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(0px * var(--tw-space-x-reverse))',
     marginLeft: 'calc(0px * calc(1 - var(--tw-space-x-reverse)))',
-    '--space-x-reverse': 1,
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--space-y-reverse': 1,
+    '--tw-space-x-reverse': 1,
+    marginRight: 'calc(0px * var(--tw-space-x-reverse))',
+    marginLeft: 'calc(0px * calc(1 - var(--tw-space-x-reverse)))',
+  },
+})
+;({
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(0px * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(0px * var(--tw-space-y-reverse))',
@@ -17065,18 +17062,9 @@ tw\`space-y-12 -space-y-reverse\`
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--tw-space-y-reverse': 0,
+    '--tw-space-y-reverse': 1,
     marginTop: 'calc(0px * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(0px * var(--tw-space-y-reverse))',
-    '--space-y-reverse': 1,
-  },
-})
-;({
-  '> :not([hidden]) ~ :not([hidden])': {
-    '--space-x-reverse': 1,
-    '--tw-space-x-reverse': 0,
-    marginRight: 'calc(8rem * var(--tw-space-x-reverse))',
-    marginLeft: 'calc(8rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
@@ -17084,12 +17072,17 @@ tw\`space-y-12 -space-y-reverse\`
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(8rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(8rem * calc(1 - var(--tw-space-x-reverse)))',
-    '--space-x-reverse': 1,
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--space-y-reverse': 1,
+    '--tw-space-x-reverse': 1,
+    marginRight: 'calc(8rem * var(--tw-space-x-reverse))',
+    marginLeft: 'calc(8rem * calc(1 - var(--tw-space-x-reverse)))',
+  },
+})
+;({
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(8rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(8rem * var(--tw-space-y-reverse))',
@@ -17097,18 +17090,9 @@ tw\`space-y-12 -space-y-reverse\`
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--tw-space-y-reverse': 0,
+    '--tw-space-y-reverse': 1,
     marginTop: 'calc(8rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(8rem * var(--tw-space-y-reverse))',
-    '--space-y-reverse': 1,
-  },
-})
-;({
-  '> :not([hidden]) ~ :not([hidden])': {
-    '--space-x-reverse': 1,
-    '--tw-space-x-reverse': 0,
-    marginRight: 'calc(1px * var(--tw-space-x-reverse))',
-    marginLeft: 'calc(1px * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
@@ -17116,12 +17100,17 @@ tw\`space-y-12 -space-y-reverse\`
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(1px * var(--tw-space-x-reverse))',
     marginLeft: 'calc(1px * calc(1 - var(--tw-space-x-reverse)))',
-    '--space-x-reverse': 1,
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--space-y-reverse': 1,
+    '--tw-space-x-reverse': 1,
+    marginRight: 'calc(1px * var(--tw-space-x-reverse))',
+    marginLeft: 'calc(1px * calc(1 - var(--tw-space-x-reverse)))',
+  },
+})
+;({
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(1px * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(1px * var(--tw-space-y-reverse))',
@@ -17129,18 +17118,9 @@ tw\`space-y-12 -space-y-reverse\`
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--tw-space-y-reverse': 0,
+    '--tw-space-y-reverse': 1,
     marginTop: 'calc(1px * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(1px * var(--tw-space-y-reverse))',
-    '--space-y-reverse': 1,
-  },
-})
-;({
-  '> :not([hidden]) ~ :not([hidden])': {
-    '--space-x-reverse': 1,
-    '--tw-space-x-reverse': 0,
-    marginRight: 'calc(3rem * var(--tw-space-x-reverse))',
-    marginLeft: 'calc(3rem * calc(1 - var(--tw-space-x-reverse)))',
   },
 })
 ;({
@@ -17148,12 +17128,17 @@ tw\`space-y-12 -space-y-reverse\`
     '--tw-space-x-reverse': 0,
     marginRight: 'calc(3rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(3rem * calc(1 - var(--tw-space-x-reverse)))',
-    '--space-x-reverse': 1,
   },
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--space-y-reverse': 1,
+    '--tw-space-x-reverse': 1,
+    marginRight: 'calc(3rem * var(--tw-space-x-reverse))',
+    marginLeft: 'calc(3rem * calc(1 - var(--tw-space-x-reverse)))',
+  },
+})
+;({
+  '> :not([hidden]) ~ :not([hidden])': {
     '--tw-space-y-reverse': 0,
     marginTop: 'calc(3rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(3rem * var(--tw-space-y-reverse))',
@@ -17161,10 +17146,9 @@ tw\`space-y-12 -space-y-reverse\`
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--tw-space-y-reverse': 0,
+    '--tw-space-y-reverse': 1,
     marginTop: 'calc(3rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(3rem * var(--tw-space-y-reverse))',
-    '--space-y-reverse': 1,
   },
 })
 
