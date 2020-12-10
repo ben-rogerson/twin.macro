@@ -1,12 +1,20 @@
 # Use Twin with TypeScript + styled-components
 
-Twin needs some type declarations added, otherwise you’ll see errors like this:
+First up, you’ll need to install some types for React:
 
-```js
+```shell
+npm install -D @types/react
+# or
+yarn add @types/react -D
+```
+
+Twin then needs some type declarations added, otherwise you’ll see errors like this:
+
+```shell
 Module '"../node_modules/twin.macro/types"' has no exported member 'styled'.
-// or
+# or
 Module '"../node_modules/twin.macro/types"' has no exported member 'css'.
-// or
+# or
 Property 'css' does not exist on type 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
 ```
 
