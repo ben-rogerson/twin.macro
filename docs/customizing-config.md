@@ -32,9 +32,9 @@ Choose from one of the following configs:
 
 ## Plugins
 
-You can use many Tailwind plugins with twin, like [Tailwind UI](https://tailwindui.com/components) and [Custom forms](https://github.com/tailwindcss/custom-forms) but there’s no compatibility with other plugins that use the `addVariant` or `addBase` functions.
+You can use many Tailwind plugins with twin, like [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography) and [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms) but there’s no compatibility with plugins that use the `addVariant` functions (support coming soon).
 
-Check out the [list of supported plugins →](https://twin-docs.netlify.app/plugin-support)
+[See list of supported plugins →](https://twin-docs.netlify.app/plugin-support)
 
 ## Resources
 

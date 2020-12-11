@@ -141,7 +141,8 @@ const handleVariantGroups = classes => {
     newClasses = newClasses.replace(group, wrapped)
   })
 
-  return newClasses
+  // Call this function again to take care of nested groups
+  return handleVariantGroups(newClasses)
 }
 
 export { splitVariants, addVariants, handleVariantGroups }

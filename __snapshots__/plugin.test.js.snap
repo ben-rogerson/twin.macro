@@ -2128,6 +2128,7 @@ const pseudoElement = tw\`before:(content w-10 h-10 block bg-black)\`
 const mediaHover = tw\`sm:hover:(bg-black text-white)\`
 const sloppySpacing = tw\` last:( flex  mt-5)\`
 const multipleGroups = tw\`focus:(w-10 h-10 block bg-black) focus-within:(md:flex mt-5)\`
+const nestedGroups = tw\`md:(w-10 hocus:(h-10 block bg-black))\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -2194,6 +2195,17 @@ const multipleGroups = {
       display: 'flex',
     },
     marginTop: '1.25rem',
+  },
+}
+const nestedGroups = {
+  '@media (min-width: 768px)': {
+    width: '2.5rem',
+    ':hover, :focus': {
+      height: '2.5rem',
+      display: 'block',
+      '--tw-bg-opacity': '1',
+      backgroundColor: 'rgba(0, 0, 0, var(--tw-bg-opacity))',
+    },
   },
 }
 

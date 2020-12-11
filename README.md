@@ -14,35 +14,35 @@
 Use Twin’s `tw` prop to add Tailwind classes onto jsx elements:
 
 ```js
-import "twin.macro";
+import 'twin.macro'
 
-const Input = () => <input tw="border hover:border-black" />;
+const Input = () => <input tw="border hover:border-black" />
 ```
 
 Nest Twin’s `tw` import within a css prop to add conditional styles:
 
 ```js
-import tw from "twin.macro";
+import tw from 'twin.macro'
 
 const Input = ({ hasHover }) => (
   <input css={[tw`border`, hasHover && tw`hover:border-black`]} />
-);
+)
 ```
 
 Or mix sass styles with the css import:
 
 ```js
-import tw, { css } from "twin.macro";
+import tw, { css } from 'twin.macro'
 
 const hoverStyles = css`
   &:hover {
     border-color: black;
     ${tw`text-black`}
   }
-`;
+`
 const Input = ({ hasHover }) => (
   <input css={[tw`border`, hasHover && hoverStyles]} />
-);
+)
 ```
 
 ### Styled Components
@@ -50,41 +50,41 @@ const Input = ({ hasHover }) => (
 You can also use the tw import to create and style new components:
 
 ```js
-import tw from "twin.macro";
+import tw from 'twin.macro'
 
-const Input = tw.input`border hover:border-black`;
+const Input = tw.input`border hover:border-black`
 ```
 
 And clone and style existing components:
 
 ```js
-const PurpleInput = tw(Input)`border-purple-500`;
+const PurpleInput = tw(Input)`border-purple-500`
 ```
 
 Switch to the styled import to add conditional styling:
 
 ```js
-import tw, { styled } from "twin.macro";
+import tw, { styled } from 'twin.macro'
 
 const Input = styled.input(({ hasHover }) => [
   `color: purple;`,
   tw`border rounded`,
   hasHover && tw`hover:border-black`,
-]);
-const Component = () => <Input hasHover />;
+])
+const Component = () => <Input hasHover />
 ```
 
 Or use backticks to mix with sass styles:
 
 ```js
-import tw, { styled } from "twin.macro";
+import tw, { styled } from 'twin.macro'
 
 const Input = styled.input`
   color: purple;
   ${tw`border rounded`}
   ${({ hasHover }) => hasHover && tw`hover:border-black`}
-`;
-const Component = () => <Input hasHover />;
+`
+const Component = () => <Input hasHover />
 ```
 
 ## How it works
@@ -130,9 +130,9 @@ ml-40 [10rem] / ml-48 [12rem] / ml-56 [14rem] / ml-64 [16rem] / ml-auto [auto] /
 **🖌️ Use the theme import to add values from your tailwind config**
 
 ```js
-import { theme, css } from "twin.macro";
+import { theme, css } from 'twin.macro'
 
-const Input = () => <input css={css({ color: theme`colors.purple.500` })} />;
+const Input = () => <input css={css({ color: theme`colors.purple.500` })} />
 ```
 
 See more examples [using the theme import →](https://github.com/ben-rogerson/twin.macro/pull/106)
@@ -221,7 +221,7 @@ Take a look at these examples to get started:
 
 ## Plugins
 
-You can use many Tailwind plugins with twin, like [Tailwind UI](https://tailwindui.com/components) and [Custom forms](https://github.com/tailwindcss/custom-forms) but there’s no compatibility with other plugins that use the `addVariant` or `addBase` functions - those features are coming soon.
+You can use many Tailwind plugins with twin, like [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography) and [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms) but there’s no compatibility with plugins that use the `addVariant` functions (support coming soon).
 
 [See list of supported plugins →](https://twin-docs.netlify.app/plugin-support)
 
@@ -241,7 +241,7 @@ Twin fully supports TypeScript projects and includes types for every import _exc
 
 - Lookup that elusive class on [Nerdcave’s Tailwind cheat sheet](https://nerdcave.com/tailwind-cheat-sheet)
 - Add more TypeScript features with [typescript-plugin-tw-template](https://github.com/kingdaro/typescript-plugin-tw-template)
-- [Why I Write CSS in JavaScript](https://mxstbr.com/thoughts/css-in-js) by Max Stoiber
+- [Why I Love Tailwind](https://mxstbr.com/thoughts/tailwind) by Max Stoiber
 
 ## Special thanks
 
