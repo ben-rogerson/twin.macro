@@ -208,9 +208,9 @@ function parseTte({ path, types: t, styledIdentifier, state }) {
 }
 
 function replaceWithLocation(path, replacement) {
+  const { loc } = path.node
   const newPaths = replacement ? path.replaceWith(replacement) : []
   if (Array.isArray(newPaths) && newPaths.length > 0) {
-    const { loc } = path.node
     newPaths.forEach(p => {
       p.node.loc = loc
     })
