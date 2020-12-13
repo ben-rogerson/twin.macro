@@ -137,24 +137,7 @@ const throwOnMissingColon = unwrappedClasses => {
   )
 }
 
-const handleGroupsBracket = classes => {
-  const groups = classes.match(/(^|\s)\(([^\n\r()]*)\)/g)
-  if (!groups) return classes
-
-  let newClasses = classes.slice()
-
-  groups.forEach(group => {
-    const classGroup = group.match(/(^|\s)\(([^\n\r()]*)\)/)
-    if (!classGroup) return ''
-
-    const [wrappedClasses] = classGroup
-    const unwrappedClasses = wrappedClasses.replace(/(\(|\))/g, '')
-    newClasses = classes.replace(wrappedClasses, unwrappedClasses)
-  })
-
-  // Call this function again to take care of nested groups
-  return handleGroupsBracket(newClasses)
-}
+const handleGroupsBracket = classes => classes.slice().replace(/(\(|\))/g, '')
 
 const handleGroupsVariants = classes => {
   const groupedVariants = classes.match(/(\S*):\(([^\n\r()]*)\)/g)
