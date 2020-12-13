@@ -13,7 +13,7 @@ import {
 } from './logging'
 import { orderByScreens } from './screens'
 import applyTransforms from './transforms'
-import { addVariants, handleVariantGroups } from './variants'
+import { addVariants, handleGroups } from './variants'
 import {
   handleUserPlugins,
   handleCorePlugins,
@@ -32,7 +32,7 @@ export default (classes, t, state) => {
   classes = classes.replace(/ \| /g, ' ')
 
   // Unwrap grouped variants
-  classes = handleVariantGroups(classes)
+  classes = handleGroups(classes)
 
   // Move and sort the responsive items to the end of the list
   const classesOrdered = orderByScreens(classes, state)

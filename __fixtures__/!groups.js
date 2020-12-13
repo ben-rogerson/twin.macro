@@ -9,3 +9,7 @@ const mediaHover = tw`sm:hover:(bg-black text-white)`
 const sloppySpacing = tw` last:( flex  mt-5)`
 const multipleGroups = tw`focus:(w-10 h-10 block bg-black) focus-within:(md:flex mt-5)`
 const nestedGroups = tw`md:(w-10 hocus:(h-10 block bg-black))`
+
+const BracketGroups = tw`(w-10) (h-10 block bg-black)`
+const BracketNestedGroups = tw`(w-10 (h-10 block bg-black))`
+const variantGroupNestedInBracketGroup = tw`(w-10 md:(h-10 block bg-black))`

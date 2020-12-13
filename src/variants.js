@@ -121,13 +121,48 @@ const addVariants = ({ results, style, pieces }) => {
   return styleWithVariants
 }
 
-const handleVariantGroups = classes => {
-  const groupedMatches = classes.match(/(\S*):\(([^\n\r()]*)\)/g)
-  if (!groupedMatches) return classes
+/**
+ * Check if there's a missing colon (it's easy to forget)
+ */
+const throwOnMissingColon = unwrappedClasses => {
+  const matchParenthesis = /(\(|\))/g
+  if (!unwrappedClasses.search(matchParenthesis)) return
+
+  const matches = unwrappedClasses.match(/\w*\(\S*/g)
+  if (!matches) return
+
+  const [matchMissingColon] = matches
+  throw new MacroError(
+    logGeneralError(`Bad group formatting: “${matchMissingColon}”`)
+  )
+}
+
+const handleGroupsBracket = classes => {
+  const groups = classes.match(/(^|\s)\(([^\n\r()]*)\)/g)
+  if (!groups) return classes
 
   let newClasses = classes.slice()
 
-  groupedMatches.forEach(group => {
+  groups.forEach(group => {
+    const classGroup = group.match(/(^|\s)\(([^\n\r()]*)\)/)
+    if (!classGroup) return ''
+
+    const [wrappedClasses] = classGroup
+    const unwrappedClasses = wrappedClasses.replace(/(\(|\))/g, '')
+    newClasses = classes.replace(wrappedClasses, unwrappedClasses)
+  })
+
+  // Call this function again to take care of nested groups
+  return handleGroupsBracket(newClasses)
+}
+
+const handleGroupsVariants = classes => {
+  const groupedVariants = classes.match(/(\S*):\(([^\n\r()]*)\)/g)
+  if (!groupedVariants) return classes
+
+  let newClasses = classes.slice()
+
+  groupedVariants.forEach(group => {
     const match = group.match(/(\S*):\(([^\n\r()]*)\)/)
     if (!match) return ''
 
@@ -142,7 +177,21 @@ const handleVariantGroups = classes => {
   })
 
   // Call this function again to take care of nested groups
-  return handleVariantGroups(newClasses)
+  return handleGroupsVariants(newClasses)
 }
 
-export { splitVariants, addVariants, handleVariantGroups }
+const handleGroups = classes => {
+  const unwrappers = [handleGroupsVariants, handleGroupsBracket]
+
+  let unwrappedClasses = classes.slice()
+
+  unwrappers.forEach(unwrapper => {
+    unwrappedClasses = unwrapper(unwrappedClasses)
+  })
+
+  throwOnMissingColon(unwrappedClasses)
+
+  return unwrappedClasses
+}
+
+export { splitVariants, addVariants, handleGroups }
