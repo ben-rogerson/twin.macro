@@ -243,7 +243,6 @@ Twin fully supports TypeScript projects and includes types for every import _exc
 - [Sync your screen breakpoints with javascript](https://gist.github.com/ben-rogerson/b4b406dffcc18ae02f8a6c8c97bb58a8)
 - [Twin vscode snippits for easier imports](https://gist.github.com/ben-rogerson/c6b62508e63b3e3146350f685df2ddc9)
 - [Use the official vscode intellisense extension with twin](https://github.com/ben-rogerson/twin.macro/discussions/227)
-
 - [Tailwind class cheat sheet](https://nerdcave.com/tailwind-cheat-sheet)
 - ["Why I Love Tailwind" by Max Stoiber](https://mxstbr.com/thoughts/tailwind)
 
