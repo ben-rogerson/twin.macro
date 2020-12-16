@@ -23,14 +23,6 @@ const addGlobalStylesImport = ({ program, t, identifier, config }) => {
   })
 }
 
-const addGlobalCssImport = ({ identifier, t, program }) =>
-  addImport({
-    types: t,
-    program,
-    mod: 'tailwindcss/dist/base.min.css',
-    identifier,
-  })
-
 const generateTaggedTemplateExpression = ({ identifier, t, styles }) => {
   const backtickStyles = t.templateElement({
     raw: `${styles}`,
@@ -183,10 +175,6 @@ const handleGlobalStylesFunction = ({
     program.unshiftContainer('body', declaration)
     parentPath.remove()
   }
-
-  const baseCssIdentifier = generateUid('baseCss', program)
-
-  addGlobalCssImport({ identifier: baseCssIdentifier, t, program })
 
   addGlobalStylesImport({
     identifier: stylesUid,
