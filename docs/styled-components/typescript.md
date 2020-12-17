@@ -3,9 +3,9 @@
 First up, you’ll need to install some types for React:
 
 ```shell
-npm install -D @types/react
+npm install -D @types/react @types/styled-components
 # or
-yarn add @types/react -D
+yarn add @types/react @types/styled-components -D
 ```
 
 Twin then needs some type declarations added, otherwise you’ll see errors like this:
