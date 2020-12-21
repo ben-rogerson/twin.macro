@@ -119,7 +119,11 @@ const setStyledIdentifier = ({ state, path, styledImport }) => {
   path.node.specifiers.some(specifier => {
     if (
       specifier.type === 'ImportDefaultSpecifier' &&
-      styledImport.import === 'default'
+      styledImport.import === 'default' &&
+      // fixes an issue in gatsby where the styled-components plugin has run
+      // before twin. fix is to ignore import aliases which babel creates
+      // https://github.com/ben-rogerson/twin.macro/issues/192
+      !specifier.local.name.startsWith('_')
     ) {
       state.styledIdentifier = specifier.local
       return true
