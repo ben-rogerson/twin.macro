@@ -215,10 +215,6 @@ Take a look at these examples to get started:
 
 [💅 styled-components (TypeScript)](https://github.com/ben-rogerson/twin.examples/tree/master/laravel-styled-components-typescript)
 
-#### Vue
-
-[👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/vue-emotion) (Experimental)
-
 ## Plugins
 
 You can use many Tailwind plugins with twin, like [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography) and [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms) but there’s no compatibility with plugins that use the `addVariant` function.
