@@ -24,7 +24,7 @@ export default {
     },
     css: {
       import: 'css',
-      from: 'styled-components/macro',
+      from: 'styled-components',
     },
     global: {
       import: 'createGlobalStyle',
