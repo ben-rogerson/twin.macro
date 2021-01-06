@@ -3,6 +3,7 @@
   "references": [
     { "path": "tests/basic" },
     { "path": "tests/emotion" },
-    { "path": "tests/styled-components" }
+    { "path": "tests/styled-components" },
+    { "path": "tests/linaria" }
   ]
 }

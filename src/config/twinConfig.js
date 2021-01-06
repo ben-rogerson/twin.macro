@@ -20,8 +20,8 @@ const configTwinValidators = {
   preset: [
     value =>
       value === undefined ||
-      ['styled-components', 'emotion', 'goober'].includes(value),
-    `The config “preset” can only be set to ‘emotion’ (default), ‘styled-components’ or ‘goober’`,
+      ['styled-components', 'emotion', 'goober', 'linaria'].includes(value),
+    `The config “preset” can only be set to ‘emotion’ (default), ‘styled-components’, ‘goober’, or linaria`,
   ],
   allowStyleProp: [
     isBoolean,

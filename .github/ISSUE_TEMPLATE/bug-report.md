@@ -13,7 +13,7 @@ assignees: ''
   Please include some information like:
 
   1. The buggy behavior you’re experiencing and what should be happening instead
-  2. If you're using styled-components, emotion, goober, or something else
+  2. If you're using styled-components, emotion, goober, linaria, or something else
   3. A link to a minimal demo showing the bug in action
 
     Try forking one of these CodeSandboxes and introducing the code that demonstrates your bug:
