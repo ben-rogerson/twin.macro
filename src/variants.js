@@ -121,28 +121,140 @@ const addVariants = ({ results, style, pieces }) => {
   return styleWithVariants
 }
 
-const handleVariantGroups = classes => {
-  const groupedMatches = classes.match(/(\S*):\(([^\n\r()]*)\)/g)
-  if (!groupedMatches) return classes
+function findRightBracket(classes, start = 0) {
+  const stack = []
+  for (let index = start; index < classes.length; index++) {
+    if (classes[index] === '(') {
+      stack.push(index)
+    } else if (classes[index] === ')') {
+      if (stack.length === 0) {
+        return
+      }
 
-  let newClasses = classes.slice()
+      if (stack.length === 1) {
+        return index
+      }
 
-  groupedMatches.forEach(group => {
-    const match = group.match(/(\S*):\(([^\n\r()]*)\)/)
-    if (!match) return ''
-
-    const [, variant, unwrappedClasses] = match
-    const wrapped = unwrappedClasses
-      .trim()
-      .split(' ')
-      .filter(Boolean) // remove double spaces '  '
-      .map(unwrappedClass => `${variant}:${unwrappedClass}`)
-      .join(' ')
-    newClasses = newClasses.replace(group, wrapped)
-  })
-
-  // Call this function again to take care of nested groups
-  return handleVariantGroups(newClasses)
+      stack.pop()
+    }
+  }
 }
+
+// eslint-disable-next-line max-params
+function spreadVariantGroups(
+  classes,
+  context = '',
+  importantContext = false,
+  start = 0,
+  end
+) {
+  classes = classes.slice(start, end).trim()
+  const results = []
+  if (classes === '') {
+    return results
+  }
+
+  if (classes[0] === '(') {
+    const closeBracket = findRightBracket(classes)
+    if (typeof closeBracket !== 'number') {
+      throw new MacroError(
+        logGeneralError(`"${classes}" except to find a ')' to match the '('`)
+      )
+    } else {
+      const isImportant = classes[closeBracket + 1] === '!'
+      results.push(
+        ...spreadVariantGroups(
+          classes,
+          context,
+          importantContext || isImportant,
+          1,
+          closeBracket
+        )
+      )
+      const end = isImportant ? closeBracket + 1 : closeBracket
+      if (end < classes.length) {
+        results.push(
+          ...spreadVariantGroups(
+            classes,
+            context,
+            importantContext,
+            closeBracket + 1
+          )
+        )
+      }
+
+      return results
+    }
+  }
+
+  // variant format: /[\w-]+:/
+  // class format: /[\w-./]+/
+  const reg = /([\w-]+:)|\(?[\w-./]+!?/g
+  let match
+  const baseContext = context
+  while ((match = reg.exec(classes))) {
+    const [text, variant] = match
+    if (variant) {
+      context += variant
+
+      // SKIP empty classes
+      if (/\s/.test(classes[reg.lastIndex])) {
+        context = baseContext
+        continue
+      }
+
+      if (classes[reg.lastIndex] === '(') {
+        const closeBracket = findRightBracket(classes, reg.lastIndex)
+        if (typeof closeBracket !== 'number') {
+          throw new MacroError(
+            logGeneralError(
+              `"${classes}" except to find a ')' to match the '('`
+            )
+          )
+        } else {
+          const importantGroup = classes[closeBracket + 1] === '!'
+          results.push(
+            ...spreadVariantGroups(
+              classes,
+              context,
+              importantContext || importantGroup,
+              reg.lastIndex + 1,
+              closeBracket
+            )
+          )
+          reg.lastIndex = closeBracket + (importantGroup ? 2 : 1)
+          context = baseContext
+        }
+      }
+    } else if (text.startsWith('(')) {
+      const closeBracket = findRightBracket(classes, match.index)
+      if (typeof closeBracket !== 'number') {
+        throw new MacroError(
+          logGeneralError(`"${classes}" except to find a ')' to match the '('`)
+        )
+      } else {
+        const importantGroup = classes[closeBracket + 1] === '!'
+        results.push(
+          ...spreadVariantGroups(
+            classes,
+            context,
+            importantContext || importantGroup,
+            match.index + 1,
+            closeBracket
+          )
+        )
+        reg.lastIndex = closeBracket + (importantGroup ? 2 : 1)
+      }
+    } else {
+      const tail = !match[0].endsWith('!') && importantContext ? '!' : ''
+      results.push(context + match[0] + tail)
+      context = baseContext
+    }
+  }
+
+  return results
+}
+
+const handleVariantGroups = classes => spreadVariantGroups(classes).join(' ')
 
 export { splitVariants, addVariants, handleVariantGroups }
