@@ -24,6 +24,7 @@ import {
 import { handleThemeFunction } from './macro/theme'
 import { handleGlobalStylesFunction } from './macro/globalStyles'
 import { handleTwProperty, handleTwFunction } from './macro/tw'
+import { handleClassNameProperty } from './macro/className'
 import getUserPluginData from './utils/getUserPluginData'
 import { debugPlugins } from './logging'
 
@@ -98,6 +99,8 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
       setCssIdentifier({ state, path, cssImport })
     },
     JSXAttribute(path) {
+      if (path.node.name.name === 'css') state.hasCssProp = true
+      handleClassNameProperty({ path, t, state })
       handleTwProperty({ path, t, state })
     },
   })

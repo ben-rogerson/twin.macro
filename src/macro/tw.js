@@ -6,9 +6,7 @@ import { addDataTwPropToPath, addDataTwPropToExistingPath } from './debug'
 import getStyles from './../getStyles'
 
 const handleTwProperty = ({ path, t, state }) => {
-  if (path.node.name.name === 'css') state.hasCssProp = true
-
-  if (path.node.name.name !== 'tw') return
+  if (!path.node || path.node.name.name !== 'tw') return
   state.hasTwProp = true
 
   const nodeValue = path.node.value
@@ -27,7 +25,8 @@ const handleTwProperty = ({ path, t, state }) => {
   )
 
   const rawClasses = expressionValue || nodeValue.value || ''
-  const styles = getStyles(rawClasses, t, state)
+
+  const { styles } = getStyles(rawClasses, t, state)
 
   const jsxPath = path.findParent(p => p.isJSXOpeningElement())
   const attributes = jsxPath.get('attributes')
@@ -130,7 +129,8 @@ const handleTwFunction = ({ references, state, t }) => {
       })
     }
 
-    replaceWithLocation(parsed.path, getStyles(rawClasses, t, state))
+    const { styles } = getStyles(rawClasses, t, state)
+    replaceWithLocation(parsed.path, styles)
   })
 }
 
