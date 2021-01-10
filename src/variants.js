@@ -148,52 +148,20 @@ function spreadVariantGroups(
   start = 0,
   end
 ) {
-  classes = classes.slice(start, end).trim()
-  const results = []
   if (classes === '') {
-    return results
+    return []
   }
 
-  if (classes[0] === '(') {
-    const closeBracket = findRightBracket(classes)
-    if (typeof closeBracket !== 'number') {
-      throw new MacroError(
-        logGeneralError(`"${classes}" except to find a ')' to match the '('`)
-      )
-    } else {
-      const isImportant = classes[closeBracket + 1] === '!'
-      results.push(
-        ...spreadVariantGroups(
-          classes,
-          context,
-          importantContext || isImportant,
-          1,
-          closeBracket
-        )
-      )
-      const end = isImportant ? closeBracket + 1 : closeBracket
-      if (end < classes.length) {
-        results.push(
-          ...spreadVariantGroups(
-            classes,
-            context,
-            importantContext,
-            closeBracket + 1
-          )
-        )
-      }
-
-      return results
-    }
-  }
+  const results = []
+  classes = classes.slice(start, end).trim()
 
   // variant format: /[\w-]+:/
   // class format: /[\w-./]+/
-  const reg = /([\w-]+:)|\(?[\w-./]+!?/g
+  const reg = /([\w-]+:)|([\w-./]+!?)|\(|(\S+)/g
   let match
   const baseContext = context
   while ((match = reg.exec(classes))) {
-    const [text, variant] = match
+    const [, variant, className, weird] = match
     if (variant) {
       context += variant
 
@@ -226,7 +194,13 @@ function spreadVariantGroups(
           context = baseContext
         }
       }
-    } else if (text.startsWith('(')) {
+    } else if (className) {
+      const tail = !className.endsWith('!') && importantContext ? '!' : ''
+      results.push(context + className + tail)
+      context = baseContext
+    } else if (weird) {
+      // TODO: throw error
+    } else {
       const closeBracket = findRightBracket(classes, match.index)
       if (typeof closeBracket !== 'number') {
         throw new MacroError(
@@ -245,10 +219,6 @@ function spreadVariantGroups(
         )
         reg.lastIndex = closeBracket + (importantGroup ? 2 : 1)
       }
-    } else {
-      const tail = !match[0].endsWith('!') && importantContext ? '!' : ''
-      results.push(context + match[0] + tail)
-      context = baseContext
     }
   }
 
