@@ -199,7 +199,7 @@ function spreadVariantGroups(
       results.push(context + className + tail)
       context = baseContext
     } else if (weird) {
-      // TODO: throw error
+      results.push(context + weird)
     } else {
       const closeBracket = findRightBracket(classes, match.index)
       if (typeof closeBracket !== 'number') {
