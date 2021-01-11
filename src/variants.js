@@ -121,21 +121,21 @@ const addVariants = ({ results, style, pieces }) => {
   return styleWithVariants
 }
 
-function findRightBracket(classes, start = 0) {
-  const stack = []
-  for (let index = start; index < classes.length; index++) {
+function findRightBracket(classes, start = 0, end = classes.length) {
+  let stack = 0
+  for (let index = start; index < end; index++) {
     if (classes[index] === '(') {
-      stack.push(index)
+      stack += 1
     } else if (classes[index] === ')') {
-      if (stack.length === 0) {
+      if (stack === 0) {
         return
       }
 
-      if (stack.length === 1) {
+      if (stack === 1) {
         return index
       }
 
-      stack.pop()
+      stack -= 1
     }
   }
 }
