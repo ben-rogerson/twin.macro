@@ -2402,6 +2402,26 @@ const sloppySpacing = tw\` last:( flex  mt-5)\`
 const multipleGroups = tw\`focus:(w-10 h-10 block bg-black) focus-within:(md:flex mt-5)\`
 const nestedGroups = tw\`md:(w-10 hocus:(h-10 block bg-black))\`
 
+tw\`(block w-10)\`
+tw\`((block w-10))\`
+tw\`hover:(block w-10)\`
+tw\`md:(hover:(block w-10))\`
+tw\`md:(hover:(block (block) w-10))\`
+tw\`md:(hover:(block (h-10) w-10))\`
+
+// Important
+tw\`(block w-10)!\`
+tw\`hover:(block w-10)!\`
+tw\`md:(hover:(block (block)! w-10))\`
+tw\`md:(hover:(block (h-10)! w-10))\`
+tw\`md:(hover:(block w-10)!)\`
+
+// Ignored
+tw\`\`
+tw\`()\`
+tw\`md:()\`
+tw\`md:(hover:())\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -2480,6 +2500,86 @@ const nestedGroups = {
     },
   },
 }
+;({
+  display: 'block',
+  width: '2.5rem',
+})
+;({
+  display: 'block',
+  width: '2.5rem',
+})
+;({
+  ':hover': {
+    display: 'block',
+    width: '2.5rem',
+  },
+})
+;({
+  '@media (min-width: 768px)': {
+    ':hover': {
+      display: 'block',
+      width: '2.5rem',
+    },
+  },
+})
+;({
+  '@media (min-width: 768px)': {
+    ':hover': {
+      display: 'block',
+      width: '2.5rem',
+    },
+  },
+})
+;({
+  '@media (min-width: 768px)': {
+    ':hover': {
+      display: 'block',
+      height: '2.5rem',
+      width: '2.5rem',
+    },
+  },
+}) // Important
+
+;({
+  display: 'block !important',
+  width: '2.5rem !important',
+})
+;({
+  ':hover': {
+    display: 'block !important',
+    width: '2.5rem !important',
+  },
+})
+;({
+  '@media (min-width: 768px)': {
+    ':hover': {
+      display: 'block !important',
+      width: '2.5rem',
+    },
+  },
+})
+;({
+  '@media (min-width: 768px)': {
+    ':hover': {
+      display: 'block',
+      height: '2.5rem !important',
+      width: '2.5rem',
+    },
+  },
+})
+;({
+  '@media (min-width: 768px)': {
+    ':hover': {
+      display: 'block !important',
+      width: '2.5rem !important',
+    },
+  },
+}) // Ignored
+
+;({})
+;({})
+;({})
+;({})
 
 
 `;

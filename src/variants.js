@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { MacroError } from 'babel-plugin-macros'
 import cleanSet from 'clean-set'
 import { stringifyScreen } from './screens'
 import { logNoVariant, logGeneralError } from './logging'
 import { variantConfig } from './config'
-import { get } from './utils'
+import { get, throwIf } from './utils'
 import {
   variantDarkMode,
   variantLightMode,
@@ -127,14 +128,8 @@ function findRightBracket(classes, start = 0, end = classes.length) {
     if (classes[index] === '(') {
       stack += 1
     } else if (classes[index] === ')') {
-      if (stack === 0) {
-        return
-      }
-
-      if (stack === 1) {
-        return index
-      }
-
+      if (stack === 0) return
+      if (stack === 1) return index
       stack -= 1
     }
   }
@@ -148,9 +143,7 @@ function spreadVariantGroups(
   start = 0,
   end
 ) {
-  if (classes === '') {
-    return []
-  }
+  if (classes === '') return []
 
   const results = []
   classes = classes.slice(start, end).trim()
@@ -160,12 +153,13 @@ function spreadVariantGroups(
   const reg = /([\w-]+:)|([\w-./]+!?)|\(|(\S+)/g
   let match
   const baseContext = context
+
   while ((match = reg.exec(classes))) {
     const [, variant, className, weird] = match
     if (variant) {
       context += variant
 
-      // SKIP empty classes
+      // Skip empty classes
       if (/\s/.test(classes[reg.lastIndex])) {
         context = baseContext
         continue
@@ -173,26 +167,24 @@ function spreadVariantGroups(
 
       if (classes[reg.lastIndex] === '(') {
         const closeBracket = findRightBracket(classes, reg.lastIndex)
-        if (typeof closeBracket !== 'number') {
-          throw new MacroError(
-            logGeneralError(
-              `"${classes}" except to find a ')' to match the '('`
-            )
+        throwIf(typeof closeBracket !== 'number', () =>
+          logGeneralError(
+            `An ending bracket ')' wasn’t found for these classes:\n\n${classes}`
           )
-        } else {
-          const importantGroup = classes[closeBracket + 1] === '!'
-          results.push(
-            ...spreadVariantGroups(
-              classes,
-              context,
-              importantContext || importantGroup,
-              reg.lastIndex + 1,
-              closeBracket
-            )
+        )
+
+        const importantGroup = classes[closeBracket + 1] === '!'
+        results.push(
+          ...spreadVariantGroups(
+            classes,
+            context,
+            importantContext || importantGroup,
+            reg.lastIndex + 1,
+            closeBracket
           )
-          reg.lastIndex = closeBracket + (importantGroup ? 2 : 1)
-          context = baseContext
-        }
+        )
+        reg.lastIndex = closeBracket + (importantGroup ? 2 : 1)
+        context = baseContext
       }
     } else if (className) {
       const tail = !className.endsWith('!') && importantContext ? '!' : ''
@@ -202,23 +194,23 @@ function spreadVariantGroups(
       results.push(context + weird)
     } else {
       const closeBracket = findRightBracket(classes, match.index)
-      if (typeof closeBracket !== 'number') {
-        throw new MacroError(
-          logGeneralError(`"${classes}" except to find a ')' to match the '('`)
+      throwIf(typeof closeBracket !== 'number', () =>
+        logGeneralError(
+          `An ending bracket ')' wasn’t found for these classes:\n\n${classes}`
         )
-      } else {
-        const importantGroup = classes[closeBracket + 1] === '!'
-        results.push(
-          ...spreadVariantGroups(
-            classes,
-            context,
-            importantContext || importantGroup,
-            match.index + 1,
-            closeBracket
-          )
+      )
+
+      const importantGroup = classes[closeBracket + 1] === '!'
+      results.push(
+        ...spreadVariantGroups(
+          classes,
+          context,
+          importantContext || importantGroup,
+          match.index + 1,
+          closeBracket
         )
-        reg.lastIndex = closeBracket + (importantGroup ? 2 : 1)
-      }
+      )
+      reg.lastIndex = closeBracket + (importantGroup ? 2 : 1)
     }
   }
 
