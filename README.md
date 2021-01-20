@@ -66,12 +66,11 @@ Switch to the styled import to add conditional styling:
 ```js
 import tw, { styled } from 'twin.macro'
 
-const Input = styled.input(({ hasHover }) => [
-  `color: purple;`,
-  tw`border rounded`,
-  hasHover && tw`hover:border-black`,
+const StyledInput = styled.input(({ hasBorder }) => [
+  `color: black;`,
+  hasBorder && tw`border-purple-500`,
 ])
-const Component = () => <Input hasHover />
+const Input = () => <StyledInput hasBorder />
 ```
 
 Or use backticks to mix with sass styles:
@@ -79,19 +78,18 @@ Or use backticks to mix with sass styles:
 ```js
 import tw, { styled } from 'twin.macro'
 
-const Input = styled.input`
-  color: purple;
-  ${tw`border rounded`}
-  ${({ hasHover }) => hasHover && tw`hover:border-black`}
+const StyledInput = styled.input`
+  color: black;
+  ${({ hasBorder }) => hasBorder && tw`border-purple-500`}
 `
-const Component = () => <Input hasHover />
+const Input = () => <StyledInput hasBorder />
 ```
 
 ## How it works
 
 When babel runs over your code, Twin’s `css` and `styled` imports get swapped with the real imports from libraries like [💅&nbsp;styled&#8209;components](https://styled-components.com/) and [👩‍🎤&nbsp;emotion](https://emotion.sh/docs/introduction).
 
-Twin offers import presets for both libraries or you can fully customise the imports.
+Twin offers import presets for these libraries or you can fully customise the imports.
 
 When you use `tw`, Twin converts your classes into css objects, ready for passing to your chosen css-in-js library:
 
@@ -137,12 +135,20 @@ const Input = () => <input css={css({ color: theme`colors.purple.500` })} />
 
 See more examples [using the theme import →](https://github.com/ben-rogerson/twin.macro/pull/106)
 
-**💥 Add important to any class with a trailing bang!**
+**💥 Add !important to any class with a trailing bang!**
 
 ```js
-tw`hidden!`
+<div tw="hidden!" />
 // ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
-{ "display": "none !important" }
+<div css={{ "display": "none !important" }} />
+```
+
+Add !important to multiple classes with bracket groups:
+
+```js
+<div tw="(hidden ml-auto)!" />
+// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+<div css={{ "display": "none !important", "marginLeft": "auto !important" }} />
 ```
 
 **🚥 Over 40 variants to prefix on your classes** - Unlike Tailwind, the prefixes are always available to add to your classes
@@ -172,8 +178,10 @@ const pseudoElementStyles = () => (
 
 const stackedVariants = () => <div tw="sm:hover:(bg-black text-white)" />
 
-const variantsInGroups = () => <div tw="sm:(bg-black hover:bg-white)">
+const groupsInGroups = () => <div tw="sm:(bg-black hover:(bg-white w-10))">
 ```
+
+**💡 Integrates with the official tailwind vscode plugin** - Avoid having to look up your classes with auto-completions straight from your tailwind config - [See setup instructions →](https://github.com/ben-rogerson/twin.macro/discussions/227)
 
 ## Get started
 
