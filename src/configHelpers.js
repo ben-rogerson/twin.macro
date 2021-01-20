@@ -4,8 +4,21 @@ import { existsSync } from 'fs'
 import resolveTailwindConfig from 'tailwindcss/lib/util/resolveConfig'
 import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
 import { configTwinValidators, configDefaultsTwin } from './config/twinConfig'
+import flatMap from 'lodash.flatmap'
 import { logGeneralError } from './logging'
-import { throwIf } from './utils'
+import { throwIf, get } from './utils'
+
+const getAllConfigs = config => {
+  const configs = flatMap(
+    [...get(config, 'presets', [defaultTailwindConfig])].reverse(),
+    preset => {
+      const config = typeof preset === 'function' ? preset() : preset
+      return getAllConfigs(config)
+    }
+  )
+
+  return [config, ...configs]
+}
 
 const getConfigTailwindProperties = (state, config) => {
   const sourceRoot = state.file.opts.sourceRoot || '.'
@@ -13,14 +26,16 @@ const getConfigTailwindProperties = (state, config) => {
 
   const configPath = resolve(sourceRoot, configFile || `./tailwind.config.js`)
   const configExists = existsSync(configPath)
+
   const configTailwind = configExists
-    ? resolveTailwindConfig([require(configPath), defaultTailwindConfig])
-    : resolveTailwindConfig([defaultTailwindConfig])
+    ? resolveTailwindConfig([...getAllConfigs(require(configPath))])
+    : resolveTailwindConfig([...getAllConfigs(defaultTailwindConfig)])
+
   if (!configTailwind) {
     throw new MacroError(`Couldn’t find the Tailwind config`)
   }
 
-  return { configPath, configExists, configTailwind }
+  return { configExists, configTailwind }
 }
 
 const runConfigValidator = ([item, value]) => {
