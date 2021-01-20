@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import tw from './macro'
 
 const basic = tw`group-hover:(flex m-10)`

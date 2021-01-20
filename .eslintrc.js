@@ -67,6 +67,7 @@ module.exports = {
     'unicorn/import-style': 0,
     'unicorn/prefer-optional-catch-binding': 0,
     'unicorn/no-null': 0,
+    'unicorn/prevent-abbreviations': 0,
   },
   overrides: [
     {
@@ -94,4 +95,5 @@ module.exports = {
       },
     },
   ],
+  ignorePatterns: ['.eslintrc.js'],
 }

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import tw from './macro'
 
 // Tailwind plugin tests

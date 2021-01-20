@@ -1,9 +1,8 @@
 import { parseTte, replaceWithLocation } from './../macroHelpers'
 import { throwIf } from './../utils'
 import { logGeneralError, logStylePropertyError } from './../logging'
-/* eslint-disable-next-line unicorn/prevent-abbreviations */
 import { addDataTwPropToPath, addDataTwPropToExistingPath } from './debug'
-import getStyles from './../getStyles'
+import getStyleData from './../getStyleData'
 
 const handleTwProperty = ({ path, t, state }) => {
   if (!path.node || path.node.name.name !== 'tw') return
@@ -26,7 +25,7 @@ const handleTwProperty = ({ path, t, state }) => {
 
   const rawClasses = expressionValue || nodeValue.value || ''
 
-  const { styles } = getStyles(rawClasses, t, state)
+  const { styles } = getStyleData(rawClasses, t, state)
 
   const jsxPath = path.findParent(p => p.isJSXOpeningElement())
   const attributes = jsxPath.get('attributes')
@@ -129,7 +128,7 @@ const handleTwFunction = ({ references, state, t }) => {
       })
     }
 
-    const { styles } = getStyles(rawClasses, t, state)
+    const { styles } = getStyleData(rawClasses, t, state)
     replaceWithLocation(parsed.path, styles)
   })
 }

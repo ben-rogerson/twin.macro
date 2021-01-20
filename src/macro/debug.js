@@ -1,4 +1,3 @@
-/* eslint-disable-next-line unicorn/prevent-abbreviations */
 const addDataTwPropToPath = ({ t, attributes, rawClasses, path, state }) => {
   if (state.isProd || !state.configTwin.dataTwProp) return
 
@@ -14,7 +13,6 @@ const addDataTwPropToPath = ({ t, attributes, rawClasses, path, state }) => {
   )
 }
 
-/* eslint-disable-next-line unicorn/prevent-abbreviations */
 const addDataTwPropToExistingPath = ({
   t,
   attributes,

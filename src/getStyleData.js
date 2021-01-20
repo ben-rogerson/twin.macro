@@ -46,6 +46,7 @@ export default (classes, t, state, silentMismatches = false) => {
 
   // Merge styles into a single css object
   const styles = classesOrdered.reduce((results, classNameRaw) => {
+    // Avoid prechecks on silent mode as they'll error loudly
     !silentMismatches && doPrechecks([precheckGroup], { classNameRaw })
 
     const pieces = getPieces({ classNameRaw, state })
@@ -70,12 +71,12 @@ export default (classes, t, state, silentMismatches = false) => {
       type,
     } = getProperties(className, state)
 
-    // Kick off suggestions when no class matches
     if (silentMismatches && !hasMatches && !hasUserPlugins) {
       classesMismatched.push(classNameRaw)
       return results
     }
 
+    // Kick off suggestions when no class matches
     throwIf(!hasMatches && !hasUserPlugins, () =>
       errorSuggestions({ pieces, state })
     )

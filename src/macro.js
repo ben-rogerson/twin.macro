@@ -48,7 +48,6 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
 
   const program = state.file.path
 
-  /* eslint-disable-next-line unicorn/prevent-abbreviations */
   const isDev =
     process.env.NODE_ENV === 'development' ||
     process.env.NODE_ENV === 'dev' ||

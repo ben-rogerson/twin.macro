@@ -4,6 +4,8 @@ const path = require('path')
 const glob = require('glob-all')
 const fs = require('fs')
 
+const configFile = file => `${path.dirname(file)}/config.json`
+
 pluginTester({
   plugin,
   pluginName: 'twin.macro',
@@ -12,8 +14,13 @@ pluginTester({
     babelrc: true,
   },
   snapshot: true,
-  tests: glob.sync('__fixtures__/*.js').map(file => ({
+  tests: glob.sync('__fixtures__/**/*.js').map(file => ({
     title: path.basename(file),
     code: fs.readFileSync(file, 'utf-8'),
+    ...(fs.existsSync(configFile(file)) && {
+      pluginOptions: {
+        twin: JSON.parse(fs.readFileSync(configFile(file), 'utf-8')),
+      },
+    }),
   })),
 })

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/react-in-jsx-scope */
 import tw, { theme, styled, css, GlobalStyles } from './macro'
 
 const twPropertyTest = <div tw="text-purple-500" />
