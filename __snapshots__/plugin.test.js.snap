@@ -12740,6 +12740,32 @@ tw\`z-auto\`
 
 `;
 
+exports[`twin.macro presets.js: presets.js 1`] = `
+
+import tw from './macro'
+
+tw\`text-badass\`
+tw\`text-banana\`
+tw\`text-hamburger\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+;({
+  '--tw-text-opacity': '1',
+  color: 'rgba(186, 218, 85, var(--tw-text-opacity))',
+})
+;({
+  '--tw-text-opacity': '1',
+  color: 'rgba(255, 255, 0, var(--tw-text-opacity))',
+})
+;({
+  '--tw-text-opacity': '1',
+  color: 'rgba(165, 42, 42, var(--tw-text-opacity))',
+})
+
+
+`;
+
 exports[`twin.macro sizing.js: sizing.js 1`] = `
 
 import tw from './macro'
