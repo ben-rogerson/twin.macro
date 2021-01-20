@@ -158,8 +158,6 @@ tw\`stroke-non-scaling\`
 
 exports[`twin.macro !general.js: !general.js 1`] = `
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/react-in-jsx-scope */
 import tw from './macro'
 
 /**
@@ -365,8 +363,6 @@ const plainVariable = \`bg-\${plainConditional}-500\`
 
 exports[`twin.macro !imports.js: !imports.js 1`] = `
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/react-in-jsx-scope */
 import tw, { theme, styled, css, GlobalStyles } from './macro'
 
 const twPropertyTest = <div tw="text-purple-500" />
@@ -1000,10 +996,6 @@ const GlobalStylesTest = () => <_GlobalStyles />
 
 exports[`twin.macro !namelessImport.js: !namelessImport.js 1`] = `
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable import/no-unassigned-import */
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/jsx-curly-brace-presence */
 import './macro'
 
 const twPropertyString = <div tw="text-purple-500" />
@@ -1011,13 +1003,6 @@ const twPropertyExpression = <div tw={'text-purple-500'} />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
-/* eslint-disable import/no-unassigned-import */
-
-/* eslint-disable react/react-in-jsx-scope */
-
-/* eslint-disable react/jsx-curly-brace-presence */
 const twPropertyString = (
   <div
     css={{
@@ -1081,7 +1066,6 @@ _styled.div({
 
 exports[`twin.macro !plugins.js: !plugins.js 1`] = `
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import tw from './macro'
 
 // Tailwind plugin tests
@@ -1113,7 +1097,6 @@ tw\`aspect-test-6\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 // Tailwind plugin tests
 ;({
   fontSize: '0.875rem',
@@ -2221,8 +2204,6 @@ const addComponentsResponsiveScoping = {
 
 exports[`twin.macro !properties.js: !properties.js 1`] = `
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/react-in-jsx-scope */
 import tw from './macro'
 
 const Component1 = () => <div tw="uppercase" />
@@ -2255,9 +2236,6 @@ const Component7 = () => (
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
-/* eslint-disable react/react-in-jsx-scope */
 const Component1 = () => (
   <div
     css={{
@@ -2390,7 +2368,6 @@ tw\`2xl:block\`
 
 exports[`twin.macro !variantGrouping.js: !variantGrouping.js 1`] = `
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import tw from './macro'
 
 const basic = tw\`group-hover:(flex m-10)\`
@@ -2424,7 +2401,6 @@ tw\`md:(hover:())\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 const basic = {
   '.group:hover &': {
     display: 'flex',
@@ -2586,7 +2562,6 @@ const nestedGroups = {
 
 exports[`twin.macro !variants.js: !variants.js 1`] = `
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import tw from './macro'
 
 // Before/after pseudo elements
@@ -2665,7 +2640,6 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 // Before/after pseudo elements
 ;({
   ':before': {
@@ -9050,6 +9024,414 @@ tw\`gap-y-px\`
 ;({
   rowGap: '1px',
 })
+
+
+`;
+
+exports[`twin.macro includeClassNames.js: includeClassNames.js 1`] = `
+
+import tw from './macro'
+
+const SkipEmptyClassName = <div className="" />
+const OnlyUppercaseConverted = <div className="uppercase spare-class" />
+const AllConverted = <div className="uppercase block" />
+const SkippedCurlies = <div className={'mt-1'} />
+const SkippedConditionals = <div className={true && 'mt-1'} />
+const SkippedGroup = <div className="group" />
+
+// css + className
+const CssPropFirst = (
+  <div
+    css={\`
+      color: red;
+    \`}
+    className="block"
+  />
+)
+const CssPropLast = (
+  <div
+    className="block"
+    css={\`
+      color: red;
+    \`}
+  />
+)
+
+// tw + className
+const TwPropFirst = <div tw="block" className="mt-1" />
+const TwPropLast = <div className="mt-1" tw="block" />
+
+// tw + css + className
+const TwThenCssThenClassName = (
+  <div
+    tw="block"
+    css={\`
+      color: red;
+    \`}
+    className="mt-1"
+  />
+)
+const TwThenClassNameThenCss_KNOWN_ORDER_ISSUE = (
+  <div
+    tw="block"
+    className="mt-1"
+    css={\`
+      color: red;
+    \`}
+  />
+)
+const ClassNameThenTwThenCss_KNOWN_ORDER_ISSUE = (
+  <div
+    className="mt-1"
+    tw="block"
+    css={\`
+      color: red;
+    \`}
+  />
+)
+const ClassNameThenCssThenTw = (
+  <div
+    className="mt-1"
+    css={\`
+      color: red;
+    \`}
+    tw="block"
+  />
+)
+const CssThenClassNameThenTw_KNOWN_ORDER_ISSUE = (
+  <div
+    css={\`
+      color: red;
+    \`}
+    className="mt-1"
+    tw="block"
+  />
+)
+const CssThenTwThenClassName = (
+  <div
+    css={\`
+      color: red;
+    \`}
+    tw="block"
+    className="mt-1"
+  />
+)
+
+// styled + everything
+const Button = tw.div\`\`
+
+const StyledTwThenCssThenClassName = (
+  <Button
+    tw="block"
+    css={\`
+      color: red;
+    \`}
+    className="mt-1"
+  />
+)
+const StyledTwThenClassNameThenCss_KNOWN_ORDER_ISSUE = (
+  <Button
+    tw="block"
+    className="mt-1"
+    css={\`
+      color: red;
+    \`}
+  />
+)
+const StyledClassNameThenTwThenCss_KNOWN_ORDER_ISSUE = (
+  <Button
+    className="mt-1"
+    tw="block"
+    css={\`
+      color: red;
+    \`}
+  />
+)
+const StyledClassNameThenCssThenTw = (
+  <Button
+    className="mt-1"
+    css={\`
+      color: red;
+    \`}
+    tw="block"
+  />
+)
+const StyledCssThenClassNameThenTw_KNOWN_ORDER_ISSUE = (
+  <Button
+    css={\`
+      color: red;
+    \`}
+    className="mt-1"
+    tw="block"
+  />
+)
+const StyledCssThenTwThenClassName = (
+  <Button
+    css={\`
+      color: red;
+    \`}
+    tw="block"
+    className="mt-1"
+  />
+)
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from '@emotion/styled'
+const SkipEmptyClassName = <div className="" />
+const OnlyUppercaseConverted = (
+  <div
+    className="spare-class"
+    css={{
+      textTransform: 'uppercase',
+    }}
+  />
+)
+const AllConverted = (
+  <div
+    css={{
+      textTransform: 'uppercase',
+      display: 'block',
+    }}
+  />
+)
+const SkippedCurlies = <div className={'mt-1'} />
+const SkippedConditionals = <div className={true && 'mt-1'} />
+const SkippedGroup = <div className="group" /> // css + className
+
+const CssPropFirst = (
+  <div
+    css={[
+      \`
+      color: red;
+    \`,
+      {
+        display: 'block',
+      },
+    ]}
+  />
+)
+const CssPropLast = (
+  <div
+    css={[
+      {
+        display: 'block',
+      },
+      \`
+      color: red;
+    \`,
+    ]}
+  />
+) // tw + className
+
+const TwPropFirst = (
+  <div
+    css={[
+      {
+        display: 'block',
+      },
+      {
+        marginTop: '0.25rem',
+      },
+    ]}
+  />
+)
+const TwPropLast = (
+  <div
+    css={[
+      {
+        marginTop: '0.25rem',
+      },
+      {
+        display: 'block',
+      },
+    ]}
+  />
+) // tw + css + className
+
+const TwThenCssThenClassName = (
+  <div
+    css={[
+      {
+        display: 'block',
+      },
+      \`
+      color: red;
+    \`,
+      {
+        marginTop: '0.25rem',
+      },
+    ]}
+  />
+)
+const TwThenClassNameThenCss_KNOWN_ORDER_ISSUE = (
+  <div
+    css={[
+      {
+        marginTop: '0.25rem',
+      },
+      {
+        display: 'block',
+      },
+      \`
+      color: red;
+    \`,
+    ]}
+  />
+)
+const ClassNameThenTwThenCss_KNOWN_ORDER_ISSUE = (
+  <div
+    css={[
+      {
+        display: 'block',
+      },
+      {
+        marginTop: '0.25rem',
+      },
+      \`
+      color: red;
+    \`,
+    ]}
+  />
+)
+const ClassNameThenCssThenTw = (
+  <div
+    css={[
+      {
+        marginTop: '0.25rem',
+      },
+      \`
+      color: red;
+    \`,
+      {
+        display: 'block',
+      },
+    ]}
+  />
+)
+const CssThenClassNameThenTw_KNOWN_ORDER_ISSUE = (
+  <div
+    css={[
+      {
+        marginTop: '0.25rem',
+      },
+      \`
+      color: red;
+    \`,
+      {
+        display: 'block',
+      },
+    ]}
+  />
+)
+const CssThenTwThenClassName = (
+  <div
+    css={[
+      \`
+      color: red;
+    \`,
+      {
+        display: 'block',
+      },
+      {
+        marginTop: '0.25rem',
+      },
+    ]}
+  />
+) // styled + everything
+
+const Button = _styled.div({})
+
+const StyledTwThenCssThenClassName = (
+  <Button
+    css={[
+      {
+        display: 'block',
+      },
+      \`
+      color: red;
+    \`,
+      {
+        marginTop: '0.25rem',
+      },
+    ]}
+  />
+)
+const StyledTwThenClassNameThenCss_KNOWN_ORDER_ISSUE = (
+  <Button
+    css={[
+      {
+        marginTop: '0.25rem',
+      },
+      {
+        display: 'block',
+      },
+      \`
+      color: red;
+    \`,
+    ]}
+  />
+)
+const StyledClassNameThenTwThenCss_KNOWN_ORDER_ISSUE = (
+  <Button
+    css={[
+      {
+        display: 'block',
+      },
+      {
+        marginTop: '0.25rem',
+      },
+      \`
+      color: red;
+    \`,
+    ]}
+  />
+)
+const StyledClassNameThenCssThenTw = (
+  <Button
+    css={[
+      {
+        marginTop: '0.25rem',
+      },
+      \`
+      color: red;
+    \`,
+      {
+        display: 'block',
+      },
+    ]}
+  />
+)
+const StyledCssThenClassNameThenTw_KNOWN_ORDER_ISSUE = (
+  <Button
+    css={[
+      {
+        marginTop: '0.25rem',
+      },
+      \`
+      color: red;
+    \`,
+      {
+        display: 'block',
+      },
+    ]}
+  />
+)
+const StyledCssThenTwThenClassName = (
+  <Button
+    css={[
+      \`
+      color: red;
+    \`,
+      {
+        display: 'block',
+      },
+      {
+        marginTop: '0.25rem',
+      },
+    ]}
+  />
+)
 
 
 `;

@@ -21,8 +21,10 @@ import {
   handleDynamic,
 } from './handlers'
 
-export default (classes, t, state) => {
-  throwIf([null, 'null', undefined].includes(classes), () =>
+export default (classes, t, state, silentMismatches = false) => {
+  const hasEmptyClasses = [null, 'null', undefined].includes(classes)
+  if (silentMismatches && hasEmptyClasses) return
+  throwIf(hasEmptyClasses, () =>
     logGeneralError(
       'Only plain strings can be used with "tw".\nRead more at https://twinredirect.page.link/template-literals'
     )
@@ -39,13 +41,22 @@ export default (classes, t, state) => {
 
   const theme = getTheme(state.config.theme)
 
+  const classesMatched = []
+  const classesMismatched = []
+
   // Merge styles into a single css object
   const styles = classesOrdered.reduce((results, classNameRaw) => {
-    doPrechecks([precheckGroup], { classNameRaw })
+    // Avoid prechecks on silent mode as they'll error loudly
+    !silentMismatches && doPrechecks([precheckGroup], { classNameRaw })
 
     const pieces = getPieces({ classNameRaw, state })
     const { className, hasVariants } = pieces
     const { configTwin } = state
+
+    if (silentMismatches && !className) {
+      classesMismatched.push(classNameRaw)
+      return results
+    }
 
     throwIf(!className, () =>
       hasVariants ? logNotFoundVariant({ classNameRaw }) : logNotFoundClass
@@ -59,6 +70,11 @@ export default (classes, t, state) => {
       corePlugin,
       type,
     } = getProperties(className, state)
+
+    if (silentMismatches && !hasMatches && !hasUserPlugins) {
+      classesMismatched.push(classNameRaw)
+      return results
+    }
 
     // Kick off suggestions when no class matches
     throwIf(!hasMatches && !hasUserPlugins, () =>
@@ -93,6 +109,11 @@ export default (classes, t, state) => {
     }
 
     // Check again there are no userPlugin matches
+    if (silentMismatches && !hasMatches && !style) {
+      classesMismatched.push(classNameRaw)
+      return results
+    }
+
     throwIf(!hasMatches && !style, () => errorSuggestions({ pieces, state }))
 
     style =
@@ -103,10 +124,16 @@ export default (classes, t, state) => {
       pieces.hasVariants ? addVariants({ results, style, pieces }) : style
     )
 
-    state.configTwin.debug && debug(classNameRaw, result)
+    state.configTwin.debug && debug(classNameRaw, style)
 
+    classesMatched.push(classNameRaw)
     return result
   }, {})
 
-  return astify(isEmpty(styles) ? {} : styles, t)
+  return {
+    // TODO: Avoid astifying here, move it outside function
+    styles: astify(isEmpty(styles) ? {} : styles, t),
+    mismatched: classesMismatched.join(' '),
+    matched: classesMatched.join(' '),
+  }
 }

@@ -10,6 +10,7 @@ const configDefaultsTwin = ({ isStyledComponents, isGoober, isDev }) => ({
   hasSuggestions: true, // Switch suggestions on/off when you use a tailwind class that's not found
   sassyPseudo: false, // Sets selectors like hover to &:hover
   debug: false, // Show the output of the classes twin converts
+  includeClassNames: false, // Look in the className props for tailwind classes to convert
   ...(isStyledComponents && configDefaultsStyledComponents),
   ...(isGoober && configDefaultsGoober),
 })
@@ -47,6 +48,10 @@ const configTwinValidators = {
   debugProp: [
     value => value === undefined,
     `The “debugProp” option was renamed to “dataTwProp”, please rename it in your twin config`,
+  ],
+  includeClassNames: [
+    isBoolean,
+    'The config includeClassNames can only be true or false',
   ],
 }
 
