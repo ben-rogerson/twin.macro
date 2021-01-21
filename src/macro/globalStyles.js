@@ -171,9 +171,14 @@ const handleGlobalStylesFunction = ({
   }
 
   if (state.isGoober) {
-    const declaration = getGlobalTte({ t, stylesUid, styles })
+    const declaration = getGlobalDeclarationTte({
+      t,
+      globalUid,
+      stylesUid,
+      styles,
+    })
     program.unshiftContainer('body', declaration)
-    parentPath.remove()
+    path.replaceWith(t.jSXIdentifier(globalUid.name))
   }
 
   addGlobalStylesImport({
