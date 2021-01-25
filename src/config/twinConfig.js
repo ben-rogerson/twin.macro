@@ -11,6 +11,8 @@ const configDefaultsTwin = ({ isStyledComponents, isGoober, isDev }) => ({
   sassyPseudo: false, // Sets selectors like hover to &:hover
   debug: false, // Show the output of the classes twin converts
   includeClassNames: false, // Look in the className props for tailwind classes to convert
+  dataCsProp: isDev, // During development, add a data-cs="" prop containing your short css classes for backtracing
+  disableCsProp: false, // Disable converting css styles in the cs prop
   ...(isStyledComponents && configDefaultsStyledComponents),
   ...(isGoober && configDefaultsGoober),
 })
@@ -51,7 +53,11 @@ const configTwinValidators = {
   ],
   includeClassNames: [
     isBoolean,
-    'The config includeClassNames can only be true or false',
+    'The config “includeClassNames” can only be true or false',
+  ],
+  disableCsProp: [
+    isBoolean,
+    'The config “disableCsProp” can only be true or false',
   ],
 }
 

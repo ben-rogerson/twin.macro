@@ -4,6 +4,7 @@ import {
   setStyledIdentifier,
   setCssIdentifier,
   generateUid,
+  getCssAttributeData,
 } from './macroHelpers'
 import { isEmpty } from './utils'
 import {
@@ -24,6 +25,7 @@ import {
 import { handleThemeFunction } from './macro/theme'
 import { handleGlobalStylesFunction } from './macro/globalStyles'
 import { handleTwProperty, handleTwFunction } from './macro/tw'
+import { handleCsProperty } from './macro/cs'
 import { handleClassNameProperty } from './macro/className'
 import getUserPluginData from './utils/getUserPluginData'
 import { debugPlugins } from './logging'
@@ -97,10 +99,22 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
       setStyledIdentifier({ state, path, styledImport })
       setCssIdentifier({ state, path, cssImport })
     },
-    JSXAttribute(path) {
-      if (path.node.name.name === 'css') state.hasCssProp = true
-      handleClassNameProperty({ path, t, state })
-      handleTwProperty({ path, t, state })
+    JSXElement(path) {
+      const allAttributes = path.get('openingElement.attributes')
+      const jsxAttributes = allAttributes.filter(attribute =>
+        attribute.isJSXAttribute()
+      )
+      const { index, hasCssAttribute } = getCssAttributeData(jsxAttributes)
+      state.hasCssAttribute = hasCssAttribute
+
+      // Reverse the attributes so the items keep their order when replaced
+      const orderedAttributes =
+        index > 1 ? jsxAttributes.reverse() : jsxAttributes
+      for (path of orderedAttributes) {
+        handleClassNameProperty({ path, t, state })
+        handleTwProperty({ path, t, state })
+        handleCsProperty({ path, t, state })
+      }
     },
   })
 
@@ -148,7 +162,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
 
   // Auto add css prop for styled-components
   if (
-    (state.hasTwProp || state.hasCssProp) &&
+    (state.hasTwAttribute || state.hasCssAttribute) &&
     configTwin.autoCssProp === true &&
     state.isStyledComponents
   ) {

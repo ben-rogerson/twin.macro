@@ -39,7 +39,7 @@ const TwThenCssThenClassName = (
     className="mt-1"
   />
 )
-const TwThenClassNameThenCss_KNOWN_ORDER_ISSUE = (
+const TwThenClassNameThenCss = (
   <div
     tw="block"
     className="mt-1"
@@ -48,7 +48,7 @@ const TwThenClassNameThenCss_KNOWN_ORDER_ISSUE = (
     `}
   />
 )
-const ClassNameThenTwThenCss_KNOWN_ORDER_ISSUE = (
+const ClassNameThenTwThenCss = (
   <div
     className="mt-1"
     tw="block"
@@ -66,7 +66,7 @@ const ClassNameThenCssThenTw = (
     tw="block"
   />
 )
-const CssThenClassNameThenTw_KNOWN_ORDER_ISSUE = (
+const CssThenClassNameThenTw = (
   <div
     css={`
       color: red;
@@ -97,7 +97,7 @@ const StyledTwThenCssThenClassName = (
     className="mt-1"
   />
 )
-const StyledTwThenClassNameThenCss_KNOWN_ORDER_ISSUE = (
+const StyledTwThenClassNameThenCss = (
   <Button
     tw="block"
     className="mt-1"
@@ -106,7 +106,7 @@ const StyledTwThenClassNameThenCss_KNOWN_ORDER_ISSUE = (
     `}
   />
 )
-const StyledClassNameThenTwThenCss_KNOWN_ORDER_ISSUE = (
+const StyledClassNameThenTwThenCss = (
   <Button
     className="mt-1"
     tw="block"
@@ -124,7 +124,7 @@ const StyledClassNameThenCssThenTw = (
     tw="block"
   />
 )
-const StyledCssThenClassNameThenTw_KNOWN_ORDER_ISSUE = (
+const StyledCssThenClassNameThenTw = (
   <Button
     css={`
       color: red;
@@ -140,5 +140,46 @@ const StyledCssThenTwThenClassName = (
     `}
     tw="block"
     className="mt-1"
+  />
+)
+// All four css props
+const TwThenClassNameThenCsThenCss = (
+  <Button
+    tw="block"
+    className="ml-1"
+    cs="content['cs']"
+    css={`
+      content: 'css';
+    `}
+  />
+)
+const TwThenClassNameThenCssThenCs = (
+  <Button
+    tw="block"
+    className="ml-1"
+    css={`
+      content: 'css';
+    `}
+    cs="content['cs']"
+  />
+)
+const TwThenCssThenClassNameThenCs = (
+  <Button
+    tw="block"
+    css={`
+      content: 'css';
+    `}
+    className="ml-1"
+    cs="content['cs']"
+  />
+)
+const CssThenTwThenClassNameThenCs = (
+  <Button
+    css={`
+      content: 'css';
+    `}
+    tw="block"
+    className="ml-1"
+    cs="content['cs']"
   />
 )

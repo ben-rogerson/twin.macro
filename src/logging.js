@@ -46,7 +46,7 @@ const logNotAllowed = ({ className, error }) =>
 
 // TODO: Wrap this in spaced
 const logBadGood = (bad, good) =>
-  `${color.error('✕ Bad:')} ${bad}\n${color.success('✓ Good:')} ${good}`
+  spaced(`${color.error('✕ Bad:')} ${bad}\n${color.success('✓ Good:')} ${good}`)
 
 const logErrorFix = (error, good) =>
   `${color.error(error)}\n${color.success('Fix:')} ${good}`
@@ -120,10 +120,10 @@ const checkDarkLightClasses = className =>
   throwIf(
     ['dark', 'light'].includes(className),
     () =>
-      `\n\n"${className}" must be added as className:\n\n${logBadGood(
+      `\n\n"${className}" must be added as className:${logBadGood(
         `tw\`${className}\``,
         `<div className="${className}">`
-      )}\n\nRead more at https://twinredirect.page.link/darkLightMode\n`
+      )}\nRead more at https://twinredirect.page.link/darkLightMode\n`
   )
 
 const errorSuggestions = properties => {
@@ -132,7 +132,15 @@ const errorSuggestions = properties => {
       configTwin: { hasSuggestions },
     },
     pieces: { className },
+    isCsOnly,
   } = properties
+
+  if (isCsOnly)
+    return spaced(
+      `${color.highlight(
+        className
+      )} isn’t in the right syntax for use in the cs prop\n\nTry something like maxWidth[100vw]\nRead more at https://twinredirect.page.link/cs-classes`
+    )
 
   checkDarkLightClasses(className)
 
@@ -171,7 +179,7 @@ const errorSuggestions = properties => {
 
 const themeErrorNotFound = ({ theme, input, trimInput }) => {
   if (typeof theme === 'string') {
-    return spaced(logBadGood(input, trimInput))
+    return logBadGood(input, trimInput)
   }
 
   const textNotFound = warning(
@@ -193,12 +201,10 @@ const themeErrorNotFound = ({ theme, input, trimInput }) => {
 }
 
 const logNotFoundVariant = ({ classNameRaw }) =>
-  spaced(
-    logBadGood(
-      `${classNameRaw}`,
-      [`${classNameRaw}flex`, `${classNameRaw}(flex bg-black)`].join(
-        color.subdued(' / ')
-      )
+  logBadGood(
+    `${classNameRaw}`,
+    [`${classNameRaw}flex`, `${classNameRaw}(flex bg-black)`].join(
+      color.subdued(' / ')
     )
   )
 

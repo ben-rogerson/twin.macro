@@ -19,9 +19,13 @@ import {
   handleCorePlugins,
   handleStatic,
   handleDynamic,
+  handleCss,
 } from './handlers'
 
-export default (classes, t, state, silentMismatches = false) => {
+export default (
+  classes,
+  { isCsOnly = false, silentMismatches = false, t, state } = {}
+) => {
   const hasEmptyClasses = [null, 'null', undefined].includes(classes)
   if (silentMismatches && hasEmptyClasses) return
   throwIf(hasEmptyClasses, () =>
@@ -69,7 +73,7 @@ export default (classes, t, state, silentMismatches = false) => {
       dynamicConfig,
       corePlugin,
       type,
-    } = getProperties(className, state)
+    } = getProperties(className, state, { isCsOnly })
 
     if (silentMismatches && !hasMatches && !hasUserPlugins) {
       classesMismatched.push(classNameRaw)
@@ -78,13 +82,14 @@ export default (classes, t, state, silentMismatches = false) => {
 
     // Kick off suggestions when no class matches
     throwIf(!hasMatches && !hasUserPlugins, () =>
-      errorSuggestions({ pieces, state })
+      errorSuggestions({ pieces, state, isCsOnly })
     )
 
     const styleHandler = {
       static: () => handleStatic({ pieces }),
       dynamic: () =>
         handleDynamic({ theme, pieces, state, dynamicKey, dynamicConfig }),
+      css: () => handleCss({ className }),
       userPlugin: () => handleUserPlugins({ state, className }),
       corePlugin: () =>
         handleCorePlugins({
@@ -114,7 +119,9 @@ export default (classes, t, state, silentMismatches = false) => {
       return results
     }
 
-    throwIf(!hasMatches && !style, () => errorSuggestions({ pieces, state }))
+    throwIf(!hasMatches && !style, () =>
+      errorSuggestions({ pieces, state, isCsOnly })
+    )
 
     style =
       style || applyTransforms({ type, pieces, style: styleHandler[type]() })

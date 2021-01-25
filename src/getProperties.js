@@ -35,14 +35,25 @@ const getDynamicProperties = className => {
   return { isDynamicClass, dynamicConfig, dynamicKey }
 }
 
+const isCssClass = className => className.includes('[')
+
 const isEmpty = value =>
   value === undefined ||
   value === null ||
   (typeof value === 'object' && Object.keys(value).length === 0) ||
   (typeof value === 'string' && value.trim().length === 0)
 
-const getProperties = (className, state) => {
+const getProperties = (className, state, { isCsOnly = false }) => {
   if (!className) return
+
+  const isCss = isCssClass(className)
+  if (isCsOnly) {
+    return {
+      hasMatches: isCss,
+      type: 'css',
+    }
+  }
+
   const isStatic = isStaticClass(className)
   const { isDynamicClass, dynamicConfig, dynamicKey } = getDynamicProperties(
     className
@@ -53,7 +64,8 @@ const getProperties = (className, state) => {
   const type =
     (isStatic && 'static') ||
     (isDynamicClass && 'dynamic') ||
-    (corePlugin && 'corePlugin')
+    (corePlugin && 'corePlugin') ||
+    (isCss && 'css')
 
   return {
     type,
