@@ -55,8 +55,8 @@ export default {
       from: 'goober',
     },
     global: {
-      import: 'glob',
-      from: 'goober',
+      import: 'createGlobalStyles',
+      from: 'goober/global',
     },
   },
 }
