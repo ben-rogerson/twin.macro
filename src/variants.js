@@ -10,6 +10,7 @@ import {
   variantLightMode,
   prefixDarkLightModeClass,
 } from './darkLightMode'
+import { SPACE_ID } from './contants'
 
 const fullVariantConfig = variantConfig({
   variantDarkMode,
@@ -122,12 +123,17 @@ const addVariants = ({ results, style, pieces }) => {
   return styleWithVariants
 }
 
-function findRightBracket(classes, start = 0, end = classes.length) {
+function findRightBracket(
+  classes,
+  start = 0,
+  end = classes.length,
+  brackets = ['(', ')']
+) {
   let stack = 0
   for (let index = start; index < end; index++) {
-    if (classes[index] === '(') {
+    if (classes[index] === brackets[0]) {
       stack += 1
-    } else if (classes[index] === ')') {
+    } else if (classes[index] === brackets[1]) {
       if (stack === 0) return
       if (stack === 1) return index
       stack -= 1
@@ -150,12 +156,13 @@ function spreadVariantGroups(
 
   // variant format: /[\w-]+:/
   // class format: /[\w-./]+/
-  const reg = /([\w-]+:)|([\w-./]+!?)|\(|(\S+)/g
+  const reg = /([\w-]+:)|([\w-./[]+!?)|\(|(\S+)/g
   let match
   const baseContext = context
 
   while ((match = reg.exec(classes))) {
     const [, variant, className, weird] = match
+
     if (variant) {
       context += variant
 
@@ -174,6 +181,7 @@ function spreadVariantGroups(
         )
 
         const importantGroup = classes[closeBracket + 1] === '!'
+
         results.push(
           ...spreadVariantGroups(
             classes,
@@ -186,6 +194,37 @@ function spreadVariantGroups(
         reg.lastIndex = closeBracket + (importantGroup ? 2 : 1)
         context = baseContext
       }
+    } else if (className && className.includes('[')) {
+      const closeBracket = findRightBracket(
+        classes,
+        match.index,
+        classes.length,
+        ['[', ']']
+      )
+
+      throwIf(typeof closeBracket !== 'number', () =>
+        logGeneralError(
+          `An ending bracket ']' wasn’t found for these classes:\n\n${classes}`
+        )
+      )
+      const importantGroup = classes[closeBracket + 1] === '!'
+
+      const cssClass = classes.slice(
+        classes.indexOf(className),
+        closeBracket + 1
+      )
+
+      const spaceReplacedClass = cssClass.replace(/ /g, SPACE_ID)
+
+      // Convert spaces in classes to a temporary string so the css won't be
+      // split into multiple classes
+      results.push(
+        context +
+          spaceReplacedClass +
+          (importantGroup || importantContext ? '!' : '')
+      )
+      reg.lastIndex = closeBracket + (importantGroup ? 2 : 1)
+      context = baseContext
     } else if (className) {
       const tail = !className.endsWith('!') && importantContext ? '!' : ''
       results.push(context + className + tail)

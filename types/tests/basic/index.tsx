@@ -8,10 +8,10 @@ tw`text-gray-100 bg-blue-500`
 const basic = 'bg-blue-500'
 tw`${basic}`
 
-// @ts-expect-error
+// @ts-expect-error empty tw
 tw('')
 
-// @ts-expect-error
+// @ts-expect-error interpolations not supported
 tw`interpolations not supported ${123}`
 
 const Button = tw.button`bg-blue-500 text-gray-100`
@@ -28,13 +28,13 @@ const jsx = (
   </>
 )
 
-// @ts-expect-error
+// @ts-expect-error bad jsx
 const badJsx = <Button what="lol" />
 
-// @ts-expect-error
+// @ts-expect-error non-existent element
 tw.nonExistentElement``
 
-// @ts-expect-error
+// @ts-expect-error call syntax not supported
 tw('call syntax not supported')``
 
 const App = ({
@@ -50,3 +50,5 @@ const twProperty = (
     <div tw="prop">cool</div>
   </App>
 )
+
+const csProperty = <div cs="maxWidth[100%] height[calc(100vh - 1em)]" />

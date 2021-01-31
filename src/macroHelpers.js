@@ -253,6 +253,23 @@ const validateImports = imports => {
 
 const generateUid = (name, program) => program.scope.generateUidIdentifier(name)
 
+const getParentJSX = path => path.findParent(p => p.isJSXOpeningElement())
+
+const getAttributeNames = jsxPath => {
+  const attributes = jsxPath.get('attributes')
+  const attributeNames = attributes.map(p => p.node.name && p.node.name.name)
+  return attributeNames
+}
+
+const getCssAttributeData = attributes => {
+  const index = attributes.findIndex(
+    attribute =>
+      attribute.isJSXAttribute() && attribute.get('name.name').node === 'css'
+  )
+
+  return { index, hasCssAttribute: index >= 0, attribute: attributes[index] }
+}
+
 export {
   SPREAD_ID,
   COMPUTED_ID,
@@ -265,4 +282,7 @@ export {
   setStyledIdentifier,
   setCssIdentifier,
   generateUid,
+  getParentJSX,
+  getAttributeNames,
+  getCssAttributeData,
 }

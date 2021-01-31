@@ -96,4 +96,8 @@ module.exports = {
     },
   ],
   ignorePatterns: ['.eslintrc.js'],
+  globals: {
+    JSX: true,
+    AriaAttributes: true,
+  },
 }

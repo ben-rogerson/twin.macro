@@ -1,22 +1,26 @@
+/**
+ * cs - 'css shorts'
+ */
+
 import {
   getParentJSX,
-  parseTte,
-  replaceWithLocation,
   getAttributeNames,
   getCssAttributeData,
 } from './../macroHelpers'
 import { throwIf } from './../utils'
-import { logGeneralError, logStylePropertyError } from './../logging'
+import { logGeneralError } from './../logging'
 import { addDataTwPropToPath, addDataPropToExistingPath } from './debug'
 import getStyleData from './../getStyleData'
 
-const handleTwProperty = ({ path, t, state }) => {
-  if (!path.node || path.node.name.name !== 'tw') return
-  state.hasTwAttribute = true
+const handleCsProperty = ({ path, t, state }) => {
+  if (state.configTwin.disableCsProp) return
+  if (!path.node || path.node.name.name !== 'cs') return
+  state.hasCsProp = true
+  const isCsOnly = true
 
   const nodeValue = path.node.value
 
-  // Allow tw={"class"}
+  // Allow cs={"property[value]"}
   const expressionValue =
     nodeValue.expression &&
     nodeValue.expression.type === 'StringLiteral' &&
@@ -25,12 +29,12 @@ const handleTwProperty = ({ path, t, state }) => {
   // Feedback for unsupported usage
   throwIf(nodeValue.expression && !expressionValue, () =>
     logGeneralError(
-      `Only plain strings can be used with the "tw" prop.\nEg: <div tw="text-black" /> or <div tw={"text-black"} />\nRead more at https://twinredirect.page.link/template-literals`
+      `Only plain strings can be used with the "cs" prop.\nEg: <div cs="maxWidth[30rem]" />\nRead more at https://twinredirect.page.link/cs-classes`
     )
   )
 
   const rawClasses = expressionValue || nodeValue.value || ''
-  const { styles } = getStyleData(rawClasses, { t, state })
+  const { styles } = getStyleData(rawClasses, { isCsOnly, t, state })
 
   const jsxPath = getParentJSX(path)
   const attributes = jsxPath.get('attributes')
@@ -41,7 +45,15 @@ const handleTwProperty = ({ path, t, state }) => {
     path.replaceWith(
       t.jsxAttribute(t.jsxIdentifier('css'), t.jsxExpressionContainer(styles))
     )
-    addDataTwPropToPath({ t, attributes, rawClasses, path, state })
+    // TODO: Update the naming of this function
+    addDataTwPropToPath({
+      t,
+      attributes,
+      rawClasses,
+      path,
+      state,
+      propName: 'data-cs',
+    })
     return
   }
 
@@ -60,9 +72,8 @@ const handleTwProperty = ({ path, t, state }) => {
     : attributeValuePath.get('expression')
 
   const attributeNames = getAttributeNames(jsxPath)
-
   const isBeforeCssAttribute =
-    attributeNames.indexOf('tw') - attributeNames.indexOf('css') < 0
+    attributeNames.indexOf('cs') - attributeNames.indexOf('css') < 0
 
   if (existingCssAttribute.isArrayExpression()) {
     //  The existing css prop is an array, eg: css={[...]}
@@ -72,11 +83,11 @@ const handleTwProperty = ({ path, t, state }) => {
   } else {
     // css prop is either:
     // TemplateLiteral
-    // <div css={`...`} tw="..." />
+    // <div css={`...`} cs="..." />
     // or an ObjectExpression
-    // <div css={{ ... }} tw="..." />
+    // <div css={{ ... }} cs="..." />
     // or ArrowFunctionExpression/FunctionExpression
-    // <div css={() => (...)} tw="..." />
+    // <div css={() => (...)} cs="..." />
 
     const existingCssAttributeNode = existingCssAttribute.node
 
@@ -96,7 +107,7 @@ const handleTwProperty = ({ path, t, state }) => {
     existingCssAttribute.replaceWith(replacement)
   }
 
-  path.remove() // remove the tw prop
+  path.remove() // remove the cs prop
 
   addDataPropToExistingPath({
     t,
@@ -104,49 +115,8 @@ const handleTwProperty = ({ path, t, state }) => {
     rawClasses,
     path: jsxPath,
     state,
+    propName: 'data-cs',
   })
 }
 
-const handleTwFunction = ({ references, state, t }) => {
-  const defaultImportReferences = references.default || references.tw || []
-  defaultImportReferences.forEach(path => {
-    const parent = path.findParent(x => x.isTaggedTemplateExpression())
-    if (!parent) return
-
-    // Check if the style attribute is being used
-    if (!state.configTwin.allowStyleProp) {
-      const jsxAttribute = parent.findParent(x => x.isJSXAttribute())
-      const attributeName =
-        jsxAttribute && jsxAttribute.get('name').get('name').node
-      throwIf(attributeName === 'style', () => logStylePropertyError)
-    }
-
-    const parsed = parseTte({
-      path: parent,
-      types: t,
-      styledIdentifier: state.styledIdentifier,
-      state,
-    })
-    if (!parsed) return
-
-    const rawClasses = parsed.string
-
-    // Add tw-prop for css attributes
-    const jsxPath = path.findParent(p => p.isJSXOpeningElement())
-    if (jsxPath) {
-      const attributes = jsxPath.get('attributes')
-      addDataPropToExistingPath({
-        t,
-        attributes,
-        rawClasses,
-        path: jsxPath,
-        state,
-      })
-    }
-
-    const { styles } = getStyleData(rawClasses, { t, state })
-    replaceWithLocation(parsed.path, styles)
-  })
-}
-
-export { handleTwProperty, handleTwFunction }
+export { handleCsProperty }
