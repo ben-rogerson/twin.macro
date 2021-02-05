@@ -154,9 +154,8 @@ function spreadVariantGroups(
   const results = []
   classes = classes.slice(start, end).trim()
 
-  // variant format: /[\w-]+:/
-  // class format: /[\w-./]+/
-  const reg = /([\w-]+:)|([\w-./[]+!?)|\(|(\S+)/g
+  const reg = /([\w-]+:)|([\w-./[\]]+!?)|\(|(\S+)/g
+
   let match
   const baseContext = context
 
@@ -201,28 +200,24 @@ function spreadVariantGroups(
         classes.length,
         ['[', ']']
       )
-
       throwIf(typeof closeBracket !== 'number', () =>
         logGeneralError(
           `An ending bracket ']' wasn’t found for these classes:\n\n${classes}`
         )
       )
       const importantGroup = classes[closeBracket + 1] === '!'
-
-      const cssClass = classes.slice(
-        classes.indexOf(className),
-        closeBracket + 1
-      )
-
-      const spaceReplacedClass = cssClass.replace(/ /g, SPACE_ID)
+      const cssClass = classes.slice(match.index, closeBracket + 1)
 
       // Convert spaces in classes to a temporary string so the css won't be
       // split into multiple classes
+      const spaceReplacedClass = cssClass.replace(/ /g, SPACE_ID)
+
       results.push(
         context +
           spaceReplacedClass +
           (importantGroup || importantContext ? '!' : '')
       )
+
       reg.lastIndex = closeBracket + (importantGroup ? 2 : 1)
       context = baseContext
     } else if (className) {

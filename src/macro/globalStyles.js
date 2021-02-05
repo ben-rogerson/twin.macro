@@ -47,9 +47,6 @@ const getGlobalDeclarationTte = ({ t, stylesUid, globalUid, styles }) =>
     ),
   ])
 
-const getGlobalTte = ({ t, stylesUid, styles }) =>
-  generateTaggedTemplateExpression({ t, identifier: stylesUid, styles })
-
 const getGlobalDeclarationProperty = ({
   t,
   stylesUid,
@@ -165,6 +162,7 @@ const handleGlobalStylesFunction = ({
       state,
       styles,
     })
+    // TODO: Check for presence of css import
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
     state.isImportingCss = true

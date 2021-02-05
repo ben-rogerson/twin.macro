@@ -71,4 +71,7 @@ const stripNegative = string =>
     ? string.slice(1, string.length)
     : string
 
-export { throwIf, isEmpty, addPxTo0, getTheme, stripNegative, get }
+const camelize = string =>
+  string && string.replace(/\W+(.)/g, (match, chr) => chr.toUpperCase())
+
+export { throwIf, isEmpty, addPxTo0, getTheme, stripNegative, get, camelize }

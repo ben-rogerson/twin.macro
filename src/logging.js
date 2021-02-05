@@ -44,7 +44,6 @@ const logNoVariant = (variant, validVariants) =>
 const logNotAllowed = ({ className, error }) =>
   spaced(warning(`${color.errorLight(`${className}`)} ${error}`))
 
-// TODO: Wrap this in spaced
 const logBadGood = (bad, good) =>
   spaced(`${color.error('✕ Bad:')} ${bad}\n${color.success('✓ Good:')} ${good}`)
 

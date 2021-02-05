@@ -1,13 +1,28 @@
 import { SPACE_ID } from './../contants'
-import { throwIf } from './../utils'
+import { throwIf, camelize } from './../utils'
 import { logBadGood } from './../logging'
 
+function splitOnFirst(str, sep) {
+  const index = str.indexOf(sep)
+  return index < 0
+    ? [str]
+    : [str.slice(0, index), str.slice(Number(index) + Number(sep.length))]
+}
+
 export default ({ className }) => {
-  const [property, value] = className
-    .replace(']', '')
-    // Replace the "stand-in spaces" with real ones
-    .replace(new RegExp(SPACE_ID, 'g'), ' ')
-    .split('[')
+  let [property, value] = splitOnFirst(
+    className
+      // Replace the "stand-in spaces" with real ones
+      .replace(new RegExp(SPACE_ID, 'g'), ' '),
+    '['
+  )
+
+  property =
+    (property.startsWith('--') && property) || // Retain css variables
+    camelize(property)
+
+  // Remove the last ']' and whitespace
+  value = value.slice(0, -1).trim()
 
   throwIf(!property, () =>
     logBadGood(

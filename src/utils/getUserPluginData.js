@@ -1,5 +1,6 @@
 import processPlugins from 'tailwindcss/lib/util/processPlugins'
 import deepMerge from 'lodash.merge'
+import { camelize } from './../utils'
 
 const parseSelector = (selector, isBase) => {
   if (!selector) return
@@ -8,9 +9,6 @@ const parseSelector = (selector, isBase) => {
   if (isBase) return matches[0]
   return matches[0].startsWith('.') ? matches[0].slice(1) : matches[0]
 }
-
-const camelize = string =>
-  string && string.replace(/\W+(.)/g, (match, chr) => chr.toUpperCase())
 
 const parseRuleProperty = string => {
   if (string && string.match(/^--[a-z-]*$/i)) {

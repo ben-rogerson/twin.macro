@@ -87,11 +87,8 @@ const Input = () => <StyledInput hasBorder />
 
 ## How it works
 
-When babel runs over your code, Twin’s `css` and `styled` imports get swapped with the real imports from libraries like [💅&nbsp;styled&#8209;components](https://styled-components.com/) and [👩‍🎤&nbsp;emotion](https://emotion.sh/docs/introduction).
-
-Twin offers import presets for these libraries or you can fully customise the imports.
-
-When you use `tw`, Twin converts your classes into css objects, ready for passing to your chosen css-in-js library:
+When babel runs over your javascript or typescript files at compile time, twin grabs your classes and converts them into css objects.
+These css objects are then passed into your chosen the css-in-js library without the need for an extra client-side bundle:
 
 ```js
 import tw from 'twin.macro'
@@ -107,6 +104,9 @@ tw`text-sm md:text-lg`
   },
 }
 ```
+
+Twin also swaps it’s the `css` and `styled` imports with the real imports from your css in js library.
+This feature avoids having to add extra imports as you can import them all from twin.
 
 ## Features
 
@@ -125,31 +125,7 @@ ml-8 [2rem] / ml-10 [2.5rem] / ml-12 [3rem] / ml-16 [4rem] / ml-20 [5rem] / ml-2
 ml-40 [10rem] / ml-48 [12rem] / ml-56 [14rem] / ml-64 [16rem] / ml-auto [auto] / ml-px [1px]
 ```
 
-**🖌️ Use the theme import to add values from your tailwind config**
-
-```js
-import { theme, css } from 'twin.macro'
-
-const Input = () => <input css={css({ color: theme`colors.purple.500` })} />
-```
-
-See more examples [using the theme import →](https://github.com/ben-rogerson/twin.macro/pull/106)
-
-**💥 Add !important to any class with a trailing bang!**
-
-```js
-<div tw="hidden!" />
-// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
-<div css={{ "display": "none !important" }} />
-```
-
-Add !important to multiple classes with bracket groups:
-
-```js
-<div tw="(hidden ml-auto)!" />
-// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
-<div css={{ "display": "none !important", "marginLeft": "auto !important" }} />
-```
+**💡 Works with the official tailwind vscode plugin** - Avoid having to look up your classes with auto-completions straight from your tailwind config - [See setup instructions →](https://github.com/ben-rogerson/twin.macro/discussions/227)
 
 **🚥 Over 40 variants to prefix on your classes** - Unlike Tailwind, the prefixes are always available to add to your classes
 
@@ -178,10 +154,50 @@ const pseudoElementStyles = () => (
 
 const stackedVariants = () => <div tw="sm:hover:(bg-black text-white)" />
 
-const groupsInGroups = () => <div tw="sm:(bg-black hover:(bg-white w-10))">
+const groupsInGroups = () => <div tw="sm:(bg-black hover:(bg-white w-10))" />
 ```
 
-**💡 Integrates with the official tailwind vscode plugin** - Avoid having to look up your classes with auto-completions straight from your tailwind config - [See setup instructions →](https://github.com/ben-rogerson/twin.macro/discussions/227)
+**👑 Add vanilla css that fully integrates with twins features**
+
+```js
+const setCssVariables = () => <div tw="--base-color[#C0FFEE]" />
+
+const useCssVariables = () => <div tw="background-color[var(--base-color)]" />
+
+const addBrowserVendorPrefixes = () => <div tw="-webkit-line-clamp[3]" />
+
+const addCustomGridProperties = () => tw`grid-area[1 / 1 / 4 / 2]`
+
+const addAlongsideTailwindClasses = () => (
+  <div tw="after:(content['hello'] bg-black text-white)" />
+)
+```
+
+**🖌️ Use the theme import to add values from your tailwind config**
+
+```js
+import { theme, css } from 'twin.macro'
+
+const Input = () => <input css={css({ color: theme`colors.purple.500` })} />
+```
+
+See more examples [using the theme import →](https://github.com/ben-rogerson/twin.macro/pull/106)
+
+**💥 Add !important to any class with a trailing bang!**
+
+```js
+<div tw="hidden!" />
+// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+<div css={{ "display": "none !important" }} />
+```
+
+Add !important to multiple classes with bracket groups:
+
+```js
+<div tw="(hidden ml-auto)!" />
+// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+<div css={{ "display": "none !important", "marginLeft": "auto !important" }} />
+```
 
 ## Get started
 
