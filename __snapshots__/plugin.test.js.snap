@@ -1080,7 +1080,7 @@ const addUtilitiesTest2Media = tw\`sm:skew-15deg lg:type-sm\`
 const addUtilitiesTest2Variants = tw\`hover:active:skew-15deg even:visited:skew-15deg\`
 
 const addComponentsTest = tw\`btn btn-blue btn-red\`
-// const addComponentsTestImportant = tw\`btn! btn-blue!\` // Issue showing sub selectors and important
+// const addComponentsTestImportant = tw\`btn! btn-blue!\` // TODO: Issue showing sub selectors and important
 const addComponentsTestMedia = tw\`xl:btn sm:btn-blue lg:btn-red\`
 const addComponentsTestVariants = tw\`hover:active:btn hocus:before:btn-blue even:visited:btn-red\`
 
@@ -1157,7 +1157,7 @@ const addComponentsTest = {
   ':hover': {
     backgroundColor: '#cc1f1a',
   },
-} // const addComponentsTestImportant = tw\`btn! btn-blue!\` // Issue showing sub selectors and important
+} // const addComponentsTestImportant = tw\`btn! btn-blue!\` // TODO: Issue showing sub selectors and important
 
 const addComponentsTestMedia = {
   '@media (min-width: 640px)': {
@@ -13140,6 +13140,29 @@ tw\`text-hamburger\`
 ;({
   '--tw-text-opacity': '1',
   color: 'rgba(165, 42, 42, var(--tw-text-opacity))',
+})
+
+
+`;
+
+exports[`twin.macro sassyPseudo.js: sassyPseudo.js 1`] = `
+
+import tw from './macro'
+
+tw\`hover:block first:mt-2 last-of-type:max-width[20px]\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+;({
+  '&:hover': {
+    display: 'block',
+  },
+  '&:first-child': {
+    marginTop: '0.5rem',
+  },
+  '&:last-of-type': {
+    maxWidth: '20px',
+  },
 })
 
 
