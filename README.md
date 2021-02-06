@@ -105,7 +105,7 @@ tw`text-sm md:text-lg`
 }
 ```
 
-Twin also swaps it’s the `css` and `styled` imports with the real imports from your css in js library.
+Twin also swaps its own `css` and `styled` imports with the real imports from your css in js library.
 This feature avoids having to add extra imports as you can import them all from twin.
 
 ## Features
@@ -157,20 +157,20 @@ const stackedVariants = () => <div tw="sm:hover:(bg-black text-white)" />
 const groupsInGroups = () => <div tw="sm:(bg-black hover:(bg-white w-10))" />
 ```
 
-**👑 Add vanilla css that fully integrates with twins features**
+**👑 Add vanilla css that integrates with twins features**
 
 ```js
+const alongsideTailwindClasses = () => (
+  <div tw="after:(content['hello'] bg-black text-white)" />
+)
+
 const setCssVariables = () => <div tw="--base-color[#C0FFEE]" />
 
 const useCssVariables = () => <div tw="background-color[var(--base-color)]" />
 
-const addBrowserVendorPrefixes = () => <div tw="-webkit-line-clamp[3]" />
+const customGridProperties = () => <div tw="grid-area[1 / 1 / 4 / 2]" />
 
-const addCustomGridProperties = () => tw`grid-area[1 / 1 / 4 / 2]`
-
-const addAlongsideTailwindClasses = () => (
-  <div tw="after:(content['hello'] bg-black text-white)" />
-)
+const vendorPrefixes = () => <div tw="-webkit-mask-image[url(mask.png)]" />
 ```
 
 **🖌️ Use the theme import to add values from your tailwind config**
