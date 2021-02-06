@@ -2,7 +2,10 @@
  * Split the negative from the className
  */
 const splitNegative = ({ className }) => {
-  const hasNegative = className.slice(0, 1) === '-'
+  const isShortCss = className.includes('[')
+  const hasNegative = !isShortCss && className.slice(0, 1) === '-'
+
+  // TODO: Look in deprecating the negative prefix removal
   if (hasNegative) {
     className = className.slice(1, className.length)
   }
