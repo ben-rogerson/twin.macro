@@ -47,12 +47,7 @@ const getProperties = (className, state, { isCsOnly = false }) => {
   if (!className) return
 
   const isCss = isCssClass(className)
-  if (isCsOnly) {
-    return {
-      hasMatches: isCss,
-      type: 'css',
-    }
-  }
+  if (isCsOnly) return { hasMatches: isCss, type: 'css' }
 
   const isStatic = isStaticClass(className)
   const { isDynamicClass, dynamicConfig, dynamicKey } = getDynamicProperties(
@@ -62,10 +57,10 @@ const getProperties = (className, state, { isCsOnly = false }) => {
   const hasUserPlugins = !isEmpty(state.config.plugins)
 
   const type =
+    (isCss && 'css') ||
     (isStatic && 'static') ||
     (isDynamicClass && 'dynamic') ||
-    (corePlugin && 'corePlugin') ||
-    (isCss && 'css')
+    (corePlugin && 'corePlugin')
 
   return {
     type,

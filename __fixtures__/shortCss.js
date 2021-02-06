@@ -41,3 +41,6 @@ tw`-webkit-gradient[gradient here] md:-webkit-gradient[gradient here md]`
 
 // Grid template
 tw`grid-template-columns[[main-start] 1fr [content-start] 1fr [content-end] 1fr [main-end]] md:grid-template-columns[[main-start-md] 1fr [content-start-md] 1fr [content-end-md] 1fr [main-end-md]]`
+
+// Short css trumps core plugins
+tw`transition-property[margin]`
