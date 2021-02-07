@@ -11941,6 +11941,65 @@ tw\`z-auto\`
 
 `;
 
+exports[`twin.macro pluginGapFallback.js: pluginGapFallback.js 1`] = `
+
+import tw from './macro'
+
+tw\`flex-gap-0\`
+tw\`flex-gap-3\`
+tw\`flex-gap-x-3\`
+tw\`flex-gap-y-3\`
+tw\`flex-gap-px\`
+tw\`flex-gap-x-1.5\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+;({
+  margin: '-0px',
+  '> *': {
+    margin: '0px',
+  },
+})
+;({
+  margin: '-0.375rem',
+  '> *': {
+    margin: '0.375rem',
+  },
+})
+;({
+  marginRight: '-0.375rem',
+  marginLeft: '-0.375rem',
+  '> *': {
+    marginRight: '0.375rem',
+    marginLeft: '0.375rem',
+  },
+})
+;({
+  marginTop: '-0.375rem',
+  marginBottom: '-0.375rem',
+  '> *': {
+    marginTop: '0.375rem',
+    marginBottom: '0.375rem',
+  },
+})
+;({
+  margin: '-0.5px',
+  '> *': {
+    margin: '0.5px',
+  },
+})
+;({
+  marginRight: '-0.1875rem',
+  marginLeft: '-0.1875rem',
+  '> *': {
+    marginRight: '0.1875rem',
+    marginLeft: '0.1875rem',
+  },
+})
+
+
+`;
+
 exports[`twin.macro pluginTypography.js: pluginTypography.js 1`] = `
 
 import tw from './macro'
