@@ -13,13 +13,11 @@ const matchKeys = (values, className, sassyPseudo) =>
         key.startsWith(`${className} `)) &&
       (newKey ? { [newKey]: value } : value)
 
-    return {
-      ...result,
-      ...newValue,
-    }
+    return { ...result, ...newValue }
   }, {})
 
 const reorderAtRules = className =>
+  className &&
   Object.entries(className)
     .sort((a, b) => {
       const [aKey] = a
@@ -30,9 +28,13 @@ const reorderAtRules = className =>
     })
     .reduce((r, [k, v]) => ({ ...r, [k]: v }), {})
 
-const getComponentMatches = ({ className, components, sassyPseudo }) =>
-  Object.entries(components).reduce((result, data) => {
-    const [key, value] = data
+const possibleClassNameSuffix = [' ', ':', '>', '~', '+', '.', '#', '*']
+
+const getMatches = ({ className, data, sassyPseudo }) =>
+  Object.entries(data).reduce((result, item) => {
+    let [key, value] = item
+    key = key.replace(/\\/g, '')
+
     const subKeyMatch = matchKeys(Object.entries(value), className, sassyPseudo)
     const newKey = formatKey(key, className, sassyPseudo)
 
@@ -42,8 +44,9 @@ const getComponentMatches = ({ className, components, sassyPseudo }) =>
 
     if (
       key === className ||
-      key.startsWith(`${className}:`) ||
-      key.startsWith(`${className} `)
+      possibleClassNameSuffix.some(suffix =>
+        key.startsWith(`${className}${suffix}`)
+      )
     ) {
       return newKey ? { ...result, [newKey]: value } : { ...result, ...value }
     }
@@ -53,9 +56,10 @@ const getComponentMatches = ({ className, components, sassyPseudo }) =>
 
 const formatKey = (selector, className, sassyPseudo) => {
   const newSelector = selector.replace(className, '').trim()
-  return newSelector.startsWith(':')
-    ? `${sassyPseudo ? '&' : ''}${newSelector}`
-    : newSelector
+  return (
+    (newSelector.startsWith(':') && sassyPseudo && `&${newSelector}`) ||
+    newSelector
+  )
 }
 
 export default ({
@@ -65,27 +69,12 @@ export default ({
   },
   className,
 }) => {
-  /**
-   * Components
-   */
-  if (components) {
-    const componentMatches = getComponentMatches({
-      className,
-      components,
-      sassyPseudo,
-    })
-    if (!isEmpty(componentMatches)) {
-      return reorderAtRules(componentMatches)
-    }
-  }
-
-  /**
-   * Utilities
-   */
-  if (!utilities) return
-
-  const output =
-    typeof utilities[className] !== 'undefined' ? utilities[className] : null
-
-  return output
+  let result
+  ;[components, utilities].find(data => {
+    const matches = getMatches({ className, data, sassyPseudo })
+    const hasMatches = !isEmpty(matches)
+    result = hasMatches ? matches : result
+    return hasMatches
+  })
+  return reorderAtRules(result)
 }

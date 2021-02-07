@@ -15,7 +15,7 @@ const spaced = string => `\n\n${string}\n`
 const warning = string => color.error(`✕ ${string}`)
 
 const inOutPlugins = (input, output) =>
-  `${color.highlight2('→')} ${input} ${color.highlight2(
+  `${color.highlight2('→')} ${input.replace(/\\/g, '')} ${color.highlight2(
     JSON.stringify(output)
   )}`
 
