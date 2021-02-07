@@ -28,7 +28,7 @@ const reorderAtRules = className =>
     })
     .reduce((r, [k, v]) => ({ ...r, [k]: v }), {})
 
-const possibleClassNameSuffix = [' ', ':', '>', '~', '+', '.', '#', '*']
+const possibleClassNameSuffix = [' ', ':', '>', '~', '+', '*']
 
 const getMatches = ({ className, data, sassyPseudo }) =>
   Object.entries(data).reduce((result, item) => {
