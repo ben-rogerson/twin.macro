@@ -68,7 +68,7 @@ const normalizeDynamicConfig = ({ config, input, dynamicKey, hasNegative }) =>
         (result, transformer) => transformer({ dynamicKey, target: result }),
         target
       ),
-      value: `${value}`,
+      value: JSON.stringify(value), // Make sure objects are flattened and viewable
     }))
     .filter(
       item =>
