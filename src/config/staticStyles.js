@@ -642,15 +642,15 @@ export default {
   },
 
   // Overscroll
-  'overscroll-auto': { output: { 'overscroll-behavior': 'auto' } },
-  'overscroll-contain': { output: { 'overscroll-behavior': 'contain' } },
-  'overscroll-none': { output: { 'overscroll-behavior': 'none' } },
-  'overscroll-y-auto': { output: { 'overscroll-behavior-y': 'auto' } },
-  'overscroll-y-contain': { output: { 'overscroll-behavior-y': 'contain' } },
-  'overscroll-y-none': { output: { 'overscroll-behavior-y': 'none' } },
-  'overscroll-x-auto': { output: { 'overscroll-behavior-x': 'auto' } },
-  'overscroll-x-contain': { output: { 'overscroll-behavior-x': 'contain' } },
-  'overscroll-x-none': { output: { 'overscroll-behavior-x': 'none' } },
+  'overscroll-auto': { output: { overscrollBehavior: 'auto' } },
+  'overscroll-contain': { output: { overscrollBehavior: 'contain' } },
+  'overscroll-none': { output: { overscrollBehavior: 'none' } },
+  'overscroll-y-auto': { output: { overscrollBehaviorY: 'auto' } },
+  'overscroll-y-contain': { output: { overscrollBehaviorY: 'contain' } },
+  'overscroll-y-none': { output: { overscrollBehaviorY: 'none' } },
+  'overscroll-x-auto': { output: { overscrollBehaviorX: 'auto' } },
+  'overscroll-x-contain': { output: { overscrollBehaviorX: 'contain' } },
+  'overscroll-x-none': { output: { overscrollBehaviorX: 'none' } },
 
   // Grid alignment utilities
   // https://github.com/tailwindlabs/tailwindcss/pull/2306

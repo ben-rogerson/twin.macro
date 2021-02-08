@@ -9671,31 +9671,31 @@ tw\`z-auto\`
 }) // https://tailwindcss.com/docs/overscroll-behavior
 
 ;({
-  'overscroll-behavior': 'auto',
+  overscrollBehavior: 'auto',
 })
 ;({
-  'overscroll-behavior': 'contain',
+  overscrollBehavior: 'contain',
 })
 ;({
-  'overscroll-behavior': 'none',
+  overscrollBehavior: 'none',
 })
 ;({
-  'overscroll-behavior-y': 'auto',
+  overscrollBehaviorY: 'auto',
 })
 ;({
-  'overscroll-behavior-y': 'contain',
+  overscrollBehaviorY: 'contain',
 })
 ;({
-  'overscroll-behavior-y': 'none',
+  overscrollBehaviorY: 'none',
 })
 ;({
-  'overscroll-behavior-x': 'auto',
+  overscrollBehaviorX: 'auto',
 })
 ;({
-  'overscroll-behavior-x': 'contain',
+  overscrollBehaviorX: 'contain',
 })
 ;({
-  'overscroll-behavior-x': 'none',
+  overscrollBehaviorX: 'none',
 }) // https://tailwindcss.com/docs/position
 
 ;({
