@@ -162,10 +162,11 @@ const handleGlobalStylesFunction = ({
       state,
       styles,
     })
-    // TODO: Check for presence of css import
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
-    state.isImportingCss = true
+    // Check if the css import has already been imported
+    // https://github.com/ben-rogerson/twin.macro/issues/313
+    state.isImportingCss = !state.existingCssIdentifier
   }
 
   if (state.isGoober) {
