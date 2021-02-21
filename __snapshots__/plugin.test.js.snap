@@ -12376,8 +12376,6 @@ tw\`rich-text\`
 ;({
   color: '#374151',
   maxWidth: '65ch',
-  fontSize: '1rem',
-  lineHeight: '1.75',
   '[class~="lead"]': {
     color: '#4b5563',
     fontSize: '1.25em',
@@ -12394,18 +12392,39 @@ tw\`rich-text\`
     color: '#111827',
     fontWeight: '600',
   },
-  ol: {
-    counterReset: 'list-counter',
-    marginTop: '1.25em',
-    marginBottom: '1.25em',
+  'ol[type="A"]': {
+    '--list-counter-style': 'upper-alpha',
+  },
+  'ol[type="a"]': {
+    '--list-counter-style': 'lower-alpha',
+  },
+  'ol[type="A s"]': {
+    '--list-counter-style': 'upper-alpha',
+  },
+  'ol[type="a s"]': {
+    '--list-counter-style': 'lower-alpha',
+  },
+  'ol[type="I"]': {
+    '--list-counter-style': 'upper-roman',
+  },
+  'ol[type="i"]': {
+    '--list-counter-style': 'lower-roman',
+  },
+  'ol[type="I s"]': {
+    '--list-counter-style': 'upper-roman',
+  },
+  'ol[type="i s"]': {
+    '--list-counter-style': 'lower-roman',
+  },
+  'ol[type="1"]': {
+    '--list-counter-style': 'decimal',
   },
   'ol > li': {
     position: 'relative',
-    counterIncrement: 'list-counter',
     paddingLeft: '1.75em',
   },
   'ol > li::before': {
-    content: 'counter(list-counter) "."',
+    content: 'counter(list-item, var(--list-counter-style, decimal)) "."',
     position: 'absolute',
     fontWeight: '400',
     color: '#6b7280',
@@ -12525,10 +12544,10 @@ tw\`rich-text\`
     lineHeight: 'inherit',
   },
   'pre code::before': {
-    content: '""',
+    content: 'none',
   },
   'pre code::after': {
-    content: '""',
+    content: 'none',
   },
   table: {
     width: '100%',
@@ -12565,6 +12584,8 @@ tw\`rich-text\`
     paddingBottom: '0.5714286em',
     paddingLeft: '0.5714286em',
   },
+  fontSize: '1rem',
+  lineHeight: '1.75',
   p: {
     marginTop: '1.25em',
     marginBottom: '1.25em',
@@ -12590,6 +12611,10 @@ tw\`rich-text\`
   },
   'h3 code': {
     fontSize: '0.9em',
+  },
+  ol: {
+    marginTop: '1.25em',
+    marginBottom: '1.25em',
   },
   ul: {
     marginTop: '1.25em',
@@ -13288,6 +13313,58 @@ tw\`rich-text\`
 
 `;
 
+exports[`twin.macro pluginUserParentSelector.js: pluginUserParentSelector.js 1`] = `
+
+import tw from './macro'
+
+tw\`my-class1\`
+tw\`my-class2\`
+tw\`my-class3\`
+tw\`my-class4\`
+tw\`my-class5\`
+tw\`my-class6\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+;({
+  backgroundColor: 'black',
+  h2: {
+    backgroundColor: 'red',
+  },
+})
+;({
+  backgroundColor: 'green',
+  'h2 &': {
+    backgroundColor: 'yellow',
+  },
+})
+;({
+  backgroundColor: 'green',
+  '.dark &:hover': {
+    backgroundColor: 'yellow',
+  },
+})
+;({
+  '.test & :hover': {
+    backgroundColor: 'orange',
+  },
+})
+;({
+  backgroundColor: 'brown',
+  ':hover': {
+    backgroundColor: 'pink',
+  },
+})
+;({
+  backgroundColor: 'blue',
+  ':hover': {
+    backgroundColor: 'orange',
+  },
+})
+
+
+`;
+
 exports[`twin.macro presets.js: presets.js 1`] = `
 
 import tw from './macro'
@@ -13320,6 +13397,10 @@ import tw from './macro'
 
 tw\`hover:block first:mt-2 last-of-type:max-width[20px]\`
 
+tw\`my-class1\`
+tw\`my-class2\`
+tw\`my-class3\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 ;({
@@ -13331,6 +13412,21 @@ tw\`hover:block first:mt-2 last-of-type:max-width[20px]\`
   },
   '&:last-of-type': {
     maxWidth: '20px',
+  },
+})
+;({
+  '&:hover': {
+    backgroundColor: 'pink',
+  },
+})
+;({
+  '&:hover': {
+    backgroundColor: 'orange',
+  },
+})
+;({
+  '.test & :hover': {
+    backgroundColor: 'orange',
   },
 })
 

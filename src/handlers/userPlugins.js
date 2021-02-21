@@ -1,21 +1,5 @@
 import { isEmpty } from './../utils'
 
-const matchKeys = (values, className, sassyPseudo) =>
-  values.reduce((result, data) => {
-    const [key, value] = data
-
-    const newKey = formatKey(key, className, sassyPseudo)
-
-    const newValue =
-      typeof value === 'object' &&
-      (key === className ||
-        key.startsWith(`${className}:`) ||
-        key.startsWith(`${className} `)) &&
-      (newKey ? { [newKey]: value } : value)
-
-    return { ...result, ...newValue }
-  }, {})
-
 const reorderAtRules = className =>
   className &&
   Object.entries(className)
@@ -28,38 +12,78 @@ const reorderAtRules = className =>
     })
     .reduce((r, [k, v]) => ({ ...r, [k]: v }), {})
 
-const possibleClassNameSuffix = [' ', ':', '>', '~', '+', '*']
+const mergeValueStatements = [
+  // Match exact selector
+  ({ key, className }) => key === className,
+  // Match class selector (whole word)
+  ({ key, className }) =>
+    key.match(new RegExp(`(?:^| ).${className}(?: |:|$)`, 'g')),
+  // Match parent selector placeholder
+  ({ key, className }) => key.includes(`{{${className}}}`),
+  // Match possible symbols after the selector
+  ({ key, className }) =>
+    [' ', ':', '>', '~', '+', '*'].some(suffix =>
+      key.startsWith(`${className}${suffix}`)
+    ),
+]
 
 const getMatches = ({ className, data, sassyPseudo }) =>
   Object.entries(data).reduce((result, item) => {
     let [key, value] = item
-    key = key.replace(/\\/g, '')
+    key = key.replace(/\\/g, '') // Unescape characters
 
-    const subKeyMatch = matchKeys(Object.entries(value), className, sassyPseudo)
-    const newKey = formatKey(key, className, sassyPseudo)
-
-    if (!isEmpty(subKeyMatch)) {
-      return { ...result, [newKey]: subKeyMatch }
+    const subKeyValue = Object.values(value)[0]
+    const isObject =
+      !Array.isArray(subKeyValue) && typeof subKeyValue === 'object'
+    if (isObject) {
+      const subMatches = getMatches({ className, data: value, sassyPseudo })
+      if (!isEmpty(subMatches)) return { ...result, [key]: subMatches }
     }
 
-    if (
-      key === className ||
-      possibleClassNameSuffix.some(suffix =>
-        key.startsWith(`${className}${suffix}`)
-      )
-    ) {
+    const shouldMergeValue = mergeValueStatements.findIndex(item =>
+      item({ key, value, className })
+    )
+
+    if (shouldMergeValue >= 0) {
+      const newKey = formatKey(key, className, sassyPseudo)
       return newKey ? { ...result, [newKey]: value } : { ...result, ...value }
     }
 
     return result
   }, {})
 
+const replacementTasks = [
+  ({ key }) => key.replace(/\\/g, '').trim(),
+  // Replace the parent selector placeholder
+  ({ key, className }) => {
+    const parentSelectorIndex = key.indexOf(`{{${className}}}`)
+    const replacement = parentSelectorIndex > 0 ? '&' : ''
+    return key.replace(`{{${className}}}`, replacement)
+  },
+  // Replace the classname at start of selector (postCSS supplies flattened selectors)
+  ({ key, className }) =>
+    key.startsWith(`.${className}`) ? key.slice(`.${className}`.length) : key,
+  // Replace parent selector with ampsersand within
+  ({ key, className }) => {
+    const matches = key.match(new RegExp(`(?:^| ).${className}(?: |:|$)`, 'g'))
+    const match = matches && matches[0].trim()
+    return match ? key.replace(match, '&') : key
+  },
+  ({ key }) => key.trim(),
+  // Add the parent selector at the start when it has the sassy pseudo enabled
+  ({ key, sassyPseudo }) =>
+    sassyPseudo && key.startsWith(':') ? `&${key}` : key,
+]
+
 const formatKey = (selector, className, sassyPseudo) => {
-  const newSelector = selector.replace(className, '').trim()
-  return (
-    (newSelector.startsWith(':') && sassyPseudo && `&${newSelector}`) ||
-    newSelector
-  )
+  if (selector === className) return
+
+  let key = selector
+  for (const task of replacementTasks) {
+    key = task({ key, className, sassyPseudo })
+  }
+
+  return key
 }
 
 export default ({

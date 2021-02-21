@@ -2,12 +2,46 @@ import processPlugins from 'tailwindcss/lib/util/processPlugins'
 import deepMerge from 'lodash.merge'
 import { camelize } from './../utils'
 
-const parseSelector = (selector, isBase) => {
+const stripLeadingDot = string =>
+  string.startsWith('.') ? string.slice(1) : string
+
+const replaceSelectorWithParent = (string, replacement) =>
+  string.replace(replacement, `{{${stripLeadingDot(replacement)}}}`)
+
+// If any of these tasks pass then the class name gets wrapped
+const matchingTasks = [
+  // Match exact selector
+  ({ rule }) => part => part === rule,
+  // Match various suffixes
+  ({ rule }) => part =>
+    [' ', ':', '>', '~', '+', '*'].some(suffix =>
+      part.startsWith(`${rule}${suffix}`)
+    ),
+]
+
+const parseSelector = (selector, { isBase, rules }) => {
   if (!selector) return
+
   const matches = selector.trim().match(/^(\S+)(\s+.*?)?$/)
   if (matches === null) return
-  if (isBase) return matches[0]
-  return matches[0].startsWith('.') ? matches[0].slice(1) : matches[0]
+
+  let match = matches[0]
+  if (isBase) return match
+
+  const matchSplit = match.split(' ')
+  // Run each matching task and return a result
+  const rulesList = Object.keys(rules)
+
+  // Check existing rule list for the parent
+  for (const task of matchingTasks) {
+    const matchedItem = rulesList.find(rule => matchSplit.some(task({ rule })))
+
+    if (matchedItem) {
+      match = replaceSelectorWithParent(match, matchedItem)
+    }
+  }
+
+  return match
 }
 
 const parseRuleProperty = string => {
@@ -30,13 +64,13 @@ const buildAtSelector = (name, values, screens) => {
   return `@${name} ${values}`
 }
 
-const getBuiltRules = (rule, isBase) => {
+const getBuiltRules = (rule, { isBase, rules }) => {
   // Prep comma spaced selectors for parsing
   const selectorArray = rule.selector.split(',')
 
   // Validate each selector
   const selectorParsed = selectorArray
-    .map(s => parseSelector(s, isBase))
+    .map(s => parseSelector(s, { isBase, rules }))
     .filter(Boolean)
 
   // Join them back into a string
@@ -91,7 +125,7 @@ const getUserPluginRules = (rules, screens, isBase) =>
       })
     }
 
-    const builtRules = getBuiltRules(rule, isBase)
+    const builtRules = getBuiltRules(rule, { isBase, rules: result })
 
     return deepMerge(result, builtRules)
   }, {})
