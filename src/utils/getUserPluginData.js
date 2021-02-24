@@ -22,7 +22,7 @@ const parseSelector = (selector, { isBase }) => {
   // eg: .something.something or &.something
   match = match.replace(/(?<=\w)\./g, ' .')
 
-  // If there's no spaces in the selector then
+  // If the selector is just a single selector then return
   if (!match.includes(' ')) return match
 
   // Look for class matching candidates

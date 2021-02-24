@@ -60,7 +60,7 @@ const getMatches = ({ className, data, sassyPseudo }) =>
     return result
   }, {})
 
-// The key gets formated with these checks
+// The key gets formatted with these checks
 const formatTasks = [
   ({ key }) => key.replace(/\\/g, '').trim(),
   // Replace the parent selector placeholder

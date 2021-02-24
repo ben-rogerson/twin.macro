@@ -1,8 +1,6 @@
 const plugin = require('tailwindcss/plugin')
 
-function half(value) {
-  return value.replace(/\d+(.\d+)?/, number => number / 2)
-}
+const half = value => value.replace(/\d+(.\d+)?/, number => number / 2)
 
 // Basic plugin that creates new gap classes
 const gapReplacementPlugin = plugin(({ addUtilities, e, theme }) => {
