@@ -12312,6 +12312,16 @@ tw\`flex-gap-y-3\`
 tw\`flex-gap-px\`
 tw\`flex-gap-x-1.5\`
 
+tw\`gap-0\`
+tw\`gap-3\`
+tw\`gap-x-3\`
+tw\`gap-y-3\`
+tw\`gap-px\`
+tw\`gap-x-1.5\`
+
+tw\`test-1\`
+tw\`test-2\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 ;({
@@ -12356,6 +12366,77 @@ tw\`flex-gap-x-1.5\`
     marginLeft: '0.1875rem',
   },
 })
+;({
+  '.no-flex-gap &': {
+    margin: '-0px',
+  },
+  '.no-flex-gap &> *': {
+    margin: '0px',
+  },
+})
+;({
+  '.no-flex-gap &': {
+    margin: '-0.375rem',
+  },
+  '.no-flex-gap &> *': {
+    margin: '0.375rem',
+  },
+})
+;({
+  '.no-flex-gap &': {
+    marginRight: '-0.375rem',
+    marginLeft: '-0.375rem',
+  },
+  '.no-flex-gap &> *': {
+    marginRight: '0.375rem',
+    marginLeft: '0.375rem',
+  },
+})
+;({
+  '.no-flex-gap &': {
+    marginTop: '-0.375rem',
+    marginBottom: '-0.375rem',
+  },
+  '.no-flex-gap &> *': {
+    marginTop: '0.375rem',
+    marginBottom: '0.375rem',
+  },
+})
+;({
+  '.no-flex-gap &': {
+    margin: '-0.5px',
+  },
+  '.no-flex-gap & > *': {
+    margin: '0.5px',
+  },
+})
+;({
+  '.no-flex-gap &': {
+    marginRight: '-0.1875rem',
+    marginLeft: '-0.1875rem',
+  },
+  '.no-flex-gap & > *': {
+    marginRight: '0.1875rem',
+    marginLeft: '0.1875rem',
+  },
+})
+;({
+  background: '5px',
+  '.a-class & .some-class': {
+    margin: '10px',
+  },
+  '.a-class & > *': {
+    margin: '20px',
+  },
+})
+;({
+  '.a-class & .some-class': {
+    margin: '10px',
+  },
+  '.a-class & > *': {
+    margin: '20px',
+  },
+})
 
 
 `;
@@ -12376,6 +12457,8 @@ tw\`rich-text\`
 ;({
   color: '#374151',
   maxWidth: '65ch',
+  fontSize: '1rem',
+  lineHeight: '1.75',
   '[class~="lead"]': {
     color: '#4b5563',
     fontSize: '1.25em',
@@ -12584,8 +12667,6 @@ tw\`rich-text\`
     paddingBottom: '0.5714286em',
     paddingLeft: '0.5714286em',
   },
-  fontSize: '1rem',
-  lineHeight: '1.75',
   p: {
     marginTop: '1.25em',
     marginBottom: '1.25em',

@@ -8,18 +8,7 @@ const stripLeadingDot = string =>
 const replaceSelectorWithParent = (string, replacement) =>
   string.replace(replacement, `{{${stripLeadingDot(replacement)}}}`)
 
-// If any of these tasks pass then the class name gets wrapped
-const matchingTasks = [
-  // Match exact selector
-  ({ rule }) => part => part === rule,
-  // Match various suffixes
-  ({ rule }) => part =>
-    [' ', ':', '>', '~', '+', '*'].some(suffix =>
-      part.startsWith(`${rule}${suffix}`)
-    ),
-]
-
-const parseSelector = (selector, { isBase, rules }) => {
+const parseSelector = (selector, { isBase }) => {
   if (!selector) return
 
   const matches = selector.trim().match(/^(\S+)(\s+.*?)?$/)
@@ -28,17 +17,21 @@ const parseSelector = (selector, { isBase, rules }) => {
   let match = matches[0]
   if (isBase) return match
 
-  const matchSplit = match.split(' ')
-  // Run each matching task and return a result
-  const rulesList = Object.keys(rules)
+  // Fix spacing that goes missing when provided by tailwindcss
+  // Unfortunately this removes the ability to have classes on the same element
+  // eg: .something.something or &.something
+  match = match.replace(/(?<=\w)\./g, ' .')
 
-  // Check existing rule list for the parent
-  for (const task of matchingTasks) {
-    const matchedItem = rulesList.find(rule => matchSplit.some(task({ rule })))
+  // If there's no spaces in the selector then
+  if (!match.includes(' ')) return match
 
-    if (matchedItem) {
-      match = replaceSelectorWithParent(match, matchedItem)
-    }
+  // Look for class matching candidates
+  const match2 = match.match(/(?<=>|~|\+|\*| )\.[\w.\\-]+(?= |>|~|\+|\*|:|$)/gm)
+  if (!match2) return match
+
+  // Wrap the matching classes in {{class}}
+  for (const item of match2) {
+    match = replaceSelectorWithParent(match, item)
   }
 
   return match
@@ -64,13 +57,13 @@ const buildAtSelector = (name, values, screens) => {
   return `@${name} ${values}`
 }
 
-const getBuiltRules = (rule, { isBase, rules }) => {
+const getBuiltRules = (rule, { isBase }) => {
   // Prep comma spaced selectors for parsing
   const selectorArray = rule.selector.split(',')
 
   // Validate each selector
   const selectorParsed = selectorArray
-    .map(s => parseSelector(s, { isBase, rules }))
+    .map(s => parseSelector(s, { isBase }))
     .filter(Boolean)
 
   // Join them back into a string
@@ -125,7 +118,7 @@ const getUserPluginRules = (rules, screens, isBase) =>
       })
     }
 
-    const builtRules = getBuiltRules(rule, { isBase, rules: result })
+    const builtRules = getBuiltRules(rule, { isBase })
 
     return deepMerge(result, builtRules)
   }, {})
