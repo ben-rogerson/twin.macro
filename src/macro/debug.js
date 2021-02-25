@@ -1,5 +1,15 @@
 import { SPACE_ID } from './../contants'
 
+const formatProp = classes =>
+  classes
+    // Replace the "stand-in spaces" with real ones
+    .replace(new RegExp(SPACE_ID, 'g'), ' ')
+    // Normalize spacing
+    .replace(/\s\s+/g, ' ')
+    // Remove newline characters
+    .replace(/\n/g, ' ')
+    .trim()
+
 const addDataTwPropToPath = ({
   t,
   attributes,
@@ -8,7 +18,12 @@ const addDataTwPropToPath = ({
   state,
   propName = 'data-tw',
 }) => {
-  if (state.isProd) return
+  const dataTwPropAllEnvironments =
+    propName === 'data-tw' && state.configTwin.dataTwProp === 'all'
+  const dataCsPropAllEnvironments =
+    propName === 'data-cs' && state.configTwin.dataCsProp === 'all'
+  if (state.isProd && !dataTwPropAllEnvironments && !dataCsPropAllEnvironments)
+    return
   if (propName === 'data-tw' && !state.configTwin.dataTwProp) return
   if (propName === 'data-cs' && !state.configTwin.dataCsProp) return
 
@@ -19,12 +34,11 @@ const addDataTwPropToPath = ({
   )
   dataProperty.forEach(path => path.remove())
 
-  // Replace the "stand-in spaces" with real ones
-  const originalClasses = rawClasses.replace(new RegExp(SPACE_ID, 'g'), ' ')
+  const classes = formatProp(rawClasses)
 
   // Add the attribute
   path.insertAfter(
-    t.jsxAttribute(t.jsxIdentifier(propName), t.stringLiteral(originalClasses))
+    t.jsxAttribute(t.jsxIdentifier(propName), t.stringLiteral(classes))
   )
 }
 
@@ -36,7 +50,12 @@ const addDataPropToExistingPath = ({
   state,
   propName = 'data-tw',
 }) => {
-  if (state.isProd) return
+  const dataTwPropAllEnvironments =
+    propName === 'data-tw' && state.configTwin.dataTwProp === 'all'
+  const dataCsPropAllEnvironments =
+    propName === 'data-cs' && state.configTwin.dataCsProp === 'all'
+  if (state.isProd && !dataTwPropAllEnvironments && !dataCsPropAllEnvironments)
+    return
   if (propName === 'data-tw' && !state.configTwin.dataTwProp) return
   if (propName === 'data-cs' && !state.configTwin.dataCsProp) return
 
@@ -60,13 +79,7 @@ const addDataPropToExistingPath = ({
     return
   }
 
-  const classes = rawClasses
-    // Replace the "stand-in spaces" with real ones
-    .replace(new RegExp(SPACE_ID, 'g'), ' ')
-    // Remove multiline comments
-    .replace(/\/\*[\S\s]*\*\//g, '')
-    // Remove singleline comments
-    .replace(/\/\/.*/g, '')
+  const classes = formatProp(rawClasses)
 
   // Add a new attribute
   path.pushContainer(

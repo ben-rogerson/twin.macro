@@ -1,66 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`twin.macro !comments.js: !comments.js 1`] = `
-
-import tw from './macro'
-
-/**
- * Test comments
- */
-
-tw\`// comment\`
-
-tw\`/* comment */\`
-
-tw\`// comment  
-/*
-multline
-comment
-*/
-block
-// comment
-\`
-
-tw\`/*  block  
-comment too
-*/\`
-
-tw\`// a comment
-block
-\`
-
-tw\`/*
-// comment */
-block
-\`
-
-tw\`// hi
-// ho /*
-hum
-*/\`
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-/**
- * Test comments
- */
-;({})
-;({})
-;({
-  display: 'block',
-})
-;({})
-;({
-  display: 'block',
-})
-;({
-  display: 'block',
-})
-;({})
-
-
-`;
-
 exports[`twin.macro !config.js: !config.js 1`] = `
 
 import tw from './macro'
@@ -7077,6 +7016,76 @@ tw\`place-self-stretch\`
 ;({
   placeSelf: 'stretch',
 })
+
+
+`;
+
+exports[`twin.macro comments.js: comments.js 1`] = `
+
+import tw from './macro'
+
+/**
+ * Test comments
+ */
+;<div css={tw\`// comment\`} />
+;<div css={tw\`/* comment */\`} />
+;<div
+  css={tw\`// comment  
+/*
+multline
+comment
+*/
+block
+// comment
+\`}
+/>
+;<div
+  css={tw\`/*  block  
+comment too
+*/\`}
+/>
+;<div
+  css={tw\`// a comment
+block
+\`}
+/>
+;<div
+  css={tw\`/*
+// comment */
+block
+\`}
+/>
+;<div
+  css={tw\`// hi
+// ho /*
+hum
+*/\`}
+/>
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+;<div css={{}} data-tw={'// comment'} />
+;<div css={{}} data-tw={'/* comment */'} />
+;<div
+  css={{
+    display: 'block',
+  }}
+  data-tw={'// comment /* multline comment */ block // comment'}
+/>
+;<div css={{}} data-tw={'/* block comment too */'} />
+;<div
+  css={{
+    display: 'block',
+  }}
+  data-tw={'// a comment block'}
+/>
+;<div
+  css={{
+    display: 'block',
+  }}
+  data-tw={'/* // comment */ block'}
+/>
+;<div css={{}} data-tw={'// hi // ho /* hum */'} />
 
 
 `;
