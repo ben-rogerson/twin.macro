@@ -60,12 +60,12 @@ const addDataPropToExistingPath = ({
     return
   }
 
-  // Replace the "stand-in spaces" with real ones
-  let originalClasses = rawClasses.replace(new RegExp(SPACE_ID, 'g'), ' ')
-
-  // Remove comments
-  originalClasses = originalClasses
+  const classes = rawClasses
+    // Replace the "stand-in spaces" with real ones
+    .replace(new RegExp(SPACE_ID, 'g'), ' ')
+    // Remove multiline comments
     .replace(/\/\*[\S\s]*\*\//g, '')
+    // Remove singleline comments
     .replace(/\/\/.*/g, '')
 
   // Add a new attribute
@@ -73,7 +73,7 @@ const addDataPropToExistingPath = ({
     'attributes',
     t.jSXAttribute(
       t.jSXIdentifier(propName),
-      t.jSXExpressionContainer(t.stringLiteral(originalClasses))
+      t.jSXExpressionContainer(t.stringLiteral(classes))
     )
   )
 }

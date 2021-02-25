@@ -26,8 +26,8 @@ const formatTasks = [
   // Strip pipe dividers " | "
   ({ classes }) => classes.replace(/ \| /g, ' '),
   // Strip comments
-  ({ classes }) => classes.replace(/\/\/.*/g, ''), // Singleline
   ({ classes }) => classes.replace(/\/\*[\S\s]*\*\//g, ''), // Multiline
+  ({ classes }) => classes.replace(/\/\/.*/g, ''), // Singleline
   // Unwrap grouped variants
   ({ classes }) => handleVariantGroups(classes),
   // Move and sort the responsive items to the end of the list

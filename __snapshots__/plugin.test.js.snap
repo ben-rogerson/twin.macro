@@ -1,5 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`twin.macro !comments.js: !comments.js 1`] = `
+
+import tw from './macro'
+
+/**
+ * Test comments
+ */
+
+tw\`// comment\`
+
+tw\`/* comment */\`
+
+tw\`// comment  
+/*
+multline
+comment
+*/
+block
+// comment
+\`
+
+tw\`/*  block  
+comment too
+*/\`
+
+tw\`// a comment
+block
+\`
+
+tw\`/*
+// comment */
+block
+\`
+
+tw\`// hi
+// ho /*
+hum
+*/\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+/**
+ * Test comments
+ */
+;({})
+;({})
+;({
+  display: 'block',
+})
+;({})
+;({
+  display: 'block',
+})
+;({
+  display: 'block',
+})
+;({})
+
+
+`;
+
 exports[`twin.macro !config.js: !config.js 1`] = `
 
 import tw from './macro'
