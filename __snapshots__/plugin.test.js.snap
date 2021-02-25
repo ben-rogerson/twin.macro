@@ -1676,6 +1676,7 @@ tw\`invalid:flex\`
 tw\`valid:flex\`
 tw\`optional:flex\`
 tw\`required:flex\`
+tw\`placeholder:flex\`
 tw\`placeholder-shown:flex\`
 tw\`read-only:flex\`
 tw\`read-write:flex\`
@@ -1711,9 +1712,35 @@ tw\`group-active:flex\`
 tw\`group-visited:flex\`
 tw\`focus-within:flex\`
 
-// Motion control
+// Media types
+tw\`screen:flex\`
+tw\`print:flex\`
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
 tw\`motion-safe:flex\`
 tw\`motion-reduce:flex\`
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-pointer
+tw\`any-pointer-none:flex\`
+tw\`any-pointer-fine:flex\`
+tw\`any-poiner-coarse:flex\`
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer
+tw\`poiner-none:flex\`
+tw\`poiner-fine:flex\`
+tw\`poiner-coarse:flex\`
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover
+tw\`any-hover-none:flex\`
+tw\`any-hover:flex\`
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/hover
+tw\`can-hover:flex\`
+tw\`cant-hover:flex\`
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/orientation
+tw\`landscape:flex\`
+tw\`portrait:flex\`
 
 // Dark/Light themes
 tw\`dark:bg-black\`
@@ -1827,6 +1854,11 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
 })
 ;({
   ':required': {
+    display: 'flex',
+  },
+})
+;({
+  '::placeholder': {
     display: 'flex',
   },
 })
@@ -1981,7 +2013,18 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
   ':focus-within': {
     display: 'flex',
   },
-}) // Motion control
+}) // Media types
+
+;({
+  '@media screen': {
+    display: 'flex',
+  },
+})
+;({
+  '@media print': {
+    display: 'flex',
+  },
+}) // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
 
 ;({
   '@media (prefers-reduced-motion: no-preference)': {
@@ -1990,6 +2033,71 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
 })
 ;({
   '@media (prefers-reduced-motion: reduce)': {
+    display: 'flex',
+  },
+}) // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-pointer
+
+;({
+  '@media (any-pointer: none)': {
+    display: 'flex',
+  },
+})
+;({
+  '@media (any-pointer: fine)': {
+    display: 'flex',
+  },
+})
+;({
+  '@media (any-pointer: coarse)': {
+    display: 'flex',
+  },
+}) // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer
+
+;({
+  '@media (pointer: none)': {
+    display: 'flex',
+  },
+})
+;({
+  '@media (pointer: fine)': {
+    display: 'flex',
+  },
+})
+;({
+  '@media (pointer: coarse)': {
+    display: 'flex',
+  },
+}) // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover
+
+;({
+  '@media (any-hover: none)': {
+    display: 'flex',
+  },
+})
+;({
+  '@media (any-hover: hover)': {
+    display: 'flex',
+  },
+}) // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/hover
+
+;({
+  '@media (hover: hover)': {
+    display: 'flex',
+  },
+})
+;({
+  '@media (hover: none)': {
+    display: 'flex',
+  },
+}) // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/orientation
+
+;({
+  '@media (orientation: landscape)': {
+    display: 'flex',
+  },
+})
+;({
+  '@media (orientation: portrait)': {
     display: 'flex',
   },
 }) // Dark/Light themes

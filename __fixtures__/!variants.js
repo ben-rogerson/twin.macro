@@ -25,6 +25,7 @@ tw`invalid:flex`
 tw`valid:flex`
 tw`optional:flex`
 tw`required:flex`
+tw`placeholder:flex`
 tw`placeholder-shown:flex`
 tw`read-only:flex`
 tw`read-write:flex`
@@ -60,9 +61,35 @@ tw`group-active:flex`
 tw`group-visited:flex`
 tw`focus-within:flex`
 
-// Motion control
+// Media types
+tw`screen:flex`
+tw`print:flex`
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
 tw`motion-safe:flex`
 tw`motion-reduce:flex`
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-pointer
+tw`any-pointer-none:flex`
+tw`any-pointer-fine:flex`
+tw`any-poiner-coarse:flex`
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer
+tw`poiner-none:flex`
+tw`poiner-fine:flex`
+tw`poiner-coarse:flex`
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover
+tw`any-hover-none:flex`
+tw`any-hover:flex`
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/hover
+tw`can-hover:flex`
+tw`cant-hover:flex`
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/orientation
+tw`landscape:flex`
+tw`portrait:flex`
 
 // Dark/Light themes
 tw`dark:bg-black`
