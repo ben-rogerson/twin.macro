@@ -210,7 +210,11 @@ function spreadVariantGroups(
 
       // Convert spaces in classes to a temporary string so the css won't be
       // split into multiple classes
-      const spaceReplacedClass = cssClass.replace(/ /g, SPACE_ID)
+      const spaceReplacedClass = cssClass
+        // Normalise the spacing - single spaces only
+        // Replace spaces with the space id stand-in
+        // Remove newlines within the brackets to allow multiline values
+        .replace(/[\s+]+/g, SPACE_ID)
 
       results.push(
         context +
