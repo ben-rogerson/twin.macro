@@ -138,7 +138,7 @@ const errorSuggestions = properties => {
     return spaced(
       `${color.highlight(
         className
-      )} isn’t in the right syntax for use in the cs prop\n\nTry something like maxWidth[100vw]\nRead more at https://twinredirect.page.link/cs-classes`
+      )} isn’t valid “short css”.\n\nThe syntax is like this: maxWidth[100vw]\nRead more at https://twinredirect.page.link/cs-classes`
     )
 
   checkDarkLightClasses(className)

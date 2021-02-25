@@ -22,6 +22,18 @@ import {
   handleCss,
 } from './handlers'
 
+const formatTasks = [
+  // Strip pipe dividers " | "
+  ({ classes }) => classes.replace(/ \| /g, ' '),
+  // Strip comments
+  ({ classes }) => classes.replace(/\/\/.*/g, ''), // Singleline
+  ({ classes }) => classes.replace(/\/\*[\S\s]*\*\//g, ''), // Multiline
+  // Unwrap grouped variants
+  ({ classes }) => handleVariantGroups(classes),
+  // Move and sort the responsive items to the end of the list
+  ({ classes, state }) => orderByScreens(classes, state),
+]
+
 export default (
   classes,
   { isCsOnly = false, silentMismatches = false, t, state } = {}
@@ -34,14 +46,9 @@ export default (
     )
   )
 
-  // Strip pipe dividers " | "
-  classes = classes.replace(/ \| /g, ' ')
-
-  // Unwrap grouped variants
-  classes = handleVariantGroups(classes)
-
-  // Move and sort the responsive items to the end of the list
-  const classesOrdered = orderByScreens(classes, state)
+  for (const task of formatTasks) {
+    classes = task({ classes, state })
+  }
 
   const theme = getTheme(state.config.theme)
 
@@ -49,7 +56,7 @@ export default (
   const classesMismatched = []
 
   // Merge styles into a single css object
-  const styles = classesOrdered.reduce((results, classNameRaw) => {
+  const styles = classes.reduce((results, classNameRaw) => {
     // Avoid prechecks on silent mode as they'll error loudly
     !silentMismatches && doPrechecks([precheckGroup], { classNameRaw })
 

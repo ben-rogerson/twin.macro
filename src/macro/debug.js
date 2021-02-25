@@ -60,8 +60,13 @@ const addDataPropToExistingPath = ({
     return
   }
 
-  // Replace the "stand-in spaces" with realnd ones
-  const originalClasses = rawClasses.replace(new RegExp(SPACE_ID, 'g'), ' ')
+  // Replace the "stand-in spaces" with real ones
+  let originalClasses = rawClasses.replace(new RegExp(SPACE_ID, 'g'), ' ')
+
+  // Remove comments
+  originalClasses = originalClasses
+    .replace(/\/\*[\S\s]*\*\//g, '')
+    .replace(/\/\/.*/g, '')
 
   // Add a new attribute
   path.pushContainer(
