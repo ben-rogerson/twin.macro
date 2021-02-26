@@ -1,19 +1,5 @@
 import { MacroError } from 'babel-plugin-macros'
-
-// Get function from lodash
-const get = (object, path, defaultValue) => {
-  const travel = regexp =>
-    String.prototype.split
-      .call(path, regexp)
-      .filter(Boolean)
-      .reduce(
-        (result, key) =>
-          result !== null && result !== undefined ? result[key] : result,
-        object
-      )
-  const result = travel(/[,[\]]+?/) || travel(/[,.[\]]+?/)
-  return result === undefined || result === object ? defaultValue : result
-}
+import get from 'lodash.get'
 
 const throwIf = (expression, callBack) => {
   if (!expression) return
