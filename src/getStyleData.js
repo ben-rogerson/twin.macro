@@ -22,12 +22,29 @@ import {
   handleCss,
 } from './handlers'
 
+// When removing a multiline comment, determine if a space is left or not
+// eg: You'd want a space left in this situation: tw`class1/* comment */class2`
+const multilineReplaceWith = (match, index, input) => {
+  const charBefore = input[index - 1]
+  const directPrefixMatch = charBefore && charBefore.match(/\w/)
+  const charAfter = input[Number(index) + Number(match.length)]
+  const directSuffixMatch = charAfter && charAfter.match(/\w/)
+  return directPrefixMatch &&
+    directPrefixMatch[0] &&
+    directSuffixMatch &&
+    directSuffixMatch[0]
+    ? ' '
+    : ''
+}
+
 const formatTasks = [
   // Strip pipe dividers " | "
   ({ classes }) => classes.replace(/ \| /g, ' '),
-  // Strip comments
-  ({ classes }) => classes.replace(/\/\*[\S\s]*\*\//g, ''), // Multiline
-  ({ classes }) => classes.replace(/\/\/.*/g, ''), // Singleline
+  // Strip multiline comments
+  ({ classes }) =>
+    classes.replace(/(?<!\/)\/(?!\/)\*[\S\s]*?\*\//g, multilineReplaceWith),
+  // Strip singleline comments
+  ({ classes }) => classes.replace(/\/\/.*/g, ''),
   // Unwrap grouped variants
   ({ classes }) => handleVariantGroups(classes),
   // Move and sort the responsive items to the end of the list
