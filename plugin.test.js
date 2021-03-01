@@ -19,10 +19,16 @@ pluginTester({
     .map(file => ({
       title: path.basename(file),
       code: fs.readFileSync(file, 'utf-8'),
-      ...(fs.existsSync(configFile(file)) && {
-        pluginOptions: {
-          twin: JSON.parse(fs.readFileSync(configFile(file), 'utf-8')),
+      pluginOptions: {
+        twin: {
+          ...(fs.existsSync(
+            path.join(path.dirname(file), 'tailwind.config.js')
+          ) && {
+            config: path.join(path.dirname(file), 'tailwind.config.js'),
+          }),
+          ...(fs.existsSync(configFile(file)) &&
+            JSON.parse(fs.readFileSync(configFile(file), 'utf-8'))),
         },
-      }),
+      },
     })),
 })

@@ -46,7 +46,14 @@ const configTwinValidators = {
     isBoolean,
     'The config “sassyPseudo” can only be true or false',
   ],
-  dataTwProp: [isBoolean, 'The config “dataTwProp” can only be true or false'],
+  dataTwProp: [
+    value => isBoolean(value) || value === 'all',
+    'The config “dataTwProp” can only be true, false or "all"',
+  ],
+  dataCsProp: [
+    value => isBoolean(value) || value === 'all',
+    'The config “dataCsProp” can only be true, false or "all"',
+  ],
   debugProp: [
     value => value === undefined,
     `The “debugProp” option was renamed to “dataTwProp”, please rename it in your twin config`,
