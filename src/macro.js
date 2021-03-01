@@ -105,7 +105,9 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
         attribute.isJSXAttribute()
       )
       const { index, hasCssAttribute } = getCssAttributeData(jsxAttributes)
-      state.hasCssAttribute = hasCssAttribute
+      // Make sure hasCssAttribute remains true once css prop has been found
+      // so twin can add the autoCssProp for styled-components
+      state.hasCssAttribute = state.hasCssAttribute || hasCssAttribute
 
       // Reverse the attributes so the items keep their order when replaced
       const orderedAttributes =
@@ -147,7 +149,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
 
   /**
    * Css import
-   * Gotchya: The css import must be inserted above the styled import when using
+   * Gotcha: The css import must be inserted above the styled import when using
    * styled-components/macro or issues arrise with the way theme`` styles get
    * transpiled. I've placed this under the styled import so the
    * addImport (using unshift container) will add it above correctly.

@@ -52,6 +52,12 @@ const maybeAddCssProperty = ({ program, t }) => {
       // Find the twin import path
       if (path.node.source.value === 'twin.macro') {
         twinImportPath = path
+      } else if (path.node.source.value === './macro') {
+        // Read the test import with a comment of (// twinImport) afterwards
+        const { trailingComments } = path.node.source
+        if (trailingComments && trailingComments[0].value === ' twinImport') {
+          twinImportPath = path
+        }
       }
 
       // If there's an existing macro import
