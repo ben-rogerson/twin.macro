@@ -102,14 +102,18 @@ tw`text-sm md:text-lg`
 }
 ```
 
-Twin also swaps its own `css` and `styled` imports with the real imports from your css-in-js library.
-This feature avoids having to add extra imports as you can import them all from twin.
-
 ## Features
 
-**🎨 Style with all classes and variants available in [Tailwind v2](https://github.com/tailwindcss/tailwindcss/releases)**
+**👌 Simple imports** - Twin collapses imports from common styling libraries into a single import:
 
-**🐹 Adds no size to your build** - Twin converts classes you’ve used into css objects using Babel and then compiles away, leaving no runtime code
+```diff
++ import tw, { styled, css } from 'twin.macro'
+- import tw from 'twin.macro'
+- import styled from '@emotion/styled'
+- import css from '@emotion/react'
+```
+
+**🐹 Adds no size to your build** - Twin converts the classes you’ve used into css objects using Babel and then compiles away, leaving no runtime code
 
 **🛎 Helpful suggestions for mistypings** - Twin chimes in with class and variant values from your Tailwind config:
 
@@ -198,55 +202,28 @@ Add !important to multiple classes with bracket groups:
 
 ## Get started
 
-Take a look at these examples to get started:
+Twin works within many modern stacks - take a look at these examples to get started:
 
-#### React
+### Light libraries
 
-[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/react-styled-components) &nbsp; [👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/react-emotion)
+- **Preact**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/preact-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/preact-emotion) / [goober](https://github.com/ben-rogerson/twin.examples/tree/master/preact-goober)
+- **React**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/react-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/react-emotion)
 
-#### Preact
+### Tooled libraries
 
-[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/preact-styled-components) &nbsp; [🥜 goober](https://github.com/ben-rogerson/twin.examples/tree/master/preact-goober)
+- **Create React App**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/cra-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/cra-emotion)
+- **Snowpack**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components) / [styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components-typescript) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion) / [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion-typescript)
 
-#### Create React App
+### Advanced frameworks
 
-[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/cra-styled-components) &nbsp; [👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/cra-emotion)
+- **Gatsby**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-emotion)
+- **Next.js**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion)
+- **Laravel**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/laravel-styled-components-typescript)
 
-#### Gatsby
+### Other
 
-[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-styled-components) &nbsp; [👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-emotion)
-
-#### Next.js
-
-[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components) &nbsp; [👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion)
-
-#### Snowpack
-
-[💅 styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components) &nbsp; [💅 styled-components (TypeScript)](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion-typescript) &nbsp; [👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion)
-
-#### Storybook
-
-[👩‍🎤 emotion](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-emotion)
-
-#### Monorepo component library
-
-[💅 styled-components (TypeScript)](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-styled-components)
-
-#### Laravel
-
-[💅 styled-components (TypeScript)](https://github.com/ben-rogerson/twin.examples/tree/master/laravel-styled-components-typescript)
-
-## Plugins
-
-You can use many Tailwind plugins with twin, like [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography) and [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms) but there’s no compatibility with plugins that use the `addVariant` function.
-
-[See list of supported plugins →](https://twin-docs.netlify.app/plugin-support)
-
-## TypeScript
-
-Twin fully supports TypeScript projects and includes types for every import _except_ the `css` and `styled` imports.
-
-[How to add the missing `css` and `styled` types →](docs/typescript.md)
+- **Storybook**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-styled-components-typescript) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-emotion)
+- **Component library with rollup + yarn**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-emotion)
 
 ## Community
 
@@ -256,12 +233,12 @@ Twin fully supports TypeScript projects and includes types for every import _exc
 
 ## Resources
 
-- [Create advanced themes with css variables](docs/advanced-theming.md)
-- [Sync your screen breakpoints with javascript](https://gist.github.com/ben-rogerson/b4b406dffcc18ae02f8a6c8c97bb58a8)
-- [Twin vscode snippits for easier imports](https://gist.github.com/ben-rogerson/c6b62508e63b3e3146350f685df2ddc9)
-- [Use the official vscode intellisense extension with twin](https://github.com/ben-rogerson/twin.macro/discussions/227)
-- [Tailwind class cheat sheet](https://nerdcave.com/tailwind-cheat-sheet)
-- ["Why I Love Tailwind" by Max Stoiber](https://mxstbr.com/thoughts/tailwind)
+- [🔥 babel-plugin-twin](https://github.com/ben-rogerson/babel-plugin-twin) - Use the tw and css props without adding an import
+- [Advanced theming](docs/advanced-theming.md) - Add custom theming the right way using css variables
+- [React + Tailwind breakpoint syncing](https://gist.github.com/ben-rogerson/b4b406dffcc18ae02f8a6c8c97bb58a8) - Sync your tailwind.config.js breakpoints with react
+- [Twin VSCode snippits](https://gist.github.com/ben-rogerson/c6b62508e63b3e3146350f685df2ddc9) - For devs who want to type less
+- [VSCode autocomplete extension](https://github.com/ben-rogerson/twin.macro/discussions/227) - Twin works with the official vscode intellisense extension
+- [Article: "Why I Love Tailwind" by Max Stoiber](https://mxstbr.com/thoughts/tailwind)
 
 ## Special thanks
 
