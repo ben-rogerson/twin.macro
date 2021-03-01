@@ -110,6 +110,14 @@ const handleTwProperty = ({ path, t, state }) => {
 const handleTwFunction = ({ references, state, t }) => {
   const defaultImportReferences = references.default || references.tw || []
   defaultImportReferences.forEach(path => {
+    /**
+     * Gotcha: After twin changes a className/tw/cs prop path then the reference
+     * becomes stale and needs to be refreshed with crawl()
+     */
+    if (!path.parentPath.isTaggedTemplateExpression()) {
+      path.scope.crawl()
+    }
+
     const parent = path.findParent(x => x.isTaggedTemplateExpression())
     if (!parent) return
 
