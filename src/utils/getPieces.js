@@ -1,8 +1,9 @@
 import { splitVariants } from './../variants'
 import { splitImportant } from './../important'
 import { splitNegative } from './../negative'
+import { splitPrefix } from './../prefix'
 
-const splitters = [splitVariants, splitNegative, splitImportant]
+const splitters = [splitVariants, splitPrefix, splitNegative, splitImportant]
 
 export default context => {
   const results = splitters.reduce(

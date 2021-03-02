@@ -12748,39 +12748,18 @@ tw\`rich-text\`
     color: '#111827',
     fontWeight: '600',
   },
-  'ol[type="A"]': {
-    '--list-counter-style': 'upper-alpha',
-  },
-  'ol[type="a"]': {
-    '--list-counter-style': 'lower-alpha',
-  },
-  'ol[type="A s"]': {
-    '--list-counter-style': 'upper-alpha',
-  },
-  'ol[type="a s"]': {
-    '--list-counter-style': 'lower-alpha',
-  },
-  'ol[type="I"]': {
-    '--list-counter-style': 'upper-roman',
-  },
-  'ol[type="i"]': {
-    '--list-counter-style': 'lower-roman',
-  },
-  'ol[type="I s"]': {
-    '--list-counter-style': 'upper-roman',
-  },
-  'ol[type="i s"]': {
-    '--list-counter-style': 'lower-roman',
-  },
-  'ol[type="1"]': {
-    '--list-counter-style': 'decimal',
+  ol: {
+    counterReset: 'list-counter',
+    marginTop: '1.25em',
+    marginBottom: '1.25em',
   },
   'ol > li': {
     position: 'relative',
+    counterIncrement: 'list-counter',
     paddingLeft: '1.75em',
   },
   'ol > li::before': {
-    content: 'counter(list-item, var(--list-counter-style, decimal)) "."',
+    content: 'counter(list-counter) "."',
     position: 'absolute',
     fontWeight: '400',
     color: '#6b7280',
@@ -12900,10 +12879,10 @@ tw\`rich-text\`
     lineHeight: 'inherit',
   },
   'pre code::before': {
-    content: 'none',
+    content: '""',
   },
   'pre code::after': {
-    content: 'none',
+    content: '""',
   },
   table: {
     width: '100%',
@@ -12965,10 +12944,6 @@ tw\`rich-text\`
   },
   'h3 code': {
     fontSize: '0.9em',
-  },
-  ol: {
-    marginTop: '1.25em',
-    marginBottom: '1.25em',
   },
   ul: {
     marginTop: '1.25em',

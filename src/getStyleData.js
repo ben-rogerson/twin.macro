@@ -1,9 +1,9 @@
 import deepMerge from 'lodash.merge'
 import { throwIf, isEmpty, getTheme } from './utils'
-import getProperties from './getProperties'
+import { getProperties } from './getProperties'
 import getPieces from './utils/getPieces'
 import { astify } from './macroHelpers'
-import doPrechecks, { precheckGroup } from './prechecks'
+import doPrechecks, { precheckGroup, preCheckPrefix } from './prechecks'
 import {
   logGeneralError,
   errorSuggestions,
@@ -74,14 +74,21 @@ export default (
 
   // Merge styles into a single css object
   const styles = classes.reduce((results, classNameRaw) => {
-    // Avoid prechecks on silent mode as they'll error loudly
-    !silentMismatches && doPrechecks([precheckGroup], { classNameRaw })
-
     const pieces = getPieces({ classNameRaw, state })
-    const { className, hasVariants } = pieces
-    const { configTwin } = state
+    const { hasPrefix, className, hasVariants } = pieces
 
-    if (silentMismatches && !className) {
+    // Avoid prechecks on silent mode as they'll error loudly
+    !silentMismatches &&
+      doPrechecks([precheckGroup, preCheckPrefix], {
+        pieces,
+        classNameRaw,
+        state,
+      })
+
+    // Make sure non-prefixed classNames are ignored
+    const { prefix } = state.config
+    const hasPrefixMismatch = prefix && !hasPrefix && className
+    if (silentMismatches && (!className || hasPrefixMismatch)) {
       classesMismatched.push(classNameRaw)
       return results
     }
@@ -120,10 +127,10 @@ export default (
           theme,
           pieces,
           state,
-          configTwin,
           corePlugin,
           classNameRaw,
           dynamicKey,
+          configTwin: state.configTwin,
         }),
     }
 

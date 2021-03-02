@@ -105,7 +105,7 @@ const splitVariants = ({ classNameRaw, state }) => {
 
   return {
     classNameRawNoVariants: className,
-    className,
+    className, // TODO: Hoist the definition for className up, it's buried here
     variants,
     hasVariants,
   }

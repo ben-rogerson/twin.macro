@@ -1,4 +1,5 @@
 import { isEmpty } from './../utils'
+import { splitPrefix } from './../prefix'
 
 const reorderAtRules = className =>
   className &&
@@ -31,20 +32,20 @@ const mergeChecks = [
     ),
 ]
 
-const getMatches = ({ className, data, sassyPseudo }) =>
+const getMatches = ({ className, data, sassyPseudo, state }) =>
   Object.entries(data).reduce((result, item) => {
-    let [key, value] = item
-    key = key.replace(/\\/g, '') // Unescape characters
+    const [rawKey, value] = item
+
+    // Remove the prefix before attempting match
+    let { className: key } = splitPrefix({ className: rawKey, state })
+
+    key = key.replace(/\\/g, '')
 
     const childValue = Object.values(value)[0]
     const hasChildNesting =
       !Array.isArray(childValue) && typeof childValue === 'object'
     if (hasChildNesting) {
-      const matches = getMatches({
-        className,
-        data: value,
-        sassyPseudo,
-      })
+      const matches = getMatches({ className, data: value, sassyPseudo, state })
       if (!isEmpty(matches)) return { ...result, [key]: matches }
     }
 
@@ -96,11 +97,12 @@ export default ({
     configTwin: { sassyPseudo },
     userPluginData: { components, utilities },
   },
+  state,
   className,
 }) => {
   let result
   ;[components, utilities].find(data => {
-    const matches = getMatches({ className, data, sassyPseudo })
+    const matches = getMatches({ className, data, sassyPseudo, state })
     const hasMatches = !isEmpty(matches)
     result = hasMatches ? matches : result
     return hasMatches
