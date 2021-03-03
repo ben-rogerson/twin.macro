@@ -24,5 +24,7 @@ import tw from './macro'
 ;<div css={tw`hover:(lg:tw-bg-red-500)`} />
 ;<div css={tw`hover:(lg:tw-bg-red-500 max-width[100vw])`} />
 
-// custom plugin class
+// custom plugin classes
 ;<div tw="tw-plugin-class" />
+;<div tw="tw-test-1" />
+;<div tw="tw-test-2" />

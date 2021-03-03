@@ -26,9 +26,11 @@ const parseSelector = (selector, { isBase }) => {
   if (!match.includes(' ')) return match
 
   // Look for class matching candidates
-  const match2 = match.match(/(?<=>|~|\+|\*| )\.[\w.\\-]+(?= |>|~|\+|\*|:|$)/gm)
-  if (!match2) return match
+  const match2 = match.match(
+    /(?<=>|^|~|\+|\*| )\.[\w.\\-]+(?= |>|~|\+|\*|:|$)/gm
+  )
 
+  if (!match2) return match
   // Wrap the matching classes in {{class}}
   for (const item of match2) {
     match = replaceSelectorWithParent(match, item)

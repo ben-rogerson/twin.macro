@@ -16,7 +16,7 @@ const reorderAtRules = className =>
 // If these tasks return true then the rule is matched
 const mergeChecks = [
   // Match exact selector
-  ({ key, className }) => key === className,
+  ({ key, className, prefix }) => key === `${prefix}${className}`,
   // Match class selector (inc dot)
   ({ key, className, prefix }) =>
     !key.includes('{{') &&
@@ -27,11 +27,11 @@ const mergeChecks = [
       )
     ),
   // Match parent selector placeholder
-  ({ key, className }) => key.includes(`{{${className}}}`),
+  ({ key, className, prefix }) => key.includes(`{{${prefix}${className}}}`),
   // Match possible symbols after the selector (ex dot)
-  ({ key, className }) =>
+  ({ key, className, prefix }) =>
     [(' ', ':', '>', '~', '+', '*')].some(suffix =>
-      key.startsWith(`${className}${suffix}`)
+      key.startsWith(`${prefix}${className}${suffix}`)
     ),
 ]
 
@@ -67,13 +67,19 @@ const getMatches = ({ className, data, sassyPseudo, state }) =>
 // The key gets formatted with these checks
 const formatTasks = [
   ({ key }) => key.replace(/\\/g, '').trim(),
+  // Match exact selector
+  ({ key, className, prefix }) => (key === `.${prefix}${className}` ? '' : key),
   // Replace the parent selector placeholder
-  ({ key, className }) => {
-    const parentSelectorIndex = key.indexOf(`{{${className}}}`)
+  ({ key, className, prefix }) => {
+    const parentSelectorIndex = key.indexOf(`{{${prefix}${className}}}`)
     const replacement = parentSelectorIndex > 0 ? '&' : ''
-    return key.replace(`{{${className}}}`, replacement)
+    return key.replace(`{{${prefix}${className}}}`, replacement)
   },
-  // Replace the classname at start of selector (postCSS supplies flattened selectors)
+  // Strip prefix
+  ({ key, prefix }) =>
+    !prefix ? key : key.replace(new RegExp(`{{${prefix}`, 'g'), `{{`),
+  // Replace the classname at start of selector (eg: &:hover) (postCSS supplies
+  // flattened selectors so it looks like .blah:hover at this point)
   ({ key, className, prefix }) =>
     key.startsWith(`.${prefix}${className}`)
       ? key.slice(`.${prefix}${className}`.length)
