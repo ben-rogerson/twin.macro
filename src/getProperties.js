@@ -35,7 +35,7 @@ const getDynamicProperties = className => {
   return { isDynamicClass, dynamicConfig, dynamicKey }
 }
 
-const isCssClass = className => className.includes('[')
+export const isCssClass = className => className.includes('[')
 
 const isEmpty = value =>
   value === undefined ||
@@ -43,7 +43,7 @@ const isEmpty = value =>
   (typeof value === 'object' && Object.keys(value).length === 0) ||
   (typeof value === 'string' && value.trim().length === 0)
 
-const getProperties = (className, state, { isCsOnly = false }) => {
+export const getProperties = (className, state, { isCsOnly = false }) => {
   if (!className) return
 
   const isCss = isCssClass(className)
@@ -72,5 +72,3 @@ const getProperties = (className, state, { isCsOnly = false }) => {
     hasUserPlugins,
   }
 }
-
-export default getProperties

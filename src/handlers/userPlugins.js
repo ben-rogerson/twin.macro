@@ -1,4 +1,5 @@
 import { isEmpty } from './../utils'
+import { splitPrefix } from './../prefix'
 
 const reorderAtRules = className =>
   className &&
@@ -15,45 +16,48 @@ const reorderAtRules = className =>
 // If these tasks return true then the rule is matched
 const mergeChecks = [
   // Match exact selector
-  ({ key, className }) => key === className,
+  ({ key, className, prefix }) => key === `${prefix}${className}`,
   // Match class selector (inc dot)
-  ({ key, className }) =>
+  ({ key, className, prefix }) =>
     !key.includes('{{') &&
     key.match(
-      new RegExp(`(?:^|>|~|\\+|\\*| )\\.${className}(?: |>|~|\\+|\\*|:|$)`, 'g')
+      new RegExp(
+        `(?:^|>|~|\\+|\\*| )\\.${prefix}${className}(?: |>|~|\\+|\\*|:|$)`,
+        'g'
+      )
     ),
   // Match parent selector placeholder
-  ({ key, className }) => key.includes(`{{${className}}}`),
+  ({ key, className, prefix }) => key.includes(`{{${prefix}${className}}}`),
   // Match possible symbols after the selector (ex dot)
-  ({ key, className }) =>
+  ({ key, className, prefix }) =>
     [(' ', ':', '>', '~', '+', '*')].some(suffix =>
-      key.startsWith(`${className}${suffix}`)
+      key.startsWith(`${prefix}${className}${suffix}`)
     ),
 ]
 
-const getMatches = ({ className, data, sassyPseudo }) =>
+const getMatches = ({ className, data, sassyPseudo, state }) =>
   Object.entries(data).reduce((result, item) => {
-    let [key, value] = item
-    key = key.replace(/\\/g, '') // Unescape characters
+    const [rawKey, value] = item
+
+    // Remove the prefix before attempting match
+    let { className: key } = splitPrefix({ className: rawKey, state })
+
+    key = key.replace(/\\/g, '')
 
     const childValue = Object.values(value)[0]
     const hasChildNesting =
       !Array.isArray(childValue) && typeof childValue === 'object'
     if (hasChildNesting) {
-      const matches = getMatches({
-        className,
-        data: value,
-        sassyPseudo,
-      })
+      const matches = getMatches({ className, data: value, sassyPseudo, state })
       if (!isEmpty(matches)) return { ...result, [key]: matches }
     }
 
+    const { prefix } = state.config
     const shouldMergeValue = mergeChecks.some(item =>
-      item({ key, value, className, data })
+      item({ key, value, className, data, prefix })
     )
-
     if (shouldMergeValue) {
-      const newKey = formatKey(key, className, sassyPseudo)
+      const newKey = formatKey(key, { className, sassyPseudo, prefix })
       return newKey ? { ...result, [newKey]: value } : { ...result, ...value }
     }
 
@@ -63,15 +67,23 @@ const getMatches = ({ className, data, sassyPseudo }) =>
 // The key gets formatted with these checks
 const formatTasks = [
   ({ key }) => key.replace(/\\/g, '').trim(),
+  // Match exact selector
+  ({ key, className, prefix }) => (key === `.${prefix}${className}` ? '' : key),
   // Replace the parent selector placeholder
-  ({ key, className }) => {
-    const parentSelectorIndex = key.indexOf(`{{${className}}}`)
+  ({ key, className, prefix }) => {
+    const parentSelectorIndex = key.indexOf(`{{${prefix}${className}}}`)
     const replacement = parentSelectorIndex > 0 ? '&' : ''
-    return key.replace(`{{${className}}}`, replacement)
+    return key.replace(`{{${prefix}${className}}}`, replacement)
   },
-  // Replace the classname at start of selector (postCSS supplies flattened selectors)
-  ({ key, className }) =>
-    key.startsWith(`.${className}`) ? key.slice(`.${className}`.length) : key,
+  // Strip prefix
+  ({ key, prefix }) =>
+    !prefix ? key : key.replace(new RegExp(`{{${prefix}`, 'g'), `{{`),
+  // Replace the classname at start of selector (eg: &:hover) (postCSS supplies
+  // flattened selectors so it looks like .blah:hover at this point)
+  ({ key, className, prefix }) =>
+    key.startsWith(`.${prefix}${className}`)
+      ? key.slice(`.${prefix}${className}`.length)
+      : key,
   ({ key }) => key.trim(),
   // Add the parent selector at the start when it has the sassy pseudo enabled
   ({ key, sassyPseudo }) =>
@@ -80,12 +92,12 @@ const formatTasks = [
   ({ key }) => key.replace(/{{/g, '.').replace(/}}/g, ''),
 ]
 
-const formatKey = (selector, className, sassyPseudo) => {
+const formatKey = (selector, { className, sassyPseudo, prefix }) => {
   if (selector === className) return
 
   let key = selector
   for (const task of formatTasks) {
-    key = task({ key, className, sassyPseudo })
+    key = task({ key, className, sassyPseudo, prefix })
   }
 
   return key
@@ -96,11 +108,12 @@ export default ({
     configTwin: { sassyPseudo },
     userPluginData: { components, utilities },
   },
+  state,
   className,
 }) => {
   let result
   ;[components, utilities].find(data => {
-    const matches = getMatches({ className, data, sassyPseudo })
+    const matches = getMatches({ className, data, sassyPseudo, state })
     const hasMatches = !isEmpty(matches)
     result = hasMatches ? matches : result
     return hasMatches
