@@ -72,12 +72,12 @@ tw`motion-reduce:flex`
 // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-pointer
 tw`any-pointer-none:flex`
 tw`any-pointer-fine:flex`
-tw`any-poiner-coarse:flex`
+tw`any-pointer-coarse:flex`
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer
-tw`poiner-none:flex`
-tw`poiner-fine:flex`
-tw`poiner-coarse:flex`
+tw`pointer-none:flex`
+tw`pointer-fine:flex`
+tw`pointer-coarse:flex`
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover
 tw`any-hover-none:flex`

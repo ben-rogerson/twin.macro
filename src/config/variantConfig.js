@@ -91,12 +91,12 @@ const variantConfig = ({
   // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-pointer
   'any-pointer-none': '@media (any-pointer: none)',
   'any-pointer-fine': '@media (any-pointer: fine)',
-  'any-poiner-coarse': '@media (any-pointer: coarse)',
+  'any-pointer-coarse': '@media (any-pointer: coarse)',
 
   // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer
-  'poiner-none': '@media (pointer: none)',
-  'poiner-fine': '@media (pointer: fine)',
-  'poiner-coarse': '@media (pointer: coarse)',
+  'pointer-none': '@media (pointer: none)',
+  'pointer-fine': '@media (pointer: fine)',
+  'pointer-coarse': '@media (pointer: coarse)',
 
   // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover
   'any-hover-none': '@media (any-hover: none)',
