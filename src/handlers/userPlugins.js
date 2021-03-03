@@ -1,21 +1,5 @@
 import { isEmpty } from './../utils'
 
-const matchKeys = (values, className, sassyPseudo) =>
-  values.reduce((result, data) => {
-    const [key, value] = data
-
-    const newKey = formatKey(key, className, sassyPseudo)
-
-    const newValue =
-      typeof value === 'object' &&
-      (key === className ||
-        key.startsWith(`${className}:`) ||
-        key.startsWith(`${className} `)) &&
-      (newKey ? { [newKey]: value } : value)
-
-    return { ...result, ...newValue }
-  }, {})
-
 const reorderAtRules = className =>
   className &&
   Object.entries(className)
@@ -28,38 +12,83 @@ const reorderAtRules = className =>
     })
     .reduce((r, [k, v]) => ({ ...r, [k]: v }), {})
 
-const possibleClassNameSuffix = [' ', ':', '>', '~', '+', '*']
+// If these tasks return true then the rule is matched
+const mergeChecks = [
+  // Match exact selector
+  ({ key, className }) => key === className,
+  // Match class selector (inc dot)
+  ({ key, className }) =>
+    !key.includes('{{') &&
+    key.match(
+      new RegExp(`(?:^|>|~|\\+|\\*| )\\.${className}(?: |>|~|\\+|\\*|:|$)`, 'g')
+    ),
+  // Match parent selector placeholder
+  ({ key, className }) => key.includes(`{{${className}}}`),
+  // Match possible symbols after the selector (ex dot)
+  ({ key, className }) =>
+    [(' ', ':', '>', '~', '+', '*')].some(suffix =>
+      key.startsWith(`${className}${suffix}`)
+    ),
+]
 
 const getMatches = ({ className, data, sassyPseudo }) =>
   Object.entries(data).reduce((result, item) => {
     let [key, value] = item
-    key = key.replace(/\\/g, '')
+    key = key.replace(/\\/g, '') // Unescape characters
 
-    const subKeyMatch = matchKeys(Object.entries(value), className, sassyPseudo)
-    const newKey = formatKey(key, className, sassyPseudo)
-
-    if (!isEmpty(subKeyMatch)) {
-      return { ...result, [newKey]: subKeyMatch }
+    const childValue = Object.values(value)[0]
+    const hasChildNesting =
+      !Array.isArray(childValue) && typeof childValue === 'object'
+    if (hasChildNesting) {
+      const matches = getMatches({
+        className,
+        data: value,
+        sassyPseudo,
+      })
+      if (!isEmpty(matches)) return { ...result, [key]: matches }
     }
 
-    if (
-      key === className ||
-      possibleClassNameSuffix.some(suffix =>
-        key.startsWith(`${className}${suffix}`)
-      )
-    ) {
+    const shouldMergeValue = mergeChecks.some(item =>
+      item({ key, value, className, data })
+    )
+
+    if (shouldMergeValue) {
+      const newKey = formatKey(key, className, sassyPseudo)
       return newKey ? { ...result, [newKey]: value } : { ...result, ...value }
     }
 
     return result
   }, {})
 
+// The key gets formatted with these checks
+const formatTasks = [
+  ({ key }) => key.replace(/\\/g, '').trim(),
+  // Replace the parent selector placeholder
+  ({ key, className }) => {
+    const parentSelectorIndex = key.indexOf(`{{${className}}}`)
+    const replacement = parentSelectorIndex > 0 ? '&' : ''
+    return key.replace(`{{${className}}}`, replacement)
+  },
+  // Replace the classname at start of selector (postCSS supplies flattened selectors)
+  ({ key, className }) =>
+    key.startsWith(`.${className}`) ? key.slice(`.${className}`.length) : key,
+  ({ key }) => key.trim(),
+  // Add the parent selector at the start when it has the sassy pseudo enabled
+  ({ key, sassyPseudo }) =>
+    sassyPseudo && key.startsWith(':') ? `&${key}` : key,
+  // Remove the unmatched class wrapping
+  ({ key }) => key.replace(/{{/g, '.').replace(/}}/g, ''),
+]
+
 const formatKey = (selector, className, sassyPseudo) => {
-  const newSelector = selector.replace(className, '').trim()
-  return (
-    (newSelector.startsWith(':') && sassyPseudo && `&${newSelector}`) ||
-    newSelector
-  )
+  if (selector === className) return
+
+  let key = selector
+  for (const task of formatTasks) {
+    key = task({ key, className, sassyPseudo })
+  }
+
+  return key
 }
 
 export default ({

@@ -2,12 +2,39 @@ import processPlugins from 'tailwindcss/lib/util/processPlugins'
 import deepMerge from 'lodash.merge'
 import { camelize } from './../utils'
 
-const parseSelector = (selector, isBase) => {
+const stripLeadingDot = string =>
+  string.startsWith('.') ? string.slice(1) : string
+
+const replaceSelectorWithParent = (string, replacement) =>
+  string.replace(replacement, `{{${stripLeadingDot(replacement)}}}`)
+
+const parseSelector = (selector, { isBase }) => {
   if (!selector) return
+
   const matches = selector.trim().match(/^(\S+)(\s+.*?)?$/)
   if (matches === null) return
-  if (isBase) return matches[0]
-  return matches[0].startsWith('.') ? matches[0].slice(1) : matches[0]
+
+  let match = matches[0]
+  if (isBase) return match
+
+  // Fix spacing that goes missing when provided by tailwindcss
+  // Unfortunately this removes the ability to have classes on the same element
+  // eg: .something.something or &.something
+  match = match.replace(/(?<=\w)\./g, ' .')
+
+  // If the selector is just a single selector then return
+  if (!match.includes(' ')) return match
+
+  // Look for class matching candidates
+  const match2 = match.match(/(?<=>|~|\+|\*| )\.[\w.\\-]+(?= |>|~|\+|\*|:|$)/gm)
+  if (!match2) return match
+
+  // Wrap the matching classes in {{class}}
+  for (const item of match2) {
+    match = replaceSelectorWithParent(match, item)
+  }
+
+  return match
 }
 
 const parseRuleProperty = string => {
@@ -30,13 +57,13 @@ const buildAtSelector = (name, values, screens) => {
   return `@${name} ${values}`
 }
 
-const getBuiltRules = (rule, isBase) => {
+const getBuiltRules = (rule, { isBase }) => {
   // Prep comma spaced selectors for parsing
   const selectorArray = rule.selector.split(',')
 
   // Validate each selector
   const selectorParsed = selectorArray
-    .map(s => parseSelector(s, isBase))
+    .map(s => parseSelector(s, { isBase }))
     .filter(Boolean)
 
   // Join them back into a string
@@ -91,7 +118,7 @@ const getUserPluginRules = (rules, screens, isBase) =>
       })
     }
 
-    const builtRules = getBuiltRules(rule, isBase)
+    const builtRules = getBuiltRules(rule, { isBase })
 
     return deepMerge(result, builtRules)
   }, {})

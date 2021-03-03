@@ -15,7 +15,7 @@ const spaced = string => `\n\n${string}\n`
 const warning = string => color.error(`✕ ${string}`)
 
 const inOutPlugins = (input, output) =>
-  `${color.highlight2('→')} ${input.replace(/\\/g, '')} ${color.highlight2(
+  `${color.highlight2('→')} ${input} ${color.highlight2(
     JSON.stringify(output)
   )}`
 
@@ -54,12 +54,16 @@ const logGeneralError = error => spaced(warning(error))
 
 const debug = (className, log) => console.log(inOut(className, log))
 
+const formatPluginKey = key => key.replace(/(\\|(}}))/g, '').replace(/{{/g, '.')
+
 const debugPlugins = processedPlugins => {
   console.log(
     Object.entries(processedPlugins)
       .map(([, group]) =>
         Object.entries(group)
-          .map(([className, styles]) => inOutPlugins(className, styles))
+          .map(([className, styles]) =>
+            inOutPlugins(formatPluginKey(className), styles)
+          )
           .join('\n')
       )
       .join(`\n`)

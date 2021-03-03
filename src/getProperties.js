@@ -47,7 +47,8 @@ const getProperties = (className, state, { isCsOnly = false }) => {
   if (!className) return
 
   const isCss = isCssClass(className)
-  if (isCsOnly) return { hasMatches: isCss, type: 'css' }
+  if (isCsOnly || className.includes('['))
+    return { hasMatches: isCss, type: 'css' }
 
   const isStatic = isStaticClass(className)
   const { isDynamicClass, dynamicConfig, dynamicKey } = getDynamicProperties(
