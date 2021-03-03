@@ -18,10 +18,13 @@ const mergeChecks = [
   // Match exact selector
   ({ key, className }) => key === className,
   // Match class selector (inc dot)
-  ({ key, className }) =>
+  ({ key, className, prefix }) =>
     !key.includes('{{') &&
     key.match(
-      new RegExp(`(?:^|>|~|\\+|\\*| )\\.${className}(?: |>|~|\\+|\\*|:|$)`, 'g')
+      new RegExp(
+        `(?:^|>|~|\\+|\\*| )\\.${prefix}${className}(?: |>|~|\\+|\\*|:|$)`,
+        'g'
+      )
     ),
   // Match parent selector placeholder
   ({ key, className }) => key.includes(`{{${className}}}`),
@@ -49,12 +52,12 @@ const getMatches = ({ className, data, sassyPseudo, state }) =>
       if (!isEmpty(matches)) return { ...result, [key]: matches }
     }
 
+    const { prefix } = state.config
     const shouldMergeValue = mergeChecks.some(item =>
-      item({ key, value, className, data })
+      item({ key, value, className, data, prefix })
     )
-
     if (shouldMergeValue) {
-      const newKey = formatKey(key, className, sassyPseudo)
+      const newKey = formatKey(key, { className, sassyPseudo, prefix })
       return newKey ? { ...result, [newKey]: value } : { ...result, ...value }
     }
 
@@ -71,8 +74,10 @@ const formatTasks = [
     return key.replace(`{{${className}}}`, replacement)
   },
   // Replace the classname at start of selector (postCSS supplies flattened selectors)
-  ({ key, className }) =>
-    key.startsWith(`.${className}`) ? key.slice(`.${className}`.length) : key,
+  ({ key, className, prefix }) =>
+    key.startsWith(`.${prefix}${className}`)
+      ? key.slice(`.${prefix}${className}`.length)
+      : key,
   ({ key }) => key.trim(),
   // Add the parent selector at the start when it has the sassy pseudo enabled
   ({ key, sassyPseudo }) =>
@@ -81,12 +86,12 @@ const formatTasks = [
   ({ key }) => key.replace(/{{/g, '.').replace(/}}/g, ''),
 ]
 
-const formatKey = (selector, className, sassyPseudo) => {
+const formatKey = (selector, { className, sassyPseudo, prefix }) => {
   if (selector === className) return
 
   let key = selector
   for (const task of formatTasks) {
-    key = task({ key, className, sassyPseudo })
+    key = task({ key, className, sassyPseudo, prefix })
   }
 
   return key
