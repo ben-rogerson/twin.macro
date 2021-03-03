@@ -39,6 +39,7 @@ const variantConfig = ({
   optional: ':optional',
   required: ':required',
   'placeholder-shown': ':placeholder-shown',
+  placeholder: '::placeholder',
   'read-only': ':read-only',
   'read-write': ':read-write',
 
@@ -79,10 +80,35 @@ const variantConfig = ({
   'group-visited': variantData =>
     prefixDarkLightModeClass('.group:visited &', variantData),
 
-  // Motion control
+  // Media types
+  print: '@media print',
+  screen: '@media screen',
+
   // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
   'motion-safe': '@media (prefers-reduced-motion: no-preference)',
   'motion-reduce': '@media (prefers-reduced-motion: reduce)',
+
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-pointer
+  'any-pointer-none': '@media (any-pointer: none)',
+  'any-pointer-fine': '@media (any-pointer: fine)',
+  'any-poiner-coarse': '@media (any-pointer: coarse)',
+
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer
+  'poiner-none': '@media (pointer: none)',
+  'poiner-fine': '@media (pointer: fine)',
+  'poiner-coarse': '@media (pointer: coarse)',
+
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover
+  'any-hover-none': '@media (any-hover: none)',
+  'any-hover': '@media (any-hover: hover)',
+
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/hover
+  'can-hover': '@media (hover: hover)',
+  'cant-hover': '@media (hover: none)',
+
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/orientation
+  landscape: '@media (orientation: landscape)',
+  portrait: '@media (orientation: portrait)',
 
   // Dark mode
   dark: variantDarkMode,
