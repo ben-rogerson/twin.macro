@@ -213,6 +213,7 @@ Twin works within many modern stacks - take a look at these examples to get star
 
 - **Create React App**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/cra-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/cra-emotion)
 - **Snowpack**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components) / [styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components-typescript) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion) / [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion-typescript)
+- **Vite**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/vite-styled-components-typescript)
 
 ### Advanced frameworks
 
@@ -220,10 +221,10 @@ Twin works within many modern stacks - take a look at these examples to get star
 - **Next.js**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion)
 - **Laravel**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/laravel-styled-components-typescript)
 
-### Other
+### Component libraries
 
 - **Storybook**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-styled-components-typescript) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-emotion)
-- **Component library with rollup + yarn**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-emotion)
+- **Yarn workspaces + Rollup**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-emotion)
 
 ## Community
 
