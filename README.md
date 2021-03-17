@@ -213,18 +213,24 @@ Twin works within many modern stacks - take a look at these examples to get star
 
 - **Create React App**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/cra-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/cra-emotion)
 - **Snowpack**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components) / [styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components-typescript) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion) / [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion-typescript)
-- **Vite**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/vite-styled-components-typescript)
+- **Vite**<br/>[styled-components (ts) 🎉](https://github.com/ben-rogerson/twin.examples/tree/master/vite-styled-components-typescript) &nbsp;/ emotion (soon)
 
 ### Advanced frameworks
 
 - **Gatsby**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-emotion)
-- **Next.js**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion) / [stitches (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/next-stitches-typescript)
+- **Next.js**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion) / [stitches (ts) 🎉](https://github.com/ben-rogerson/twin.examples/tree/master/next-stitches-typescript)
 - **Laravel**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/laravel-styled-components-typescript)
+- Blitz.js (contribute)
+- RedwoodJS (contribute)
 
 ### Component libraries
 
 - **Storybook**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-styled-components-typescript) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-emotion)
-- **Yarn workspaces + Rollup**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-emotion)
+- **yarn/npm workspaces + Next.js + shared ui components**<br/>[styled-components 🎉](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-styled-components)
+- **Yarn workspaces + Rollup**<br/>[emotion](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-emotion)
+- Nx workspace (soon)
+
+🎉&nbsp;: Fresh example
 
 ## Community
 
