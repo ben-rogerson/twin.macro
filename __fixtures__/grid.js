@@ -59,6 +59,18 @@ tw`col-end-12`
 tw`col-end-13`
 tw`col-end-auto`
 
+// col-span-x should always come before col-start-x & col-end-x
+// https://github.com/ben-rogerson/twin.macro/issues/363
+tw`col-start-3 col-span-3`
+tw`col-span-3 col-start-3`
+tw`col-end-3 col-span-3`
+tw`col-span-3 col-end-3`
+tw`col-start-3 col-end-3 col-span-3`
+tw`col-span-3 col-start-3 col-end-3`
+tw`grid col-span-3`
+tw`grid col-start-3 col-end-3`
+tw`col-start-3 col-span-3 col-end-3 grid`
+
 // https://tailwindcss.com/docs/grid-template-rows
 tw`grid-rows-1`
 tw`grid-rows-2`
