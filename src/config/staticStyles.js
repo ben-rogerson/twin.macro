@@ -265,7 +265,7 @@ export default {
   'grid-flow-row': { output: { gridAutoFlow: 'row' } },
   'grid-flow-col': { output: { gridAutoFlow: 'column' } },
   'grid-flow-row-dense': { output: { gridAutoFlow: 'row dense' } },
-  'grid-flow-col-dense': { output: { gridAutoFlow: 'col dense' } },
+  'grid-flow-col-dense': { output: { gridAutoFlow: 'column dense' } },
 
   // https://tailwindcss.com/docs/grid-auto-columns
   // https://tailwindcss.com/docs/grid-auto-rows#app
