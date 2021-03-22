@@ -8440,7 +8440,7 @@ tw\`gap-y-px\`
   gridAutoFlow: 'row dense',
 })
 ;({
-  gridAutoFlow: 'col dense',
+  gridAutoFlow: 'column dense',
 }) // https://tailwindcss.com/docs/grid-auto-columns
 
 ;({
