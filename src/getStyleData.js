@@ -12,6 +12,7 @@ import {
   debug,
 } from './logging'
 import { orderByScreens } from './screens'
+import { orderGridProperty } from './grid'
 import applyTransforms from './transforms'
 import { addVariants, handleVariantGroups } from './variants'
 import {
@@ -49,6 +50,8 @@ const formatTasks = [
   ({ classes }) => handleVariantGroups(classes),
   // Move and sort the responsive items to the end of the list
   ({ classes, state }) => orderByScreens(classes, state),
+  // Sort some grid properties so it works as expected
+  ({ classes }) => orderGridProperty(classes),
 ]
 
 export default (
