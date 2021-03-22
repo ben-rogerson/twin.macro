@@ -1,9 +1,9 @@
 # Customizing the Tailwind config
 
-For style customizations, add a `tailwind.config.js` in your project root (or in `src` if you’re using create-react-app).
+For style customizations, add a `tailwind.config.js` in your project root.
 
 > It’s important to know that you don’t need a `tailwind.config.js` to use Twin. You already have access to every class with every variant.
-> Unlike Tailwind, twin.macro only generates styles for the classes you use. This means you don’t need to use additional tools like purgeCSS.
+> Unlike Tailwind, twin.macro only generates styles for the classes so you don’t need to use [PurgeCSS](https://purgecss.com/).
 
 Choose from one of the following configs:
 
@@ -25,10 +25,10 @@ Choose from one of the following configs:
 
   ```bash
   # cd into your project folder then:
-  curl https://raw.githubusercontent.com/tailwindcss/tailwindcss/master/stubs/defaultConfig.stub.js > tailwind.config.js
+  npx tailwindcss-cli@latest init --full
   ```
 
-  In the config, twin only reads from the `theme: {}` and the `plugins: []` entries, so strip the rest.
+  In the config, twin only reads the `darkMode`, `theme` and `plugins` entries, so feel free to remove the rest.
 
 ## Plugins
 
