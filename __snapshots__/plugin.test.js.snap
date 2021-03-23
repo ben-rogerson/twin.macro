@@ -1027,15 +1027,14 @@ exports[`twin.macro !ordering.js: !ordering.js 1`] = `
 
 import tw from './macro'
 
-// This tests the screens end up in the order they are defined in the config
-
+// Test the screen ordering - they are ordered by screens in tailwind.config.js
 tw.div\`xl:bg-red-500 lg:bg-blue-500 bg-green-500 fill-current md:bg-pink-500 sm:bg-green-500 sm:text-yellow-500 hidden\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _styled from '@emotion/styled'
 
-// This tests the screens end up in the order they are defined in the config
+// Test the screen ordering - they are ordered by screens in tailwind.config.js
 _styled.div({
   '--tw-bg-opacity': '1',
   backgroundColor: 'rgba(16, 185, 129, var(--tw-bg-opacity))',
@@ -8015,7 +8014,7 @@ tw\`col-end-12\`
 tw\`col-end-13\`
 tw\`col-end-auto\`
 
-// col-span-x should always come before col-start-x & col-end-x
+// col-span-x should always be moved to the start
 // https://github.com/ben-rogerson/twin.macro/issues/363
 tw\`col-start-3 col-span-3\`
 tw\`col-span-3 col-start-3\`
@@ -8026,6 +8025,7 @@ tw\`col-span-3 col-start-3 col-end-3\`
 tw\`grid col-span-3\`
 tw\`grid col-start-3 col-end-3\`
 tw\`col-start-3 col-span-3 col-end-3 grid\`
+tw\`col-start-3 mt-4 md:(mt-3 col-span-3) mb-4 col-end-3 col-span-3\`
 
 // https://tailwindcss.com/docs/grid-template-rows
 tw\`grid-rows-1\`
@@ -8345,7 +8345,7 @@ tw\`gap-y-px\`
 })
 ;({
   gridColumnEnd: 'auto',
-}) // col-span-x should always come before col-start-x & col-end-x
+}) // col-span-x should always be moved to the start
 // https://github.com/ben-rogerson/twin.macro/issues/363
 
 ;({
@@ -8375,8 +8375,8 @@ tw\`gap-y-px\`
   gridColumnEnd: '3',
 })
 ;({
-  display: 'grid',
   gridColumn: 'span 3 / span 3',
+  display: 'grid',
 })
 ;({
   display: 'grid',
@@ -8384,10 +8384,21 @@ tw\`gap-y-px\`
   gridColumnEnd: '3',
 })
 ;({
-  display: 'grid',
   gridColumn: 'span 3 / span 3',
   gridColumnStart: '3',
   gridColumnEnd: '3',
+  display: 'grid',
+})
+;({
+  gridColumn: 'span 3 / span 3',
+  gridColumnStart: '3',
+  marginTop: '1rem',
+  marginBottom: '1rem',
+  gridColumnEnd: '3',
+  '@media (min-width: 768px)': {
+    gridColumn: 'span 3 / span 3',
+    marginTop: '0.75rem',
+  },
 }) // https://tailwindcss.com/docs/grid-template-rows
 
 ;({
@@ -19776,6 +19787,11 @@ tw\`-skew-y-3\`
 tw\`-skew-y-2\`
 tw\`-skew-y-1\`
 
+// Test the transform ordering - 'transform' should be moved to the start
+// https://github.com/ben-rogerson/twin.macro/issues/363
+tw\`mt-5 translate-y-2 transform\`
+tw\`translate-y-2 mt-5 md:(skew-y-6 transform) mb-5\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // https://tailwindcss.com/docs/transform
@@ -20556,6 +20572,36 @@ tw\`-skew-y-1\`
 })
 ;({
   '--tw-skew-y': '-1deg',
+}) // Test the transform ordering - 'transform' should be moved to the start
+// https://github.com/ben-rogerson/twin.macro/issues/363
+
+;({
+  '--tw-translate-x': '0',
+  '--tw-translate-y': '0.5rem',
+  '--tw-rotate': '0',
+  '--tw-skew-x': '0',
+  '--tw-skew-y': '0',
+  '--tw-scale-x': '1',
+  '--tw-scale-y': '1',
+  transform:
+    'translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+  marginTop: '1.25rem',
+})
+;({
+  '--tw-translate-y': '0.5rem',
+  marginTop: '1.25rem',
+  marginBottom: '1.25rem',
+  '@media (min-width: 768px)': {
+    '--tw-translate-x': '0',
+    '--tw-translate-y': '0',
+    '--tw-rotate': '0',
+    '--tw-skew-x': '0',
+    '--tw-skew-y': '6deg',
+    '--tw-scale-x': '1',
+    '--tw-scale-y': '1',
+    transform:
+      'translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+  },
 })
 
 
@@ -20599,6 +20645,11 @@ tw\`delay-300\`
 tw\`delay-500\`
 tw\`delay-700\`
 tw\`delay-1000\`
+
+// Test the transition ordering - 'transition' should be moved to the start
+// https://github.com/ben-rogerson/twin.macro/issues/363
+tw\`duration-75 ease-in transition\`
+tw\`mt-5 md:(ml-5 ease-in transition) mb-5\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -20699,6 +20750,25 @@ tw\`delay-1000\`
 })
 ;({
   transitionDelay: '1000ms',
+}) // Test the transition ordering - 'transition' should be moved to the start
+// https://github.com/ben-rogerson/twin.macro/issues/363
+
+;({
+  transitionProperty:
+    'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
+  transitionTimingFunction: 'cubic-bezier(0.4, 0, 1, 1)',
+  transitionDuration: '75ms',
+})
+;({
+  marginTop: '1.25rem',
+  marginBottom: '1.25rem',
+  '@media (min-width: 768px)': {
+    transitionProperty:
+      'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
+    transitionTimingFunction: 'cubic-bezier(0.4, 0, 1, 1)',
+    transitionDuration: '150ms',
+    marginLeft: '1.25rem',
+  },
 })
 
 

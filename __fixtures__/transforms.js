@@ -260,3 +260,8 @@ tw`-skew-y-6`
 tw`-skew-y-3`
 tw`-skew-y-2`
 tw`-skew-y-1`
+
+// Test the transform ordering - 'transform' should be moved to the start
+// https://github.com/ben-rogerson/twin.macro/issues/363
+tw`mt-5 translate-y-2 transform`
+tw`translate-y-2 mt-5 md:(skew-y-6 transform) mb-5`

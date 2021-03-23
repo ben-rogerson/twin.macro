@@ -1,16 +1,20 @@
-const gridCompare = attr => {
-  // The order of the css properties in a grid matter when combined into one class
+import timSort from 'timsort'
+
+const gridCompare = (a, b) => {
+  // The order of grid properties matter when combined into a single object
+  // So here we move col-span-x to the beginning to avoid being trumped
   // https://github.com/ben-rogerson/twin.macro/issues/363
-  // We send them all to the end and move col-span-x
-  // to the beginning of col-start-x and col-end-x
-  if (attr.includes('col-span-')) return 1
-  if (attr.includes('col-start-')) return 2
-  if (attr.includes('col-end-')) return 2
-  return 0
+  const A = /(^|:)col-span-/.test(a) ? -1 : 0
+  const B = /(^|:)col-span-/.test(b) ? -1 : 0
+  return A - B
 }
 
 const orderGridProperty = className => {
-  return className.sort((a, b) => gridCompare(a) - gridCompare(b))
+  const classNames = className.match(/\S+/g) || []
+  // Tim Sort provides accurate sorting in node < 11
+  // https://github.com/ben-rogerson/twin.macro/issues/20
+  timSort.sort(classNames, gridCompare)
+  return classNames.join(' ')
 }
 
 export { orderGridProperty }
