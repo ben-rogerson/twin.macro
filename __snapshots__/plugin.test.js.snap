@@ -14062,6 +14062,18 @@ tw\`grid-template-columns[[main-start] 1fr [content-start] 1fr [content-end] 1fr
 // Short css trumps core plugins
 tw\`transition-property[margin]\`
 
+// Crazy calcs
+tw\`padding[calc((2em * -1) + var(--myVar))]\`
+
+// Multiline
+tw\`padding[
+    calc((2em * -1) + var(--myVar))
+]\`
+tw\`padding[
+    calc((2em * -1) +
+    var(--myVar))
+]\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 ;<div
@@ -14265,6 +14277,17 @@ tw\`transition-property[margin]\`
 
 ;({
   transitionProperty: 'margin',
+}) // Crazy calcs
+
+;({
+  padding: 'calc((2em * -1) + var(--myVar))',
+}) // Multiline
+
+;({
+  padding: 'calc((2em * -1) + var(--myVar))',
+})
+;({
+  padding: 'calc((2em * -1) + var(--myVar))',
 })
 
 

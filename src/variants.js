@@ -214,7 +214,7 @@ function spreadVariantGroups(
         // Normalise the spacing - single spaces only
         // Replace spaces with the space id stand-in
         // Remove newlines within the brackets to allow multiline values
-        .replace(/[\s+]+/g, SPACE_ID)
+        .replace(/\s+/g, SPACE_ID)
 
       results.push(
         context +

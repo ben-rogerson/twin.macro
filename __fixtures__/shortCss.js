@@ -44,3 +44,15 @@ tw`grid-template-columns[[main-start] 1fr [content-start] 1fr [content-end] 1fr 
 
 // Short css trumps core plugins
 tw`transition-property[margin]`
+
+// Crazy calcs
+tw`padding[calc((2em * -1) + var(--myVar))]`
+
+// Multiline
+tw`padding[
+    calc((2em * -1) + var(--myVar))
+]`
+tw`padding[
+    calc((2em * -1) +
+    var(--myVar))
+]`
