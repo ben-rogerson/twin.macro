@@ -456,25 +456,25 @@ export default {
   // https://tailwindcss.com/docs/background-clip
   'bg-clip-border': {
     output: {
-      '-webkitBackgroundClip': 'border-box',
+      WebkitBackgroundClip: 'border-box',
       backgroundClip: 'border-box',
     },
   },
   'bg-clip-padding': {
     output: {
-      '-webkitBackgroundClip': 'padding-box',
+      WebkitBackgroundClip: 'padding-box',
       backgroundClip: 'padding-box',
     },
   },
   'bg-clip-content': {
     output: {
-      '-webkitBackgroundClip': 'content-box',
+      WebkitBackgroundClip: 'content-box',
       backgroundClip: 'content-box',
     },
   },
   'bg-clip-text': {
     output: {
-      '-webkitBackgroundClip': 'text',
+      WebkitBackgroundClip: 'text',
       backgroundClip: 'text',
     },
   },
