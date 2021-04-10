@@ -1,5 +1,5 @@
 import { addImport, generateUid } from '../macroHelpers'
-import { throwIf, getTheme } from '../utils'
+import { throwIf, getTheme, isClass, isEmpty } from '../utils'
 import { logGeneralError } from './../logging'
 import userPresets from './../config/userPresets'
 import globalStyles from './../config/globalStyles'
@@ -102,6 +102,36 @@ ${convertCssObjectToString(v)}
     .join('\n')
 }
 
+/**
+ * Trim out classes defined within the selector
+ * @param {object} data Input object from userPluginData
+ * @returns {object} An object containing unpacked selectors
+ */
+const filterClassSelectors = ruleset => {
+  if (isEmpty(ruleset)) return
+
+  return Object.entries(ruleset).reduce((result, [selector, value]) => {
+    // Trim out the classes defined within the selector
+    // Classes added using addBase have already been grabbed so they get filtered to avoid duplication
+    const filteredSelectorSet = selector
+      .split(',')
+      .filter(s => {
+        if (isClass(s)) return false
+
+        // Remove sub selectors with a class as one of their keys
+        const subSelectors = Object.keys(value)
+        const hasSubClasses = subSelectors.some(selector => isClass(selector))
+        if (hasSubClasses) return false
+
+        return true
+      })
+      .join(',')
+    if (!filteredSelectorSet) return result
+
+    return { ...result, [filteredSelectorSet]: value }
+  }, {})
+}
+
 const handleGlobalStylesFunction = ({
   references,
   program,
@@ -131,10 +161,13 @@ const handleGlobalStylesFunction = ({
   // Create the magic theme function
   const theme = getTheme(state.config.theme)
 
-  // Provide each global style function with context and convert to a string
-  const baseStyles = convertCssObjectToString(
+  // Filter out classes as they're extracted as usable classes
+  const strippedPlugins = filterClassSelectors(
     state.userPluginData && state.userPluginData.base
   )
+
+  // Provide each global style function with context and convert to a string
+  const baseStyles = convertCssObjectToString(strippedPlugins)
 
   const styles = [
     globalStyles.map(globalFunction => globalFunction({ theme })).join('\n'),

@@ -62,13 +62,17 @@ const stripNegative = string =>
     : string
 
 const camelize = string =>
-  string && string.replace(/\W+(.)/g, (match, chr) => chr.toUpperCase())
+  string && string.replace(/\W+(.)/g, (_, chr) => chr.toUpperCase())
 
 const isNumeric = str => {
   /* eslint-disable-next-line eqeqeq */
   if (typeof str != 'string') return false
   return !Number.isNaN(str) && !Number.isNaN(Number.parseFloat(str))
 }
+
+const isClass = str => new RegExp(/(\s*\.|{{)\w/).test(str)
+
+const isMediaQuery = str => str.startsWith('@media')
 
 export {
   throwIf,
@@ -79,4 +83,6 @@ export {
   get,
   camelize,
   isNumeric,
+  isClass,
+  isMediaQuery,
 }

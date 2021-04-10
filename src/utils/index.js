@@ -7,6 +7,8 @@ export {
   get,
   camelize,
   isNumeric,
+  isClass,
+  isMediaQuery,
 } from './misc'
 export { default as withAlpha } from './withAlpha'
 export { toRgba } from './withAlpha'
