@@ -1,9 +1,8 @@
 # Container
 
-Custom paddings on the `container` class were introduced in Tailwind v1.4 and also in Twin shortly after.
+The `container` class restricts an element’s width to the current breakpoint.
 
-Twin adds another feature and that is custom independent left/right margins and paddings.
-This can be used on layouts that are a little more creative with their horizontal layout positioning.
+The margins and paddings can be independently set at each breakpoint to accommodate designs with specific horizontal layout positioning.
 
 ## Configuration
 
@@ -12,20 +11,21 @@ This can be used on layouts that are a little more creative with their horizonta
 module.exports = {
   theme: {
     container: {
-      margin: {
-        DEFAULT: '1rem',
-        sm: ['2rem', '3rem'],
-        lg: ['4rem', '5rem'],
-        xl: ['5rem', '6rem'],
-      },
       padding: {
         DEFAULT: '1rem',
         sm: ['2rem', '3rem'],
         lg: ['4rem', '5rem'],
         xl: ['5rem', '6rem'],
+        '2xl': '7rem',
       },
-      // Setting center will disable any margin styles
-      // center: true,
+      margin: {
+        DEFAULT: '1rem',
+        sm: ['2rem', '3rem'],
+        lg: ['4rem', '5rem'],
+        xl: ['5rem', '6rem'],
+        '2xl': '7rem',
+      },
+      // center: true, // Centering will disable any margin styles
     },
   },
 }
@@ -59,4 +59,4 @@ const Component = ({ children, ...rest }) => (
 
 ## Resources
 
-- [Tailwind container docs](https://tailwindcss.com/docs/container/#app)
+- [Tailwind container docs](https://tailwindcss.com/docs/container)
