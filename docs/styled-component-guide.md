@@ -176,7 +176,7 @@ const Component = ({ spacing = 'sm' }) => <Card spacing={spacing} />
 Or you can always fall back to “vanilla css” which can interpolate anything:
 
 ```js
-import { styled, theme } from 'twin.macro'
+import { styled } from 'twin.macro'
 
 const Card = styled.div(({ spacing }) => ({
   marginTop: `${spacing === 'sm' ? 2 : 4}rem`,

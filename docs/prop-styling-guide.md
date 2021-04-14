@@ -244,7 +244,7 @@ const Component = ({ spacing = 'sm' }) => (
 Or we can always fall back to vanilla css, which can interpolate anything:
 
 ```js
-import { theme } from 'twin.macro'
+import 'twin.macro'
 
 const Component = ({ width = 5 }) => <div css={{ maxWidth: `${width}rem` }} />
 ```
