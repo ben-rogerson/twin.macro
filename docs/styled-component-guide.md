@@ -321,7 +321,7 @@ const Wrapper = tw.div`
 
 ### Advanced css styling
 
-The css prop accepts a sass-like syntax, allowing both custom css and tailwind styles with values that can come from your tailwind config:
+The styled import accepts a sass-like syntax, allowing both custom css and tailwind styles with values that can come from your tailwind config:
 
 ```js
 import tw, { styled, css, theme } from 'twin.macro'

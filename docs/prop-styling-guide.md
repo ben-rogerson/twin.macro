@@ -65,7 +65,7 @@ const Component = ({ hasBg }: ComponentProps) => (
 
 </details>
 
-- Twin adds the css prop from your css-in-js library
+- Twin doesn’t own the css prop, the prop comes from your css-in-js library
 - Adding values to an array makes it easier to define base styles, conditionals and vanilla css
 - Use multiple lines to organize styles within the backticks ([template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals))
 
