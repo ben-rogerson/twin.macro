@@ -99,6 +99,36 @@ export default GlobalStyles
 
 [createGlobalStyle docs →](https://goober.js.org/api/createGlobalStyles)
 
+### Solid
+
+```js
+// styles/GlobalStyles.js
+import { createGlobalStyle } from 'solid-styled-components'
+import tw, { GlobalStyles as BaseStyles } from 'twin.macro'
+
+const CustomStyles = createGlobalStyle`
+  @font-face {
+    font-family: 'Foo';
+    src: url('/path/to/exampleFont.woff') format('woff');
+    font-style: normal;
+    font-weight: 400;
+    /* https://styled-components.com/docs/faqs#how-do-i-fix-flickering-text-after-server-side-rendering */
+    font-display: fallback;
+  }
+`
+
+const GlobalStyles = () => (
+  <>
+    <BaseStyles />
+    <CustomStyles />
+  </>
+)
+
+export default GlobalStyles
+```
+
+[createGlobalStyle docs →](https://github.com/ryansolid/solid/tree/main/packages/solid-styled-components#createglobalstyles)
+
 ## Add the `@font-face` in a .css file and import it
 
 This method may help to remove text flickering in some frameworks.

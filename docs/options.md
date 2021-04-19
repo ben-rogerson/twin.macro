@@ -31,7 +31,7 @@ You can add these options in your twin config:
 | Name                  | Default                | Description                                                                                                                                                          |
 | --------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | config                | `"tailwind.config.js"` | The path to your Tailwind config.                                                                                                                                    |
-| preset                | `"emotion"`            | The css-in-js library behind the scenes - also allows `'styled-components'` and `'goober'`.                                                                          |
+| preset                | `"emotion"`            | The css-in-js library behind the scenes - also allows `'styled-components'`, `'goober'` and `'solid'`.                                                               |
 | hasSuggestions        | `true`                 | Display suggestions when a class isn’t found.                                                                                                                        |
 | dataTwProp            | `true`                 | Add a prop to your elements in development so you can see the original tailwind classes, eg: `<div data-tw="bg-black" />`, add `all` to keep the prop in production. |
 | debugPlugins          | `false`                | Display generated class information in your terminal from your plugins.                                                                                              |
@@ -69,7 +69,7 @@ module.exports = {
 preset: 'emotion', // Set the css-in-js library to use with twin
 ```
 
-Supports: `'emotion'` / `'styled-components'` / `'goober'`.
+Supports: `'emotion'` / `'styled-components'` / `'goober'` / `'solid'`.
 
 The preset controls which imports get added when twins `css`, `styled` and `GlobalStyles` imports are used.
 

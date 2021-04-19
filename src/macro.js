@@ -37,12 +37,18 @@ const getPackageUsed = ({ config: { preset }, cssImport, styledImport }) => ({
     cssImport.from.includes('emotion'),
   isStyledComponents:
     preset === 'styled-components' ||
-    styledImport.from.includes('styled-components') ||
-    cssImport.from.includes('styled-components'),
+    (styledImport.from.includes('styled-components') &&
+      !styledImport.from.includes('solid')) ||
+    (cssImport.from.includes('styled-components') &&
+      !cssImport.from.includes('solid')),
   isGoober:
     preset === 'goober' ||
     styledImport.from.includes('goober') ||
     cssImport.from.includes('goober'),
+  isSolid:
+    preset === 'solid' ||
+    styledImport.from.includes('solid-styled-components') ||
+    cssImport.from.includes('solid-styled-components'),
 })
 
 const twinMacro = ({ babel: { types: t }, references, state, config }) => {

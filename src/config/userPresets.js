@@ -14,6 +14,10 @@
  * goober
  * { "babelMacros": { "twin": { "preset": "goober" } } }
  * module.exports = { twin: { preset: "goober" } }
+ *
+ * solid
+ * { "babelMacros": { "twin": { "preset": "solid" } } }
+ * module.exports = { twin: { preset: "solid" } }
  */
 
 export default {
@@ -57,6 +61,20 @@ export default {
     global: {
       import: 'createGlobalStyles',
       from: 'goober/global',
+    },
+  },
+  solid: {
+    styled: {
+      import: 'styled',
+      from: 'solid-styled-components',
+    },
+    css: {
+      import: 'css',
+      from: 'solid-styled-components',
+    },
+    global: {
+      import: 'createGlobalStyles',
+      from: 'solid-styled-components',
     },
   },
 }
