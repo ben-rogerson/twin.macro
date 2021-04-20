@@ -16,7 +16,6 @@ const addComponentsTest = tw`btn btn-blue btn-red`
 const addComponentsTestMedia = tw`xl:btn sm:btn-blue lg:btn-red`
 const addComponentsTestVariants = tw`hover:active:btn hocus:before:btn-blue even:visited:btn-red`
 
-const addComponentsTestMediaQueriesVariants = tw`fluid-container ml-10`
 const addComponentsTestElementPrefixes = tw`prefixes`
 const addComponentsTestElementScreenReplacements = tw`screenies`
 

@@ -1,18 +1,6 @@
 import { isEmpty } from './../utils'
 import { splitPrefix } from './../prefix'
 
-const reorderAtRules = className =>
-  className &&
-  Object.entries(className)
-    .sort((a, b) => {
-      const [aKey] = a
-      const [bKey] = b
-      const A = aKey.startsWith('@') ? 1 : 0
-      const B = bKey.startsWith('@') ? 1 : 0
-      return B > A ? -1 : 0
-    })
-    .reduce((r, [k, v]) => ({ ...r, [k]: v }), {})
-
 // If these tasks return true then the rule is matched
 const mergeChecks = [
   // Match exact selector
@@ -118,5 +106,5 @@ export default ({
     result = hasMatches ? matches : result
     return hasMatches
   })
-  return reorderAtRules(result)
+  return result
 }
