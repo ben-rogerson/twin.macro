@@ -17,6 +17,8 @@ import { orderGridProperty } from './grid'
 import { orderTransitionProperty } from './transition'
 import { orderTransformProperty } from './transform'
 import { orderRingProperty } from './ring'
+import { orderBackdropProperty } from './backdrop'
+import { orderFilterProperty } from './filter'
 import applyTransforms from './transforms'
 import { addVariants, handleVariantGroups } from './variants'
 import {
@@ -57,6 +59,8 @@ const formatTasks = [
   ({ classes }) => orderTransitionProperty(classes),
   ({ classes }) => orderTransformProperty(classes),
   ({ classes }) => orderRingProperty(classes),
+  ({ classes }) => orderBackdropProperty(classes),
+  ({ classes }) => orderFilterProperty(classes),
   // Move and sort the responsive items to the end of the list
   ({ classes, state }) => orderByScreens(classes, state),
 ]

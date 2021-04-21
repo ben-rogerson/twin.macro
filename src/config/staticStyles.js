@@ -513,7 +513,10 @@ export default {
    * Borders
    */
 
+  // https://tailwindcss.com/docs/border-radius
+  // https://tailwindcss.com/docs/border-width
   // https://tailwindcss.com/docs/border-color
+  // https://tailwindcss.com/docs/border-opacity
   // See dynamicStyles.js
 
   // https://tailwindcss.com/docs/border-style
@@ -523,8 +526,102 @@ export default {
   'border-double': { output: { borderStyle: 'double' } },
   'border-none': { output: { borderStyle: 'none' } },
 
-  // https://tailwindcss.com/docs/border-width
-  // https://tailwindcss.com/docs/border-radius
+  /**
+   * ===========================================
+   * Effects
+   */
+
+  // https://tailwindcss.com/docs/box-shadow/
+  // https://tailwindcss.com/docs/opacity
+  // See dynamicStyles.js
+
+  /**
+   * ===========================================
+   * Filters
+   */
+
+  // https://tailwindcss.com/docs/filter
+  'filter-none': {
+    output: {
+      filter: 'none',
+    },
+  },
+  filter: {
+    output: {
+      '--tw-blur': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-brightness': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-contrast': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-grayscale': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-hue-rotate': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-invert': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-saturate': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-sepia': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-drop-shadow': 'var(--tw-empty,/*!*/ /*!*/)',
+      filter: [
+        'var(--tw-blur)',
+        'var(--tw-brightness)',
+        'var(--tw-contrast)',
+        'var(--tw-grayscale)',
+        'var(--tw-hue-rotate)',
+        'var(--tw-invert)',
+        'var(--tw-saturate)',
+        'var(--tw-sepia)',
+        'var(--tw-drop-shadow)',
+      ].join(' '),
+    },
+  },
+
+  // https://tailwindcss.com/docs/blur
+  // https://tailwindcss.com/docs/brightness
+  // https://tailwindcss.com/docs/contrast
+  // https://tailwindcss.com/docs/drop-shadow
+  // https://tailwindcss.com/docs/grayscale
+  // https://tailwindcss.com/docs/hue-rotate
+  // https://tailwindcss.com/docs/invert
+  // https://tailwindcss.com/docs/saturate
+  // https://tailwindcss.com/docs/sepia
+  // See dynamicStyles.js
+
+  // https://tailwindcss.com/docs/backdrop-filter
+  'backdrop-filter-none': {
+    output: {
+      backdropFilter: 'none',
+    },
+  },
+  'backdrop-filter': {
+    output: {
+      '--tw-backdrop-blur': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-backdrop-brightness': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-backdrop-contrast': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-backdrop-grayscale': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-backdrop-hue-rotate': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-backdrop-invert': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-backdrop-opacity': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-backdrop-saturate': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-backdrop-sepia': 'var(--tw-empty,/*!*/ /*!*/)',
+      backdropFilter: [
+        'var(--tw-backdrop-blur)',
+        'var(--tw-backdrop-brightness)',
+        'var(--tw-backdrop-contrast)',
+        'var(--tw-backdrop-grayscale)',
+        'var(--tw-backdrop-hue-rotate)',
+        'var(--tw-backdrop-invert)',
+        'var(--tw-backdrop-opacity)',
+        'var(--tw-backdrop-saturate)',
+        'var(--tw-backdrop-sepia)',
+      ].join(' '),
+    },
+  },
+
+  // https://tailwindcss.com/docs/backdrop-blur
+  // https://tailwindcss.com/docs/backdrop-brightness
+  // https://tailwindcss.com/docs/backdrop-contrast
+  // https://tailwindcss.com/docs/backdrop-grayscale
+  // https://tailwindcss.com/docs/backdrop-hue-rotate
+  // https://tailwindcss.com/docs/backdrop-invert
+  // https://tailwindcss.com/docs/backdrop-opacity
+  // https://tailwindcss.com/docs/backdrop-saturate
+  // https://tailwindcss.com/docs/backdrop-sepia
   // See dynamicStyles.js
 
   /**
