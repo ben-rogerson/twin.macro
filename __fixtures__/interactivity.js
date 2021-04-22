@@ -10,6 +10,7 @@ tw`cursor-pointer`
 tw`cursor-wait`
 tw`cursor-text`
 tw`cursor-move`
+tw`cursor-help`
 tw`cursor-not-allowed`
 
 // https://tailwindcss.com/docs/outline

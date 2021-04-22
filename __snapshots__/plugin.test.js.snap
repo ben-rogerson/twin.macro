@@ -7206,6 +7206,42 @@ tw\`animate-ping\`
 tw\`animate-pulse\`
 tw\`animate-bounce\`
 
+// https://tailwindcss.com/docs/mix-blend-mode
+tw\`mix-blend-normal\`
+tw\`mix-blend-multiply\`
+tw\`mix-blend-screen\`
+tw\`mix-blend-overlay\`
+tw\`mix-blend-darken\`
+tw\`mix-blend-lighten\`
+tw\`mix-blend-color-dodge\`
+tw\`mix-blend-color-burn\`
+tw\`mix-blend-hard-light\`
+tw\`mix-blend-soft-light\`
+tw\`mix-blend-difference\`
+tw\`mix-blend-exclusion\`
+tw\`mix-blend-hue\`
+tw\`mix-blend-saturation\`
+tw\`mix-blend-color\`
+tw\`mix-blend-luminosity\`
+
+// https://tailwindcss.com/docs/background-blend-mode
+tw\`bg-blend-normal\`
+tw\`bg-blend-multiply\`
+tw\`bg-blend-screen\`
+tw\`bg-blend-overlay\`
+tw\`bg-blend-darken\`
+tw\`bg-blend-lighten\`
+tw\`bg-blend-color-dodge\`
+tw\`bg-blend-color-burn\`
+tw\`bg-blend-hard-light\`
+tw\`bg-blend-soft-light\`
+tw\`bg-blend-difference\`
+tw\`bg-blend-exclusion\`
+tw\`bg-blend-hue\`
+tw\`bg-blend-saturation\`
+tw\`bg-blend-color\`
+tw\`bg-blend-luminosity\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // https://tailwindcss.com/docs/box-shadow
@@ -7314,6 +7350,104 @@ tw\`animate-bounce\`
 })
 ;({
   animation: 'bounce 1s infinite',
+}) // https://tailwindcss.com/docs/mix-blend-mode
+
+;({
+  mixBlendMode: 'normal',
+})
+;({
+  mixBlendMode: 'multiply',
+})
+;({
+  mixBlendMode: 'screen',
+})
+;({
+  mixBlendMode: 'overlay',
+})
+;({
+  mixBlendMode: 'darken',
+})
+;({
+  mixBlendMode: 'lighten',
+})
+;({
+  mixBlendMode: 'color-dodge',
+})
+;({
+  mixBlendMode: 'color-burn',
+})
+;({
+  mixBlendMode: 'hard-light',
+})
+;({
+  mixBlendMode: 'soft-light',
+})
+;({
+  mixBlendMode: 'difference',
+})
+;({
+  mixBlendMode: 'exclusion',
+})
+;({
+  mixBlendMode: 'hue',
+})
+;({
+  mixBlendMode: 'saturation',
+})
+;({
+  mixBlendMode: 'color',
+})
+;({
+  mixBlendMode: 'luminosity',
+}) // https://tailwindcss.com/docs/background-blend-mode
+
+;({
+  backgroundBlendMode: 'normal',
+})
+;({
+  backgroundBlendMode: 'multiply',
+})
+;({
+  backgroundBlendMode: 'screen',
+})
+;({
+  backgroundBlendMode: 'overlay',
+})
+;({
+  backgroundBlendMode: 'darken',
+})
+;({
+  backgroundBlendMode: 'lighten',
+})
+;({
+  backgroundBlendMode: 'color-dodge',
+})
+;({
+  backgroundBlendMode: 'color-burn',
+})
+;({
+  backgroundBlendMode: 'hard-light',
+})
+;({
+  backgroundBlendMode: 'soft-light',
+})
+;({
+  backgroundBlendMode: 'difference',
+})
+;({
+  backgroundBlendMode: 'exclusion',
+})
+;({
+  backgroundBlendMode: 'hue',
+})
+;({
+  backgroundBlendMode: 'saturation',
+})
+;({
+  backgroundBlendMode: 'color',
+})
+;({
+  backgroundBlendMode: 'luminosity',
 })
 
 
@@ -9267,6 +9401,7 @@ tw\`cursor-pointer\`
 tw\`cursor-wait\`
 tw\`cursor-text\`
 tw\`cursor-move\`
+tw\`cursor-help\`
 tw\`cursor-not-allowed\`
 
 // https://tailwindcss.com/docs/outline
@@ -9314,6 +9449,9 @@ tw\`select-auto\`
 })
 ;({
   cursor: 'move',
+})
+;({
+  cursor: 'help',
 })
 ;({
   cursor: 'not-allowed',
@@ -9410,6 +9548,10 @@ tw\`clear-left\`
 tw\`clear-right\`
 tw\`clear-both\`
 tw\`clear-none\`
+
+// https://tailwindcss.com/docs/isolation
+tw\`isolate\`
+tw\`isolation-auto\`
 
 // https://tailwindcss.com/docs/object-fit
 tw\`object-contain\`
@@ -10203,6 +10345,13 @@ tw\`z-auto\`
 })
 ;({
   clear: 'none',
+}) // https://tailwindcss.com/docs/isolation
+
+;({
+  isolation: 'isolate',
+})
+;({
+  isolation: 'auto',
 }) // https://tailwindcss.com/docs/object-fit
 
 ;({
@@ -12560,7 +12709,6 @@ tw\`z-auto\`
 exports[`twin.macro pluginForms.js: pluginForms.js 1`] = `
 
 import { GlobalStyles } from './macro'
-
 ;<GlobalStyles />
 
       ↓ ↓ ↓ ↓ ↓ ↓

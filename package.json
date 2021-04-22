@@ -10,6 +10,7 @@
     "build:macro": "microbundle -i src/macro.js -f cjs -o ./macro.js --target node",
     "test:types": "tsc -b ./types/tsconfig.json",
     "test": "npm run build && jest && npm run test:types",
+    "fixup": "npm run build && jest --u",
     "prepublishOnly": "npm run build"
   },
   "husky": {

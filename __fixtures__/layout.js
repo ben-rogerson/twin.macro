@@ -39,6 +39,10 @@ tw`clear-right`
 tw`clear-both`
 tw`clear-none`
 
+// https://tailwindcss.com/docs/isolation
+tw`isolate`
+tw`isolation-auto`
+
 // https://tailwindcss.com/docs/object-fit
 tw`object-contain`
 tw`object-cover`
