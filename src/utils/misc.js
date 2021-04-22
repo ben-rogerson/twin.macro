@@ -37,6 +37,10 @@ function transformThemeValue(themeSection) {
     return value => (Array.isArray(value) ? value.join(', ') : value)
   }
 
+  if (themeSection === 'colors') {
+    return value => (typeof value === 'function' ? value({}) : value)
+  }
+
   return value => value
 }
 

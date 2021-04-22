@@ -35,8 +35,7 @@ const matchChildKey = (from, matcher) => {
     if (isEmpty(objectMatch)) continue
 
     const isValueReturnable =
-      typeof objectMatch === 'string' ||
-      typeof objectMatch === 'number' ||
+      ['string', 'number', 'function'].includes(typeof objectMatch) ||
       Array.isArray(objectMatch)
 
     throwIf(!isValueReturnable, () =>
@@ -47,7 +46,7 @@ const matchChildKey = (from, matcher) => {
       )
     )
 
-    return String(objectMatch)
+    return typeof objectMatch === 'function' ? objectMatch : String(objectMatch)
   }
 }
 
