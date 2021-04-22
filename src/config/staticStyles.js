@@ -20,6 +20,10 @@ export default {
   // https://tailwindcss.com/docs/container
   // See dynamicStyles.js
 
+  // https://tailwindcss.com/docs/box-decoration-break
+  'decoration-slice': { output: { boxDecorationBreak: 'slice' } },
+  'decoration-clone': { output: { boxDecorationBreak: 'clone' } },
+
   // https://tailwindcss.com/docs/box-sizing
   'box-border': { output: { boxSizing: 'border-box' } },
   'box-content': { output: { boxSizing: 'content-box' } },
@@ -28,6 +32,7 @@ export default {
   hidden: { output: { display: 'none' } },
   block: { output: { display: 'block' } },
   contents: { output: { display: 'contents' } },
+  'list-item': { output: { display: 'list-item' } },
   'inline-block': { output: { display: 'inline-block' } },
   inline: { output: { display: 'inline' } },
   'flow-root': { output: { display: 'flow-root' } },
@@ -36,6 +41,7 @@ export default {
   grid: { output: { display: 'grid' } },
   'inline-grid': { output: { display: 'inline-grid' } },
   table: { output: { display: 'table' } },
+  'inline-table': { output: { display: 'inline-table' } },
   'table-caption': { output: { display: 'table-caption' } },
   'table-cell': { output: { display: 'table-cell' } },
   'table-column': { output: { display: 'table-column' } },
@@ -55,6 +61,10 @@ export default {
   'clear-right': { output: { clear: 'right' } },
   'clear-both': { output: { clear: 'both' } },
   'clear-none': { output: { clear: 'none' } },
+
+  // https://tailwindcss.com/docs/isolation
+  isolate: { output: { isolation: 'isolate' } },
+  'isolation-auto': { output: { isolation: 'auto' } },
 
   // https://tailwindcss.com/docs/object-fit
   'object-contain': { output: { objectFit: 'contain' } },
@@ -542,6 +552,42 @@ export default {
   // https://tailwindcss.com/docs/box-shadow/
   // https://tailwindcss.com/docs/opacity
   // See dynamicStyles.js
+
+  // https://tailwindcss.com/docs/mix-blend-mode
+  'mix-blend-normal': { output: { mixBlendMode: 'normal' } },
+  'mix-blend-multiply': { output: { mixBlendMode: 'multiply' } },
+  'mix-blend-screen': { output: { mixBlendMode: 'screen' } },
+  'mix-blend-overlay': { output: { mixBlendMode: 'overlay' } },
+  'mix-blend-darken': { output: { mixBlendMode: 'darken' } },
+  'mix-blend-lighten': { output: { mixBlendMode: 'lighten' } },
+  'mix-blend-color-dodge': { output: { mixBlendMode: 'color-dodge' } },
+  'mix-blend-color-burn': { output: { mixBlendMode: 'color-burn' } },
+  'mix-blend-hard-light': { output: { mixBlendMode: 'hard-light' } },
+  'mix-blend-soft-light': { output: { mixBlendMode: 'soft-light' } },
+  'mix-blend-difference': { output: { mixBlendMode: 'difference' } },
+  'mix-blend-exclusion': { output: { mixBlendMode: 'exclusion' } },
+  'mix-blend-hue': { output: { mixBlendMode: 'hue' } },
+  'mix-blend-saturation': { output: { mixBlendMode: 'saturation' } },
+  'mix-blend-color': { output: { mixBlendMode: 'color' } },
+  'mix-blend-luminosity': { output: { mixBlendMode: 'luminosity' } },
+
+  // https://tailwindcss.com/docs/background-blend-mode
+  'bg-blend-normal': { output: { backgroundBlendMode: 'normal' } },
+  'bg-blend-multiply': { output: { backgroundBlendMode: 'multiply' } },
+  'bg-blend-screen': { output: { backgroundBlendMode: 'screen' } },
+  'bg-blend-overlay': { output: { backgroundBlendMode: 'overlay' } },
+  'bg-blend-darken': { output: { backgroundBlendMode: 'darken' } },
+  'bg-blend-lighten': { output: { backgroundBlendMode: 'lighten' } },
+  'bg-blend-color-dodge': { output: { backgroundBlendMode: 'color-dodge' } },
+  'bg-blend-color-burn': { output: { backgroundBlendMode: 'color-burn' } },
+  'bg-blend-hard-light': { output: { backgroundBlendMode: 'hard-light' } },
+  'bg-blend-soft-light': { output: { backgroundBlendMode: 'soft-light' } },
+  'bg-blend-difference': { output: { backgroundBlendMode: 'difference' } },
+  'bg-blend-exclusion': { output: { backgroundBlendMode: 'exclusion' } },
+  'bg-blend-hue': { output: { backgroundBlendMode: 'hue' } },
+  'bg-blend-saturation': { output: { backgroundBlendMode: 'saturation' } },
+  'bg-blend-color': { output: { backgroundBlendMode: 'color' } },
+  'bg-blend-luminosity': { output: { backgroundBlendMode: 'luminosity' } },
 
   /**
    * ===========================================
