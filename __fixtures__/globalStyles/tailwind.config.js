@@ -12,6 +12,12 @@ module.exports = {
         400: 'grayish',
       },
     },
+    ringOffsetWidth: {
+      DEFAULT: '10px',
+    },
+    ringOffsetColor: {
+      DEFAULT: 'rainbow',
+    },
     borderColor: {
       // Tests the dynamic default border default color
       DEFAULT: 'blueish',
