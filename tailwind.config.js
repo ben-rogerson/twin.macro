@@ -57,6 +57,13 @@ module.exports = {
         },
         'color-opacity': ({ opacityVariable }) =>
           `rgba(var(--color-primary), var(${opacityVariable}, 1))`,
+        color: {
+          deep: {
+            config: {
+              500: '#0747A6',
+            },
+          },
+        },
       },
       fontWeight: {
         customFontWeightAsString: '700',

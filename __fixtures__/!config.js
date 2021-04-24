@@ -12,6 +12,7 @@ tw`text-mycolors-a-number`
 tw`text-mycolors-array`
 tw`text-my-blue-100`
 tw`text-color-opacity`
+tw`text-color-deep-config-500`
 
 tw`bg-number`
 tw`bg-purple-hyphen`
@@ -21,3 +22,4 @@ tw`bg-mycolors-a-number`
 tw`bg-mycolors-array`
 tw`bg-my-blue-100`
 tw`bg-color-opacity`
+tw`bg-color-deep-config-500`
