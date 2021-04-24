@@ -45,7 +45,11 @@ const logNotAllowed = ({ className, error }) =>
   spaced(warning(`${color.errorLight(`${className}`)} ${error}`))
 
 const logBadGood = (bad, good) =>
-  spaced(`${color.error('✕ Bad:')} ${bad}\n${color.success('✓ Good:')} ${good}`)
+  good
+    ? spaced(
+        `${color.error('✕ Bad:')} ${bad}\n${color.success('✓ Good:')} ${good}`
+      )
+    : logGeneralError(bad)
 
 const logErrorFix = (error, good) =>
   `${color.error(error)}\n${color.success('Fix:')} ${good}`

@@ -13,6 +13,7 @@ const configDefaultsTwin = ({ isStyledComponents, isGoober, isDev }) => ({
   includeClassNames: false, // Look in the className props for tailwind classes to convert
   dataCsProp: isDev, // During development, add a data-cs="" prop containing your short css classes for backtracing
   disableCsProp: false, // Disable converting css styles in the cs prop
+  disableShortCss: false, // Disable converting css written using short css
   ...(isStyledComponents && configDefaultsStyledComponents),
   ...(isGoober && configDefaultsGoober),
 })
