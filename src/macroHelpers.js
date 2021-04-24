@@ -228,6 +228,7 @@ const validImports = new Set([
   'styled',
   'css',
   'theme',
+  'screen',
   'TwStyle',
   'ThemeStyle',
   'GlobalStyles',
@@ -246,7 +247,7 @@ const validateImports = imports => {
   })
   throwIf(unsupportedImport, () =>
     logGeneralError(
-      `Twin doesn't recognize { ${unsupportedImport} }\n\nTry one of these imports:\nimport tw, { styled, css, theme } from 'twin.macro'`
+      `Twin doesn't recognize { ${unsupportedImport} }\n\nTry one of these imports:\nimport tw, { styled, css, theme, screen, GlobalStyles } from 'twin.macro'`
     )
   )
 }
@@ -270,6 +271,39 @@ const getCssAttributeData = attributes => {
   return { index, hasCssAttribute: index >= 0, attribute: attributes[index] }
 }
 
+const getFunctionValue = path => {
+  if (path.parent.type !== 'CallExpression') return
+
+  const parent = path.findParent(x => x.isCallExpression())
+  if (!parent) return
+
+  const argument = parent.get('arguments')[0] || ''
+
+  return {
+    parent,
+    input: argument.evaluate && argument.evaluate().value,
+  }
+}
+
+const getTaggedTemplateValue = path => {
+  if (path.parent.type !== 'TaggedTemplateExpression') return
+
+  const parent = path.findParent(x => x.isTaggedTemplateExpression())
+  if (!parent) return
+  if (parent.node.tag.type !== 'Identifier') return
+
+  return { parent, input: parent.get('quasi').evaluate().value }
+}
+
+const getMemberExpression = path => {
+  if (path.parent.type !== 'MemberExpression') return
+
+  const parent = path.findParent(x => x.isMemberExpression())
+  if (!parent) return
+
+  return { parent, input: parent.get('property').node.name }
+}
+
 export {
   SPREAD_ID,
   COMPUTED_ID,
@@ -285,4 +319,7 @@ export {
   getParentJSX,
   getAttributeNames,
   getCssAttributeData,
+  getFunctionValue,
+  getTaggedTemplateValue,
+  getMemberExpression,
 }
