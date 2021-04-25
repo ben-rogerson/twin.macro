@@ -6,6 +6,7 @@ export {
   stripNegative,
   get,
   camelize,
+  isNumeric,
 } from './misc'
 export { default as withAlpha } from './withAlpha'
 export { toRgba } from './withAlpha'
