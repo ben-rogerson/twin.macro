@@ -56,6 +56,7 @@
   "homepage": "https://github.com/ben-rogerson/twin.macro#readme",
   "dependencies": {
     "@babel/parser": "^7.12.5",
+    "autoprefixer": "^10.2.5",
     "babel-plugin-macros": "^2.8.0",
     "chalk": "^4.1.0",
     "clean-set": "^1.1.1",
