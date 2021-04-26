@@ -64,4 +64,19 @@ const stripNegative = string =>
 const camelize = string =>
   string && string.replace(/\W+(.)/g, (match, chr) => chr.toUpperCase())
 
-export { throwIf, isEmpty, addPxTo0, getTheme, stripNegative, get, camelize }
+const isNumeric = str => {
+  /* eslint-disable-next-line eqeqeq */
+  if (typeof str != 'string') return false
+  return !Number.isNaN(str) && !Number.isNaN(Number.parseFloat(str))
+}
+
+export {
+  throwIf,
+  isEmpty,
+  addPxTo0,
+  getTheme,
+  stripNegative,
+  get,
+  camelize,
+  isNumeric,
+}

@@ -82,6 +82,9 @@ module.exports = {
           },
         ],
       },
+      spacing: {
+        'gutter-1/2': 'var(--gutter-half)',
+      },
     },
   },
   plugins: [

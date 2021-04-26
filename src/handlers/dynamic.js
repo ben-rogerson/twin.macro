@@ -1,20 +1,20 @@
 import getConfigValue from './../utils/getConfigValue'
-import { throwIf, stripNegative } from './../utils'
+import { throwIf, isNumeric } from './../utils'
 import { errorSuggestions } from './../logging'
 
-// Convert an array of objects into a single object
+const maybeAddNegative = (value, negative) => {
+  if (!negative) return value
+
+  return isNumeric(value.slice(0, 1)) ? `${negative}${value}` : value
+}
+
 const styleify = ({ property, value, negative }) => {
   value = Array.isArray(value)
     ? value.join(', ')
-    : negative
-    ? stripNegative(value)
-    : value
+    : maybeAddNegative(value, negative)
   return Array.isArray(property)
-    ? property.reduce(
-        (results, item) => ({ ...results, [item]: `${negative}${value}` }),
-        {}
-      )
-    : { [property]: `${negative}${value}` }
+    ? property.reduce((results, item) => ({ ...results, [item]: value }), {})
+    : { [property]: value }
 }
 
 export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
