@@ -135,7 +135,7 @@ export default (
           !state.configTwin.disableCsProp ? ' outside the cs prop' : ''
         }.`,
         !state.configTwin.disableCsProp
-          ? `Add short css with the cs prop: <div cs="${classNameRaw}" />`
+          ? `Add short css with the cs prop: &lt;div cs="${classNameRaw}" /&gt;`
           : ''
       )
     )
