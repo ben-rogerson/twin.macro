@@ -7803,6 +7803,622 @@ tw\`bg-blend-luminosity\`
 
 `;
 
+exports[`twin.macro filters.js: filters.js 1`] = `
+
+import tw from './macro'
+
+// https://tailwindcss.com/docs/filter
+tw\`filter-none\`
+tw\`filter\`
+
+// https://tailwindcss.com/docs/blur
+tw\`blur-0\`
+tw\`blur-sm\`
+tw\`blur\`
+tw\`blur-md\`
+tw\`blur-lg\`
+tw\`blur-xl\`
+tw\`blur-2xl\`
+tw\`blur-3xl\`
+
+// https://tailwindcss.com/docs/brightness
+tw\`brightness-0\`
+tw\`brightness-50\`
+tw\`brightness-75\`
+tw\`brightness-90\`
+tw\`brightness-95\`
+tw\`brightness-100\`
+tw\`brightness-105\`
+tw\`brightness-110\`
+tw\`brightness-125\`
+tw\`brightness-150\`
+tw\`brightness-200\`
+
+// https://tailwindcss.com/docs/contrast
+tw\`contrast-0\`
+tw\`contrast-50\`
+tw\`contrast-75\`
+tw\`contrast-100\`
+tw\`contrast-125\`
+tw\`contrast-150\`
+tw\`contrast-200\`
+
+// https://tailwindcss.com/docs/drop-shadow
+tw\`drop-shadow-sm\`
+tw\`drop-shadow\`
+tw\`drop-shadow-md\`
+tw\`drop-shadow-lg\`
+tw\`drop-shadow-xl\`
+tw\`drop-shadow-2xl\`
+tw\`drop-shadow-none\`
+
+// https://tailwindcss.com/docs/grayscale
+tw\`grayscale-0\`
+tw\`grayscale\`
+
+// https://tailwindcss.com/docs/hue-rotate
+tw\`-hue-rotate-180\`
+tw\`-hue-rotate-90\`
+tw\`-hue-rotate-60\`
+tw\`-hue-rotate-30\`
+tw\`-hue-rotate-15\`
+tw\`hue-rotate-0\`
+tw\`hue-rotate-15\`
+tw\`hue-rotate-30\`
+tw\`hue-rotate-60\`
+tw\`hue-rotate-90\`
+tw\`hue-rotate-180\`
+
+// https://tailwindcss.com/docs/invert
+tw\`invert-0\`
+tw\`invert\`
+
+// https://tailwindcss.com/docs/saturate
+tw\`saturate-0\`
+tw\`saturate-50\`
+tw\`saturate-100\`
+tw\`saturate-150\`
+tw\`saturate-200\`
+
+// https://tailwindcss.com/docs/sepia
+tw\`sepia-0\`
+tw\`sepia\`
+
+// All
+tw\`filter blur-2xl brightness-50 contrast-50 grayscale hue-rotate-180 invert saturate-50 sepia drop-shadow-2xl\`
+
+// https://tailwindcss.com/docs/backdrop-filter
+tw\`backdrop-filter\`
+tw\`backdrop-filter-none\`
+
+// https://tailwindcss.com/docs/backdrop-blur
+tw\`backdrop-blur-0\`
+tw\`backdrop-blur-sm\`
+tw\`backdrop-blur\`
+tw\`backdrop-blur-md\`
+tw\`backdrop-blur-lg\`
+tw\`backdrop-blur-xl\`
+tw\`backdrop-blur-2xl\`
+tw\`backdrop-blur-3xl\`
+
+// https://tailwindcss.com/docs/backdrop-brightness
+tw\`backdrop-brightness-0\`
+tw\`backdrop-brightness-50\`
+tw\`backdrop-brightness-75\`
+tw\`backdrop-brightness-90\`
+tw\`backdrop-brightness-95\`
+tw\`backdrop-brightness-100\`
+tw\`backdrop-brightness-105\`
+tw\`backdrop-brightness-110\`
+tw\`backdrop-brightness-125\`
+tw\`backdrop-brightness-150\`
+tw\`backdrop-brightness-200\`
+
+// https://tailwindcss.com/docs/backdrop-contrast
+tw\`backdrop-contrast-0\`
+tw\`backdrop-contrast-50\`
+tw\`backdrop-contrast-75\`
+tw\`backdrop-contrast-100\`
+tw\`backdrop-contrast-125\`
+tw\`backdrop-contrast-150\`
+tw\`backdrop-contrast-200\`
+
+// https://tailwindcss.com/docs/backdrop-grayscale
+tw\`backdrop-grayscale-0\`
+tw\`backdrop-grayscale\`
+
+// https://tailwindcss.com/docs/backdrop-hue-rotate
+tw\`-backdrop-hue-rotate-180\`
+tw\`-backdrop-hue-rotate-90\`
+tw\`-backdrop-hue-rotate-60\`
+tw\`-backdrop-hue-rotate-30\`
+tw\`-backdrop-hue-rotate-15\`
+tw\`backdrop-hue-rotate-0\`
+tw\`backdrop-hue-rotate-15\`
+tw\`backdrop-hue-rotate-30\`
+tw\`backdrop-hue-rotate-60\`
+tw\`backdrop-hue-rotate-90\`
+tw\`backdrop-hue-rotate-180\`
+
+// https://tailwindcss.com/docs/backdrop-invert
+tw\`backdrop-invert-0\`
+tw\`backdrop-invert\`
+
+// https://tailwindcss.com/docs/backdrop-opacity
+tw\`backdrop-opacity-0\`
+tw\`backdrop-opacity-5\`
+tw\`backdrop-opacity-10\`
+tw\`backdrop-opacity-20\`
+tw\`backdrop-opacity-25\`
+tw\`backdrop-opacity-30\`
+tw\`backdrop-opacity-40\`
+tw\`backdrop-opacity-50\`
+tw\`backdrop-opacity-60\`
+tw\`backdrop-opacity-70\`
+tw\`backdrop-opacity-75\`
+tw\`backdrop-opacity-80\`
+tw\`backdrop-opacity-90\`
+tw\`backdrop-opacity-95\`
+tw\`backdrop-opacity-100\`
+
+// https://tailwindcss.com/docs/backdrop-saturate
+tw\`backdrop-saturate-0\`
+tw\`backdrop-saturate-50\`
+tw\`backdrop-saturate-100\`
+tw\`backdrop-saturate-150\`
+tw\`backdrop-saturate-200\`
+
+// https://tailwindcss.com/docs/backdrop-sepia
+tw\`backdrop-sepia-0\`
+tw\`backdrop-sepia\`
+
+// All
+tw\`backdrop-filter backdrop-blur-2xl backdrop-brightness-50 backdrop-contrast-50 backdrop-grayscale backdrop-hue-rotate-180 backdrop-invert backdrop-opacity-50 backdrop-saturate-50 backdrop-sepia\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// https://tailwindcss.com/docs/filter
+;({
+  filter: 'none',
+})
+;({
+  '--tw-blur': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-brightness': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-contrast': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-grayscale': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-hue-rotate': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-invert': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-saturate': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-sepia': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-drop-shadow': 'var(--tw-empty,/*!*/ /*!*/)',
+  filter:
+    'var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)',
+}) // https://tailwindcss.com/docs/blur
+
+;({
+  '--tw-blur': 'blur(0)',
+})
+;({
+  '--tw-blur': 'blur(4px)',
+})
+;({
+  '--tw-blur': 'blur(8px)',
+})
+;({
+  '--tw-blur': 'blur(12px)',
+})
+;({
+  '--tw-blur': 'blur(16px)',
+})
+;({
+  '--tw-blur': 'blur(24px)',
+})
+;({
+  '--tw-blur': 'blur(40px)',
+})
+;({
+  '--tw-blur': 'blur(64px)',
+}) // https://tailwindcss.com/docs/brightness
+
+;({
+  '--tw-brightness': 'brightness(0)',
+})
+;({
+  '--tw-brightness': 'brightness(.5)',
+})
+;({
+  '--tw-brightness': 'brightness(.75)',
+})
+;({
+  '--tw-brightness': 'brightness(.9)',
+})
+;({
+  '--tw-brightness': 'brightness(.95)',
+})
+;({
+  '--tw-brightness': 'brightness(1)',
+})
+;({
+  '--tw-brightness': 'brightness(1.05)',
+})
+;({
+  '--tw-brightness': 'brightness(1.1)',
+})
+;({
+  '--tw-brightness': 'brightness(1.25)',
+})
+;({
+  '--tw-brightness': 'brightness(1.5)',
+})
+;({
+  '--tw-brightness': 'brightness(2)',
+}) // https://tailwindcss.com/docs/contrast
+
+;({
+  '--tw-contrast': 'contrast(0)',
+})
+;({
+  '--tw-contrast': 'contrast(.5)',
+})
+;({
+  '--tw-contrast': 'contrast(.75)',
+})
+;({
+  '--tw-contrast': 'contrast(1)',
+})
+;({
+  '--tw-contrast': 'contrast(1.25)',
+})
+;({
+  '--tw-contrast': 'contrast(1.5)',
+})
+;({
+  '--tw-contrast': 'contrast(2)',
+}) // https://tailwindcss.com/docs/drop-shadow
+
+;({
+  '--tw-drop-shadow': 'drop-shadow(0 1px 1px rgba(0,0,0,0.05))',
+})
+;({
+  '--tw-drop-shadow':
+    'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.06))',
+})
+;({
+  '--tw-drop-shadow':
+    'drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07)) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.06))',
+})
+;({
+  '--tw-drop-shadow':
+    'drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1))',
+})
+;({
+  '--tw-drop-shadow':
+    'drop-shadow(0 20px 13px rgba(0, 0, 0, 0.03)) drop-shadow(0 8px 5px rgba(0, 0, 0, 0.08))',
+})
+;({
+  '--tw-drop-shadow': 'drop-shadow(0 25px 25px rgba(0, 0, 0, 0.15))',
+})
+;({
+  '--tw-drop-shadow': 'drop-shadow(0 0 #0000)',
+}) // https://tailwindcss.com/docs/grayscale
+
+;({
+  '--tw-grayscale': 'grayscale(0)',
+})
+;({
+  '--tw-grayscale': 'grayscale(100%)',
+}) // https://tailwindcss.com/docs/hue-rotate
+
+;({
+  '--tw-hue-rotate': 'hue-rotate(-180deg)',
+})
+;({
+  '--tw-hue-rotate': 'hue-rotate(-90deg)',
+})
+;({
+  '--tw-hue-rotate': 'hue-rotate(-60deg)',
+})
+;({
+  '--tw-hue-rotate': 'hue-rotate(-30deg)',
+})
+;({
+  '--tw-hue-rotate': 'hue-rotate(-15deg)',
+})
+;({
+  '--tw-hue-rotate': 'hue-rotate(0deg)',
+})
+;({
+  '--tw-hue-rotate': 'hue-rotate(15deg)',
+})
+;({
+  '--tw-hue-rotate': 'hue-rotate(30deg)',
+})
+;({
+  '--tw-hue-rotate': 'hue-rotate(60deg)',
+})
+;({
+  '--tw-hue-rotate': 'hue-rotate(90deg)',
+})
+;({
+  '--tw-hue-rotate': 'hue-rotate(180deg)',
+}) // https://tailwindcss.com/docs/invert
+
+;({
+  '--tw-invert': 'invert(0)',
+})
+;({
+  '--tw-invert': 'invert(100%)',
+}) // https://tailwindcss.com/docs/saturate
+
+;({
+  '--tw-saturate': 'saturate(0)',
+})
+;({
+  '--tw-saturate': 'saturate(.5)',
+})
+;({
+  '--tw-saturate': 'saturate(1)',
+})
+;({
+  '--tw-saturate': 'saturate(1.5)',
+})
+;({
+  '--tw-saturate': 'saturate(2)',
+}) // https://tailwindcss.com/docs/sepia
+
+;({
+  '--tw-sepia': 'sepia(0)',
+})
+;({
+  '--tw-sepia': 'sepia(100%)',
+}) // All
+
+;({
+  '--tw-blur': 'blur(40px)',
+  '--tw-brightness': 'brightness(.5)',
+  '--tw-contrast': 'contrast(.5)',
+  '--tw-grayscale': 'grayscale(100%)',
+  '--tw-hue-rotate': 'hue-rotate(180deg)',
+  '--tw-invert': 'invert(100%)',
+  '--tw-saturate': 'saturate(.5)',
+  '--tw-sepia': 'sepia(100%)',
+  '--tw-drop-shadow': 'drop-shadow(0 25px 25px rgba(0, 0, 0, 0.15))',
+  filter:
+    'var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)',
+}) // https://tailwindcss.com/docs/backdrop-filter
+
+;({
+  '--tw-backdrop-blur': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-backdrop-brightness': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-backdrop-contrast': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-backdrop-grayscale': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-backdrop-hue-rotate': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-backdrop-invert': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-backdrop-opacity': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-backdrop-saturate': 'var(--tw-empty,/*!*/ /*!*/)',
+  '--tw-backdrop-sepia': 'var(--tw-empty,/*!*/ /*!*/)',
+  backdropFilter:
+    'var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)',
+})
+;({
+  backdropFilter: 'none',
+}) // https://tailwindcss.com/docs/backdrop-blur
+
+;({
+  '--tw-backdrop-blur': 'blur(0)',
+})
+;({
+  '--tw-backdrop-blur': 'blur(4px)',
+})
+;({
+  '--tw-backdrop-blur': 'blur(8px)',
+})
+;({
+  '--tw-backdrop-blur': 'blur(12px)',
+})
+;({
+  '--tw-backdrop-blur': 'blur(16px)',
+})
+;({
+  '--tw-backdrop-blur': 'blur(24px)',
+})
+;({
+  '--tw-backdrop-blur': 'blur(40px)',
+})
+;({
+  '--tw-backdrop-blur': 'blur(64px)',
+}) // https://tailwindcss.com/docs/backdrop-brightness
+
+;({
+  '--tw-backdrop-brightness': 'brightness(0)',
+})
+;({
+  '--tw-backdrop-brightness': 'brightness(.5)',
+})
+;({
+  '--tw-backdrop-brightness': 'brightness(.75)',
+})
+;({
+  '--tw-backdrop-brightness': 'brightness(.9)',
+})
+;({
+  '--tw-backdrop-brightness': 'brightness(.95)',
+})
+;({
+  '--tw-backdrop-brightness': 'brightness(1)',
+})
+;({
+  '--tw-backdrop-brightness': 'brightness(1.05)',
+})
+;({
+  '--tw-backdrop-brightness': 'brightness(1.1)',
+})
+;({
+  '--tw-backdrop-brightness': 'brightness(1.25)',
+})
+;({
+  '--tw-backdrop-brightness': 'brightness(1.5)',
+})
+;({
+  '--tw-backdrop-brightness': 'brightness(2)',
+}) // https://tailwindcss.com/docs/backdrop-contrast
+
+;({
+  '--tw-backdrop-contrast': 'contrast(0)',
+})
+;({
+  '--tw-backdrop-contrast': 'contrast(.5)',
+})
+;({
+  '--tw-backdrop-contrast': 'contrast(.75)',
+})
+;({
+  '--tw-backdrop-contrast': 'contrast(1)',
+})
+;({
+  '--tw-backdrop-contrast': 'contrast(1.25)',
+})
+;({
+  '--tw-backdrop-contrast': 'contrast(1.5)',
+})
+;({
+  '--tw-backdrop-contrast': 'contrast(2)',
+}) // https://tailwindcss.com/docs/backdrop-grayscale
+
+;({
+  '--tw-backdrop-grayscale': 'grayscale(0)',
+})
+;({
+  '--tw-backdrop-grayscale': 'grayscale(100%)',
+}) // https://tailwindcss.com/docs/backdrop-hue-rotate
+
+;({
+  '--tw-backdrop-hue-rotate': 'hue-rotate(-180deg)',
+})
+;({
+  '--tw-backdrop-hue-rotate': 'hue-rotate(-90deg)',
+})
+;({
+  '--tw-backdrop-hue-rotate': 'hue-rotate(-60deg)',
+})
+;({
+  '--tw-backdrop-hue-rotate': 'hue-rotate(-30deg)',
+})
+;({
+  '--tw-backdrop-hue-rotate': 'hue-rotate(-15deg)',
+})
+;({
+  '--tw-backdrop-hue-rotate': 'hue-rotate(0deg)',
+})
+;({
+  '--tw-backdrop-hue-rotate': 'hue-rotate(15deg)',
+})
+;({
+  '--tw-backdrop-hue-rotate': 'hue-rotate(30deg)',
+})
+;({
+  '--tw-backdrop-hue-rotate': 'hue-rotate(60deg)',
+})
+;({
+  '--tw-backdrop-hue-rotate': 'hue-rotate(90deg)',
+})
+;({
+  '--tw-backdrop-hue-rotate': 'hue-rotate(180deg)',
+}) // https://tailwindcss.com/docs/backdrop-invert
+
+;({
+  '--tw-backdrop-invert': 'invert(0)',
+})
+;({
+  '--tw-backdrop-invert': 'invert(100%)',
+}) // https://tailwindcss.com/docs/backdrop-opacity
+
+;({
+  '--tw-backdrop-opacity': 'opacity(0)',
+})
+;({
+  '--tw-backdrop-opacity': 'opacity(0.05)',
+})
+;({
+  '--tw-backdrop-opacity': 'opacity(0.1)',
+})
+;({
+  '--tw-backdrop-opacity': 'opacity(0.2)',
+})
+;({
+  '--tw-backdrop-opacity': 'opacity(0.25)',
+})
+;({
+  '--tw-backdrop-opacity': 'opacity(0.3)',
+})
+;({
+  '--tw-backdrop-opacity': 'opacity(0.4)',
+})
+;({
+  '--tw-backdrop-opacity': 'opacity(0.5)',
+})
+;({
+  '--tw-backdrop-opacity': 'opacity(0.6)',
+})
+;({
+  '--tw-backdrop-opacity': 'opacity(0.7)',
+})
+;({
+  '--tw-backdrop-opacity': 'opacity(0.75)',
+})
+;({
+  '--tw-backdrop-opacity': 'opacity(0.8)',
+})
+;({
+  '--tw-backdrop-opacity': 'opacity(0.9)',
+})
+;({
+  '--tw-backdrop-opacity': 'opacity(0.95)',
+})
+;({
+  '--tw-backdrop-opacity': 'opacity(1)',
+}) // https://tailwindcss.com/docs/backdrop-saturate
+
+;({
+  '--tw-backdrop-saturate': 'saturate(0)',
+})
+;({
+  '--tw-backdrop-saturate': 'saturate(.5)',
+})
+;({
+  '--tw-backdrop-saturate': 'saturate(1)',
+})
+;({
+  '--tw-backdrop-saturate': 'saturate(1.5)',
+})
+;({
+  '--tw-backdrop-saturate': 'saturate(2)',
+}) // https://tailwindcss.com/docs/backdrop-sepia
+
+;({
+  '--tw-backdrop-sepia': 'sepia(0)',
+})
+;({
+  '--tw-backdrop-sepia': 'sepia(100%)',
+}) // All
+
+;({
+  '--tw-backdrop-blur': 'blur(40px)',
+  '--tw-backdrop-brightness': 'brightness(.5)',
+  '--tw-backdrop-contrast': 'contrast(.5)',
+  '--tw-backdrop-grayscale': 'grayscale(100%)',
+  '--tw-backdrop-hue-rotate': 'hue-rotate(180deg)',
+  '--tw-backdrop-invert': 'invert(100%)',
+  '--tw-backdrop-opacity': 'opacity(0.5)',
+  '--tw-backdrop-saturate': 'saturate(.5)',
+  '--tw-backdrop-sepia': 'sepia(100%)',
+  backdropFilter:
+    'var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)',
+})
+
+
+`;
+
 exports[`twin.macro flexbox.js: flexbox.js 1`] = `
 
 import tw from './macro'

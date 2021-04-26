@@ -321,6 +321,70 @@ export default {
 
   /**
    * ===========================================
+   * Filters
+   */
+
+  // https://tailwindcss.com/docs/filter
+  // See staticStyles.js
+
+  // https://tailwindcss.com/docs/blur
+  blur: { plugin: 'blur' },
+
+  // https://tailwindcss.com/docs/brightness
+  brightness: { plugin: 'brightness' },
+
+  // https://tailwindcss.com/docs/contrast
+  contrast: { plugin: 'contrast' },
+
+  // https://tailwindcss.com/docs/drop-shadow
+  'drop-shadow': { plugin: 'dropShadow' },
+
+  // https://tailwindcss.com/docs/grayscale
+  grayscale: { plugin: 'grayscale' },
+
+  // https://tailwindcss.com/docs/hue-rotate
+  'hue-rotate': { plugin: 'hueRotate' },
+
+  // https://tailwindcss.com/docs/invert
+  invert: { plugin: 'invert' },
+
+  // https://tailwindcss.com/docs/saturate
+  saturate: { plugin: 'saturate' },
+
+  // https://tailwindcss.com/docs/sepia
+  sepia: { plugin: 'sepia' },
+
+  // https://tailwindcss.com/docs/backdrop-filter
+
+  // https://tailwindcss.com/docs/backdrop-blur
+  'backdrop-blur': { plugin: 'backdropBlur' },
+
+  // https://tailwindcss.com/docs/backdrop-brightness
+  'backdrop-brightness': { plugin: 'backdropBrightness' },
+
+  // https://tailwindcss.com/docs/backdrop-contrast
+  'backdrop-contrast': { plugin: 'backdropContrast' },
+
+  // https://tailwindcss.com/docs/backdrop-grayscale
+  'backdrop-grayscale': { plugin: 'backdropGrayscale' },
+
+  // https://tailwindcss.com/docs/backdrop-hue-rotate
+  'backdrop-hue-rotate': { plugin: 'backdropHueRotate' },
+
+  // https://tailwindcss.com/docs/backdrop-invert
+  'backdrop-invert': { plugin: 'backdropInvert' },
+
+  // https://tailwindcss.com/docs/backdrop-opacity
+  'backdrop-opacity': { plugin: 'backdropOpacity' },
+
+  // https://tailwindcss.com/docs/backdrop-saturate
+  'backdrop-saturate': { plugin: 'backdropSaturate' },
+
+  // https://tailwindcss.com/docs/backdrop-sepia
+  'backdrop-sepia': { plugin: 'backdropSepia' },
+
+  /**
+   * ===========================================
    * Transitions
    */
 
