@@ -37,6 +37,7 @@ You can add these options in your twin config:
 | debugPlugins          | `false`                | Display generated class information in your terminal from your plugins.                                                                                              |
 | debug                 | `false`                | Display information in your terminal about the Tailwind class conversions.                                                                                           |
 | disableColorVariables | `false`                | Disable css variables in colors (not gradients).                                                                                                                     |
+| disableShortCss       | `false`                | Disable converting short css within the tw import/prop.                                                                                                              |
 | includeClassNames     | `false`                | Look in className props for tailwind classes to convert.                                                                                                             |
 | dataCsProp            | `true`                 | Add a prop to your elements in development so you can see the original cs prop classes, eg: `<div data-cs="maxWidth[1em]" />`.                                       |
 | disableCsProp         | `false`                | Disable twin from reading values specified in the cs prop.                                                                                                           |
@@ -171,6 +172,16 @@ tw`bg-gradient-to-b from-gray-100 to-gray-200`
   '--gradient-to-color': '#edf2f7',
 })
 ```
+
+### disableShortCss
+
+```js
+disableShortCss: true, // Disable converting short css within the tw import/prop
+```
+
+When set to `true`, this will throw an error if short css is added within the tw import or tw prop.
+
+If you want to disable short css completely, you’ll also need to set `dataCsProp: false`.
 
 ### includeClassNames
 

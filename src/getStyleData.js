@@ -10,6 +10,7 @@ import {
   logNotFoundVariant,
   logNotFoundClass,
   debug,
+  logBadGood,
 } from './logging'
 import { orderByScreens } from './screens'
 import { orderGridProperty } from './grid'
@@ -82,6 +83,7 @@ export default (
   const classesMismatched = []
 
   // Merge styles into a single css object
+  /* eslint-disable-next-line complexity */
   const styles = classes.reduce((results, classNameRaw) => {
     const pieces = getPieces({ classNameRaw, state })
     const { hasPrefix, className, hasVariants } = pieces
@@ -119,6 +121,20 @@ export default (
       classesMismatched.push(classNameRaw)
       return results
     }
+
+    // Error if short css is used and disabled
+    const isShortCssDisabled =
+      state.configTwin.disableShortCss && type === 'css' && !isCsOnly
+    throwIf(isShortCssDisabled, () =>
+      logBadGood(
+        `Short css has been disabled in the config so “${classNameRaw}” won’t work${
+          !state.configTwin.disableCsProp ? ' outside the cs prop' : ''
+        }.`,
+        !state.configTwin.disableCsProp
+          ? `Add short css with the cs prop: <div cs="${classNameRaw}" />`
+          : ''
+      )
+    )
 
     // Kick off suggestions when no class matches
     throwIf(!hasMatches && !hasUserPlugins, () =>
