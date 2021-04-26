@@ -17,8 +17,9 @@ const normalizeValue = value => {
   )
 }
 
-const matchChildKey = (from, matcher) => {
+const matchConfig = (from, matcher) => {
   if (!matcher) return
+
   for (const entry of Object.entries(from)) {
     const [key, value] = entry
 
@@ -27,33 +28,36 @@ const matchChildKey = (from, matcher) => {
     // Fixes https://github.com/ben-rogerson/twin.macro/issues/104
     if (!matcher.startsWith(key)) continue
 
-    const splitMatcher = matcher.split(key)
-    if (isEmpty(splitMatcher[1]) || !splitMatcher[1].startsWith('-')) continue
+    const newMatcher = matcher.slice(key.length)
+    if (isEmpty(newMatcher) || !newMatcher.startsWith('-')) continue
 
-    const match = stripNegative(splitMatcher[1])
+    const match = stripNegative(newMatcher)
     const objectMatch = value[match]
-    if (isEmpty(objectMatch)) continue
+
+    if (isEmpty(objectMatch)) {
+      // Support infinite nesting in tailwind.config
+      // Fixes https://github.com/ben-rogerson/twin.macro/issues/355
+      return matchConfig(value, match)
+    }
 
     const isValueReturnable =
-      typeof objectMatch === 'string' ||
-      typeof objectMatch === 'number' ||
+      ['string', 'number', 'function'].includes(typeof objectMatch) ||
       Array.isArray(objectMatch)
 
     throwIf(!isValueReturnable, () =>
       logGeneralError(
-        `The tailwind config is nested too deep\nReplace this with a string, number or array:\n${JSON.stringify(
+        `The config value "${JSON.stringify(
           objectMatch
-        )}`
+        )}" is unsupported - try a string, function, array, or number`
       )
     )
 
-    return String(objectMatch)
+    return typeof objectMatch === 'function' ? objectMatch : String(objectMatch)
   }
 }
 
 /**
  * Searches the tailwindConfig
- * Maximum of two levels deep
  */
 const getConfigValue = (from, matcher) => {
   if (!from) return
@@ -77,8 +81,8 @@ const getConfigValue = (from, matcher) => {
     return normalizeValue(defaultMatch)
   }
 
-  const firstChildKey = matchChildKey(from, matcher)
-  if (firstChildKey) return firstChildKey
+  const configMatch = matchConfig(from, matcher)
+  if (configMatch) return configMatch
 }
 
 export default getConfigValue
