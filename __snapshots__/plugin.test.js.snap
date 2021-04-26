@@ -7971,8 +7971,8 @@ const _GlobalStyles = () => (
       }
       * {
         --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
-        --tw-ring-offset-width: 0px;
-        --tw-ring-offset-color: #fff;
+        --tw-ring-offset-width: 10px;
+        --tw-ring-offset-color: rainbow;
         --tw-ring-color: rgba(59, 130, 246, 0.5);
         --tw-ring-offset-shadow: 0 0 #0000;
         --tw-ring-shadow: 0 0 #0000;
