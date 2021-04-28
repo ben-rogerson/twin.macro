@@ -1,5 +1,5 @@
 import { staticStyles, dynamicStyles } from './config'
-import { getTheme, stripNegative } from './utils'
+import { getTheme, stripNegative, isEmpty } from './utils'
 import stringSimilarity from 'string-similarity'
 
 const getCustomSuggestions = className => {
@@ -52,44 +52,48 @@ const filterKeys = (object, negativesOnly) =>
     (result, [k, v]) => ({
       ...result,
       ...((negativesOnly ? k.startsWith('-') : !k.startsWith('-')) && {
-        [k]: v,
+        [k.replace('-DEFAULT', '')]: v,
       }),
     }),
     {}
   )
 
-const normalizeDynamicConfig = ({ config, input, dynamicKey, hasNegative }) =>
-  Object.entries(filterKeys(flattenObject(config), hasNegative))
-    .map(([target, value]) => ({
-      ...(input && {
-        rating: stringSimilarity.compareTwoStrings(`-${target}`, input),
-      }),
-      target: targetTransforms.reduce(
-        (result, transformer) => transformer({ dynamicKey, target: result }),
-        target
-      ),
-      value: JSON.stringify(value), // Make sure objects are flattened and viewable
-    }))
-    .filter(
-      item =>
-        !item.target.includes('-array-') &&
-        (typeof item.rating === 'undefined' || item.rating >= 0.15)
-    )
+const normalizeDynamicConfig = ({ config, input, dynamicKey, hasNegative }) => {
+  const results = Object.entries(
+    filterKeys(flattenObject(config), hasNegative)
+  ).map(([target, value]) => ({
+    ...(input && {
+      rating: stringSimilarity.compareTwoStrings(`-${target}`, input),
+    }),
+    target: targetTransforms.reduce(
+      (result, transformer) => transformer({ dynamicKey, target: result }),
+      target
+    ),
+    value: JSON.stringify(value), // Make sure objects are flattened and viewable
+  }))
+
+  const filteredResults = results.filter(
+    item =>
+      !item.target.includes('-array-') && typeof item.rating === 'undefined'
+  )
+
+  return filteredResults
+}
 
 const matchConfig = ({ config, theme, className, ...rest }) =>
-  Object.values(
-    [...config].reduce(
-      (results, item) => ({
-        ...results,
-        ...normalizeDynamicConfig({
-          config: theme(item),
-          input: className,
-          ...rest,
-        }),
-      }),
-      {}
+  [...config]
+    .reduce(
+      (results, item) =>
+        results.concat(
+          normalizeDynamicConfig({
+            config: theme(item),
+            input: className,
+            ...rest,
+          })
+        ),
+      []
     )
-  ).sort((a, b) => b.rating - a.rating)
+    .sort((a, b) => b.rating - a.rating)
 
 const getConfig = properties =>
   matchConfig({ ...properties, className: null }).slice(0, 20)
@@ -108,7 +112,6 @@ const getSuggestions = ({
     const properties = { config, theme, dynamicKey, className, hasNegative }
     const dynamicMatches = matchConfig(properties)
     if (dynamicMatches.length === 0) return getConfig(properties)
-
     // Check if the user means to select a default class
     const defaultFound = dynamicMatches.find(
       match =>
@@ -119,7 +122,7 @@ const getSuggestions = ({
 
     // If there's a high rated suggestion then return it
     const trumpMatches = dynamicMatches.filter(match => match.rating >= 0.5)
-    if (trumpMatches) return trumpMatches
+    if (!isEmpty(trumpMatches)) return trumpMatches
 
     return dynamicMatches
   }

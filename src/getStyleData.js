@@ -3,7 +3,11 @@ import { throwIf, isEmpty, getTheme } from './utils'
 import { getProperties } from './getProperties'
 import getPieces from './utils/getPieces'
 import { astify } from './macroHelpers'
-import doPrechecks, { precheckGroup, preCheckPrefix } from './prechecks'
+import doPrechecks, {
+  precheckGroup,
+  preCheckPrefix,
+  preCheckNoHyphenSuffix,
+} from './prechecks'
 import {
   logGeneralError,
   errorSuggestions,
@@ -94,7 +98,7 @@ export default (
 
     // Avoid prechecks on silent mode as they'll error loudly
     !silentMismatches &&
-      doPrechecks([precheckGroup, preCheckPrefix], {
+      doPrechecks([precheckGroup, preCheckPrefix, preCheckNoHyphenSuffix], {
         pieces,
         classNameRaw,
         state,

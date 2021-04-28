@@ -33,17 +33,6 @@ module.exports = {
         'object-min-max': { min: '1200px', max: '1600px' },
       },
       colors: {
-        number: 0,
-        'purple-hyphen': 'purple',
-        mycolors: {
-          DEFAULT: 'blue',
-          'a-purple': 'purple',
-          'a-number': 0,
-          array: ['blue', 'purple', 'orange'],
-        },
-        'my-blue': {
-          100: 'blue',
-        },
         electric: ({ opacityVariable, opacityValue }) => {
           if (opacityValue !== undefined) {
             return `rgba(219, 0, 255, ${opacityValue})`
@@ -54,15 +43,6 @@ module.exports = {
           }
 
           return `rgb(219, 0, 255)`
-        },
-        'color-opacity': ({ opacityVariable }) =>
-          `rgba(var(--color-primary), var(${opacityVariable}, 1))`,
-        color: {
-          deep: {
-            config: {
-              500: '#0747A6',
-            },
-          },
         },
       },
       fontWeight: {
