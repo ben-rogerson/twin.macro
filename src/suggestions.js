@@ -74,7 +74,8 @@ const normalizeDynamicConfig = ({ config, input, dynamicKey, hasNegative }) => {
 
   const filteredResults = results.filter(
     item =>
-      !item.target.includes('-array-') && typeof item.rating === 'undefined'
+      !item.target.includes('-array-') &&
+      (input.rating ? typeof item.rating !== 'undefined' : true)
   )
 
   return filteredResults
