@@ -1,4 +1,4 @@
-import { isEmpty, throwIf, stripNegative } from './misc'
+import { isEmpty } from './misc'
 import { logGeneralError } from './../logging'
 
 const normalizeValue = value => {
@@ -11,48 +11,17 @@ const normalizeValue = value => {
   }
 
   logGeneralError(
-    `The config value "${Object.stringify(
+    `The config value "${JSON.stringify(
       value
     )}" is unsupported - try a string, function, array, or number`
   )
 }
 
-const matchConfig = (from, matcher) => {
-  if (!matcher) return
-
-  for (const entry of Object.entries(from)) {
-    const [key, value] = entry
-
-    if (typeof value !== 'object') continue
-
-    // Fixes https://github.com/ben-rogerson/twin.macro/issues/104
-    if (!matcher.startsWith(key)) continue
-
-    const newMatcher = matcher.slice(key.length)
-    if (isEmpty(newMatcher) || !newMatcher.startsWith('-')) continue
-
-    const match = stripNegative(newMatcher)
-    const objectMatch = value[match]
-
-    if (isEmpty(objectMatch)) {
-      // Support infinite nesting in tailwind.config
-      // Fixes https://github.com/ben-rogerson/twin.macro/issues/355
-      return matchConfig(value, match)
-    }
-
-    const isValueReturnable =
-      ['string', 'number', 'function'].includes(typeof objectMatch) ||
-      Array.isArray(objectMatch)
-
-    throwIf(!isValueReturnable, () =>
-      logGeneralError(
-        `The config value "${JSON.stringify(
-          objectMatch
-        )}" is unsupported - try a string, function, array, or number`
-      )
-    )
-
-    return typeof objectMatch === 'function' ? objectMatch : String(objectMatch)
+const splitAtDash = (twClass, fromEnd = 1) => {
+  const splitClass = twClass.split('-')
+  return {
+    firstPart: splitClass.slice(0, fromEnd * -1).join('-'),
+    lastPart: splitClass.slice(fromEnd * -1).join('-'),
   }
 }
 
@@ -63,10 +32,12 @@ const getConfigValue = (from, matcher) => {
   if (!from) return
 
   // Match default value from current object
-  if (isEmpty(matcher) && !isEmpty(from.DEFAULT)) {
+  if (isEmpty(matcher)) {
+    if (isEmpty(from.DEFAULT)) return
     return normalizeValue(from.DEFAULT)
   }
 
+  // Match exact
   const match = from[matcher]
   if (
     ['string', 'number', 'function'].includes(typeof match) ||
@@ -75,14 +46,24 @@ const getConfigValue = (from, matcher) => {
     return normalizeValue(match)
   }
 
-  // Match default value from child object
+  // Match a default value from child object
   const defaultMatch = typeof match === 'object' && match.DEFAULT
   if (defaultMatch) {
     return normalizeValue(defaultMatch)
   }
 
-  const configMatch = matchConfig(from, matcher)
-  if (configMatch) return configMatch
+  // A weird loop is used below so the return busts out of the parent
+  let index = 1
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+  for (const i of matcher.split('-')) {
+    const { firstPart, lastPart } = splitAtDash(matcher, index)
+    const objectMatch = from[firstPart]
+    if (objectMatch && typeof objectMatch === 'object') {
+      return getConfigValue(objectMatch, lastPart)
+    }
+
+    index = index + 1
+  }
 }
 
 export default getConfigValue

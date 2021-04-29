@@ -146,7 +146,7 @@ const errorSuggestions = properties => {
     return spaced(
       `${color.highlight(
         className
-      )} isn’t valid “short css”.\n\nThe syntax is like this: maxWidth[100vw]\nRead more at https://twinredirect.page.link/cs-classes`
+      )} isn’t valid “short css”.\n\nThe syntax is like this: max-width[100vw]\nRead more at https://twinredirect.page.link/cs-classes`
     )
 
   checkDarkLightClasses(className)

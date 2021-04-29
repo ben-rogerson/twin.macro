@@ -32,10 +32,26 @@ const preCheckPrefix = ({ pieces: { className, hasPrefix }, state }) => {
   )
 }
 
+const preCheckNoHyphenSuffix = ({ pieces: { className, classNameRaw } }) => {
+  if (isCssClass(className)) return
+
+  throwIf(classNameRaw.endsWith('-'), () =>
+    logBadGood(
+      `“${className}” should not have a '-' suffix`,
+      `Change it to “${className.replace(/-*$/, '')}”`
+    )
+  )
+}
+
 const doPrechecks = (prechecks, context) => {
   for (const precheck of prechecks) {
     precheck(context)
   }
 }
 
-export { doPrechecks as default, precheckGroup, preCheckPrefix }
+export {
+  doPrechecks as default,
+  precheckGroup,
+  preCheckPrefix,
+  preCheckNoHyphenSuffix,
+}
