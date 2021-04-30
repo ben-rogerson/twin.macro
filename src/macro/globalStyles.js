@@ -169,7 +169,7 @@ const handleGlobalStylesFunction = ({
     state.isImportingCss = !state.existingCssIdentifier
   }
 
-  if (state.isGoober) {
+  if (state.isGoober || state.isSolid) {
     const declaration = getGlobalDeclarationTte({
       t,
       globalUid,

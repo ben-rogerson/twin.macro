@@ -2,7 +2,7 @@
 const configDefaultsStyledComponents = { autoCssProp: true } // Automates the import of styled-components when you use their css prop
 const configDefaultsGoober = { sassyPseudo: true } // Sets selectors like hover to &:hover
 
-const configDefaultsTwin = ({ isStyledComponents, isGoober, isDev }) => ({
+const configDefaultsTwin = ({ isStyledComponents, isGoober, isSolid, isDev }) => ({
   allowStyleProp: false, // Allows styles within style="blah" without throwing an error
   autoCssProp: false, // Automates the import of styled-components when you use their css prop
   dataTwProp: isDev, // During development, add a data-tw="" prop containing your tailwind classes for backtracing
@@ -15,7 +15,7 @@ const configDefaultsTwin = ({ isStyledComponents, isGoober, isDev }) => ({
   disableCsProp: false, // Disable converting css styles in the cs prop
   disableShortCss: false, // Disable converting css written using short css
   ...(isStyledComponents && configDefaultsStyledComponents),
-  ...(isGoober && configDefaultsGoober),
+  ...((isGoober || isSolid) && configDefaultsGoober),
 })
 
 const isBoolean = value => typeof value === 'boolean'
@@ -24,8 +24,8 @@ const configTwinValidators = {
   preset: [
     value =>
       value === undefined ||
-      ['styled-components', 'emotion', 'goober'].includes(value),
-    `The config “preset” can only be set to ‘emotion’ (default), ‘styled-components’ or ‘goober’`,
+      ['styled-components', 'emotion', 'goober', 'solid'].includes(value),
+    `The config “preset” can only be set to ‘emotion’ (default), ‘styled-components’, ‘goober’ or 'solid'`,
   ],
   allowStyleProp: [
     isBoolean,
