@@ -119,3 +119,7 @@ This method may help to remove text flickering in some frameworks.
 import '../styles/fonts.css'
 // ...
 ```
+
+---
+
+[&lsaquo; Documentation](https://github.com/ben-rogerson/twin.macro/blob/master/docs/index.md)

@@ -144,3 +144,7 @@ export default () => (
 
 - [Quick Start Guide to Attrs in styled-components](https://scalablecss.com/styled-components-attrs/)
 - [Emotion issue: .attrs equivalent](https://github.com/emotion-js/emotion/issues/821)
+
+---
+
+[&lsaquo; Documentation](https://github.com/ben-rogerson/twin.macro/blob/master/docs/index.md)

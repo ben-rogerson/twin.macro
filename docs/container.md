@@ -60,3 +60,7 @@ const Component = ({ children, ...rest }) => (
 ## Resources
 
 - [Tailwind container docs](https://tailwindcss.com/docs/container)
+
+---
+
+[&lsaquo; Documentation](https://github.com/ben-rogerson/twin.macro/blob/master/docs/index.md)
