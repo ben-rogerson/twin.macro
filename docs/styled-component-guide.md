@@ -71,7 +71,7 @@ const Component = ({ hasBg }: ContainerProps) => (
 
 ## Variants with many values
 
-When a variant has many values (eg: `variant="light/dark/etc"`), name the class set in an object and use a prop to grab the entry containing the styles:
+When a variant has many values (eg: `variant="light/dark/etc"`), name the class set in an object and use a prop to grab the entry containing the styles. Note that you must return a function as follows:
 
 ```js
 import tw, { styled } from 'twin.macro'
@@ -83,7 +83,7 @@ const containerVariants = {
   crazy: tw`bg-yellow-500 text-red-500`,
 }
 
-const Container = styled.section([
+const Container = styled.section(() => [ // Return a function here
   tw`flex w-full`,
   ({ variant = 'dark' }) => containerVariants[variant], // Grab the variant style via a prop
 ])
@@ -119,7 +119,7 @@ const containerVariants: Record<ContainerVariant, TwStyle> = {
   crazy: tw`bg-yellow-500 text-red-500`,
 }
 
-const Container = styled.section<ContainerProps>([
+const Container = styled.section<ContainerProps>(() => [ // Return a function here
   tw`flex w-full`,
   ({ variant = 'dark' }) => containerVariants[variant], // Grab the variant style via a prop
 ])
