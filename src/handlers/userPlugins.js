@@ -1,4 +1,4 @@
-import { isEmpty } from './../utils'
+import { isEmpty, isMediaQuery, isClass } from './../utils'
 import { splitPrefix } from './../prefix'
 
 // If these tasks return true then the rule is matched
@@ -44,6 +44,7 @@ const getMatches = ({ className, data, sassyPseudo, state }) =>
     const shouldMergeValue = mergeChecks.some(item =>
       item({ key, value, className, data, prefix })
     )
+
     if (shouldMergeValue) {
       const newKey = formatKey(key, { className, sassyPseudo, prefix })
       return newKey ? { ...result, [newKey]: value } : { ...result, ...value }
@@ -91,17 +92,37 @@ const formatKey = (selector, { className, sassyPseudo, prefix }) => {
   return key
 }
 
+/**
+ * Split grouped selectors (`.class1, class2 {}`) and filter non-selectors
+ * @param {object} data Input object from userPluginData
+ * @returns {object} An object containing unpacked selectors
+ */
+const normalizeUserPluginSelectors = data =>
+  Object.entries(data).reduce((result, [selector, value]) => {
+    const keys = selector
+      .split(',')
+      .filter(s =>
+        isMediaQuery(s)
+          ? Object.keys(value).some(selector => isClass(selector))
+          : isClass(s)
+      )
+      .reduce((result, property) => ({ ...result, [property]: value }), {})
+    return { ...result, ...keys }
+  }, {})
+
 export default ({
   state: {
     configTwin: { sassyPseudo },
-    userPluginData: { components, utilities },
+    userPluginData: { base, components, utilities },
   },
   state,
   className,
 }) => {
   let result
-  ;[components, utilities].find(data => {
+  ;[base, components, utilities].find(rawData => {
+    const data = normalizeUserPluginSelectors(rawData)
     const matches = getMatches({ className, data, sassyPseudo, state })
+
     const hasMatches = !isEmpty(matches)
     result = hasMatches ? matches : result
     return hasMatches

@@ -8,14 +8,13 @@ const stripLeadingDot = string =>
 const replaceSelectorWithParent = (string, replacement) =>
   string.replace(replacement, `{{${stripLeadingDot(replacement)}}}`)
 
-const parseSelector = (selector, { isBase }) => {
+const parseSelector = selector => {
   if (!selector) return
 
   const matches = selector.trim().match(/^(\S+)(\s+.*?)?$/)
   if (matches === null) return
 
   let match = matches[0]
-  if (isBase) return match
 
   // Fix spacing that goes missing when provided by tailwindcss
   // Unfortunately this removes the ability to have classes on the same element
@@ -60,12 +59,13 @@ const buildAtSelector = (name, values, screens) => {
 }
 
 const getBuiltRules = (rule, { isBase }) => {
+  if (!rule.selector) return null
   // Prep comma spaced selectors for parsing
   const selectorArray = rule.selector.split(',')
 
   // Validate each selector
   const selectorParsed = selectorArray
-    .map(s => parseSelector(s, { isBase }))
+    .map(s => parseSelector(s))
     .filter(Boolean)
 
   // Join them back into a string
