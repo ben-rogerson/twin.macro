@@ -6,6 +6,8 @@ import deepMerge from 'lodash.merge'
  */
 const mergeImportant = (style, hasImportant) => {
   if (!hasImportant) return style
+  // Bail if the ruleset already has an important - for arbitrary values
+  if (JSON.stringify(style).includes(' !important')) return style
 
   return Object.entries(style).reduce((accumulator, item) => {
     const [key, value] = item

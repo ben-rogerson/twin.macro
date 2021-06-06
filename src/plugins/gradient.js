@@ -1,17 +1,4 @@
-import { toRgba } from './../utils'
-
-const transparentTo = value => {
-  if (typeof value === 'function') {
-    return value({ opacityValue: 0 })
-  }
-
-  try {
-    const [r, g, b] = toRgba(value)
-    return `rgba(${r}, ${g}, ${b}, 0)`
-  } catch (_) {
-    return `rgba(255, 255, 255, 0)`
-  }
-}
+import { transparentTo } from './../utils'
 
 export default properties => {
   const {

@@ -9,7 +9,10 @@ export {
   isNumeric,
   isClass,
   isMediaQuery,
+  isShortCss,
+  isArbitraryCss,
+  splitOnFirst,
 } from './misc'
-export { default as withAlpha } from './withAlpha'
+export { default as withAlpha, transparentTo } from './withAlpha'
 export { toRgba } from './withAlpha'
 export { toColorValue } from './toColorValue'

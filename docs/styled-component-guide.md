@@ -83,7 +83,8 @@ const containerVariants = {
   crazy: tw`bg-yellow-500 text-red-500`,
 }
 
-const Container = styled.section(() => [ // Return a function here
+const Container = styled.section(() => [
+  // Return a function here
   tw`flex w-full`,
   ({ variant = 'dark' }) => containerVariants[variant], // Grab the variant style via a prop
 ])
@@ -119,7 +120,8 @@ const containerVariants: Record<ContainerVariant, TwStyle> = {
   crazy: tw`bg-yellow-500 text-red-500`,
 }
 
-const Container = styled.section<ContainerProps>(() => [ // Return a function here
+const Container = styled.section<ContainerProps>(() => [
+  // Return a function here
   tw`flex w-full`,
   ({ variant = 'dark' }) => containerVariants[variant], // Grab the variant style via a prop
 ])
@@ -271,6 +273,18 @@ const Component = () => (
 - Nested styles are scoped to their parent element
 - Parent classes can style a child component `` { '.class &': tw`block` } ``)
 - Nesting makes it harder to extract components and change html/jsx
+
+## Custom class values (Arbitrary values)
+
+Custom values can be added to many tailwind classes by using square brackets to define the custom value:
+
+```js
+tw.div`top-[calc(100vh - 2rem)]`
+// ↓ ↓ ↓ ↓ ↓ ↓
+styled.div({ top: 'calc(100vh - 2rem)' })
+```
+
+[Read more about Arbitrary values →](https://github.com/ben-rogerson/twin.macro/blob/master/docs/arbitrary-values.md)
 
 ## Custom css
 
