@@ -21,10 +21,12 @@ const mergeImportant = (style, hasImportant) => {
  * Split the important from the className
  */
 const splitImportant = ({ className }) => {
-  const lastCharacter = className.slice(-1)
-  const hasImportant = lastCharacter === '!'
+  const hasPrefix = className.slice(0, 1) === '!'
+  const hasSuffix = className.slice(-1) === '!'
+  const hasImportant = hasSuffix || hasPrefix
+
   if (hasImportant) {
-    className = className.slice(0, -1)
+    className = hasSuffix ? className.slice(0, -1) : className.slice(1)
   }
 
   const important = hasImportant ? ' !important' : ''
