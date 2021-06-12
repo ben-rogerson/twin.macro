@@ -249,9 +249,23 @@ import 'twin.macro'
 const Component = ({ width = 5 }) => <div css={{ maxWidth: `${width}rem` }} />
 ```
 
+## Custom class values (Arbitrary values)
+
+Custom values can be added to many tailwind classes by using square brackets to define the custom value:
+
+```js
+;<div tw="top-[calc(100vh - 2rem)]" />
+// ↓ ↓ ↓ ↓ ↓ ↓
+<div css={{
+  "top": "calc(100vh - 2rem)"
+}} />
+```
+
+[Read more about Arbitrary values →](https://github.com/ben-rogerson/twin.macro/blob/master/docs/arbitrary-values.md)
+
 ## Custom css
 
-Basic css is added using the “short css” syntax or within the vanilla css which supports more advanced use cases like dynamic/interpolated values.
+Basic css is added using the “short css” syntax or within vanilla css which supports more advanced use cases like dynamic/interpolated values.
 
 ### Simple css styling
 

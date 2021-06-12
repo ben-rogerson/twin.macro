@@ -1,9 +1,13 @@
+import { isShortCss, isArbitraryCss } from './utils'
+
 /**
  * Split the negative from the className
  */
 const splitNegative = ({ className }) => {
-  const isShortCss = className.includes('[')
-  const hasNegative = !isShortCss && className.slice(0, 1) === '-'
+  const hasNegative =
+    !isShortCss(className) &&
+    !isArbitraryCss(className) &&
+    className.slice(0, 1) === '-'
 
   // TODO: Look in deprecating the negative prefix removal
   if (hasNegative) {

@@ -4,8 +4,9 @@ const splitPrefix = props => {
   if (!prefix) return { className, hasPrefix: false }
 
   if (!className.startsWith(prefix)) return { className, hasPrefix: false }
+  const newClassName = className.slice(prefix.length)
 
-  return { className: className.slice(prefix.length), hasPrefix: true }
+  return { className: newClassName, hasPrefix: true }
 }
 
 export { splitPrefix }

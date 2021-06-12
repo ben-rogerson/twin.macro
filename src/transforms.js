@@ -6,8 +6,10 @@ const transformImportant = ({ style, pieces: { hasImportant } }) =>
 const applyTransforms = context => {
   const { style, type } = context
   if (!style) return
+
   let result = context.style
   if (type !== 'corePlugin') result = transformImportant(context)
+
   return result
 }
 

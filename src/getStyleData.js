@@ -31,6 +31,7 @@ import {
   handleStatic,
   handleDynamic,
   handleCss,
+  handleArbitraryCss,
 } from './handlers'
 
 // When removing a multiline comment, determine if a space is left or not
@@ -154,6 +155,7 @@ export default (
       dynamic: () =>
         handleDynamic({ theme, pieces, state, dynamicKey, dynamicConfig }),
       css: () => handleCss({ className }),
+      arbitraryCss: () => handleArbitraryCss({ className, pieces }),
       userPlugin: () => handleUserPlugins({ state, className }),
       corePlugin: () =>
         handleCorePlugins({

@@ -137,6 +137,7 @@ const errorSuggestions = properties => {
   const {
     state: {
       configTwin: { hasSuggestions },
+      config: { prefix },
     },
     pieces: { className },
     isCsOnly,
@@ -172,13 +173,17 @@ const errorSuggestions = properties => {
     }
 
     return spaced(
-      `${textNotFound}\n\nDid you mean ${color.highlight(suggestions)}?`
+      `${textNotFound}\n\nDid you mean ${color.highlight(
+        [prefix, suggestions].filter(Boolean).join('')
+      )}?`
     )
   }
 
   const suggestionText =
     suggestions.length === 1
-      ? `Did you mean ${color.highlight(suggestions.shift().target)}?`
+      ? `Did you mean ${color.highlight(
+          [prefix, suggestions.shift().target].filter(Boolean).join('')
+        )}?`
       : `Try one of these classes:\n${formatSuggestions(suggestions)}`
 
   return spaced(`${textNotFound}\n\n${suggestionText}`)

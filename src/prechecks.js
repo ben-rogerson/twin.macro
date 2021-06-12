@@ -1,6 +1,5 @@
-import { throwIf } from './utils'
+import { throwIf, isShortCss } from './utils'
 import { logBadGood } from './logging'
-import { isCssClass } from './getProperties'
 
 const precheckGroup = ({ classNameRaw }) =>
   throwIf(
@@ -15,7 +14,7 @@ const precheckGroup = ({ classNameRaw }) =>
 const joinWithNoDoubleHyphens = arr => arr.join('-').replace(/-+/g, '-')
 
 const preCheckPrefix = ({ pieces: { className, hasPrefix }, state }) => {
-  if (isCssClass(className)) return
+  if (isShortCss(className)) return
 
   const { prefix } = state.config
   if (hasPrefix === Boolean(prefix)) return
@@ -33,7 +32,7 @@ const preCheckPrefix = ({ pieces: { className, hasPrefix }, state }) => {
 }
 
 const preCheckNoHyphenSuffix = ({ pieces: { className, classNameRaw } }) => {
-  if (isCssClass(className)) return
+  if (isShortCss(className)) return
 
   throwIf(classNameRaw.endsWith('-'), () =>
     logBadGood(

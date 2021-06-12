@@ -1,5 +1,5 @@
 import { staticStyles, dynamicStyles } from './config'
-import { get } from './utils/misc'
+import { get, isShortCss, isArbitraryCss } from './utils/misc'
 
 const isStaticClass = className => {
   const staticConfig = get(staticStyles, [className, 'config'])
@@ -35,8 +35,6 @@ const getDynamicProperties = className => {
   return { isDynamicClass, dynamicConfig, dynamicKey }
 }
 
-export const isCssClass = className => className.includes('[')
-
 const isEmpty = value =>
   value === undefined ||
   value === null ||
@@ -46,9 +44,11 @@ const isEmpty = value =>
 export const getProperties = (className, state, { isCsOnly = false }) => {
   if (!className) return
 
-  const isCss = isCssClass(className)
-  if (isCsOnly || className.includes('['))
-    return { hasMatches: isCss, type: 'css' }
+  const isCss = isShortCss(className)
+  if (isCsOnly || isCss) return { hasMatches: isCss, type: 'css' }
+
+  if (isArbitraryCss(className))
+    return { hasMatches: true, type: 'arbitraryCss' }
 
   const isStatic = isStaticClass(className)
   const { isDynamicClass, dynamicConfig, dynamicKey } = getDynamicProperties(
@@ -58,7 +58,6 @@ export const getProperties = (className, state, { isCsOnly = false }) => {
   const hasUserPlugins = !isEmpty(state.config.plugins)
 
   const type =
-    (isCss && 'css') ||
     (isStatic && 'static') ||
     (isDynamicClass && 'dynamic') ||
     (corePlugin && 'corePlugin')

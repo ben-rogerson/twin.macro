@@ -43,4 +43,17 @@ export default ({ color, property, variable, important }) => {
   }
 }
 
-export { toRgba }
+const transparentTo = value => {
+  if (typeof value === 'function') {
+    return value({ opacityValue: 0 })
+  }
+
+  try {
+    const [r, g, b] = toRgba(value)
+    return `rgba(${r}, ${g}, ${b}, 0)`
+  } catch (_) {
+    return `rgba(255, 255, 255, 0)`
+  }
+}
+
+export { toRgba, transparentTo }
