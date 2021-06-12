@@ -187,10 +187,10 @@ const Input = () => <input css={css({ color: theme`colors.purple.500` })} />
 
 See more examples [using the theme import →](https://github.com/ben-rogerson/twin.macro/pull/106)
 
-**💥 Add !important to any class with a trailing bang!**
+**💥 Add !important to any class with a trailing or leading bang!**
 
 ```js
-<div tw="hidden!" />
+<div tw="hidden!" /> || <div tw="!hidden" />
 // ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
 <div css={{ "display": "none !important" }} />
 ```
