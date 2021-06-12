@@ -20,6 +20,10 @@ export type ThemeSearchTaggedFn<R> = (
 
 export type ThemeFn = <T = string>(arg?: string | TemplateStringsArray) => T
 
+export type ScreenFn = <T = string>(
+  screenValue: string | TemplateStringsArray
+) => (styles?: string | TemplateStringsArray | TwStyle) => T
+
 export type TwComponent<K extends keyof JSX.IntrinsicElements> = (
   props: JSX.IntrinsicElements[K]
 ) => JSX.Element
@@ -55,4 +59,6 @@ declare global {
 }
 
 declare const theme: ThemeFn
-export { theme }
+declare const screen: ScreenFn
+
+export { theme, screen }

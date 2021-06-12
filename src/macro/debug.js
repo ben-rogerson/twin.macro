@@ -68,12 +68,22 @@ const addDataPropToExistingPath = ({
     try {
       // Existing data prop
       if (dataProperty.node.value.value) {
-        dataProperty.node.value.value = `${dataProperty.node.value.value} | ${rawClasses}`
+        dataProperty.node.value.value = `${[
+          dataProperty.node.value.value,
+          rawClasses,
+        ]
+          .filter(Boolean)
+          .join(' | ')}`
         return
       }
 
       // New data prop
-      dataProperty.node.value.expression.value = `${dataProperty.node.value.expression.value} | ${rawClasses}`
+      dataProperty.node.value.expression.value = `${[
+        dataProperty.node.value.expression.value,
+        rawClasses,
+      ]
+        .filter(Boolean)
+        .join(' | ')}`
     } catch (_) {}
 
     return

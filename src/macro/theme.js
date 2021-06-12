@@ -1,30 +1,11 @@
-import { replaceWithLocation, astify } from './../macroHelpers'
+import {
+  replaceWithLocation,
+  astify,
+  getFunctionValue,
+  getTaggedTemplateValue,
+} from './../macroHelpers'
 import { getTheme, throwIf, get } from './../utils'
 import { logGeneralError, themeErrorNotFound } from './../logging'
-
-const getFunctionValue = path => {
-  if (path.parent.type !== 'CallExpression') return
-
-  const parent = path.findParent(x => x.isCallExpression())
-  if (!parent) return
-
-  const argument = parent.get('arguments')[0] || ''
-
-  return {
-    parent,
-    input: argument.evaluate && argument.evaluate().value,
-  }
-}
-
-const getTaggedTemplateValue = path => {
-  if (path.parent.type !== 'TaggedTemplateExpression') return
-
-  const parent = path.findParent(x => x.isTaggedTemplateExpression())
-  if (!parent) return
-  if (parent.node.tag.type !== 'Identifier') return
-
-  return { parent, input: parent.get('quasi').evaluate().value }
-}
 
 const trimInput = themeValue => {
   const arrayValues = themeValue
