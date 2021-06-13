@@ -216,7 +216,7 @@ Twin works within many modern stacks - take a look at these examples to get star
 
 - **Create React App**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/cra-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/cra-emotion)
 - **Snowpack**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components) / [styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-styled-components-typescript) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion) / [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion-typescript)
-- **Vite**<br/>[styled-components (ts) 🎉](https://github.com/ben-rogerson/twin.examples/tree/master/vite-styled-components-typescript) &nbsp;/ emotion (soon)
+- **Vite**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/vite-styled-components-typescript) / [emotion (ts) 🎉](https://github.com/ben-rogerson/twin.examples/tree/master/vite-emotion-typescript)
 
 ### Advanced frameworks
 
@@ -229,7 +229,7 @@ Twin works within many modern stacks - take a look at these examples to get star
 ### Component libraries
 
 - **Storybook**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-styled-components-typescript) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-emotion)
-- **yarn/npm workspaces + Next.js + shared ui components**<br/>[styled-components 🎉](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-styled-components)
+- **yarn/npm workspaces + Next.js + shared ui components**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-styled-components)
 - **Yarn workspaces + Rollup**<br/>[emotion](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-emotion)
 - Nx workspace (soon)
 
