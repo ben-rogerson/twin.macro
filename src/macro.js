@@ -6,7 +6,6 @@ import {
   generateUid,
   getCssAttributeData,
 } from './macroHelpers'
-import { isEmpty } from './utils'
 import {
   getConfigTailwindProperties,
   getConfigTwinValidated,
@@ -15,12 +14,14 @@ import {
   getCssConfig,
   updateCssReferences,
   addCssImport,
-  maybeAddCssProperty,
+  handleAutoCssProp,
+  convertHtmlElementToStyled,
 } from './macro/css'
 import {
   getStyledConfig,
   updateStyledReferences,
   addStyledImport,
+  handleStyledFunction,
 } from './macro/styled'
 import { handleThemeFunction } from './macro/theme'
 import { handleScreenFunction } from './macro/screen'
@@ -44,7 +45,24 @@ const getPackageUsed = ({ config: { preset }, cssImport, styledImport }) => ({
     preset === 'goober' ||
     styledImport.from.includes('goober') ||
     cssImport.from.includes('goober'),
+  isStitches:
+    preset === 'stitches' ||
+    styledImport.from.includes('stitches') ||
+    cssImport.from.includes('stitches'),
 })
+
+const macroTasks = [
+  handleTwFunction,
+  handleGlobalStylesFunction, // GlobalStyles import
+  updateStyledReferences, // Styled import
+  handleStyledFunction, // Convert tw.div`` & styled.div`` to styled('div', {}) (stitches)
+  updateCssReferences, // Update any usage of existing css imports
+  handleThemeFunction, // Theme import
+  handleAutoCssProp, // Auto css prop for styled-components
+  handleScreenFunction, // Screen import
+  addStyledImport,
+  addCssImport, // Gotcha: Must be after addStyledImport or issues with theme`` style transpile
+]
 
 const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   validateImports(references)
@@ -64,8 +82,8 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   )
 
   // Get import presets
-  const styledImport = getStyledConfig(config)
-  const cssImport = getCssConfig(config)
+  const styledImport = getStyledConfig({ state, config })
+  const cssImport = getCssConfig({ state, config })
 
   // Identify the css-in-js library being used
   const packageUsed = getPackageUsed({ config, cssImport, styledImport })
@@ -102,9 +120,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
     },
     JSXElement(path) {
       const allAttributes = path.get('openingElement.attributes')
-      const jsxAttributes = allAttributes.filter(attribute =>
-        attribute.isJSXAttribute()
-      )
+      const jsxAttributes = allAttributes.filter(a => a.isJSXAttribute())
       const { index, hasCssAttribute } = getCssAttributeData(jsxAttributes)
       // Make sure hasCssAttribute remains true once css prop has been found
       // so twin can add the autoCssProp for styled-components
@@ -115,65 +131,32 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
         index > 1 ? jsxAttributes.reverse() : jsxAttributes
       for (path of orderedAttributes) {
         handleClassNameProperty({ path, t, state })
-        handleTwProperty({ path, t, state })
+        handleTwProperty({ path, t, state, program })
         handleCsProperty({ path, t, state })
       }
+
+      hasCssAttribute && convertHtmlElementToStyled({ path, t, program, state })
     },
   })
 
-  if (state.styledIdentifier === null) {
+  if (state.styledIdentifier === null)
     state.styledIdentifier = generateUid('styled', program)
-  } else {
-    state.existingStyledIdentifier = true
-  }
 
-  if (state.cssIdentifier === null) {
+  if (state.cssIdentifier === null)
     state.cssIdentifier = generateUid('css', program)
-  } else {
-    state.existingCssIdentifier = true
+
+  for (const task of macroTasks) {
+    task({
+      styledImport,
+      cssImport,
+      configTwin,
+      references,
+      program,
+      config,
+      state,
+      t,
+    })
   }
-
-  handleTwFunction({ references, t, state })
-
-  state.isImportingCss =
-    !isEmpty(references.css) && !state.existingCssIdentifier
-
-  // GlobalStyles import
-  handleGlobalStylesFunction({ references, program, t, state, config })
-
-  // Styled import
-  updateStyledReferences(references.styled, state)
-  if (!isEmpty(references.styled)) state.shouldImportStyled = true
-  if (state.shouldImportStyled && !state.existingStyledIdentifier) {
-    addStyledImport({ program, t, styledImport, state })
-  }
-
-  /**
-   * Css import
-   * Gotcha: The css import must be inserted above the styled import when using
-   * styled-components/macro or issues arrise with the way theme`` styles get
-   * transpiled. I've placed this under the styled import so the
-   * addImport (using unshift container) will add it above correctly.
-   */
-  updateCssReferences(references.css, state)
-  if (state.isImportingCss) {
-    addCssImport({ program, t, cssImport, state })
-  }
-
-  // Theme import
-  handleThemeFunction({ references, t, state })
-
-  // Auto add css prop for styled-components
-  if (
-    (state.hasTwAttribute || state.hasCssAttribute) &&
-    configTwin.autoCssProp === true &&
-    state.isStyledComponents
-  ) {
-    maybeAddCssProperty({ program, t })
-  }
-
-  // Screen import
-  handleScreenFunction({ references, program, t, state, config })
 
   program.scope.crawl()
 }

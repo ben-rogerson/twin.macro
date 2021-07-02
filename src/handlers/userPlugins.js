@@ -18,7 +18,7 @@ const mergeChecks = [
   ({ key, className, prefix }) => key.includes(`{{${prefix}${className}}}`),
   // Match possible symbols after the selector (ex dot)
   ({ key, className, prefix }) =>
-    [(' ', ':', '>', '~', '+', '*')].some(suffix =>
+    [' ', ':', '>', '~', '+', '*'].some(suffix =>
       key.startsWith(`${prefix}${className}${suffix}`)
     ),
 ]

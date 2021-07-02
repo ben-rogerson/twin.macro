@@ -1,4 +1,5 @@
-import { toColorValue } from './../utils'
+const toColorValue = maybeFunction =>
+  typeof maybeFunction === 'function' ? maybeFunction({}) : maybeFunction
 
 const handleColor = ({ configValue }) => {
   const value = configValue('ringOffsetColor')

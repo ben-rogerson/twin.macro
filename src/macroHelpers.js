@@ -1,5 +1,5 @@
 import babylon from '@babel/parser'
-import { throwIf } from './utils'
+import { throwIf, get } from './utils'
 import { logGeneralError } from './logging'
 
 const SPREAD_ID = '__spread__'
@@ -112,7 +112,11 @@ function astify(literal, t) {
 }
 
 const setStyledIdentifier = ({ state, path, styledImport }) => {
-  if (path.node.source.value !== styledImport.from) return
+  const importFromStitches =
+    state.isStitches && styledImport.from.includes(path.node.source.value)
+  const importFromLibrary = path.node.source.value === styledImport.from
+
+  if (!importFromLibrary && !importFromStitches) return
 
   // Look for an existing import that matches the config,
   // if found then reuse it for the rest of the function calls
@@ -126,20 +130,27 @@ const setStyledIdentifier = ({ state, path, styledImport }) => {
       !specifier.local.name.startsWith('_')
     ) {
       state.styledIdentifier = specifier.local
+      state.existingStyledIdentifier = true
       return true
     }
 
     if (specifier.imported && specifier.imported.name === styledImport.import) {
       state.styledIdentifier = specifier.local
+      state.existingStyledIdentifier = true
       return true
     }
 
+    state.existingStyledIdentifier = false
     return false
   })
 }
 
 const setCssIdentifier = ({ state, path, cssImport }) => {
-  if (path.node.source.value !== cssImport.from) return
+  const importFromStitches =
+    state.isStitches && cssImport.from.includes(path.node.source.value)
+  const isLibraryImport = path.node.source.value === cssImport.from
+
+  if (!isLibraryImport && !importFromStitches) return
 
   // Look for an existing import that matches the config,
   // if found then reuse it for the rest of the function calls
@@ -149,14 +160,17 @@ const setCssIdentifier = ({ state, path, cssImport }) => {
       cssImport.import === 'default'
     ) {
       state.cssIdentifier = specifier.local
+      state.existingCssIdentifier = true
       return true
     }
 
     if (specifier.imported && specifier.imported.name === cssImport.import) {
       state.cssIdentifier = specifier.local
+      state.existingCssIdentifier = true
       return true
     }
 
+    state.existingCssIdentifier = false
     return false
   })
 }
@@ -185,13 +199,13 @@ function parseTte({ path, types: t, styledIdentifier, state }) {
       path.get('tag').get('callee'),
       cloneNode(styledIdentifier)
     )
-    state.shouldImportStyled = true
+    state.isImportingStyled = true
   } else if (tagType === 'MemberExpression') {
     replaceWithLocation(
       path.get('tag').get('object'),
       cloneNode(styledIdentifier)
     )
-    state.shouldImportStyled = true
+    state.isImportingStyled = true
   }
 
   if (tagType === 'CallExpression' || tagType === 'MemberExpression') {
@@ -232,6 +246,7 @@ const validImports = new Set([
   'TwStyle',
   'ThemeStyle',
   'GlobalStyles',
+  'globalStyles',
 ])
 const validateImports = imports => {
   const unsupportedImport = Object.keys(imports).find(
@@ -247,7 +262,7 @@ const validateImports = imports => {
   })
   throwIf(unsupportedImport, () =>
     logGeneralError(
-      `Twin doesn't recognize { ${unsupportedImport} }\n\nTry one of these imports:\nimport tw, { styled, css, theme, screen, GlobalStyles } from 'twin.macro'`
+      `Twin doesn't recognize { ${unsupportedImport} }\n\nTry one of these imports:\nimport tw, { styled, css, theme, screen, GlobalStyles, globalStyles } from 'twin.macro'`
     )
   )
 }
@@ -263,6 +278,7 @@ const getAttributeNames = jsxPath => {
 }
 
 const getCssAttributeData = attributes => {
+  if (!String(attributes)) return {}
   const index = attributes.findIndex(
     attribute =>
       attribute.isJSXAttribute() && attribute.get('name.name').node === 'css'
@@ -304,6 +320,51 @@ const getMemberExpression = path => {
   return { parent, input: parent.get('property').node.name }
 }
 
+const generateTaggedTemplateExpression = ({ identifier, t, styles }) => {
+  const backtickStyles = t.templateElement({
+    raw: `${styles}`,
+    cooked: `${styles}`,
+  })
+  const ttExpression = t.taggedTemplateExpression(
+    identifier,
+    t.templateLiteral([backtickStyles], [])
+  )
+  return ttExpression
+}
+
+const renameJsxTags = ({ jsxPath, to }) => {
+  jsxPath.node.name.name = to
+
+  if (jsxPath.node.selfClosing) return
+  jsxPath.parentPath.node.closingElement.name.name = to
+}
+
+const isComponent = name => name.slice(0, 1).toUpperCase() === name.slice(0, 1)
+
+const makeStyledComponent = ({ secondArg, jsxPath, t, program, state }) => {
+  const constName = program.scope.generateUidIdentifier('TwComponent')
+
+  if (!state.styledIdentifier) {
+    state.styledIdentifier = generateUid('styled', program)
+    state.isImportingStyled = true
+  }
+
+  // Create the styled definition
+  const elementName = get(jsxPath, 'node.name.name')
+  const firstArg = isComponent(elementName)
+    ? t.identifier(elementName)
+    : t.stringLiteral(elementName)
+  const args = [firstArg, secondArg].filter(Boolean)
+  const identifier = t.callExpression(state.styledIdentifier, args)
+  const styledProps = [t.variableDeclarator(constName, identifier)]
+  const styledDefinition = t.variableDeclaration('const', styledProps)
+
+  const rootParentPath = jsxPath.findParent(p => p.parentPath.isProgram())
+  rootParentPath.insertBefore(styledDefinition)
+
+  renameJsxTags({ jsxPath, to: constName.name })
+}
+
 export {
   SPREAD_ID,
   COMPUTED_ID,
@@ -322,4 +383,6 @@ export {
   getFunctionValue,
   getTaggedTemplateValue,
   getMemberExpression,
+  generateTaggedTemplateExpression,
+  makeStyledComponent,
 }

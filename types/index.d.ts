@@ -61,4 +61,6 @@ declare global {
 declare const theme: ThemeFn
 declare const screen: ScreenFn
 
-export { theme, screen }
+declare const globalStyles: Record<string, unknown>
+
+export { theme, screen, globalStyles }

@@ -1,4 +1,10 @@
-import { addImport, generateUid } from '../macroHelpers'
+import deepMerge from 'lodash.merge'
+import template from '@babel/template'
+import {
+  addImport,
+  generateUid,
+  generateTaggedTemplateExpression,
+} from '../macroHelpers'
 import { throwIf, getTheme, isClass, isEmpty } from '../utils'
 import { logGeneralError } from './../logging'
 import userPresets from './../config/userPresets'
@@ -23,37 +29,17 @@ const addGlobalStylesImport = ({ program, t, identifier, config }) => {
   })
 }
 
-const generateTaggedTemplateExpression = ({ identifier, t, styles }) => {
-  const backtickStyles = t.templateElement({
-    raw: `${styles}`,
-    cooked: `${styles}`,
-  })
-  const ttExpression = t.taggedTemplateExpression(
-    identifier,
-    t.templateLiteral([backtickStyles], [])
-  )
-  return ttExpression
-}
-
 const getGlobalDeclarationTte = ({ t, stylesUid, globalUid, styles }) =>
   t.variableDeclaration('const', [
     t.variableDeclarator(
       globalUid,
-      generateTaggedTemplateExpression({
-        t,
-        identifier: stylesUid,
-        styles,
-      })
+      generateTaggedTemplateExpression({ t, identifier: stylesUid, styles })
     ),
   ])
 
-const getGlobalDeclarationProperty = ({
-  t,
-  stylesUid,
-  globalUid,
-  state,
-  styles,
-}) => {
+const getGlobalDeclarationProperty = props => {
+  const { t, stylesUid, globalUid, state, styles } = props
+
   const ttExpression = generateTaggedTemplateExpression({
     t,
     identifier: state.cssIdentifier,
@@ -132,14 +118,56 @@ const filterClassSelectors = ruleset => {
   }, {})
 }
 
-const handleGlobalStylesFunction = ({
-  references,
-  program,
-  t,
-  state,
-  config,
-}) => {
-  if (!references.GlobalStyles) return
+const handleGlobalStylesFunction = props => {
+  const { references } = props
+
+  references.GlobalStyles && handleGlobalStylesJsx(props)
+  references.globalStyles && handleGlobalStylesVariable(props)
+}
+
+const getGlobalStyles = ({ state }) => {
+  // Create the magic theme function
+  const theme = getTheme(state.config.theme)
+
+  // Filter out classes as they're extracted as usable classes
+  const strippedPlugins = filterClassSelectors(
+    state.userPluginData && state.userPluginData.base
+  )
+
+  const resolvedStyles = globalStyles.map(gs =>
+    typeof gs === 'function' ? gs({ theme }) : gs
+  )
+
+  if (strippedPlugins) resolvedStyles.push(strippedPlugins)
+
+  const styles = resolvedStyles.reduce(
+    (result, item) => deepMerge(result, item),
+    {}
+  )
+
+  return styles
+}
+
+const handleGlobalStylesVariable = ({ references, state }) => {
+  if (references.globalStyles.length === 0) return
+
+  const styles = getGlobalStyles({ state })
+
+  references.globalStyles.forEach(path => {
+    const templateStyles = `(${JSON.stringify(styles)})` // `template` requires () wrapping
+    const convertedStyles = template(templateStyles, {
+      placeholderPattern: false,
+    })()
+
+    path.replaceWith(convertedStyles)
+  })
+}
+
+// TODO: Deprecate GlobalStyles in v3
+// Replaced with globalStyles import as it's more adaptable
+const handleGlobalStylesJsx = props => {
+  const { references, program, t, state, config } = props
+
   if (references.GlobalStyles.length === 0) return
 
   throwIf(references.GlobalStyles.length > 1, () =>
@@ -155,46 +183,20 @@ const handleGlobalStylesFunction = ({
     )
   )
 
+  const styles = convertCssObjectToString(getGlobalStyles({ state }))
+
   const globalUid = generateUid('GlobalStyles', program)
   const stylesUid = generateUid('globalImport', program)
-
-  // Create the magic theme function
-  const theme = getTheme(state.config.theme)
-
-  // Filter out classes as they're extracted as usable classes
-  const strippedPlugins = filterClassSelectors(
-    state.userPluginData && state.userPluginData.base
-  )
-
-  // Provide each global style function with context and convert to a string
-  const baseStyles = convertCssObjectToString(strippedPlugins)
-
-  const styles = [
-    globalStyles.map(globalFunction => globalFunction({ theme })).join('\n'),
-    baseStyles,
-  ]
-    .filter(Boolean)
-    .join('\n')
+  const declarationData = { t, globalUid, stylesUid, styles, state }
 
   if (state.isStyledComponents) {
-    const declaration = getGlobalDeclarationTte({
-      t,
-      globalUid,
-      stylesUid,
-      styles,
-    })
+    const declaration = getGlobalDeclarationTte(declarationData)
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
   }
 
   if (state.isEmotion) {
-    const declaration = getGlobalDeclarationProperty({
-      t,
-      globalUid,
-      stylesUid,
-      state,
-      styles,
-    })
+    const declaration = getGlobalDeclarationProperty(declarationData)
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
     // Check if the css import has already been imported
@@ -203,22 +205,16 @@ const handleGlobalStylesFunction = ({
   }
 
   if (state.isGoober) {
-    const declaration = getGlobalDeclarationTte({
-      t,
-      globalUid,
-      stylesUid,
-      styles,
-    })
+    const declaration = getGlobalDeclarationTte(declarationData)
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
   }
 
-  addGlobalStylesImport({
-    identifier: stylesUid,
-    t,
-    program,
-    config,
-  })
+  throwIf(state.isStitches, () =>
+    logGeneralError('Use the “globalStyles” import with stitches')
+  )
+
+  addGlobalStylesImport({ identifier: stylesUid, t, program, config })
 }
 
 export { handleGlobalStylesFunction }

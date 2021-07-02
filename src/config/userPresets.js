@@ -59,4 +59,18 @@ export default {
       from: 'goober/global',
     },
   },
+  stitches: {
+    styled: {
+      import: 'styled',
+      from: 'stitches.config',
+    },
+    css: {
+      import: 'css',
+      from: 'stitches.config',
+    },
+    global: {
+      import: 'global',
+      from: 'stitches.config',
+    },
+  },
 }

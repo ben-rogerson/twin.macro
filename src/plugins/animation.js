@@ -25,20 +25,9 @@ export const globalKeyframeStyles = ({ theme }) => {
   const keyframes = theme`keyframes`
   if (!keyframes) return
 
-  return Object.entries(keyframes)
-    .map(
-      ([name, frames]) => `
-      @keyframes ${name} {${Object.entries(frames)
-        .map(
-          ([offset, styles]) => `
-          ${offset} { 
-            ${Object.entries(styles)
-              .map(([key, value]) => `${key}: ${value};`)
-              .join(' ')}
-          }
-        `
-        )
-        .join('')}}`
-    )
-    .join('')
+  const output = Object.entries(keyframes).reduce(
+    (result, [name, frames]) => ({ ...result, [`@keyframes ${name}`]: frames }),
+    {}
+  )
+  return output
 }
