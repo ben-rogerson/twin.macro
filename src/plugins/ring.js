@@ -14,14 +14,16 @@ export const globalRingStyles = ({ theme }) => {
     safeCall(() => toRgba(theme`ringColor.DEFAULT`), ['147', '197', '253'])
   )
 
-  return `* {
-    --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
-    --tw-ring-offset-width: ${theme('ringOffsetWidth.DEFAULT') || '0px'};
-    --tw-ring-offset-color: ${theme('ringOffsetColor.DEFAULT') || '#fff'};
-    --tw-ring-color: ${ringColorDefault};
-    --tw-ring-offset-shadow: 0 0 #0000;
-    --tw-ring-shadow: 0 0 #0000;
-  }`
+  return {
+    '*': {
+      '--tw-ring-inset': 'var(--tw-empty,/*!*/ /*!*/)',
+      '--tw-ring-offset-width': theme('ringOffsetWidth.DEFAULT') || '0px',
+      '--tw-ring-offset-color': theme('ringOffsetColor.DEFAULT') || '#fff',
+      '--tw-ring-color': ringColorDefault,
+      '--tw-ring-offset-shadow': '0 0 #0000',
+      '--tw-ring-shadow': '0 0 #0000',
+    },
+  }
 }
 
 const handleWidth = ({ configValue, important }) => {

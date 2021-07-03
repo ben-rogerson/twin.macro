@@ -7,7 +7,7 @@ These options are available in your [twin config](#configlocation):
 | Name                  | Default                | Description                                                                                                                                   |
 | --------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | config                | `"tailwind.config.js"` | The path to your Tailwind config.                                                                                                             |
-| preset                | `"emotion"`            | The css-in-js library behind the scenes.<br>Also supported: `"styled-components"` `"goober"`                                                  |
+| preset                | `"emotion"`            | The css-in-js library behind the scenes.<br>Also supported: `"styled-components"` `"goober"` `"stitches"`                                     |
 | autoCssProp           | `true`                 | This automates the import of 'styled-components/macro' so you can use their css prop. Enabled by default with the `styled-components` preset. |
 | hasSuggestions        | `true`                 | Display suggestions when a class isn’t found.                                                                                                 |
 | dataTwProp            | `true`                 | Add a prop to jsx components in development showing the original tailwind classes.<br/> Use `"all"` to keep the prop in production.           |
@@ -63,11 +63,9 @@ module.exports = {
 preset: 'emotion', // Set the css-in-js library to use with twin
 ```
 
-Supports: `'emotion'` / `'styled-components'` / `'goober'`.
+Supports: `'emotion'` / `'styled-components'` / `'goober'` / `'stitches'`.
 
 The preset option primarily assigns the library imports for `css`, `styled` and `GlobalStyles`.
-
-- [stitches](https://stitches.dev/) is supported but doesn’t have a preset yet - [see example](https://github.com/ben-rogerson/twin.examples/tree/master/next-stitches-typescript)
 
 </details>
 
@@ -336,4 +334,4 @@ b) Or in `package.json`:
 
 ---
 
-[&lsaquo; Documentation](https://github.com/ben-rogerson/twin.macro/blob/master/docs/index.md)
+[&lsaquo; Documentation index](https://github.com/ben-rogerson/twin.macro/blob/master/docs/index.md)

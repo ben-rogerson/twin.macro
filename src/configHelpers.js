@@ -1,5 +1,4 @@
-import { MacroError } from 'babel-plugin-macros'
-import { resolve } from 'path'
+import { resolve, relative, parse } from 'path'
 import { existsSync } from 'fs'
 import resolveTailwindConfig from 'tailwindcss/lib/util/resolveConfig'
 import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
@@ -26,16 +25,53 @@ const getConfigTailwindProperties = (state, config) => {
 
   const configPath = resolve(sourceRoot, configFile || `./tailwind.config.js`)
   const configExists = existsSync(configPath)
+  const path = configExists ? require(configPath) : defaultTailwindConfig
+  const configTailwind = resolveTailwindConfig([...getAllConfigs(path)])
 
-  const configTailwind = configExists
-    ? resolveTailwindConfig([...getAllConfigs(require(configPath))])
-    : resolveTailwindConfig([...getAllConfigs(defaultTailwindConfig)])
+  throwIf(!configTailwind, () =>
+    logGeneralError(`Couldn’t find the Tailwind config.\nLooked in ${config}`)
+  )
 
-  if (!configTailwind) {
-    throw new MacroError(`Couldn’t find the Tailwind config`)
-  }
+  return { configExists, configTailwind, configPath }
+}
 
-  return { configExists, configTailwind }
+const checkExists = (fileName, sourceRoot) => {
+  const fileNames = Array.isArray(fileName) ? fileName : [fileName]
+  let configPath
+  fileNames.find(fileName => {
+    const resolved = resolve(sourceRoot, `./${fileName}`)
+    const exists = existsSync(resolved)
+    if (exists) configPath = resolved
+    return exists
+  })
+  return configPath
+}
+
+const getRelativePath = ({ comparePath, state }) => {
+  const { filename } = state.file.opts
+  const pathName = parse(filename).dir
+  return relative(pathName, comparePath)
+}
+
+const getStitchesPath = (state, config) => {
+  const sourceRoot = state.file.opts.sourceRoot || '.'
+
+  const configPathCheck = config.stitchesConfig || [
+    'stitches.config.ts',
+    'stitches.config.js',
+  ]
+  const configPath = checkExists(configPathCheck, sourceRoot)
+  throwIf(!configPath, () =>
+    logGeneralError(
+      `Couldn’t find the Stitches config at ${
+        config.stitchesConfig
+          ? `“${config.stitchesConfig}”`
+          : 'the project root'
+      }.\nUse the twin config: stitchesConfig="PATH_FROM_PROJECT_ROOT" to set the location.`
+    )
+  )
+
+  return getRelativePath({ comparePath: configPath, state })
 }
 
 const runConfigValidator = ([item, value]) => {
@@ -65,6 +101,7 @@ const getConfigTwinValidated = (config, state) =>
 
 export {
   getConfigTailwindProperties,
+  getStitchesPath,
   resolveTailwindConfig,
   defaultTailwindConfig,
   getConfigTwinValidated,

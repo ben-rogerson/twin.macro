@@ -1,8 +1,9 @@
-import { addImport, generateUid } from './../macroHelpers'
+import { addImport, generateUid, makeStyledComponent } from './../macroHelpers'
 import { isEmpty } from './../utils'
 import userPresets from './../config/userPresets'
+import { getStitchesPath } from './../configHelpers'
 
-const getCssConfig = config => {
+const getCssConfig = ({ state, config }) => {
   const usedConfig =
     (config.css && config) || userPresets[config.preset] || userPresets.emotion
 
@@ -10,19 +11,37 @@ const getCssConfig = config => {
     return { import: 'css', from: usedConfig.css }
   }
 
+  if (config.preset === 'stitches') {
+    const stitchesPath = getStitchesPath(state, config)
+    if (stitchesPath) {
+      // Overwrite the stitches import data with the path from the current file
+      usedConfig.css.from = stitchesPath
+    }
+  }
+
   return usedConfig.css
 }
 
-const updateCssReferences = (references, state) => {
-  if (isEmpty(references)) return
+const updateCssReferences = ({ references, state }) => {
   if (state.existingCssIdentifier) return
 
-  references.forEach(path => {
+  const cssReferences = references.css
+  if (isEmpty(cssReferences)) return
+
+  cssReferences.forEach(path => {
     path.node.name = state.cssIdentifier.name
   })
 }
 
-const addCssImport = ({ program, t, cssImport, state }) =>
+const addCssImport = ({ references, program, t, cssImport, state }) => {
+  if (!state.isImportingCss) {
+    const shouldImport =
+      !isEmpty(references.css) && !state.existingCssIdentifier
+    if (!shouldImport) return
+  }
+
+  if (state.existingCssIdentifier) return
+
   addImport({
     types: t,
     program,
@@ -30,6 +49,7 @@ const addCssImport = ({ program, t, cssImport, state }) =>
     mod: cssImport.from,
     identifier: state.cssIdentifier,
   })
+}
 
 /**
  * Auto add the styled-components css prop
@@ -38,7 +58,13 @@ const addCssImport = ({ program, t, cssImport, state }) =>
  * added until you've imported the macro: "import 'styled-components/macro'".
  * This code aims to automate that import.
  */
-const maybeAddCssProperty = ({ program, t }) => {
+const handleAutoCssProp = ({ configTwin, state, program, t }) => {
+  const addCssProperty =
+    (state.hasTwAttribute || state.hasCssAttribute) &&
+    configTwin.autoCssProp === true &&
+    state.isStyledComponents
+  if (!addCssProperty) return
+
   let shouldAddImport = true
   let twinImportPath
 
@@ -80,4 +106,18 @@ const maybeAddCssProperty = ({ program, t }) => {
   )
 }
 
-export { getCssConfig, updateCssReferences, addCssImport, maybeAddCssProperty }
+const convertHtmlElementToStyled = props => {
+  const { path, t, state } = props
+  if (!state.configTwin.convertHtmlElementToStyled) return
+
+  const jsxPath = path.parentPath
+  makeStyledComponent({ ...props, jsxPath, secondArg: t.objectExpression([]) })
+}
+
+export {
+  getCssConfig,
+  updateCssReferences,
+  addCssImport,
+  handleAutoCssProp,
+  convertHtmlElementToStyled,
+}
