@@ -138,11 +138,7 @@ const handleTwFunction = ({ references, state, t }) => {
      * becomes stale and needs to be refreshed with crawl()
      */
     const { parentPath } = path
-    if (
-      !parentPath.isTaggedTemplateExpression() ||
-      !parentPath.isJSXExpressionContainer()
-    )
-      path.scope.crawl()
+    if (!parentPath.isTaggedTemplateExpression()) path.scope.crawl()
 
     const parent = path.findParent(x => x.isTaggedTemplateExpression())
     if (!parent) return
