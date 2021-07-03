@@ -34,7 +34,9 @@ const handleThemeFunction = ({ references, t, state }) => {
       )
     )
 
-    const themeValue = theme(input)
+    let themeValue = theme(input)
+    if (themeValue && themeValue.DEFAULT) themeValue = themeValue.DEFAULT
+
     throwIf(!themeValue, () =>
       themeErrorNotFound({
         theme: input.includes('.') ? get(theme(), trimInput(input)) : theme(),
