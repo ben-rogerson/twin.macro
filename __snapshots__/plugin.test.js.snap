@@ -2661,6 +2661,38 @@ var _StyledDiv = _styled('div').withConfig({
 
 `;
 
+exports[`twin.macro autoCssPropWithStyled.js: autoCssPropWithStyled.js 1`] = `
+
+import tw from './macro' // twinImport
+
+tw.div\`block\`
+;<div tw="block" />
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled3 from 'styled-components'
+import _styled2 from 'styled-components'
+
+// twinImport
+_styled2.div.withConfig({
+  displayName: 'plugintest',
+  componentId: 'sc-16ats9e-0',
+})({
+  display: 'block',
+})
+
+var _StyledDiv = _styled2('div').withConfig({
+  displayName: 'plugintest___StyledDiv',
+  componentId: 'sc-16ats9e-1',
+})({
+  display: 'block',
+})
+
+;<_StyledDiv />
+
+
+`;
+
 exports[`twin.macro backgrounds.js: backgrounds.js 1`] = `
 
 import tw from './macro'

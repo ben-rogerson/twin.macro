@@ -58,10 +58,10 @@ const macroTasks = [
   handleStyledFunction, // Convert tw.div`` & styled.div`` to styled('div', {}) (stitches)
   updateCssReferences, // Update any usage of existing css imports
   handleThemeFunction, // Theme import
-  handleAutoCssProp, // Auto css prop for styled-components
   handleScreenFunction, // Screen import
   addStyledImport,
   addCssImport, // Gotcha: Must be after addStyledImport or issues with theme`` style transpile
+  handleAutoCssProp, // Auto css prop on jsx elements - Gotcha: Must be after addStyledImport (#241#issuecomment-874364714)
 ]
 
 const twinMacro = ({ babel: { types: t }, references, state, config }) => {
