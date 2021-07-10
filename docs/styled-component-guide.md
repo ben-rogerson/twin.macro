@@ -340,8 +340,8 @@ The styled import accepts a sass-like syntax, allowing both custom css and tailw
 ```js
 import tw, { styled, css, theme } from 'twin.macro'
 
-const Input = styled.div(
-  css`
+const Input = styled.div`
+  ${css`
     -webkit-tap-highlight-color: transparent; /* add css styles */
     background-color: ${theme`colors.red.500`}; /* add values from your tailwind config */
     ${tw`text-blue-500 border-2`}; /* tailwind classes */
@@ -349,8 +349,8 @@ const Input = styled.div(
     &::selection {
       ${tw`text-purple-500`}; /* style custom css selectors with tailwind classes */
     }
-  `
-)
+  `}
+`
 
 const Component = () => <Input />
 ```
