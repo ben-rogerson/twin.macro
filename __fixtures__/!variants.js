@@ -15,15 +15,18 @@ tw`target:flex`
 tw`focus-visible:flex`
 
 // Form element states
+tw`autofill:flex`
 tw`disabled:flex`
 tw`checked:flex`
 tw`not-checked:flex`
 tw`default:flex`
 tw`enabled:flex`
 tw`indeterminate:flex`
+tw`in-range:flex`
 tw`invalid:flex`
 tw`valid:flex`
 tw`optional:flex`
+tw`out-of-range:flex`
 tw`required:flex`
 tw`placeholder:flex`
 tw`placeholder-shown:flex`
@@ -36,11 +39,14 @@ tw`first-of-type:flex`
 tw`not-first-of-type:flex`
 tw`last-of-type:flex`
 tw`not-last-of-type:flex`
+tw`first-letter:flex`
+tw`first-line:flex`
 tw`first:flex`
 tw`not-first:flex`
 tw`last:flex`
 tw`not-last:flex`
 tw`only-child:flex`
+tw`only:flex`
 tw`not-only-child:flex`
 tw`only-of-type:flex`
 tw`not-only-of-type:flex`
@@ -52,6 +58,9 @@ tw`svg:flex`
 tw`all:flex`
 tw`all-child:flex`
 tw`sibling:flex`
+
+// Content
+tw`empty:flex`
 
 // Group states
 tw`group-hover:flex`
@@ -98,5 +107,8 @@ tw`dark:sm:bg-black`
 tw`light:sm:bg-black`
 tw`dark:group-hover:sm:bg-black`
 tw`light:group-hocus:sm:bg-black`
+
+// Selection
+tw`selection:bg-black`
 
 const multiVariants = tw`xl:placeholder-red-500! first:md:block sm:disabled:flex`

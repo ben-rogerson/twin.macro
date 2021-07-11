@@ -17,26 +17,29 @@ const variantConfig = ({
   after: ':after',
 
   // Interactive links/buttons
-  hover: ':hover', // Tailwind
-  focus: ':focus', // Tailwind
-  active: ':active', // Tailwind
-  visited: ':visited', // Tailwind
+  hover: ':hover',
+  focus: ':focus',
+  active: ':active',
+  visited: ':visited',
   hocus: ':hover, :focus',
   link: ':link',
   target: ':target',
-  'focus-visible': ':focus-visible', // Tailwind
-  'focus-within': ':focus-within', // Tailwind
+  'focus-visible': ':focus-visible',
+  'focus-within': ':focus-within',
 
   // Form element states
-  disabled: ':disabled', // Tailwind
-  checked: ':checked', // Tailwind
+  autofill: ':autofill',
+  disabled: ':disabled',
+  checked: ':checked',
   'not-checked': ':not(:checked)',
   default: ':default',
   enabled: ':enabled',
   indeterminate: ':indeterminate',
+  'in-range': ':in-range',
   invalid: ':invalid',
   valid: ':valid',
   optional: ':optional',
+  'out-of-range': ':out-of-range',
   required: ':required',
   'placeholder-shown': ':placeholder-shown',
   placeholder: '::placeholder',
@@ -49,16 +52,19 @@ const variantConfig = ({
   'not-first-of-type': ':not(:first-of-type)',
   'last-of-type': ':last-of-type',
   'not-last-of-type': ':not(:last-of-type)',
-  first: ':first-child', // Tailwind
+  'first-letter': '::first-letter',
+  'first-line': '::first-line',
+  first: ':first-child',
   'not-first': ':not(:first-child)',
-  last: ':last-child', // Tailwind
+  last: ':last-child',
   'not-last': ':not(:last-child)',
   'only-child': ':only-child',
+  only: ':only-child',
   'not-only-child': ':not(:only-child)',
   'only-of-type': ':only-of-type',
   'not-only-of-type': ':not(:only-of-type)',
-  even: ':nth-child(even)', // Tailwind
-  odd: ':nth-child(odd)', // Tailwind
+  even: ':nth-child(even)',
+  odd: ':nth-child(odd)',
   'even-of-type': ':nth-of-type(even)',
   'odd-of-type': ':nth-of-type(odd)',
   svg: 'svg',
@@ -66,13 +72,16 @@ const variantConfig = ({
   'all-child': '> *',
   sibling: '~ *',
 
+  // Content
+  empty: ':empty',
+
   // Group states
   // You'll need to add className="group" to an ancestor to make these work
   // https://github.com/ben-rogerson/twin.macro/blob/master/docs/group.md
   'group-hover': variantData =>
-    prefixDarkLightModeClass('.group:hover &', variantData), // Tailwind
+    prefixDarkLightModeClass('.group:hover &', variantData),
   'group-focus': variantData =>
-    prefixDarkLightModeClass('.group:focus &', variantData), // Tailwind
+    prefixDarkLightModeClass('.group:focus &', variantData),
   'group-hocus': variantData =>
     prefixDarkLightModeClass('.group:hover &, .group:focus &', variantData),
   'group-active': variantData =>
@@ -115,6 +124,9 @@ const variantConfig = ({
 
   // Light mode
   light: variantLightMode,
+
+  // Selection
+  selection: '::selection',
 })
 
 export default variantConfig
