@@ -127,6 +127,9 @@ const variantConfig = ({
 
   // Selection
   selection: '::selection',
+
+  // Lists
+  marker: '::marker, *::marker',
 })
 
 export default variantConfig

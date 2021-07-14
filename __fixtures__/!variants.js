@@ -111,4 +111,7 @@ tw`light:group-hocus:sm:bg-black`
 // Selection
 tw`selection:bg-black`
 
+// Lists
+tw`marker:bg-black`
+
 const multiVariants = tw`xl:placeholder-red-500! first:md:block sm:disabled:flex`

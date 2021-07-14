@@ -1501,6 +1501,9 @@ tw\`light:group-hocus:sm:bg-black\`
 // Selection
 tw\`selection:bg-black\`
 
+// Lists
+tw\`marker:bg-black\`
+
 const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -1940,6 +1943,13 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
 
 ;({
   '::selection': {
+    '--tw-bg-opacity': '1',
+    backgroundColor: 'rgba(0, 0, 0, var(--tw-bg-opacity))',
+  },
+}) // Lists
+
+;({
+  '::marker, *::marker': {
     '--tw-bg-opacity': '1',
     backgroundColor: 'rgba(0, 0, 0, var(--tw-bg-opacity))',
   },
