@@ -958,6 +958,7 @@ const addComponentsTestVariants = {
   },
   ':hover, :focus': {
     ':before': {
+      content: '""',
       backgroundColor: '#3490dc',
       color: '#fff',
       ':hover': {
@@ -1200,6 +1201,8 @@ const basic = tw\`group-hover:(flex m-10)\`
 const subMediaQuery = tw\`focus-within:(md:flex mt-5)\`
 const multipleClasses = tw\`hover:(bg-black text-white underline)\`
 const pseudoElement = tw\`before:(content w-10 h-10 block bg-black)\`
+const pseudoElementNoContent = tw\`before:(w-10 h-10 block bg-black)\`
+const pseudoElementsNoContent = tw\`before:(w-10 h-10) after:(w-10 h-10)\`
 const mediaHover = tw\`sm:hover:(bg-black text-white)\`
 const sloppySpacing = tw\` last:( flex  mt-5)\`
 const multipleGroups = tw\`focus:(w-10 h-10 block bg-black) focus-within:(md:flex mt-5)\`
@@ -1258,6 +1261,28 @@ const pseudoElement = {
     display: 'block',
     '--tw-bg-opacity': '1',
     backgroundColor: 'rgba(0, 0, 0, var(--tw-bg-opacity))',
+  },
+}
+const pseudoElementNoContent = {
+  ':before': {
+    content: '""',
+    width: '2.5rem',
+    height: '2.5rem',
+    display: 'block',
+    '--tw-bg-opacity': '1',
+    backgroundColor: 'rgba(0, 0, 0, var(--tw-bg-opacity))',
+  },
+}
+const pseudoElementsNoContent = {
+  ':before': {
+    content: '""',
+    width: '2.5rem',
+    height: '2.5rem',
+  },
+  ':after': {
+    content: '""',
+    width: '2.5rem',
+    height: '2.5rem',
   },
 }
 const mediaHover = {
@@ -1393,6 +1418,8 @@ import tw from './macro'
 // Before/after pseudo elements
 tw\`before:content\`
 tw\`after:content\`
+tw\`before:flex\`
+tw\`after:flex\`
 
 // Interactive links/buttons
 tw\`hover:flex\`
@@ -1502,6 +1529,18 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
 ;({
   ':after': {
     content: '""',
+  },
+})
+;({
+  ':before': {
+    content: '""',
+    display: 'flex',
+  },
+})
+;({
+  ':after': {
+    content: '""',
+    display: 'flex',
   },
 }) // Interactive links/buttons
 

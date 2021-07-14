@@ -23,6 +23,7 @@ import { orderTransformProperty } from './transform'
 import { orderRingProperty } from './ring'
 import { orderBackdropProperty } from './backdrop'
 import { orderFilterProperty } from './filter'
+import { addContentClass } from './content'
 import applyTransforms from './transforms'
 import { addVariants, handleVariantGroups } from './variants'
 import {
@@ -68,6 +69,8 @@ const formatTasks = [
   ({ classes }) => orderFilterProperty(classes),
   // Move and sort the responsive items to the end of the list
   ({ classes, state }) => orderByScreens(classes, state),
+  // Add a missing content class for after:/before: variants
+  ({ classes }) => addContentClass(classes),
 ]
 
 export default (
