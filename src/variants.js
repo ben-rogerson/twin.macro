@@ -12,10 +12,16 @@ import {
 } from './darkLightMode'
 import { SPACE_ID } from './contants'
 
+const createPeer = selector => {
+  const selectors = Array.isArray(selector) ? selector : [selector]
+  return selectors.map(s => `.peer:${s} ~ &`).join(', ')
+}
+
 const fullVariantConfig = variantConfig({
   variantDarkMode,
   variantLightMode,
   prefixDarkLightModeClass,
+  createPeer,
 })
 
 /**
@@ -34,32 +40,27 @@ const validateVariants = ({ variants, state, ...rest }) => {
         return stringifyScreen(state.config, variant)
       }
 
-      if (fullVariantConfig[variant]) {
-        let foundVariant = fullVariantConfig[variant]
-
-        if (typeof foundVariant === 'function') {
-          const context = {
-            ...rest,
-            config: item => state.config[item] || null,
-            errorCustom: message => {
-              throw new MacroError(logGeneralError(message))
-            },
-          }
-          foundVariant = foundVariant(context)
+      let foundVariant = fullVariantConfig[variant]
+      if (!foundVariant) {
+        const validVariants = {
+          ...(screenNames.length > 0 && { 'Screen breakpoints': screenNames }),
+          'Built-in variants': Object.keys(fullVariantConfig),
         }
-
-        if (state.configTwin.sassyPseudo) {
-          return foundVariant.replace(/(?<= ):|^:/g, '&:')
-        }
-
-        return foundVariant
+        throw new MacroError(logNoVariant(variant, validVariants))
       }
 
-      const validVariants = {
-        ...(screenNames.length > 0 && { 'Screen breakpoints': screenNames }),
-        'Built-in variants': Object.keys(fullVariantConfig),
+      if (typeof foundVariant === 'function') {
+        const context = {
+          ...rest,
+          config: item => state.config[item] || null,
+          errorCustom: message => {
+            throw new MacroError(logGeneralError(message))
+          },
+        }
+        foundVariant = foundVariant(context)
       }
-      throw new MacroError(logNoVariant(variant, validVariants))
+
+      return foundVariant
     })
     .filter(Boolean)
 }
@@ -111,9 +112,54 @@ const splitVariants = ({ classNameRaw, state }) => {
   }
 }
 
-const addVariants = ({ results, style, pieces }) => {
-  const { variants } = pieces
-  if (variants.length === 0) return
+const getPeerValueFromVariant = variant =>
+  get(/\.peer:(.+) ~ &/.exec(variant), '1')
+
+/**
+ * Combine peers when they are used in succession
+ */
+const combinePeers = ({ variants }) =>
+  variants
+    .map((_, i) => {
+      let isPeer = false
+      let index = i
+      let returnVariant
+      const peerList = []
+
+      do {
+        const peer = getPeerValueFromVariant(variants[index])
+
+        isPeer = Boolean(peer)
+        if (isPeer) {
+          peerList.push(peer)
+          variants[index] = null
+          index = index + 1
+        } else {
+          returnVariant =
+            peerList.length === 0
+              ? variants[index]
+              : `.peer:${peerList.join(':')} ~ &`
+        }
+      } while (isPeer)
+
+      return returnVariant
+    })
+    .filter(Boolean)
+
+const addSassyPseudo = ({ variants, state }) => {
+  if (!state.configTwin.sassyPseudo) return variants
+  return variants.map(v => v.replace(/(?<= ):|^:/g, '&:'))
+}
+
+const formatTasks = [combinePeers, addSassyPseudo]
+
+const addVariants = ({ results, style, pieces, state }) => {
+  let { variants, hasVariants } = pieces
+  if (!hasVariants) return style
+
+  for (const task of formatTasks) {
+    variants = task({ variants, state })
+  }
 
   const styleWithVariants = cleanSet(results, variants, {
     ...get(styleWithVariants, variants, {}),
