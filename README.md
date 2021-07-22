@@ -135,7 +135,7 @@ ml-40 [10rem] / ml-48 [12rem] / ml-56 [14rem] / ml-64 [16rem] / ml-auto [auto] /
 
 - Prefix with `before:` and `after:` to style pseudo-elements
 - Prefix with `hocus:` to style hover + focus at the same time
-- Style with extra group states like `group-hocus:` and `group-active:`
+- Style with extra group states like `group-focus:` and `group-active:`
 - Style form field states with `checked:`, `invalid:` and `required:`
 - Stack up variants whenever you need them `sm:hover:first:bg-black`
 
