@@ -19,22 +19,23 @@ const styleify = ({ property, value, negative }) => {
 
 export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
   const { className, negative } = pieces
-  const key = `${negative}${className.slice(Number(dynamicKey.length) + 1)}`
 
-  const grabConfig = ({ config, configFallback }) =>
+  const getConfig = ({ config, configFallback }) =>
     (config && theme(config)) || (configFallback && theme(configFallback))
 
   const styleSet = Array.isArray(dynamicConfig)
     ? dynamicConfig
     : [dynamicConfig]
 
-  const results = styleSet
-    .map(item => ({
-      property: item.prop,
-      value: getConfigValue(grabConfig(item), key),
-      negative,
-    }))
-    .find(item => item.value)
+  const piece = className.slice(Number(dynamicKey.length) + 1)
+  const key = [negative, piece].join('')
+
+  let results
+  styleSet.find(item => {
+    const value = getConfigValue(getConfig(item), key)
+    if (value) results = { property: item.prop, value, negative }
+    return value
+  })
 
   throwIf(!results || className.endsWith('-'), () =>
     errorSuggestions({

@@ -631,7 +631,7 @@ export default {
    */
 
   // https://tailwindcss.com/docs/fill
-  fill: { prop: 'fill', config: 'fill' },
+  fill: { prop: 'fill', plugin: 'fill' },
 
   // https://tailwindcss.com/docs/stroke
   // https://tailwindcss.com/docs/stroke

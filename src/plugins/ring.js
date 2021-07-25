@@ -1,4 +1,4 @@
-import { withAlpha, toRgba } from './../utils'
+import { toRgba } from './../utils'
 
 function safeCall(callback, defaultValue) {
   try {
@@ -41,40 +41,36 @@ const handleWidth = ({ configValue, important }) => {
   }
 }
 
-const handleColor = ({ configValue, important, disableColorVariables }) => {
-  const value = configValue('ringColor')
-  if (!value) return
-
-  return {
-    '--tw-ring-opacity': '1',
-    ...withAlpha({
-      color: value,
-      property: '--tw-ring-color',
-      variable: !disableColorVariables && '--tw-ring-opacity',
-      important,
-    }),
+const handleColor = ({ toColor }) => {
+  const common = {
+    matchStart: 'ring',
+    property: '--tw-ring-color',
+    configSearch: 'ringColor',
   }
+  return toColor([{ ...common, opacityVariable: '--tw-ring-opacity' }, common])
 }
 
 export default properties => {
   const {
     theme,
     match,
+    toColor,
     getConfigValue,
-    configTwin: { disableColorVariables },
     errors: { errorSuggestions },
     pieces: { important },
   } = properties
 
   const classValue = match(/(?<=(ring)-)([^]*)/)
-  const configValue = config => getConfigValue(theme(config), classValue)
 
   if (classValue === 'inset') return { '--tw-ring-inset': 'inset' }
 
-  const width = handleWidth({ configValue, important })
+  const width = handleWidth({
+    configValue: config => getConfigValue(theme(config), classValue),
+    important,
+  })
   if (width) return width
 
-  const color = handleColor({ configValue, important, disableColorVariables })
+  const color = handleColor({ toColor })
   if (color) return color
 
   errorSuggestions({

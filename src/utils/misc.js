@@ -74,7 +74,7 @@ const isClass = str => new RegExp(/(\s*\.|{{)\w/).test(str)
 
 const isMediaQuery = str => str.startsWith('@media')
 
-const isShortCss = className => new RegExp(/[^-]\[/).test(className)
+const isShortCss = className => new RegExp(/[^/-]\[/).test(className)
 
 const isArbitraryCss = className => new RegExp(/-\[/).test(className)
 

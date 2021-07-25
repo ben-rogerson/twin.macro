@@ -1,15 +1,10 @@
-import { withAlpha } from './../utils'
-
-const handleColor = ({ configValue, important, disableColorVariables }) => {
-  const value = configValue('textColor')
-  if (!value) return
-
-  return withAlpha({
-    color: value,
+const handleColor = ({ toColor }) => {
+  const common = {
+    matchStart: 'text',
     property: 'color',
-    variable: !disableColorVariables && '--tw-text-opacity',
-    important,
-  })
+    configSearch: 'textColor',
+  }
+  return toColor([{ ...common, opacityVariable: '--tw-text-opacity' }, common])
 }
 
 const handleSize = ({ configValue, important }) => {
@@ -36,19 +31,19 @@ export default properties => {
   const {
     match,
     theme,
+    toColor,
     getConfigValue,
-    configTwin: { disableColorVariables },
     pieces: { important, hasNegative },
     errors: { errorSuggestions, errorNoNegatives },
   } = properties
 
   hasNegative && errorNoNegatives()
 
+  const color = handleColor({ toColor })
+  if (color) return color
+
   const classValue = match(/(?<=(text-))([^]*)/)
   const configValue = config => getConfigValue(theme(config), classValue)
-
-  const color = handleColor({ configValue, important, disableColorVariables })
-  if (color) return color
 
   const size = handleSize({ configValue, important })
   if (size) return size
