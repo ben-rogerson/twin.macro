@@ -68,7 +68,7 @@ export default ({ className, pieces }) => {
       color: value,
       property: properties[1],
       variable: properties[0],
-      important: pieces.important,
+      pieces,
     })
 
   const value =

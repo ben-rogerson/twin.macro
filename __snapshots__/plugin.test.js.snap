@@ -6707,11 +6707,9 @@ tw\`mt-5 md:(ring-opacity-20 ring-4 ring-green-500) mb-5\`
 }) // https://tailwindcss.com/docs/ring-color
 
 ;({
-  '--tw-ring-opacity': '1',
   '--tw-ring-color': 'transparent',
 })
 ;({
-  '--tw-ring-opacity': '1',
   '--tw-ring-color': 'currentColor',
 })
 ;({
@@ -7855,10 +7853,11 @@ animation-timing-function: cubic-bezier(0,0,0.2,1);
 
 // twinImport
 ;({
-  color: 'rgba(var(--twc-foreground), var(--tw-text-opacity))',
   '--tw-text-opacity': '0.4',
+  color: 'rgba(var(--twc-foreground), var(--tw-text-opacity))',
 })
 ;({
+  '--tw-text-opacity': '1',
   color: 'rgba(var(--twc-gray-300), var(--tw-text-opacity))',
 })
 ;<_GlobalStyles />
@@ -8080,6 +8079,7 @@ tw\`bg-blue-gray-green-pink\`
   color: 'rgba(0, 0, 255, var(--tw-text-opacity))',
 })
 ;({
+  '--tw-text-opacity': '1',
   color: 'rgba(var(--color-primary), var(--tw-text-opacity, 1))',
 })
 ;({
@@ -8115,6 +8115,7 @@ tw\`bg-blue-gray-green-pink\`
   backgroundColor: 'rgba(0, 0, 255, var(--tw-bg-opacity))',
 })
 ;({
+  '--tw-bg-opacity': '1',
   backgroundColor: 'rgba(var(--color-primary), var(--tw-bg-opacity, 1))',
 })
 ;({
@@ -8144,6 +8145,125 @@ tw\`bg-blue-gray-green-pink\`
 })
 ;({
   backgroundColor: 'blue-gray-green-pink',
+})
+
+
+`;
+
+exports[`twin.macro disableColorVariables.js: disableColorVariables.js 1`] = `
+
+import tw from './macro'
+
+tw\`placeholder-red-500\`
+tw\`placeholder-red-500/25\`
+
+tw\`bg-red-500\`
+tw\`bg-red-500/25\`
+
+tw\`from-red-500\`
+tw\`from-red-500/25\`
+
+tw\`via-red-500\`
+tw\`via-red-500/25\`
+
+tw\`to-red-500\`
+tw\`to-red-500/25\`
+
+tw\`border-red-500\`
+tw\`border-red-500/25\`
+
+tw\`ring-red-500\`
+tw\`ring-red-500/25\`
+
+tw\`ring-offset-red-500\`
+tw\`ring-offset-red-500/25\`
+
+tw\`text-red-500\`
+tw\`text-red-500/25\`
+
+tw\`stroke-red-500\`
+tw\`stroke-red-500/25\`
+
+tw\`fill-red-500\`
+tw\`fill-red-500/25\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+;({
+  '::placeholder': {
+    color: 'rgb(239, 68, 68)',
+  },
+})
+;({
+  '::placeholder': {
+    color: 'rgba(239, 68, 68, 0.25)',
+  },
+})
+;({
+  backgroundColor: 'rgb(239, 68, 68)',
+})
+;({
+  backgroundColor: 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  '--tw-gradient-from': '#ef4444',
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 68, 68, 0))',
+})
+;({
+  '--tw-gradient-from': 'rgba(239, 68, 68, 0.25)',
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 68, 68, 0)',
+})
+;({
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), #ef4444, var(--tw-gradient-to, rgba(239, 68, 68, 0))',
+})
+;({
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), rgba(239, 68, 68, 0.25), var(--tw-gradient-to, rgba(239, 68, 68, 0))',
+})
+;({
+  '--tw-gradient-to': '#ef4444',
+})
+;({
+  '--tw-gradient-to': 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  borderColor: 'rgb(239, 68, 68)',
+})
+;({
+  borderColor: 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  '--tw-ring-color': 'rgb(239, 68, 68)',
+})
+;({
+  '--tw-ring-color': 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  '--tw-ring-offset-color': 'rgb(239, 68, 68)',
+})
+;({
+  '--tw-ring-offset-color': 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  color: 'rgb(239, 68, 68)',
+})
+;({
+  color: 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  stroke: 'rgb(239, 68, 68)',
+})
+;({
+  stroke: 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  fill: 'rgb(239, 68, 68)',
+})
+;({
+  fill: 'rgba(239, 68, 68, 0.25)',
 })
 
 
@@ -17442,6 +17562,494 @@ tw\`max-h-screen\`
 })
 ;({
   maxHeight: '100vh',
+})
+
+
+`;
+
+exports[`twin.macro slashAlpha.js: slashAlpha.js 1`] = `
+
+import tw from './macro'
+
+tw\`placeholder-red-500\`
+tw\`placeholder-red-500/25\`
+tw\`placeholder-red-500/fromConfig\`
+tw\`placeholder-red-500/[.555]\`
+tw\`placeholder-red-500/[var(--myvar)]\`
+
+tw\`placeholder-electric\`
+tw\`placeholder-electric/25\`
+tw\`placeholder-electric/[.555]\`
+tw\`placeholder-electric/[var(--myvar)]\`
+
+tw\`bg-red-500\`
+tw\`bg-red-500/25\`
+tw\`bg-red-500/fromConfig\`
+tw\`bg-red-500/[.555]\`
+tw\`bg-red-500/[var(--myvar)]\`
+
+tw\`bg-electric\`
+tw\`bg-electric/25\`
+tw\`bg-electric/[.555]\`
+tw\`bg-electric/[var(--myvar)]\`
+
+tw\`from-red-500\`
+tw\`from-red-500/25\`
+tw\`from-red-500/fromConfig\`
+tw\`from-red-500/[.555]\`
+tw\`from-red-500/[var(--myvar)]\`
+
+tw\`from-electric\`
+tw\`from-electric/25\`
+tw\`from-electric/[.555]\`
+tw\`from-electric/[var(--myvar)]\`
+
+tw\`via-red-500\`
+tw\`via-red-500/25\`
+tw\`via-red-500/fromConfig\`
+tw\`via-red-500/[.555]\`
+tw\`via-red-500/[var(--myvar)]\`
+
+tw\`via-electric\`
+tw\`via-electric/25\`
+tw\`via-electric/[.555]\`
+tw\`via-electric/[var(--myvar)]\`
+
+tw\`to-red-500\`
+tw\`to-red-500/25\`
+tw\`to-red-500/fromConfig\`
+tw\`to-red-500/[.555]\`
+tw\`to-red-500/[var(--myvar)]\`
+
+tw\`to-electric\`
+tw\`to-electric/25\`
+tw\`to-electric/[.555]\`
+tw\`to-electric/[var(--myvar)]\`
+
+tw\`border-red-500\`
+tw\`border-red-500/25\`
+tw\`border-red-500/fromConfig\`
+tw\`border-red-500/[.555]\`
+tw\`border-red-500/[var(--myvar)]\`
+
+tw\`border-electric\`
+tw\`border-electric/25\`
+tw\`border-electric/[.555]\`
+tw\`border-electric/[var(--myvar)]\`
+
+tw\`ring-red-500\`
+tw\`ring-red-500/25\`
+tw\`ring-red-500/fromConfig\`
+tw\`ring-red-500/[.555]\`
+tw\`ring-red-500/[var(--myvar)]\`
+
+tw\`ring-electric\`
+tw\`ring-electric/25\`
+tw\`ring-electric/[.555]\`
+tw\`ring-electric/[var(--myvar)]\`
+
+tw\`ring-offset-red-500\`
+tw\`ring-offset-red-500/25\`
+tw\`ring-offset-red-500/fromConfig\`
+tw\`ring-offset-red-500/[.555]\`
+tw\`ring-offset-red-500/[var(--myvar)]\`
+
+tw\`ring-offset-electric\`
+tw\`ring-offset-electric/25\`
+tw\`ring-offset-electric/[.555]\`
+tw\`ring-offset-electric/[var(--myvar)]\`
+
+tw\`text-red-500\`
+tw\`text-red-500/25\`
+tw\`text-red-500/fromConfig\`
+tw\`text-red-500/[.555]\`
+tw\`text-red-500/[var(--myvar)]\`
+
+tw\`text-electric\`
+tw\`text-electric/25\`
+tw\`text-electric/[.555]\`
+tw\`text-electric/[var(--myvar)]\`
+
+tw\`stroke-red-500\`
+tw\`stroke-red-500/25\`
+tw\`stroke-red-500/fromConfig\`
+tw\`stroke-red-500/[.555]\`
+tw\`stroke-red-500/[var(--myvar)]\`
+
+tw\`stroke-electric\`
+tw\`stroke-electric/25\`
+tw\`stroke-electric/[.555]\`
+tw\`stroke-electric/[var(--myvar)]\`
+
+tw\`fill-red-500\`
+tw\`fill-red-500/25\`
+tw\`fill-red-500/fromConfig\`
+tw\`fill-red-500/[.555]\`
+tw\`fill-red-500/[var(--myvar)]\`
+
+tw\`fill-electric\`
+tw\`fill-electric/25\`
+tw\`fill-electric/[.555]\`
+tw\`fill-electric/[var(--myvar)]\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+;({
+  '::placeholder': {
+    '--tw-placeholder-opacity': '1',
+    color: 'rgba(239, 68, 68, var(--tw-placeholder-opacity))',
+  },
+})
+;({
+  '::placeholder': {
+    color: 'rgba(239, 68, 68, 0.25)',
+  },
+})
+;({
+  '::placeholder': {
+    '--tw-placeholder-opacity': '1',
+    color: 'rgba(0, 0, 0, var(--tw-placeholder-opacity))',
+  },
+})
+;({
+  '::placeholder': {
+    color: 'rgba(239, 68, 68, .555)',
+  },
+})
+;({
+  '::placeholder': {
+    color: 'rgba(239, 68, 68, var(--myvar))',
+  },
+})
+;({
+  '::placeholder': {
+    '--tw-placeholder-opacity': '1',
+    color: 'rgba(219, 0, 255, var(--tw-placeholder-opacity))',
+  },
+})
+;({
+  '::placeholder': {
+    color: 'rgba(219, 0, 255, 0.25)',
+  },
+})
+;({
+  '::placeholder': {
+    color: 'rgba(219, 0, 255, .555)',
+  },
+})
+;({
+  '::placeholder': {
+    color: 'rgba(219, 0, 255, var(--myvar))',
+  },
+})
+;({
+  '--tw-bg-opacity': '1',
+  backgroundColor: 'rgba(239, 68, 68, var(--tw-bg-opacity))',
+})
+;({
+  backgroundColor: 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  '--tw-bg-opacity': '1',
+  backgroundColor: 'rgba(0, 0, 0, var(--tw-bg-opacity))',
+})
+;({
+  backgroundColor: 'rgba(239, 68, 68, .555)',
+})
+;({
+  backgroundColor: 'rgba(239, 68, 68, var(--myvar))',
+})
+;({
+  '--tw-bg-opacity': '1',
+  backgroundColor: 'rgba(219, 0, 255, var(--tw-bg-opacity))',
+})
+;({
+  backgroundColor: 'rgba(219, 0, 255, 0.25)',
+})
+;({
+  backgroundColor: 'rgba(219, 0, 255, .555)',
+})
+;({
+  backgroundColor: 'rgba(219, 0, 255, var(--myvar))',
+})
+;({
+  '--tw-gradient-from': '#ef4444',
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 68, 68, 0))',
+})
+;({
+  '--tw-gradient-from': 'rgba(239, 68, 68, 0.25)',
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 68, 68, 0)',
+})
+;({
+  '--tw-gradient-from': '#000',
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0))',
+})
+;({
+  '--tw-gradient-from': 'rgba(239, 68, 68, .555)',
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 68, 68, 0)',
+})
+;({
+  '--tw-gradient-from': 'rgba(239, 68, 68, var(--myvar))',
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 68, 68, 0)',
+})
+;({
+  '--tw-gradient-from': 'rgb(219, 0, 255)',
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), var(--tw-gradient-to, rgba(219, 0, 255, 0))',
+})
+;({
+  '--tw-gradient-from': 'rgba(219, 0, 255, 0.25)',
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), var(--tw-gradient-to, rgba(219, 0, 255, 0)',
+})
+;({
+  '--tw-gradient-from': 'rgba(219, 0, 255, .555)',
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), var(--tw-gradient-to, rgba(219, 0, 255, 0)',
+})
+;({
+  '--tw-gradient-from': 'rgba(219, 0, 255, var(--myvar))',
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), var(--tw-gradient-to, rgba(219, 0, 255, 0)',
+})
+;({
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), #ef4444, var(--tw-gradient-to, rgba(239, 68, 68, 0))',
+})
+;({
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), rgba(239, 68, 68, 0.25), var(--tw-gradient-to, rgba(239, 68, 68, 0))',
+})
+;({
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), #000, var(--tw-gradient-to, rgba(0, 0, 0, 0))',
+})
+;({
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), rgba(239, 68, 68, .555), var(--tw-gradient-to, rgba(239, 68, 68, 0))',
+})
+;({
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), rgba(239, 68, 68, var(--myvar)), var(--tw-gradient-to, rgba(239, 68, 68, 0))',
+})
+;({
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), rgb(219, 0, 255), var(--tw-gradient-to, rgba(219, 0, 255, 0))',
+})
+;({
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), rgba(219, 0, 255, 0.25), var(--tw-gradient-to, rgba(219, 0, 255, 0))',
+})
+;({
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), rgba(219, 0, 255, .555), var(--tw-gradient-to, rgba(219, 0, 255, 0))',
+})
+;({
+  '--tw-gradient-stops':
+    'var(--tw-gradient-from), rgba(219, 0, 255, var(--myvar)), var(--tw-gradient-to, rgba(219, 0, 255, 0))',
+})
+;({
+  '--tw-gradient-to': '#ef4444',
+})
+;({
+  '--tw-gradient-to': 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  '--tw-gradient-to': '#000',
+})
+;({
+  '--tw-gradient-to': 'rgba(239, 68, 68, .555)',
+})
+;({
+  '--tw-gradient-to': 'rgba(239, 68, 68, var(--myvar))',
+})
+;({
+  '--tw-gradient-to': 'rgb(219, 0, 255)',
+})
+;({
+  '--tw-gradient-to': 'rgba(219, 0, 255, 0.25)',
+})
+;({
+  '--tw-gradient-to': 'rgba(219, 0, 255, .555)',
+})
+;({
+  '--tw-gradient-to': 'rgba(219, 0, 255, var(--myvar))',
+})
+;({
+  '--tw-border-opacity': '1',
+  borderColor: 'rgba(239, 68, 68, var(--tw-border-opacity))',
+})
+;({
+  borderColor: 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  '--tw-border-opacity': '1',
+  borderColor: 'rgba(0, 0, 0, var(--tw-border-opacity))',
+})
+;({
+  borderColor: 'rgba(239, 68, 68, .555)',
+})
+;({
+  borderColor: 'rgba(239, 68, 68, var(--myvar))',
+})
+;({
+  '--tw-border-opacity': '1',
+  borderColor: 'rgba(219, 0, 255, var(--tw-border-opacity))',
+})
+;({
+  borderColor: 'rgba(219, 0, 255, 0.25)',
+})
+;({
+  borderColor: 'rgba(219, 0, 255, .555)',
+})
+;({
+  borderColor: 'rgba(219, 0, 255, var(--myvar))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(239, 68, 68, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-color': 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(0, 0, 0, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-color': 'rgba(239, 68, 68, .555)',
+})
+;({
+  '--tw-ring-color': 'rgba(239, 68, 68, var(--myvar))',
+})
+;({
+  '--tw-ring-opacity': '1',
+  '--tw-ring-color': 'rgba(219, 0, 255, var(--tw-ring-opacity))',
+})
+;({
+  '--tw-ring-color': 'rgba(219, 0, 255, 0.25)',
+})
+;({
+  '--tw-ring-color': 'rgba(219, 0, 255, .555)',
+})
+;({
+  '--tw-ring-color': 'rgba(219, 0, 255, var(--myvar))',
+})
+;({
+  '--tw-ring-offset-color': '#ef4444',
+})
+;({
+  '--tw-ring-offset-color': 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  '--tw-ring-offset-color': '#000',
+})
+;({
+  '--tw-ring-offset-color': 'rgba(239, 68, 68, .555)',
+})
+;({
+  '--tw-ring-offset-color': 'rgba(239, 68, 68, var(--myvar))',
+})
+;({
+  '--tw-ring-offset-color': 'rgb(219, 0, 255)',
+})
+;({
+  '--tw-ring-offset-color': 'rgba(219, 0, 255, 0.25)',
+})
+;({
+  '--tw-ring-offset-color': 'rgba(219, 0, 255, .555)',
+})
+;({
+  '--tw-ring-offset-color': 'rgba(219, 0, 255, var(--myvar))',
+})
+;({
+  '--tw-text-opacity': '1',
+  color: 'rgba(239, 68, 68, var(--tw-text-opacity))',
+})
+;({
+  color: 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  '--tw-text-opacity': '1',
+  color: 'rgba(0, 0, 0, var(--tw-text-opacity))',
+})
+;({
+  color: 'rgba(239, 68, 68, .555)',
+})
+;({
+  color: 'rgba(239, 68, 68, var(--myvar))',
+})
+;({
+  '--tw-text-opacity': '1',
+  color: 'rgba(219, 0, 255, var(--tw-text-opacity))',
+})
+;({
+  color: 'rgba(219, 0, 255, 0.25)',
+})
+;({
+  color: 'rgba(219, 0, 255, .555)',
+})
+;({
+  color: 'rgba(219, 0, 255, var(--myvar))',
+})
+;({
+  stroke: '#ef4444',
+})
+;({
+  stroke: 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  stroke: '#000',
+})
+;({
+  stroke: 'rgba(239, 68, 68, .555)',
+})
+;({
+  stroke: 'rgba(239, 68, 68, var(--myvar))',
+})
+;({
+  stroke: 'rgb(219, 0, 255)',
+})
+;({
+  stroke: 'rgba(219, 0, 255, 0.25)',
+})
+;({
+  stroke: 'rgba(219, 0, 255, .555)',
+})
+;({
+  stroke: 'rgba(219, 0, 255, var(--myvar))',
+})
+;({
+  fill: '#ef4444',
+})
+;({
+  fill: 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  fill: '#000',
+})
+;({
+  fill: 'rgba(239, 68, 68, .555)',
+})
+;({
+  fill: 'rgba(239, 68, 68, var(--myvar))',
+})
+;({
+  fill: 'rgb(219, 0, 255)',
+})
+;({
+  fill: 'rgba(219, 0, 255, 0.25)',
+})
+;({
+  fill: 'rgba(219, 0, 255, .555)',
+})
+;({
+  fill: 'rgba(219, 0, 255, var(--myvar))',
 })
 
 

@@ -1,5 +1,3 @@
-import { withAlpha } from './../utils'
-
 const handleWidth = ({ configValue, important }) => {
   const value = configValue('borderWidth')
   if (!value) return
@@ -9,16 +7,16 @@ const handleWidth = ({ configValue, important }) => {
   }
 }
 
-const handleColor = ({ configValue, important, disableColorVariables }) => {
-  const value = configValue('borderColor')
-
-  if (!value) return
-  return withAlpha({
-    color: value,
+const handleColor = ({ toColor }) => {
+  const common = {
+    matchStart: 'border',
     property: 'borderColor',
-    variable: !disableColorVariables && '--tw-border-opacity',
-    important,
-  })
+    configSearch: 'borderColor',
+  }
+  return toColor([
+    { ...common, opacityVariable: '--tw-border-opacity' },
+    common,
+  ])
 }
 
 export default properties => {
@@ -26,18 +24,19 @@ export default properties => {
     match,
     theme,
     getConfigValue,
-    configTwin: { disableColorVariables },
+    toColor,
     pieces: { important },
     errors: { errorSuggestions },
   } = properties
-  const classValue = match(/(?<=(border-))([^]*)/)
 
-  const configValue = config => getConfigValue(theme(config), classValue)
-
-  const width = handleWidth({ configValue, important })
+  const width = handleWidth({
+    configValue: config =>
+      getConfigValue(theme(config), match(/(?<=(border-))([^]*)/)),
+    important,
+  })
   if (width) return width
 
-  const color = handleColor({ configValue, important, disableColorVariables })
+  const color = handleColor({ toColor })
   if (color) return color
 
   errorSuggestions({ config: ['borderColor', 'borderWidth'] })
