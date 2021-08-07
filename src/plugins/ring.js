@@ -15,7 +15,7 @@ export const globalRingStyles = ({ theme }) => {
   )
 
   return {
-    '*': {
+    '*, ::before, ::after': {
       '--tw-ring-inset': 'var(--tw-empty,/*!*/ /*!*/)',
       '--tw-ring-offset-width': theme('ringOffsetWidth.DEFAULT') || '0px',
       '--tw-ring-offset-color': theme('ringOffsetColor.DEFAULT') || '#fff',

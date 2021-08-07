@@ -4,6 +4,7 @@ export default properties => {
     match,
     getConfigValue,
     errors: { errorSuggestions },
+    pieces: { important },
   } = properties
 
   const classValue = match(/(?<=(brightness)-)([^]*)/)
@@ -18,5 +19,8 @@ export default properties => {
     ? value.map(v => `brightness(${v})`).join(' ')
     : `brightness(${value})`
 
-  return { '--tw-brightness': brightnessValue }
+  return {
+    '--tw-brightness': brightnessValue,
+    filter: `var(--tw-filter)${important}`,
+  }
 }

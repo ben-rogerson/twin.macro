@@ -4,6 +4,7 @@ export default properties => {
     match,
     getConfigValue,
     errors: { errorSuggestions },
+    pieces: { important },
   } = properties
 
   const classValue = match(/(?<=(sepia)-)([^]*)/)
@@ -18,5 +19,5 @@ export default properties => {
     ? value.map(v => `sepia(${v})`).join(' ')
     : `sepia(${value})`
 
-  return { '--tw-sepia': sepiaValue }
+  return { '--tw-sepia': sepiaValue, filter: `var(--tw-filter)${important}` }
 }

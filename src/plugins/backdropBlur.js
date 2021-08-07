@@ -4,6 +4,7 @@ export default properties => {
     match,
     getConfigValue,
     errors: { errorSuggestions },
+    pieces: { important },
   } = properties
 
   const classValue = match(/(?<=(backdrop-blur)-)([^]*)/)
@@ -18,5 +19,8 @@ export default properties => {
     ? value.map(v => `blur(${v})`).join(' ')
     : `blur(${value})`
 
-  return { '--tw-backdrop-blur': backdropBlurValue }
+  return {
+    '--tw-backdrop-blur': backdropBlurValue,
+    backdropFilter: `var(--tw-backdrop-filter)${important}`,
+  }
 }

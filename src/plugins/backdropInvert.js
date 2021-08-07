@@ -4,6 +4,7 @@ export default properties => {
     match,
     getConfigValue,
     errors: { errorSuggestions },
+    pieces: { important },
   } = properties
 
   const classValue = match(/(?<=(backdrop-invert)-)([^]*)/)
@@ -17,5 +18,8 @@ export default properties => {
   const backdropInvertValue = Array.isArray(value)
     ? value.map(v => `invert(${v})`).join(' ')
     : `invert(${value})`
-  return { '--tw-backdrop-invert': backdropInvertValue }
+  return {
+    '--tw-backdrop-invert': backdropInvertValue,
+    backdropFilter: `var(--tw-backdrop-filter)${important}`,
+  }
 }

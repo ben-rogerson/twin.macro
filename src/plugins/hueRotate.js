@@ -3,7 +3,7 @@ export default properties => {
     theme,
     match,
     getConfigValue,
-    pieces: { negative },
+    pieces: { negative, important },
     errors: { errorSuggestions },
   } = properties
 
@@ -19,5 +19,8 @@ export default properties => {
     ? value.map(v => `hue-rotate(${negative}${v})`).join(' ')
     : `hue-rotate(${negative}${value})`
 
-  return { '--tw-hue-rotate': hueRotateValue }
+  return {
+    '--tw-hue-rotate': hueRotateValue,
+    filter: `var(--tw-filter)${important}`,
+  }
 }

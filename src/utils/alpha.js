@@ -15,12 +15,57 @@ function toRgba(color) {
   return [r, g, b, a === undefined && hasAlpha(color) ? 1 : a]
 }
 
+function toHsla(color) {
+  const [h, s, l, a] = createColor(color).hsl().array()
+  return [h, s, l, a === undefined && hasAlpha(color) ? 1 : a]
+}
+
+const toPercent = value => (value > 0 ? `${value}%` : value)
+
+const colorMap = {
+  hsl: color => {
+    const [h, s, l, a] = toHsla(color)
+    return {
+      values: [h, toPercent(s), toPercent(l)].join(', '),
+      alpha: a,
+      prefix: a ? 'hsla' : 'hsla',
+      alphaPrefix: 'hsla',
+    }
+  },
+  rgb: color => {
+    const [r, g, b, a] = toRgba(color)
+    return {
+      values: [r, g, b].join(', '),
+      alpha: a,
+      prefix: a ? 'rgba' : 'rgba',
+      alphaPrefix: 'rgba',
+    }
+  },
+}
+
+const makeColorValue = color => {
+  const type = color.slice(0, 3)
+  const colorType = colorMap[type] || colorMap.rgb
+  let alphaValue
+
+  const colorValue = ({ a }) => {
+    const { alphaPrefix, prefix, values, alpha } = colorType(color)
+    alphaValue = alpha !== undefined ? alpha : a
+    const finalColor = [values, alphaValue].filter(i => i !== undefined)
+    const finalPrefix = alphaValue !== undefined ? alphaPrefix : prefix
+    return `${finalPrefix}(${finalColor.join(', ')})`
+  }
+
+  return [colorValue, alphaValue]
+}
+
 const withAlpha = ({
   color,
   property,
   variable,
-  pieces,
+  pieces = {},
   useSlashAlpha = variable ? !variable : true,
+  hasFallback = true,
 }) => {
   if (!color) return
 
@@ -42,27 +87,28 @@ const withAlpha = ({
   if (!property && !useSlashAlpha) return `${color}${pieces.important}`
 
   try {
-    const [r, g, b, a] = toRgba(color)
+    const [colorValue, a] = makeColorValue(color)
 
     if (!useSlashAlpha) {
-      if (a !== undefined || !variable)
+      if (!variable || color.startsWith('var('))
+        // a !== undefined ||
         return { [property]: `${color}${pieces.important}` }
 
+      const value = colorValue({ a: `var(${variable})` })
       return {
-        [variable]: '1',
-        [property]: `rgba(${[r, g, b, `var(${variable})`].join(', ')})${
-          pieces.important
-        }`,
+        ...(value.includes('var(') && { [variable]: '1' }),
+        [property]: `${value}${pieces.important}`,
       }
     }
 
     const value = `${
-      pieces.hasAlpha
-        ? `rgba(${[r, g, b, pieces.alpha].join(', ')})`
-        : `rgb(${[r, g, b].join(', ')})`
+      (pieces.hasAlpha && colorValue({ a: pieces.alpha })) ||
+      (a && colorValue()) ||
+      colorValue()
     }${pieces.important}`
     return property ? { [property]: value } : value
   } catch (_) {
+    if (!hasFallback) return
     return { [property]: `${color}${pieces.important}` }
   }
 }
