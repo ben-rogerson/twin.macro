@@ -155,7 +155,7 @@ export default (
       dynamic: () =>
         handleDynamic({ theme, pieces, state, dynamicKey, dynamicConfig }),
       css: () => handleCss({ className }),
-      arbitraryCss: () => handleArbitraryCss({ className, pieces }),
+      arbitraryCss: () => handleArbitraryCss({ className, pieces, state }),
       userPlugin: () => handleUserPlugins({ state, className }),
       corePlugin: () =>
         handleCorePlugins({

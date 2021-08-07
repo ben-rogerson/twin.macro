@@ -5,7 +5,7 @@
  * https://github.com/sindresorhus/modern-normalize/blob/main/modern-normalize.css
  */
 const modernNormalizeStyles = {
-  '*, *::before, *::after': { boxSizing: 'border-box' },
+  '*, ::before, ::after': { boxSizing: 'border-box' },
   html: {
     lineHeight: '1.15',
     WebkitTextSizeAdjust: '100%',
@@ -68,7 +68,7 @@ const modernNormalizeStyles = {
  * converting it from css to a string.
  * https://raw.githubusercontent.com/tailwindlabs/tailwindcss/master/src/plugins/css/preflight.css
  */
-const globalPreflightStyles = ({ theme }) => ({
+const globalPreflightStyles = ({ theme, withAlpha }) => ({
   'blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre': {
     margin: '0',
   },
@@ -95,7 +95,12 @@ const globalPreflightStyles = ({ theme }) => ({
     boxSizing: 'border-box',
     borderWidth: '0',
     borderStyle: 'solid',
-    borderColor: theme`borderColor.DEFAULT` || 'currentColor',
+    ...withAlpha({
+      color: theme`borderColor.DEFAULT` || 'currentColor',
+      property: 'borderColor',
+      pieces: { important: '' },
+      variable: '--tw-border-opacity',
+    }),
   },
   hr: { borderTopWidth: '1px' },
   img: { borderStyle: 'solid' },
@@ -125,6 +130,7 @@ const globalPreflightStyles = ({ theme }) => ({
     verticalAlign: 'middle',
   },
   'img, video': { maxWidth: '100%', height: 'auto' },
+  '[hidden]': { display: 'none' },
 })
 
 export { modernNormalizeStyles, globalPreflightStyles }

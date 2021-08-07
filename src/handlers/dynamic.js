@@ -1,5 +1,5 @@
 import getConfigValue from './../utils/getConfigValue'
-import { throwIf, isNumeric } from './../utils'
+import { throwIf, isNumeric, transparentTo } from './../utils'
 import { errorSuggestions } from './../logging'
 
 const maybeAddNegative = (value, negative) => {
@@ -33,7 +33,17 @@ export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
   let results
   styleSet.find(item => {
     const value = getConfigValue(getConfig(item), key)
-    if (value) results = { property: item.prop, value, negative }
+    if (value) {
+      results =
+        typeof item.value === 'function'
+          ? item.value({ value, transparentTo })
+          : styleify({
+              property: item.prop,
+              value,
+              negative,
+            })
+    }
+
     return value
   })
 
@@ -46,5 +56,5 @@ export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
     })
   )
 
-  return styleify(results)
+  return results
 }

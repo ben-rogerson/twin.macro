@@ -5,7 +5,7 @@ import {
   generateUid,
   generateTaggedTemplateExpression,
 } from '../macroHelpers'
-import { throwIf, getTheme, isClass, isEmpty } from '../utils'
+import { throwIf, getTheme, isClass, isEmpty, withAlpha } from '../utils'
 import { logGeneralError } from './../logging'
 import userPresets from './../config/userPresets'
 import globalStyles from './../config/globalStyles'
@@ -135,7 +135,7 @@ const getGlobalStyles = ({ state }) => {
   )
 
   const resolvedStyles = globalStyles.map(gs =>
-    typeof gs === 'function' ? gs({ theme }) : gs
+    typeof gs === 'function' ? gs({ theme, withAlpha }) : gs
   )
 
   if (strippedPlugins) resolvedStyles.push(strippedPlugins)
@@ -183,7 +183,7 @@ const handleGlobalStylesJsx = props => {
     )
   )
 
-  const styles = convertCssObjectToString(getGlobalStyles({ state }))
+  const styles = convertCssObjectToString(getGlobalStyles({ state, props }))
 
   const globalUid = generateUid('GlobalStyles', program)
   const stylesUid = generateUid('globalImport', program)

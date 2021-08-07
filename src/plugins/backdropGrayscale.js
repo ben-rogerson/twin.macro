@@ -4,6 +4,7 @@ export default properties => {
     match,
     getConfigValue,
     errors: { errorSuggestions },
+    pieces: { important },
   } = properties
 
   const classValue = match(/(?<=(backdrop-grayscale)-)([^]*)/)
@@ -17,5 +18,8 @@ export default properties => {
   const backdropGrayscaleValue = Array.isArray(value)
     ? value.map(v => `grayscale(${v})`).join(' ')
     : `grayscale(${value})`
-  return { '--tw-backdrop-grayscale': backdropGrayscaleValue }
+  return {
+    '--tw-backdrop-grayscale': backdropGrayscaleValue,
+    backdropFilter: `var(--tw-backdrop-filter)${important}`,
+  }
 }

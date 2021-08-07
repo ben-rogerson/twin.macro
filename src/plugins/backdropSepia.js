@@ -4,6 +4,7 @@ export default properties => {
     match,
     getConfigValue,
     errors: { errorSuggestions },
+    pieces: { important },
   } = properties
 
   const classValue = match(/(?<=(backdrop-sepia)-)([^]*)/)
@@ -17,5 +18,8 @@ export default properties => {
   const backdropSepiaValue = Array.isArray(value)
     ? value.map(v => `sepia(${v})`).join(' ')
     : `sepia(${value})`
-  return { '--tw-backdrop-sepia': backdropSepiaValue }
+  return {
+    '--tw-backdrop-sepia': backdropSepiaValue,
+    backdropFilter: `var(--tw-backdrop-filter)${important}`,
+  }
 }

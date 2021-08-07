@@ -4,6 +4,7 @@ export default properties => {
     match,
     getConfigValue,
     errors: { errorSuggestions },
+    pieces: { important },
   } = properties
 
   const classValue = match(/(?<=(backdrop-saturate)-)([^]*)/)
@@ -17,5 +18,8 @@ export default properties => {
   const backdropSaturateValue = Array.isArray(value)
     ? value.map(v => `saturate(${v})`).join(' ')
     : `saturate(${value})`
-  return { '--tw-backdrop-saturate': backdropSaturateValue }
+  return {
+    '--tw-backdrop-saturate': backdropSaturateValue,
+    backdropFilter: `var(--tw-backdrop-filter)${important}`,
+  }
 }

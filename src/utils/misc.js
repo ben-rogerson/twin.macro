@@ -79,11 +79,8 @@ const isShortCss = className => new RegExp(/[^/-]\[/).test(className)
 const isArbitraryCss = className => new RegExp(/-\[/).test(className)
 
 // Split a string at a value
-function splitOnFirst(str, sep) {
-  const index = str.indexOf(sep)
-  return index < 0
-    ? [str]
-    : [str.slice(0, index), str.slice(Number(index) + Number(sep.length))]
+function splitOnFirst(input, delim) {
+  return (([first, ...rest]) => [first, rest.join(delim)])(input.split(delim))
 }
 
 export {

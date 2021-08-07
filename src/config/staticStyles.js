@@ -541,35 +541,8 @@ export default {
    */
 
   // https://tailwindcss.com/docs/filter
-  'filter-none': {
-    output: {
-      filter: 'none',
-    },
-  },
-  filter: {
-    output: {
-      '--tw-blur': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-brightness': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-contrast': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-grayscale': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-hue-rotate': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-invert': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-saturate': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-sepia': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-drop-shadow': 'var(--tw-empty,/*!*/ /*!*/)',
-      filter: [
-        'var(--tw-blur)',
-        'var(--tw-brightness)',
-        'var(--tw-contrast)',
-        'var(--tw-grayscale)',
-        'var(--tw-hue-rotate)',
-        'var(--tw-invert)',
-        'var(--tw-saturate)',
-        'var(--tw-sepia)',
-        'var(--tw-drop-shadow)',
-      ].join(' '),
-    },
-  },
+  'filter-none': { output: { filter: 'none' } },
+  filter: { output: { filter: 'var(--tw-filter)' } },
 
   // https://tailwindcss.com/docs/blur
   // https://tailwindcss.com/docs/brightness
@@ -583,34 +556,9 @@ export default {
   // See dynamicStyles.js
 
   // https://tailwindcss.com/docs/backdrop-filter
-  'backdrop-filter-none': {
-    output: {
-      backdropFilter: 'none',
-    },
-  },
+  'backdrop-filter-none': { output: { backdropFilter: 'none' } },
   'backdrop-filter': {
-    output: {
-      '--tw-backdrop-blur': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-backdrop-brightness': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-backdrop-contrast': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-backdrop-grayscale': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-backdrop-hue-rotate': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-backdrop-invert': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-backdrop-opacity': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-backdrop-saturate': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-backdrop-sepia': 'var(--tw-empty,/*!*/ /*!*/)',
-      backdropFilter: [
-        'var(--tw-backdrop-blur)',
-        'var(--tw-backdrop-brightness)',
-        'var(--tw-backdrop-contrast)',
-        'var(--tw-backdrop-grayscale)',
-        'var(--tw-backdrop-hue-rotate)',
-        'var(--tw-backdrop-invert)',
-        'var(--tw-backdrop-opacity)',
-        'var(--tw-backdrop-saturate)',
-        'var(--tw-backdrop-sepia)',
-      ].join(' '),
-    },
+    output: { backdropFilter: 'var(--tw-backdrop-filter)' },
   },
 
   // https://tailwindcss.com/docs/backdrop-blur
@@ -630,12 +578,8 @@ export default {
    */
 
   // https://tailwindcss.com/docs/border-collapse
-  'border-collapse': {
-    output: { borderCollapse: 'collapse' },
-  },
-  'border-separate': {
-    output: { borderCollapse: 'separate' },
-  },
+  'border-collapse': { output: { borderCollapse: 'collapse' } },
+  'border-separate': { output: { borderCollapse: 'separate' } },
 
   // https://tailwindcss.com/docs/table-layout
   'table-auto': { output: { tableLayout: 'auto' } },
@@ -721,12 +665,8 @@ export default {
   // See dynamicStyles.js
 
   // https://tailwindcss.com/docs/pointer-events
-  'pointer-events-none': {
-    output: { pointerEvents: 'none' },
-  },
-  'pointer-events-auto': {
-    output: { pointerEvents: 'auto' },
-  },
+  'pointer-events-none': { output: { pointerEvents: 'none' } },
+  'pointer-events-auto': { output: { pointerEvents: 'auto' } },
 
   // https://tailwindcss.com/docs/resize
   'resize-none': { output: { resize: 'none' } },
@@ -830,39 +770,16 @@ export default {
    * Special classes
    */
 
-  transform: {
-    output: {
-      '--tw-translate-x': '0',
-      '--tw-translate-y': '0',
-      '--tw-rotate': '0',
-      '--tw-skew-x': '0',
-      '--tw-skew-y': '0',
-      '--tw-scale-x': '1',
-      '--tw-scale-y': '1',
-      transform:
-        'translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-    },
-  },
+  transform: { output: { transform: 'var(--tw-transform)' } },
 
   'transform-gpu': {
     output: {
-      '--tw-translate-x': '0',
-      '--tw-translate-y': '0',
-      '--tw-rotate': '0',
-      '--tw-skew-x': '0',
-      '--tw-skew-y': '0',
-      '--tw-scale-x': '1',
-      '--tw-scale-y': '1',
-      transform:
+      '--tw-transform':
         'translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
     },
   },
 
-  'transform-none': {
-    output: {
-      transform: 'none',
-    },
-  },
+  'transform-none': { output: { transform: 'none' } },
 
   /**
    * ===========================================
@@ -870,7 +787,5 @@ export default {
    * Extra styles that aren't part of Tailwind
    */
 
-  content: {
-    output: { content: '""' },
-  },
+  content: { output: { content: '""' } },
 }

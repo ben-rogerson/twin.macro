@@ -4,6 +4,7 @@ export default properties => {
     match,
     getConfigValue,
     errors: { errorSuggestions },
+    pieces: { important },
   } = properties
 
   const classValue = match(/(?<=(invert)-)([^]*)/)
@@ -18,5 +19,5 @@ export default properties => {
     ? value.map(v => `invert(${v})`).join(' ')
     : `invert(${value})`
 
-  return { '--tw-invert': invertValue }
+  return { '--tw-invert': invertValue, filter: `var(--tw-filter)${important}` }
 }
