@@ -489,6 +489,17 @@ export default {
     },
   },
 
+  // https://tailwindcss.com/docs/background-origin
+  'bg-origin-border': {
+    output: { backgroundOrigin: 'border-box' },
+  },
+  'bg-origin-padding': {
+    output: { backgroundOrigin: 'padding-box' },
+  },
+  'bg-origin-content': {
+    output: { backgroundOrigin: 'content-box' },
+  },
+
   // https://tailwindcss.com/docs/background-color
   // https://tailwindcss.com/docs/background-size
   // https://tailwindcss.com/docs/background-position
