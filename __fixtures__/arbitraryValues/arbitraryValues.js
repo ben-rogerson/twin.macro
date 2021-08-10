@@ -8,6 +8,8 @@ tw`bg-opacity-[0.11]`
 tw`bg-opacity-[var(--value)]`
 tw`border-[#f00]`
 tw`border-[2.5px]`
+tw`border-t-[#f00]`
+tw`border-t-[2.5px]`
 tw`w-[3.23rem]`
 tw`w-[calc(100%+1rem)]`
 tw`w-[calc(var(--10-10px,calc(-20px-(-30px--40px)))-50px)]`
