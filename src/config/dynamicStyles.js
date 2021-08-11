@@ -10,8 +10,15 @@ export default {
   // https://tailwindcss.com/docs/container
   container: { hasArbitrary: false, plugin: 'container' },
 
-  // TBA
+  // https://tailwindcss.com/docs/just-in-time-mode#content-utilities
   content: { prop: 'content' },
+
+  // https://tailwindcss.com/docs/just-in-time-mode#caret-color-utilities
+  caret: {
+    plugin: 'caretColor',
+    value: ['color'],
+    coerced: { color: value => ({ caretColor: value }) },
+  },
 
   // https://tailwindcss.com/docs/box-sizing
   // https://tailwindcss.com/docs/display

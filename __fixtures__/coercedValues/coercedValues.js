@@ -42,3 +42,6 @@ tw`transition-[lookup:green]`
 tw`stroke-[color:green]`
 tw`stroke-[color:rgba(255, 255, 255, .45)]`
 tw`stroke-[length:10px]`
+
+tw`caret-[color:green]`
+tw`caret-[color:rgba(255, 255, 255, .45)]`

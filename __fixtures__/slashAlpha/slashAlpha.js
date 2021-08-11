@@ -120,3 +120,14 @@ tw`fill-electric`
 tw`fill-electric/25`
 tw`fill-electric/[.555]`
 tw`fill-electric/[var(--myvar)]`
+
+tw`caret-red-500`
+tw`caret-red-500/25`
+tw`caret-red-500/fromConfig`
+tw`caret-red-500/[.555]`
+tw`caret-red-500/[var(--myvar)]`
+
+tw`caret-electric`
+tw`caret-electric/25`
+tw`caret-electric/[.555]`
+tw`caret-electric/[var(--myvar)]`
