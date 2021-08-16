@@ -228,6 +228,7 @@ export default {
 
   // https://tailwindcss.com/docs/align-self
   'self-auto': { output: { alignSelf: 'auto' } },
+  'self-baseline': { output: { alignSelf: 'baseline' } },
   'self-start': { output: { alignSelf: 'flex-start' } },
   'self-center': { output: { alignSelf: 'center' } },
   'self-end': { output: { alignSelf: 'flex-end' } },
