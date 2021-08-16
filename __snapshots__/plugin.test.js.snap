@@ -612,12 +612,6 @@ button {
 background-color: transparent;
 background-image: none;
         }
-button:focus:not(/**/) {
-outline: 1px dotted;
-        }
-button:focus {
-outline: 5px auto -webkit-focus-ring-color;
-        }
 fieldset {
 margin: 0;
 padding: 0;
@@ -2132,12 +2126,6 @@ margin: 0;
 button {
 background-color: transparent;
 background-image: none;
-        }
-button:focus:not(/**/) {
-outline: 1px dotted;
-        }
-button:focus {
-outline: 5px auto -webkit-focus-ring-color;
         }
 fieldset {
 margin: 0;
@@ -8077,12 +8065,6 @@ button {
 background-color: transparent;
 background-image: none;
         }
-button:focus:not(/**/) {
-outline: 1px dotted;
-        }
-button:focus {
-outline: 5px auto -webkit-focus-ring-color;
-        }
 fieldset {
 margin: 0;
 padding: 0;
@@ -9956,12 +9938,6 @@ const _GlobalStyles = () => (
       button {
         background-color: transparent;
         background-image: none;
-      }
-      button:focus:not(/**/) {
-        outline: 1px dotted;
-      }
-      button:focus {
-        outline: 5px auto -webkit-focus-ring-color;
       }
       fieldset {
         margin: 0;
@@ -14933,12 +14909,6 @@ margin: 0;
 button {
 background-color: transparent;
 background-image: none;
-        }
-button:focus:not(/**/) {
-outline: 1px dotted;
-        }
-button:focus {
-outline: 5px auto -webkit-focus-ring-color;
         }
 fieldset {
 margin: 0;
@@ -23118,12 +23088,6 @@ const globals = global({
   button: {
     backgroundColor: 'transparent',
     backgroundImage: 'none',
-  },
-  'button:focus:not(/**/)': {
-    outline: '1px dotted',
-  },
-  'button:focus': {
-    outline: '5px auto -webkit-focus-ring-color',
   },
   fieldset: {
     margin: '0',
