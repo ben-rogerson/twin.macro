@@ -33,6 +33,7 @@ tw`animate-spin`
 tw`animate-ping`
 tw`animate-pulse`
 tw`animate-bounce`
+tw`animate-blink`
 
 // https://tailwindcss.com/docs/mix-blend-mode
 tw`mix-blend-normal`
