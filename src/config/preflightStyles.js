@@ -73,15 +73,6 @@ const globalPreflightStyles = ({ theme, withAlpha }) => ({
     margin: '0',
   },
   button: { backgroundColor: 'transparent', backgroundImage: 'none' },
-  // Css object styles can't have duplicate keys.
-  // This means fallbacks can't be specified like they can in css.
-  // Here we use a bogus `:not` for a different key without adding extra specificity.
-  'button:focus:not(/**/)': {
-    outline: '1px dotted',
-  },
-  'button:focus': {
-    outline: '5px auto -webkit-focus-ring-color',
-  },
   fieldset: { margin: '0', padding: '0' },
   'ol, ul': { listStyle: 'none', margin: '0', padding: '0' },
   html: {
