@@ -8117,6 +8117,9 @@ tw\`stroke-[color:green]\`
 tw\`stroke-[color:rgba(255, 255, 255, .45)]\`
 tw\`stroke-[length:10px]\`
 
+tw\`caret-[color:green]\`
+tw\`caret-[color:rgba(255, 255, 255, .45)]\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 ;({
@@ -8230,6 +8233,12 @@ tw\`stroke-[length:10px]\`
 })
 ;({
   strokeWidth: '10px',
+})
+;({
+  caretColor: 'green',
+})
+;({
+  caretColor: 'rgba(255, 255, 255, .45)',
 })
 
 
@@ -18442,6 +18451,17 @@ tw\`fill-electric/25\`
 tw\`fill-electric/[.555]\`
 tw\`fill-electric/[var(--myvar)]\`
 
+tw\`caret-red-500\`
+tw\`caret-red-500/25\`
+tw\`caret-red-500/fromConfig\`
+tw\`caret-red-500/[.555]\`
+tw\`caret-red-500/[var(--myvar)]\`
+
+tw\`caret-electric\`
+tw\`caret-electric/25\`
+tw\`caret-electric/[.555]\`
+tw\`caret-electric/[var(--myvar)]\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 ;({
@@ -18800,6 +18820,33 @@ tw\`fill-electric/[var(--myvar)]\`
 })
 ;({
   fill: 'rgba(219, 0, 255, var(--myvar))',
+})
+;({
+  caretColor: '#ef4444',
+})
+;({
+  caretColor: 'rgba(239, 68, 68, 0.25)',
+})
+;({
+  caretColor: '#000',
+})
+;({
+  caretColor: 'rgba(239, 68, 68, .555)',
+})
+;({
+  caretColor: 'rgba(239, 68, 68, var(--myvar))',
+})
+;({
+  caretColor: 'rgb(219, 0, 255)',
+})
+;({
+  caretColor: 'rgba(219, 0, 255, 0.25)',
+})
+;({
+  caretColor: 'rgba(219, 0, 255, .555)',
+})
+;({
+  caretColor: 'rgba(219, 0, 255, var(--myvar))',
 })
 
 
