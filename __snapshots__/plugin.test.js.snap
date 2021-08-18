@@ -1435,9 +1435,8 @@ tw\`first:flex\`
 tw\`not-first:flex\`
 tw\`last:flex\`
 tw\`not-last:flex\`
-tw\`only-child:flex\`
 tw\`only:flex\`
-tw\`not-only-child:flex\`
+tw\`not-only:flex\`
 tw\`only-of-type:flex\`
 tw\`not-only-of-type:flex\`
 tw\`even:flex\`
@@ -1699,11 +1698,6 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
 })
 ;({
   ':not(:last-child)': {
-    display: 'flex',
-  },
-})
-;({
-  ':only-child': {
     display: 'flex',
   },
 })
