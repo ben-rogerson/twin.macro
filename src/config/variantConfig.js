@@ -12,7 +12,7 @@ const variantConfig = ({
   prefixDarkLightModeClass,
 }) => ({
   // Before/after pseudo elements
-  // Usage: tw`before:(content block w-10 h-10 bg-black)`
+  // Usage: tw`before:(block w-10 h-10 bg-black)`
   before: ':before',
   after: ':after',
 
