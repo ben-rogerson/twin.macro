@@ -348,49 +348,43 @@ export default {
 
   // https://tailwindcss.com/docs/border-width
   'border-t': {
-    prop: 'borderTopWidth',
     value: ['color', 'length'],
-    config: 'borderWidth',
+    plugin: 'border',
     coerced: {
       color: { property: 'borderTopColor', variable: '--tw-border-opacity' },
       length: { property: 'borderTopWidth' },
     },
   },
   'border-b': {
-    prop: 'borderBottomWidth',
     value: ['color', 'length'],
-    config: 'borderWidth',
+    plugin: 'border',
     coerced: {
       color: { property: 'borderBottomColor', variable: '--tw-border-opacity' },
       length: { property: 'borderBottomWidth' },
     },
   },
   'border-l': {
-    prop: 'borderLeftWidth',
     value: ['color', 'length'],
-    config: 'borderWidth',
+    plugin: 'border',
     coerced: {
       color: { property: 'borderLeftColor', variable: '--tw-border-opacity' },
       length: { property: 'borderLeftWidth' },
     },
   },
   'border-r': {
-    prop: 'borderRightWidth',
     value: ['color', 'length'],
-    config: 'borderWidth',
+    plugin: 'border',
     coerced: {
       color: { property: 'borderRightColor', variable: '--tw-border-opacity' },
       length: { property: 'borderRightWidth' },
     },
   },
-
   'border-opacity': {
     prop: '--tw-border-opacity',
     config: 'borderOpacity',
     configFallback: 'opacity',
   },
   border: {
-    prop: 'borderWidth',
     value: ['color', 'length'],
     plugin: 'border',
     coerced: {

@@ -2560,6 +2560,8 @@ tw\`bg-opacity-[0.11]\`
 tw\`bg-opacity-[var(--value)]\`
 tw\`border-[#f00]\`
 tw\`border-[2.5px]\`
+tw\`border-t-[#f00]\`
+tw\`border-t-[2.5px]\`
 tw\`w-[3.23rem]\`
 tw\`w-[calc(100%+1rem)]\`
 tw\`w-[calc(var(--10-10px,calc(-20px-(-30px--40px)))-50px)]\`
@@ -2693,6 +2695,13 @@ tw\`md:text-[red]\`
 })
 ;({
   borderWidth: '2.5px',
+})
+;({
+  '--tw-border-opacity': '1',
+  borderTopColor: 'rgba(255, 0, 0, var(--tw-border-opacity))',
+})
+;({
+  borderTopWidth: '2.5px',
 })
 ;({
   width: '3.23rem',
@@ -8767,6 +8776,112 @@ tw\`bg-blue-gray-green-pink\`
 })
 ;({
   backgroundColor: 'blue-gray-green-pink',
+})
+
+
+`;
+
+exports[`twin.macro directionalBorders.js: directionalBorders.js 1`] = `
+
+import tw from './macro' // twinImport
+
+tw\`border-t\`
+tw\`border-r\`
+tw\`border-b\`
+tw\`border-l\`
+
+tw\`border-t-transparent\`
+tw\`border-t-current\`
+tw\`border-t-gray-50\`
+
+tw\`border-r-transparent\`
+tw\`border-r-current\`
+tw\`border-r-gray-50\`
+
+tw\`border-b-transparent\`
+tw\`border-b-current\`
+tw\`border-b-gray-50\`
+
+tw\`border-l-transparent\`
+tw\`border-l-current\`
+tw\`border-l-gray-50\`
+
+tw\`border-l-gray-50/20\`
+
+tw\`border-t-4\`
+tw\`border-r-4\`
+tw\`border-b-4\`
+tw\`border-l-4\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// twinImport
+;({
+  borderTopWidth: '1px',
+})
+;({
+  borderRightWidth: '1px',
+})
+;({
+  borderBottomWidth: '1px',
+})
+;({
+  borderLeftWidth: '1px',
+})
+;({
+  borderTopColor: 'rgba(0, 0, 0, 0)',
+})
+;({
+  borderTopColor: 'currentColor',
+})
+;({
+  '--tw-border-opacity': '1',
+  borderTopColor: 'rgba(249, 250, 251, var(--tw-border-opacity))',
+})
+;({
+  borderRightColor: 'rgba(0, 0, 0, 0)',
+})
+;({
+  borderRightColor: 'currentColor',
+})
+;({
+  '--tw-border-opacity': '1',
+  borderRightColor: 'rgba(249, 250, 251, var(--tw-border-opacity))',
+})
+;({
+  borderBottomColor: 'rgba(0, 0, 0, 0)',
+})
+;({
+  borderBottomColor: 'currentColor',
+})
+;({
+  '--tw-border-opacity': '1',
+  borderBottomColor: 'rgba(249, 250, 251, var(--tw-border-opacity))',
+})
+;({
+  borderLeftColor: 'rgba(0, 0, 0, 0)',
+})
+;({
+  borderLeftColor: 'currentColor',
+})
+;({
+  '--tw-border-opacity': '1',
+  borderLeftColor: 'rgba(249, 250, 251, var(--tw-border-opacity))',
+})
+;({
+  borderLeftColor: 'rgba(249, 250, 251, 0.2)',
+})
+;({
+  borderTopWidth: '4px',
+})
+;({
+  borderRightWidth: '4px',
+})
+;({
+  borderBottomWidth: '4px',
+})
+;({
+  borderLeftWidth: '4px',
 })
 
 

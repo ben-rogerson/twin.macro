@@ -58,7 +58,7 @@ const getMatchConfigValue = ({ match, theme, getConfigValue }) => (
   regexMatch
 ) => {
   const matcher = match(regexMatch)
-  if (!matcher) return
+  if (matcher === undefined) return
   return getConfigValue(theme(config), matcher)
 }
 
@@ -73,7 +73,11 @@ export default ({
   ...rest
 }) => {
   const errors = getErrors({ state, pieces, dynamicKey })
-  const match = regex => get(pieces.className.match(regex), [0]) || null
+  const match = regex => {
+    const result = get(pieces.className.match(regex), [0])
+    if (result === undefined) return
+    return result
+  }
 
   const matchConfigValue = getMatchConfigValue({ match, theme, getConfigValue })
   const toColor = getColor({
