@@ -77,20 +77,72 @@ const variantConfig = ({
   // Group states
   // You'll need to add className="group" to an ancestor to make these work
   // https://github.com/ben-rogerson/twin.macro/blob/master/docs/group.md
+  'group-hocus': variantData =>
+    prefixDarkLightModeClass('.group:hover &, .group:focus &', variantData),
+  'group-first': variantData =>
+    prefixDarkLightModeClass('.group:first-child &', variantData),
+  'group-last': variantData =>
+    prefixDarkLightModeClass('.group:last-child &', variantData),
+  'group-only': variantData =>
+    prefixDarkLightModeClass('.group:only-child &', variantData),
+  'group-even': variantData =>
+    prefixDarkLightModeClass('.group:nth-child(even) &', variantData),
+  'group-odd': variantData =>
+    prefixDarkLightModeClass('.group:nth-child(odd) &', variantData),
+  'group-first-of-type': variantData =>
+    prefixDarkLightModeClass('.group:first-of-type &', variantData),
+  'group-last-of-type': variantData =>
+    prefixDarkLightModeClass('.group:last-of-type &', variantData),
+  'group-only-of-type': variantData =>
+    prefixDarkLightModeClass('.group:not(:first-of-type) &', variantData),
   'group-hover': variantData =>
     prefixDarkLightModeClass('.group:hover &', variantData),
   'group-focus': variantData =>
     prefixDarkLightModeClass('.group:focus &', variantData),
-  'group-hocus': variantData =>
-    prefixDarkLightModeClass('.group:hover &, .group:focus &', variantData),
+  'group-disabled': variantData =>
+    prefixDarkLightModeClass('.group:disabled &', variantData),
   'group-active': variantData =>
     prefixDarkLightModeClass('.group:active &', variantData),
+  'group-target': variantData =>
+    prefixDarkLightModeClass('.group:target &', variantData),
   'group-visited': variantData =>
     prefixDarkLightModeClass('.group:visited &', variantData),
+  'group-default': variantData =>
+    prefixDarkLightModeClass('.group:default &', variantData),
+  'group-checked': variantData =>
+    prefixDarkLightModeClass('.group:checked &', variantData),
+  'group-indeterminate': variantData =>
+    prefixDarkLightModeClass('.group:indeterminate &', variantData),
+  'group-placeholder-shown': variantData =>
+    prefixDarkLightModeClass('.group:placeholder-shown &', variantData),
+  'group-autofill': variantData =>
+    prefixDarkLightModeClass('.group:autofill &', variantData),
+  'group-focus-within': variantData =>
+    prefixDarkLightModeClass('.group:focus-within &', variantData),
+  'group-focus-visible': variantData =>
+    prefixDarkLightModeClass('.group:focus-visible &', variantData),
+  'group-required': variantData =>
+    prefixDarkLightModeClass('.group:required &', variantData),
+  'group-valid': variantData =>
+    prefixDarkLightModeClass('.group:valid &', variantData),
+  'group-invalid': variantData =>
+    prefixDarkLightModeClass('.group:invalid &', variantData),
+  'group-in-range': variantData =>
+    prefixDarkLightModeClass('.group:in-range &', variantData),
+  'group-out-of-range': variantData =>
+    prefixDarkLightModeClass('.group:out-of-range &', variantData),
+  'group-read-only': variantData =>
+    prefixDarkLightModeClass('.group:read-only &', variantData),
+  'group-empty': variantData =>
+    prefixDarkLightModeClass('.group:empty &', variantData),
 
   // Media types
   print: '@media print',
   screen: '@media screen',
+
+  // Direction variants
+  rtl: '[dir="rtl"] &',
+  ltr: '[dir="ltr"] &',
 
   // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
   'motion-safe': '@media (prefers-reduced-motion: no-preference)',
@@ -118,10 +170,8 @@ const variantConfig = ({
   landscape: '@media (orientation: landscape)',
   portrait: '@media (orientation: portrait)',
 
-  // Dark mode
+  // Dark mode / Light mode
   dark: variantDarkMode,
-
-  // Light mode
   light: variantLightMode,
 
   // Selection

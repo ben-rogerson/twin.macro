@@ -1399,13 +1399,14 @@ tw\`hover:flex\`
 tw\`focus:flex\`
 tw\`active:flex\`
 tw\`visited:flex\`
-tw\`hocus:flex\`
+tw\`hocus:flex\` // Twin only
 tw\`link:flex\`
 tw\`target:flex\`
 tw\`focus-visible:flex\`
 
 // Form element states
 tw\`autofill:flex\`
+tw\`focus-within:flex\`
 tw\`disabled:flex\`
 tw\`checked:flex\`
 tw\`not-checked:flex\`
@@ -1454,14 +1455,45 @@ tw\`empty:flex\`
 // Group states
 tw\`group-hover:flex\`
 tw\`group-focus:flex\`
-tw\`group-hocus:flex\`
-tw\`group-active:flex\`
-tw\`group-visited:flex\`
-tw\`focus-within:flex\`
 
 // Media types
 tw\`screen:flex\`
 tw\`print:flex\`
+
+// Group
+tw\`group-hocus:flex\` // Twin only
+tw\`group-first:shadow-md\`
+tw\`group-last:shadow-md\`
+tw\`group-only:shadow-md\`
+tw\`group-even:shadow-md\`
+tw\`group-odd:shadow-md\`
+tw\`group-first-of-type:shadow-md\`
+tw\`group-last-of-type:shadow-md\`
+tw\`group-only-of-type:shadow-md\`
+tw\`group-hover:shadow-md\`
+tw\`group-focus:shadow-md\`
+tw\`group-disabled:shadow-md\`
+tw\`group-active:shadow-md\`
+tw\`group-target:shadow-md\`
+tw\`group-visited:shadow-md\`
+tw\`group-default:shadow-md\`
+tw\`group-checked:shadow-md\`
+tw\`group-indeterminate:shadow-md\`
+tw\`group-placeholder-shown:shadow-md\`
+tw\`group-autofill:shadow-md\`
+tw\`group-focus-within:shadow-md\`
+tw\`group-focus-visible:shadow-md\`
+tw\`group-required:shadow-md\`
+tw\`group-valid:shadow-md\`
+tw\`group-invalid:shadow-md\`
+tw\`group-in-range:shadow-md\`
+tw\`group-out-of-range:shadow-md\`
+tw\`group-read-only:shadow-md\`
+tw\`group-empty:shadow-md\`
+
+// Direction
+tw\`rtl:shadow-md\`
+tw\`ltr:shadow-md\`
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
 tw\`motion-safe:flex\`
@@ -1503,7 +1535,8 @@ tw\`selection:bg-black\`
 // Lists
 tw\`marker:bg-black\`
 
-const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
+// Random
+tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -1543,7 +1576,8 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
   ':hover, :focus': {
     display: 'flex',
   },
-})
+}) // Twin only
+
 ;({
   ':link': {
     display: 'flex',
@@ -1562,6 +1596,11 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
 
 ;({
   ':autofill': {
+    display: 'flex',
+  },
+})
+;({
+  ':focus-within': {
     display: 'flex',
   },
 })
@@ -1777,26 +1816,6 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
   '.group:focus &': {
     display: 'flex',
   },
-})
-;({
-  '.group:hover &, .group:focus &': {
-    display: 'flex',
-  },
-})
-;({
-  '.group:active &': {
-    display: 'flex',
-  },
-})
-;({
-  '.group:visited &': {
-    display: 'flex',
-  },
-})
-;({
-  ':focus-within': {
-    display: 'flex',
-  },
 }) // Media types
 
 ;({
@@ -1807,6 +1826,254 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
 ;({
   '@media print': {
     display: 'flex',
+  },
+}) // Group
+
+;({
+  '.group:hover &, .group:focus &': {
+    display: 'flex',
+  },
+}) // Twin only
+
+;({
+  '.group:first-child &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:last-child &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:only-child &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:nth-child(even) &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:nth-child(odd) &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:first-of-type &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:last-of-type &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:not(:first-of-type) &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:hover &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:focus &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:disabled &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:active &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:target &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:visited &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:default &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:checked &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:indeterminate &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:placeholder-shown &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:autofill &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:focus-within &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:focus-visible &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:required &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:valid &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:invalid &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:in-range &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:out-of-range &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:read-only &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '.group:empty &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+}) // Direction
+
+;({
+  '[dir="rtl"] &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
+  },
+})
+;({
+  '[dir="ltr"] &': {
+    '--tw-shadow':
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
   },
 }) // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
 
@@ -1947,8 +2214,9 @@ const multiVariants = tw\`xl:placeholder-red-500! first:md:block sm:disabled:fle
     '--tw-bg-opacity': '1',
     backgroundColor: 'rgba(0, 0, 0, var(--tw-bg-opacity))',
   },
-})
-const multiVariants = {
+}) // Random
+
+;({
   ':first-child': {
     '@media (min-width: 768px)': {
       display: 'block',
@@ -1965,7 +2233,7 @@ const multiVariants = {
       color: 'rgba(239, 68, 68, var(--tw-placeholder-opacity)) !important',
     },
   },
-}
+})
 
 
 `;
