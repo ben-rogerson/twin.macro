@@ -4,6 +4,7 @@ export default properties => {
     match,
     getConfigValue,
     errors: { errorSuggestions },
+    pieces: { important },
   } = properties
 
   const classValue = match(/(?<=(backdrop-brightness)-)([^]*)/)
@@ -17,5 +18,8 @@ export default properties => {
   const backdropBrightnessValue = Array.isArray(value)
     ? value.map(v => `brightness(${v})`).join(' ')
     : `brightness(${value})`
-  return { '--tw-backdrop-brightness': backdropBrightnessValue }
+  return {
+    '--tw-backdrop-brightness': backdropBrightnessValue,
+    backdropFilter: `var(--tw-backdrop-filter)${important}`,
+  }
 }

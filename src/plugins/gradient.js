@@ -1,48 +1,86 @@
-import { transparentTo } from './../utils'
+import { transparentTo, withAlpha } from './../utils'
 
 export default properties => {
   const {
-    match,
-    theme,
-    getConfigValue,
+    pieces,
+    matchConfigValue,
     pieces: { hasNegative, hasImportant, className },
     errors: { errorNoNegatives, errorNoImportant, errorSuggestions },
   } = properties
 
-  const classValue = match(/(?<=(from-|via-|to-))([^]*)/)
+  const value = matchConfigValue(
+    'gradientColorStops',
+    /(?<=(from-|via-|to-))([^]*)/
+  )
+  const slashAlphaValue = matchConfigValue(
+    'gradientColorStops',
+    /(?<=(from-|via-|to-))([^]*)([^]*)(?=\/)/
+  )
 
-  const configValue = config => getConfigValue(theme(config), classValue)
-  if (!configValue) return
+  const styleDefinitions =
+    (value && {
+      from: {
+        ...withAlpha({
+          pieces,
+          color: value,
+          property: '--tw-gradient-from',
+          useSlashAlpha: false,
+        }),
+        '--tw-gradient-stops': [
+          'var(--tw-gradient-from)',
+          `var(--tw-gradient-to, ${transparentTo(value)})`,
+        ].join(', '),
+      },
+      via: {
+        '--tw-gradient-stops': [
+          'var(--tw-gradient-from)',
+          withAlpha({ pieces, color: value, useSlashAlpha: false }),
+          `var(--tw-gradient-to, ${transparentTo(value)})`,
+        ].join(', '),
+      },
+      to: withAlpha({
+        pieces,
+        color: value,
+        property: '--tw-gradient-to',
+        useSlashAlpha: false,
+      }),
+    }) ||
+    (slashAlphaValue && {
+      from: {
+        ...withAlpha({
+          pieces,
+          color: slashAlphaValue,
+          property: '--tw-gradient-from',
+        }),
+        '--tw-gradient-stops': [
+          'var(--tw-gradient-from)',
+          'var(--tw-gradient-to',
+          withAlpha({
+            color: slashAlphaValue,
+            pieces: { ...pieces, hasAlpha: true, alpha: 0 },
+          }),
+        ].join(', '),
+      },
+      via: {
+        '--tw-gradient-stops': [
+          'var(--tw-gradient-from)',
+          withAlpha({ color: slashAlphaValue, pieces }),
+          `var(--tw-gradient-to, ${transparentTo(slashAlphaValue)})`,
+        ].join(', '),
+      },
+      to: withAlpha({
+        color: slashAlphaValue,
+        property: '--tw-gradient-to',
+        pieces,
+      }),
+    })
 
-  const value = configValue('gradientColorStops')
-  !value && errorSuggestions({ config: 'gradientColorStops' })
-
-  const getColorValue = color =>
-    typeof color === 'function' ? value({}) : color
-
-  const styleDefinitions = {
-    from: {
-      '--tw-gradient-from': getColorValue(value, 'from'),
-      '--tw-gradient-stops': `var(--tw-gradient-from), var(--tw-gradient-to, ${transparentTo(
-        value
-      )})`,
-    },
-    via: {
-      '--tw-gradient-stops': `var(--tw-gradient-from), ${getColorValue(
-        value,
-        'via'
-      )}, var(--tw-gradient-to, ${transparentTo(value)})`,
-    },
-    to: {
-      '--tw-gradient-to': getColorValue(value, 'to'),
-    },
-  }
+  !styleDefinitions && errorSuggestions({ config: 'gradientColorStops' })
 
   const [, styles] =
     Object.entries(styleDefinitions).find(([k]) =>
       className.startsWith(`${k}-`)
     ) || []
-
   !styles && errorSuggestions({ config: 'gradientColorStops' })
   hasNegative && errorNoNegatives()
   hasImportant && errorNoImportant()

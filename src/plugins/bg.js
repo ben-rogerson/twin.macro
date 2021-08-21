@@ -1,15 +1,10 @@
-import { withAlpha } from './../utils'
-
-const handleColor = ({ configValue, important, disableColorVariables }) => {
-  const value = configValue('backgroundColor')
-  if (!value) return
-
-  return withAlpha({
-    color: value,
+const handleColor = ({ toColor }) => {
+  const common = {
+    matchStart: 'bg',
     property: 'backgroundColor',
-    variable: !disableColorVariables && '--tw-bg-opacity',
-    important,
-  })
+    configSearch: 'backgroundColor',
+  }
+  return toColor([{ ...common, opacityVariable: '--tw-bg-opacity' }, common])
 }
 
 const handleSize = ({ configValue, important }) => {
@@ -37,21 +32,17 @@ export default properties => {
   const {
     theme,
     match,
+    toColor,
     getConfigValue,
-    configTwin: { disableColorVariables },
     errors: { errorSuggestions },
     pieces: { important },
   } = properties
 
+  const color = handleColor({ toColor })
+  if (color) return color
+
   const classValue = match(/(?<=(bg)-)([^]*)/)
   const configValue = config => getConfigValue(theme(config), classValue)
-
-  const color = handleColor({
-    configValue,
-    important,
-    disableColorVariables,
-  })
-  if (color) return color
 
   const size = handleSize({ configValue, important })
   if (size) return size

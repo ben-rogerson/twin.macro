@@ -1,10 +1,10 @@
-const handleColor = ({ configValue, important }) => {
-  const value = configValue('stroke')
-  if (!value) return
-
-  return {
-    stroke: `${value}${important}`,
+const handleColor = ({ toColor }) => {
+  const common = {
+    matchStart: 'stroke',
+    property: 'stroke',
+    configSearch: 'stroke',
   }
+  return toColor([{ ...common, useSlashAlpha: false }, common])
 }
 
 const handleWidth = ({ configValue, important }) => {
@@ -28,15 +28,17 @@ export default properties => {
   const {
     theme,
     match,
+    toColor,
     getConfigValue,
     errors: { errorSuggestions },
     pieces: { important },
   } = properties
+
+  const color = handleColor({ toColor })
+  if (color) return color
+
   const classValue = match(/(?<=(stroke)-)([^]*)/)
   const configValue = config => getConfigValue(theme(config), classValue)
-
-  const color = handleColor({ configValue, important })
-  if (color) return color
 
   const width = handleWidth({ configValue, important })
   if (width) return width

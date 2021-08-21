@@ -6,16 +6,17 @@ import deepMerge from 'lodash.merge'
  */
 const mergeImportant = (style, hasImportant) => {
   if (!hasImportant) return style
-  // Bail if the ruleset already has an important - for arbitrary values
+  // Bail if the ruleset already has an important
   if (JSON.stringify(style).includes(' !important')) return style
 
-  return Object.entries(style).reduce((accumulator, item) => {
+  return Object.entries(style).reduce((result, item) => {
     const [key, value] = item
-    if (typeof value === 'object') {
-      return mergeImportant(value, hasImportant)
-    }
+    if (typeof value === 'object') return mergeImportant(value, hasImportant)
 
-    return deepMerge(accumulator, { [key]: `${value} !important` })
+    // Don't add important to css variables
+    const newValue = key.startsWith('--') ? value : `${value} !important`
+
+    return deepMerge(result, { [key]: newValue })
   }, {})
 }
 

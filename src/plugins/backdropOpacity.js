@@ -4,6 +4,7 @@ export default properties => {
     match,
     getConfigValue,
     errors: { errorSuggestions },
+    pieces: { important },
   } = properties
 
   const classValue = match(/(?<=(backdrop-opacity)-)([^]*)/)
@@ -17,5 +18,8 @@ export default properties => {
   const backdropOpacityValue = Array.isArray(value)
     ? value.map(v => `opacity(${v})`).join(' ')
     : `opacity(${value})`
-  return { '--tw-backdrop-opacity': backdropOpacityValue }
+  return {
+    '--tw-backdrop-opacity': backdropOpacityValue,
+    backdropFilter: `var(--tw-backdrop-filter)${important}`,
+  }
 }

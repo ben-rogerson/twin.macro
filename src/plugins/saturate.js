@@ -4,6 +4,7 @@ export default properties => {
     match,
     getConfigValue,
     errors: { errorSuggestions },
+    pieces: { important },
   } = properties
 
   const classValue = match(/(?<=(saturate)-)([^]*)/)
@@ -18,5 +19,8 @@ export default properties => {
     ? value.map(v => `saturate(${v})`).join(' ')
     : `saturate(${value})`
 
-  return { '--tw-saturate': saturateValue }
+  return {
+    '--tw-saturate': saturateValue,
+    filter: `var(--tw-filter)${important}`,
+  }
 }

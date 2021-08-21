@@ -5,15 +5,19 @@ export default {
    */
 
   // https://tailwindcss.com/docs/animation
-  animate: {
-    hasArbitrary: false,
-    plugin: 'animation',
-  },
+  animate: { prop: 'animation', plugin: 'animation' },
 
   // https://tailwindcss.com/docs/container
-  container: {
-    hasArbitrary: false,
-    plugin: 'container',
+  container: { hasArbitrary: false, plugin: 'container' },
+
+  // https://tailwindcss.com/docs/just-in-time-mode#content-utilities
+  content: { prop: 'content' },
+
+  // https://tailwindcss.com/docs/just-in-time-mode#caret-color-utilities
+  caret: {
+    plugin: 'caretColor',
+    value: ['color'],
+    coerced: { color: value => ({ caretColor: value }) },
   },
 
   // https://tailwindcss.com/docs/box-sizing
@@ -24,11 +28,7 @@ export default {
   // See staticStyles.js
 
   // https://tailwindcss.com/docs/object-position
-  object: {
-    hasArbitrary: false,
-    prop: 'objectPosition',
-    config: 'objectPosition',
-  },
+  object: { prop: 'objectPosition', config: 'objectPosition' },
 
   // https://tailwindcss.com/docs/overflow
   // https://tailwindcss.com/docs/position
@@ -52,30 +52,56 @@ export default {
   // https://tailwindcss.com/docs/space
   // space-x-reverse + space-y-reverse are in staticStyles
   'space-y': {
-    hasArbitrary: false,
     plugin: 'space',
+    value: ({ value }) => ({
+      '> :not([hidden]) ~ :not([hidden])': {
+        '--tw-space-y-reverse': '0',
+        marginTop: `calc(${value} * calc(1 - var(--tw-space-y-reverse)))`,
+        marginBottom: `calc(${value} * var(--tw-space-y-reverse))`,
+      },
+    }),
   },
   'space-x': {
-    hasArbitrary: false,
     plugin: 'space',
+    value: ({ value }) => ({
+      '> :not([hidden]) ~ :not([hidden])': {
+        '--tw-space-x-reverse': '0',
+        marginRight: `calc(${value} * var(--tw-space-x-reverse))`,
+        marginLeft: `calc(${value} * calc(1 - var(--tw-space-x-reverse)))`,
+      },
+    }),
   },
 
   // https://tailwindcss.com/docs/divide-width/
-  'divide-opacity': {
-    hasArbitrary: false,
-    plugin: 'divide',
-  },
+  'divide-opacity': { prop: '--tw-divide-opacity', plugin: 'divide' },
   'divide-y': {
-    hasArbitrary: false,
     plugin: 'divide',
+    value: ({ value }) => ({
+      '> :not([hidden]) ~ :not([hidden])': {
+        '--tw-divide-y-reverse': '0',
+        borderTopWidth: `calc(${value} * calc(1 - var(--tw-divide-y-reverse)))`,
+        borderBottomWidth: `calc(${value} * var(--tw-divide-y-reverse))`,
+      },
+    }),
   },
   'divide-x': {
-    hasArbitrary: false,
     plugin: 'divide',
+    value: ({ value }) => ({
+      '--tw-divide-x-reverse': '0',
+      borderRightWidth: `calc(${value} * var(--tw-divide-x-reverse))`,
+      borderLeftWidth: `calc(${value} * calc(1 - var(--tw-divide-x-reverse)))`,
+    }),
   },
   divide: {
-    hasArbitrary: false,
     plugin: 'divide',
+    value: ['color'],
+    coerced: {
+      color: {
+        property: 'borderColor',
+        variable: '--tw-divide-opacity',
+        useSlashAlpha: false,
+      },
+    },
   },
 
   /**
@@ -98,11 +124,7 @@ export default {
   'flex-shrink': { prop: 'flexShrink', config: 'flexShrink' },
 
   // https://tailwindcss.com/docs/flex
-  flex: {
-    hasArbitrary: false,
-    prop: 'flex',
-    config: 'flex',
-  },
+  flex: { prop: 'flex', config: 'flex' },
 
   // https://tailwindcss.com/docs/order
   order: { prop: 'order', config: 'order' },
@@ -116,41 +138,17 @@ export default {
   'grid-cols': { prop: 'gridTemplateColumns', config: 'gridTemplateColumns' },
 
   // https://tailwindcss.com/docs/grid-column
-  col: {
-    hasArbitrary: false,
-    prop: 'gridColumn',
-    config: 'gridColumn',
-  },
-  'col-start': {
-    hasArbitrary: false,
-    prop: 'gridColumnStart',
-    config: 'gridColumnStart',
-  },
-  'col-end': {
-    hasArbitrary: false,
-    prop: 'gridColumnEnd',
-    config: 'gridColumnEnd',
-  },
+  col: { prop: 'gridColumn', config: 'gridColumn' },
+  'col-start': { prop: 'gridColumnStart', config: 'gridColumnStart' },
+  'col-end': { prop: 'gridColumnEnd', config: 'gridColumnEnd' },
 
   // https://tailwindcss.com/docs/grid-template-rows
   'grid-rows': { prop: 'gridTemplateRows', config: 'gridTemplateRows' },
 
   // https://tailwindcss.com/docs/grid-row
-  row: {
-    hasArbitrary: false,
-    prop: 'gridRow',
-    config: 'gridRow',
-  },
-  'row-start': {
-    hasArbitrary: false,
-    prop: 'gridRowStart',
-    config: 'gridRowStart',
-  },
-  'row-end': {
-    hasArbitrary: false,
-    prop: 'gridRowEnd',
-    config: 'gridRowEnd',
-  },
+  row: { prop: 'gridRow', config: 'gridRow' },
+  'row-start': { prop: 'gridRowStart', config: 'gridRowStart' },
+  'row-end': { prop: 'gridRowEnd', config: 'gridRowEnd' },
 
   // https://tailwindcss.com/docs/grid-auto-columns
   'auto-cols': { prop: 'gridAutoColumns', config: 'gridAutoColumns' },
@@ -160,28 +158,12 @@ export default {
 
   // https://tailwindcss.com/docs/gap
   gap: { prop: 'gap', config: 'gap' },
-  'gap-x': {
-    prop: 'columnGap',
-    config: 'gap',
-    configFallback: 'spacing',
-  },
-  'gap-y': {
-    prop: 'rowGap',
-    config: 'gap',
-    configFallback: 'spacing',
-  },
+  'gap-x': { prop: 'columnGap', config: 'gap', configFallback: 'spacing' },
+  'gap-y': { prop: 'rowGap', config: 'gap', configFallback: 'spacing' },
 
   // Deprecated since tailwindcss v1.7.0
-  'col-gap': {
-    hasArbitrary: false,
-    prop: 'columnGap',
-    config: 'gap',
-  },
-  'row-gap': {
-    hasArbitrary: false,
-    prop: 'rowGap',
-    config: 'gap',
-  },
+  'col-gap': { hasArbitrary: false, prop: 'columnGap', config: 'gap' },
+  'row-gap': { hasArbitrary: false, prop: 'rowGap', config: 'gap' },
 
   /**
    * ===========================================
@@ -252,18 +234,29 @@ export default {
   leading: { prop: 'lineHeight', config: 'lineHeight' },
 
   // https://tailwindcss.com/docs/list-style-type
-  list: {
-    hasArbitrary: false,
-    prop: 'listStyleType',
-    config: 'listStyleType',
-  },
+  list: { prop: 'listStyleType', config: 'listStyleType' },
 
   // https://tailwindcss.com/docs/list-style-position
   // See staticStyles.js
 
-  // https://tailwindcss.com/docs/placeholder-color
   // https://tailwindcss.com/docs/placeholder-opacity
-  placeholder: { hasArbitrary: false, plugin: 'placeholder' },
+  'placeholder-opacity': {
+    plugin: 'placeholder',
+    value: ({ value }) => ({
+      '::placeholder': { '--tw-placeholder-opacity': value },
+    }),
+  },
+  // https://tailwindcss.com/docs/placeholder-color
+  placeholder: {
+    plugin: 'placeholder',
+    value: ({ color }) => ({
+      '::placeholder': color({
+        property: 'color',
+        variable: '--tw-placeholder-opacity',
+        useSlashAlpha: false,
+      }),
+    }),
+  },
 
   // https://tailwindcss.com/docs/text-align
   // See staticStyles.js
@@ -276,9 +269,12 @@ export default {
     configFallback: 'opacity',
   },
   text: {
-    value: ({ filterColor, value }) =>
-      filterColor(['--tw-text-opacity', 'color'], value),
+    value: ['color', 'length'],
     plugin: 'text',
+    coerced: {
+      color: { property: 'color', variable: '--tw-text-opacity' },
+      length: { property: 'fontSize' },
+    },
   },
   // https://tailwindcss.com/docs/text-decoration
   // https://tailwindcss.com/docs/text-transform
@@ -306,9 +302,20 @@ export default {
   },
   // https://tailwindcss.com/docs/gradient-color-stops
   bg: {
-    value: ({ filterColor, value }) =>
-      filterColor(['--tw-bg-opacity', 'backgroundColor'], value),
+    value: ['color'],
     plugin: 'bg',
+    coerced: {
+      color: {
+        property: 'backgroundColor',
+        variable: '--tw-bg-opacity',
+        useSlashAlpha: false,
+      },
+      lookup: value => ({
+        backgroundImage: value,
+        backgroundSize: value,
+        backgroundPosition: value,
+      }),
+    },
   },
 
   // https://tailwindcss.com/docs/gradient-color-stops
@@ -329,10 +336,7 @@ export default {
     }),
     plugin: 'gradient',
   },
-  to: {
-    value: ({ value }) => ({ '--tw-gradient-to': value }),
-    plugin: 'gradient',
-  },
+  to: { prop: '--tw-gradient-to', plugin: 'gradient' },
 
   /**
    * ===========================================
@@ -343,17 +347,51 @@ export default {
   // See staticStyles.js
 
   // https://tailwindcss.com/docs/border-width
-  'border-t': { prop: 'borderTopWidth', config: 'borderWidth' },
-  'border-b': { prop: 'borderBottomWidth', config: 'borderWidth' },
-  'border-l': { prop: 'borderLeftWidth', config: 'borderWidth' },
-  'border-r': { prop: 'borderRightWidth', config: 'borderWidth' },
-
+  'border-t': {
+    value: ['color', 'length'],
+    plugin: 'border',
+    coerced: {
+      color: { property: 'borderTopColor', variable: '--tw-border-opacity' },
+      length: { property: 'borderTopWidth' },
+    },
+  },
+  'border-b': {
+    value: ['color', 'length'],
+    plugin: 'border',
+    coerced: {
+      color: { property: 'borderBottomColor', variable: '--tw-border-opacity' },
+      length: { property: 'borderBottomWidth' },
+    },
+  },
+  'border-l': {
+    value: ['color', 'length'],
+    plugin: 'border',
+    coerced: {
+      color: { property: 'borderLeftColor', variable: '--tw-border-opacity' },
+      length: { property: 'borderLeftWidth' },
+    },
+  },
+  'border-r': {
+    value: ['color', 'length'],
+    plugin: 'border',
+    coerced: {
+      color: { property: 'borderRightColor', variable: '--tw-border-opacity' },
+      length: { property: 'borderRightWidth' },
+    },
+  },
   'border-opacity': {
     prop: '--tw-border-opacity',
     config: 'borderOpacity',
     configFallback: 'opacity',
   },
-  border: { prop: 'borderWidth', plugin: 'border' },
+  border: {
+    value: ['color', 'length'],
+    plugin: 'border',
+    coerced: {
+      color: { property: 'borderColor', variable: '--tw-border-opacity' },
+      length: { property: 'borderWidth' },
+    },
+  },
 
   // https://tailwindcss.com/docs/border-radius
   'rounded-tl': { prop: 'borderTopLeftRadius', config: 'borderRadius' },
@@ -387,14 +425,34 @@ export default {
 
   // https://tailwindcss.com/docs/ring-offset-width
   // https://tailwindcss.com/docs/ring-offset-color
-  'ring-offset': { prop: '--tw-ring-offset-width', plugin: 'ringOffset' },
+  'ring-offset': {
+    prop: '--tw-ring-offset-width',
+    value: ['length', 'color'],
+    plugin: 'ringOffset',
+    coerced: {
+      color: value => ({ '--tw-ring-offset-color': value }),
+      length: { property: '--tw-ring-offset-width' },
+    },
+  },
 
   // https://tailwindcss.com/docs/ring-width
   // https://tailwindcss.com/docs/ring-color
   ring: {
-    value: ({ filterColor, value }) =>
-      filterColor(['--tw-ring-opacity', '--tw-ring-color'], value),
     plugin: 'ring',
+    value: ['color', 'length'],
+    coerced: {
+      color: { property: '--tw-ring-color', variable: '--tw-ring-opacity' },
+      length: value => ({
+        '--tw-ring-offset-shadow':
+          'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
+        '--tw-ring-shadow': `var(--tw-ring-inset) 0 0 0 calc(${value} + var(--tw-ring-offset-width)) var(--tw-ring-color)`,
+        boxShadow: [
+          `var(--tw-ring-offset-shadow)`,
+          `var(--tw-ring-shadow)`,
+          `var(--tw-shadow, 0 0 #0000)`,
+        ].join(', '),
+      }),
+    },
   },
 
   /**
@@ -412,7 +470,21 @@ export default {
    */
 
   // https://tailwindcss.com/docs/box-shadow
-  shadow: { hasArbitrary: false, plugin: 'boxShadow' },
+  // Note: Tailwind doesn't allow an arbitrary value but it's likely just an accident so it's been added here
+  shadow: {
+    plugin: 'boxShadow',
+    value: ['lookup'],
+    coerced: {
+      lookup: value => ({
+        '--tw-shadow': value,
+        boxShadow: [
+          `var(--tw-ring-offset-shadow, 0 0 #0000)`,
+          `var(--tw-ring-shadow, 0 0 #0000)`,
+          `var(--tw-shadow)`,
+        ].join(', '),
+      }),
+    },
+  },
 
   // https://tailwindcss.com/docs/opacity
   opacity: { prop: 'opacity', config: 'opacity' },
@@ -427,22 +499,28 @@ export default {
 
   // https://tailwindcss.com/docs/blur
   blur: {
-    prop: '--tw-blur',
-    value: ({ value }) => `blur(${value})`,
+    value: ({ value }) => ({
+      '--tw-blur': `blur(${value})`,
+      filter: 'var(--tw-filter)',
+    }),
     plugin: 'blur',
   },
 
   // https://tailwindcss.com/docs/brightness
   brightness: {
-    prop: '--tw-brightness',
-    value: ({ value }) => `brightness(${value})`,
+    value: ({ value }) => ({
+      '--tw-brightness': `brightness(${value})`,
+      filter: 'var(--tw-filter)',
+    }),
     plugin: 'brightness',
   },
 
   // https://tailwindcss.com/docs/contrast
   contrast: {
-    prop: '--tw-contrast',
-    value: ({ value }) => `contrast(${value})`,
+    value: ({ value }) => ({
+      '--tw-contrast': `contrast(${value})`,
+      filter: 'var(--tw-filter)',
+    }),
     plugin: 'contrast',
   },
 
@@ -451,36 +529,46 @@ export default {
 
   // https://tailwindcss.com/docs/grayscale
   grayscale: {
-    prop: '--tw-grayscale',
-    value: ({ value }) => `grayscale(${value})`,
+    value: ({ value }) => ({
+      '--tw-grayscale': `grayscale(${value})`,
+      filter: 'var(--tw-filter)',
+    }),
     plugin: 'grayscale',
   },
 
   // https://tailwindcss.com/docs/hue-rotate
   'hue-rotate': {
-    prop: '--tw-hue-rotate',
-    value: ({ value }) => `hue-rotate(${value})`,
+    value: ({ value }) => ({
+      '--tw-hue-rotate': `hue-rotate(${value})`,
+      filter: 'var(--tw-filter)',
+    }),
     plugin: 'hueRotate',
   },
 
   // https://tailwindcss.com/docs/invert
   invert: {
-    prop: '--tw-invert',
-    value: ({ value }) => `invert(${value})`,
+    value: ({ value }) => ({
+      '--tw-invert': `invert(${value})`,
+      filter: 'var(--tw-filter)',
+    }),
     plugin: 'invert',
   },
 
   // https://tailwindcss.com/docs/saturate
   saturate: {
-    prop: '--tw-saturate',
-    value: ({ value }) => `saturate(${value})`,
+    value: ({ value }) => ({
+      '--tw-saturate': `saturate(${value})`,
+      filter: 'var(--tw-filter)',
+    }),
     plugin: 'saturate',
   },
 
   // https://tailwindcss.com/docs/sepia
   sepia: {
-    prop: '--tw-sepia',
-    value: ({ value }) => `sepia(${value})`,
+    value: ({ value }) => ({
+      '--tw-sepia': `sepia(${value})`,
+      filter: 'var(--tw-filter)',
+    }),
     plugin: 'sepia',
   },
 
@@ -488,64 +576,82 @@ export default {
 
   // https://tailwindcss.com/docs/backdrop-blur
   'backdrop-blur': {
-    prop: '--tw-backdrop-blur',
-    value: ({ value }) => `blur(${value})`,
+    value: ({ value }) => ({
+      '--tw-backdrop-blur': `blur(${value})`,
+      backdropFilter: 'var(--tw-backdrop-filter)',
+    }),
     plugin: 'backdropBlur',
   },
 
   // https://tailwindcss.com/docs/backdrop-brightness
   'backdrop-brightness': {
-    prop: '--tw-backdrop-brightness',
-    value: ({ value }) => `brightness(${value})`,
+    value: ({ value }) => ({
+      '--tw-backdrop-brightness': `brightness(${value})`,
+      backdropFilter: 'var(--tw-backdrop-filter)',
+    }),
     plugin: 'backdropBrightness',
   },
 
   // https://tailwindcss.com/docs/backdrop-contrast
   'backdrop-contrast': {
-    prop: '--tw-backdrop-contrast',
-    value: ({ value }) => `contrast(${value})`,
+    value: ({ value }) => ({
+      '--tw-backdrop-contrast': `contrast(${value})`,
+      backdropFilter: 'var(--tw-backdrop-filter)',
+    }),
     plugin: 'backdropContrast',
   },
 
   // https://tailwindcss.com/docs/backdrop-grayscale
   'backdrop-grayscale': {
-    prop: '--tw-backdrop-grayscale',
-    value: ({ value }) => `grayscale(${value})`,
+    value: ({ value }) => ({
+      '--tw-backdrop-grayscale': `grayscale(${value})`,
+      backdropFilter: 'var(--tw-backdrop-filter)',
+    }),
     plugin: 'backdropGrayscale',
   },
 
   // https://tailwindcss.com/docs/backdrop-hue-rotate
   'backdrop-hue-rotate': {
-    prop: '--tw-backdrop-hue-rotate',
-    value: ({ value }) => `hue-rotate(${value})`,
+    value: ({ value }) => ({
+      '--tw-backdrop-hue-rotate': `hue-rotate(${value})`,
+      backdropFilter: 'var(--tw-backdrop-filter)',
+    }),
     plugin: 'backdropHueRotate',
   },
 
   // https://tailwindcss.com/docs/backdrop-invert
   'backdrop-invert': {
-    prop: '--tw-backdrop-invert',
-    value: ({ value }) => `invert(${value})`,
+    value: ({ value }) => ({
+      '--tw-backdrop-invert': `invert(${value})`,
+      backdropFilter: 'var(--tw-backdrop-filter)',
+    }),
     plugin: 'backdropInvert',
   },
 
   // https://tailwindcss.com/docs/backdrop-opacity
   'backdrop-opacity': {
-    prop: '--tw-backdrop-opacity',
-    value: ({ value }) => `opacity(${value})`,
+    value: ({ value }) => ({
+      '--tw-backdrop-opacity': `opacity(${value})`,
+      backdropFilter: 'var(--tw-backdrop-filter)',
+    }),
     plugin: 'backdropOpacity',
   },
 
   // https://tailwindcss.com/docs/backdrop-saturate
   'backdrop-saturate': {
-    prop: '--tw-backdrop-saturate',
-    value: ({ value }) => `saturate(${value})`,
+    value: ({ value }) => ({
+      '--tw-backdrop-saturate': `saturate(${value})`,
+      backdropFilter: 'var(--tw-backdrop-filter)',
+    }),
     plugin: 'backdropSaturate',
   },
 
   // https://tailwindcss.com/docs/backdrop-sepia
   'backdrop-sepia': {
-    prop: '--tw-backdrop-sepia',
-    value: ({ value }) => `sepia(${value})`,
+    value: ({ value }) => ({
+      '--tw-backdrop-sepia': `sepia(${value})`,
+      backdropFilter: 'var(--tw-backdrop-filter)',
+    }),
     plugin: 'backdropSepia',
   },
 
@@ -555,28 +661,30 @@ export default {
    */
 
   // https://tailwindcss.com/docs/transtiion-property
-  transition: { hasArbitrary: false, plugin: 'transition' },
+  // Note: Tailwind doesn't allow an arbitrary value but it's likely just an accident so it's been added here
+  transition: {
+    plugin: 'transition',
+    value: ['lookup'],
+    coerced: {
+      lookup: (value, theme) => ({
+        transitionProperty: value,
+        transitionTimingFunction: theme('transitionTimingFunction.DEFAULT'),
+        transitionDuration: theme('transitionDuration.DEFAULT'),
+      }),
+    },
+  },
 
   // https://tailwindcss.com/docs/transition-duration
-  duration: {
-    hasArbitrary: false,
-    prop: 'transitionDuration',
-    config: 'transitionDuration',
-  },
+  duration: { prop: 'transitionDuration', config: 'transitionDuration' },
 
   // https://tailwindcss.com/docs/transition-timing-function
   ease: {
-    hasArbitrary: false,
     prop: 'transitionTimingFunction',
     config: 'transitionTimingFunction',
   },
 
   // https://tailwindcss.com/docs/transition-delay
-  delay: {
-    hasArbitrary: false,
-    prop: 'transitionDelay',
-    config: 'transitionDelay',
-  },
+  delay: { prop: 'transitionDelay', config: 'transitionDelay' },
 
   /**
    * ===========================================
@@ -584,27 +692,72 @@ export default {
    */
 
   // https://tailwindcss.com/docs/scale
-  'scale-x': { prop: '--tw-scale-x', config: 'scale' },
-  'scale-y': { prop: '--tw-scale-y', config: 'scale' },
-  scale: { prop: ['--tw-scale-x', '--tw-scale-y'], config: 'scale' },
+  'scale-x': {
+    value: ({ value }) => ({
+      '--tw-scale-x': value,
+      transform: 'var(--tw-transform)',
+    }),
+    config: 'scale',
+  },
+  'scale-y': {
+    value: ({ value }) => ({
+      '--tw-scale-y': value,
+      transform: 'var(--tw-transform)',
+    }),
+    config: 'scale',
+  },
+  scale: {
+    value: ({ value }) => ({
+      '--tw-scale-x': value,
+      '--tw-scale-y': value,
+      transform: 'var(--tw-transform)',
+    }),
+    config: 'scale',
+  },
 
   // https://tailwindcss.com/docs/rotate
-  rotate: { prop: '--tw-rotate', config: 'rotate' },
+  rotate: {
+    value: ({ value }) => ({
+      '--tw-rotate': value,
+      transform: 'var(--tw-transform)',
+    }),
+    config: 'rotate',
+  },
 
   // https://tailwindcss.com/docs/translate
-  'translate-x': { prop: '--tw-translate-x', config: 'translate' },
-  'translate-y': { prop: '--tw-translate-y', config: 'translate' },
+  'translate-x': {
+    value: ({ value }) => ({
+      '--tw-translate-x': value,
+      transform: 'var(--tw-transform)',
+    }),
+    config: 'translate',
+  },
+  'translate-y': {
+    value: ({ value }) => ({
+      '--tw-translate-y': value,
+      transform: 'var(--tw-transform)',
+    }),
+    config: 'translate',
+  },
 
   // https://tailwindcss.com/docs/skew
-  'skew-x': { prop: '--tw-skew-x', config: 'skew' },
-  'skew-y': { prop: '--tw-skew-y', config: 'skew' },
+  'skew-x': {
+    value: ({ value }) => ({
+      '--tw-skew-x': value,
+      transform: 'var(--tw-transform)',
+    }),
+    config: 'skew',
+  },
+  'skew-y': {
+    value: ({ value }) => ({
+      '--tw-skew-y': value,
+      transform: 'var(--tw-transform)',
+    }),
+    config: 'skew',
+  },
 
   // https://tailwindcss.com/docs/transform-origin
-  origin: {
-    hasArbitrary: false,
-    prop: 'transformOrigin',
-    config: 'transformOrigin',
-  },
+  origin: { prop: 'transformOrigin', config: 'transformOrigin' },
 
   /**
    * ===========================================
@@ -618,7 +771,10 @@ export default {
   cursor: { prop: 'cursor', config: 'cursor' },
 
   // https://tailwindcss.com/docs/outline
-  outline: { hasArbitrary: false, plugin: 'outline' },
+  outline: {
+    plugin: 'outline',
+    value: ({ value }) => ({ outline: value, outlineOffset: '0' }),
+  },
 
   // https://tailwindcss.com/docs/pointer-events
   // https://tailwindcss.com/docs/resize
@@ -631,11 +787,18 @@ export default {
    */
 
   // https://tailwindcss.com/docs/fill
-  fill: { prop: 'fill', config: 'fill' },
+  fill: { prop: 'fill', plugin: 'fill' },
 
   // https://tailwindcss.com/docs/stroke
-  // https://tailwindcss.com/docs/stroke
-  stroke: { prop: 'stroke', plugin: 'stroke' },
+  stroke: {
+    prop: 'stroke',
+    value: ['length', 'color'],
+    plugin: 'stroke',
+    coerced: {
+      color: value => ({ stroke: value }),
+      length: { property: 'strokeWidth' },
+    },
+  },
 
   /**
    * ===========================================

@@ -2,6 +2,7 @@ import { MacroError } from 'babel-plugin-macros'
 import { logNotAllowed, errorSuggestions } from '../logging'
 import getConfigValue from './../utils/getConfigValue'
 import { get } from './../utils'
+import { getColor } from './../utils/color'
 /* eslint import/namespace: [2, { allowComputed: true }] */
 /* eslint-disable-next-line unicorn/import-index */
 import * as plugins from '../plugins/index'
@@ -52,22 +53,51 @@ const callPlugin = (corePlugin, context) => {
   return handle(context)
 }
 
+const getMatchConfigValue = ({ match, theme, getConfigValue }) => (
+  config,
+  regexMatch
+) => {
+  const matcher = match(regexMatch)
+  if (matcher === undefined) return
+  return getConfigValue(theme(config), matcher)
+}
+
 export default ({
   corePlugin,
   classNameRaw,
   pieces,
   state,
   dynamicKey,
+  theme,
+  configTwin,
   ...rest
 }) => {
   const errors = getErrors({ state, pieces, dynamicKey })
-  const match = regex => get(pieces.className.match(regex), [0]) || null
+  const match = regex => {
+    const result = get(pieces.className.match(regex), [0])
+    if (result === undefined) return
+    return result
+  }
+
+  const matchConfigValue = getMatchConfigValue({ match, theme, getConfigValue })
+  const toColor = getColor({
+    theme,
+    getConfigValue,
+    configTwin,
+    matchConfigValue,
+    pieces,
+  })
+
   const context = {
     state: () => state,
     errors,
     pieces,
     match,
+    theme,
+    toColor,
+    configTwin,
     getConfigValue,
+    matchConfigValue,
     ...rest,
   }
 

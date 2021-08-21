@@ -1,35 +1,23 @@
-const toColorValue = maybeFunction =>
-  typeof maybeFunction === 'function' ? maybeFunction({}) : maybeFunction
-
-const handleColor = ({ configValue }) => {
-  const value = configValue('ringOffsetColor')
-  if (!value) return
-
-  return { '--tw-ring-offset-color': toColorValue(value) }
-}
-
-const handleWidth = ({ configValue }) => {
-  const value = configValue('ringOffsetWidth')
-  if (!value) return
-
-  return { '--tw-ring-offset-width': value }
+const handleColor = ({ toColor }) => {
+  const common = {
+    matchStart: 'ring-offset',
+    property: '--tw-ring-offset-color',
+    configSearch: 'ringOffsetColor',
+  }
+  return toColor([{ ...common, useSlashAlpha: false }, common])
 }
 
 export default properties => {
   const {
-    theme,
-    match,
-    getConfigValue,
+    toColor,
+    matchConfigValue,
     errors: { errorSuggestions },
   } = properties
 
-  const classValue = match(/(?<=(ring-offset)-)([^]*)/)
-  const configValue = config => getConfigValue(theme(config), classValue)
+  const width = matchConfigValue('ringOffsetWidth', /(?<=(ring-offset)-)([^]*)/)
+  if (width) return { '--tw-ring-offset-width': width }
 
-  const width = handleWidth({ configValue })
-  if (width) return width
-
-  const color = handleColor({ configValue })
+  const color = handleColor({ toColor })
   if (color) return color
 
   errorSuggestions({

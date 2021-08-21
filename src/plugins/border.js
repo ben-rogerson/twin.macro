@@ -1,44 +1,62 @@
-import { withAlpha } from './../utils'
+const borderWidthConfig = [
+  {
+    property: 'borderTopWidth',
+    value: regex => regex(/(?<=(border-t(-|$)))([^]*)/),
+  },
+  {
+    property: 'borderRightWidth',
+    value: regex => regex(/(?<=(border-r(-|$)))([^]*)/),
+  },
+  {
+    property: 'borderBottomWidth',
+    value: regex => regex(/(?<=(border-b(-|$)))([^]*)/),
+  },
+  {
+    property: 'borderLeftWidth',
+    value: regex => regex(/(?<=(border-l(-|$)))([^]*)/),
+  },
+  {
+    property: 'borderWidth',
+    value: regex => regex(/(?<=(border(-|$)))([^]*)/),
+  },
+]
 
-const handleWidth = ({ configValue, important }) => {
-  const value = configValue('borderWidth')
-  if (!value) return
+const borderColorConfig = [
+  { matchStart: 'border-t', property: 'borderTopColor' },
+  { matchStart: 'border-r', property: 'borderRightColor' },
+  { matchStart: 'border-b', property: 'borderBottomColor' },
+  { matchStart: 'border-l', property: 'borderLeftColor' },
+  { matchStart: 'border', property: 'borderColor' },
+]
 
-  return {
-    borderWidth: `${value}${important}`,
-  }
-}
-
-const handleColor = ({ configValue, important, disableColorVariables }) => {
-  const value = configValue('borderColor')
-
-  if (!value) return
-  return withAlpha({
-    color: value,
-    property: 'borderColor',
-    variable: !disableColorVariables && '--tw-border-opacity',
-    important,
-  })
-}
+const getCommonColorConfig = ({ matchStart, property }) => ({
+  matchStart,
+  property,
+  configSearch: 'borderColor',
+})
 
 export default properties => {
   const {
-    match,
-    theme,
-    getConfigValue,
-    configTwin: { disableColorVariables },
+    matchConfigValue,
+    toColor,
     pieces: { important },
     errors: { errorSuggestions },
   } = properties
-  const classValue = match(/(?<=(border-))([^]*)/)
 
-  const configValue = config => getConfigValue(theme(config), classValue)
+  const getBorderWidthByRegex = regex => matchConfigValue('borderWidth', regex)
+  for (const task of borderWidthConfig) {
+    const value = task.value(getBorderWidthByRegex)
+    if (value) return { [task.property]: `${value}${important}` }
+  }
 
-  const width = handleWidth({ configValue, important })
-  if (width) return width
-
-  const color = handleColor({ configValue, important, disableColorVariables })
-  if (color) return color
+  for (const task of borderColorConfig) {
+    const common = getCommonColorConfig(task)
+    const value = toColor([
+      { ...common, opacityVariable: '--tw-border-opacity' },
+      common,
+    ])
+    if (value) return value
+  }
 
   errorSuggestions({ config: ['borderColor', 'borderWidth'] })
 }

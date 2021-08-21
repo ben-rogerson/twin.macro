@@ -4,6 +4,7 @@ export default properties => {
     match,
     getConfigValue,
     errors: { errorSuggestions },
+    pieces: { important },
   } = properties
 
   const classValue = match(/(?<=(grayscale)-)([^]*)/)
@@ -18,5 +19,8 @@ export default properties => {
     ? value.map(v => `grayscale(${v})`).join(' ')
     : `grayscale(${value})`
 
-  return { '--tw-grayscale': grayscaleValue }
+  return {
+    '--tw-grayscale': grayscaleValue,
+    filter: `var(--tw-filter)${important}`,
+  }
 }

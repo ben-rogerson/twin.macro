@@ -13,5 +13,4 @@ export {
   isArbitraryCss,
   splitOnFirst,
 } from './misc'
-export { default as withAlpha, transparentTo } from './withAlpha'
-export { toRgba } from './withAlpha'
+export { toRgba, withAlpha, transparentTo } from './alpha'

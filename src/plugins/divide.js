@@ -1,18 +1,16 @@
-import { addPxTo0, withAlpha, stripNegative } from './../utils'
+import { addPxTo0, stripNegative } from './../utils'
 
-const handleColor = ({ configValue, important, disableColorVariables }) => {
-  const value =
-    configValue('divideColor') ||
-    configValue('borderColor') ||
-    configValue('colors')
-  if (!value) return
-
-  const borderColor = withAlpha({
-    color: value,
+const handleColor = ({ toColor }) => {
+  const common = {
+    matchStart: 'divide',
     property: 'borderColor',
-    variable: !disableColorVariables && '--tw-divide-opacity',
-    important,
-  })
+    configSearch: ['divideColor', 'borderColor', 'colors'],
+  }
+  const borderColor = toColor([
+    { ...common, opacityVariable: '--tw-divide-opacity' },
+    common,
+  ])
+  if (!borderColor) return
 
   return { '> :not([hidden]) ~ :not([hidden])': borderColor }
 }
@@ -22,7 +20,9 @@ const handleOpacity = ({ configValue }) => {
   if (!opacity) return
 
   return {
-    '> :not([hidden]) ~ :not([hidden])': { '--tw-divide-opacity': `${opacity}` },
+    '> :not([hidden]) ~ :not([hidden])': {
+      '--tw-divide-opacity': `${opacity}`,
+    },
   }
 }
 
@@ -53,18 +53,14 @@ const handleWidth = ({
 
 export default properties => {
   const {
-    pieces: { important },
     errors: { errorSuggestions },
-    configTwin: { disableColorVariables },
     getConfigValue,
+    toColor,
     theme,
     match,
   } = properties
 
-  const classValue = match(/(?<=(divide-))([^]*)/)
-  const configValue = config => getConfigValue(theme(config), classValue)
-
-  const color = handleColor({ configValue, important, disableColorVariables })
+  const color = handleColor({ toColor })
   if (color) return color
 
   const opacityMatch =

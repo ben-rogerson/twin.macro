@@ -1,5 +1,5 @@
 import getConfigValue from './../utils/getConfigValue'
-import { throwIf, isNumeric } from './../utils'
+import { throwIf, isNumeric, transparentTo } from './../utils'
 import { errorSuggestions } from './../logging'
 
 const maybeAddNegative = (value, negative) => {
@@ -19,22 +19,33 @@ const styleify = ({ property, value, negative }) => {
 
 export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
   const { className, negative } = pieces
-  const key = `${negative}${className.slice(Number(dynamicKey.length) + 1)}`
 
-  const grabConfig = ({ config, configFallback }) =>
+  const getConfig = ({ config, configFallback }) =>
     (config && theme(config)) || (configFallback && theme(configFallback))
 
   const styleSet = Array.isArray(dynamicConfig)
     ? dynamicConfig
     : [dynamicConfig]
 
-  const results = styleSet
-    .map(item => ({
-      property: item.prop,
-      value: getConfigValue(grabConfig(item), key),
-      negative,
-    }))
-    .find(item => item.value)
+  const piece = className.slice(Number(dynamicKey.length) + 1)
+  const key = [negative, piece].join('')
+
+  let results
+  styleSet.find(item => {
+    const value = getConfigValue(getConfig(item), key)
+    if (value) {
+      results =
+        typeof item.value === 'function'
+          ? item.value({ value, transparentTo })
+          : styleify({
+              property: item.prop,
+              value,
+              negative,
+            })
+    }
+
+    return value
+  })
 
   throwIf(!results || className.endsWith('-'), () =>
     errorSuggestions({
@@ -45,5 +56,5 @@ export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
     })
   )
 
-  return styleify(results)
+  return results
 }
