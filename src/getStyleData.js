@@ -95,7 +95,6 @@ export default (
   const classesMismatched = []
 
   // Merge styles into a single css object
-  /* eslint-disable-next-line complexity */
   const styles = classes.reduce((results, classNameRaw) => {
     const pieces = getPieces({ classNameRaw, state })
     const { hasPrefix, className, hasVariants } = pieces
@@ -197,7 +196,7 @@ export default (
 
     const result = deepMerge(
       results,
-      pieces.hasVariants ? addVariants({ results, style, pieces }) : style
+      addVariants({ results, style, pieces, state })
     )
 
     state.configTwin.debug && debug(classNameRaw, style)

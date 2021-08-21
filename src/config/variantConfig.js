@@ -10,6 +10,7 @@ const variantConfig = ({
   variantDarkMode,
   variantLightMode,
   prefixDarkLightModeClass,
+  createPeer,
 }) => ({
   // Before/after pseudo elements
   // Usage: tw`before:(block w-10 h-10 bg-black)`
@@ -173,6 +174,36 @@ const variantConfig = ({
   // Dark mode / Light mode
   dark: variantDarkMode,
   light: variantLightMode,
+
+  // Peer variants
+  'peer-first': createPeer('first-child'),
+  'peer-last': createPeer('last-child'),
+  'peer-only': createPeer('only-child'),
+  'peer-even': createPeer('nth-child(even)'),
+  'peer-odd': createPeer('nth-child(odd)'),
+  'peer-first-of-type': createPeer('first-of-type'),
+  'peer-last-of-type': createPeer('last-of-type'),
+  'peer-only-of-type': createPeer('only-of-type'),
+  'peer-hover': createPeer('hover'),
+  'peer-focus': createPeer('focus'),
+  'peer-disabled': createPeer('disabled'),
+  'peer-active': createPeer('active'),
+  'peer-target': createPeer('target'),
+  'peer-visited': createPeer('visited'),
+  'peer-default': createPeer('default'),
+  'peer-checked': createPeer('checked'),
+  'peer-indeterminate': createPeer('indeterminate'),
+  'peer-placeholder-shown': createPeer('placeholder-shown'),
+  'peer-autofill': createPeer('autofill'),
+  'peer-focus-within': createPeer('focus-within'),
+  'peer-focus-visible': createPeer('focus-visible'),
+  'peer-required': createPeer('required'),
+  'peer-valid': createPeer('valid'),
+  'peer-invalid': createPeer('invalid'),
+  'peer-in-range': createPeer('in-range'),
+  'peer-out-of-range': createPeer('out-of-range'),
+  'peer-read-only': createPeer('read-only'),
+  'peer-empty': createPeer('empty'),
 
   // Selection
   selection: '::selection',
