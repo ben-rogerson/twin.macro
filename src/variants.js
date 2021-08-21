@@ -42,6 +42,22 @@ const validateVariants = ({ variants, state, ...rest }) => {
 
       let foundVariant = fullVariantConfig[variant]
       if (!foundVariant) {
+        if (variant === 'only-child') {
+          throw new MacroError(
+            logGeneralError(
+              'The "only-child:" variant was deprecated in favor of "only:"'
+            )
+          )
+        }
+
+        if (variant === 'not-only-child') {
+          throw new MacroError(
+            logGeneralError(
+              'The "not-only-child:" variant was deprecated in favor of "not-only:"'
+            )
+          )
+        }
+
         const validVariants = {
           ...(screenNames.length > 0 && { 'Screen breakpoints': screenNames }),
           'Built-in variants': Object.keys(fullVariantConfig),
