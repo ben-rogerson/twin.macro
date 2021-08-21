@@ -3,11 +3,7 @@ import { throwIf, isEmpty, getTheme } from './utils'
 import { getProperties } from './getProperties'
 import getPieces from './utils/getPieces'
 import { astify } from './macroHelpers'
-import doPrechecks, {
-  precheckGroup,
-  preCheckPrefix,
-  preCheckNoHyphenSuffix,
-} from './prechecks'
+import * as precheckExports from './prechecks'
 import {
   logGeneralError,
   errorSuggestions,
@@ -100,12 +96,11 @@ export default (
     const { hasPrefix, className, hasVariants } = pieces
 
     // Avoid prechecks on silent mode as they'll error loudly
-    !silentMismatches &&
-      doPrechecks([precheckGroup, preCheckPrefix, preCheckNoHyphenSuffix], {
-        pieces,
-        classNameRaw,
-        state,
-      })
+    if (!silentMismatches) {
+      const { default: doPrechecks, ...prechecks } = precheckExports
+      const precheckContext = { pieces, classNameRaw, state }
+      doPrechecks(Object.values(prechecks), precheckContext)
+    }
 
     // Make sure non-prefixed classNames are ignored
     const { prefix } = state.config
@@ -152,23 +147,24 @@ export default (
       errorSuggestions({ pieces, state, isCsOnly })
     )
 
+    const styleContext = {
+      theme,
+      pieces,
+      state,
+      corePlugin,
+      className,
+      classNameRaw,
+      dynamicKey,
+      dynamicConfig,
+      configTwin: state.configTwin,
+    }
     const styleHandler = {
-      static: () => handleStatic({ pieces }),
-      dynamic: () =>
-        handleDynamic({ theme, pieces, state, dynamicKey, dynamicConfig }),
-      css: () => handleCss({ className }),
-      arbitraryCss: () => handleArbitraryCss({ className, pieces, state }),
-      userPlugin: () => handleUserPlugins({ state, className }),
-      corePlugin: () =>
-        handleCorePlugins({
-          theme,
-          pieces,
-          state,
-          corePlugin,
-          classNameRaw,
-          dynamicKey,
-          configTwin: state.configTwin,
-        }),
+      static: () => handleStatic(styleContext),
+      dynamic: () => handleDynamic(styleContext),
+      css: () => handleCss(styleContext),
+      arbitraryCss: () => handleArbitraryCss(styleContext),
+      userPlugin: () => handleUserPlugins(styleContext),
+      corePlugin: () => handleCorePlugins(styleContext),
     }
 
     let style

@@ -36,9 +36,7 @@ const validateVariants = ({ variants, state, ...rest }) => {
   return variants
     .map(variant => {
       const isResponsive = screenNames && screenNames.includes(variant)
-      if (isResponsive) {
-        return stringifyScreen(state.config, variant)
-      }
+      if (isResponsive) return stringifyScreen(state.config, variant)
 
       let foundVariant = fullVariantConfig[variant]
       if (!foundVariant) {
