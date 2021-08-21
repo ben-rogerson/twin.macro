@@ -24122,6 +24122,7 @@ import tw from './macro'
 // https://tailwindcss.com/docs/transform
 tw\`transform\`
 tw\`transform-gpu\`
+tw\`transform-cpu\`
 tw\`transform-none\`
 
 // https://tailwindcss.com/docs/transform-origin
@@ -24394,6 +24395,10 @@ tw\`translate-y-2 mt-5 md:(skew-y-6 transform) mb-5\`
 ;({
   '--tw-transform':
     'translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+})
+;({
+  '--tw-transform':
+    'translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   transform: 'none',

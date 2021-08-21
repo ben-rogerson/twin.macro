@@ -791,6 +791,13 @@ export default {
     },
   },
 
+  'transform-cpu': {
+    output: {
+      '--tw-transform':
+        'translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+    },
+  },
+
   'transform-none': { output: { transform: 'none' } },
 
   /**

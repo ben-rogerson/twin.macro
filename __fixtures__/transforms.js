@@ -3,6 +3,7 @@ import tw from './macro'
 // https://tailwindcss.com/docs/transform
 tw`transform`
 tw`transform-gpu`
+tw`transform-cpu`
 tw`transform-none`
 
 // https://tailwindcss.com/docs/transform-origin
