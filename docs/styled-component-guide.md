@@ -295,14 +295,8 @@ Basic css is added using the “short css” syntax or within vanilla css which 
 To add simple custom styling, use twins “short css” syntax:
 
 ```js
-// Set content properties for pseudo elements
-tw.div`before:(content['hey there'] block)`
-
 // Set a css variables
 tw.div`--my-width-variable[calc(100vw - 10rem)]`
-
-// Use a css variables
-tw.div`width[--my-width-variable]`
 
 // Set vendor prefixes
 tw.div`-webkit-line-clamp[3]`
@@ -314,7 +308,7 @@ tw.div`grid-area[1 / 1 / 4 / 2]`
 Use short css with twin’s variants and grouping features:
 
 ```js
-tw.div`block md:(relative max-width[calc(100vw - 2em)])`
+tw.div`block md:(relative grid-area[1 / 1 / 4 / 2])`
 ```
 
 Short css also works with the `tw` import:
@@ -324,13 +318,13 @@ import tw from 'twin.macro'
 
 const Wrapper = tw.div`
   block
-  md:(relative max-width[calc(100vw - 2em)])
+  md:(relative grid-area[1 / 1 / 4 / 2])
 `
 ```
 
-- Add a trailing bang to make the custom css !important: `max-width[2rem]!`
-- To keep short css separate from tw classes, add it in the `cs` prop: `<div cs="max-width[2rem]" />`
-- Short css may be added with camelCase properties: `maxWidth[2rem]`
+- Add a trailing bang to make the custom css !important: `grid-area[1 / 1 / 4 / 2]!`
+- To keep short css separate from tw classes, add it in the `cs` prop: `<div cs="grid-area[1 / 1 / 4 / 2]" />`
+- Short css may be added with camelCase properties: `gridArea[1 / 1 / 4 / 2]`
 - Interpolation/dynamic values aren’t supported
 
 ### Advanced css styling

@@ -131,11 +131,9 @@ ml-40 [10rem] / ml-48 [12rem] / ml-56 [14rem] / ml-64 [16rem] / ml-auto [auto] /
 
 **💡 Works with the official tailwind vscode plugin** - Avoid having to look up your classes with auto-completions straight from your Tailwind config - [See setup instructions →](https://github.com/ben-rogerson/twin.macro/discussions/227)
 
-**🚥 Over 40 variants to prefix on your classes** - Unlike Tailwind, the prefixes are always available to add to your classes
+**🚥 Over 40 variants to prefix on your classes** - The prefixes are “always on” and available for your classes
 
-- Prefix with `before:` and `after:` to style pseudo-elements
 - Prefix with `hocus:` to style hover + focus at the same time
-- Style with extra group states like `group-hocus:` and `group-active:`
 - Style form field states with `checked:`, `invalid:` and `required:`
 - Stack up variants whenever you need them `sm:hover:first:bg-black`
 
@@ -152,9 +150,7 @@ const interactionStyles = () => (
 
 const mediaStyles = () => <div tw="sm:(w-4 mt-3) lg:(w-8 mt-6)" />
 
-const pseudoElementStyles = () => (
-  <div tw="before:(content block w-10 h-10 bg-black)" />
-)
+const pseudoElementStyles = () => <div tw="before:(block w-10 h-10 bg-black)" />
 
 const stackedVariants = () => <div tw="sm:hover:(bg-black text-white)" />
 
@@ -164,13 +160,7 @@ const groupsInGroups = () => <div tw="sm:(bg-black hover:(bg-white w-10))" />
 **👑 Add vanilla css that integrates with twins features**
 
 ```js
-const alongsideTailwindClasses = () => (
-  <div tw="after:(content['hello'] bg-black text-white)" />
-)
-
 const setCssVariables = () => <div tw="--base-color[#C0FFEE]" />
-
-const useCssVariables = () => <div tw="background-color[var(--base-color)]" />
 
 const customGridProperties = () => <div tw="grid-area[1 / 1 / 4 / 2]" />
 
@@ -180,7 +170,7 @@ const vendorPrefixes = () => <div tw="-webkit-mask-image[url(mask.png)]" />
 **🖌️ Use the theme import to add values from your tailwind config**
 
 ```js
-import { theme, css } from 'twin.macro'
+import { css, theme } from 'twin.macro'
 
 const Input = () => <input css={css({ color: theme`colors.purple.500` })} />
 ```
