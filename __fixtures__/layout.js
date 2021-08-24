@@ -2,6 +2,7 @@ import tw from './macro'
 
 // https://tailwindcss.com/docs/container
 tw`container`
+tw`md:container md:mx-auto`
 
 // https://tailwindcss.com/docs/box-sizing
 tw`box-border`

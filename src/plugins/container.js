@@ -30,11 +30,10 @@ const getSpacingStyle = (type, values, key) => {
 }
 
 export default ({
-  pieces: { hasVariants, hasImportant, hasNegative },
-  errors: { errorNoVariants, errorNoImportant, errorNoNegatives },
+  pieces: { hasImportant, hasNegative },
+  errors: { errorNoImportant, errorNoNegatives },
   theme,
 }) => {
-  hasVariants && errorNoVariants()
   hasImportant && errorNoImportant()
   hasNegative && errorNoNegatives()
 
