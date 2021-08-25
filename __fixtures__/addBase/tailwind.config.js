@@ -1,5 +1,8 @@
 function addBasePlugin({ addBase }) {
   const baseStyles = {
+    ':root': {
+      '--color-pink-900': '#831843',
+    },
     body: {
       marginTop: '20rem',
       backgroundColor: 'black',
