@@ -39,7 +39,8 @@ const parseSelector = selector => {
 }
 
 const parseRuleProperty = string => {
-  if (string && string.match(/^--[a-z-]*$/i)) {
+  // https://stackoverflow.com/questions/448981/which-characters-are-valid-in-css-class-names-selectors
+  if (string && string.match(/^-{2,3}[_a-z]+[\w-]*/i)) {
     return string
   }
 
