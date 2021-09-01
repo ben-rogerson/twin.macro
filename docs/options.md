@@ -2,7 +2,7 @@
 
 # Twin config options
 
-These options are available in your [twin config](#configlocation):
+These options are available in your [twin config](#twin-config-location):
 
 | Name                  | Default                | Description                                                                                                                                   |
 | --------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
