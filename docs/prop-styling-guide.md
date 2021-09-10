@@ -301,7 +301,7 @@ import tw from 'twin.macro'
 ```
 
 - Add a trailing bang to make the custom css !important: `grid-area[1 / 1 / 4 / 2]!`
-- To keep short css separate from tw classes, add it in the `cs` prop: `<div cs="grid-area[1 / 1 / 4 / 2]" />`
+- To keep short css separate from tw classes, add it in the `css` prop: `<div css="grid-area[1 / 1 / 4 / 2]" />`
 - Short css can have camelCase properties: `gridArea[1 / 1 / 4 / 2]`
 
 ### Advanced css styling
