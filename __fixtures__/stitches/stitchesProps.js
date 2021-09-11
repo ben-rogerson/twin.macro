@@ -13,3 +13,8 @@ const styles = {
   container: ({ isInline }) => ({ ...tw`block`, ...(isInline && tw`inline`) }),
 }
 ;<div css={styles.container({ isInline: true })} />
+
+// Dot syntax
+const Component = { Sub: () => [] }
+;<Component.Sub css={tw`fixed`} />
+;<Component.Sub tw="fixed" />

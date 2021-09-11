@@ -71,3 +71,8 @@ const themeSquareBrackets = (
 )
 
 const GlobalStylesTest = () => <GlobalStyles />
+
+// Dot syntax
+const Component = { Sub: () => [] }
+;<Component.Sub css={tw`fixed`} />
+;<Component.Sub tw="fixed" />

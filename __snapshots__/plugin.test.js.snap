@@ -461,6 +461,11 @@ const themeSquareBrackets = (
 
 const GlobalStylesTest = () => <GlobalStyles />
 
+// Dot syntax
+const Component = { Sub: () => [] }
+;<Component.Sub css={tw\`fixed\`} />
+;<Component.Sub tw="fixed" />
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import { css as _css } from '@emotion/react'
@@ -780,7 +785,21 @@ const themeSquareBrackets = (
   />
 )
 
-const GlobalStylesTest = () => <_GlobalStyles />
+const GlobalStylesTest = () => <_GlobalStyles /> // Dot syntax
+
+const Component = {
+  Sub: () => [],
+}
+;<Component.Sub
+  css={{
+    position: 'fixed',
+  }}
+/>
+;<Component.Sub
+  css={{
+    position: 'fixed',
+  }}
+/>
 
 
 `;
@@ -23962,6 +23981,11 @@ const styles = {
 }
 ;<div css={styles.container({ isInline: true })} />
 
+// Dot syntax
+const Component = { Sub: () => [] }
+;<Component.Sub css={tw\`fixed\`} />
+;<Component.Sub tw="fixed" />
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import { styled as _styled } from '__fixtures__/stitches/stitches.config.js'
@@ -24039,7 +24063,25 @@ const _TwComponent10 = _styled('div', {})
   css={styles.container({
     isInline: true,
   })}
+/> // Dot syntax
+
+const Component = {
+  Sub: () => [],
+}
+
+const _TwComponent11 = _styled(Component.Sub, {})
+
+;<_TwComponent11
+  css={{
+    position: 'fixed',
+  }}
 />
+
+const _TwComponent12 = _styled(Component.Sub, {
+  position: 'fixed',
+})
+
+;<_TwComponent12 />
 
 
 `;
