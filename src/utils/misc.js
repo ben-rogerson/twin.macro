@@ -44,6 +44,17 @@ function transformThemeValue(themeSection) {
   return value => value
 }
 
+const normalizeThemeValue = themeValue => {
+  if (typeof themeValue === 'object' && !Array.isArray(themeValue))
+    return Object.entries(themeValue).reduce((result, [key, value]) => {
+      if (typeof value === 'object' && !Array.isArray(value))
+        return { ...result, [key]: normalizeThemeValue(value) }
+      return { ...result, [key]: String(value) }
+    }, {})
+
+  return themeValue
+}
+
 const getTheme = configTheme => grab => {
   if (!grab) return configTheme
   // Allow theme`` which gets supplied as an array
@@ -52,8 +63,7 @@ const getTheme = configTheme => grab => {
   const themeKey = value.split('.')[0]
   // Get the resulting value from the config
   const themeValue = get(configTheme, value)
-  // Treat values differently depending on the key name
-  return transformThemeValue(themeKey)(themeValue)
+  return normalizeThemeValue(transformThemeValue(themeKey)(themeValue))
 }
 
 const stripNegative = string =>
