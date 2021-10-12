@@ -22,7 +22,7 @@ export type ThemeFn = <T = string>(arg?: string | TemplateStringsArray) => T
 
 export type ScreenFn = <T = string>(
   screenValue: string | TemplateStringsArray
-) => (styles?: string | TemplateStringsArray | TwStyle) => T
+) => (styles?: string | TemplateStringsArray | TwStyle | TwStyle[]) => T
 
 export type TwComponent<K extends keyof JSX.IntrinsicElements> = (
   props: JSX.IntrinsicElements[K]
