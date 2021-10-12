@@ -17,6 +17,7 @@ import { orderGridProperty } from './grid'
 import { orderTransitionProperty } from './transition'
 import { orderTransformProperty } from './transform'
 import { orderRingProperty } from './ring'
+import { orderBgOpacityProperty } from './bgOpacity'
 import { orderBackdropProperty } from './backdrop'
 import { orderFilterProperty } from './filter'
 import { addContentClass } from './content'
@@ -63,6 +64,7 @@ const formatTasks = [
   ({ classes }) => orderRingProperty(classes),
   ({ classes }) => orderBackdropProperty(classes),
   ({ classes }) => orderFilterProperty(classes),
+  ({ classes }) => orderBgOpacityProperty(classes),
   // Move and sort the responsive items to the end of the list
   ({ classes, state }) => orderByScreens(classes, state),
   // Add a missing content class for after:/before: variants
