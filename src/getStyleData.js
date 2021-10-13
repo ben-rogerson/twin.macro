@@ -195,7 +195,7 @@ export default (
       addVariants({ results, style, pieces, state })
     )
 
-    state.configTwin.debug && debug(classNameRaw, style)
+    state.isDev && state.configTwin.debug && debug(classNameRaw, style)
 
     classesMatched.push(classNameRaw)
     return result
