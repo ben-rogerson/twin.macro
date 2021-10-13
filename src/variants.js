@@ -39,6 +39,12 @@ const validateVariants = ({ variants, state, ...rest }) => {
       if (isResponsive) return stringifyScreen(state.config, variant)
 
       let foundVariant = fullVariantConfig[variant]
+
+      if (!foundVariant) {
+        const arbitraryVariant = variant.match(/^\[(.+)]/)
+        if (arbitraryVariant) foundVariant = arbitraryVariant[1]
+      }
+
       if (!foundVariant) {
         if (variant === 'only-child') {
           throw new MacroError(
@@ -87,10 +93,14 @@ const splitVariants = ({ classNameRaw, state }) => {
   let variant
   let className = classNameRaw
   while (variant !== null) {
-    variant = className.match(/^([\d_a-z-]+):/)
+    // Match arbitrary variants
+    variant = className.match(/^([\d_a-z-]+):|^\[.*?]:/)
+
     if (variant) {
       className = className.slice(variant[0].length)
-      variantsList.push(variant[1])
+      variantsList.push(
+        variant[0].slice(0, -1).replace(new RegExp(SPACE_ID, 'g'), ' ')
+      )
     }
   }
 
@@ -214,7 +224,8 @@ function spreadVariantGroups(
   const results = []
   classes = classes.slice(start, end).trim()
 
-  const reg = /([\w-]+:)|([\w-./[\]]+!?)|\(|(\S+)/g
+  // variant / class / group
+  const reg = /(\[.*?]:|[\w-]+:)|([\w-./[\]]+!?)|\(|(\S+)/g
 
   let match
   const baseContext = context
@@ -223,7 +234,9 @@ function spreadVariantGroups(
     const [, variant, className, weird] = match
 
     if (variant) {
-      context += variant
+      // Replace arbitrary variant spaces with a placeholder to avoid incorrect splitting
+      const spaceReplacedVariant = variant.replace(/\s+/g, SPACE_ID)
+      context += spaceReplacedVariant
 
       // Skip empty classes
       if (/\s/.test(classes[reg.lastIndex])) {
