@@ -11,6 +11,16 @@ const precheckGroup = ({ classNameRaw }) =>
       )}\nRead more at https://twinredirect.page.link/group\n`
   )
 
+const precheckPeer = ({ classNameRaw }) =>
+  throwIf(
+    classNameRaw === 'peer',
+    () =>
+      `\n\n"peer" must be added as className:${logBadGood(
+        'tw`peer`',
+        '<div className="peer">'
+      )}\nRead more at https://twinredirect.page.link/peer\n`
+  )
+
 const joinWithNoDoubleHyphens = arr => arr.join('-').replace(/-+/g, '-')
 
 const preCheckPrefix = ({ pieces: { className, hasPrefix }, state }) => {
@@ -51,6 +61,7 @@ const doPrechecks = (prechecks, context) => {
 export {
   doPrechecks as default,
   precheckGroup,
+  precheckPeer,
   preCheckPrefix,
   preCheckNoHyphenSuffix,
 }
