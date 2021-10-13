@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 import getSuggestions from './suggestions'
 import { throwIf } from './utils'
+import { SPACE_ID } from './contants'
 
 const color = {
   error: chalk.hex('#ff8383'),
@@ -99,7 +100,9 @@ const logNoClass = properties => {
   const text = warning(
     `${
       classNameRawNoVariants
-        ? color.errorLight(classNameRawNoVariants)
+        ? color.errorLight(
+            classNameRawNoVariants.replace(new RegExp(SPACE_ID, 'g'), ' ')
+          )
         : 'Class'
     } was not found`
   )
