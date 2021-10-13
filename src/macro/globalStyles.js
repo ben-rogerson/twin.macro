@@ -177,7 +177,7 @@ const handleGlobalStylesJsx = props => {
   const path = references.GlobalStyles[0]
   const parentPath = path.findParent(x => x.isJSXElement())
 
-  throwIf(state.isStyledComponents && !parentPath, () =>
+  throwIf(!parentPath, () =>
     logGeneralError(
       'GlobalStyles must be added as a JSX element, eg: <GlobalStyles />'
     )

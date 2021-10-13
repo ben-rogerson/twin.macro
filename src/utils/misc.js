@@ -1,3 +1,4 @@
+import deepMerge from 'lodash.merge'
 import { MacroError } from 'babel-plugin-macros'
 import get from 'lodash.get'
 
@@ -44,6 +45,22 @@ function transformThemeValue(themeSection) {
   return value => value
 }
 
+const objectToStringValues = obj => {
+  if (typeof obj === 'object' && !Array.isArray(obj))
+    return Object.entries(obj).reduce(
+      (result, [key, value]) =>
+        deepMerge(result, { [key]: objectToStringValues(value) }),
+      {}
+    )
+
+  if (Array.isArray(obj)) return obj.map(i => objectToStringValues(i))
+
+  if (typeof obj === 'number') return String(obj)
+
+  // typeof obj = string / function
+  return obj
+}
+
 const getTheme = configTheme => grab => {
   if (!grab) return configTheme
   // Allow theme`` which gets supplied as an array
@@ -52,8 +69,7 @@ const getTheme = configTheme => grab => {
   const themeKey = value.split('.')[0]
   // Get the resulting value from the config
   const themeValue = get(configTheme, value)
-  // Treat values differently depending on the key name
-  return transformThemeValue(themeKey)(themeValue)
+  return objectToStringValues(transformThemeValue(themeKey)(themeValue))
 }
 
 const stripNegative = string =>
