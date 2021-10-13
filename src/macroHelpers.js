@@ -332,14 +332,34 @@ const generateTaggedTemplateExpression = ({ identifier, t, styles }) => {
   return ttExpression
 }
 
-const renameJsxTags = ({ jsxPath, to }) => {
-  jsxPath.node.name.name = to
-
-  if (jsxPath.node.selfClosing) return
-  jsxPath.parentPath.node.closingElement.name.name = to
-}
-
 const isComponent = name => name.slice(0, 1).toUpperCase() === name.slice(0, 1)
+
+const jsxElementNameError = () =>
+  logGeneralError(
+    `The css prop + tw props can only be added to jsx elements with a single dot in their name (or no dot at all).`
+  )
+
+const getFirstStyledArgument = (jsxPath, t) => {
+  const path = get(jsxPath, 'node.name.name')
+
+  if (path)
+    return isComponent(path) ? t.identifier(path) : t.stringLiteral(path)
+
+  const dotComponent = get(jsxPath, 'node.name')
+  throwIf(!dotComponent, jsxElementNameError)
+
+  // Element name has dots in it
+  const objectName = get(dotComponent, 'object.name')
+  throwIf(!objectName, jsxElementNameError)
+
+  const propertyName = get(dotComponent, 'property.name')
+  throwIf(!propertyName, jsxElementNameError)
+
+  return t.memberExpression(
+    t.identifier(objectName),
+    t.identifier(propertyName)
+  )
+}
 
 const makeStyledComponent = ({ secondArg, jsxPath, t, program, state }) => {
   const constName = program.scope.generateUidIdentifier('TwComponent')
@@ -349,11 +369,8 @@ const makeStyledComponent = ({ secondArg, jsxPath, t, program, state }) => {
     state.isImportingStyled = true
   }
 
-  // Create the styled definition
-  const elementName = get(jsxPath, 'node.name.name')
-  const firstArg = isComponent(elementName)
-    ? t.identifier(elementName)
-    : t.stringLiteral(elementName)
+  const firstArg = getFirstStyledArgument(jsxPath, t)
+
   const args = [firstArg, secondArg].filter(Boolean)
   const identifier = t.callExpression(state.styledIdentifier, args)
   const styledProps = [t.variableDeclarator(constName, identifier)]
@@ -362,7 +379,17 @@ const makeStyledComponent = ({ secondArg, jsxPath, t, program, state }) => {
   const rootParentPath = jsxPath.findParent(p => p.parentPath.isProgram())
   rootParentPath.insertBefore(styledDefinition)
 
-  renameJsxTags({ jsxPath, to: constName.name })
+  if (t.isMemberExpression(firstArg)) {
+    // Replace components with a dot, eg: Dialog.blah
+    const id = t.jsxIdentifier(constName.name)
+    jsxPath.get('name').replaceWith(id)
+    if (jsxPath.node.selfClosing) return
+    jsxPath.parentPath.get('closingElement.name').replaceWith(id)
+  } else {
+    jsxPath.node.name.name = constName.name
+    if (jsxPath.node.selfClosing) return
+    jsxPath.parentPath.node.closingElement.name.name = constName.name
+  }
 }
 
 export {
