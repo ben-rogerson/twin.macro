@@ -2592,6 +2592,12 @@ animation-timing-function: cubic-bezier(0,0,0.2,1);
         }
 :root {
 --color-pink-900: #831843;
+        }
+@font-face  {
+src: url('./fonts/myfont.ttf');
+font-style: normal;
+font-weight: 400;
+font-family: NotoSans;
         }\`}
   />
 )
@@ -2837,6 +2843,12 @@ animation-timing-function: cubic-bezier(0,0,0.2,1);
   },
   ':root': {
     '--color-pink-900': '#831843',
+  },
+  '@font-face ': {
+    src: "url('./fonts/myfont.ttf')",
+    'font-style': 'normal',
+    'font-weight': '400',
+    'font-family': 'NotoSans',
   },
 })
 

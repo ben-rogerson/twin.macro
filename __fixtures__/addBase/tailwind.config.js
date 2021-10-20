@@ -3,6 +3,12 @@ function addBasePlugin({ addBase }) {
     ':root': {
       '--color-pink-900': '#831843',
     },
+    '@font-face': {
+      fontFamily: 'NotoSans',
+      fontWeight: 400,
+      fontStyle: 'normal',
+      src: `url('./fonts/myfont.ttf')`,
+    },
     body: {
       marginTop: '20rem',
       backgroundColor: 'black',
