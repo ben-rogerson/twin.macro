@@ -136,6 +136,11 @@ const ruleSorter = arr => {
 
 const getUserPluginRules = (rules, screens, isBase) =>
   ruleSorter(rules).reduce((result, rule) => {
+    if (rule.type === 'decl') {
+      const builtRules = { [rule.prop]: rule.value }
+      return deepMerge(result, builtRules)
+    }
+
     // Build the media queries
     if (rule.type !== 'atrule') {
       const builtRules = getBuiltRules(rule, { isBase })
