@@ -46,6 +46,7 @@ const variantConfig = ({
   'out-of-range': ':out-of-range',
   required: ':required',
   'placeholder-shown': ':placeholder-shown',
+  'not-placeholder-shown': ':not(:placeholder-shown)',
   placeholder: '::placeholder',
   'read-only': ':read-only',
   'read-write': ':read-write',

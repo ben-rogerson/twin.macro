@@ -1317,6 +1317,7 @@ tw\`out-of-range:flex\`
 tw\`required:flex\`
 tw\`placeholder:flex\`
 tw\`placeholder-shown:flex\`
+tw\`not-placeholder-shown:flex\`
 tw\`read-only:flex\`
 tw\`read-write:flex\`
 
@@ -1579,6 +1580,11 @@ tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
 })
 ;({
   ':placeholder-shown': {
+    display: 'flex',
+  },
+})
+;({
+  ':not(:placeholder-shown)': {
     display: 'flex',
   },
 })

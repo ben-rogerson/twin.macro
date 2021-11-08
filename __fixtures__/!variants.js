@@ -34,6 +34,7 @@ tw`out-of-range:flex`
 tw`required:flex`
 tw`placeholder:flex`
 tw`placeholder-shown:flex`
+tw`not-placeholder-shown:flex`
 tw`read-only:flex`
 tw`read-write:flex`
 
