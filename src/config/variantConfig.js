@@ -198,6 +198,7 @@ const variantConfig = ({
   'peer-checked': createPeer('checked'),
   'peer-indeterminate': createPeer('indeterminate'),
   'peer-placeholder-shown': createPeer('placeholder-shown'),
+  'peer-not-placeholder-shown': createPeer('not(:placeholder-shown)'),
   'peer-autofill': createPeer('autofill'),
   'peer-focus-within': createPeer('focus-within'),
   'peer-focus-visible': createPeer('focus-visible'),
