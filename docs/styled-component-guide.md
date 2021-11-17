@@ -245,22 +245,18 @@ const Component = () => (
 )
 ```
 
-## Nested styling
+## Custom selectors (Arbitrary variants)
 
-Sometimes it makes sense to use nested selector styling instead of creating individual styled-components:
+Use arbitrary variants to style elements with a custom selector:
 
 ```js
-import tw, { styled } from 'twin.macro'
+import tw from 'twin.macro'
 
-const Button = styled.button({
-  ...tw`block`,
-  '-webkit-tap-highlight-color': 'transparent',
-  '> i': tw`block w-10 h-10`,
-  '> span': {
-    ...tw`text-blue-500`,
-    'background-color': 'var(--button-color)',
-  },
-})
+const Button = tw.button`
+  bg-black
+  [> i]:block
+  [> span]:(text-blue-500 w-10)
+`
 
 const Component = () => (
   <Button>
@@ -270,9 +266,35 @@ const Component = () => (
 )
 ```
 
-- Nested styles are scoped to their parent element
-- Parent classes can style a child component `` { '.class &': tw`block` } ``)
-- Nesting makes it harder to extract components and change html/jsx
+<details>
+  <summary>More examples</summary>
+
+<br/>
+
+```js
+// Style the current element based on a theming/scoping className
+;<body className="dark-theme">
+    <div tw="[.dark-theme &]:(bg-black text-white)">I'm dark theme</div>
+</body>
+
+// Add custom height queries
+;<div tw="[@media (min-height: 800px)]:hidden">
+    I'm shown only on smaller window heights
+</div>
+
+// Add custom group selectors
+;<button className="group" disabled>
+    <span tw="[.group:disabled &]:text-gray-500">I'm gray</span>
+</button>
+
+// Use custom at-rules like @supports
+;<div tw="[@supports (display: grid)]:grid">I'm grid</div>
+
+// Style the current element based on a dynamic className
+;const Component = ({ isLarge }) => <div className={isLarge && 'is-large'} tw="text-base [&.is-large]:text-lg">...</div>
+```
+
+</details>
 
 ## Custom class values (Arbitrary values)
 
@@ -375,12 +397,12 @@ Mix tailwind classes and custom css in an array:
 ```js
 import tw, { styled } from 'twin.macro'
 
-const Input = styled.div([
+const Input = styled.div(({ tapColor }) => [
   tw`block`,
-  `-webkit-tap-highlight-color: transparent;`,
+  `-webkit-tap-highlight-color: ${tapColor};`,
 ])
 
-const Component = () => <Input />
+const Component = () => <Input tapColor="red" />
 ```
 
 When you move the styles out of jsx, prefix them with the `css` import:
@@ -388,13 +410,13 @@ When you move the styles out of jsx, prefix them with the `css` import:
 ```js
 import tw, { styled, css } from 'twin.macro'
 
-const widthStyles = css`
-  -webkit-tap-highlight-color: transparent;
+const widthStyles = ({ tapColor }) => css`
+  -webkit-tap-highlight-color: ${tapColor};
 `
 
-const Input = styled.div([tw`block`, widthStyles])
+const Input = styled.div(({ tapColor }) => [tw`block`, widthStyles({ tapColor })])
 
-const Component = () => <Input />
+const Component = () => <Input tapColor="red" />
 ```
 
 ## Learn more
