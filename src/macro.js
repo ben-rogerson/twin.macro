@@ -14,7 +14,6 @@ import {
   getCssConfig,
   updateCssReferences,
   addCssImport,
-  handleAutoCssProp,
   convertHtmlElementToStyled,
 } from './macro/css'
 import {
@@ -61,7 +60,6 @@ const macroTasks = [
   handleScreenFunction, // Screen import
   addStyledImport,
   addCssImport, // Gotcha: Must be after addStyledImport or issues with theme`` style transpile
-  handleAutoCssProp, // Auto css prop on jsx elements - Gotcha: Must be after addStyledImport (#241#issuecomment-874364714)
 ]
 
 const twinMacro = ({ babel: { types: t }, references, state, config }) => {
@@ -123,7 +121,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
       const jsxAttributes = allAttributes.filter(a => a.isJSXAttribute())
       const { index, hasCssAttribute } = getCssAttributeData(jsxAttributes)
       // Make sure hasCssAttribute remains true once css prop has been found
-      // so twin can add the autoCssProp for styled-components
+      // so twin can add the css prop
       state.hasCssAttribute = state.hasCssAttribute || hasCssAttribute
 
       // Reverse the attributes so the items keep their order when replaced
