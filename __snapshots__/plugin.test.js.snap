@@ -3714,9 +3714,39 @@ exports[`twin.macro autoCssProp.js: autoCssProp.js 1`] = `
 
 import './macro' // twinImport
 
-    // Css prop isn't handled by twin
-    ; <div css="" />
-    ; <div className="" />
+// Css prop isn't handled by twin
+;<div css="" />
+;<div className="" />
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+;<div css="" />
+;<div className="" />
+
+
+`;
+
+exports[`twin.macro autoCssProp.js: autoCssProp.js 2`] = `
+
+import './macro' // twinImport
+
+;<div css="" />
+;<div className="" />
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+;<div css="" />
+;<div className="" />
+
+
+`;
+
+exports[`twin.macro autoCssProp.js: autoCssProp.js 3`] = `
+
+import './macro' // twinImport
+
+;<div css="" />
+;<div className="" />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -3730,30 +3760,72 @@ exports[`twin.macro autoCssPropWithStyled.js: autoCssPropWithStyled.js 1`] = `
 
 import tw from './macro' // twinImport
 
+// Css prop isn't handled by twin
 tw.div\`block\`
 ;<div tw="block" />
 
+const Test = tw.div\`\`
+;<Test tw="block" />
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled3 from 'styled-components'
-import _styled2 from 'styled-components'
+import _styled from '@emotion/styled'
 
 // twinImport
-_styled2.div.withConfig({
-  displayName: 'plugintest',
-  componentId: 'sc-16ats9e-0',
-})({
+// Css prop isn't handled by twin
+_styled.div({
   display: 'block',
 })
 
-var _StyledDiv = _styled2('div').withConfig({
-  displayName: 'plugintest___StyledDiv',
-  componentId: 'sc-16ats9e-1',
-})({
+;<div
+  css={{
+    display: 'block',
+  }}
+/>
+
+const Test = _styled.div({})
+
+;<Test
+  css={{
+    display: 'block',
+  }}
+/>
+
+
+`;
+
+exports[`twin.macro autoCssPropWithStyled.js: autoCssPropWithStyled.js 2`] = `
+
+import tw from './macro' // twinImport
+
+tw.div\`block\`
+;<div tw="block" />
+
+const Test = tw.div\`\`
+;<Test tw="block" />
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from 'styled-components'
+
+// twinImport
+_styled.div({
   display: 'block',
 })
 
-;<_StyledDiv />
+;<div
+  css={{
+    display: 'block',
+  }}
+/>
+
+const Test = _styled.div({})
+
+;<Test
+  css={{
+    display: 'block',
+  }}
+/>
 
 
 `;
