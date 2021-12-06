@@ -20,7 +20,7 @@ export default {
   'styled-components': {
     styled: {
       import: 'default',
-      from: 'styled-components/macro',
+      from: 'styled-components',
     },
     css: {
       import: 'css',
