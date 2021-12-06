@@ -3714,21 +3714,13 @@ exports[`twin.macro autoCssProp.js: autoCssProp.js 1`] = `
 
 import './macro' // twinImport
 
-// Make sure the autoCssProp is added
-;<div css="" />
-;<div className="" />
+    // Css prop isn't handled by twin
+    ; <div css="" />
+    ; <div className="" />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled2 from 'styled-components'
-import _styled from 'styled-components'
-
-var _StyledDiv = _styled('div').withConfig({
-  displayName: 'plugintest___StyledDiv',
-  componentId: 'sc-16ats9e-0',
-})([''])
-
-;<_StyledDiv />
+;<div css="" />
 ;<div className="" />
 
 

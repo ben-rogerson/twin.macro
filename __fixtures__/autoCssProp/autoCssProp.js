@@ -1,5 +1,5 @@
 import './macro' // twinImport
 
-// Make sure the autoCssProp is added
+// Css prop isn't handled by twin
 ;<div css="" />
 ;<div className="" />

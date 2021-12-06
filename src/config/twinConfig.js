@@ -1,5 +1,4 @@
 // Defaults for different css-in-js libraries
-const configDefaultsStyledComponents = { autoCssProp: true } // Automates the import of styled-components when you use their css prop
 const configDefaultsGoober = { sassyPseudo: true } // Sets selectors like hover to &:hover
 const configDefaultsStitches = {
   sassyPseudo: true, // Sets selectors like hover to &:hover
@@ -8,12 +7,7 @@ const configDefaultsStitches = {
   convertHtmlElementToStyled: true, // For packages like stitches, add a styled definition on css prop elements
 }
 
-const configDefaultsTwin = ({
-  isStyledComponents,
-  isGoober,
-  isStitches,
-  isDev,
-}) => ({
+const configDefaultsTwin = ({ isGoober, isStitches, isDev }) => ({
   allowStyleProp: false, // Allows styles within style="blah" without throwing an error
   autoCssProp: false, // Automates the import of styled-components when you use their css prop
   dataTwProp: isDev, // During development, add a data-tw="" prop containing your tailwind classes for backtracing
@@ -30,7 +24,6 @@ const configDefaultsTwin = ({
   convertStyledDot: false, // Convert styled.[element] to a default syntax (only used for stitches so far)
   moveTwPropToStyled: false, // Move the tw prop to a styled definition (only used for stitches so far)
   convertHtmlElementToStyled: false, // For packages like stitches, add a styled definition on css prop elements
-  ...(isStyledComponents && configDefaultsStyledComponents),
   ...(isGoober && configDefaultsGoober),
   ...(isStitches && configDefaultsStitches),
 })
@@ -51,8 +44,8 @@ const configTwinValidators = {
     'The config “allowStyleProp” can only be true or false',
   ],
   autoCssProp: [
-    isBoolean,
-    'The config “autoCssProp” can only be true or false',
+    value => value !== true,
+    'The “autoCssProp” feature has been removed from twin.macro@2.8.2+\nThis means the css prop must be added by styled-components instead.\nSetup info at https://twinredirect.page.link/auto-css-prop\n\nRemove the “autoCssProp” item from your config to avoid this message.',
   ],
   disableColorVariables: [
     isBoolean,
