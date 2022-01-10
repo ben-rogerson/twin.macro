@@ -693,23 +693,23 @@ export default {
 
   // https://tailwindcss.com/docs/scale
   'scale-x': {
-    value: ({ value }) => ({
-      '--tw-scale-x': value,
+    value: ({ value, negative }) => ({
+      '--tw-scale-x': `${negative}${value}`,
       transform: 'var(--tw-transform)',
     }),
     config: 'scale',
   },
   'scale-y': {
-    value: ({ value }) => ({
-      '--tw-scale-y': value,
+    value: ({ value, negative }) => ({
+      '--tw-scale-y': `${negative}${value}`,
       transform: 'var(--tw-transform)',
     }),
     config: 'scale',
   },
   scale: {
-    value: ({ value }) => ({
-      '--tw-scale-x': value,
-      '--tw-scale-y': value,
+    value: ({ value, negative }) => ({
+      '--tw-scale-x': `${negative}${value}`,
+      '--tw-scale-y': `${negative}${value}`,
       transform: 'var(--tw-transform)',
     }),
     config: 'scale',
@@ -717,8 +717,8 @@ export default {
 
   // https://tailwindcss.com/docs/rotate
   rotate: {
-    value: ({ value }) => ({
-      '--tw-rotate': value,
+    value: ({ value, negative }) => ({
+      '--tw-rotate': `${negative}${value}`,
       transform: 'var(--tw-transform)',
     }),
     config: 'rotate',
@@ -726,15 +726,15 @@ export default {
 
   // https://tailwindcss.com/docs/translate
   'translate-x': {
-    value: ({ value }) => ({
-      '--tw-translate-x': value,
+    value: ({ value, negative }) => ({
+      '--tw-translate-x': `${negative}${value}`,
       transform: 'var(--tw-transform)',
     }),
     config: 'translate',
   },
   'translate-y': {
-    value: ({ value }) => ({
-      '--tw-translate-y': value,
+    value: ({ value, negative }) => ({
+      '--tw-translate-y': `${negative}${value}`,
       transform: 'var(--tw-transform)',
     }),
     config: 'translate',
@@ -742,15 +742,15 @@ export default {
 
   // https://tailwindcss.com/docs/skew
   'skew-x': {
-    value: ({ value }) => ({
-      '--tw-skew-x': value,
+    value: ({ value, negative }) => ({
+      '--tw-skew-x': `${negative}${value}`,
       transform: 'var(--tw-transform)',
     }),
     config: 'skew',
   },
   'skew-y': {
-    value: ({ value }) => ({
-      '--tw-skew-y': value,
+    value: ({ value, negative }) => ({
+      '--tw-skew-y': `${negative}${value}`,
       transform: 'var(--tw-transform)',
     }),
     config: 'skew',

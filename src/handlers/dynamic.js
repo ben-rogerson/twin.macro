@@ -5,7 +5,11 @@ import { errorSuggestions } from './../logging'
 const maybeAddNegative = (value, negative) => {
   if (!negative) return value
 
-  return isNumeric(value.slice(0, 1)) ? `${negative}${value}` : value
+  if (typeof value === 'string' && value.startsWith('var('))
+    return `calc(${value} * -1)`
+  if (isNumeric(value.slice(0, 1))) return `${negative}${value}`
+
+  return value
 }
 
 const styleify = ({ property, value, negative }) => {
@@ -28,15 +32,14 @@ export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
     : [dynamicConfig]
 
   const piece = className.slice(Number(dynamicKey.length) + 1)
-  const key = [negative, piece].join('')
 
   let results
   styleSet.find(item => {
-    const value = getConfigValue(getConfig(item), key)
+    const value = getConfigValue(getConfig(item), piece)
     if (value) {
       results =
         typeof item.value === 'function'
-          ? item.value({ value, transparentTo })
+          ? item.value({ value, transparentTo, negative })
           : styleify({
               property: item.prop,
               value,

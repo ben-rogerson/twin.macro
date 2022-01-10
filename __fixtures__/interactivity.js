@@ -14,9 +14,10 @@ tw`cursor-help`
 tw`cursor-not-allowed`
 
 // https://tailwindcss.com/docs/outline
-tw`outline-none`
-tw`outline-white`
-tw`outline-black`
+// TODO: Temp removed until v3 outline updates
+// tw`outline-none`
+// tw`outline-white`
+// tw`outline-black`
 
 // https://tailwindcss.com/docs/pointer-events
 tw`pointer-events-none`
