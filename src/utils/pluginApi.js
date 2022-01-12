@@ -41,25 +41,14 @@ export default function buildPluginApi(tailwindConfig, context) {
       )
       return transformThemeValue(pathRoot)(value)
     },
-    corePlugins: path => {
-      if (Array.isArray(tailwindConfig.corePlugins)) {
-        return tailwindConfig.corePlugins.includes(path)
-      }
-
-      return getConfigValue(['corePlugins', path], true)
-    },
+    corePlugins: () => null, // Unavailable in twin
     variants: () => {
       // Preserved for backwards compatibility but not used in v3.0+
       return []
     },
-    addUserCss(userCss) {
-      for (let [identifier, rule] of withIdentifiers(userCss)) {
-        if (!context.candidateRuleMap.has(identifier)) {
-          context.candidateRuleMap.set(identifier, [])
-        }
-
-        context.candidateRuleMap.get(identifier).push([{ layer: 'user' }, rule])
-      }
+    addUserCss() {
+      // Unavailable in twin
+      return null
     },
     addBase(base) {
       for (let [identifier, rule] of withIdentifiers(base)) {
