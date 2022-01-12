@@ -1,16 +1,11 @@
-/* eslint-disable guard-for-in, prefer-const, prefer-object-spread, object-shorthand, no-inner-declarations, @typescript-eslint/restrict-plus-operands */
-
+/* eslint-disable prefer-const, prefer-object-spread, @typescript-eslint/restrict-plus-operands */
 import postcss from 'postcss'
 import dlv from 'dlv'
 import selectorParser from 'postcss-selector-parser'
 import transformThemeValue from 'tailwindcss/lib/util/transformThemeValue'
 import parseObjectStyles from 'tailwindcss/lib/util/parseObjectStyles'
 import isPlainObject from 'tailwindcss/lib/util/isPlainObject'
-import nameClass from 'tailwindcss/lib/util/nameClass'
-import { coerceValue } from 'tailwindcss/lib/util/pluginUtils'
 import { toPath } from 'tailwindcss/lib/util/toPath'
-import log from 'tailwindcss/lib/util/log'
-import isValidArbitraryValue from 'tailwindcss/lib/util/isValidArbitraryValue'
 
 export default function buildPluginApi(tailwindConfig, context) {
   function getConfigValue(path, defaultValue) {
@@ -131,122 +126,8 @@ export default function buildPluginApi(tailwindConfig, context) {
           .push([{ layer: 'utilities', options }, rule])
       }
     },
-    matchUtilities: function (utilities, options) {
-      let defaultOptions = {
-        respectPrefix: true,
-        respectImportant: true,
-      }
-
-      options = { ...defaultOptions, ...options }
-
-      for (let identifier in utilities) {
-        let prefixedIdentifier = prefixIdentifier(identifier, options)
-        let rule = utilities[identifier]
-
-        function wrapped(modifier, { isOnlyPlugin }) {
-          let { type = 'any' } = options
-          type = [].concat(type)
-          let [value, coercedType] = coerceValue(
-            type,
-            modifier,
-            options,
-            tailwindConfig
-          )
-
-          if (value === undefined) {
-            return []
-          }
-
-          if (!type.includes(coercedType) && !isOnlyPlugin) {
-            return []
-          }
-
-          if (!isValidArbitraryValue(value)) {
-            return []
-          }
-
-          let ruleSets = []
-            .concat(rule(value))
-            .filter(Boolean)
-            .map(declaration => ({
-              [nameClass(identifier, modifier)]: declaration,
-            }))
-
-          return ruleSets
-        }
-
-        let withOffsets = [{ layer: 'utilities', options }, wrapped]
-
-        if (!context.candidateRuleMap.has(prefixedIdentifier)) {
-          context.candidateRuleMap.set(prefixedIdentifier, [])
-        }
-
-        context.candidateRuleMap.get(prefixedIdentifier).push(withOffsets)
-      }
-    },
-    matchComponents: function (components, options) {
-      let defaultOptions = {
-        respectPrefix: true,
-        respectImportant: false,
-      }
-
-      options = { ...defaultOptions, ...options }
-
-      for (let identifier in components) {
-        let prefixedIdentifier = prefixIdentifier(identifier, options)
-        let rule = components[identifier]
-
-        function wrapped(modifier, { isOnlyPlugin }) {
-          let { type = 'any' } = options
-          type = [].concat(type)
-          let [value, coercedType] = coerceValue(
-            type,
-            modifier,
-            options,
-            tailwindConfig
-          )
-
-          if (value === undefined) {
-            return []
-          }
-
-          if (!type.includes(coercedType)) {
-            if (isOnlyPlugin) {
-              log.warn([
-                `Unnecessary typehint \`${coercedType}\` in \`${identifier}-${modifier}\`.`,
-                `You can safely update it to \`${identifier}-${modifier.replace(
-                  coercedType + ':',
-                  ''
-                )}\`.`,
-              ])
-            } else {
-              return []
-            }
-          }
-
-          if (!isValidArbitraryValue(value)) {
-            return []
-          }
-
-          let ruleSets = []
-            .concat(rule(value))
-            .filter(Boolean)
-            .map(declaration => ({
-              [nameClass(identifier, modifier)]: declaration,
-            }))
-
-          return ruleSets
-        }
-
-        let withOffsets = [{ layer: 'components', options }, wrapped]
-
-        if (!context.candidateRuleMap.has(prefixedIdentifier)) {
-          context.candidateRuleMap.set(prefixedIdentifier, [])
-        }
-
-        context.candidateRuleMap.get(prefixedIdentifier).push(withOffsets)
-      }
-    },
+    matchUtilities: () => null, // Unavailable in twin
+    matchComponents: () => null, // Unavailable in twin
   }
 }
 
