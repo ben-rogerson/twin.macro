@@ -19,8 +19,10 @@ const getCustomSuggestions = className => {
   if (suggestions) return suggestions
 }
 
-const flattenObject = (object, prefix = '') =>
-  Object.keys(object).reduce((result, k) => {
+const flattenObject = (object, prefix = '') => {
+  if (!object) return {}
+
+  return Object.keys(object).reduce((result, k) => {
     const pre = prefix.length > 0 ? prefix + '-' : ''
 
     const value = object[k]
@@ -36,6 +38,7 @@ const flattenObject = (object, prefix = '') =>
 
     return result
   }, {})
+}
 
 const targetTransforms = [
   ({ target }) => (target === 'DEFAULT' ? '' : target),

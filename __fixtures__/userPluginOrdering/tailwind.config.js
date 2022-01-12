@@ -1,6 +1,13 @@
 function fluidContainer({ addComponents, theme }) {
   const styles = [
     {
+      '@media (min-width: 1px)': {
+        '.selector': {
+          content: '@media .selector',
+        },
+      },
+    },
+    {
       '.selector': {
         content: '.selector',
         '.selector2': {
@@ -29,13 +36,6 @@ function fluidContainer({ addComponents, theme }) {
     {
       '.not-selector': {
         content: 'not-container',
-      },
-    },
-    {
-      '@media (min-width: 1px)': {
-        '.selector': {
-          content: '@media .selector',
-        },
       },
     },
     {

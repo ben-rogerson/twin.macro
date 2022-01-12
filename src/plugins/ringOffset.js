@@ -12,10 +12,11 @@ export default properties => {
     toColor,
     matchConfigValue,
     errors: { errorSuggestions },
+    pieces: { negative },
   } = properties
 
   const width = matchConfigValue('ringOffsetWidth', /(?<=(ring-offset)-)([^]*)/)
-  if (width) return { '--tw-ring-offset-width': width }
+  if (width) return { '--tw-ring-offset-width': `${negative}${width}` }
 
   const color = handleColor({ toColor })
   if (color) return color

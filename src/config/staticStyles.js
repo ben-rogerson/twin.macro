@@ -27,6 +27,7 @@ export default {
   // https://tailwindcss.com/docs/box-sizing
   'box-border': { output: { boxSizing: 'border-box' } },
   'box-content': { output: { boxSizing: 'content-box' } },
+  'outline-none': { output: { outline: 'none' } },
 
   // https://tailwindcss.com/docs/display
   hidden: { output: { display: 'none' } },

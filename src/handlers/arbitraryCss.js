@@ -185,10 +185,11 @@ export default ({ className, state, pieces }) => {
   const arbitraryProperty = config.prop
 
   const color = props => withAlpha({ color: value, pieces, ...props })
+  const { negative } = pieces
 
   const arbitraryValue =
     typeof config.value === 'function'
-      ? config.value({ value, transparentTo, color })
+      ? config.value({ value, transparentTo, color, negative })
       : value
 
   // Raw values - no prop value found in config

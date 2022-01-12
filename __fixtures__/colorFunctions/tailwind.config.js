@@ -21,11 +21,9 @@ const colorScale = name =>
 
 module.exports = {
   theme: {
-    extend: {
-      colors: {
-        foreground: color('foreground'),
-        gray: colorScale('gray'),
-      },
+    colors: {
+      foreground: color('foreground'),
+      gray: colorScale('gray'),
     },
   },
 }

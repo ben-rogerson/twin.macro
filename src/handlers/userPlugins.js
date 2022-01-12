@@ -4,22 +4,19 @@ import { splitPrefix } from './../prefix'
 // If these tasks return true then the rule is matched
 const mergeChecks = [
   // Match exact selector
-  ({ key, className, prefix }) => key === `${prefix}${className}`,
+  ({ key, className }) => key === `${className}`,
   // Match class selector (inc dot)
-  ({ key, className, prefix }) =>
+  ({ key, className }) =>
     !key.includes('{{') &&
     key.match(
-      new RegExp(
-        `(?:^|>|~|\\+|\\*| )\\.${prefix}${className}(?: |>|~|\\+|\\*|:|$)`,
-        'g'
-      )
+      new RegExp(`(?:^|>|~|\\+|\\*| )\\.${className}(?: |>|~|\\+|\\*|:|$)`, 'g')
     ),
   // Match parent selector placeholder
-  ({ key, className, prefix }) => key.includes(`{{${prefix}${className}}}`),
+  ({ key, className }) => key.includes(`{{${className}}}`),
   // Match possible symbols after the selector (ex dot)
-  ({ key, className, prefix }) =>
+  ({ key, className }) =>
     [' ', ':', '>', '~', '+', '*'].some(suffix =>
-      key.startsWith(`${prefix}${className}${suffix}`)
+      key.startsWith(`${className}${suffix}`)
     ),
 ]
 
@@ -40,13 +37,12 @@ const getMatches = ({ className, data, sassyPseudo, state }) =>
       if (!isEmpty(matches)) return { ...result, [key]: matches }
     }
 
-    const { prefix } = state.config
     const shouldMergeValue = mergeChecks.some(item =>
-      item({ key, value, className, data, prefix })
+      item({ key, value, className, data, prefix: '' })
     )
 
     if (shouldMergeValue) {
-      const newKey = formatKey(key, { className, sassyPseudo, prefix })
+      const newKey = formatKey(key, { className, sassyPseudo })
       return newKey ? { ...result, [newKey]: value } : { ...result, ...value }
     }
 
@@ -57,22 +53,17 @@ const getMatches = ({ className, data, sassyPseudo, state }) =>
 const formatTasks = [
   ({ key }) => key.replace(/\\/g, '').trim(),
   // Match exact selector
-  ({ key, className, prefix }) => (key === `.${prefix}${className}` ? '' : key),
+  ({ key, className }) => (key === `.${className}` ? '' : key),
   // Replace the parent selector placeholder
-  ({ key, className, prefix }) => {
-    const parentSelectorIndex = key.indexOf(`{{${prefix}${className}}}`)
+  ({ key, className }) => {
+    const parentSelectorIndex = key.indexOf(`{{${className}}}`)
     const replacement = parentSelectorIndex > 0 ? '&' : ''
-    return key.replace(`{{${prefix}${className}}}`, replacement)
+    return key.replace(`{{${className}}}`, replacement)
   },
-  // Strip prefix
-  ({ key, prefix }) =>
-    !prefix ? key : key.replace(new RegExp(`{{${prefix}`, 'g'), `{{`),
   // Replace the classname at start of selector (eg: &:hover) (postCSS supplies
   // flattened selectors so it looks like .blah:hover at this point)
-  ({ key, className, prefix }) =>
-    key.startsWith(`.${prefix}${className}`)
-      ? key.slice(`.${prefix}${className}`.length)
-      : key,
+  ({ key, className }) =>
+    key.startsWith(`.${className}`) ? key.slice(`.${className}`.length) : key,
   ({ key }) => key.trim(),
   // Add the parent selector at the start when it has the sassy pseudo enabled
   ({ key, sassyPseudo }) =>
@@ -122,7 +113,6 @@ export default ({
   ;[base, components, utilities].find(rawData => {
     const data = normalizeUserPluginSelectors(rawData)
     const matches = getMatches({ className, data, sassyPseudo, state })
-
     const hasMatches = !isEmpty(matches)
     result = hasMatches ? matches : result
     return hasMatches

@@ -1,4 +1,4 @@
-import processPlugins from 'tailwindcss/lib/util/processPlugins'
+import buildPluginApi from './pluginApi'
 import deepMerge from 'lodash.merge'
 import { camelize } from './../utils'
 
@@ -169,8 +169,54 @@ const getUserPluginData = ({ config }) => {
     return
   }
 
-  // Use Tailwind (using PostCss) to process the plugin data
-  const processedPlugins = processPlugins(config.plugins, config)
+  const context = {
+    candidateRuleMap: new Map(),
+    tailwindConfig: config,
+  }
+
+  const pluginApi = buildPluginApi(config, context)
+
+  const userPlugins = config.plugins.map(plugin => {
+    if (plugin.__isOptionsFunction) {
+      plugin = plugin()
+    }
+
+    return typeof plugin === 'function' ? plugin : plugin.handler
+  })
+
+  // Call each of the plugins with the pluginApi
+  for (const plugin of userPlugins) {
+    if (Array.isArray(plugin)) {
+      for (const pluginItem of plugin) {
+        pluginItem(pluginApi)
+      }
+    } else {
+      plugin(pluginApi)
+    }
+  }
+
+  const rulesets = context.candidateRuleMap.values()
+
+  const baseRaw = []
+  const componentsRaw = []
+  const utilitiesRaw = []
+
+  // eslint-disable-next-line unicorn/prefer-spread
+  for (const rules of Array.from(rulesets)) {
+    for (const [data, rule] of rules) {
+      if (data.layer === 'base') {
+        baseRaw.push(rule)
+      }
+
+      if (data.layer === 'components') {
+        componentsRaw.push(rule)
+      }
+
+      if (data.layer === 'utilities') {
+        utilitiesRaw.push(rule)
+      }
+    }
+  }
 
   /**
    * Variants
@@ -180,27 +226,17 @@ const getUserPluginData = ({ config }) => {
   /**
    * Base
    */
-  const base = getUserPluginRules(
-    processedPlugins.base,
-    config.theme.screens,
-    true
-  )
+  const base = getUserPluginRules(baseRaw, config.theme.screens, true)
 
   /**
    * Components
    */
-  const components = getUserPluginRules(
-    processedPlugins.components,
-    config.theme.screens
-  )
+  const components = getUserPluginRules(componentsRaw, config.theme.screens)
 
   /**
    * Utilities
    */
-  const utilities = getUserPluginRules(
-    processedPlugins.utilities,
-    config.theme.screens
-  )
+  const utilities = getUserPluginRules(utilitiesRaw, config.theme.screens)
 
   return { base, components, utilities }
 }
