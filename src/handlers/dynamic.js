@@ -1,16 +1,7 @@
 import getConfigValue from './../utils/getConfigValue'
-import { throwIf, isNumeric, transparentTo } from './../utils'
+import { throwIf, transparentTo } from './../utils'
 import { errorSuggestions } from './../logging'
-
-const maybeAddNegative = (value, negative) => {
-  if (!negative) return value
-
-  if (typeof value === 'string' && value.startsWith('var('))
-    return `calc(${value} * -1)`
-  if (isNumeric(value.slice(0, 1))) return `${negative}${value}`
-
-  return value
-}
+import { maybeAddNegative } from './../negative'
 
 const styleify = ({ property, value, negative }) => {
   value = Array.isArray(value)

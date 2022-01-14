@@ -58,11 +58,16 @@ tw`normal-nums`
 // https://tailwindcss.com/docs/letter-spacing
 tw`tracking-tighter`
 tw`tracking-tight`
-tw`tracking-tight`
 tw`tracking-normal`
 tw`tracking-wide`
 tw`tracking-wider`
 tw`tracking-widest`
+tw`-tracking-tighter`
+tw`-tracking-tight`
+tw`-tracking-normal`
+tw`-tracking-wide`
+tw`-tracking-wider`
+tw`-tracking-widest`
 
 // https://tailwindcss.com/docs/line-height
 tw`leading-3`
