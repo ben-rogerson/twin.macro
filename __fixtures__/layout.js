@@ -692,9 +692,15 @@ tw`invisible`
 
 // https://tailwindcss.com/docs/z-index
 tw`z-0`
+tw`-z-0`
 tw`z-10`
+tw`-z-10`
 tw`z-20`
+tw`-z-20`
 tw`z-30`
+tw`-z-30`
 tw`z-40`
+tw`-z-40`
 tw`z-50`
+tw`-z-50`
 tw`z-auto`

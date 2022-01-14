@@ -92,6 +92,8 @@ tw`object-[var(--position)]`
 tw`stroke-[#da5b66]`
 tw`leading-[var(--leading)]`
 tw`tracking-[var(--tracking)]`
+tw`-tracking-[var(--tracking)]`
+tw`-tracking-[2em]`
 tw`placeholder-[var(--placeholder)]`
 tw`placeholder-opacity-[var(--placeholder-opacity)]`
 tw`opacity-[var(--opacity)]`

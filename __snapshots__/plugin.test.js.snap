@@ -3183,6 +3183,8 @@ tw\`object-[var(--position)]\`
 tw\`stroke-[#da5b66]\`
 tw\`leading-[var(--leading)]\`
 tw\`tracking-[var(--tracking)]\`
+tw\`-tracking-[var(--tracking)]\`
+tw\`-tracking-[2em]\`
 tw\`placeholder-[var(--placeholder)]\`
 tw\`placeholder-opacity-[var(--placeholder-opacity)]\`
 tw\`opacity-[var(--opacity)]\`
@@ -3532,6 +3534,12 @@ tw\`md:text-[red]\`
 })
 ;({
   letterSpacing: 'var(--tracking)',
+})
+;({
+  letterSpacing: 'calc(var(--tracking) * -1)',
+})
+;({
+  letterSpacing: '-2em',
 })
 ;({
   '::placeholder': {
@@ -13412,11 +13420,17 @@ tw\`invisible\`
 
 // https://tailwindcss.com/docs/z-index
 tw\`z-0\`
+tw\`-z-0\`
 tw\`z-10\`
+tw\`-z-10\`
 tw\`z-20\`
+tw\`-z-20\`
 tw\`z-30\`
+tw\`-z-30\`
 tw\`z-40\`
+tw\`-z-40\`
 tw\`z-50\`
+tw\`-z-50\`
 tw\`z-auto\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -15945,19 +15959,37 @@ tw\`z-auto\`
   zIndex: '0',
 })
 ;({
+  zIndex: '-0',
+})
+;({
   zIndex: '10',
+})
+;({
+  zIndex: '-10',
 })
 ;({
   zIndex: '20',
 })
 ;({
+  zIndex: '-20',
+})
+;({
   zIndex: '30',
+})
+;({
+  zIndex: '-30',
 })
 ;({
   zIndex: '40',
 })
 ;({
+  zIndex: '-40',
+})
+;({
   zIndex: '50',
+})
+;({
+  zIndex: '-50',
 })
 ;({
   zIndex: 'auto',
@@ -26333,11 +26365,16 @@ tw\`normal-nums\`
 // https://tailwindcss.com/docs/letter-spacing
 tw\`tracking-tighter\`
 tw\`tracking-tight\`
-tw\`tracking-tight\`
 tw\`tracking-normal\`
 tw\`tracking-wide\`
 tw\`tracking-wider\`
 tw\`tracking-widest\`
+tw\`-tracking-tighter\`
+tw\`-tracking-tight\`
+tw\`-tracking-normal\`
+tw\`-tracking-wide\`
+tw\`-tracking-wider\`
+tw\`-tracking-widest\`
 
 // https://tailwindcss.com/docs/line-height
 tw\`leading-3\`
@@ -26820,9 +26857,6 @@ tw\`break-all\`
   letterSpacing: '-0.025em',
 })
 ;({
-  letterSpacing: '-0.025em',
-})
-;({
   letterSpacing: '0em',
 })
 ;({
@@ -26833,6 +26867,24 @@ tw\`break-all\`
 })
 ;({
   letterSpacing: '0.1em',
+})
+;({
+  letterSpacing: '0.05em',
+})
+;({
+  letterSpacing: '0.025em',
+})
+;({
+  letterSpacing: '-0em',
+})
+;({
+  letterSpacing: '-0.025em',
+})
+;({
+  letterSpacing: '-0.05em',
+})
+;({
+  letterSpacing: '-0.1em',
 }) // https://tailwindcss.com/docs/line-height
 
 ;({

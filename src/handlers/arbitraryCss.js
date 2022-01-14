@@ -1,6 +1,7 @@
 import stringSimilarity from 'string-similarity'
 import { SPACE_ID } from './../contants'
 import { dynamicStyles } from './../config'
+import { maybeAddNegative } from './../negative'
 import {
   throwIf,
   withAlpha,
@@ -185,12 +186,11 @@ export default ({ className, state, pieces }) => {
   const arbitraryProperty = config.prop
 
   const color = props => withAlpha({ color: value, pieces, ...props })
-  const { negative } = pieces
 
   const arbitraryValue =
     typeof config.value === 'function'
-      ? config.value({ value, transparentTo, color, negative })
-      : value
+      ? config.value({ value, transparentTo, color, negative: pieces.negative })
+      : maybeAddNegative(value, pieces.negative)
 
   // Raw values - no prop value found in config
   if (!arbitraryProperty)
