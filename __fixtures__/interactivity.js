@@ -1,4 +1,4 @@
-import tw from './macro'
+import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/appearance
 tw`appearance-none`
@@ -34,3 +34,11 @@ tw`select-none`
 tw`select-text`
 tw`select-all`
 tw`select-auto`
+
+// https://tailwindcss.com/docs/will-change
+theme`willChange`
+tw`will-change-auto`
+tw`will-change-scroll`
+tw`will-change-contents`
+tw`will-change-transform`
+tw`will-change-[top,left]`
