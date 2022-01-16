@@ -781,6 +781,9 @@ export default {
   // https://tailwindcss.com/docs/user-select
   // See staticStyles.js
 
+  // https://tailwindcss.com/docs/will-change
+  'will-change': { prop: 'willChange', config: 'willChange' },
+
   /**
    * ===========================================
    * Svg
