@@ -89,6 +89,12 @@ const typeMap = {
     const { property } = config
     if (property) return { [property]: value }
   },
+  url: ({ value }) => {
+    if (value.startsWith('url('))
+      return {
+        backgroundImage: value,
+      }
+  },
   lookup: ({ config, value, theme }) => config(value, theme),
 }
 
@@ -134,7 +140,7 @@ const getClassData = className => {
 export default ({ className, state, pieces }) => {
   const { property, value } = getClassData(className)
 
-  const config = searchDynamicConfigByProperty(property) || {}
+  let config = searchDynamicConfigByProperty(property) || {}
 
   // Check for coerced value
   // Values that have their type specified: [length:3px]/[color:red]/etc
@@ -146,6 +152,12 @@ export default ({ className, state, pieces }) => {
   })
   if (coercedValue) {
     return coercedValue
+  }
+
+  // Deal with font array
+  if (Array.isArray(config)) {
+    const value = config.find(c => c.value)
+    value && (config = value)
   }
 
   ;(isEmpty(config) || Array.isArray(config)) &&

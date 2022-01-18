@@ -226,6 +226,9 @@ export default {
   'content-around': {
     output: { alignContent: 'space-around' },
   },
+  'content-evenly': {
+    output: { alignContent: 'space-evenly' },
+  },
 
   // https://tailwindcss.com/docs/align-self
   'self-auto': { output: { alignSelf: 'auto' } },

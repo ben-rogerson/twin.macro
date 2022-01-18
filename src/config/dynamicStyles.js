@@ -11,7 +11,7 @@ export default {
   container: { hasArbitrary: false, plugin: 'container' },
 
   // https://tailwindcss.com/docs/just-in-time-mode#content-utilities
-  content: { prop: 'content' },
+  content: { prop: 'content', config: 'content' },
 
   // https://tailwindcss.com/docs/just-in-time-mode#caret-color-utilities
   caret: {
@@ -218,7 +218,12 @@ export default {
 
   font: [
     // https://tailwindcss.com/docs/font-family
-    { prop: 'fontFamily', config: 'fontFamily' },
+    {
+      config: 'fontFamily',
+      value: ({ value }) => ({
+        fontFamily: Array.isArray(value) ? value.join(', ') : value,
+      }),
+    },
     // https://tailwindcss.com/docs/font-weight
     { prop: 'fontWeight', config: 'fontWeight' },
   ],
@@ -302,7 +307,7 @@ export default {
   },
   // https://tailwindcss.com/docs/gradient-color-stops
   bg: {
-    value: ['color'],
+    value: ['color', 'url'],
     plugin: 'bg',
     coerced: {
       color: {
@@ -525,7 +530,14 @@ export default {
   },
 
   // https://tailwindcss.com/docs/drop-shadow
-  'drop-shadow': { hasArbitrary: false, plugin: 'dropShadow' },
+  'drop-shadow': {
+    value: ({ value }) => ({
+      '--tw-drop-shadow': `drop-shadow(${value})`,
+      filter:
+        'var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)',
+    }),
+    plugin: 'dropShadow',
+  },
 
   // https://tailwindcss.com/docs/grayscale
   grayscale: {
