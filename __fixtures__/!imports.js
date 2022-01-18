@@ -32,15 +32,6 @@ const themeStringFont = (
   />
 )
 
-// TODO: Temp removed until v3 outline updates
-// const themeFirstFromArray = (
-//   <input
-//     css={css`
-//       outline: ${theme`outline.black`};
-//     `}
-//   />
-// )
-
 const themeFontNoLineheight = (
   <input
     css={css`

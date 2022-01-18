@@ -147,5 +147,9 @@ tw`selection:bg-black`
 // Lists
 tw`marker:bg-black`
 
+// Arbitrary values
+tw`first:inset-[50px]`
+tw`md:text-[red]`
+
 // Random
 tw`xl:placeholder-red-500! first:md:block sm:disabled:flex`
