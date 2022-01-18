@@ -23,7 +23,7 @@ const maybeAddNegative = (value, negative) => {
     if (value.startsWith('var(')) return `calc(${value} * -1)`
   }
 
-  if (isNumeric(value.slice(0, 1))) return `${negative}${value}`
+  if (isNumeric(value)) return `${negative}${value}`
 
   return value
 }
