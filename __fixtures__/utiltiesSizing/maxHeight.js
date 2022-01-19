@@ -40,5 +40,8 @@ tw`max-h-96`
 tw`max-h-px`
 tw`max-h-full`
 tw`max-h-screen`
+tw`max-h-min`
+tw`max-h-max`
+tw`max-h-fit`
 
 tw`max-h-[32rem]`

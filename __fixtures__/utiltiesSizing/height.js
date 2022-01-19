@@ -56,6 +56,9 @@ tw`h-4/6`
 tw`h-5/6`
 tw`h-full`
 tw`h-screen`
+tw`h-min`
+tw`h-max`
+tw`h-fit`
 
 tw`h-[32rem]`
 tw`h-[3.23rem]`
