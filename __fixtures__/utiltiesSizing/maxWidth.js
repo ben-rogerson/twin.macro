@@ -19,6 +19,7 @@ tw`max-w-7xl`
 tw`max-w-full`
 tw`max-w-min`
 tw`max-w-max`
+tw`max-w-fit`
 tw`max-w-prose`
 tw`max-w-screen-sm`
 tw`max-w-screen-md`
