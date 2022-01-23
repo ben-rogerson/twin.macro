@@ -1,3 +1,4 @@
+export { default as accentColor } from './accentColor'
 export { default as animation } from './animation'
 export { default as backdropBlur } from './backdropBlur'
 export { default as backdropBrightness } from './backdropBrightness'

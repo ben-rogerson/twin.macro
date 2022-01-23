@@ -137,8 +137,8 @@ const getClassData = className => {
   }
 }
 
-export default ({ className, state, pieces }) => {
-  const { property, value } = getClassData(className)
+export default ({ state, pieces }) => {
+  let { property, value } = getClassData(pieces.classNameNoSlashAlpha)
 
   let config = searchDynamicConfigByProperty(property) || {}
 
@@ -150,8 +150,13 @@ export default ({ className, state, pieces }) => {
     state,
     config,
   })
-  if (coercedValue) {
-    return coercedValue
+  if (coercedValue) return coercedValue
+
+  // Theme values, eg: tw`text-[theme(colors.red.500)]`
+  const themeValue = value.match(/theme\('?([^']+)'?\)/)
+  if (themeValue) {
+    const val = getTheme(state.config.theme)(themeValue[1])
+    if (val) value = val
   }
 
   // Deal with font array
@@ -193,6 +198,21 @@ export default ({ className, state, pieces }) => {
     )
 
     return arbitraryValue
+  }
+
+  if (pieces.hasAlpha) {
+    throwIf(!config.coerced || !config.coerced.color, () =>
+      logBadGood(
+        `There is no support for a “${property}” alpha value in “${property}-[${value}]”`
+      )
+    )
+    return typeMap.color({
+      config: config.coerced.color,
+      value,
+      pieces,
+      theme: getTheme(state.config.theme),
+      hasFallback: false,
+    })
   }
 
   const arbitraryProperty = config.prop

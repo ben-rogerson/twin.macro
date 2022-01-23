@@ -29,7 +29,7 @@ import { handleTwProperty, handleTwFunction } from './macro/tw'
 import { handleCsProperty } from './macro/cs'
 import { handleClassNameProperty } from './macro/className'
 import getUserPluginData from './utils/getUserPluginData'
-import { debugPlugins } from './logging'
+import { debugPlugins, debug } from './logging'
 
 const getPackageUsed = ({ config: { preset }, cssImport, styledImport }) => ({
   isEmotion:
@@ -92,6 +92,7 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
   state.configExists = configExists
   state.config = configTailwind
   state.configTwin = configTwin
+  state.debug = debug(state)
   state.globalStyles = new Map()
 
   state.tailwindConfigIdentifier = generateUid('tailwindConfig', program)

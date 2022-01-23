@@ -229,3 +229,15 @@ tw`placeholder-rose-900`
 
 tw`placeholder-[red]`
 tw`placeholder-[var(--placeholder)]`
+
+tw`placeholder-red-500/25`
+tw`placeholder-red-500/fromConfig`
+tw`placeholder-red-500/[.555]`
+tw`placeholder-red-500/[var(--myvar)]`
+tw`placeholder-[theme('colors.red.500')]`
+
+tw`placeholder-electric`
+tw`placeholder-electric/25`
+tw`placeholder-electric/[.555]`
+tw`placeholder-electric/[var(--myvar)]`
+tw`placeholder-[theme('colors.electric')]`

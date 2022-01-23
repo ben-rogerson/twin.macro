@@ -234,3 +234,17 @@ tw`bg-[#0000ffcc]`
 tw`bg-[rgb(123,123,123)] bg-[rgba(123,123,123,0.5)]`
 tw`bg-[hsl(0,100%,50%)] bg-[hsla(0,100%,50%,0.3)]`
 tw`bg-[url('/img/hero-pattern.svg')]`
+
+tw`bg-red-500/25`
+tw`bg-red-500/fromConfig`
+tw`bg-red-500/[.555]`
+tw`bg-red-500/[var(--myvar)]`
+tw`bg-[theme('colors.red.500')]`
+tw`bg-[theme('colors.red.500')]/20`
+
+tw`bg-electric`
+tw`bg-electric/25`
+tw`bg-electric/[.555]`
+tw`bg-electric/[var(--myvar)]`
+tw`bg-[theme('colors.electric')]`
+tw`bg-[theme('colors.electric')]/20`

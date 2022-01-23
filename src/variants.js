@@ -281,6 +281,12 @@ function spreadVariantGroups(
       const importantGroup = classes[closeBracket + 1] === '!'
       const cssClass = classes.slice(match.index, closeBracket + 1)
 
+      const hasSlashOpacity =
+        classes.slice(closeBracket + 1, closeBracket + 2) === '/'
+      const opacityValue = hasSlashOpacity
+        ? classes.slice(closeBracket + 1)
+        : ''
+
       // Convert spaces in classes to a temporary string so the css won't be
       // split into multiple classes
       const spaceReplacedClass = cssClass
@@ -292,10 +298,12 @@ function spreadVariantGroups(
       results.push(
         context +
           spaceReplacedClass +
+          opacityValue +
           (importantGroup || importantContext ? '!' : '')
       )
 
-      reg.lastIndex = closeBracket + (importantGroup ? 2 : 1)
+      reg.lastIndex =
+        closeBracket + (importantGroup ? 2 : 1) + opacityValue.length
       context = baseContext
     } else if (className) {
       const tail = !className.endsWith('!') && importantContext ? '!' : ''

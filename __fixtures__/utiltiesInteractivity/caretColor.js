@@ -230,3 +230,17 @@ tw`caret-rose-800`
 tw`caret-rose-900`
 
 tw`caret-[#50d71e]`
+
+tw`caret-red-500/25`
+tw`caret-red-500/fromConfig`
+tw`caret-red-500/[.555]`
+tw`caret-red-500/[var(--myvar)]`
+tw`caret-[theme('colors.red.500')]`
+tw`caret-[theme('colors.red.500')]/20`
+
+tw`caret-electric`
+tw`caret-electric/25`
+tw`caret-electric/[.555]`
+tw`caret-electric/[var(--myvar)]`
+tw`caret-[theme('colors.electric')]`
+tw`caret-[theme('colors.electric')]/20`

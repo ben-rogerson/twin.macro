@@ -690,3 +690,41 @@ tw`bg-gradient-to-r from-purple-400 md:from-yellow-500`
 
 tw`from-[#da5b66] via-[#da5b66] to-[#da5b66]`
 tw`from-[var(--color)] via-[var(--color)] to-[var(--color)]`
+
+tw`from-red-500`
+tw`from-red-500/25`
+tw`from-red-500/fromConfig`
+tw`from-red-500/[.555]`
+tw`from-red-500/[var(--myvar)]`
+tw`from-[theme('colors.red.500')]`
+
+tw`from-electric`
+tw`from-electric/25`
+tw`from-electric/[.555]`
+tw`from-electric/[var(--myvar)]`
+tw`from-[theme('colors.electric')]`
+
+tw`via-red-500`
+tw`via-red-500/25`
+tw`via-red-500/fromConfig`
+tw`via-red-500/[.555]`
+tw`via-red-500/[var(--myvar)]`
+tw`via-[theme('colors.red.500')]`
+
+tw`via-electric`
+tw`via-electric/25`
+tw`via-electric/[.555]`
+tw`via-electric/[var(--myvar)]`
+tw`via-[theme('colors.electric')]`
+
+tw`to-red-500/25`
+tw`to-red-500/fromConfig`
+tw`to-red-500/[.555]`
+tw`to-red-500/[var(--myvar)]`
+tw`to-[theme('colors.red.500')]`
+
+tw`to-electric`
+tw`to-electric/25`
+tw`to-electric/[.555]`
+tw`to-electric/[var(--myvar)]`
+tw`to-[theme('colors.electric')]`

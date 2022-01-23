@@ -235,3 +235,18 @@ tw`stroke-rose-800`
 tw`stroke-rose-900`
 
 tw`stroke-[#243c5a]`
+
+tw`stroke-red-500`
+tw`stroke-red-500/25`
+tw`stroke-red-500/fromConfig`
+tw`stroke-red-500/[.555]`
+tw`stroke-red-500/[var(--myvar)]`
+tw`stroke-[theme('colors.red.500')]`
+tw`stroke-[theme('colors.red.500')]/20`
+
+tw`stroke-electric`
+tw`stroke-electric/25`
+tw`stroke-electric/[.555]`
+tw`stroke-electric/[var(--myvar)]`
+tw`stroke-[theme('colors.electric')]`
+tw`stroke-[theme('colors.electric')]/20`

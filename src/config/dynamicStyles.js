@@ -17,7 +17,7 @@ export default {
   caret: {
     plugin: 'caretColor',
     value: ['color'],
-    coerced: { color: value => ({ caretColor: value }) },
+    coerced: { color: { property: 'caretColor' } },
   },
 
   // https://tailwindcss.com/docs/box-sizing
@@ -776,6 +776,15 @@ export default {
    * Interactivity
    */
 
+  // https://tailwindcss.com/docs/accent-color
+  accent: {
+    plugin: 'accentColor',
+    prop: 'accentColor',
+    coerced: {
+      color: { property: 'accentColor' },
+    },
+  },
+
   // https://tailwindcss.com/docs/appearance
   // See staticStyles.js
 
@@ -802,7 +811,13 @@ export default {
    */
 
   // https://tailwindcss.com/docs/fill
-  fill: { prop: 'fill', plugin: 'fill' },
+  fill: {
+    prop: 'fill',
+    plugin: 'fill',
+    coerced: {
+      color: { property: 'fill' },
+    },
+  },
 
   // https://tailwindcss.com/docs/stroke
   stroke: {

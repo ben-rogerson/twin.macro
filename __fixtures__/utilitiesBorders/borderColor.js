@@ -1587,3 +1587,16 @@ tw`border-[#243c5a]`
 
 tw`border-[#f00]`
 tw`border-t-[#f00]`
+
+tw`border-red-500/25`
+tw`border-red-500/fromConfig`
+tw`border-red-500/[.555]`
+tw`border-red-500/[var(--myvar)]`
+tw`border-[theme('colors.red.500')]`
+tw`border-[theme('colors.red.500')]/20`
+
+tw`border-electric/25`
+tw`border-electric/[.555]`
+tw`border-electric/[var(--myvar)]`
+tw`border-[theme('colors.electric')]`
+tw`border-[theme('colors.electric')]/20`

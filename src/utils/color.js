@@ -1,6 +1,6 @@
 import { withAlpha } from './../utils'
 
-const getColor = ({ configTwin, matchConfigValue, pieces }) => colors => {
+const getColor = ({ matchConfigValue, pieces }) => colors => {
   let result
   colors.find(
     ({
@@ -21,11 +21,6 @@ const getColor = ({ configTwin, matchConfigValue, pieces }) => colors => {
         `(?<=(${matchStart}-))([^]*)${useSlashAlpha ? `(?=/)` : ''}`
       )
       if (!color) return false
-
-      // Avoid using --tw-xxx variables if color variables are disabled
-      if (configTwin.disableColorVariables) {
-        useSlashAlpha = true
-      }
 
       const newColor = withAlpha({
         pieces,

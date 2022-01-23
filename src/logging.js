@@ -57,7 +57,7 @@ const logErrorFix = (error, good) =>
 
 const logGeneralError = error => spaced(warning(error))
 
-const debug = (className, log) => console.log(inOut(className, log))
+const debugSuccess = (className, log) => inOut(className, log)
 
 const formatPluginKey = key => key.replace(/(\\|(}}))/g, '').replace(/{{/g, '.')
 
@@ -249,6 +249,13 @@ const logStylePropertyError = spaced(
   )
 )
 
+const debug = state => message => {
+  if (state.isDev !== true) return
+  if (state.configTwin.debug !== true) return
+
+  return console.log(message)
+}
+
 export {
   logNoVariant,
   logNoClass,
@@ -256,6 +263,7 @@ export {
   logBadGood,
   logGeneralError,
   debug,
+  debugSuccess,
   debugPlugins,
   inOutPlugins,
   errorSuggestions,
