@@ -83,7 +83,6 @@ export default ({
   const toColor = getColor({
     theme,
     getConfigValue,
-    configTwin,
     matchConfigValue,
     pieces,
   })

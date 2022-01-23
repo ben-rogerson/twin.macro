@@ -26,19 +26,19 @@ const colorMap = {
   hsl: color => {
     const [h, s, l, a] = toHsla(color)
     return {
-      values: [h, toPercent(s), toPercent(l)].join(', '),
+      values: [h, toPercent(s), toPercent(l)].join(' '),
       alpha: a,
-      prefix: a ? 'hsla' : 'hsla',
-      alphaPrefix: 'hsla',
+      prefix: 'hsl',
+      alphaPrefix: 'hsl',
     }
   },
   rgb: color => {
     const [r, g, b, a] = toRgba(color)
     return {
-      values: [r, g, b].join(', '),
+      values: [r, g, b].join(' '),
       alpha: a,
-      prefix: a ? 'rgba' : 'rgba',
-      alphaPrefix: 'rgba',
+      prefix: 'rgb',
+      alphaPrefix: 'rgb',
     }
   },
 }
@@ -53,7 +53,7 @@ const makeColorValue = color => {
     alphaValue = alpha !== undefined ? alpha : a
     const finalColor = [values, alphaValue].filter(i => i !== undefined)
     const finalPrefix = alphaValue !== undefined ? alphaPrefix : prefix
-    return `${finalPrefix}(${finalColor.join(', ')})`
+    return `${finalPrefix}(${finalColor.join(' / ')})`
   }
 
   return [colorValue, alphaValue]
@@ -64,7 +64,7 @@ const withAlpha = ({
   property,
   variable,
   pieces = {},
-  useSlashAlpha = variable ? !variable : true,
+  useSlashAlpha = pieces.hasAlpha,
   hasFallback = true,
 }) => {
   if (!color) return
@@ -120,9 +120,9 @@ const transparentTo = value => {
 
   try {
     const [r, g, b] = toRgba(value)
-    return `rgba(${r}, ${g}, ${b}, 0)`
+    return `rgb(${r} ${g} ${b} / 0)`
   } catch (_) {
-    return `rgba(255, 255, 255, 0)`
+    return `rgb(255 255 255 / 0)`
   }
 }
 

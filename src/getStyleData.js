@@ -9,7 +9,7 @@ import {
   errorSuggestions,
   logNotFoundVariant,
   logNotFoundClass,
-  debug,
+  debugSuccess,
   logBadGood,
 } from './logging'
 import { orderByScreens } from './screens'
@@ -198,7 +198,7 @@ export default (
       addVariants({ results, style, pieces, state })
     )
 
-    state.isDev && state.configTwin.debug && debug(classNameRaw, style)
+    state.debug(debugSuccess(classNameRaw, style))
 
     classesMatched.push(classNameRaw)
     return result

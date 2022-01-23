@@ -11,7 +11,6 @@ const configDefaultsTwin = ({ isGoober, isStitches, isDev }) => ({
   allowStyleProp: false, // Allows styles within style="blah" without throwing an error
   autoCssProp: false, // Automates the import of styled-components when you use their css prop
   dataTwProp: isDev, // During development, add a data-tw="" prop containing your tailwind classes for backtracing
-  disableColorVariables: false, // Disable css variables in colors (except gradients) to support older browsers/react native
   hasSuggestions: true, // Switch suggestions on/off when you use a tailwind class that's not found
   sassyPseudo: false, // Sets selectors like hover to &:hover
   debug: false, // Show the output of the classes twin converts
@@ -48,8 +47,8 @@ const configTwinValidators = {
     'The “autoCssProp” feature has been removed from twin.macro@2.8.2+\nThis means the css prop must be added by styled-components instead.\nSetup info at https://twinredirect.page.link/auto-css-prop\n\nRemove the “autoCssProp” item from your config to avoid this message.',
   ],
   disableColorVariables: [
-    isBoolean,
-    'The config “disableColorVariables” can only be true or false',
+    value => value !== true,
+    'The disableColorVariables feature has been removed from twin.macro@3+\n\nRemove the disableColorVariables item from your config to avoid this message.',
   ],
   hasSuggestions: [
     isBoolean,

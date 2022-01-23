@@ -236,3 +236,18 @@ tw`fill-rose-900`
 
 tw`fill-[#243c5a]`
 tw`fill-[var(--color)]`
+
+tw`fill-red-500`
+tw`fill-red-500/25`
+tw`fill-red-500/fromConfig`
+tw`fill-red-500/[.555]`
+tw`fill-red-500/[var(--myvar)]`
+tw`fill-[theme('colors.red.500')]`
+tw`fill-[theme('colors.red.500')]/20`
+
+tw`fill-electric`
+tw`fill-electric/25`
+tw`fill-electric/[.555]`
+tw`fill-electric/[var(--myvar)]`
+tw`fill-[theme('colors.electric')]`
+tw`fill-[theme('colors.electric')]/20`

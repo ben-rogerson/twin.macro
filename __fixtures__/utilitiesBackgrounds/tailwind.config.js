@@ -16,7 +16,5 @@ module.exports = {
         },
       },
     },
-    stroke: theme => theme('colors'),
-    fill: theme => theme('colors'),
   },
 }

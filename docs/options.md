@@ -4,21 +4,20 @@
 
 These options are available in your [twin config](#twin-config-location):
 
-| Name                  | Default                | Description                                                                                                                                                                                                                                   |
-| --------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| config                | `"tailwind.config.js"` | The path to your Tailwind config.                                                                                                                                                                                                             |
-| preset                | `"emotion"`            | The css-in-js library behind the scenes.<br>Also supported: `"styled-components"` `"goober"` `"stitches"`                                                                                                                                     |
-| autoCssProp           | _deprecated in v2.8.2_ | `styled-components` only: Used to add an import of 'styled-components/macro' which automatically adds the styled-components css prop. Here’s how to [setup the new styled-components css prop](https://twinredirect.page.link/auto-css-prop). |
-| hasSuggestions        | `true`                 | Display suggestions when a class isn’t found.                                                                                                                                                                                                 |
-| dataTwProp            | `true`                 | Add a prop to jsx components in development showing the original tailwind classes.<br/> Use `"all"` to keep the prop in production.                                                                                                           |
-| debugPlugins          | `false`                | Display generated class information in your terminal from your plugins.                                                                                                                                                                       |
-| debug                 | `false`                | Display information in your terminal about the Tailwind class conversions.                                                                                                                                                                    |
-| disableColorVariables | `false`                | Disable css variables in colors (not gradients).                                                                                                                                                                                              |
-| disableShortCss       | `false`                | Disable converting short css within the tw import/prop.                                                                                                                                                                                       |
-| includeClassNames     | `false`                | Look in className props for tailwind classes to convert.                                                                                                                                                                                      |
-| dataCsProp            | `true`                 | Add a prop to your elements in development so you can see the original cs prop classes, eg: `<div data-cs="maxWidth[1em]" />`.                                                                                                                |
-| disableCsProp         | `false`                | Disable twin from reading values specified in the cs prop.                                                                                                                                                                                    |
-| sassyPseudo           | `false`                | Some css-in-js frameworks require the `&` in selectors like `&:hover`, this option ensures it’s added.                                                                                                                                        |
+| Name              | Default                | Description                                                                                                                                                                                                                                   |
+| ----------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| config            | `"tailwind.config.js"` | The path to your Tailwind config.                                                                                                                                                                                                             |
+| preset            | `"emotion"`            | The css-in-js library behind the scenes.<br>Also supported: `"styled-components"` `"goober"` `"stitches"`                                                                                                                                     |
+| autoCssProp       | _deprecated in v2.8.2_ | `styled-components` only: Used to add an import of 'styled-components/macro' which automatically adds the styled-components css prop. Here’s how to [setup the new styled-components css prop](https://twinredirect.page.link/auto-css-prop). |
+| hasSuggestions    | `true`                 | Display suggestions when a class isn’t found.                                                                                                                                                                                                 |
+| dataTwProp        | `true`                 | Add a prop to jsx components in development showing the original tailwind classes.<br/> Use `"all"` to keep the prop in production.                                                                                                           |
+| debugPlugins      | `false`                | Display generated class information in your terminal from your plugins.                                                                                                                                                                       |
+| debug             | `false`                | Display information in your terminal about the Tailwind class conversions.                                                                                                                                                                    |
+| disableShortCss   | `false`                | Disable converting short css within the tw import/prop.                                                                                                                                                                                       |
+| includeClassNames | `false`                | Look in className props for tailwind classes to convert.                                                                                                                                                                                      |
+| dataCsProp        | `true`                 | Add a prop to your elements in development so you can see the original cs prop classes, eg: `<div data-cs="maxWidth[1em]" />`.                                                                                                                |
+| disableCsProp     | `false`                | Disable twin from reading values specified in the cs prop.                                                                                                                                                                                    |
+| sassyPseudo       | `false`                | Some css-in-js frameworks require the `&` in selectors like `&:hover`, this option ensures it’s added.                                                                                                                                        |
 
 ### Options
 
@@ -144,71 +143,6 @@ When debug mode is on, twin shows the generated css for each class used:
 ```
 
 This feedback only displays in development.
-
-</details>
-
----
-
-<details>
-
-  <summary><strong>disableColorVariables</strong></summary>
-
-<br />
-
-When disableColorVariables set to true, css variables are disabled for the following types of classes:
-
-```js
-import tw from 'twin.macro'
-
-tw`border-green-400`
-tw`text-green-400`
-tw`bg-green-400`
-tw`placeholder-green-500`
-tw`divide-green-500`
-
-// ↓ ↓ ↓ ↓ ↓ ↓
-;({
-  borderColor: '#68d391',
-})
-;({
-  color: '#68d391',
-})
-;({
-  backgroundColor: '#68d391',
-})
-;({
-  '::placeholder': {
-    color: '#48bb78',
-  },
-})
-;({
-  '> :not(template) ~ :not(template)': {
-    borderColor: '#48bb78',
-  },
-})
-```
-
-Note that opacity classes won’t work and gradients aren’t affected while in this mode:
-
-```js
-import tw from 'twin.macro'
-
-tw`text-green-400 text-opacity-50`
-tw`bg-gradient-to-b from-gray-100 to-gray-200`
-
-// ↓ ↓ ↓ ↓ ↓ ↓
-;({
-  color: '#68d391',
-  '--text-opacity': '0.5',
-})
-;({
-  backgroundImage: 'linear-gradient(to bottom, var(--gradient-color-stops))',
-  '--gradient-from-color': '#f7fafc',
-  '--gradient-color-stops':
-    'var(--gradient-from-color), var(--gradient-to-color, rgba(247, 250, 252, 0))',
-  '--gradient-to-color': '#edf2f7',
-})
-```
 
 </details>
 
