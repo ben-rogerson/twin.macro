@@ -1,24 +1,15 @@
-import { toRgba } from './../utils'
-
-function safeCall(callback, defaultValue) {
-  try {
-    return callback()
-  } catch (_) {
-    return defaultValue
-  }
-}
-
-export const globalRingStyles = ({ theme }) => {
-  const ringColorDefault = (([r, g, b]) =>
-    `rgba(${r}, ${g}, ${b}, ${theme`ringOpacity.DEFAULT` || '0.5'})`)(
-    safeCall(() => toRgba(theme`ringColor.DEFAULT`), ['147', '197', '253'])
-  )
-
+export const globalRingStyles = ({ theme, withAlpha }) => {
+  const ringOpacityDefault = theme`ringOpacity.DEFAULT` || '0.5'
+  const ringColorDefault = withAlpha({
+    color:
+      theme`ringColor.DEFAULT` || `rgb(147 197 253 / ${ringOpacityDefault})`,
+    pieces: { important: '', hasAlpha: true, alpha: ringOpacityDefault },
+  })
   return {
     '*, ::before, ::after': {
       '--tw-ring-inset': 'var(--tw-empty,/*!*/ /*!*/)',
-      '--tw-ring-offset-width': theme('ringOffsetWidth.DEFAULT') || '0px',
-      '--tw-ring-offset-color': theme('ringOffsetColor.DEFAULT') || '#fff',
+      '--tw-ring-offset-width': theme`ringOffsetWidth.DEFAULT` || '0px',
+      '--tw-ring-offset-color': theme`ringOffsetColor.DEFAULT` || '#fff',
       '--tw-ring-color': ringColorDefault,
       '--tw-ring-offset-shadow': '0 0 #0000',
       '--tw-ring-shadow': '0 0 #0000',
