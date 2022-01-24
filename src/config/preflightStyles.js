@@ -97,7 +97,7 @@ const globalPreflightStyles = ({ theme, withAlpha }) => ({
     color: theme`colors.gray.400` || '#9ca3af',
   },
   'button, [role="button"]': { cursor: 'pointer' },
-  ':disabled': { cursor: 'default' },
+  ':disabled, [disabled]': { cursor: 'default' }, // Gotcha: :disabled doesn't seem to work with css-in-js so added [disabled] as a backup
   'img, svg, video, canvas, audio, iframe, embed, object': {
     display: 'block',
     verticalAlign: 'middle',
