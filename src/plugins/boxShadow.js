@@ -1,5 +1,8 @@
 export const globalBoxShadowStyles = {
-  '*, ::before, ::after': { '--tw-shadow': '0 0 #0000' },
+  '*, ::before, ::after': {
+    '--tw-shadow': '0 0 #0000',
+    '--tw-shadow-colored': '0 0 #0000',
+  },
 }
 
 export default properties => {

@@ -1,4 +1,4 @@
-import { modernNormalizeStyles, globalPreflightStyles } from './preflightStyles'
+import { globalPreflightStyles } from './preflightStyles'
 import { globalKeyframeStyles } from './../plugins/animation'
 import { globalRingStyles } from './../plugins/ring'
 import { globalBoxShadowStyles } from './../plugins/boxShadow'
@@ -12,15 +12,30 @@ export const globalTransformStyles = {
     '--tw-skew-y': '0',
     '--tw-scale-x': '1',
     '--tw-scale-y': '1',
-    '--tw-transform': [
-      'translateX(var(--tw-translate-x))',
-      'translateY(var(--tw-translate-y))',
-      'rotate(var(--tw-rotate))',
-      'skewX(var(--tw-skew-x))',
-      'skewY(var(--tw-skew-y))',
-      'scaleX(var(--tw-scale-x))',
-      'scaleY(var(--tw-scale-y))',
-    ].join(' '),
+  },
+}
+
+export const globalTouchActionStyles = {
+  '*, ::before, ::after': {
+    '--tw-pan-x': 'var(--tw-empty,/*!*/ /*!*/)',
+    '--tw-pan-y': 'var(--tw-empty,/*!*/ /*!*/)',
+    '--tw-pinch-zoom': 'var(--tw-empty,/*!*/ /*!*/)',
+  },
+}
+
+export const globalScrollSnapTypeStyles = {
+  '*, ::before, ::after': {
+    '--tw-scroll-snap-strictness': 'proximity',
+  },
+}
+
+export const globalFontVariantNumericStyles = {
+  '*, ::before, ::after': {
+    '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
+    '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
+    '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
+    '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
+    '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
   },
 }
 
@@ -35,17 +50,6 @@ export const globalFilterStyles = {
     '--tw-saturate': 'var(--tw-empty,/*!*/ /*!*/)',
     '--tw-sepia': 'var(--tw-empty,/*!*/ /*!*/)',
     '--tw-drop-shadow': 'var(--tw-empty,/*!*/ /*!*/)',
-    '--tw-filter': [
-      'var(--tw-blur)',
-      'var(--tw-brightness)',
-      'var(--tw-contrast)',
-      'var(--tw-grayscale)',
-      'var(--tw-hue-rotate)',
-      'var(--tw-invert)',
-      'var(--tw-saturate)',
-      'var(--tw-sepia)',
-      'var(--tw-drop-shadow)',
-    ].join(' '),
   },
 }
 
@@ -60,25 +64,16 @@ export const globalBackdropStyles = {
     '--tw-backdrop-opacity': 'var(--tw-empty,/*!*/ /*!*/)',
     '--tw-backdrop-saturate': 'var(--tw-empty,/*!*/ /*!*/)',
     '--tw-backdrop-sepia': 'var(--tw-empty,/*!*/ /*!*/)',
-    '--tw-backdrop-filter': [
-      'var(--tw-backdrop-blur)',
-      'var(--tw-backdrop-brightness)',
-      'var(--tw-backdrop-contrast)',
-      'var(--tw-backdrop-grayscale)',
-      'var(--tw-backdrop-hue-rotate)',
-      'var(--tw-backdrop-invert)',
-      'var(--tw-backdrop-opacity)',
-      'var(--tw-backdrop-saturate)',
-      'var(--tw-backdrop-sepia)',
-    ].join(' '),
   },
 }
 
 const globalStyles = [
-  modernNormalizeStyles,
   globalPreflightStyles,
   globalKeyframeStyles,
   globalTransformStyles,
+  globalTouchActionStyles,
+  globalScrollSnapTypeStyles,
+  globalFontVariantNumericStyles,
   globalRingStyles,
   globalBoxShadowStyles,
   globalFilterStyles,
