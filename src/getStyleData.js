@@ -68,7 +68,7 @@ const formatTasks = [
   // Move and sort the responsive items to the end of the list
   ({ classes, state }) => orderByScreens(classes, state),
   // Add a missing content class for after:/before: variants
-  ({ classes }) => addContentClass(classes),
+  ({ classes, state }) => addContentClass(classes, state),
 ]
 
 export default (

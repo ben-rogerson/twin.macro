@@ -10,7 +10,9 @@ const globalPreflightStyles = ({ theme, withAlpha }) => ({
       variable: '--tw-border-opacity',
     }),
   },
-  '::before, ::after': { '--tw-content': '' },
+  '::before, ::after': {
+    '--tw-content': "''",
+  },
   html: {
     lineHeight: '1.5',
     WebkitTextSizeAdjust: '100%',

@@ -1,4 +1,4 @@
-const addContentClass = classes => {
+const addContentClass = (classes, state) => {
   const newClasses = []
   classes.forEach(classSet => {
     const shouldAddContent = /(?!.*:content($|\[))(before:|after:)/.test(
@@ -10,7 +10,10 @@ const addContentClass = classes => {
 
     // Avoid adding content if it's already in the new class list
     if (!newClasses.some(c => c.startsWith(`${variants}:content`)))
-      newClasses.push(`${variants}:content`)
+      // Temp fix until emotion supports css variables with the content property
+      newClasses.push(
+        `${variants}:content[${state.isEmotion ? '""' : 'var(--tw-content)'}]`
+      )
 
     newClasses.push(classSet)
   })
