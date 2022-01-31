@@ -803,12 +803,4 @@ export default {
   },
 
   'transform-none': { output: { transform: 'none' } },
-
-  /**
-   * ===========================================
-   * Extras
-   * Extra styles that aren't part of Tailwind
-   */
-
-  content: { output: { content: '""' } },
 }

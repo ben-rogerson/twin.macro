@@ -8,8 +8,6 @@ import tw from './macro'
  * Test custom Twin classes
  */
 
-tw\`content\`
-
 tw\`font-customFontWeightAsString\`
 tw\`font-customFontWeightAsNumber\`
 
@@ -25,9 +23,6 @@ tw\`stroke-non-scaling\`
 /**
  * Test custom Twin classes
  */
-;({
-  content: '""',
-})
 ;({
   fontWeight: '700',
 })
@@ -516,7 +511,7 @@ border-color: rgb(229 231 235 / var(--tw-border-opacity));
 --tw-backdrop-sepia: var(--tw-empty,/*!*/ /*!*/);
         }
 ::before, ::after {
---tw-content: ;
+--tw-content: '';
         }
 html {
 line-height: 1.5;
@@ -1244,7 +1239,7 @@ import tw from './macro'
 const basic = tw\`group-hover:(flex m-10)\`
 const subMediaQuery = tw\`focus-within:(md:flex mt-5)\`
 const multipleClasses = tw\`hover:(bg-black text-white underline)\`
-const pseudoElement = tw\`before:(content w-10 h-10 block bg-black)\`
+const pseudoElement = tw\`before:(w-10 h-10 block bg-black)\`
 const pseudoElementNoContent = tw\`before:(w-10 h-10 block bg-black)\`
 const pseudoElementsNoContent = tw\`before:(w-10 h-10) after:(w-10 h-10)\`
 const mediaHover = tw\`sm:hover:(bg-black text-white)\`
@@ -1460,8 +1455,6 @@ exports[`twin.macro !variants.js: !variants.js 1`] = `
 import tw from './macro'
 
 // Before/after pseudo elements
-tw\`before:content\`
-tw\`after:content\`
 tw\`before:flex\`
 tw\`after:flex\`
 
@@ -1616,16 +1609,6 @@ tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // Before/after pseudo elements
-;({
-  ':before': {
-    content: '""',
-  },
-})
-;({
-  ':after': {
-    content: '""',
-  },
-})
 ;({
   ':before': {
     content: '""',
@@ -3611,7 +3594,7 @@ border-color: rgb(229 231 235 / var(--tw-border-opacity));
 --tw-backdrop-sepia: var(--tw-empty,/*!*/ /*!*/);
         }
 ::before, ::after {
---tw-content: ;
+--tw-content: '';
         }
 html {
 line-height: 1.5;
@@ -3867,7 +3850,7 @@ font-family: NotoSans;
     '--tw-backdrop-sepia': 'var(--tw-empty,/*!*/ /*!*/)',
   },
   '::before, ::after': {
-    '--tw-content': '',
+    '--tw-content': "''",
   },
   html: {
     lineHeight: '1.5',
@@ -4119,7 +4102,7 @@ theme\`keyframes\`
     '--tw-backdrop-sepia': 'var(--tw-empty,/*!*/ /*!*/)',
   },
   '::before, ::after': {
-    '--tw-content': '',
+    '--tw-content': "''",
   },
   html: {
     lineHeight: '1.5',
@@ -17037,7 +17020,7 @@ border-color: rgb(var(--twc-gray-200));
 --tw-backdrop-sepia: var(--tw-empty,/*!*/ /*!*/);
         }
 ::before, ::after {
---tw-content: ;
+--tw-content: '';
         }
 html {
 line-height: 1.5;
@@ -17738,27 +17721,31 @@ tw\`md:container md:mx-auto\`
 
 `;
 
-exports[`twin.macro content.js: content.js 1`] = `
+exports[`twin.macro contentEmotion.js: contentEmotion.js 1`] = `
 
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/content
 theme\`content\`
 
-tw\`content-none\`
-
+tw\`content\`
+tw\`content-test\`
 tw\`content-['hello']\`
 tw\`content-[attr(content-before)]\`
-tw\`before:content-[attr(content-before)]\`
+tw\`content-['>']\`
+tw\`content-none\`
+tw\`before:block\`
+tw\`peer-focus:before:block\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // https://tailwindcss.com/docs/content
+"\\"default\\""
 ;({
-  none: 'none',
+  content: '"default"',
 })
 ;({
-  content: 'none',
+  content: '"hi"',
 })
 ;({
   content: "'hello'",
@@ -17767,8 +17754,85 @@ tw\`before:content-[attr(content-before)]\`
   content: 'attr(content-before)',
 })
 ;({
+  content: "'>'",
+})
+;({
+  content: 'none',
+})
+;({
   ':before': {
-    content: 'attr(content-before)',
+    content: '""',
+    display: 'block',
+  },
+})
+;({
+  '.peer:focus ~ &': {
+    ':before': {
+      content: '""',
+      display: 'block',
+    },
+  },
+})
+
+
+`;
+
+exports[`twin.macro contentStyledComponents.js: contentStyledComponents.js 1`] = `
+
+import tw, { theme } from './macro'
+
+// https://tailwindcss.com/docs/content
+theme\`content\`
+
+tw\`content\`
+tw\`content-test\`
+tw\`content-['hello']\`
+tw\`content-[attr(content-before)]\`
+tw\`content-['>']\`
+tw\`content-none\`
+tw\`before:block\`
+tw\`peer-focus:before:block\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// https://tailwindcss.com/docs/content
+"\\"default\\""
+;({
+  '--tw-content': '"default"',
+  content: 'var(--tw-content)',
+})
+;({
+  '--tw-content': '"hi"',
+  content: 'var(--tw-content)',
+})
+;({
+  '--tw-content': "'hello'",
+  content: 'var(--tw-content)',
+})
+;({
+  '--tw-content': 'attr(content-before)',
+  content: 'var(--tw-content)',
+})
+;({
+  '--tw-content': "'>'",
+  content: 'var(--tw-content)',
+})
+;({
+  '--tw-content': 'none',
+  content: 'var(--tw-content)',
+})
+;({
+  ':before': {
+    content: 'var(--tw-content)',
+    display: 'block',
+  },
+})
+;({
+  '.peer:focus ~ &': {
+    ':before': {
+      content: 'var(--tw-content)',
+      display: 'block',
+    },
   },
 })
 
@@ -22861,7 +22925,7 @@ const _GlobalStyles = () => (
       }
       ::before,
       ::after {
-        --tw-content: ;
+        --tw-content: '';
       }
       html {
         line-height: 1.5;
@@ -36565,7 +36629,7 @@ border-color: rgb(229 231 235 / var(--tw-border-opacity));
 --tw-backdrop-sepia: var(--tw-empty,/*!*/ /*!*/);
         }
 ::before, ::after {
---tw-content: ;
+--tw-content: '';
         }
 html {
 line-height: 1.5;
@@ -45055,7 +45119,7 @@ const globals = global({
     '--tw-backdrop-sepia': 'var(--tw-empty,/*!*/ /*!*/)',
   },
   '::before, ::after': {
-    '--tw-content': '',
+    '--tw-content': "''",
   },
   html: {
     lineHeight: '1.5',

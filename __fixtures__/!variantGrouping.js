@@ -3,7 +3,7 @@ import tw from './macro'
 const basic = tw`group-hover:(flex m-10)`
 const subMediaQuery = tw`focus-within:(md:flex mt-5)`
 const multipleClasses = tw`hover:(bg-black text-white underline)`
-const pseudoElement = tw`before:(content w-10 h-10 block bg-black)`
+const pseudoElement = tw`before:(w-10 h-10 block bg-black)`
 const pseudoElementNoContent = tw`before:(w-10 h-10 block bg-black)`
 const pseudoElementsNoContent = tw`before:(w-10 h-10) after:(w-10 h-10)`
 const mediaHover = tw`sm:hover:(bg-black text-white)`

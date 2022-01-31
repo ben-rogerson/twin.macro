@@ -1,8 +1,6 @@
 import tw from './macro'
 
 // Before/after pseudo elements
-tw`before:content`
-tw`after:content`
 tw`before:flex`
 tw`after:flex`
 

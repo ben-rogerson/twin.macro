@@ -11,7 +11,14 @@ export default {
   container: { hasArbitrary: false, plugin: 'container' },
 
   // https://tailwindcss.com/docs/just-in-time-mode#content-utilities
-  content: { prop: 'content', config: 'content' },
+  content: {
+    config: 'content',
+    value: ({ value, isEmotion }) => {
+      // Temp fix until emotion supports css variables with the content property
+      if (isEmotion) return { content: value }
+      return { '--tw-content': value, content: 'var(--tw-content)' }
+    },
+  },
 
   // https://tailwindcss.com/docs/just-in-time-mode#caret-color-utilities
   caret: {

@@ -221,7 +221,13 @@ export default ({ state, pieces }) => {
 
   const arbitraryValue =
     typeof config.value === 'function'
-      ? config.value({ value, transparentTo, color, negative: pieces.negative })
+      ? config.value({
+          value,
+          transparentTo,
+          color,
+          negative: pieces.negative,
+          isEmotion: state.isEmotion,
+        })
       : maybeAddNegative(value, pieces.negative)
 
   // Raw values - no prop value found in config

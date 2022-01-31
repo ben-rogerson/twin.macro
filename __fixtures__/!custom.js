@@ -4,8 +4,6 @@ import tw from './macro'
  * Test custom Twin classes
  */
 
-tw`content`
-
 tw`font-customFontWeightAsString`
 tw`font-customFontWeightAsNumber`
 

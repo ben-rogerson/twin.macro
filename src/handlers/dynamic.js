@@ -30,7 +30,12 @@ export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
     if (value) {
       results =
         typeof item.value === 'function'
-          ? item.value({ value, transparentTo, negative })
+          ? item.value({
+              value,
+              transparentTo,
+              negative,
+              isEmotion: state.isEmotion,
+            })
           : styleify({
               property: item.prop,
               value,
