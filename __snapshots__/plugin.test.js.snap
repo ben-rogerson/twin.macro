@@ -1267,6 +1267,12 @@ tw\`()\`
 tw\`md:()\`
 tw\`md:(hover:())\`
 
+// Slash opacity
+tw\`first:(bg-[black]/20 block)\`
+tw\`first:(bg-[black]/[.20] block)\`
+tw\`first:(bg-[black]/[.20] inline last:(bg-[black]/[.20] block))\`
+tw\`first:(block bg-[black]/[.20])\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 const basic = {
@@ -1445,7 +1451,36 @@ const nestedGroups = {
 ;({})
 ;({})
 ;({})
-;({})
+;({}) // Slash opacity
+
+;({
+  ':first-child': {
+    backgroundColor: 'rgb(0 0 0 / 0.2)',
+    display: 'block',
+  },
+})
+;({
+  ':first-child': {
+    backgroundColor: 'rgb(0 0 0 / .20)',
+    display: 'block',
+  },
+})
+;({
+  ':first-child': {
+    backgroundColor: 'rgb(0 0 0 / .20)',
+    display: 'inline',
+    ':last-child': {
+      backgroundColor: 'rgb(0 0 0 / .20)',
+      display: 'block',
+    },
+  },
+})
+;({
+  ':first-child': {
+    display: 'block',
+    backgroundColor: 'rgb(0 0 0 / .20)',
+  },
+})
 
 
 `;

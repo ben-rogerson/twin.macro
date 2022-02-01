@@ -211,6 +211,13 @@ function findRightBracket(
   }
 }
 
+const sliceToSpace = str => {
+  const spaceIndex = str.indexOf(' ')
+  if (spaceIndex === -1) return str
+
+  return str.slice(0, spaceIndex)
+}
+
 // eslint-disable-next-line max-params
 function spreadVariantGroups(
   classes,
@@ -284,7 +291,7 @@ function spreadVariantGroups(
       const hasSlashOpacity =
         classes.slice(closeBracket + 1, closeBracket + 2) === '/'
       const opacityValue = hasSlashOpacity
-        ? classes.slice(closeBracket + 1)
+        ? sliceToSpace(classes.slice(closeBracket + 1))
         : ''
 
       // Convert spaces in classes to a temporary string so the css won't be

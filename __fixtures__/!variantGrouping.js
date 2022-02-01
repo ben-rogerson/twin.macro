@@ -30,3 +30,9 @@ tw``
 tw`()`
 tw`md:()`
 tw`md:(hover:())`
+
+// Slash opacity
+tw`first:(bg-[black]/20 block)`
+tw`first:(bg-[black]/[.20] block)`
+tw`first:(bg-[black]/[.20] inline last:(bg-[black]/[.20] block))`
+tw`first:(block bg-[black]/[.20])`
