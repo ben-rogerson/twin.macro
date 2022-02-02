@@ -2,6 +2,7 @@ import chalk from 'chalk'
 import getSuggestions from './suggestions'
 import { throwIf } from './utils'
 import { SPACE_ID } from './contants'
+import { formatProp } from './macro/debug'
 
 const color = {
   error: chalk.hex('#ff8383'),
@@ -57,7 +58,7 @@ const logErrorFix = (error, good) =>
 
 const logGeneralError = error => spaced(warning(error))
 
-const debugSuccess = (className, log) => inOut(className, log)
+const debugSuccess = (className, log) => inOut(formatProp(className), log)
 
 const formatPluginKey = key => key.replace(/(\\|(}}))/g, '').replace(/{{/g, '.')
 

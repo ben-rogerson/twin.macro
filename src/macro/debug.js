@@ -101,4 +101,4 @@ const addDataPropToExistingPath = ({
   )
 }
 
-export { addDataTwPropToPath, addDataPropToExistingPath }
+export { formatProp, addDataTwPropToPath, addDataPropToExistingPath }
