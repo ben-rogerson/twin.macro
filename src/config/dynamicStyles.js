@@ -844,4 +844,14 @@ export default {
 
   // https://tailwindcss.com/docs/screen-readers
   // See staticStyles.js
+
+  /**
+   * ===========================================
+   * Aspect Ratio
+   */
+  // https://tailwindcss.com/docs/aspect-ratio
+  aspect: {
+    prop: 'aspectRatio',
+    config: 'aspectRatio',
+  },
 }

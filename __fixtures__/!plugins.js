@@ -18,7 +18,3 @@ const addComponentsTestVariants = tw`hover:active:btn hocus:before:btn-blue even
 
 const addComponentsTestElementPrefixes = tw`prefixes`
 const addComponentsTestElementScreenReplacements = tw`screenies`
-
-tw`aspect-test-2`
-tw`aspect-test-4`
-tw`aspect-test-6`

@@ -20,11 +20,6 @@ module.exports = {
         xl: '7rem',
       },
     },
-    aspectRatio: {
-      2: '2',
-      4: '4',
-      6: '6',
-    },
     extend: {
       screens: {
         object: { min: '968px' },
