@@ -1,15 +1,6 @@
-const handleColor = ({ toColor }) => {
-  const common = {
-    matchStart: 'ring-offset',
-    property: '--tw-ring-offset-color',
-    configSearch: 'ringOffsetColor',
-  }
-  return toColor([{ ...common, useSlashAlpha: false }, common])
-}
-
 export default properties => {
   const {
-    toColor,
+    getCoercedColor,
     matchConfigValue,
     errors: { errorSuggestions },
     pieces: { negative },
@@ -18,8 +9,8 @@ export default properties => {
   const width = matchConfigValue('ringOffsetWidth', /(?<=(ring-offset)-)([^]*)/)
   if (width) return { '--tw-ring-offset-width': `${negative}${width}` }
 
-  const color = handleColor({ toColor })
-  if (color) return color
+  const coercedColor = getCoercedColor('ringOffsetColor')
+  if (coercedColor) return coercedColor
 
   errorSuggestions({
     config: ['ringOffsetWidth', 'ringOffsetColor'],

@@ -1,12 +1,3 @@
-const handleColor = ({ toColor }) => {
-  const common = {
-    matchStart: 'bg',
-    property: 'backgroundColor',
-    configSearch: 'backgroundColor',
-  }
-  return toColor([{ ...common, opacityVariable: '--tw-bg-opacity' }, common])
-}
-
 const handleSize = ({ configValue, important }) => {
   const value = configValue('backgroundSize')
   if (!value) return
@@ -32,14 +23,14 @@ export default properties => {
   const {
     theme,
     match,
-    toColor,
     getConfigValue,
+    getCoercedColor,
     errors: { errorSuggestions },
     pieces: { important },
   } = properties
 
-  const color = handleColor({ toColor })
-  if (color) return color
+  const coercedColor = getCoercedColor('backgroundColor')
+  if (coercedColor) return coercedColor
 
   const classValue = match(/(?<=(bg)-)([^]*)/)
   const configValue = config => getConfigValue(theme(config), classValue)

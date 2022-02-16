@@ -236,6 +236,9 @@ tw`ring-[#50d71e]`
 tw`ring-red-500`
 tw`ring-red-500/25`
 tw`ring-red-500/fromConfig`
+tw`ring-red-500/fromConfig/25`
+tw`ring-red-500/fromConfig/[.555]`
+tw`ring-red-500/fromConfig/[var(--myvar)]`
 tw`ring-red-500/[.555]`
 tw`ring-red-500/[var(--myvar)]`
 tw`ring-[theme('colors.red.500')]`

@@ -240,6 +240,9 @@ tw`fill-[var(--color)]`
 tw`fill-red-500`
 tw`fill-red-500/25`
 tw`fill-red-500/fromConfig`
+tw`fill-red-500/fromConfig/25`
+tw`fill-red-500/fromConfig/[.555]`
+tw`fill-red-500/fromConfig/[var(--myvar)]`
 tw`fill-red-500/[.555]`
 tw`fill-red-500/[var(--myvar)]`
 tw`fill-[theme('colors.red.500')]`

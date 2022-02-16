@@ -83,21 +83,29 @@ export default {
   'divide-opacity': { prop: '--tw-divide-opacity', plugin: 'divide' },
   'divide-y': {
     plugin: 'divide',
-    value: ({ value }) => ({
-      '> :not([hidden]) ~ :not([hidden])': {
-        '--tw-divide-y-reverse': '0',
-        borderTopWidth: `calc(${value} * calc(1 - var(--tw-divide-y-reverse)))`,
-        borderBottomWidth: `calc(${value} * var(--tw-divide-y-reverse))`,
-      },
-    }),
+    value: ['length'],
+    coerced: {
+      length: value => ({
+        '> :not([hidden]) ~ :not([hidden])': {
+          '--tw-divide-y-reverse': '0',
+          borderTopWidth: `calc(${value} * calc(1 - var(--tw-divide-y-reverse)))`,
+          borderBottomWidth: `calc(${value} * var(--tw-divide-y-reverse))`,
+        },
+      }),
+    },
   },
   'divide-x': {
     plugin: 'divide',
-    value: ({ value }) => ({
-      '--tw-divide-x-reverse': '0',
-      borderRightWidth: `calc(${value} * var(--tw-divide-x-reverse))`,
-      borderLeftWidth: `calc(${value} * calc(1 - var(--tw-divide-x-reverse)))`,
-    }),
+    value: ['length'],
+    coerced: {
+      length: value => ({
+        '> :not([hidden]) ~ :not([hidden])': {
+          '--tw-divide-x-reverse': '0',
+          borderRightWidth: `calc(${value} * var(--tw-divide-x-reverse))`,
+          borderLeftWidth: `calc(${value} * calc(1 - var(--tw-divide-x-reverse)))`,
+        },
+      }),
+    },
   },
   divide: {
     plugin: 'divide',
@@ -106,7 +114,7 @@ export default {
       color: {
         property: 'borderColor',
         variable: '--tw-divide-opacity',
-        useSlashAlpha: false,
+        wrapWith: '> :not([hidden]) ~ :not([hidden])',
       },
     },
   },
@@ -261,13 +269,14 @@ export default {
   // https://tailwindcss.com/docs/placeholder-color
   placeholder: {
     plugin: 'placeholder',
-    value: ({ color }) => ({
-      '::placeholder': color({
+    value: ['color'],
+    coerced: {
+      color: {
         property: 'color',
         variable: '--tw-placeholder-opacity',
-        useSlashAlpha: false,
-      }),
-    }),
+        wrapWith: '::placeholder',
+      },
+    },
   },
 
   // https://tailwindcss.com/docs/text-align
@@ -317,11 +326,7 @@ export default {
     value: ['color', 'url'],
     plugin: 'bg',
     coerced: {
-      color: {
-        property: 'backgroundColor',
-        variable: '--tw-bg-opacity',
-        useSlashAlpha: false,
-      },
+      color: { property: 'backgroundColor', variable: '--tw-bg-opacity' },
       lookup: value => ({
         backgroundImage: value,
         backgroundSize: value,
@@ -332,21 +337,21 @@ export default {
 
   // https://tailwindcss.com/docs/gradient-color-stops
   from: {
+    plugin: 'gradient',
     value: ({ value, transparentTo }) => ({
       '--tw-gradient-from': value,
       '--tw-gradient-stops': `var(--tw-gradient-from), var(--tw-gradient-to, ${transparentTo(
         value
       )})`,
     }),
-    plugin: 'gradient',
   },
   via: {
+    plugin: 'gradient',
     value: ({ value, transparentTo }) => ({
       '--tw-gradient-stops': `var(--tw-gradient-from), ${value}, var(--tw-gradient-to, ${transparentTo(
         value
       )})`,
     }),
-    plugin: 'gradient',
   },
   to: { prop: '--tw-gradient-to', plugin: 'gradient' },
 
@@ -363,24 +368,25 @@ export default {
     value: ['color', 'length'],
     plugin: 'border',
     coerced: {
-      color: { property: 'borderTopColor', variable: '--tw-border-opacity' },
       length: { property: 'borderTopWidth' },
+      color: { property: 'borderTopColor', variable: '--tw-border-opacity' },
     },
   },
   'border-b': {
-    value: ['color', 'length'],
+    value: ['length', 'color'],
     plugin: 'border',
+    config: ['borderWidth', 'borderColor'],
     coerced: {
-      color: { property: 'borderBottomColor', variable: '--tw-border-opacity' },
       length: { property: 'borderBottomWidth' },
+      color: { property: 'borderBottomColor', variable: '--tw-border-opacity' },
     },
   },
   'border-l': {
     value: ['color', 'length'],
     plugin: 'border',
     coerced: {
-      color: { property: 'borderLeftColor', variable: '--tw-border-opacity' },
       length: { property: 'borderLeftWidth' },
+      color: { property: 'borderLeftColor', variable: '--tw-border-opacity' },
     },
   },
   'border-r': {
@@ -389,6 +395,29 @@ export default {
     coerced: {
       color: { property: 'borderRightColor', variable: '--tw-border-opacity' },
       length: { property: 'borderRightWidth' },
+    },
+  },
+  'border-x': {
+    value: ['color', 'length'],
+    plugin: 'border',
+    prop: '--tw-border-opacity',
+    coerced: {
+      color: {
+        property: ['borderLeftColor', 'borderRightColor'],
+        variable: '--tw-border-opacity',
+      },
+      length: { property: ['borderLeftWidth', 'borderRightWidth'] },
+    },
+  },
+  'border-y': {
+    value: ['color', 'length'],
+    plugin: 'border',
+    coerced: {
+      color: {
+        property: ['borderTopColor', 'borderBottomColor'],
+        variable: '--tw-border-opacity',
+      },
+      length: { property: ['borderTopColor', 'borderBottomColor'] },
     },
   },
   'border-opacity': {
@@ -442,7 +471,7 @@ export default {
     value: ['length', 'color'],
     plugin: 'ringOffset',
     coerced: {
-      color: value => ({ '--tw-ring-offset-color': value }),
+      color: { property: '--tw-ring-offset-color' },
       length: { property: '--tw-ring-offset-width' },
     },
   },
@@ -819,20 +848,17 @@ export default {
 
   // https://tailwindcss.com/docs/fill
   fill: {
-    prop: 'fill',
     plugin: 'fill',
-    coerced: {
-      color: { property: 'fill' },
-    },
+    value: ['color'],
+    coerced: { color: { property: 'fill' } },
   },
 
   // https://tailwindcss.com/docs/stroke
   stroke: {
-    prop: 'stroke',
     value: ['length', 'color'],
     plugin: 'stroke',
     coerced: {
-      color: value => ({ stroke: value }),
+      color: { property: 'stroke' },
       length: { property: 'strokeWidth' },
     },
   },
