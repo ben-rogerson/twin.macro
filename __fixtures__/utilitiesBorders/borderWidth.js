@@ -8,16 +8,16 @@ tw`border-2`
 tw`border-4`
 tw`border-8`
 tw`border`
-// tw`border-x-0`
-// tw`border-x-2`
-// tw`border-x-4`
-// tw`border-x-8`
-// tw`border-x`
-// tw`border-y-0`
-// tw`border-y-2`
-// tw`border-y-4`
-// tw`border-y-8`
-// tw`border-y`
+tw`border-x-0`
+tw`border-x-2`
+tw`border-x-4`
+tw`border-x-8`
+tw`border-x`
+tw`border-y-0`
+tw`border-y-2`
+tw`border-y-4`
+tw`border-y-8`
+tw`border-y`
 tw`border-t-0`
 tw`border-t-2`
 tw`border-t-4`

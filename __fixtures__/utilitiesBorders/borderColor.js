@@ -228,456 +228,456 @@ tw`border-rose-600`
 tw`border-rose-700`
 tw`border-rose-800`
 tw`border-rose-900`
-// tw`border-x-inherit`
-// tw`border-x-current`
-// tw`border-x-transparent`
-// tw`border-x-black`
-// tw`border-x-white`
-// tw`border-x-slate-50`
-// tw`border-x-slate-100`
-// tw`border-x-slate-200`
-// tw`border-x-slate-300`
-// tw`border-x-slate-400`
-// tw`border-x-slate-500`
-// tw`border-x-slate-600`
-// tw`border-x-slate-700`
-// tw`border-x-slate-800`
-// tw`border-x-slate-900`
-// tw`border-x-gray-50`
-// tw`border-x-gray-100`
-// tw`border-x-gray-200`
-// tw`border-x-gray-300`
-// tw`border-x-gray-400`
-// tw`border-x-gray-500`
-// tw`border-x-gray-600`
-// tw`border-x-gray-700`
-// tw`border-x-gray-800`
-// tw`border-x-gray-900`
-// tw`border-x-zinc-50`
-// tw`border-x-zinc-100`
-// tw`border-x-zinc-200`
-// tw`border-x-zinc-300`
-// tw`border-x-zinc-400`
-// tw`border-x-zinc-500`
-// tw`border-x-zinc-600`
-// tw`border-x-zinc-700`
-// tw`border-x-zinc-800`
-// tw`border-x-zinc-900`
-// tw`border-x-neutral-50`
-// tw`border-x-neutral-100`
-// tw`border-x-neutral-200`
-// tw`border-x-neutral-300`
-// tw`border-x-neutral-400`
-// tw`border-x-neutral-500`
-// tw`border-x-neutral-600`
-// tw`border-x-neutral-700`
-// tw`border-x-neutral-800`
-// tw`border-x-neutral-900`
-// tw`border-x-stone-50`
-// tw`border-x-stone-100`
-// tw`border-x-stone-200`
-// tw`border-x-stone-300`
-// tw`border-x-stone-400`
-// tw`border-x-stone-500`
-// tw`border-x-stone-600`
-// tw`border-x-stone-700`
-// tw`border-x-stone-800`
-// tw`border-x-stone-900`
-// tw`border-x-red-50`
-// tw`border-x-red-100`
-// tw`border-x-red-200`
-// tw`border-x-red-300`
-// tw`border-x-red-400`
-// tw`border-x-red-500`
-// tw`border-x-red-600`
-// tw`border-x-red-700`
-// tw`border-x-red-800`
-// tw`border-x-red-900`
-// tw`border-x-orange-50`
-// tw`border-x-orange-100`
-// tw`border-x-orange-200`
-// tw`border-x-orange-300`
-// tw`border-x-orange-400`
-// tw`border-x-orange-500`
-// tw`border-x-orange-600`
-// tw`border-x-orange-700`
-// tw`border-x-orange-800`
-// tw`border-x-orange-900`
-// tw`border-x-amber-50`
-// tw`border-x-amber-100`
-// tw`border-x-amber-200`
-// tw`border-x-amber-300`
-// tw`border-x-amber-400`
-// tw`border-x-amber-500`
-// tw`border-x-amber-600`
-// tw`border-x-amber-700`
-// tw`border-x-amber-800`
-// tw`border-x-amber-900`
-// tw`border-x-yellow-50`
-// tw`border-x-yellow-100`
-// tw`border-x-yellow-200`
-// tw`border-x-yellow-300`
-// tw`border-x-yellow-400`
-// tw`border-x-yellow-500`
-// tw`border-x-yellow-600`
-// tw`border-x-yellow-700`
-// tw`border-x-yellow-800`
-// tw`border-x-yellow-900`
-// tw`border-x-lime-50`
-// tw`border-x-lime-100`
-// tw`border-x-lime-200`
-// tw`border-x-lime-300`
-// tw`border-x-lime-400`
-// tw`border-x-lime-500`
-// tw`border-x-lime-600`
-// tw`border-x-lime-700`
-// tw`border-x-lime-800`
-// tw`border-x-lime-900`
-// tw`border-x-green-50`
-// tw`border-x-green-100`
-// tw`border-x-green-200`
-// tw`border-x-green-300`
-// tw`border-x-green-400`
-// tw`border-x-green-500`
-// tw`border-x-green-600`
-// tw`border-x-green-700`
-// tw`border-x-green-800`
-// tw`border-x-green-900`
-// tw`border-x-emerald-50`
-// tw`border-x-emerald-100`
-// tw`border-x-emerald-200`
-// tw`border-x-emerald-300`
-// tw`border-x-emerald-400`
-// tw`border-x-emerald-500`
-// tw`border-x-emerald-600`
-// tw`border-x-emerald-700`
-// tw`border-x-emerald-800`
-// tw`border-x-emerald-900`
-// tw`border-x-teal-50`
-// tw`border-x-teal-100`
-// tw`border-x-teal-200`
-// tw`border-x-teal-300`
-// tw`border-x-teal-400`
-// tw`border-x-teal-500`
-// tw`border-x-teal-600`
-// tw`border-x-teal-700`
-// tw`border-x-teal-800`
-// tw`border-x-teal-900`
-// tw`border-x-cyan-50`
-// tw`border-x-cyan-100`
-// tw`border-x-cyan-200`
-// tw`border-x-cyan-300`
-// tw`border-x-cyan-400`
-// tw`border-x-cyan-500`
-// tw`border-x-cyan-600`
-// tw`border-x-cyan-700`
-// tw`border-x-cyan-800`
-// tw`border-x-cyan-900`
-// tw`border-x-sky-50`
-// tw`border-x-sky-100`
-// tw`border-x-sky-200`
-// tw`border-x-sky-300`
-// tw`border-x-sky-400`
-// tw`border-x-sky-500`
-// tw`border-x-sky-600`
-// tw`border-x-sky-700`
-// tw`border-x-sky-800`
-// tw`border-x-sky-900`
-// tw`border-x-blue-50`
-// tw`border-x-blue-100`
-// tw`border-x-blue-200`
-// tw`border-x-blue-300`
-// tw`border-x-blue-400`
-// tw`border-x-blue-500`
-// tw`border-x-blue-600`
-// tw`border-x-blue-700`
-// tw`border-x-blue-800`
-// tw`border-x-blue-900`
-// tw`border-x-indigo-50`
-// tw`border-x-indigo-100`
-// tw`border-x-indigo-200`
-// tw`border-x-indigo-300`
-// tw`border-x-indigo-400`
-// tw`border-x-indigo-500`
-// tw`border-x-indigo-600`
-// tw`border-x-indigo-700`
-// tw`border-x-indigo-800`
-// tw`border-x-indigo-900`
-// tw`border-x-violet-50`
-// tw`border-x-violet-100`
-// tw`border-x-violet-200`
-// tw`border-x-violet-300`
-// tw`border-x-violet-400`
-// tw`border-x-violet-500`
-// tw`border-x-violet-600`
-// tw`border-x-violet-700`
-// tw`border-x-violet-800`
-// tw`border-x-violet-900`
-// tw`border-x-purple-50`
-// tw`border-x-purple-100`
-// tw`border-x-purple-200`
-// tw`border-x-purple-300`
-// tw`border-x-purple-400`
-// tw`border-x-purple-500`
-// tw`border-x-purple-600`
-// tw`border-x-purple-700`
-// tw`border-x-purple-800`
-// tw`border-x-purple-900`
-// tw`border-x-fuchsia-50`
-// tw`border-x-fuchsia-100`
-// tw`border-x-fuchsia-200`
-// tw`border-x-fuchsia-300`
-// tw`border-x-fuchsia-400`
-// tw`border-x-fuchsia-500`
-// tw`border-x-fuchsia-600`
-// tw`border-x-fuchsia-700`
-// tw`border-x-fuchsia-800`
-// tw`border-x-fuchsia-900`
-// tw`border-x-pink-50`
-// tw`border-x-pink-100`
-// tw`border-x-pink-200`
-// tw`border-x-pink-300`
-// tw`border-x-pink-400`
-// tw`border-x-pink-500`
-// tw`border-x-pink-600`
-// tw`border-x-pink-700`
-// tw`border-x-pink-800`
-// tw`border-x-pink-900`
-// tw`border-x-rose-50`
-// tw`border-x-rose-100`
-// tw`border-x-rose-200`
-// tw`border-x-rose-300`
-// tw`border-x-rose-400`
-// tw`border-x-rose-500`
-// tw`border-x-rose-600`
-// tw`border-x-rose-700`
-// tw`border-x-rose-800`
-// tw`border-x-rose-900`
-// tw`border-y-inherit`
-// tw`border-y-current`
-// tw`border-y-transparent`
-// tw`border-y-black`
-// tw`border-y-white`
-// tw`border-y-slate-50`
-// tw`border-y-slate-100`
-// tw`border-y-slate-200`
-// tw`border-y-slate-300`
-// tw`border-y-slate-400`
-// tw`border-y-slate-500`
-// tw`border-y-slate-600`
-// tw`border-y-slate-700`
-// tw`border-y-slate-800`
-// tw`border-y-slate-900`
-// tw`border-y-gray-50`
-// tw`border-y-gray-100`
-// tw`border-y-gray-200`
-// tw`border-y-gray-300`
-// tw`border-y-gray-400`
-// tw`border-y-gray-500`
-// tw`border-y-gray-600`
-// tw`border-y-gray-700`
-// tw`border-y-gray-800`
-// tw`border-y-gray-900`
-// tw`border-y-zinc-50`
-// tw`border-y-zinc-100`
-// tw`border-y-zinc-200`
-// tw`border-y-zinc-300`
-// tw`border-y-zinc-400`
-// tw`border-y-zinc-500`
-// tw`border-y-zinc-600`
-// tw`border-y-zinc-700`
-// tw`border-y-zinc-800`
-// tw`border-y-zinc-900`
-// tw`border-y-neutral-50`
-// tw`border-y-neutral-100`
-// tw`border-y-neutral-200`
-// tw`border-y-neutral-300`
-// tw`border-y-neutral-400`
-// tw`border-y-neutral-500`
-// tw`border-y-neutral-600`
-// tw`border-y-neutral-700`
-// tw`border-y-neutral-800`
-// tw`border-y-neutral-900`
-// tw`border-y-stone-50`
-// tw`border-y-stone-100`
-// tw`border-y-stone-200`
-// tw`border-y-stone-300`
-// tw`border-y-stone-400`
-// tw`border-y-stone-500`
-// tw`border-y-stone-600`
-// tw`border-y-stone-700`
-// tw`border-y-stone-800`
-// tw`border-y-stone-900`
-// tw`border-y-red-50`
-// tw`border-y-red-100`
-// tw`border-y-red-200`
-// tw`border-y-red-300`
-// tw`border-y-red-400`
-// tw`border-y-red-500`
-// tw`border-y-red-600`
-// tw`border-y-red-700`
-// tw`border-y-red-800`
-// tw`border-y-red-900`
-// tw`border-y-orange-50`
-// tw`border-y-orange-100`
-// tw`border-y-orange-200`
-// tw`border-y-orange-300`
-// tw`border-y-orange-400`
-// tw`border-y-orange-500`
-// tw`border-y-orange-600`
-// tw`border-y-orange-700`
-// tw`border-y-orange-800`
-// tw`border-y-orange-900`
-// tw`border-y-amber-50`
-// tw`border-y-amber-100`
-// tw`border-y-amber-200`
-// tw`border-y-amber-300`
-// tw`border-y-amber-400`
-// tw`border-y-amber-500`
-// tw`border-y-amber-600`
-// tw`border-y-amber-700`
-// tw`border-y-amber-800`
-// tw`border-y-amber-900`
-// tw`border-y-yellow-50`
-// tw`border-y-yellow-100`
-// tw`border-y-yellow-200`
-// tw`border-y-yellow-300`
-// tw`border-y-yellow-400`
-// tw`border-y-yellow-500`
-// tw`border-y-yellow-600`
-// tw`border-y-yellow-700`
-// tw`border-y-yellow-800`
-// tw`border-y-yellow-900`
-// tw`border-y-lime-50`
-// tw`border-y-lime-100`
-// tw`border-y-lime-200`
-// tw`border-y-lime-300`
-// tw`border-y-lime-400`
-// tw`border-y-lime-500`
-// tw`border-y-lime-600`
-// tw`border-y-lime-700`
-// tw`border-y-lime-800`
-// tw`border-y-lime-900`
-// tw`border-y-green-50`
-// tw`border-y-green-100`
-// tw`border-y-green-200`
-// tw`border-y-green-300`
-// tw`border-y-green-400`
-// tw`border-y-green-500`
-// tw`border-y-green-600`
-// tw`border-y-green-700`
-// tw`border-y-green-800`
-// tw`border-y-green-900`
-// tw`border-y-emerald-50`
-// tw`border-y-emerald-100`
-// tw`border-y-emerald-200`
-// tw`border-y-emerald-300`
-// tw`border-y-emerald-400`
-// tw`border-y-emerald-500`
-// tw`border-y-emerald-600`
-// tw`border-y-emerald-700`
-// tw`border-y-emerald-800`
-// tw`border-y-emerald-900`
-// tw`border-y-teal-50`
-// tw`border-y-teal-100`
-// tw`border-y-teal-200`
-// tw`border-y-teal-300`
-// tw`border-y-teal-400`
-// tw`border-y-teal-500`
-// tw`border-y-teal-600`
-// tw`border-y-teal-700`
-// tw`border-y-teal-800`
-// tw`border-y-teal-900`
-// tw`border-y-cyan-50`
-// tw`border-y-cyan-100`
-// tw`border-y-cyan-200`
-// tw`border-y-cyan-300`
-// tw`border-y-cyan-400`
-// tw`border-y-cyan-500`
-// tw`border-y-cyan-600`
-// tw`border-y-cyan-700`
-// tw`border-y-cyan-800`
-// tw`border-y-cyan-900`
-// tw`border-y-sky-50`
-// tw`border-y-sky-100`
-// tw`border-y-sky-200`
-// tw`border-y-sky-300`
-// tw`border-y-sky-400`
-// tw`border-y-sky-500`
-// tw`border-y-sky-600`
-// tw`border-y-sky-700`
-// tw`border-y-sky-800`
-// tw`border-y-sky-900`
-// tw`border-y-blue-50`
-// tw`border-y-blue-100`
-// tw`border-y-blue-200`
-// tw`border-y-blue-300`
-// tw`border-y-blue-400`
-// tw`border-y-blue-500`
-// tw`border-y-blue-600`
-// tw`border-y-blue-700`
-// tw`border-y-blue-800`
-// tw`border-y-blue-900`
-// tw`border-y-indigo-50`
-// tw`border-y-indigo-100`
-// tw`border-y-indigo-200`
-// tw`border-y-indigo-300`
-// tw`border-y-indigo-400`
-// tw`border-y-indigo-500`
-// tw`border-y-indigo-600`
-// tw`border-y-indigo-700`
-// tw`border-y-indigo-800`
-// tw`border-y-indigo-900`
-// tw`border-y-violet-50`
-// tw`border-y-violet-100`
-// tw`border-y-violet-200`
-// tw`border-y-violet-300`
-// tw`border-y-violet-400`
-// tw`border-y-violet-500`
-// tw`border-y-violet-600`
-// tw`border-y-violet-700`
-// tw`border-y-violet-800`
-// tw`border-y-violet-900`
-// tw`border-y-purple-50`
-// tw`border-y-purple-100`
-// tw`border-y-purple-200`
-// tw`border-y-purple-300`
-// tw`border-y-purple-400`
-// tw`border-y-purple-500`
-// tw`border-y-purple-600`
-// tw`border-y-purple-700`
-// tw`border-y-purple-800`
-// tw`border-y-purple-900`
-// tw`border-y-fuchsia-50`
-// tw`border-y-fuchsia-100`
-// tw`border-y-fuchsia-200`
-// tw`border-y-fuchsia-300`
-// tw`border-y-fuchsia-400`
-// tw`border-y-fuchsia-500`
-// tw`border-y-fuchsia-600`
-// tw`border-y-fuchsia-700`
-// tw`border-y-fuchsia-800`
-// tw`border-y-fuchsia-900`
-// tw`border-y-pink-50`
-// tw`border-y-pink-100`
-// tw`border-y-pink-200`
-// tw`border-y-pink-300`
-// tw`border-y-pink-400`
-// tw`border-y-pink-500`
-// tw`border-y-pink-600`
-// tw`border-y-pink-700`
-// tw`border-y-pink-800`
-// tw`border-y-pink-900`
-// tw`border-y-rose-50`
-// tw`border-y-rose-100`
-// tw`border-y-rose-200`
-// tw`border-y-rose-300`
-// tw`border-y-rose-400`
-// tw`border-y-rose-500`
-// tw`border-y-rose-600`
-// tw`border-y-rose-700`
-// tw`border-y-rose-800`
-// tw`border-y-rose-900`
+tw`border-x-inherit`
+tw`border-x-current`
+tw`border-x-transparent`
+tw`border-x-black`
+tw`border-x-white`
+tw`border-x-slate-50`
+tw`border-x-slate-100`
+tw`border-x-slate-200`
+tw`border-x-slate-300`
+tw`border-x-slate-400`
+tw`border-x-slate-500`
+tw`border-x-slate-600`
+tw`border-x-slate-700`
+tw`border-x-slate-800`
+tw`border-x-slate-900`
+tw`border-x-gray-50`
+tw`border-x-gray-100`
+tw`border-x-gray-200`
+tw`border-x-gray-300`
+tw`border-x-gray-400`
+tw`border-x-gray-500`
+tw`border-x-gray-600`
+tw`border-x-gray-700`
+tw`border-x-gray-800`
+tw`border-x-gray-900`
+tw`border-x-zinc-50`
+tw`border-x-zinc-100`
+tw`border-x-zinc-200`
+tw`border-x-zinc-300`
+tw`border-x-zinc-400`
+tw`border-x-zinc-500`
+tw`border-x-zinc-600`
+tw`border-x-zinc-700`
+tw`border-x-zinc-800`
+tw`border-x-zinc-900`
+tw`border-x-neutral-50`
+tw`border-x-neutral-100`
+tw`border-x-neutral-200`
+tw`border-x-neutral-300`
+tw`border-x-neutral-400`
+tw`border-x-neutral-500`
+tw`border-x-neutral-600`
+tw`border-x-neutral-700`
+tw`border-x-neutral-800`
+tw`border-x-neutral-900`
+tw`border-x-stone-50`
+tw`border-x-stone-100`
+tw`border-x-stone-200`
+tw`border-x-stone-300`
+tw`border-x-stone-400`
+tw`border-x-stone-500`
+tw`border-x-stone-600`
+tw`border-x-stone-700`
+tw`border-x-stone-800`
+tw`border-x-stone-900`
+tw`border-x-red-50`
+tw`border-x-red-100`
+tw`border-x-red-200`
+tw`border-x-red-300`
+tw`border-x-red-400`
+tw`border-x-red-500`
+tw`border-x-red-600`
+tw`border-x-red-700`
+tw`border-x-red-800`
+tw`border-x-red-900`
+tw`border-x-orange-50`
+tw`border-x-orange-100`
+tw`border-x-orange-200`
+tw`border-x-orange-300`
+tw`border-x-orange-400`
+tw`border-x-orange-500`
+tw`border-x-orange-600`
+tw`border-x-orange-700`
+tw`border-x-orange-800`
+tw`border-x-orange-900`
+tw`border-x-amber-50`
+tw`border-x-amber-100`
+tw`border-x-amber-200`
+tw`border-x-amber-300`
+tw`border-x-amber-400`
+tw`border-x-amber-500`
+tw`border-x-amber-600`
+tw`border-x-amber-700`
+tw`border-x-amber-800`
+tw`border-x-amber-900`
+tw`border-x-yellow-50`
+tw`border-x-yellow-100`
+tw`border-x-yellow-200`
+tw`border-x-yellow-300`
+tw`border-x-yellow-400`
+tw`border-x-yellow-500`
+tw`border-x-yellow-600`
+tw`border-x-yellow-700`
+tw`border-x-yellow-800`
+tw`border-x-yellow-900`
+tw`border-x-lime-50`
+tw`border-x-lime-100`
+tw`border-x-lime-200`
+tw`border-x-lime-300`
+tw`border-x-lime-400`
+tw`border-x-lime-500`
+tw`border-x-lime-600`
+tw`border-x-lime-700`
+tw`border-x-lime-800`
+tw`border-x-lime-900`
+tw`border-x-green-50`
+tw`border-x-green-100`
+tw`border-x-green-200`
+tw`border-x-green-300`
+tw`border-x-green-400`
+tw`border-x-green-500`
+tw`border-x-green-600`
+tw`border-x-green-700`
+tw`border-x-green-800`
+tw`border-x-green-900`
+tw`border-x-emerald-50`
+tw`border-x-emerald-100`
+tw`border-x-emerald-200`
+tw`border-x-emerald-300`
+tw`border-x-emerald-400`
+tw`border-x-emerald-500`
+tw`border-x-emerald-600`
+tw`border-x-emerald-700`
+tw`border-x-emerald-800`
+tw`border-x-emerald-900`
+tw`border-x-teal-50`
+tw`border-x-teal-100`
+tw`border-x-teal-200`
+tw`border-x-teal-300`
+tw`border-x-teal-400`
+tw`border-x-teal-500`
+tw`border-x-teal-600`
+tw`border-x-teal-700`
+tw`border-x-teal-800`
+tw`border-x-teal-900`
+tw`border-x-cyan-50`
+tw`border-x-cyan-100`
+tw`border-x-cyan-200`
+tw`border-x-cyan-300`
+tw`border-x-cyan-400`
+tw`border-x-cyan-500`
+tw`border-x-cyan-600`
+tw`border-x-cyan-700`
+tw`border-x-cyan-800`
+tw`border-x-cyan-900`
+tw`border-x-sky-50`
+tw`border-x-sky-100`
+tw`border-x-sky-200`
+tw`border-x-sky-300`
+tw`border-x-sky-400`
+tw`border-x-sky-500`
+tw`border-x-sky-600`
+tw`border-x-sky-700`
+tw`border-x-sky-800`
+tw`border-x-sky-900`
+tw`border-x-blue-50`
+tw`border-x-blue-100`
+tw`border-x-blue-200`
+tw`border-x-blue-300`
+tw`border-x-blue-400`
+tw`border-x-blue-500`
+tw`border-x-blue-600`
+tw`border-x-blue-700`
+tw`border-x-blue-800`
+tw`border-x-blue-900`
+tw`border-x-indigo-50`
+tw`border-x-indigo-100`
+tw`border-x-indigo-200`
+tw`border-x-indigo-300`
+tw`border-x-indigo-400`
+tw`border-x-indigo-500`
+tw`border-x-indigo-600`
+tw`border-x-indigo-700`
+tw`border-x-indigo-800`
+tw`border-x-indigo-900`
+tw`border-x-violet-50`
+tw`border-x-violet-100`
+tw`border-x-violet-200`
+tw`border-x-violet-300`
+tw`border-x-violet-400`
+tw`border-x-violet-500`
+tw`border-x-violet-600`
+tw`border-x-violet-700`
+tw`border-x-violet-800`
+tw`border-x-violet-900`
+tw`border-x-purple-50`
+tw`border-x-purple-100`
+tw`border-x-purple-200`
+tw`border-x-purple-300`
+tw`border-x-purple-400`
+tw`border-x-purple-500`
+tw`border-x-purple-600`
+tw`border-x-purple-700`
+tw`border-x-purple-800`
+tw`border-x-purple-900`
+tw`border-x-fuchsia-50`
+tw`border-x-fuchsia-100`
+tw`border-x-fuchsia-200`
+tw`border-x-fuchsia-300`
+tw`border-x-fuchsia-400`
+tw`border-x-fuchsia-500`
+tw`border-x-fuchsia-600`
+tw`border-x-fuchsia-700`
+tw`border-x-fuchsia-800`
+tw`border-x-fuchsia-900`
+tw`border-x-pink-50`
+tw`border-x-pink-100`
+tw`border-x-pink-200`
+tw`border-x-pink-300`
+tw`border-x-pink-400`
+tw`border-x-pink-500`
+tw`border-x-pink-600`
+tw`border-x-pink-700`
+tw`border-x-pink-800`
+tw`border-x-pink-900`
+tw`border-x-rose-50`
+tw`border-x-rose-100`
+tw`border-x-rose-200`
+tw`border-x-rose-300`
+tw`border-x-rose-400`
+tw`border-x-rose-500`
+tw`border-x-rose-600`
+tw`border-x-rose-700`
+tw`border-x-rose-800`
+tw`border-x-rose-900`
+tw`border-y-inherit`
+tw`border-y-current`
+tw`border-y-transparent`
+tw`border-y-black`
+tw`border-y-white`
+tw`border-y-slate-50`
+tw`border-y-slate-100`
+tw`border-y-slate-200`
+tw`border-y-slate-300`
+tw`border-y-slate-400`
+tw`border-y-slate-500`
+tw`border-y-slate-600`
+tw`border-y-slate-700`
+tw`border-y-slate-800`
+tw`border-y-slate-900`
+tw`border-y-gray-50`
+tw`border-y-gray-100`
+tw`border-y-gray-200`
+tw`border-y-gray-300`
+tw`border-y-gray-400`
+tw`border-y-gray-500`
+tw`border-y-gray-600`
+tw`border-y-gray-700`
+tw`border-y-gray-800`
+tw`border-y-gray-900`
+tw`border-y-zinc-50`
+tw`border-y-zinc-100`
+tw`border-y-zinc-200`
+tw`border-y-zinc-300`
+tw`border-y-zinc-400`
+tw`border-y-zinc-500`
+tw`border-y-zinc-600`
+tw`border-y-zinc-700`
+tw`border-y-zinc-800`
+tw`border-y-zinc-900`
+tw`border-y-neutral-50`
+tw`border-y-neutral-100`
+tw`border-y-neutral-200`
+tw`border-y-neutral-300`
+tw`border-y-neutral-400`
+tw`border-y-neutral-500`
+tw`border-y-neutral-600`
+tw`border-y-neutral-700`
+tw`border-y-neutral-800`
+tw`border-y-neutral-900`
+tw`border-y-stone-50`
+tw`border-y-stone-100`
+tw`border-y-stone-200`
+tw`border-y-stone-300`
+tw`border-y-stone-400`
+tw`border-y-stone-500`
+tw`border-y-stone-600`
+tw`border-y-stone-700`
+tw`border-y-stone-800`
+tw`border-y-stone-900`
+tw`border-y-red-50`
+tw`border-y-red-100`
+tw`border-y-red-200`
+tw`border-y-red-300`
+tw`border-y-red-400`
+tw`border-y-red-500`
+tw`border-y-red-600`
+tw`border-y-red-700`
+tw`border-y-red-800`
+tw`border-y-red-900`
+tw`border-y-orange-50`
+tw`border-y-orange-100`
+tw`border-y-orange-200`
+tw`border-y-orange-300`
+tw`border-y-orange-400`
+tw`border-y-orange-500`
+tw`border-y-orange-600`
+tw`border-y-orange-700`
+tw`border-y-orange-800`
+tw`border-y-orange-900`
+tw`border-y-amber-50`
+tw`border-y-amber-100`
+tw`border-y-amber-200`
+tw`border-y-amber-300`
+tw`border-y-amber-400`
+tw`border-y-amber-500`
+tw`border-y-amber-600`
+tw`border-y-amber-700`
+tw`border-y-amber-800`
+tw`border-y-amber-900`
+tw`border-y-yellow-50`
+tw`border-y-yellow-100`
+tw`border-y-yellow-200`
+tw`border-y-yellow-300`
+tw`border-y-yellow-400`
+tw`border-y-yellow-500`
+tw`border-y-yellow-600`
+tw`border-y-yellow-700`
+tw`border-y-yellow-800`
+tw`border-y-yellow-900`
+tw`border-y-lime-50`
+tw`border-y-lime-100`
+tw`border-y-lime-200`
+tw`border-y-lime-300`
+tw`border-y-lime-400`
+tw`border-y-lime-500`
+tw`border-y-lime-600`
+tw`border-y-lime-700`
+tw`border-y-lime-800`
+tw`border-y-lime-900`
+tw`border-y-green-50`
+tw`border-y-green-100`
+tw`border-y-green-200`
+tw`border-y-green-300`
+tw`border-y-green-400`
+tw`border-y-green-500`
+tw`border-y-green-600`
+tw`border-y-green-700`
+tw`border-y-green-800`
+tw`border-y-green-900`
+tw`border-y-emerald-50`
+tw`border-y-emerald-100`
+tw`border-y-emerald-200`
+tw`border-y-emerald-300`
+tw`border-y-emerald-400`
+tw`border-y-emerald-500`
+tw`border-y-emerald-600`
+tw`border-y-emerald-700`
+tw`border-y-emerald-800`
+tw`border-y-emerald-900`
+tw`border-y-teal-50`
+tw`border-y-teal-100`
+tw`border-y-teal-200`
+tw`border-y-teal-300`
+tw`border-y-teal-400`
+tw`border-y-teal-500`
+tw`border-y-teal-600`
+tw`border-y-teal-700`
+tw`border-y-teal-800`
+tw`border-y-teal-900`
+tw`border-y-cyan-50`
+tw`border-y-cyan-100`
+tw`border-y-cyan-200`
+tw`border-y-cyan-300`
+tw`border-y-cyan-400`
+tw`border-y-cyan-500`
+tw`border-y-cyan-600`
+tw`border-y-cyan-700`
+tw`border-y-cyan-800`
+tw`border-y-cyan-900`
+tw`border-y-sky-50`
+tw`border-y-sky-100`
+tw`border-y-sky-200`
+tw`border-y-sky-300`
+tw`border-y-sky-400`
+tw`border-y-sky-500`
+tw`border-y-sky-600`
+tw`border-y-sky-700`
+tw`border-y-sky-800`
+tw`border-y-sky-900`
+tw`border-y-blue-50`
+tw`border-y-blue-100`
+tw`border-y-blue-200`
+tw`border-y-blue-300`
+tw`border-y-blue-400`
+tw`border-y-blue-500`
+tw`border-y-blue-600`
+tw`border-y-blue-700`
+tw`border-y-blue-800`
+tw`border-y-blue-900`
+tw`border-y-indigo-50`
+tw`border-y-indigo-100`
+tw`border-y-indigo-200`
+tw`border-y-indigo-300`
+tw`border-y-indigo-400`
+tw`border-y-indigo-500`
+tw`border-y-indigo-600`
+tw`border-y-indigo-700`
+tw`border-y-indigo-800`
+tw`border-y-indigo-900`
+tw`border-y-violet-50`
+tw`border-y-violet-100`
+tw`border-y-violet-200`
+tw`border-y-violet-300`
+tw`border-y-violet-400`
+tw`border-y-violet-500`
+tw`border-y-violet-600`
+tw`border-y-violet-700`
+tw`border-y-violet-800`
+tw`border-y-violet-900`
+tw`border-y-purple-50`
+tw`border-y-purple-100`
+tw`border-y-purple-200`
+tw`border-y-purple-300`
+tw`border-y-purple-400`
+tw`border-y-purple-500`
+tw`border-y-purple-600`
+tw`border-y-purple-700`
+tw`border-y-purple-800`
+tw`border-y-purple-900`
+tw`border-y-fuchsia-50`
+tw`border-y-fuchsia-100`
+tw`border-y-fuchsia-200`
+tw`border-y-fuchsia-300`
+tw`border-y-fuchsia-400`
+tw`border-y-fuchsia-500`
+tw`border-y-fuchsia-600`
+tw`border-y-fuchsia-700`
+tw`border-y-fuchsia-800`
+tw`border-y-fuchsia-900`
+tw`border-y-pink-50`
+tw`border-y-pink-100`
+tw`border-y-pink-200`
+tw`border-y-pink-300`
+tw`border-y-pink-400`
+tw`border-y-pink-500`
+tw`border-y-pink-600`
+tw`border-y-pink-700`
+tw`border-y-pink-800`
+tw`border-y-pink-900`
+tw`border-y-rose-50`
+tw`border-y-rose-100`
+tw`border-y-rose-200`
+tw`border-y-rose-300`
+tw`border-y-rose-400`
+tw`border-y-rose-500`
+tw`border-y-rose-600`
+tw`border-y-rose-700`
+tw`border-y-rose-800`
+tw`border-y-rose-900`
 tw`border-t-inherit`
 tw`border-t-current`
 tw`border-t-transparent`
