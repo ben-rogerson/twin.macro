@@ -32,20 +32,11 @@ const handleWidth = ({ configValue, important }) => {
   }
 }
 
-const handleColor = ({ toColor }) => {
-  const common = {
-    matchStart: 'ring',
-    property: '--tw-ring-color',
-    configSearch: 'ringColor',
-  }
-  return toColor([{ ...common, opacityVariable: '--tw-ring-opacity' }, common])
-}
-
 export default properties => {
   const {
     theme,
     match,
-    toColor,
+    getCoercedColor,
     getConfigValue,
     errors: { errorSuggestions },
     pieces: { important },
@@ -61,8 +52,8 @@ export default properties => {
   })
   if (width) return width
 
-  const color = handleColor({ toColor })
-  if (color) return color
+  const coercedColor = getCoercedColor('ringColor')
+  if (coercedColor) return coercedColor
 
   errorSuggestions({
     config: ['ringWidth', 'ringColor'],

@@ -1,10 +1,6 @@
 export default properties => {
-  const common = { matchStart: 'fill', property: 'fill', configSearch: 'fill' }
-  const color = properties.toColor([
-    { ...common, useSlashAlpha: false },
-    common,
-  ])
-  if (!color) properties.errors.errorSuggestions({ config: 'fill' })
+  const coercedColor = properties.getCoercedColor('fill')
+  if (!coercedColor) properties.errors.errorSuggestions({ config: 'fill' })
 
-  return color
+  return coercedColor
 }

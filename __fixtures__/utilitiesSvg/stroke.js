@@ -239,6 +239,9 @@ tw`stroke-[#243c5a]`
 tw`stroke-red-500`
 tw`stroke-red-500/25`
 tw`stroke-red-500/fromConfig`
+tw`stroke-red-500/fromConfig/25`
+tw`stroke-red-500/fromConfig/[.555]`
+tw`stroke-red-500/fromConfig/[var(--myvar)]`
 tw`stroke-red-500/[.555]`
 tw`stroke-red-500/[var(--myvar)]`
 tw`stroke-[theme('colors.red.500')]`

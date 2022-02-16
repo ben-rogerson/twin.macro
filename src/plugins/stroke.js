@@ -1,12 +1,3 @@
-const handleColor = ({ toColor }) => {
-  const common = {
-    matchStart: 'stroke',
-    property: 'stroke',
-    configSearch: 'stroke',
-  }
-  return toColor([{ ...common, useSlashAlpha: false }, common])
-}
-
 const handleWidth = ({ configValue, important }) => {
   const value = configValue('strokeWidth')
   if (!value) return
@@ -28,14 +19,14 @@ export default properties => {
   const {
     theme,
     match,
-    toColor,
+    getCoercedColor,
     getConfigValue,
     errors: { errorSuggestions },
     pieces: { important },
   } = properties
 
-  const color = handleColor({ toColor })
-  if (color) return color
+  const coercedColor = getCoercedColor('stroke')
+  if (coercedColor) return coercedColor
 
   const classValue = match(/(?<=(stroke)-)([^]*)/)
   const configValue = config => getConfigValue(theme(config), classValue)

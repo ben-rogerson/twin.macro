@@ -694,6 +694,9 @@ tw`from-[var(--color)] via-[var(--color)] to-[var(--color)]`
 tw`from-red-500`
 tw`from-red-500/25`
 tw`from-red-500/fromConfig`
+tw`from-red-500/fromConfig/25`
+tw`from-red-500/fromConfig/[.555]`
+tw`from-red-500/fromConfig/[var(--myvar)]`
 tw`from-red-500/[.555]`
 tw`from-red-500/[var(--myvar)]`
 tw`from-[theme('colors.red.500')]`

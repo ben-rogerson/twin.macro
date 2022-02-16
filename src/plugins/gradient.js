@@ -24,7 +24,6 @@ export default properties => {
           pieces,
           color: value,
           property: '--tw-gradient-from',
-          useSlashAlpha: false,
         }),
         '--tw-gradient-stops': [
           'var(--tw-gradient-from)',
@@ -34,7 +33,7 @@ export default properties => {
       via: {
         '--tw-gradient-stops': [
           'var(--tw-gradient-from)',
-          withAlpha({ pieces, color: value, useSlashAlpha: false }),
+          withAlpha({ pieces, color: value }),
           `var(--tw-gradient-to, ${transparentTo(value)})`,
         ].join(', '),
       },
@@ -42,7 +41,6 @@ export default properties => {
         pieces,
         color: value,
         property: '--tw-gradient-to',
-        useSlashAlpha: false,
       }),
     }) ||
     (slashAlphaValue && {

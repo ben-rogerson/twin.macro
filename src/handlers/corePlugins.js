@@ -6,6 +6,7 @@ import { getColor } from './../utils/color'
 /* eslint import/namespace: [2, { allowComputed: true }] */
 /* eslint-disable-next-line unicorn/import-index */
 import * as plugins from '../plugins/index'
+import { getCoercedColor, getCoercedLength } from './../coerced'
 
 const getErrors = ({ pieces, state, dynamicKey }) => {
   const { className, variants } = pieces
@@ -53,6 +54,7 @@ const callPlugin = (corePlugin, context) => {
   return handle(context)
 }
 
+// TODO: Deprecate
 const getMatchConfigValue = ({ match, theme, getConfigValue }) => (
   config,
   regexMatch
@@ -60,6 +62,19 @@ const getMatchConfigValue = ({ match, theme, getConfigValue }) => (
   const matcher = match(regexMatch)
   if (matcher === undefined) return
   return getConfigValue(theme(config), matcher)
+}
+
+// Direct match
+const getMatchConfig = ({
+  match,
+  theme,
+  getConfigValue,
+  dynamicKey,
+}) => config => {
+  const directMatch = match(`(?<=${dynamicKey}(-|$))(.)*`)
+  if (directMatch === undefined) return
+
+  return getConfigValue(theme(config), directMatch)
 }
 
 export default ({
@@ -70,22 +85,32 @@ export default ({
   dynamicKey,
   theme,
   configTwin,
+  dynamicConfig,
   ...rest
 }) => {
   const errors = getErrors({ state, pieces, dynamicKey })
   const match = regex => {
-    const result = get(pieces.className.match(regex), [0])
+    const result = get(pieces.classNameNoSlashAlpha.match(regex), [0])
     if (result === undefined) return
     return result
   }
 
   const matchConfigValue = getMatchConfigValue({ match, theme, getConfigValue })
+  const matchConfig = getMatchConfig({
+    match,
+    theme,
+    getConfigValue,
+    dynamicKey,
+  })
+
   const toColor = getColor({
     theme,
     getConfigValue,
     matchConfigValue,
     pieces,
   })
+
+  const coercedConfig = dynamicConfig.coerced || {}
 
   const context = {
     state: () => state,
@@ -96,7 +121,22 @@ export default ({
     toColor,
     configTwin,
     getConfigValue,
-    matchConfigValue,
+    matchConfigValue, // TODO: Deprecate
+    matchConfig,
+    dynamicKey,
+    dynamicConfig,
+    getCoercedColor: getCoercedColor({
+      config: coercedConfig.color,
+      pieces,
+      theme,
+      matchConfig,
+    }),
+    getCoercedLength: getCoercedLength({
+      config: coercedConfig.length,
+      pieces,
+      theme,
+      matchConfig,
+    }),
     ...rest,
   }
 

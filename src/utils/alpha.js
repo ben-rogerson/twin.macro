@@ -1,5 +1,4 @@
 import createColor from 'color'
-import { throwIf } from './misc'
 
 function hasAlpha(color) {
   return (
@@ -69,16 +68,22 @@ const withAlpha = ({
 }) => {
   if (!color) return
 
-  // Validate the slash opacity and show an error that was generated earlier
-  throwIf(useSlashAlpha && pieces.alphaError, pieces.alphaError)
-
   if (typeof color === 'function') {
     if (variable && property) {
-      const value = color({
-        opacityVariable: variable,
-        opacityValue: `var(${variable})`,
-      })
-      return { [variable]: '1', [property]: value }
+      if (pieces.hasAlpha)
+        return {
+          [property]: `${color({ opacityValue: pieces.alpha })}${
+            pieces.important
+          }`,
+        }
+
+      return {
+        [variable]: '1',
+        [property]: `${color({
+          opacityVariable: variable,
+          opacityValue: `var(${variable})`,
+        })}${pieces.important}`,
+      }
     }
 
     color = color({ opacityVariable: variable })

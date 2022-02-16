@@ -241,6 +241,9 @@ tw`ring-offset-[#50d71e]`
 tw`ring-offset-red-500`
 tw`ring-offset-red-500/25`
 tw`ring-offset-red-500/fromConfig`
+tw`ring-offset-red-500/fromConfig/25`
+tw`ring-offset-red-500/fromConfig/[.555]`
+tw`ring-offset-red-500/fromConfig/[var(--myvar)]`
 tw`ring-offset-red-500/[.555]`
 tw`ring-offset-red-500/[var(--myvar)]`
 tw`ring-offset-[theme('colors.red.500')]`

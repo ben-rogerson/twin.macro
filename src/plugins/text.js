@@ -1,12 +1,3 @@
-const handleColor = ({ toColor }) => {
-  const common = {
-    matchStart: 'text',
-    property: 'color',
-    configSearch: 'textColor',
-  }
-  return toColor([{ ...common, opacityVariable: '--tw-text-opacity' }, common])
-}
-
 const handleSize = ({ configValue, important }) => {
   const value = configValue('fontSize')
   if (!value) return
@@ -31,7 +22,7 @@ export default properties => {
   const {
     match,
     theme,
-    toColor,
+    getCoercedColor,
     getConfigValue,
     pieces: { important, hasNegative },
     errors: { errorSuggestions, errorNoNegatives },
@@ -39,8 +30,8 @@ export default properties => {
 
   hasNegative && errorNoNegatives()
 
-  const color = handleColor({ toColor })
-  if (color) return color
+  const coercedColor = getCoercedColor('textColor')
+  if (coercedColor) return coercedColor
 
   const classValue = match(/(?<=(text-))([^]*)/)
   const configValue = config => getConfigValue(theme(config), classValue)

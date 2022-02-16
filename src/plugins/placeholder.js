@@ -1,28 +1,16 @@
-const handleColor = ({ toColor }) => {
-  const common = {
-    matchStart: 'placeholder',
-    property: 'color',
-    configSearch: 'placeholderColor',
-  }
-  return toColor([
-    { ...common, opacityVariable: '--tw-placeholder-opacity' },
-    common,
-  ])
-}
-
 const handleOpacity = ({ configValue }) => {
   const value = configValue('placeholderOpacity') || configValue('opacity')
   if (!value) return
 
-  return { '--tw-placeholder-opacity': `${value}` }
+  return { '::placeholder': { '--tw-placeholder-opacity': `${value}` } }
 }
 
 export default properties => {
   const {
     match,
     theme,
-    toColor,
     getConfigValue,
+    getCoercedColor,
     errors: { errorSuggestions },
   } = properties
 
@@ -31,10 +19,10 @@ export default properties => {
   const opacity = handleOpacity({
     configValue: config => getConfigValue(theme(config), opacityMatch),
   })
-  if (opacity) return { '::placeholder': opacity }
+  if (opacity) return opacity
 
-  const color = handleColor({ toColor })
-  if (color) return { '::placeholder': color }
+  const coercedColor = getCoercedColor('placeholderColor')
+  if (coercedColor) return coercedColor
 
   errorSuggestions({
     config: [

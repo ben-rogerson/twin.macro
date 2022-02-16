@@ -1,4 +1,4 @@
-import { opacityErrorNotFound, logGeneralError } from './logging'
+import { logGeneralError } from './logging'
 import { get, throwIf } from './utils'
 
 const getAlphaValue = alpha =>
@@ -24,23 +24,28 @@ const splitAlpha = props => {
     rawAlpha[0] === '[' && rawAlpha[rawAlpha.length - 1] === ']'
   )
 
-  const shouldQueueOpacityError =
-    !hasAlphaArbitrary && !get(props, 'state.config.theme.opacity')[rawAlpha]
+  const hasMatchedAlpha = Boolean(
+    !hasAlphaArbitrary && get(props, 'state.config.theme.opacity')[rawAlpha]
+  )
 
+  const hasAlpha = hasAlphaArbitrary || hasMatchedAlpha || false
+
+  const context = { hasAlpha, hasAlphaArbitrary }
+
+  if (!hasAlpha) return { ...context, classNameNoSlashAlpha: className }
+
+  if (hasAlphaArbitrary)
+    return {
+      ...context,
+      alpha: rawAlpha.slice(1, -1),
+      classNameNoSlashAlpha: className.slice(0, slashIdx),
+    }
+
+  // Opacity value has been matched in the config
   return {
-    alpha: hasAlphaArbitrary ? rawAlpha.slice(1, -1) : getAlphaValue(rawAlpha),
+    ...context,
+    alpha: String(getAlphaValue(rawAlpha)),
     classNameNoSlashAlpha: className.slice(0, slashIdx),
-    hasAlpha: true,
-    hasAlphaArbitrary,
-    // Queue a validation error for later if the class isn't directly matched
-    alphaError:
-      shouldQueueOpacityError &&
-      (() =>
-        opacityErrorNotFound({
-          className: className.slice(0, slashIdx),
-          theme: get(props, 'state.config.theme.opacity'),
-          opacity: rawAlpha,
-        })),
   }
 }
 

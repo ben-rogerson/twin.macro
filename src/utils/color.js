@@ -1,3 +1,4 @@
+import deepMerge from 'lodash.merge'
 import { withAlpha } from './../utils'
 
 const getColor = ({ matchConfigValue, pieces }) => colors => {
@@ -22,15 +23,23 @@ const getColor = ({ matchConfigValue, pieces }) => colors => {
       )
       if (!color) return false
 
-      const newColor = withAlpha({
-        pieces,
-        property,
-        variable: opacityVariable,
-        useSlashAlpha,
-        color,
-      })
-      if (newColor) result = newColor
-      return newColor
+      const values = Array.isArray(property) ? property : [property]
+      const res = values
+        .map(p =>
+          withAlpha({
+            color,
+            property: p,
+            pieces,
+            useSlashAlpha,
+            variable: opacityVariable,
+          })
+        )
+        .filter(Boolean)
+
+      if (res.length === 0) return false
+
+      result = deepMerge(...res)
+      return true
     }
   )
   return result

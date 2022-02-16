@@ -2,6 +2,7 @@ import stringSimilarity from 'string-similarity'
 import { SPACE_ID } from './../contants'
 import { dynamicStyles } from './../config'
 import { maybeAddNegative } from './../negative'
+import { coercedTypeMap, getCoercedValue } from './../coerced'
 import {
   throwIf,
   withAlpha,
@@ -39,89 +40,6 @@ const getSuggestions = (property, value) => {
   return suggestions.length > 0
     ? suggestions.map(s => `${s.target}-[${value}]`)
     : []
-}
-
-const lengthUnits = [
-  'cm',
-  'mm',
-  'Q',
-  'in',
-  'pc',
-  'pt',
-  'px',
-  'em',
-  'ex',
-  'ch',
-  'rem',
-  'lh',
-  'vw',
-  'vh',
-  'vmin',
-  'vmax',
-  '%',
-]
-
-const isLength = value => {
-  const unitsPattern = `(?:${lengthUnits.join('|')})`
-  return (
-    new RegExp(`${unitsPattern}$`).test(value) ||
-    new RegExp(`^calc\\(.+?${unitsPattern}`).test(value)
-  )
-}
-
-const typeMap = {
-  all: ({ config, value, theme }) => config(value, theme),
-  color: ({ config, value, pieces, theme, hasFallback }) => {
-    if (typeof config === 'function') return config(value, theme)
-    const { property, variable } = config
-    if (!property) return
-    return withAlpha({
-      color: value,
-      property,
-      pieces,
-      hasFallback,
-      ...(variable && { variable }),
-    })
-  },
-  length: ({ config, value, theme }) => {
-    if (!isLength(value) && !value.startsWith('var(')) return
-    if (typeof config === 'function') return config(value, theme)
-    const { property } = config
-    if (property) return { [property]: value }
-  },
-  url: ({ value }) => {
-    if (value.startsWith('url('))
-      return {
-        backgroundImage: value,
-      }
-  },
-  lookup: ({ config, value, theme }) => config(value, theme),
-}
-
-const getCoercedValue = (customValue, context) => {
-  const [explicitType, value] = splitOnFirst(customValue, ':')
-  if (value.length === 0) return
-
-  const coercedConfig = context.config.coerced
-  if (!coercedConfig) return
-
-  const coercedOptions = Object.keys(coercedConfig)
-  throwIf(!coercedOptions.includes(explicitType), () =>
-    logBadGood(
-      `The coerced value of “${explicitType}” isn’t available`,
-      `Try one of these coerced classes:\n\n${coercedOptions
-        .map(o => `${context.property}-[${o}:${value}]`)
-        .join(', ')}`
-    )
-  )
-
-  const result = typeMap[explicitType]({
-    config: coercedConfig[explicitType],
-    value,
-    pieces: context.pieces,
-    theme: getTheme(context.state.config.theme),
-  })
-  return result
 }
 
 const getClassData = className => {
@@ -177,7 +95,7 @@ export default ({ state, pieces }) => {
   if (Array.isArray(config.value)) {
     let arbitraryValue
     config.value.find(type => {
-      const result = typeMap[type]({
+      const result = coercedTypeMap[type]({
         config: config.coerced[type],
         value,
         pieces,
@@ -206,7 +124,7 @@ export default ({ state, pieces }) => {
         `There is no support for a “${property}” alpha value in “${property}-[${value}]”`
       )
     )
-    return typeMap.color({
+    return coercedTypeMap.color({
       config: config.coerced.color,
       value,
       pieces,

@@ -232,6 +232,9 @@ tw`placeholder-[var(--placeholder)]`
 
 tw`placeholder-red-500/25`
 tw`placeholder-red-500/fromConfig`
+tw`placeholder-red-500/fromConfig/25`
+tw`placeholder-red-500/fromConfig/[.555]`
+tw`placeholder-red-500/fromConfig/[var(--myvar)]`
 tw`placeholder-red-500/[.555]`
 tw`placeholder-red-500/[var(--myvar)]`
 tw`placeholder-[theme('colors.red.500')]`

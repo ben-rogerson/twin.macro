@@ -237,6 +237,9 @@ tw`text-[color:var(--color)]`
 tw`text-red-500`
 tw`text-red-500/25`
 tw`text-red-500/fromConfig`
+tw`text-red-500/fromConfig/25`
+tw`text-red-500/fromConfig/[.555]`
+tw`text-red-500/fromConfig/[var(--myvar)]`
 tw`text-red-500/[.555]`
 tw`text-red-500/[var(--myvar)]`
 tw`text-[theme('colors.red.500')]`

@@ -216,21 +216,11 @@ const themeErrorNotFound = ({ theme, input, trimInput }) => {
   return spaced(`${textNotFound}\n\n${suggestionText}`)
 }
 
-const opacityErrorNotFound = ({ className, opacity, theme }) => {
+const opacityErrorNotFound = ({ className }) => {
   const textNotFound = warning(
-    `The opacity ${color.errorLight(
-      opacity
-    )} was not found in your tailwind config`
+    `The class ${color.errorLight(className)} doesn’t support an opacity`
   )
-
-  const suggestionText = `Try one of these values:\n${formatSuggestions(
-    Object.entries(theme).map(([k, v]) => ({
-      target: [className, k].join('/'),
-      value: typeof v === 'string' ? v : '...',
-    }))
-  )}`
-
-  return spaced(`${textNotFound}\n\n${suggestionText}`)
+  return spaced(textNotFound)
 }
 
 const logNotFoundVariant = ({ classNameRaw }) =>

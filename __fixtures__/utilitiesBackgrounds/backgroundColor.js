@@ -237,6 +237,9 @@ tw`bg-[url('/img/hero-pattern.svg')]`
 
 tw`bg-red-500/25`
 tw`bg-red-500/fromConfig`
+tw`bg-red-500/fromConfig/25`
+tw`bg-red-500/fromConfig/[.555]`
+tw`bg-red-500/fromConfig/[var(--myvar)]`
 tw`bg-red-500/[.555]`
 tw`bg-red-500/[var(--myvar)]`
 tw`bg-[theme('colors.red.500')]`

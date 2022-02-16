@@ -233,6 +233,9 @@ tw`caret-[#50d71e]`
 
 tw`caret-red-500/25`
 tw`caret-red-500/fromConfig`
+tw`caret-red-500/fromConfig/25`
+tw`caret-red-500/fromConfig/[.555]`
+tw`caret-red-500/fromConfig/[var(--myvar)]`
 tw`caret-red-500/[.555]`
 tw`caret-red-500/[var(--myvar)]`
 tw`caret-[theme('colors.red.500')]`
