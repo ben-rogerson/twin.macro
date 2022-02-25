@@ -1503,6 +1503,9 @@ tw\`link:flex\`
 tw\`target:flex\`
 tw\`focus-visible:flex\`
 
+// Form elements
+tw\`file:flex\`
+
 // Form element states
 tw\`autofill:flex\`
 tw\`focus-within:flex\`
@@ -1695,6 +1698,12 @@ tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
 })
 ;({
   ':focus-visible': {
+    display: 'flex',
+  },
+}) // Form elements
+
+;({
+  '::file-selector-button': {
     display: 'flex',
   },
 }) // Form element states
