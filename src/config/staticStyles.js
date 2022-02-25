@@ -96,9 +96,9 @@ export default {
   },
   'overflow-x-scroll': { output: { overflowX: 'scroll' }, config: 'overflow' },
   'overflow-y-scroll': { output: { overflowY: 'scroll' }, config: 'overflow' },
-  'overflow-clip': { output: { overflow: 'clip' } },
-  'overflow-x-clip': { output: { overflowX: 'clip' } },
-  'overflow-y-clip': { output: { overflowY: 'clip' } },
+  'overflow-clip': { output: { overflow: 'clip' }, config: 'overflow' },
+  'overflow-x-clip': { output: { overflowX: 'clip' }, config: 'overflow' },
+  'overflow-y-clip': { output: { overflowY: 'clip' }, config: 'overflow' },
 
   // https://tailwindcss.com/docs/position
   static: { output: { position: 'static' } },
