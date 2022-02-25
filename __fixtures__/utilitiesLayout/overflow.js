@@ -4,6 +4,8 @@ import tw from './macro'
 tw`overflow-auto`
 tw`overflow-hidden`
 tw`overflow-clip`
+tw`overflow-x-clip`
+tw`overflow-y-clip`
 tw`overflow-visible`
 tw`overflow-scroll`
 tw`overflow-x-auto`
