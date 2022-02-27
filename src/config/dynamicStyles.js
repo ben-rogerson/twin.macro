@@ -10,6 +10,9 @@ export default {
   // https://tailwindcss.com/docs/container
   container: { hasArbitrary: false, plugin: 'container' },
 
+  // https://tailwindcss.com/docs/columns
+  columns: { prop: 'columns', config: 'columns' },
+
   // https://tailwindcss.com/docs/just-in-time-mode#content-utilities
   content: {
     config: 'content',

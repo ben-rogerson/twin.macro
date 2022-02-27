@@ -18,6 +18,7 @@ export default {
    */
 
   // https://tailwindcss.com/docs/container
+  // https://tailwindcss.com/docs/columns
   // See dynamicStyles.js
 
   // https://tailwindcss.com/docs/box-decoration-break
