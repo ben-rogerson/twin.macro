@@ -299,6 +299,16 @@ export default {
   },
   // https://tailwindcss.com/docs/text-decoration
   // https://tailwindcss.com/docs/text-transform
+  // https://tailwindcss.com/docs/text-overflow
+  // See staticStyles.js
+
+  // https://tailwindcss.com/docs/text-indent
+  indent: {
+    prop: 'textIndent',
+    config: 'textIndent',
+    configFallback: 'spacing',
+  },
+
   // https://tailwindcss.com/docs/vertical-align
   // https://tailwindcss.com/docs/whitespace
   // https://tailwindcss.com/docs/word-break
