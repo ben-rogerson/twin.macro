@@ -104,6 +104,8 @@ const buildDeclaration = items => {
 const ruleSorter = (arr, screens) => {
   if (!Array.isArray(arr) || arr.length === 0) return []
 
+  const screenOrder = screens ? Object.keys(screens) : []
+
   arr
     // Tailwind supplies the classes reversed since 2.0.x
     .reverse()
@@ -122,10 +124,11 @@ const ruleSorter = (arr, screens) => {
     })
     // Sort @media by screens index
     .sort(function (a, b) {
-        var screenOrder = Object.keys(screens);
-        var screenIndexA = a.type === 'atrule' && a.name === 'screen' && screenOrder.indexOf(a.params);
-        var screenIndexB = b.type === 'atrule' && b.name === 'screen' && screenOrder.indexOf(b.params);
-        return screenIndexA - screenIndexB;
+      const screenIndexA =
+        a.name === 'screen' ? screenOrder.indexOf(a.params) : 0
+      const screenIndexB =
+        b.name === 'screen' ? screenOrder.indexOf(b.params) : 0
+      return screenIndexA - screenIndexB
     })
     // Traverse children and reorder aswell
     .forEach(item => {
