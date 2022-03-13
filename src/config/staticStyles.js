@@ -690,6 +690,40 @@ export default {
   'resize-x': { output: { resize: 'horizontal' } },
   resize: { output: { resize: 'both' } },
 
+  // https://tailwindcss.com/docs/scroll-behavior
+  'scroll-auto': { output: { scrollBehavior: 'auto' } },
+  'scroll-smooth': { output: { scrollBehavior: 'smooth' } },
+
+  // https://tailwindcss.com/docs/scroll-margin
+  // See dynamicStyles.js
+
+  // https://tailwindcss.com/docs/scroll-padding
+  // See dynamicStyles.js
+
+  // https://tailwindcss.com/docs/scroll-snap-align
+  'snap-start': { output: { scrollSnapAlign: 'start' } },
+  'snap-end': { output: { scrollSnapAlign: 'end' } },
+  'snap-center': { output: { scrollSnapAlign: 'center' } },
+  'snap-align-none': { output: { scrollSnapAlign: 'none' } },
+
+  // https://tailwindcss.com/docs/scroll-snap-stop
+  'snap-normal': { output: { scrollSnapStop: 'normal' } },
+  'snap-always': { output: { scrollSnapStop: 'always' } },
+
+  // https://tailwindcss.com/docs/scroll-snap-type
+  'snap-none': { output: { scrollSnapType: 'none' } },
+  'snap-x': {
+    output: { scrollSnapType: 'x var(--tw-scroll-snap-strictness)' },
+  },
+  'snap-y': {
+    output: { scrollSnapType: 'y var(--tw-scroll-snap-strictness)' },
+  },
+  'snap-both': {
+    output: { scrollSnapType: 'both var(--tw-scroll-snap-strictness)' },
+  },
+  'snap-mandatory': { output: { '--tw-scroll-snap-strictness': 'mandatory' } },
+  'snap-proximity': { output: { '--tw-scroll-snap-strictness': 'proximity' } },
+
   // https://tailwindcss.com/docs/user-select
   'select-none': { output: { userSelect: 'none' } },
   'select-text': { output: { userSelect: 'text' } },
