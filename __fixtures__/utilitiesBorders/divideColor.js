@@ -232,3 +232,5 @@ tw`divide-rose-900`
 tw`divide-y-4 divide-slate-400/25`
 tw`divide-y-4 divide-slate-400/[.24]`
 tw`divide-[#243c5a]`
+
+tw`divide-[color:blue]`

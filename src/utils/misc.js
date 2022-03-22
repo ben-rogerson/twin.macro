@@ -1,7 +1,7 @@
 import deepMerge from 'lodash.merge'
 import { MacroError } from 'babel-plugin-macros'
 import get from 'lodash.get'
-import { LENGTH_UNITS } from './../contants'
+import { SPACE_ID } from './../contants'
 
 const throwIf = (expression, callBack) => {
   if (!expression) return
@@ -100,13 +100,15 @@ function splitOnFirst(input, delim) {
   return (([first, ...rest]) => [first, rest.join(delim)])(input.split(delim))
 }
 
-const isLength = value => {
-  const unitsPattern = `(?:${LENGTH_UNITS.join('|')})`
-  return (
-    new RegExp(`${unitsPattern}$`).test(value) ||
-    new RegExp(`^calc\\(.+?${unitsPattern}`).test(value)
-  )
-}
+const formatProp = classes =>
+  classes
+    // Replace the "stand-in spaces" with real ones
+    .replace(new RegExp(SPACE_ID, 'g'), ' ')
+    // Normalize spacing
+    .replace(/\s\s+/g, ' ')
+    // Remove newline characters
+    .replace(/\n/g, ' ')
+    .trim()
 
 export {
   throwIf,
@@ -122,5 +124,5 @@ export {
   isShortCss,
   isArbitraryCss,
   splitOnFirst,
-  isLength,
+  formatProp,
 }

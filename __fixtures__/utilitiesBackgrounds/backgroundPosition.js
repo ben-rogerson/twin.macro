@@ -10,3 +10,7 @@ tw`bg-right`
 tw`bg-right-bottom`
 tw`bg-right-top`
 tw`bg-top`
+
+tw`bg-[position:200px 100px]`
+tw`bg-[position:var(--value)]`
+tw`bg-[center top 1rem]`

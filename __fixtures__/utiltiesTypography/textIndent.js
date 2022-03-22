@@ -76,3 +76,5 @@ tw`-indent-80`
 tw`-indent-96`
 
 tw`indent-[50%]`
+tw`indent-[length:10px]`
+tw`indent-[lookup:10px]`

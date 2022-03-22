@@ -3,21 +3,22 @@ import { SPACE_ID } from './../contants'
 import { dynamicStyles } from './../config'
 import { maybeAddNegative } from './../negative'
 import { coercedTypeMap, getCoercedValue } from './../coerced'
-import {
-  throwIf,
-  withAlpha,
-  transparentTo,
-  isEmpty,
-  splitOnFirst,
-  getTheme,
-} from './../utils'
+import { throwIf, withAlpha, isEmpty, splitOnFirst, getTheme } from './../utils'
 import { logBadGood } from './../logging'
 
 const searchDynamicConfigByProperty = propertyName => {
-  const result = Object.entries(dynamicStyles).find(([k]) => propertyName === k)
-  if (!result) return
+  const found = Object.entries(dynamicStyles).find(([k]) => propertyName === k)
+  if (!found) return
 
-  return result[1]
+  const result = found[1]
+  if (result.length > 1) {
+    return {
+      value: result.map(r => r.value).flat(),
+      coerced: Object.assign({}, ...result.map(r => r.coerced)),
+    }
+  }
+
+  return result
 }
 
 const showSuggestions = (property, value) => {
@@ -51,7 +52,7 @@ const getClassData = className => {
   )
   return {
     property: property.slice(0, -1), // Remove the dash just before the brackets
-    value: value.slice(0, -1).trim(), // Remove the last ']' and whitespace
+    value: value.slice(0, -1).replace(/_/g, ' ').trim(), // Remove underscores, the last ']' and whitespace
   }
 }
 
@@ -62,11 +63,14 @@ export default ({ state, pieces }) => {
 
   // Check for coerced value
   // Values that have their type specified: [length:3px]/[color:red]/etc
+  const coercedConfig = Array.isArray(config)
+    ? config.map(c => c.coerced)
+    : config.coerced
   const coercedValue = getCoercedValue(value, {
     property,
     pieces,
     state,
-    config,
+    coercedConfig,
   })
   if (coercedValue) return coercedValue
 
@@ -100,7 +104,6 @@ export default ({ state, pieces }) => {
         value,
         pieces,
         theme: getTheme(state.config.theme),
-        hasFallback: false,
       })
       if (result) arbitraryValue = result
       return Boolean(result)
@@ -129,7 +132,6 @@ export default ({ state, pieces }) => {
       value,
       pieces,
       theme: getTheme(state.config.theme),
-      hasFallback: false,
     })
   }
 
@@ -141,7 +143,6 @@ export default ({ state, pieces }) => {
     typeof config.value === 'function'
       ? config.value({
           value,
-          transparentTo,
           color,
           negative: pieces.negative,
           isEmotion: state.isEmotion,
@@ -150,7 +151,7 @@ export default ({ state, pieces }) => {
 
   // Raw values - no prop value found in config
   if (!arbitraryProperty)
-    return arbitraryValue ? arbitraryValue : showSuggestions(property, value)
+    return arbitraryValue || showSuggestions(property, value)
 
   if (Array.isArray(arbitraryProperty))
     return arbitraryProperty.reduce(

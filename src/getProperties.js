@@ -28,8 +28,7 @@ const getDynamicProperties = className => {
   // See if the config property is defined
   const isDynamicClass = Array.isArray(dynamicConfig)
     ? dynamicConfig.map(item => get(item, 'config') && !get(item, 'coerced'))
-    : get(dynamicStyles, [dynamicKey, 'config']) &&
-      !get(dynamicConfig, 'coerced')
+    : get(dynamicStyles, [dynamicKey, 'config'])
 
   return { isDynamicClass, dynamicConfig, dynamicKey }
 }

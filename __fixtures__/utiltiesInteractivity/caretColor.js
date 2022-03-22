@@ -247,3 +247,7 @@ tw`caret-electric/[.555]`
 tw`caret-electric/[var(--myvar)]`
 tw`caret-[theme('colors.electric')]`
 tw`caret-[theme('colors.electric')]/20`
+
+tw`caret-[color:green]`
+tw`caret-[color:rgba(255, 255, 255, .45)]`
+tw`caret-[any:blah]`

@@ -1603,3 +1603,25 @@ tw`border-electric/[.555]`
 tw`border-electric/[var(--myvar)]`
 tw`border-[theme('colors.electric')]`
 tw`border-[theme('colors.electric')]/20`
+
+tw`border-[hsl(60 50% 10% / 50%)]`
+tw`border-[rgba(255, 255, 255, 0)]`
+tw`border-[red_black_white rgb(255, 255,255,0)]`
+tw`border-[red black_blue]`
+tw`border-[red black]`
+tw`border-[hsl(50 50% 50%)]`
+
+tw`border-t-[color:green]`
+tw`border-t-[color:rgba(255, 255, 255, .45)]`
+
+tw`border-r-[color:green]`
+tw`border-r-[color:rgba(255, 255, 255, .45)]`
+
+tw`border-b-[color:green]`
+tw`border-b-[color:rgba(255, 255, 255, .45)]`
+
+tw`border-l-[color:green]`
+tw`border-l-[color:rgba(255, 255, 255, .45)]`
+
+tw`border-[color:green]`
+tw`border-[color:rgba(255, 255, 255, .45)]`

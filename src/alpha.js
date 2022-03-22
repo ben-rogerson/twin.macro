@@ -1,5 +1,5 @@
 import { logGeneralError } from './logging'
-import { get, throwIf } from './utils'
+import { get, throwIf, formatProp } from './utils'
 
 const getAlphaValue = alpha =>
   Number.isInteger(Number(alpha)) ? Number(alpha) / 100 : alpha
@@ -37,7 +37,7 @@ const splitAlpha = props => {
   if (hasAlphaArbitrary)
     return {
       ...context,
-      alpha: rawAlpha.slice(1, -1),
+      alpha: formatProp(rawAlpha.slice(1, -1)),
       classNameNoSlashAlpha: className.slice(0, slashIdx),
     }
 

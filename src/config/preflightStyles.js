@@ -1,14 +1,9 @@
-const globalPreflightStyles = ({ theme, withAlpha }) => ({
+const globalPreflightStyles = ({ theme }) => ({
   '*, ::before, ::after': {
     boxSizing: 'border-box',
     borderWidth: '0',
     borderStyle: 'solid',
-    ...withAlpha({
-      color: theme`borderColor.DEFAULT` || 'currentColor',
-      property: 'borderColor',
-      pieces: { important: '' },
-      variable: '--tw-border-opacity',
-    }),
+    borderColor: theme`borderColor.DEFAULT` || 'currentColor',
   },
   '::before, ::after': {
     '--tw-content': "''",

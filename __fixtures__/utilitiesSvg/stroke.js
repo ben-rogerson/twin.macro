@@ -253,3 +253,7 @@ tw`stroke-electric/[.555]`
 tw`stroke-electric/[var(--myvar)]`
 tw`stroke-[theme('colors.electric')]`
 tw`stroke-[theme('colors.electric')]/20`
+
+tw`stroke-[color:green]`
+tw`stroke-[color:rgba(255, 255, 255, .45)]`
+tw`stroke-[length:10px]`

@@ -250,3 +250,7 @@ tw`ring-electric/[.555]`
 tw`ring-electric/[var(--myvar)]`
 tw`ring-[theme('colors.electric')]`
 tw`ring-[theme('colors.electric')]/20`
+
+tw`ring-[color:green]`
+tw`ring-[color:rgba(255, 255, 255, .45)]`
+tw`ring-[length:10px]`

@@ -12,6 +12,6 @@ export {
   isShortCss,
   isArbitraryCss,
   splitOnFirst,
-  isLength,
+  formatProp,
 } from './misc'
-export { toRgba, withAlpha, transparentTo } from './alpha'
+export { withAlpha } from './alpha'

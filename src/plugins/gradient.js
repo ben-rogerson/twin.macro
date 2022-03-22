@@ -1,4 +1,4 @@
-import { transparentTo, withAlpha } from './../utils'
+import { withAlpha } from './../utils'
 
 export default properties => {
   const {
@@ -20,28 +20,30 @@ export default properties => {
   const styleDefinitions =
     (value && {
       from: {
-        ...withAlpha({
-          pieces,
-          color: value,
-          property: '--tw-gradient-from',
-        }),
+        '--tw-gradient-from': withAlpha({ pieces, color: value }) || value,
         '--tw-gradient-stops': [
           'var(--tw-gradient-from)',
-          `var(--tw-gradient-to, ${transparentTo(value)})`,
+          `var(--tw-gradient-to, ${withAlpha({
+            color: value,
+            pieces: { ...pieces, hasAlpha: true, alpha: '0' },
+            fallBackColor: 'rgb(255 255 255 / 0)',
+          })})`,
         ].join(', '),
       },
       via: {
         '--tw-gradient-stops': [
           'var(--tw-gradient-from)',
-          withAlpha({ pieces, color: value }),
-          `var(--tw-gradient-to, ${transparentTo(value)})`,
+          withAlpha({ pieces, color: value }) || value,
+          `var(--tw-gradient-to, ${withAlpha({
+            color: value,
+            pieces: { ...pieces, hasAlpha: true, alpha: '0' },
+            fallBackColor: 'rgb(255 255 255 / 0)',
+          })})`,
         ].join(', '),
       },
-      to: withAlpha({
-        pieces,
-        color: value,
-        property: '--tw-gradient-to',
-      }),
+      to: {
+        '--tw-gradient-to': withAlpha({ pieces, color: value }) || value,
+      },
     }) ||
     (slashAlphaValue && {
       from: {
@@ -55,7 +57,7 @@ export default properties => {
           'var(--tw-gradient-to',
           withAlpha({
             color: slashAlphaValue,
-            pieces: { ...pieces, hasAlpha: true, alpha: 0 },
+            pieces: { ...pieces, hasAlpha: true, alpha: '0' },
           }),
         ].join(', '),
       },
@@ -63,7 +65,10 @@ export default properties => {
         '--tw-gradient-stops': [
           'var(--tw-gradient-from)',
           withAlpha({ color: slashAlphaValue, pieces }),
-          `var(--tw-gradient-to, ${transparentTo(slashAlphaValue)})`,
+          `var(--tw-gradient-to, ${withAlpha({
+            color: slashAlphaValue,
+            pieces: { ...pieces, hasAlpha: true, alpha: '0' },
+          })})`,
         ].join(', '),
       },
       to: withAlpha({

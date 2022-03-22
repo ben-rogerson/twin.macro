@@ -255,3 +255,7 @@ tw`ring-offset-electric/[.555]`
 tw`ring-offset-electric/[var(--myvar)]`
 tw`ring-offset-[theme('colors.electric')]`
 tw`ring-offset-[theme('colors.electric')]/20`
+
+tw`ring-offset-[color:green]`
+tw`ring-offset-[color:rgba(255, 255, 255, .45)]`
+tw`ring-offset-[length:10px]`

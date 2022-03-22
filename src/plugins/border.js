@@ -3,13 +3,14 @@ export default properties => {
     getCoercedLength,
     getCoercedColor,
     errors: { errorSuggestions },
+    dynamicConfig: { coerced },
   } = properties
 
-  const coercedLength = getCoercedLength('borderWidth')
+  const coercedLength = getCoercedLength(coerced.length)
   if (coercedLength) return coercedLength
 
-  const coercedColor = getCoercedColor('borderColor')
+  const coercedColor = getCoercedColor(coerced.color)
   if (coercedColor) return coercedColor
 
-  errorSuggestions({ config: ['borderColor', 'borderWidth'] })
+  errorSuggestions({ config: Object.values(coerced).map(v => v.property) })
 }

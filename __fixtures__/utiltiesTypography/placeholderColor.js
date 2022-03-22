@@ -244,3 +244,6 @@ tw`placeholder-electric/25`
 tw`placeholder-electric/[.555]`
 tw`placeholder-electric/[var(--myvar)]`
 tw`placeholder-[theme('colors.electric')]`
+
+tw`placeholder-[color:red]`
+tw`placeholder-[any:red]`
