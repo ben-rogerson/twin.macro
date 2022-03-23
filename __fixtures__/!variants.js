@@ -14,6 +14,9 @@ tw`link:flex`
 tw`target:flex`
 tw`focus-visible:flex`
 
+// Form elements
+tw`file:flex`
+
 // Form element states
 tw`autofill:flex`
 tw`focus-within:flex`

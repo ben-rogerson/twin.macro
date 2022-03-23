@@ -28,6 +28,9 @@ const variantConfig = ({
   'focus-visible': ':focus-visible',
   'focus-within': ':focus-within',
 
+  // Form elements
+  file: '::file-selector-button',
+
   // Form element states
   autofill: ':autofill',
   disabled: ':disabled',
