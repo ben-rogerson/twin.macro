@@ -13,7 +13,7 @@ const getCustomSuggestions = className => {
     'flex-column-reverse': 'flex-col-reverse',
     'text-italic': 'italic',
     'text-normal': 'font-normal / not-italic',
-    ellipsis: 'overflow-ellipsis',
+    ellipsis: 'text-ellipsis',
     'flex-no-wrap': 'flex-nowrap',
   }[className]
   if (suggestions) return suggestions
