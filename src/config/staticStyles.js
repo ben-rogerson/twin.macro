@@ -20,6 +20,32 @@ export default {
   // https://tailwindcss.com/docs/container
   // See dynamicStyles.js
 
+  // https://tailwindcss.com/docs/break-after
+  'break-after-auto': { output: { breakAfter: 'auto' } },
+  'break-after-avoid': { output: { breakAfter: 'avoid' } },
+  'break-after-all': { output: { breakAfter: 'all' } },
+  'break-after-avoid-page': { output: { breakAfter: 'avoid-page' } },
+  'break-after-page': { output: { breakAfter: 'page' } },
+  'break-after-left': { output: { breakAfter: 'left' } },
+  'break-after-right': { output: { breakAfter: 'right' } },
+  'break-after-column': { output: { breakAfter: 'column' } },
+
+  // https://tailwindcss.com/docs/break-before
+  'break-before-auto': { output: { breakBefore: 'auto' } },
+  'break-before-avoid': { output: { breakBefore: 'avoid' } },
+  'break-before-all': { output: { breakBefore: 'all' } },
+  'break-before-avoid-page': { output: { breakBefore: 'avoid-page' } },
+  'break-before-page': { output: { breakBefore: 'page' } },
+  'break-before-left': { output: { breakBefore: 'left' } },
+  'break-before-right': { output: { breakBefore: 'right' } },
+  'break-before-column': { output: { breakBefore: 'column' } },
+
+  // https://tailwindcss.com/docs/break-inside
+  'break-inside-auto': { output: { breakInside: 'auto' } },
+  'break-inside-avoid': { output: { breakInside: 'avoid' } },
+  'break-inside-avoid-page': { output: { breakInside: 'avoid-page' } },
+  'break-inside-avoid-column': { output: { breakInside: 'avoid-column' } },
+
   // https://tailwindcss.com/docs/box-decoration-break
   'decoration-slice': { output: { boxDecorationBreak: 'slice' } },
   'decoration-clone': { output: { boxDecorationBreak: 'clone' } },

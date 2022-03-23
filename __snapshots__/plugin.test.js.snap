@@ -17070,17 +17070,42 @@ exports[`twin.macro breakAfter.js: breakAfter.js 1`] = `
 import tw from './macro'
 
 // https://tailwindcss.com/docs/break-after
-// tw\`break-after-auto\`
-// tw\`break-after-avoid\`
-// tw\`break-after-all\`
-// tw\`break-after-avoid-page\`
-// tw\`break-after-page\`
-// tw\`break-after-left\`
-// tw\`break-after-right\`
-// tw\`break-after-column\`
+tw\`break-after-auto\`
+tw\`break-after-avoid\`
+tw\`break-after-all\`
+tw\`break-after-avoid-page\`
+tw\`break-after-page\`
+tw\`break-after-left\`
+tw\`break-after-right\`
+tw\`break-after-column\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// https://tailwindcss.com/docs/break-after
+;({
+  breakAfter: 'auto',
+})
+;({
+  breakAfter: 'avoid',
+})
+;({
+  breakAfter: 'all',
+})
+;({
+  breakAfter: 'avoid-page',
+})
+;({
+  breakAfter: 'page',
+})
+;({
+  breakAfter: 'left',
+})
+;({
+  breakAfter: 'right',
+})
+;({
+  breakAfter: 'column',
+})
 
 
 `;
@@ -17090,17 +17115,42 @@ exports[`twin.macro breakBefore.js: breakBefore.js 1`] = `
 import tw from './macro'
 
 // https://tailwindcss.com/docs/break-before
-// tw\`break-before-auto\`
-// tw\`break-before-avoid\`
-// tw\`break-before-all\`
-// tw\`break-before-avoid-page\`
-// tw\`break-before-page\`
-// tw\`break-before-left\`
-// tw\`break-before-right\`
-// tw\`break-before-column\`
+tw\`break-before-auto\`
+tw\`break-before-avoid\`
+tw\`break-before-all\`
+tw\`break-before-avoid-page\`
+tw\`break-before-page\`
+tw\`break-before-left\`
+tw\`break-before-right\`
+tw\`break-before-column\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// https://tailwindcss.com/docs/break-before
+;({
+  breakBefore: 'auto',
+})
+;({
+  breakBefore: 'avoid',
+})
+;({
+  breakBefore: 'all',
+})
+;({
+  breakBefore: 'avoid-page',
+})
+;({
+  breakBefore: 'page',
+})
+;({
+  breakBefore: 'left',
+})
+;({
+  breakBefore: 'right',
+})
+;({
+  breakBefore: 'column',
+})
 
 
 `;
@@ -17110,13 +17160,26 @@ exports[`twin.macro breakInside.js: breakInside.js 1`] = `
 import tw from './macro'
 
 // https://tailwindcss.com/docs/break-inside
-// tw\`break-inside-auto\`
-// tw\`break-inside-avoid\`
-// tw\`break-inside-avoid-page\`
-// tw\`break-inside-avoid-column\`
+tw\`break-inside-auto\`
+tw\`break-inside-avoid\`
+tw\`break-inside-avoid-page\`
+tw\`break-inside-avoid-column\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// https://tailwindcss.com/docs/break-inside
+;({
+  breakInside: 'auto',
+})
+;({
+  breakInside: 'avoid',
+})
+;({
+  breakInside: 'avoid-page',
+})
+;({
+  breakInside: 'avoid-column',
+})
 
 
 `;
