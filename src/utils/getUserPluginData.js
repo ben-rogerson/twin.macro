@@ -101,8 +101,10 @@ const buildDeclaration = items => {
   )
 }
 
-const ruleSorter = arr => {
+const ruleSorter = (arr, screens) => {
   if (!Array.isArray(arr) || arr.length === 0) return []
+
+  const screenOrder = screens ? Object.keys(screens) : []
 
   arr
     // Tailwind supplies the classes reversed since 2.0.x
@@ -120,6 +122,14 @@ const ruleSorter = arr => {
       const atRuleB = b.type === 'atrule'
       return atRuleA - atRuleB
     })
+    // Sort @media by screens index
+    .sort(function (a, b) {
+      const screenIndexA =
+        a.name === 'screen' ? screenOrder.indexOf(a.params) : 0
+      const screenIndexB =
+        b.name === 'screen' ? screenOrder.indexOf(b.params) : 0
+      return screenIndexA - screenIndexB
+    })
     // Traverse children and reorder aswell
     .forEach(item => {
       if (!item.nodes || item.nodes.length === 0) return
@@ -127,7 +137,7 @@ const ruleSorter = arr => {
       item.nodes.forEach(i => {
         if (typeof i !== 'object') return
 
-        return ruleSorter(i)
+        return ruleSorter(i, screens)
       })
     })
 
@@ -135,7 +145,7 @@ const ruleSorter = arr => {
 }
 
 const getUserPluginRules = (rules, screens, isBase) =>
-  ruleSorter(rules).reduce((result, rule) => {
+  ruleSorter(rules, screens).reduce((result, rule) => {
     if (rule.type === 'decl') {
       const builtRules = { [rule.prop]: rule.value }
       return deepMerge(result, builtRules)
