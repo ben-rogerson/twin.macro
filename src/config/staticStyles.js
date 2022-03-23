@@ -451,6 +451,9 @@ export default {
   capitalize: { output: { textTransform: 'capitalize' } },
   'normal-case': { output: { textTransform: 'none' } },
 
+  // https://tailwindcss.com/docs/text-indent
+  // See dynamicStyles.js
+
   // https://tailwindcss.com/docs/vertical-align
   'align-baseline': { output: { verticalAlign: 'baseline' } },
   'align-top': { output: { verticalAlign: 'top' } },
