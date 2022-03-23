@@ -848,6 +848,36 @@ export default {
 
   // https://tailwindcss.com/docs/pointer-events
   // https://tailwindcss.com/docs/resize
+
+  // https://tailwindcss.com/docs/scroll-margin
+  'scroll-m': { prop: 'scrollMargin', config: 'scrollMargin' },
+  'scroll-mx': {
+    prop: ['scrollMarginLeft', 'scrollMarginRight'],
+    config: 'scrollMargin',
+  },
+  'scroll-my': {
+    prop: ['scrollMarginTop', 'scrollMarginBottom'],
+    config: 'scrollMargin',
+  },
+  'scroll-mt': { prop: 'scrollMarginTop', config: 'scrollMargin' },
+  'scroll-mr': { prop: 'scrollMarginRight', config: 'scrollMargin' },
+  'scroll-mb': { prop: 'scrollMarginBottom', config: 'scrollMargin' },
+  'scroll-ml': { prop: 'scrollMarginLeft', config: 'scrollMargin' },
+
+  // https://tailwindcss.com/docs/scroll-padding
+  'scroll-p': { prop: 'scrollPadding', config: 'scrollPadding' },
+  'scroll-px': {
+    prop: ['scrollPaddingLeft', 'scrollPaddingRight'],
+    config: 'scrollPadding',
+  },
+  'scroll-py': {
+    prop: ['scrollPaddingTop', 'scrollPaddingBottom'],
+    config: 'scrollPadding',
+  },
+  'scroll-pt': { prop: 'scrollPaddingTop', config: 'scrollPadding' },
+  'scroll-pr': { prop: 'scrollPaddingRight', config: 'scrollPadding' },
+  'scroll-pb': { prop: 'scrollPaddingBottom', config: 'scrollPadding' },
+  'scroll-pl': { prop: 'scrollPaddingLeft', config: 'scrollPadding' },
   // https://tailwindcss.com/docs/user-select
   // See staticStyles.js
 
