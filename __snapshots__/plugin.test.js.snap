@@ -872,6 +872,189 @@ _styled.div({
 
 `;
 
+exports[`twin.macro !plugins.js: !plugins.js 1`] = `
+
+import tw from './macro'
+
+// Tailwind plugin tests
+
+tw\`type-sm\`
+
+const addUtilitiesTest = tw\`type-sm text-red-500 lg:type-sm md:type-sm!\`
+
+const addUtilitiesTest2 = tw\`skew-15deg\`
+const addUtilitiesTest2Important = tw\`skew-15deg! type-sm!\`
+const addUtilitiesTest2Media = tw\`sm:skew-15deg lg:type-sm\`
+const addUtilitiesTest2Variants = tw\`hover:active:skew-15deg even:visited:skew-15deg\`
+
+const addComponentsTest = tw\`btn btn-blue btn-red\`
+// const addComponentsTestImportant = tw\`btn! btn-blue!\` // TODO: Issue showing sub selectors and important
+const addComponentsTestMedia = tw\`xl:btn sm:btn-blue lg:btn-red\`
+const addComponentsTestVariants = tw\`hover:active:btn hocus:before:btn-blue even:visited:btn-red\`
+
+const addComponentsTestElementPrefixes = tw\`prefixes\`
+const addComponentsTestElementScreenReplacements = tw\`screenies\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// Tailwind plugin tests
+;({
+  fontSize: '0.875rem',
+  fontWeight: '500',
+  lineHeight: '1.25',
+})
+const addUtilitiesTest = {
+  fontSize: '0.875rem',
+  fontWeight: '500',
+  lineHeight: '1.25',
+  '--tw-text-opacity': '1',
+  color: 'rgb(239 68 68 / var(--tw-text-opacity))',
+  '@media (min-width: 768px)': {
+    fontSize: '0.875rem !important',
+    fontWeight: '500 !important',
+    lineHeight: '1.25 !important',
+  },
+  '@media (min-width: 1024px)': {
+    fontSize: '0.875rem',
+    fontWeight: '500',
+    lineHeight: '1.25',
+  },
+}
+const addUtilitiesTest2 = {
+  transform: 'skewY(-15deg)',
+}
+const addUtilitiesTest2Important = {
+  transform: 'skewY(-15deg) !important',
+  fontSize: '0.875rem !important',
+  fontWeight: '500 !important',
+  lineHeight: '1.25 !important',
+}
+const addUtilitiesTest2Media = {
+  '@media (min-width: 640px)': {
+    transform: 'skewY(-15deg)',
+  },
+  '@media (min-width: 1024px)': {
+    fontSize: '0.875rem',
+    fontWeight: '500',
+    lineHeight: '1.25',
+  },
+}
+const addUtilitiesTest2Variants = {
+  ':hover': {
+    ':active': {
+      transform: 'skewY(-15deg)',
+    },
+  },
+  ':nth-child(even)': {
+    ':visited': {
+      transform: 'skewY(-15deg)',
+    },
+  },
+}
+const addComponentsTest = {
+  padding: '.5rem 1rem',
+  borderRadius: '.25rem',
+  fontWeight: '600',
+  backgroundColor: '#e3342f',
+  color: '#fff',
+  ':hover': {
+    backgroundColor: '#cc1f1a',
+  },
+} // const addComponentsTestImportant = tw\`btn! btn-blue!\` // TODO: Issue showing sub selectors and important
+
+const addComponentsTestMedia = {
+  '@media (min-width: 640px)': {
+    backgroundColor: '#3490dc',
+    color: '#fff',
+    ':hover': {
+      backgroundColor: '#2779bd',
+    },
+  },
+  '@media (min-width: 1024px)': {
+    backgroundColor: '#e3342f',
+    color: '#fff',
+    ':hover': {
+      backgroundColor: '#cc1f1a',
+    },
+  },
+  '@media (min-width: 1280px)': {
+    padding: '.5rem 1rem',
+    borderRadius: '.25rem',
+    fontWeight: '600',
+  },
+}
+const addComponentsTestVariants = {
+  ':hover': {
+    ':active': {
+      padding: '.5rem 1rem',
+      borderRadius: '.25rem',
+      fontWeight: '600',
+    },
+  },
+  ':hover, :focus': {
+    ':before': {
+      content: '""',
+      backgroundColor: '#3490dc',
+      color: '#fff',
+      ':hover': {
+        backgroundColor: '#2779bd',
+      },
+    },
+  },
+  ':nth-child(even)': {
+    ':visited': {
+      backgroundColor: '#e3342f',
+      color: '#fff',
+      ':hover': {
+        backgroundColor: '#cc1f1a',
+      },
+    },
+  },
+}
+const addComponentsTestElementPrefixes = {
+  h1: {
+    margin: 'auto',
+    marginRight: '10px',
+  },
+  ':focus': {
+    display: 'none',
+  },
+  'h2:hover': {
+    color: 'red',
+  },
+  'h3:hover': {
+    color: 'green',
+  },
+  'h3:active': {
+    color: 'green',
+  },
+}
+const addComponentsTestElementScreenReplacements = {
+  '@media (min-width: 640px)': {
+    display: 'block',
+  },
+  '@media (min-width: 768px)': {
+    display: 'flex',
+  },
+  '@media (min-width: 1024px)': {
+    display: 'inline-block',
+  },
+  '@media (min-width: 1280px)': {
+    h1: {
+      marginTop: '50px',
+    },
+    'h1:hover': {
+      color: 'blue',
+    },
+    'h1:focus': {
+      color: 'blue',
+    },
+  },
+}
+
+
+`;
+
 exports[`twin.macro !properties.js: !properties.js 1`] = `
 
 import tw from './macro'
@@ -43958,11 +44141,18 @@ exports[`twin.macro scrollBehavior.js: scrollBehavior.js 1`] = `
 import tw from './macro'
 
 // https://tailwindcss.com/docs/scroll-behavior
-// tw\`scroll-auto\`
-// tw\`scroll-smooth\`
+tw\`scroll-auto\`
+tw\`scroll-smooth\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// https://tailwindcss.com/docs/scroll-behavior
+;({
+  scrollBehavior: 'auto',
+})
+;({
+  scrollBehavior: 'smooth',
+})
 
 
 `;
@@ -43974,262 +44164,262 @@ import tw, { theme } from './macro'
 // https://tailwindcss.com/docs/scroll-margin
 theme\`scrollMargin\`
 
-// tw\`scroll-m-0\`
-// tw\`scroll-mx-0\`
-// tw\`scroll-my-0\`
-// tw\`scroll-mt-0\`
-// tw\`scroll-mr-0\`
-// tw\`scroll-mb-0\`
-// tw\`scroll-ml-0\`
-// tw\`scroll-m-px\`
-// tw\`scroll-mx-px\`
-// tw\`scroll-my-px\`
-// tw\`scroll-mt-px\`
-// tw\`scroll-mr-px\`
-// tw\`scroll-mb-px\`
-// tw\`scroll-ml-px\`
-// tw\`scroll-m-0\`
-// tw\`scroll-mx-0\`
-// tw\`scroll-my-0\`
-// tw\`scroll-mt-0\`
-// tw\`scroll-mr-0\`
-// tw\`scroll-mb-0\`
-// tw\`scroll-ml-0\`
-// tw\`scroll-m-1\`
-// tw\`scroll-mx-1\`
-// tw\`scroll-my-1\`
-// tw\`scroll-mt-1\`
-// tw\`scroll-mr-1\`
-// tw\`scroll-mb-1\`
-// tw\`scroll-ml-1\`
-// tw\`scroll-m-1\`
-// tw\`scroll-mx-1\`
-// tw\`scroll-my-1\`
-// tw\`scroll-mt-1\`
-// tw\`scroll-mr-1\`
-// tw\`scroll-mb-1\`
-// tw\`scroll-ml-1\`
-// tw\`scroll-m-2\`
-// tw\`scroll-mx-2\`
-// tw\`scroll-my-2\`
-// tw\`scroll-mt-2\`
-// tw\`scroll-mr-2\`
-// tw\`scroll-mb-2\`
-// tw\`scroll-ml-2\`
-// tw\`scroll-m-2\`
-// tw\`scroll-mx-2\`
-// tw\`scroll-my-2\`
-// tw\`scroll-mt-2\`
-// tw\`scroll-mr-2\`
-// tw\`scroll-mb-2\`
-// tw\`scroll-ml-2\`
-// tw\`scroll-m-3\`
-// tw\`scroll-mx-3\`
-// tw\`scroll-my-3\`
-// tw\`scroll-mt-3\`
-// tw\`scroll-mr-3\`
-// tw\`scroll-mb-3\`
-// tw\`scroll-ml-3\`
-// tw\`scroll-m-3\`
-// tw\`scroll-mx-3\`
-// tw\`scroll-my-3\`
-// tw\`scroll-mt-3\`
-// tw\`scroll-mr-3\`
-// tw\`scroll-mb-3\`
-// tw\`scroll-ml-3\`
-// tw\`scroll-m-4\`
-// tw\`scroll-mx-4\`
-// tw\`scroll-my-4\`
-// tw\`scroll-mt-4\`
-// tw\`scroll-mr-4\`
-// tw\`scroll-mb-4\`
-// tw\`scroll-ml-4\`
-// tw\`scroll-m-5\`
-// tw\`scroll-mx-5\`
-// tw\`scroll-my-5\`
-// tw\`scroll-mt-5\`
-// tw\`scroll-mr-5\`
-// tw\`scroll-mb-5\`
-// tw\`scroll-ml-5\`
-// tw\`scroll-m-6\`
-// tw\`scroll-mx-6\`
-// tw\`scroll-my-6\`
-// tw\`scroll-mt-6\`
-// tw\`scroll-mr-6\`
-// tw\`scroll-mb-6\`
-// tw\`scroll-ml-6\`
-// tw\`scroll-m-7\`
-// tw\`scroll-mx-7\`
-// tw\`scroll-my-7\`
-// tw\`scroll-mt-7\`
-// tw\`scroll-mr-7\`
-// tw\`scroll-mb-7\`
-// tw\`scroll-ml-7\`
-// tw\`scroll-m-8\`
-// tw\`scroll-mx-8\`
-// tw\`scroll-my-8\`
-// tw\`scroll-mt-8\`
-// tw\`scroll-mr-8\`
-// tw\`scroll-mb-8\`
-// tw\`scroll-ml-8\`
-// tw\`scroll-m-9\`
-// tw\`scroll-mx-9\`
-// tw\`scroll-my-9\`
-// tw\`scroll-mt-9\`
-// tw\`scroll-mr-9\`
-// tw\`scroll-mb-9\`
-// tw\`scroll-ml-9\`
-// tw\`scroll-m-10\`
-// tw\`scroll-mx-10\`
-// tw\`scroll-my-10\`
-// tw\`scroll-mt-10\`
-// tw\`scroll-mr-10\`
-// tw\`scroll-mb-10\`
-// tw\`scroll-ml-10\`
-// tw\`scroll-m-11\`
-// tw\`scroll-mx-11\`
-// tw\`scroll-my-11\`
-// tw\`scroll-mt-11\`
-// tw\`scroll-mr-11\`
-// tw\`scroll-mb-11\`
-// tw\`scroll-ml-11\`
-// tw\`scroll-m-12\`
-// tw\`scroll-mx-12\`
-// tw\`scroll-my-12\`
-// tw\`scroll-mt-12\`
-// tw\`scroll-mr-12\`
-// tw\`scroll-mb-12\`
-// tw\`scroll-ml-12\`
-// tw\`scroll-m-14\`
-// tw\`scroll-mx-14\`
-// tw\`scroll-my-14\`
-// tw\`scroll-mt-14\`
-// tw\`scroll-mr-14\`
-// tw\`scroll-mb-14\`
-// tw\`scroll-ml-14\`
-// tw\`scroll-m-16\`
-// tw\`scroll-mx-16\`
-// tw\`scroll-my-16\`
-// tw\`scroll-mt-16\`
-// tw\`scroll-mr-16\`
-// tw\`scroll-mb-16\`
-// tw\`scroll-ml-16\`
-// tw\`scroll-m-20\`
-// tw\`scroll-mx-20\`
-// tw\`scroll-my-20\`
-// tw\`scroll-mt-20\`
-// tw\`scroll-mr-20\`
-// tw\`scroll-mb-20\`
-// tw\`scroll-ml-20\`
-// tw\`scroll-m-24\`
-// tw\`scroll-mx-24\`
-// tw\`scroll-my-24\`
-// tw\`scroll-mt-24\`
-// tw\`scroll-mr-24\`
-// tw\`scroll-mb-24\`
-// tw\`scroll-ml-24\`
-// tw\`scroll-m-28\`
-// tw\`scroll-mx-28\`
-// tw\`scroll-my-28\`
-// tw\`scroll-mt-28\`
-// tw\`scroll-mr-28\`
-// tw\`scroll-mb-28\`
-// tw\`scroll-ml-28\`
-// tw\`scroll-m-32\`
-// tw\`scroll-mx-32\`
-// tw\`scroll-my-32\`
-// tw\`scroll-mt-32\`
-// tw\`scroll-mr-32\`
-// tw\`scroll-mb-32\`
-// tw\`scroll-ml-32\`
-// tw\`scroll-m-36\`
-// tw\`scroll-mx-36\`
-// tw\`scroll-my-36\`
-// tw\`scroll-mt-36\`
-// tw\`scroll-mr-36\`
-// tw\`scroll-mb-36\`
-// tw\`scroll-ml-36\`
-// tw\`scroll-m-40\`
-// tw\`scroll-mx-40\`
-// tw\`scroll-my-40\`
-// tw\`scroll-mt-40\`
-// tw\`scroll-mr-40\`
-// tw\`scroll-mb-40\`
-// tw\`scroll-ml-40\`
-// tw\`scroll-m-44\`
-// tw\`scroll-mx-44\`
-// tw\`scroll-my-44\`
-// tw\`scroll-mt-44\`
-// tw\`scroll-mr-44\`
-// tw\`scroll-mb-44\`
-// tw\`scroll-ml-44\`
-// tw\`scroll-m-48\`
-// tw\`scroll-mx-48\`
-// tw\`scroll-my-48\`
-// tw\`scroll-mt-48\`
-// tw\`scroll-mr-48\`
-// tw\`scroll-mb-48\`
-// tw\`scroll-ml-48\`
-// tw\`scroll-m-52\`
-// tw\`scroll-mx-52\`
-// tw\`scroll-my-52\`
-// tw\`scroll-mt-52\`
-// tw\`scroll-mr-52\`
-// tw\`scroll-mb-52\`
-// tw\`scroll-ml-52\`
-// tw\`scroll-m-56\`
-// tw\`scroll-mx-56\`
-// tw\`scroll-my-56\`
-// tw\`scroll-mt-56\`
-// tw\`scroll-mr-56\`
-// tw\`scroll-mb-56\`
-// tw\`scroll-ml-56\`
-// tw\`scroll-m-60\`
-// tw\`scroll-mx-60\`
-// tw\`scroll-my-60\`
-// tw\`scroll-mt-60\`
-// tw\`scroll-mr-60\`
-// tw\`scroll-mb-60\`
-// tw\`scroll-ml-60\`
-// tw\`scroll-m-64\`
-// tw\`scroll-mx-64\`
-// tw\`scroll-my-64\`
-// tw\`scroll-mt-64\`
-// tw\`scroll-mr-64\`
-// tw\`scroll-mb-64\`
-// tw\`scroll-ml-64\`
-// tw\`scroll-m-72\`
-// tw\`scroll-mx-72\`
-// tw\`scroll-my-72\`
-// tw\`scroll-mt-72\`
-// tw\`scroll-mr-72\`
-// tw\`scroll-mb-72\`
-// tw\`scroll-ml-72\`
-// tw\`scroll-m-80\`
-// tw\`scroll-mx-80\`
-// tw\`scroll-my-80\`
-// tw\`scroll-mt-80\`
-// tw\`scroll-mr-80\`
-// tw\`scroll-mb-80\`
-// tw\`scroll-ml-80\`
-// tw\`scroll-m-96\`
-// tw\`scroll-mx-96\`
-// tw\`scroll-my-96\`
-// tw\`scroll-mt-96\`
-// tw\`scroll-mr-96\`
-// tw\`scroll-mb-96\`
-// tw\`scroll-ml-96\`
+tw\`scroll-m-0\`
+tw\`scroll-mx-0\`
+tw\`scroll-my-0\`
+tw\`scroll-mt-0\`
+tw\`scroll-mr-0\`
+tw\`scroll-mb-0\`
+tw\`scroll-ml-0\`
+tw\`scroll-m-px\`
+tw\`scroll-mx-px\`
+tw\`scroll-my-px\`
+tw\`scroll-mt-px\`
+tw\`scroll-mr-px\`
+tw\`scroll-mb-px\`
+tw\`scroll-ml-px\`
+tw\`scroll-m-0\`
+tw\`scroll-mx-0\`
+tw\`scroll-my-0\`
+tw\`scroll-mt-0\`
+tw\`scroll-mr-0\`
+tw\`scroll-mb-0\`
+tw\`scroll-ml-0\`
+tw\`scroll-m-1\`
+tw\`scroll-mx-1\`
+tw\`scroll-my-1\`
+tw\`scroll-mt-1\`
+tw\`scroll-mr-1\`
+tw\`scroll-mb-1\`
+tw\`scroll-ml-1\`
+tw\`scroll-m-1\`
+tw\`scroll-mx-1\`
+tw\`scroll-my-1\`
+tw\`scroll-mt-1\`
+tw\`scroll-mr-1\`
+tw\`scroll-mb-1\`
+tw\`scroll-ml-1\`
+tw\`scroll-m-2\`
+tw\`scroll-mx-2\`
+tw\`scroll-my-2\`
+tw\`scroll-mt-2\`
+tw\`scroll-mr-2\`
+tw\`scroll-mb-2\`
+tw\`scroll-ml-2\`
+tw\`scroll-m-2\`
+tw\`scroll-mx-2\`
+tw\`scroll-my-2\`
+tw\`scroll-mt-2\`
+tw\`scroll-mr-2\`
+tw\`scroll-mb-2\`
+tw\`scroll-ml-2\`
+tw\`scroll-m-3\`
+tw\`scroll-mx-3\`
+tw\`scroll-my-3\`
+tw\`scroll-mt-3\`
+tw\`scroll-mr-3\`
+tw\`scroll-mb-3\`
+tw\`scroll-ml-3\`
+tw\`scroll-m-3\`
+tw\`scroll-mx-3\`
+tw\`scroll-my-3\`
+tw\`scroll-mt-3\`
+tw\`scroll-mr-3\`
+tw\`scroll-mb-3\`
+tw\`scroll-ml-3\`
+tw\`scroll-m-4\`
+tw\`scroll-mx-4\`
+tw\`scroll-my-4\`
+tw\`scroll-mt-4\`
+tw\`scroll-mr-4\`
+tw\`scroll-mb-4\`
+tw\`scroll-ml-4\`
+tw\`scroll-m-5\`
+tw\`scroll-mx-5\`
+tw\`scroll-my-5\`
+tw\`scroll-mt-5\`
+tw\`scroll-mr-5\`
+tw\`scroll-mb-5\`
+tw\`scroll-ml-5\`
+tw\`scroll-m-6\`
+tw\`scroll-mx-6\`
+tw\`scroll-my-6\`
+tw\`scroll-mt-6\`
+tw\`scroll-mr-6\`
+tw\`scroll-mb-6\`
+tw\`scroll-ml-6\`
+tw\`scroll-m-7\`
+tw\`scroll-mx-7\`
+tw\`scroll-my-7\`
+tw\`scroll-mt-7\`
+tw\`scroll-mr-7\`
+tw\`scroll-mb-7\`
+tw\`scroll-ml-7\`
+tw\`scroll-m-8\`
+tw\`scroll-mx-8\`
+tw\`scroll-my-8\`
+tw\`scroll-mt-8\`
+tw\`scroll-mr-8\`
+tw\`scroll-mb-8\`
+tw\`scroll-ml-8\`
+tw\`scroll-m-9\`
+tw\`scroll-mx-9\`
+tw\`scroll-my-9\`
+tw\`scroll-mt-9\`
+tw\`scroll-mr-9\`
+tw\`scroll-mb-9\`
+tw\`scroll-ml-9\`
+tw\`scroll-m-10\`
+tw\`scroll-mx-10\`
+tw\`scroll-my-10\`
+tw\`scroll-mt-10\`
+tw\`scroll-mr-10\`
+tw\`scroll-mb-10\`
+tw\`scroll-ml-10\`
+tw\`scroll-m-11\`
+tw\`scroll-mx-11\`
+tw\`scroll-my-11\`
+tw\`scroll-mt-11\`
+tw\`scroll-mr-11\`
+tw\`scroll-mb-11\`
+tw\`scroll-ml-11\`
+tw\`scroll-m-12\`
+tw\`scroll-mx-12\`
+tw\`scroll-my-12\`
+tw\`scroll-mt-12\`
+tw\`scroll-mr-12\`
+tw\`scroll-mb-12\`
+tw\`scroll-ml-12\`
+tw\`scroll-m-14\`
+tw\`scroll-mx-14\`
+tw\`scroll-my-14\`
+tw\`scroll-mt-14\`
+tw\`scroll-mr-14\`
+tw\`scroll-mb-14\`
+tw\`scroll-ml-14\`
+tw\`scroll-m-16\`
+tw\`scroll-mx-16\`
+tw\`scroll-my-16\`
+tw\`scroll-mt-16\`
+tw\`scroll-mr-16\`
+tw\`scroll-mb-16\`
+tw\`scroll-ml-16\`
+tw\`scroll-m-20\`
+tw\`scroll-mx-20\`
+tw\`scroll-my-20\`
+tw\`scroll-mt-20\`
+tw\`scroll-mr-20\`
+tw\`scroll-mb-20\`
+tw\`scroll-ml-20\`
+tw\`scroll-m-24\`
+tw\`scroll-mx-24\`
+tw\`scroll-my-24\`
+tw\`scroll-mt-24\`
+tw\`scroll-mr-24\`
+tw\`scroll-mb-24\`
+tw\`scroll-ml-24\`
+tw\`scroll-m-28\`
+tw\`scroll-mx-28\`
+tw\`scroll-my-28\`
+tw\`scroll-mt-28\`
+tw\`scroll-mr-28\`
+tw\`scroll-mb-28\`
+tw\`scroll-ml-28\`
+tw\`scroll-m-32\`
+tw\`scroll-mx-32\`
+tw\`scroll-my-32\`
+tw\`scroll-mt-32\`
+tw\`scroll-mr-32\`
+tw\`scroll-mb-32\`
+tw\`scroll-ml-32\`
+tw\`scroll-m-36\`
+tw\`scroll-mx-36\`
+tw\`scroll-my-36\`
+tw\`scroll-mt-36\`
+tw\`scroll-mr-36\`
+tw\`scroll-mb-36\`
+tw\`scroll-ml-36\`
+tw\`scroll-m-40\`
+tw\`scroll-mx-40\`
+tw\`scroll-my-40\`
+tw\`scroll-mt-40\`
+tw\`scroll-mr-40\`
+tw\`scroll-mb-40\`
+tw\`scroll-ml-40\`
+tw\`scroll-m-44\`
+tw\`scroll-mx-44\`
+tw\`scroll-my-44\`
+tw\`scroll-mt-44\`
+tw\`scroll-mr-44\`
+tw\`scroll-mb-44\`
+tw\`scroll-ml-44\`
+tw\`scroll-m-48\`
+tw\`scroll-mx-48\`
+tw\`scroll-my-48\`
+tw\`scroll-mt-48\`
+tw\`scroll-mr-48\`
+tw\`scroll-mb-48\`
+tw\`scroll-ml-48\`
+tw\`scroll-m-52\`
+tw\`scroll-mx-52\`
+tw\`scroll-my-52\`
+tw\`scroll-mt-52\`
+tw\`scroll-mr-52\`
+tw\`scroll-mb-52\`
+tw\`scroll-ml-52\`
+tw\`scroll-m-56\`
+tw\`scroll-mx-56\`
+tw\`scroll-my-56\`
+tw\`scroll-mt-56\`
+tw\`scroll-mr-56\`
+tw\`scroll-mb-56\`
+tw\`scroll-ml-56\`
+tw\`scroll-m-60\`
+tw\`scroll-mx-60\`
+tw\`scroll-my-60\`
+tw\`scroll-mt-60\`
+tw\`scroll-mr-60\`
+tw\`scroll-mb-60\`
+tw\`scroll-ml-60\`
+tw\`scroll-m-64\`
+tw\`scroll-mx-64\`
+tw\`scroll-my-64\`
+tw\`scroll-mt-64\`
+tw\`scroll-mr-64\`
+tw\`scroll-mb-64\`
+tw\`scroll-ml-64\`
+tw\`scroll-m-72\`
+tw\`scroll-mx-72\`
+tw\`scroll-my-72\`
+tw\`scroll-mt-72\`
+tw\`scroll-mr-72\`
+tw\`scroll-mb-72\`
+tw\`scroll-ml-72\`
+tw\`scroll-m-80\`
+tw\`scroll-mx-80\`
+tw\`scroll-my-80\`
+tw\`scroll-mt-80\`
+tw\`scroll-mr-80\`
+tw\`scroll-mb-80\`
+tw\`scroll-ml-80\`
+tw\`scroll-m-96\`
+tw\`scroll-mx-96\`
+tw\`scroll-my-96\`
+tw\`scroll-mt-96\`
+tw\`scroll-mr-96\`
+tw\`scroll-mb-96\`
+tw\`scroll-ml-96\`
 
-// tw\`-scroll-m-96\`
-// tw\`-scroll-mx-96\`
-// tw\`-scroll-my-96\`
-// tw\`-scroll-mt-96\`
-// tw\`-scroll-mr-96\`
-// tw\`-scroll-mb-96\`
-// tw\`-scroll-ml-96\`
+tw\`-scroll-m-96\`
+tw\`-scroll-mx-96\`
+tw\`-scroll-my-96\`
+tw\`-scroll-mt-96\`
+tw\`-scroll-mr-96\`
+tw\`-scroll-mb-96\`
+tw\`-scroll-ml-96\`
 
-// tw\`-scroll-m-[24rem]\`
-// tw\`scroll-m-[24rem]\`
+tw\`-scroll-m-[24rem]\`
+tw\`scroll-m-[24rem]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -44270,260 +44460,841 @@ theme\`scrollMargin\`
   1.5: '0.375rem',
   2.5: '0.625rem',
   3.5: '0.875rem',
-}) // tw\`scroll-m-0\`
-// tw\`scroll-mx-0\`
-// tw\`scroll-my-0\`
-// tw\`scroll-mt-0\`
-// tw\`scroll-mr-0\`
-// tw\`scroll-mb-0\`
-// tw\`scroll-ml-0\`
-// tw\`scroll-m-px\`
-// tw\`scroll-mx-px\`
-// tw\`scroll-my-px\`
-// tw\`scroll-mt-px\`
-// tw\`scroll-mr-px\`
-// tw\`scroll-mb-px\`
-// tw\`scroll-ml-px\`
-// tw\`scroll-m-0\`
-// tw\`scroll-mx-0\`
-// tw\`scroll-my-0\`
-// tw\`scroll-mt-0\`
-// tw\`scroll-mr-0\`
-// tw\`scroll-mb-0\`
-// tw\`scroll-ml-0\`
-// tw\`scroll-m-1\`
-// tw\`scroll-mx-1\`
-// tw\`scroll-my-1\`
-// tw\`scroll-mt-1\`
-// tw\`scroll-mr-1\`
-// tw\`scroll-mb-1\`
-// tw\`scroll-ml-1\`
-// tw\`scroll-m-1\`
-// tw\`scroll-mx-1\`
-// tw\`scroll-my-1\`
-// tw\`scroll-mt-1\`
-// tw\`scroll-mr-1\`
-// tw\`scroll-mb-1\`
-// tw\`scroll-ml-1\`
-// tw\`scroll-m-2\`
-// tw\`scroll-mx-2\`
-// tw\`scroll-my-2\`
-// tw\`scroll-mt-2\`
-// tw\`scroll-mr-2\`
-// tw\`scroll-mb-2\`
-// tw\`scroll-ml-2\`
-// tw\`scroll-m-2\`
-// tw\`scroll-mx-2\`
-// tw\`scroll-my-2\`
-// tw\`scroll-mt-2\`
-// tw\`scroll-mr-2\`
-// tw\`scroll-mb-2\`
-// tw\`scroll-ml-2\`
-// tw\`scroll-m-3\`
-// tw\`scroll-mx-3\`
-// tw\`scroll-my-3\`
-// tw\`scroll-mt-3\`
-// tw\`scroll-mr-3\`
-// tw\`scroll-mb-3\`
-// tw\`scroll-ml-3\`
-// tw\`scroll-m-3\`
-// tw\`scroll-mx-3\`
-// tw\`scroll-my-3\`
-// tw\`scroll-mt-3\`
-// tw\`scroll-mr-3\`
-// tw\`scroll-mb-3\`
-// tw\`scroll-ml-3\`
-// tw\`scroll-m-4\`
-// tw\`scroll-mx-4\`
-// tw\`scroll-my-4\`
-// tw\`scroll-mt-4\`
-// tw\`scroll-mr-4\`
-// tw\`scroll-mb-4\`
-// tw\`scroll-ml-4\`
-// tw\`scroll-m-5\`
-// tw\`scroll-mx-5\`
-// tw\`scroll-my-5\`
-// tw\`scroll-mt-5\`
-// tw\`scroll-mr-5\`
-// tw\`scroll-mb-5\`
-// tw\`scroll-ml-5\`
-// tw\`scroll-m-6\`
-// tw\`scroll-mx-6\`
-// tw\`scroll-my-6\`
-// tw\`scroll-mt-6\`
-// tw\`scroll-mr-6\`
-// tw\`scroll-mb-6\`
-// tw\`scroll-ml-6\`
-// tw\`scroll-m-7\`
-// tw\`scroll-mx-7\`
-// tw\`scroll-my-7\`
-// tw\`scroll-mt-7\`
-// tw\`scroll-mr-7\`
-// tw\`scroll-mb-7\`
-// tw\`scroll-ml-7\`
-// tw\`scroll-m-8\`
-// tw\`scroll-mx-8\`
-// tw\`scroll-my-8\`
-// tw\`scroll-mt-8\`
-// tw\`scroll-mr-8\`
-// tw\`scroll-mb-8\`
-// tw\`scroll-ml-8\`
-// tw\`scroll-m-9\`
-// tw\`scroll-mx-9\`
-// tw\`scroll-my-9\`
-// tw\`scroll-mt-9\`
-// tw\`scroll-mr-9\`
-// tw\`scroll-mb-9\`
-// tw\`scroll-ml-9\`
-// tw\`scroll-m-10\`
-// tw\`scroll-mx-10\`
-// tw\`scroll-my-10\`
-// tw\`scroll-mt-10\`
-// tw\`scroll-mr-10\`
-// tw\`scroll-mb-10\`
-// tw\`scroll-ml-10\`
-// tw\`scroll-m-11\`
-// tw\`scroll-mx-11\`
-// tw\`scroll-my-11\`
-// tw\`scroll-mt-11\`
-// tw\`scroll-mr-11\`
-// tw\`scroll-mb-11\`
-// tw\`scroll-ml-11\`
-// tw\`scroll-m-12\`
-// tw\`scroll-mx-12\`
-// tw\`scroll-my-12\`
-// tw\`scroll-mt-12\`
-// tw\`scroll-mr-12\`
-// tw\`scroll-mb-12\`
-// tw\`scroll-ml-12\`
-// tw\`scroll-m-14\`
-// tw\`scroll-mx-14\`
-// tw\`scroll-my-14\`
-// tw\`scroll-mt-14\`
-// tw\`scroll-mr-14\`
-// tw\`scroll-mb-14\`
-// tw\`scroll-ml-14\`
-// tw\`scroll-m-16\`
-// tw\`scroll-mx-16\`
-// tw\`scroll-my-16\`
-// tw\`scroll-mt-16\`
-// tw\`scroll-mr-16\`
-// tw\`scroll-mb-16\`
-// tw\`scroll-ml-16\`
-// tw\`scroll-m-20\`
-// tw\`scroll-mx-20\`
-// tw\`scroll-my-20\`
-// tw\`scroll-mt-20\`
-// tw\`scroll-mr-20\`
-// tw\`scroll-mb-20\`
-// tw\`scroll-ml-20\`
-// tw\`scroll-m-24\`
-// tw\`scroll-mx-24\`
-// tw\`scroll-my-24\`
-// tw\`scroll-mt-24\`
-// tw\`scroll-mr-24\`
-// tw\`scroll-mb-24\`
-// tw\`scroll-ml-24\`
-// tw\`scroll-m-28\`
-// tw\`scroll-mx-28\`
-// tw\`scroll-my-28\`
-// tw\`scroll-mt-28\`
-// tw\`scroll-mr-28\`
-// tw\`scroll-mb-28\`
-// tw\`scroll-ml-28\`
-// tw\`scroll-m-32\`
-// tw\`scroll-mx-32\`
-// tw\`scroll-my-32\`
-// tw\`scroll-mt-32\`
-// tw\`scroll-mr-32\`
-// tw\`scroll-mb-32\`
-// tw\`scroll-ml-32\`
-// tw\`scroll-m-36\`
-// tw\`scroll-mx-36\`
-// tw\`scroll-my-36\`
-// tw\`scroll-mt-36\`
-// tw\`scroll-mr-36\`
-// tw\`scroll-mb-36\`
-// tw\`scroll-ml-36\`
-// tw\`scroll-m-40\`
-// tw\`scroll-mx-40\`
-// tw\`scroll-my-40\`
-// tw\`scroll-mt-40\`
-// tw\`scroll-mr-40\`
-// tw\`scroll-mb-40\`
-// tw\`scroll-ml-40\`
-// tw\`scroll-m-44\`
-// tw\`scroll-mx-44\`
-// tw\`scroll-my-44\`
-// tw\`scroll-mt-44\`
-// tw\`scroll-mr-44\`
-// tw\`scroll-mb-44\`
-// tw\`scroll-ml-44\`
-// tw\`scroll-m-48\`
-// tw\`scroll-mx-48\`
-// tw\`scroll-my-48\`
-// tw\`scroll-mt-48\`
-// tw\`scroll-mr-48\`
-// tw\`scroll-mb-48\`
-// tw\`scroll-ml-48\`
-// tw\`scroll-m-52\`
-// tw\`scroll-mx-52\`
-// tw\`scroll-my-52\`
-// tw\`scroll-mt-52\`
-// tw\`scroll-mr-52\`
-// tw\`scroll-mb-52\`
-// tw\`scroll-ml-52\`
-// tw\`scroll-m-56\`
-// tw\`scroll-mx-56\`
-// tw\`scroll-my-56\`
-// tw\`scroll-mt-56\`
-// tw\`scroll-mr-56\`
-// tw\`scroll-mb-56\`
-// tw\`scroll-ml-56\`
-// tw\`scroll-m-60\`
-// tw\`scroll-mx-60\`
-// tw\`scroll-my-60\`
-// tw\`scroll-mt-60\`
-// tw\`scroll-mr-60\`
-// tw\`scroll-mb-60\`
-// tw\`scroll-ml-60\`
-// tw\`scroll-m-64\`
-// tw\`scroll-mx-64\`
-// tw\`scroll-my-64\`
-// tw\`scroll-mt-64\`
-// tw\`scroll-mr-64\`
-// tw\`scroll-mb-64\`
-// tw\`scroll-ml-64\`
-// tw\`scroll-m-72\`
-// tw\`scroll-mx-72\`
-// tw\`scroll-my-72\`
-// tw\`scroll-mt-72\`
-// tw\`scroll-mr-72\`
-// tw\`scroll-mb-72\`
-// tw\`scroll-ml-72\`
-// tw\`scroll-m-80\`
-// tw\`scroll-mx-80\`
-// tw\`scroll-my-80\`
-// tw\`scroll-mt-80\`
-// tw\`scroll-mr-80\`
-// tw\`scroll-mb-80\`
-// tw\`scroll-ml-80\`
-// tw\`scroll-m-96\`
-// tw\`scroll-mx-96\`
-// tw\`scroll-my-96\`
-// tw\`scroll-mt-96\`
-// tw\`scroll-mr-96\`
-// tw\`scroll-mb-96\`
-// tw\`scroll-ml-96\`
-// tw\`-scroll-m-96\`
-// tw\`-scroll-mx-96\`
-// tw\`-scroll-my-96\`
-// tw\`-scroll-mt-96\`
-// tw\`-scroll-mr-96\`
-// tw\`-scroll-mb-96\`
-// tw\`-scroll-ml-96\`
-// tw\`-scroll-m-[24rem]\`
-// tw\`scroll-m-[24rem]\`
+})
+;({
+  scrollMargin: '0px',
+})
+;({
+  scrollMarginLeft: '0px',
+  scrollMarginRight: '0px',
+})
+;({
+  scrollMarginTop: '0px',
+  scrollMarginBottom: '0px',
+})
+;({
+  scrollMarginTop: '0px',
+})
+;({
+  scrollMarginRight: '0px',
+})
+;({
+  scrollMarginBottom: '0px',
+})
+;({
+  scrollMarginLeft: '0px',
+})
+;({
+  scrollMargin: '1px',
+})
+;({
+  scrollMarginLeft: '1px',
+  scrollMarginRight: '1px',
+})
+;({
+  scrollMarginTop: '1px',
+  scrollMarginBottom: '1px',
+})
+;({
+  scrollMarginTop: '1px',
+})
+;({
+  scrollMarginRight: '1px',
+})
+;({
+  scrollMarginBottom: '1px',
+})
+;({
+  scrollMarginLeft: '1px',
+})
+;({
+  scrollMargin: '0px',
+})
+;({
+  scrollMarginLeft: '0px',
+  scrollMarginRight: '0px',
+})
+;({
+  scrollMarginTop: '0px',
+  scrollMarginBottom: '0px',
+})
+;({
+  scrollMarginTop: '0px',
+})
+;({
+  scrollMarginRight: '0px',
+})
+;({
+  scrollMarginBottom: '0px',
+})
+;({
+  scrollMarginLeft: '0px',
+})
+;({
+  scrollMargin: '0.25rem',
+})
+;({
+  scrollMarginLeft: '0.25rem',
+  scrollMarginRight: '0.25rem',
+})
+;({
+  scrollMarginTop: '0.25rem',
+  scrollMarginBottom: '0.25rem',
+})
+;({
+  scrollMarginTop: '0.25rem',
+})
+;({
+  scrollMarginRight: '0.25rem',
+})
+;({
+  scrollMarginBottom: '0.25rem',
+})
+;({
+  scrollMarginLeft: '0.25rem',
+})
+;({
+  scrollMargin: '0.25rem',
+})
+;({
+  scrollMarginLeft: '0.25rem',
+  scrollMarginRight: '0.25rem',
+})
+;({
+  scrollMarginTop: '0.25rem',
+  scrollMarginBottom: '0.25rem',
+})
+;({
+  scrollMarginTop: '0.25rem',
+})
+;({
+  scrollMarginRight: '0.25rem',
+})
+;({
+  scrollMarginBottom: '0.25rem',
+})
+;({
+  scrollMarginLeft: '0.25rem',
+})
+;({
+  scrollMargin: '0.5rem',
+})
+;({
+  scrollMarginLeft: '0.5rem',
+  scrollMarginRight: '0.5rem',
+})
+;({
+  scrollMarginTop: '0.5rem',
+  scrollMarginBottom: '0.5rem',
+})
+;({
+  scrollMarginTop: '0.5rem',
+})
+;({
+  scrollMarginRight: '0.5rem',
+})
+;({
+  scrollMarginBottom: '0.5rem',
+})
+;({
+  scrollMarginLeft: '0.5rem',
+})
+;({
+  scrollMargin: '0.5rem',
+})
+;({
+  scrollMarginLeft: '0.5rem',
+  scrollMarginRight: '0.5rem',
+})
+;({
+  scrollMarginTop: '0.5rem',
+  scrollMarginBottom: '0.5rem',
+})
+;({
+  scrollMarginTop: '0.5rem',
+})
+;({
+  scrollMarginRight: '0.5rem',
+})
+;({
+  scrollMarginBottom: '0.5rem',
+})
+;({
+  scrollMarginLeft: '0.5rem',
+})
+;({
+  scrollMargin: '0.75rem',
+})
+;({
+  scrollMarginLeft: '0.75rem',
+  scrollMarginRight: '0.75rem',
+})
+;({
+  scrollMarginTop: '0.75rem',
+  scrollMarginBottom: '0.75rem',
+})
+;({
+  scrollMarginTop: '0.75rem',
+})
+;({
+  scrollMarginRight: '0.75rem',
+})
+;({
+  scrollMarginBottom: '0.75rem',
+})
+;({
+  scrollMarginLeft: '0.75rem',
+})
+;({
+  scrollMargin: '0.75rem',
+})
+;({
+  scrollMarginLeft: '0.75rem',
+  scrollMarginRight: '0.75rem',
+})
+;({
+  scrollMarginTop: '0.75rem',
+  scrollMarginBottom: '0.75rem',
+})
+;({
+  scrollMarginTop: '0.75rem',
+})
+;({
+  scrollMarginRight: '0.75rem',
+})
+;({
+  scrollMarginBottom: '0.75rem',
+})
+;({
+  scrollMarginLeft: '0.75rem',
+})
+;({
+  scrollMargin: '1rem',
+})
+;({
+  scrollMarginLeft: '1rem',
+  scrollMarginRight: '1rem',
+})
+;({
+  scrollMarginTop: '1rem',
+  scrollMarginBottom: '1rem',
+})
+;({
+  scrollMarginTop: '1rem',
+})
+;({
+  scrollMarginRight: '1rem',
+})
+;({
+  scrollMarginBottom: '1rem',
+})
+;({
+  scrollMarginLeft: '1rem',
+})
+;({
+  scrollMargin: '1.25rem',
+})
+;({
+  scrollMarginLeft: '1.25rem',
+  scrollMarginRight: '1.25rem',
+})
+;({
+  scrollMarginTop: '1.25rem',
+  scrollMarginBottom: '1.25rem',
+})
+;({
+  scrollMarginTop: '1.25rem',
+})
+;({
+  scrollMarginRight: '1.25rem',
+})
+;({
+  scrollMarginBottom: '1.25rem',
+})
+;({
+  scrollMarginLeft: '1.25rem',
+})
+;({
+  scrollMargin: '1.5rem',
+})
+;({
+  scrollMarginLeft: '1.5rem',
+  scrollMarginRight: '1.5rem',
+})
+;({
+  scrollMarginTop: '1.5rem',
+  scrollMarginBottom: '1.5rem',
+})
+;({
+  scrollMarginTop: '1.5rem',
+})
+;({
+  scrollMarginRight: '1.5rem',
+})
+;({
+  scrollMarginBottom: '1.5rem',
+})
+;({
+  scrollMarginLeft: '1.5rem',
+})
+;({
+  scrollMargin: '1.75rem',
+})
+;({
+  scrollMarginLeft: '1.75rem',
+  scrollMarginRight: '1.75rem',
+})
+;({
+  scrollMarginTop: '1.75rem',
+  scrollMarginBottom: '1.75rem',
+})
+;({
+  scrollMarginTop: '1.75rem',
+})
+;({
+  scrollMarginRight: '1.75rem',
+})
+;({
+  scrollMarginBottom: '1.75rem',
+})
+;({
+  scrollMarginLeft: '1.75rem',
+})
+;({
+  scrollMargin: '2rem',
+})
+;({
+  scrollMarginLeft: '2rem',
+  scrollMarginRight: '2rem',
+})
+;({
+  scrollMarginTop: '2rem',
+  scrollMarginBottom: '2rem',
+})
+;({
+  scrollMarginTop: '2rem',
+})
+;({
+  scrollMarginRight: '2rem',
+})
+;({
+  scrollMarginBottom: '2rem',
+})
+;({
+  scrollMarginLeft: '2rem',
+})
+;({
+  scrollMargin: '2.25rem',
+})
+;({
+  scrollMarginLeft: '2.25rem',
+  scrollMarginRight: '2.25rem',
+})
+;({
+  scrollMarginTop: '2.25rem',
+  scrollMarginBottom: '2.25rem',
+})
+;({
+  scrollMarginTop: '2.25rem',
+})
+;({
+  scrollMarginRight: '2.25rem',
+})
+;({
+  scrollMarginBottom: '2.25rem',
+})
+;({
+  scrollMarginLeft: '2.25rem',
+})
+;({
+  scrollMargin: '2.5rem',
+})
+;({
+  scrollMarginLeft: '2.5rem',
+  scrollMarginRight: '2.5rem',
+})
+;({
+  scrollMarginTop: '2.5rem',
+  scrollMarginBottom: '2.5rem',
+})
+;({
+  scrollMarginTop: '2.5rem',
+})
+;({
+  scrollMarginRight: '2.5rem',
+})
+;({
+  scrollMarginBottom: '2.5rem',
+})
+;({
+  scrollMarginLeft: '2.5rem',
+})
+;({
+  scrollMargin: '2.75rem',
+})
+;({
+  scrollMarginLeft: '2.75rem',
+  scrollMarginRight: '2.75rem',
+})
+;({
+  scrollMarginTop: '2.75rem',
+  scrollMarginBottom: '2.75rem',
+})
+;({
+  scrollMarginTop: '2.75rem',
+})
+;({
+  scrollMarginRight: '2.75rem',
+})
+;({
+  scrollMarginBottom: '2.75rem',
+})
+;({
+  scrollMarginLeft: '2.75rem',
+})
+;({
+  scrollMargin: '3rem',
+})
+;({
+  scrollMarginLeft: '3rem',
+  scrollMarginRight: '3rem',
+})
+;({
+  scrollMarginTop: '3rem',
+  scrollMarginBottom: '3rem',
+})
+;({
+  scrollMarginTop: '3rem',
+})
+;({
+  scrollMarginRight: '3rem',
+})
+;({
+  scrollMarginBottom: '3rem',
+})
+;({
+  scrollMarginLeft: '3rem',
+})
+;({
+  scrollMargin: '3.5rem',
+})
+;({
+  scrollMarginLeft: '3.5rem',
+  scrollMarginRight: '3.5rem',
+})
+;({
+  scrollMarginTop: '3.5rem',
+  scrollMarginBottom: '3.5rem',
+})
+;({
+  scrollMarginTop: '3.5rem',
+})
+;({
+  scrollMarginRight: '3.5rem',
+})
+;({
+  scrollMarginBottom: '3.5rem',
+})
+;({
+  scrollMarginLeft: '3.5rem',
+})
+;({
+  scrollMargin: '4rem',
+})
+;({
+  scrollMarginLeft: '4rem',
+  scrollMarginRight: '4rem',
+})
+;({
+  scrollMarginTop: '4rem',
+  scrollMarginBottom: '4rem',
+})
+;({
+  scrollMarginTop: '4rem',
+})
+;({
+  scrollMarginRight: '4rem',
+})
+;({
+  scrollMarginBottom: '4rem',
+})
+;({
+  scrollMarginLeft: '4rem',
+})
+;({
+  scrollMargin: '5rem',
+})
+;({
+  scrollMarginLeft: '5rem',
+  scrollMarginRight: '5rem',
+})
+;({
+  scrollMarginTop: '5rem',
+  scrollMarginBottom: '5rem',
+})
+;({
+  scrollMarginTop: '5rem',
+})
+;({
+  scrollMarginRight: '5rem',
+})
+;({
+  scrollMarginBottom: '5rem',
+})
+;({
+  scrollMarginLeft: '5rem',
+})
+;({
+  scrollMargin: '6rem',
+})
+;({
+  scrollMarginLeft: '6rem',
+  scrollMarginRight: '6rem',
+})
+;({
+  scrollMarginTop: '6rem',
+  scrollMarginBottom: '6rem',
+})
+;({
+  scrollMarginTop: '6rem',
+})
+;({
+  scrollMarginRight: '6rem',
+})
+;({
+  scrollMarginBottom: '6rem',
+})
+;({
+  scrollMarginLeft: '6rem',
+})
+;({
+  scrollMargin: '7rem',
+})
+;({
+  scrollMarginLeft: '7rem',
+  scrollMarginRight: '7rem',
+})
+;({
+  scrollMarginTop: '7rem',
+  scrollMarginBottom: '7rem',
+})
+;({
+  scrollMarginTop: '7rem',
+})
+;({
+  scrollMarginRight: '7rem',
+})
+;({
+  scrollMarginBottom: '7rem',
+})
+;({
+  scrollMarginLeft: '7rem',
+})
+;({
+  scrollMargin: '8rem',
+})
+;({
+  scrollMarginLeft: '8rem',
+  scrollMarginRight: '8rem',
+})
+;({
+  scrollMarginTop: '8rem',
+  scrollMarginBottom: '8rem',
+})
+;({
+  scrollMarginTop: '8rem',
+})
+;({
+  scrollMarginRight: '8rem',
+})
+;({
+  scrollMarginBottom: '8rem',
+})
+;({
+  scrollMarginLeft: '8rem',
+})
+;({
+  scrollMargin: '9rem',
+})
+;({
+  scrollMarginLeft: '9rem',
+  scrollMarginRight: '9rem',
+})
+;({
+  scrollMarginTop: '9rem',
+  scrollMarginBottom: '9rem',
+})
+;({
+  scrollMarginTop: '9rem',
+})
+;({
+  scrollMarginRight: '9rem',
+})
+;({
+  scrollMarginBottom: '9rem',
+})
+;({
+  scrollMarginLeft: '9rem',
+})
+;({
+  scrollMargin: '10rem',
+})
+;({
+  scrollMarginLeft: '10rem',
+  scrollMarginRight: '10rem',
+})
+;({
+  scrollMarginTop: '10rem',
+  scrollMarginBottom: '10rem',
+})
+;({
+  scrollMarginTop: '10rem',
+})
+;({
+  scrollMarginRight: '10rem',
+})
+;({
+  scrollMarginBottom: '10rem',
+})
+;({
+  scrollMarginLeft: '10rem',
+})
+;({
+  scrollMargin: '11rem',
+})
+;({
+  scrollMarginLeft: '11rem',
+  scrollMarginRight: '11rem',
+})
+;({
+  scrollMarginTop: '11rem',
+  scrollMarginBottom: '11rem',
+})
+;({
+  scrollMarginTop: '11rem',
+})
+;({
+  scrollMarginRight: '11rem',
+})
+;({
+  scrollMarginBottom: '11rem',
+})
+;({
+  scrollMarginLeft: '11rem',
+})
+;({
+  scrollMargin: '12rem',
+})
+;({
+  scrollMarginLeft: '12rem',
+  scrollMarginRight: '12rem',
+})
+;({
+  scrollMarginTop: '12rem',
+  scrollMarginBottom: '12rem',
+})
+;({
+  scrollMarginTop: '12rem',
+})
+;({
+  scrollMarginRight: '12rem',
+})
+;({
+  scrollMarginBottom: '12rem',
+})
+;({
+  scrollMarginLeft: '12rem',
+})
+;({
+  scrollMargin: '13rem',
+})
+;({
+  scrollMarginLeft: '13rem',
+  scrollMarginRight: '13rem',
+})
+;({
+  scrollMarginTop: '13rem',
+  scrollMarginBottom: '13rem',
+})
+;({
+  scrollMarginTop: '13rem',
+})
+;({
+  scrollMarginRight: '13rem',
+})
+;({
+  scrollMarginBottom: '13rem',
+})
+;({
+  scrollMarginLeft: '13rem',
+})
+;({
+  scrollMargin: '14rem',
+})
+;({
+  scrollMarginLeft: '14rem',
+  scrollMarginRight: '14rem',
+})
+;({
+  scrollMarginTop: '14rem',
+  scrollMarginBottom: '14rem',
+})
+;({
+  scrollMarginTop: '14rem',
+})
+;({
+  scrollMarginRight: '14rem',
+})
+;({
+  scrollMarginBottom: '14rem',
+})
+;({
+  scrollMarginLeft: '14rem',
+})
+;({
+  scrollMargin: '15rem',
+})
+;({
+  scrollMarginLeft: '15rem',
+  scrollMarginRight: '15rem',
+})
+;({
+  scrollMarginTop: '15rem',
+  scrollMarginBottom: '15rem',
+})
+;({
+  scrollMarginTop: '15rem',
+})
+;({
+  scrollMarginRight: '15rem',
+})
+;({
+  scrollMarginBottom: '15rem',
+})
+;({
+  scrollMarginLeft: '15rem',
+})
+;({
+  scrollMargin: '16rem',
+})
+;({
+  scrollMarginLeft: '16rem',
+  scrollMarginRight: '16rem',
+})
+;({
+  scrollMarginTop: '16rem',
+  scrollMarginBottom: '16rem',
+})
+;({
+  scrollMarginTop: '16rem',
+})
+;({
+  scrollMarginRight: '16rem',
+})
+;({
+  scrollMarginBottom: '16rem',
+})
+;({
+  scrollMarginLeft: '16rem',
+})
+;({
+  scrollMargin: '18rem',
+})
+;({
+  scrollMarginLeft: '18rem',
+  scrollMarginRight: '18rem',
+})
+;({
+  scrollMarginTop: '18rem',
+  scrollMarginBottom: '18rem',
+})
+;({
+  scrollMarginTop: '18rem',
+})
+;({
+  scrollMarginRight: '18rem',
+})
+;({
+  scrollMarginBottom: '18rem',
+})
+;({
+  scrollMarginLeft: '18rem',
+})
+;({
+  scrollMargin: '20rem',
+})
+;({
+  scrollMarginLeft: '20rem',
+  scrollMarginRight: '20rem',
+})
+;({
+  scrollMarginTop: '20rem',
+  scrollMarginBottom: '20rem',
+})
+;({
+  scrollMarginTop: '20rem',
+})
+;({
+  scrollMarginRight: '20rem',
+})
+;({
+  scrollMarginBottom: '20rem',
+})
+;({
+  scrollMarginLeft: '20rem',
+})
+;({
+  scrollMargin: '24rem',
+})
+;({
+  scrollMarginLeft: '24rem',
+  scrollMarginRight: '24rem',
+})
+;({
+  scrollMarginTop: '24rem',
+  scrollMarginBottom: '24rem',
+})
+;({
+  scrollMarginTop: '24rem',
+})
+;({
+  scrollMarginRight: '24rem',
+})
+;({
+  scrollMarginBottom: '24rem',
+})
+;({
+  scrollMarginLeft: '24rem',
+})
+;({
+  scrollMargin: '-24rem',
+})
+;({
+  scrollMarginLeft: '-24rem',
+  scrollMarginRight: '-24rem',
+})
+;({
+  scrollMarginTop: '-24rem',
+  scrollMarginBottom: '-24rem',
+})
+;({
+  scrollMarginTop: '-24rem',
+})
+;({
+  scrollMarginRight: '-24rem',
+})
+;({
+  scrollMarginBottom: '-24rem',
+})
+;({
+  scrollMarginLeft: '-24rem',
+})
+;({
+  scrollMargin: '-24rem',
+})
+;({
+  scrollMargin: '24rem',
+})
 
 
 `;
@@ -44535,262 +45306,262 @@ import tw, { theme } from './macro'
 // https://tailwindcss.com/docs/scroll-padding
 theme\`scrollPadding\`
 
-// tw\`scroll-p-0\`
-// tw\`scroll-px-0\`
-// tw\`scroll-py-0\`
-// tw\`scroll-pt-0\`
-// tw\`scroll-pr-0\`
-// tw\`scroll-pb-0\`
-// tw\`scroll-pl-0\`
-// tw\`scroll-p-px\`
-// tw\`scroll-px-px\`
-// tw\`scroll-py-px\`
-// tw\`scroll-pt-px\`
-// tw\`scroll-pr-px\`
-// tw\`scroll-pb-px\`
-// tw\`scroll-pl-px\`
-// tw\`scroll-p-0\`
-// tw\`scroll-px-0\`
-// tw\`scroll-py-0\`
-// tw\`scroll-pt-0\`
-// tw\`scroll-pr-0\`
-// tw\`scroll-pb-0\`
-// tw\`scroll-pl-0\`
-// tw\`scroll-p-1\`
-// tw\`scroll-px-1\`
-// tw\`scroll-py-1\`
-// tw\`scroll-pt-1\`
-// tw\`scroll-pr-1\`
-// tw\`scroll-pb-1\`
-// tw\`scroll-pl-1\`
-// tw\`scroll-p-1\`
-// tw\`scroll-px-1\`
-// tw\`scroll-py-1\`
-// tw\`scroll-pt-1\`
-// tw\`scroll-pr-1\`
-// tw\`scroll-pb-1\`
-// tw\`scroll-pl-1\`
-// tw\`scroll-p-2\`
-// tw\`scroll-px-2\`
-// tw\`scroll-py-2\`
-// tw\`scroll-pt-2\`
-// tw\`scroll-pr-2\`
-// tw\`scroll-pb-2\`
-// tw\`scroll-pl-2\`
-// tw\`scroll-p-2\`
-// tw\`scroll-px-2\`
-// tw\`scroll-py-2\`
-// tw\`scroll-pt-2\`
-// tw\`scroll-pr-2\`
-// tw\`scroll-pb-2\`
-// tw\`scroll-pl-2\`
-// tw\`scroll-p-3\`
-// tw\`scroll-px-3\`
-// tw\`scroll-py-3\`
-// tw\`scroll-pt-3\`
-// tw\`scroll-pr-3\`
-// tw\`scroll-pb-3\`
-// tw\`scroll-pl-3\`
-// tw\`scroll-p-3\`
-// tw\`scroll-px-3\`
-// tw\`scroll-py-3\`
-// tw\`scroll-pt-3\`
-// tw\`scroll-pr-3\`
-// tw\`scroll-pb-3\`
-// tw\`scroll-pl-3\`
-// tw\`scroll-p-4\`
-// tw\`scroll-px-4\`
-// tw\`scroll-py-4\`
-// tw\`scroll-pt-4\`
-// tw\`scroll-pr-4\`
-// tw\`scroll-pb-4\`
-// tw\`scroll-pl-4\`
-// tw\`scroll-p-5\`
-// tw\`scroll-px-5\`
-// tw\`scroll-py-5\`
-// tw\`scroll-pt-5\`
-// tw\`scroll-pr-5\`
-// tw\`scroll-pb-5\`
-// tw\`scroll-pl-5\`
-// tw\`scroll-p-6\`
-// tw\`scroll-px-6\`
-// tw\`scroll-py-6\`
-// tw\`scroll-pt-6\`
-// tw\`scroll-pr-6\`
-// tw\`scroll-pb-6\`
-// tw\`scroll-pl-6\`
-// tw\`scroll-p-7\`
-// tw\`scroll-px-7\`
-// tw\`scroll-py-7\`
-// tw\`scroll-pt-7\`
-// tw\`scroll-pr-7\`
-// tw\`scroll-pb-7\`
-// tw\`scroll-pl-7\`
-// tw\`scroll-p-8\`
-// tw\`scroll-px-8\`
-// tw\`scroll-py-8\`
-// tw\`scroll-pt-8\`
-// tw\`scroll-pr-8\`
-// tw\`scroll-pb-8\`
-// tw\`scroll-pl-8\`
-// tw\`scroll-p-9\`
-// tw\`scroll-px-9\`
-// tw\`scroll-py-9\`
-// tw\`scroll-pt-9\`
-// tw\`scroll-pr-9\`
-// tw\`scroll-pb-9\`
-// tw\`scroll-pl-9\`
-// tw\`scroll-p-10\`
-// tw\`scroll-px-10\`
-// tw\`scroll-py-10\`
-// tw\`scroll-pt-10\`
-// tw\`scroll-pr-10\`
-// tw\`scroll-pb-10\`
-// tw\`scroll-pl-10\`
-// tw\`scroll-p-11\`
-// tw\`scroll-px-11\`
-// tw\`scroll-py-11\`
-// tw\`scroll-pt-11\`
-// tw\`scroll-pr-11\`
-// tw\`scroll-pb-11\`
-// tw\`scroll-pl-11\`
-// tw\`scroll-p-12\`
-// tw\`scroll-px-12\`
-// tw\`scroll-py-12\`
-// tw\`scroll-pt-12\`
-// tw\`scroll-pr-12\`
-// tw\`scroll-pb-12\`
-// tw\`scroll-pl-12\`
-// tw\`scroll-p-14\`
-// tw\`scroll-px-14\`
-// tw\`scroll-py-14\`
-// tw\`scroll-pt-14\`
-// tw\`scroll-pr-14\`
-// tw\`scroll-pb-14\`
-// tw\`scroll-pl-14\`
-// tw\`scroll-p-16\`
-// tw\`scroll-px-16\`
-// tw\`scroll-py-16\`
-// tw\`scroll-pt-16\`
-// tw\`scroll-pr-16\`
-// tw\`scroll-pb-16\`
-// tw\`scroll-pl-16\`
-// tw\`scroll-p-20\`
-// tw\`scroll-px-20\`
-// tw\`scroll-py-20\`
-// tw\`scroll-pt-20\`
-// tw\`scroll-pr-20\`
-// tw\`scroll-pb-20\`
-// tw\`scroll-pl-20\`
-// tw\`scroll-p-24\`
-// tw\`scroll-px-24\`
-// tw\`scroll-py-24\`
-// tw\`scroll-pt-24\`
-// tw\`scroll-pr-24\`
-// tw\`scroll-pb-24\`
-// tw\`scroll-pl-24\`
-// tw\`scroll-p-28\`
-// tw\`scroll-px-28\`
-// tw\`scroll-py-28\`
-// tw\`scroll-pt-28\`
-// tw\`scroll-pr-28\`
-// tw\`scroll-pb-28\`
-// tw\`scroll-pl-28\`
-// tw\`scroll-p-32\`
-// tw\`scroll-px-32\`
-// tw\`scroll-py-32\`
-// tw\`scroll-pt-32\`
-// tw\`scroll-pr-32\`
-// tw\`scroll-pb-32\`
-// tw\`scroll-pl-32\`
-// tw\`scroll-p-36\`
-// tw\`scroll-px-36\`
-// tw\`scroll-py-36\`
-// tw\`scroll-pt-36\`
-// tw\`scroll-pr-36\`
-// tw\`scroll-pb-36\`
-// tw\`scroll-pl-36\`
-// tw\`scroll-p-40\`
-// tw\`scroll-px-40\`
-// tw\`scroll-py-40\`
-// tw\`scroll-pt-40\`
-// tw\`scroll-pr-40\`
-// tw\`scroll-pb-40\`
-// tw\`scroll-pl-40\`
-// tw\`scroll-p-44\`
-// tw\`scroll-px-44\`
-// tw\`scroll-py-44\`
-// tw\`scroll-pt-44\`
-// tw\`scroll-pr-44\`
-// tw\`scroll-pb-44\`
-// tw\`scroll-pl-44\`
-// tw\`scroll-p-48\`
-// tw\`scroll-px-48\`
-// tw\`scroll-py-48\`
-// tw\`scroll-pt-48\`
-// tw\`scroll-pr-48\`
-// tw\`scroll-pb-48\`
-// tw\`scroll-pl-48\`
-// tw\`scroll-p-52\`
-// tw\`scroll-px-52\`
-// tw\`scroll-py-52\`
-// tw\`scroll-pt-52\`
-// tw\`scroll-pr-52\`
-// tw\`scroll-pb-52\`
-// tw\`scroll-pl-52\`
-// tw\`scroll-p-56\`
-// tw\`scroll-px-56\`
-// tw\`scroll-py-56\`
-// tw\`scroll-pt-56\`
-// tw\`scroll-pr-56\`
-// tw\`scroll-pb-56\`
-// tw\`scroll-pl-56\`
-// tw\`scroll-p-60\`
-// tw\`scroll-px-60\`
-// tw\`scroll-py-60\`
-// tw\`scroll-pt-60\`
-// tw\`scroll-pr-60\`
-// tw\`scroll-pb-60\`
-// tw\`scroll-pl-60\`
-// tw\`scroll-p-64\`
-// tw\`scroll-px-64\`
-// tw\`scroll-py-64\`
-// tw\`scroll-pt-64\`
-// tw\`scroll-pr-64\`
-// tw\`scroll-pb-64\`
-// tw\`scroll-pl-64\`
-// tw\`scroll-p-72\`
-// tw\`scroll-px-72\`
-// tw\`scroll-py-72\`
-// tw\`scroll-pt-72\`
-// tw\`scroll-pr-72\`
-// tw\`scroll-pb-72\`
-// tw\`scroll-pl-72\`
-// tw\`scroll-p-80\`
-// tw\`scroll-px-80\`
-// tw\`scroll-py-80\`
-// tw\`scroll-pt-80\`
-// tw\`scroll-pr-80\`
-// tw\`scroll-pb-80\`
-// tw\`scroll-pl-80\`
-// tw\`scroll-p-96\`
-// tw\`scroll-px-96\`
-// tw\`scroll-py-96\`
-// tw\`scroll-pt-96\`
-// tw\`scroll-pr-96\`
-// tw\`scroll-pb-96\`
-// tw\`scroll-pl-96\`
+tw\`scroll-p-0\`
+tw\`scroll-px-0\`
+tw\`scroll-py-0\`
+tw\`scroll-pt-0\`
+tw\`scroll-pr-0\`
+tw\`scroll-pb-0\`
+tw\`scroll-pl-0\`
+tw\`scroll-p-px\`
+tw\`scroll-px-px\`
+tw\`scroll-py-px\`
+tw\`scroll-pt-px\`
+tw\`scroll-pr-px\`
+tw\`scroll-pb-px\`
+tw\`scroll-pl-px\`
+tw\`scroll-p-0\`
+tw\`scroll-px-0\`
+tw\`scroll-py-0\`
+tw\`scroll-pt-0\`
+tw\`scroll-pr-0\`
+tw\`scroll-pb-0\`
+tw\`scroll-pl-0\`
+tw\`scroll-p-1\`
+tw\`scroll-px-1\`
+tw\`scroll-py-1\`
+tw\`scroll-pt-1\`
+tw\`scroll-pr-1\`
+tw\`scroll-pb-1\`
+tw\`scroll-pl-1\`
+tw\`scroll-p-1\`
+tw\`scroll-px-1\`
+tw\`scroll-py-1\`
+tw\`scroll-pt-1\`
+tw\`scroll-pr-1\`
+tw\`scroll-pb-1\`
+tw\`scroll-pl-1\`
+tw\`scroll-p-2\`
+tw\`scroll-px-2\`
+tw\`scroll-py-2\`
+tw\`scroll-pt-2\`
+tw\`scroll-pr-2\`
+tw\`scroll-pb-2\`
+tw\`scroll-pl-2\`
+tw\`scroll-p-2\`
+tw\`scroll-px-2\`
+tw\`scroll-py-2\`
+tw\`scroll-pt-2\`
+tw\`scroll-pr-2\`
+tw\`scroll-pb-2\`
+tw\`scroll-pl-2\`
+tw\`scroll-p-3\`
+tw\`scroll-px-3\`
+tw\`scroll-py-3\`
+tw\`scroll-pt-3\`
+tw\`scroll-pr-3\`
+tw\`scroll-pb-3\`
+tw\`scroll-pl-3\`
+tw\`scroll-p-3\`
+tw\`scroll-px-3\`
+tw\`scroll-py-3\`
+tw\`scroll-pt-3\`
+tw\`scroll-pr-3\`
+tw\`scroll-pb-3\`
+tw\`scroll-pl-3\`
+tw\`scroll-p-4\`
+tw\`scroll-px-4\`
+tw\`scroll-py-4\`
+tw\`scroll-pt-4\`
+tw\`scroll-pr-4\`
+tw\`scroll-pb-4\`
+tw\`scroll-pl-4\`
+tw\`scroll-p-5\`
+tw\`scroll-px-5\`
+tw\`scroll-py-5\`
+tw\`scroll-pt-5\`
+tw\`scroll-pr-5\`
+tw\`scroll-pb-5\`
+tw\`scroll-pl-5\`
+tw\`scroll-p-6\`
+tw\`scroll-px-6\`
+tw\`scroll-py-6\`
+tw\`scroll-pt-6\`
+tw\`scroll-pr-6\`
+tw\`scroll-pb-6\`
+tw\`scroll-pl-6\`
+tw\`scroll-p-7\`
+tw\`scroll-px-7\`
+tw\`scroll-py-7\`
+tw\`scroll-pt-7\`
+tw\`scroll-pr-7\`
+tw\`scroll-pb-7\`
+tw\`scroll-pl-7\`
+tw\`scroll-p-8\`
+tw\`scroll-px-8\`
+tw\`scroll-py-8\`
+tw\`scroll-pt-8\`
+tw\`scroll-pr-8\`
+tw\`scroll-pb-8\`
+tw\`scroll-pl-8\`
+tw\`scroll-p-9\`
+tw\`scroll-px-9\`
+tw\`scroll-py-9\`
+tw\`scroll-pt-9\`
+tw\`scroll-pr-9\`
+tw\`scroll-pb-9\`
+tw\`scroll-pl-9\`
+tw\`scroll-p-10\`
+tw\`scroll-px-10\`
+tw\`scroll-py-10\`
+tw\`scroll-pt-10\`
+tw\`scroll-pr-10\`
+tw\`scroll-pb-10\`
+tw\`scroll-pl-10\`
+tw\`scroll-p-11\`
+tw\`scroll-px-11\`
+tw\`scroll-py-11\`
+tw\`scroll-pt-11\`
+tw\`scroll-pr-11\`
+tw\`scroll-pb-11\`
+tw\`scroll-pl-11\`
+tw\`scroll-p-12\`
+tw\`scroll-px-12\`
+tw\`scroll-py-12\`
+tw\`scroll-pt-12\`
+tw\`scroll-pr-12\`
+tw\`scroll-pb-12\`
+tw\`scroll-pl-12\`
+tw\`scroll-p-14\`
+tw\`scroll-px-14\`
+tw\`scroll-py-14\`
+tw\`scroll-pt-14\`
+tw\`scroll-pr-14\`
+tw\`scroll-pb-14\`
+tw\`scroll-pl-14\`
+tw\`scroll-p-16\`
+tw\`scroll-px-16\`
+tw\`scroll-py-16\`
+tw\`scroll-pt-16\`
+tw\`scroll-pr-16\`
+tw\`scroll-pb-16\`
+tw\`scroll-pl-16\`
+tw\`scroll-p-20\`
+tw\`scroll-px-20\`
+tw\`scroll-py-20\`
+tw\`scroll-pt-20\`
+tw\`scroll-pr-20\`
+tw\`scroll-pb-20\`
+tw\`scroll-pl-20\`
+tw\`scroll-p-24\`
+tw\`scroll-px-24\`
+tw\`scroll-py-24\`
+tw\`scroll-pt-24\`
+tw\`scroll-pr-24\`
+tw\`scroll-pb-24\`
+tw\`scroll-pl-24\`
+tw\`scroll-p-28\`
+tw\`scroll-px-28\`
+tw\`scroll-py-28\`
+tw\`scroll-pt-28\`
+tw\`scroll-pr-28\`
+tw\`scroll-pb-28\`
+tw\`scroll-pl-28\`
+tw\`scroll-p-32\`
+tw\`scroll-px-32\`
+tw\`scroll-py-32\`
+tw\`scroll-pt-32\`
+tw\`scroll-pr-32\`
+tw\`scroll-pb-32\`
+tw\`scroll-pl-32\`
+tw\`scroll-p-36\`
+tw\`scroll-px-36\`
+tw\`scroll-py-36\`
+tw\`scroll-pt-36\`
+tw\`scroll-pr-36\`
+tw\`scroll-pb-36\`
+tw\`scroll-pl-36\`
+tw\`scroll-p-40\`
+tw\`scroll-px-40\`
+tw\`scroll-py-40\`
+tw\`scroll-pt-40\`
+tw\`scroll-pr-40\`
+tw\`scroll-pb-40\`
+tw\`scroll-pl-40\`
+tw\`scroll-p-44\`
+tw\`scroll-px-44\`
+tw\`scroll-py-44\`
+tw\`scroll-pt-44\`
+tw\`scroll-pr-44\`
+tw\`scroll-pb-44\`
+tw\`scroll-pl-44\`
+tw\`scroll-p-48\`
+tw\`scroll-px-48\`
+tw\`scroll-py-48\`
+tw\`scroll-pt-48\`
+tw\`scroll-pr-48\`
+tw\`scroll-pb-48\`
+tw\`scroll-pl-48\`
+tw\`scroll-p-52\`
+tw\`scroll-px-52\`
+tw\`scroll-py-52\`
+tw\`scroll-pt-52\`
+tw\`scroll-pr-52\`
+tw\`scroll-pb-52\`
+tw\`scroll-pl-52\`
+tw\`scroll-p-56\`
+tw\`scroll-px-56\`
+tw\`scroll-py-56\`
+tw\`scroll-pt-56\`
+tw\`scroll-pr-56\`
+tw\`scroll-pb-56\`
+tw\`scroll-pl-56\`
+tw\`scroll-p-60\`
+tw\`scroll-px-60\`
+tw\`scroll-py-60\`
+tw\`scroll-pt-60\`
+tw\`scroll-pr-60\`
+tw\`scroll-pb-60\`
+tw\`scroll-pl-60\`
+tw\`scroll-p-64\`
+tw\`scroll-px-64\`
+tw\`scroll-py-64\`
+tw\`scroll-pt-64\`
+tw\`scroll-pr-64\`
+tw\`scroll-pb-64\`
+tw\`scroll-pl-64\`
+tw\`scroll-p-72\`
+tw\`scroll-px-72\`
+tw\`scroll-py-72\`
+tw\`scroll-pt-72\`
+tw\`scroll-pr-72\`
+tw\`scroll-pb-72\`
+tw\`scroll-pl-72\`
+tw\`scroll-p-80\`
+tw\`scroll-px-80\`
+tw\`scroll-py-80\`
+tw\`scroll-pt-80\`
+tw\`scroll-pr-80\`
+tw\`scroll-pb-80\`
+tw\`scroll-pl-80\`
+tw\`scroll-p-96\`
+tw\`scroll-px-96\`
+tw\`scroll-py-96\`
+tw\`scroll-pt-96\`
+tw\`scroll-pr-96\`
+tw\`scroll-pb-96\`
+tw\`scroll-pl-96\`
 
-// tw\`-scroll-p-96\`
-// tw\`-scroll-px-96\`
-// tw\`-scroll-py-96\`
-// tw\`-scroll-pt-96\`
-// tw\`-scroll-pr-96\`
-// tw\`-scroll-pb-96\`
-// tw\`-scroll-pl-96\`
+tw\`-scroll-p-96\`
+tw\`-scroll-px-96\`
+tw\`-scroll-py-96\`
+tw\`-scroll-pt-96\`
+tw\`-scroll-pr-96\`
+tw\`-scroll-pb-96\`
+tw\`-scroll-pl-96\`
 
-// tw\`-scroll-p-[24rem]\`
-// tw\`scroll-p-[24rem]\`
+tw\`-scroll-p-[24rem]\`
+tw\`scroll-p-[24rem]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -44831,260 +45602,841 @@ theme\`scrollPadding\`
   1.5: '0.375rem',
   2.5: '0.625rem',
   3.5: '0.875rem',
-}) // tw\`scroll-p-0\`
-// tw\`scroll-px-0\`
-// tw\`scroll-py-0\`
-// tw\`scroll-pt-0\`
-// tw\`scroll-pr-0\`
-// tw\`scroll-pb-0\`
-// tw\`scroll-pl-0\`
-// tw\`scroll-p-px\`
-// tw\`scroll-px-px\`
-// tw\`scroll-py-px\`
-// tw\`scroll-pt-px\`
-// tw\`scroll-pr-px\`
-// tw\`scroll-pb-px\`
-// tw\`scroll-pl-px\`
-// tw\`scroll-p-0\`
-// tw\`scroll-px-0\`
-// tw\`scroll-py-0\`
-// tw\`scroll-pt-0\`
-// tw\`scroll-pr-0\`
-// tw\`scroll-pb-0\`
-// tw\`scroll-pl-0\`
-// tw\`scroll-p-1\`
-// tw\`scroll-px-1\`
-// tw\`scroll-py-1\`
-// tw\`scroll-pt-1\`
-// tw\`scroll-pr-1\`
-// tw\`scroll-pb-1\`
-// tw\`scroll-pl-1\`
-// tw\`scroll-p-1\`
-// tw\`scroll-px-1\`
-// tw\`scroll-py-1\`
-// tw\`scroll-pt-1\`
-// tw\`scroll-pr-1\`
-// tw\`scroll-pb-1\`
-// tw\`scroll-pl-1\`
-// tw\`scroll-p-2\`
-// tw\`scroll-px-2\`
-// tw\`scroll-py-2\`
-// tw\`scroll-pt-2\`
-// tw\`scroll-pr-2\`
-// tw\`scroll-pb-2\`
-// tw\`scroll-pl-2\`
-// tw\`scroll-p-2\`
-// tw\`scroll-px-2\`
-// tw\`scroll-py-2\`
-// tw\`scroll-pt-2\`
-// tw\`scroll-pr-2\`
-// tw\`scroll-pb-2\`
-// tw\`scroll-pl-2\`
-// tw\`scroll-p-3\`
-// tw\`scroll-px-3\`
-// tw\`scroll-py-3\`
-// tw\`scroll-pt-3\`
-// tw\`scroll-pr-3\`
-// tw\`scroll-pb-3\`
-// tw\`scroll-pl-3\`
-// tw\`scroll-p-3\`
-// tw\`scroll-px-3\`
-// tw\`scroll-py-3\`
-// tw\`scroll-pt-3\`
-// tw\`scroll-pr-3\`
-// tw\`scroll-pb-3\`
-// tw\`scroll-pl-3\`
-// tw\`scroll-p-4\`
-// tw\`scroll-px-4\`
-// tw\`scroll-py-4\`
-// tw\`scroll-pt-4\`
-// tw\`scroll-pr-4\`
-// tw\`scroll-pb-4\`
-// tw\`scroll-pl-4\`
-// tw\`scroll-p-5\`
-// tw\`scroll-px-5\`
-// tw\`scroll-py-5\`
-// tw\`scroll-pt-5\`
-// tw\`scroll-pr-5\`
-// tw\`scroll-pb-5\`
-// tw\`scroll-pl-5\`
-// tw\`scroll-p-6\`
-// tw\`scroll-px-6\`
-// tw\`scroll-py-6\`
-// tw\`scroll-pt-6\`
-// tw\`scroll-pr-6\`
-// tw\`scroll-pb-6\`
-// tw\`scroll-pl-6\`
-// tw\`scroll-p-7\`
-// tw\`scroll-px-7\`
-// tw\`scroll-py-7\`
-// tw\`scroll-pt-7\`
-// tw\`scroll-pr-7\`
-// tw\`scroll-pb-7\`
-// tw\`scroll-pl-7\`
-// tw\`scroll-p-8\`
-// tw\`scroll-px-8\`
-// tw\`scroll-py-8\`
-// tw\`scroll-pt-8\`
-// tw\`scroll-pr-8\`
-// tw\`scroll-pb-8\`
-// tw\`scroll-pl-8\`
-// tw\`scroll-p-9\`
-// tw\`scroll-px-9\`
-// tw\`scroll-py-9\`
-// tw\`scroll-pt-9\`
-// tw\`scroll-pr-9\`
-// tw\`scroll-pb-9\`
-// tw\`scroll-pl-9\`
-// tw\`scroll-p-10\`
-// tw\`scroll-px-10\`
-// tw\`scroll-py-10\`
-// tw\`scroll-pt-10\`
-// tw\`scroll-pr-10\`
-// tw\`scroll-pb-10\`
-// tw\`scroll-pl-10\`
-// tw\`scroll-p-11\`
-// tw\`scroll-px-11\`
-// tw\`scroll-py-11\`
-// tw\`scroll-pt-11\`
-// tw\`scroll-pr-11\`
-// tw\`scroll-pb-11\`
-// tw\`scroll-pl-11\`
-// tw\`scroll-p-12\`
-// tw\`scroll-px-12\`
-// tw\`scroll-py-12\`
-// tw\`scroll-pt-12\`
-// tw\`scroll-pr-12\`
-// tw\`scroll-pb-12\`
-// tw\`scroll-pl-12\`
-// tw\`scroll-p-14\`
-// tw\`scroll-px-14\`
-// tw\`scroll-py-14\`
-// tw\`scroll-pt-14\`
-// tw\`scroll-pr-14\`
-// tw\`scroll-pb-14\`
-// tw\`scroll-pl-14\`
-// tw\`scroll-p-16\`
-// tw\`scroll-px-16\`
-// tw\`scroll-py-16\`
-// tw\`scroll-pt-16\`
-// tw\`scroll-pr-16\`
-// tw\`scroll-pb-16\`
-// tw\`scroll-pl-16\`
-// tw\`scroll-p-20\`
-// tw\`scroll-px-20\`
-// tw\`scroll-py-20\`
-// tw\`scroll-pt-20\`
-// tw\`scroll-pr-20\`
-// tw\`scroll-pb-20\`
-// tw\`scroll-pl-20\`
-// tw\`scroll-p-24\`
-// tw\`scroll-px-24\`
-// tw\`scroll-py-24\`
-// tw\`scroll-pt-24\`
-// tw\`scroll-pr-24\`
-// tw\`scroll-pb-24\`
-// tw\`scroll-pl-24\`
-// tw\`scroll-p-28\`
-// tw\`scroll-px-28\`
-// tw\`scroll-py-28\`
-// tw\`scroll-pt-28\`
-// tw\`scroll-pr-28\`
-// tw\`scroll-pb-28\`
-// tw\`scroll-pl-28\`
-// tw\`scroll-p-32\`
-// tw\`scroll-px-32\`
-// tw\`scroll-py-32\`
-// tw\`scroll-pt-32\`
-// tw\`scroll-pr-32\`
-// tw\`scroll-pb-32\`
-// tw\`scroll-pl-32\`
-// tw\`scroll-p-36\`
-// tw\`scroll-px-36\`
-// tw\`scroll-py-36\`
-// tw\`scroll-pt-36\`
-// tw\`scroll-pr-36\`
-// tw\`scroll-pb-36\`
-// tw\`scroll-pl-36\`
-// tw\`scroll-p-40\`
-// tw\`scroll-px-40\`
-// tw\`scroll-py-40\`
-// tw\`scroll-pt-40\`
-// tw\`scroll-pr-40\`
-// tw\`scroll-pb-40\`
-// tw\`scroll-pl-40\`
-// tw\`scroll-p-44\`
-// tw\`scroll-px-44\`
-// tw\`scroll-py-44\`
-// tw\`scroll-pt-44\`
-// tw\`scroll-pr-44\`
-// tw\`scroll-pb-44\`
-// tw\`scroll-pl-44\`
-// tw\`scroll-p-48\`
-// tw\`scroll-px-48\`
-// tw\`scroll-py-48\`
-// tw\`scroll-pt-48\`
-// tw\`scroll-pr-48\`
-// tw\`scroll-pb-48\`
-// tw\`scroll-pl-48\`
-// tw\`scroll-p-52\`
-// tw\`scroll-px-52\`
-// tw\`scroll-py-52\`
-// tw\`scroll-pt-52\`
-// tw\`scroll-pr-52\`
-// tw\`scroll-pb-52\`
-// tw\`scroll-pl-52\`
-// tw\`scroll-p-56\`
-// tw\`scroll-px-56\`
-// tw\`scroll-py-56\`
-// tw\`scroll-pt-56\`
-// tw\`scroll-pr-56\`
-// tw\`scroll-pb-56\`
-// tw\`scroll-pl-56\`
-// tw\`scroll-p-60\`
-// tw\`scroll-px-60\`
-// tw\`scroll-py-60\`
-// tw\`scroll-pt-60\`
-// tw\`scroll-pr-60\`
-// tw\`scroll-pb-60\`
-// tw\`scroll-pl-60\`
-// tw\`scroll-p-64\`
-// tw\`scroll-px-64\`
-// tw\`scroll-py-64\`
-// tw\`scroll-pt-64\`
-// tw\`scroll-pr-64\`
-// tw\`scroll-pb-64\`
-// tw\`scroll-pl-64\`
-// tw\`scroll-p-72\`
-// tw\`scroll-px-72\`
-// tw\`scroll-py-72\`
-// tw\`scroll-pt-72\`
-// tw\`scroll-pr-72\`
-// tw\`scroll-pb-72\`
-// tw\`scroll-pl-72\`
-// tw\`scroll-p-80\`
-// tw\`scroll-px-80\`
-// tw\`scroll-py-80\`
-// tw\`scroll-pt-80\`
-// tw\`scroll-pr-80\`
-// tw\`scroll-pb-80\`
-// tw\`scroll-pl-80\`
-// tw\`scroll-p-96\`
-// tw\`scroll-px-96\`
-// tw\`scroll-py-96\`
-// tw\`scroll-pt-96\`
-// tw\`scroll-pr-96\`
-// tw\`scroll-pb-96\`
-// tw\`scroll-pl-96\`
-// tw\`-scroll-p-96\`
-// tw\`-scroll-px-96\`
-// tw\`-scroll-py-96\`
-// tw\`-scroll-pt-96\`
-// tw\`-scroll-pr-96\`
-// tw\`-scroll-pb-96\`
-// tw\`-scroll-pl-96\`
-// tw\`-scroll-p-[24rem]\`
-// tw\`scroll-p-[24rem]\`
+})
+;({
+  scrollPadding: '0px',
+})
+;({
+  scrollPaddingLeft: '0px',
+  scrollPaddingRight: '0px',
+})
+;({
+  scrollPaddingTop: '0px',
+  scrollPaddingBottom: '0px',
+})
+;({
+  scrollPaddingTop: '0px',
+})
+;({
+  scrollPaddingRight: '0px',
+})
+;({
+  scrollPaddingBottom: '0px',
+})
+;({
+  scrollPaddingLeft: '0px',
+})
+;({
+  scrollPadding: '1px',
+})
+;({
+  scrollPaddingLeft: '1px',
+  scrollPaddingRight: '1px',
+})
+;({
+  scrollPaddingTop: '1px',
+  scrollPaddingBottom: '1px',
+})
+;({
+  scrollPaddingTop: '1px',
+})
+;({
+  scrollPaddingRight: '1px',
+})
+;({
+  scrollPaddingBottom: '1px',
+})
+;({
+  scrollPaddingLeft: '1px',
+})
+;({
+  scrollPadding: '0px',
+})
+;({
+  scrollPaddingLeft: '0px',
+  scrollPaddingRight: '0px',
+})
+;({
+  scrollPaddingTop: '0px',
+  scrollPaddingBottom: '0px',
+})
+;({
+  scrollPaddingTop: '0px',
+})
+;({
+  scrollPaddingRight: '0px',
+})
+;({
+  scrollPaddingBottom: '0px',
+})
+;({
+  scrollPaddingLeft: '0px',
+})
+;({
+  scrollPadding: '0.25rem',
+})
+;({
+  scrollPaddingLeft: '0.25rem',
+  scrollPaddingRight: '0.25rem',
+})
+;({
+  scrollPaddingTop: '0.25rem',
+  scrollPaddingBottom: '0.25rem',
+})
+;({
+  scrollPaddingTop: '0.25rem',
+})
+;({
+  scrollPaddingRight: '0.25rem',
+})
+;({
+  scrollPaddingBottom: '0.25rem',
+})
+;({
+  scrollPaddingLeft: '0.25rem',
+})
+;({
+  scrollPadding: '0.25rem',
+})
+;({
+  scrollPaddingLeft: '0.25rem',
+  scrollPaddingRight: '0.25rem',
+})
+;({
+  scrollPaddingTop: '0.25rem',
+  scrollPaddingBottom: '0.25rem',
+})
+;({
+  scrollPaddingTop: '0.25rem',
+})
+;({
+  scrollPaddingRight: '0.25rem',
+})
+;({
+  scrollPaddingBottom: '0.25rem',
+})
+;({
+  scrollPaddingLeft: '0.25rem',
+})
+;({
+  scrollPadding: '0.5rem',
+})
+;({
+  scrollPaddingLeft: '0.5rem',
+  scrollPaddingRight: '0.5rem',
+})
+;({
+  scrollPaddingTop: '0.5rem',
+  scrollPaddingBottom: '0.5rem',
+})
+;({
+  scrollPaddingTop: '0.5rem',
+})
+;({
+  scrollPaddingRight: '0.5rem',
+})
+;({
+  scrollPaddingBottom: '0.5rem',
+})
+;({
+  scrollPaddingLeft: '0.5rem',
+})
+;({
+  scrollPadding: '0.5rem',
+})
+;({
+  scrollPaddingLeft: '0.5rem',
+  scrollPaddingRight: '0.5rem',
+})
+;({
+  scrollPaddingTop: '0.5rem',
+  scrollPaddingBottom: '0.5rem',
+})
+;({
+  scrollPaddingTop: '0.5rem',
+})
+;({
+  scrollPaddingRight: '0.5rem',
+})
+;({
+  scrollPaddingBottom: '0.5rem',
+})
+;({
+  scrollPaddingLeft: '0.5rem',
+})
+;({
+  scrollPadding: '0.75rem',
+})
+;({
+  scrollPaddingLeft: '0.75rem',
+  scrollPaddingRight: '0.75rem',
+})
+;({
+  scrollPaddingTop: '0.75rem',
+  scrollPaddingBottom: '0.75rem',
+})
+;({
+  scrollPaddingTop: '0.75rem',
+})
+;({
+  scrollPaddingRight: '0.75rem',
+})
+;({
+  scrollPaddingBottom: '0.75rem',
+})
+;({
+  scrollPaddingLeft: '0.75rem',
+})
+;({
+  scrollPadding: '0.75rem',
+})
+;({
+  scrollPaddingLeft: '0.75rem',
+  scrollPaddingRight: '0.75rem',
+})
+;({
+  scrollPaddingTop: '0.75rem',
+  scrollPaddingBottom: '0.75rem',
+})
+;({
+  scrollPaddingTop: '0.75rem',
+})
+;({
+  scrollPaddingRight: '0.75rem',
+})
+;({
+  scrollPaddingBottom: '0.75rem',
+})
+;({
+  scrollPaddingLeft: '0.75rem',
+})
+;({
+  scrollPadding: '1rem',
+})
+;({
+  scrollPaddingLeft: '1rem',
+  scrollPaddingRight: '1rem',
+})
+;({
+  scrollPaddingTop: '1rem',
+  scrollPaddingBottom: '1rem',
+})
+;({
+  scrollPaddingTop: '1rem',
+})
+;({
+  scrollPaddingRight: '1rem',
+})
+;({
+  scrollPaddingBottom: '1rem',
+})
+;({
+  scrollPaddingLeft: '1rem',
+})
+;({
+  scrollPadding: '1.25rem',
+})
+;({
+  scrollPaddingLeft: '1.25rem',
+  scrollPaddingRight: '1.25rem',
+})
+;({
+  scrollPaddingTop: '1.25rem',
+  scrollPaddingBottom: '1.25rem',
+})
+;({
+  scrollPaddingTop: '1.25rem',
+})
+;({
+  scrollPaddingRight: '1.25rem',
+})
+;({
+  scrollPaddingBottom: '1.25rem',
+})
+;({
+  scrollPaddingLeft: '1.25rem',
+})
+;({
+  scrollPadding: '1.5rem',
+})
+;({
+  scrollPaddingLeft: '1.5rem',
+  scrollPaddingRight: '1.5rem',
+})
+;({
+  scrollPaddingTop: '1.5rem',
+  scrollPaddingBottom: '1.5rem',
+})
+;({
+  scrollPaddingTop: '1.5rem',
+})
+;({
+  scrollPaddingRight: '1.5rem',
+})
+;({
+  scrollPaddingBottom: '1.5rem',
+})
+;({
+  scrollPaddingLeft: '1.5rem',
+})
+;({
+  scrollPadding: '1.75rem',
+})
+;({
+  scrollPaddingLeft: '1.75rem',
+  scrollPaddingRight: '1.75rem',
+})
+;({
+  scrollPaddingTop: '1.75rem',
+  scrollPaddingBottom: '1.75rem',
+})
+;({
+  scrollPaddingTop: '1.75rem',
+})
+;({
+  scrollPaddingRight: '1.75rem',
+})
+;({
+  scrollPaddingBottom: '1.75rem',
+})
+;({
+  scrollPaddingLeft: '1.75rem',
+})
+;({
+  scrollPadding: '2rem',
+})
+;({
+  scrollPaddingLeft: '2rem',
+  scrollPaddingRight: '2rem',
+})
+;({
+  scrollPaddingTop: '2rem',
+  scrollPaddingBottom: '2rem',
+})
+;({
+  scrollPaddingTop: '2rem',
+})
+;({
+  scrollPaddingRight: '2rem',
+})
+;({
+  scrollPaddingBottom: '2rem',
+})
+;({
+  scrollPaddingLeft: '2rem',
+})
+;({
+  scrollPadding: '2.25rem',
+})
+;({
+  scrollPaddingLeft: '2.25rem',
+  scrollPaddingRight: '2.25rem',
+})
+;({
+  scrollPaddingTop: '2.25rem',
+  scrollPaddingBottom: '2.25rem',
+})
+;({
+  scrollPaddingTop: '2.25rem',
+})
+;({
+  scrollPaddingRight: '2.25rem',
+})
+;({
+  scrollPaddingBottom: '2.25rem',
+})
+;({
+  scrollPaddingLeft: '2.25rem',
+})
+;({
+  scrollPadding: '2.5rem',
+})
+;({
+  scrollPaddingLeft: '2.5rem',
+  scrollPaddingRight: '2.5rem',
+})
+;({
+  scrollPaddingTop: '2.5rem',
+  scrollPaddingBottom: '2.5rem',
+})
+;({
+  scrollPaddingTop: '2.5rem',
+})
+;({
+  scrollPaddingRight: '2.5rem',
+})
+;({
+  scrollPaddingBottom: '2.5rem',
+})
+;({
+  scrollPaddingLeft: '2.5rem',
+})
+;({
+  scrollPadding: '2.75rem',
+})
+;({
+  scrollPaddingLeft: '2.75rem',
+  scrollPaddingRight: '2.75rem',
+})
+;({
+  scrollPaddingTop: '2.75rem',
+  scrollPaddingBottom: '2.75rem',
+})
+;({
+  scrollPaddingTop: '2.75rem',
+})
+;({
+  scrollPaddingRight: '2.75rem',
+})
+;({
+  scrollPaddingBottom: '2.75rem',
+})
+;({
+  scrollPaddingLeft: '2.75rem',
+})
+;({
+  scrollPadding: '3rem',
+})
+;({
+  scrollPaddingLeft: '3rem',
+  scrollPaddingRight: '3rem',
+})
+;({
+  scrollPaddingTop: '3rem',
+  scrollPaddingBottom: '3rem',
+})
+;({
+  scrollPaddingTop: '3rem',
+})
+;({
+  scrollPaddingRight: '3rem',
+})
+;({
+  scrollPaddingBottom: '3rem',
+})
+;({
+  scrollPaddingLeft: '3rem',
+})
+;({
+  scrollPadding: '3.5rem',
+})
+;({
+  scrollPaddingLeft: '3.5rem',
+  scrollPaddingRight: '3.5rem',
+})
+;({
+  scrollPaddingTop: '3.5rem',
+  scrollPaddingBottom: '3.5rem',
+})
+;({
+  scrollPaddingTop: '3.5rem',
+})
+;({
+  scrollPaddingRight: '3.5rem',
+})
+;({
+  scrollPaddingBottom: '3.5rem',
+})
+;({
+  scrollPaddingLeft: '3.5rem',
+})
+;({
+  scrollPadding: '4rem',
+})
+;({
+  scrollPaddingLeft: '4rem',
+  scrollPaddingRight: '4rem',
+})
+;({
+  scrollPaddingTop: '4rem',
+  scrollPaddingBottom: '4rem',
+})
+;({
+  scrollPaddingTop: '4rem',
+})
+;({
+  scrollPaddingRight: '4rem',
+})
+;({
+  scrollPaddingBottom: '4rem',
+})
+;({
+  scrollPaddingLeft: '4rem',
+})
+;({
+  scrollPadding: '5rem',
+})
+;({
+  scrollPaddingLeft: '5rem',
+  scrollPaddingRight: '5rem',
+})
+;({
+  scrollPaddingTop: '5rem',
+  scrollPaddingBottom: '5rem',
+})
+;({
+  scrollPaddingTop: '5rem',
+})
+;({
+  scrollPaddingRight: '5rem',
+})
+;({
+  scrollPaddingBottom: '5rem',
+})
+;({
+  scrollPaddingLeft: '5rem',
+})
+;({
+  scrollPadding: '6rem',
+})
+;({
+  scrollPaddingLeft: '6rem',
+  scrollPaddingRight: '6rem',
+})
+;({
+  scrollPaddingTop: '6rem',
+  scrollPaddingBottom: '6rem',
+})
+;({
+  scrollPaddingTop: '6rem',
+})
+;({
+  scrollPaddingRight: '6rem',
+})
+;({
+  scrollPaddingBottom: '6rem',
+})
+;({
+  scrollPaddingLeft: '6rem',
+})
+;({
+  scrollPadding: '7rem',
+})
+;({
+  scrollPaddingLeft: '7rem',
+  scrollPaddingRight: '7rem',
+})
+;({
+  scrollPaddingTop: '7rem',
+  scrollPaddingBottom: '7rem',
+})
+;({
+  scrollPaddingTop: '7rem',
+})
+;({
+  scrollPaddingRight: '7rem',
+})
+;({
+  scrollPaddingBottom: '7rem',
+})
+;({
+  scrollPaddingLeft: '7rem',
+})
+;({
+  scrollPadding: '8rem',
+})
+;({
+  scrollPaddingLeft: '8rem',
+  scrollPaddingRight: '8rem',
+})
+;({
+  scrollPaddingTop: '8rem',
+  scrollPaddingBottom: '8rem',
+})
+;({
+  scrollPaddingTop: '8rem',
+})
+;({
+  scrollPaddingRight: '8rem',
+})
+;({
+  scrollPaddingBottom: '8rem',
+})
+;({
+  scrollPaddingLeft: '8rem',
+})
+;({
+  scrollPadding: '9rem',
+})
+;({
+  scrollPaddingLeft: '9rem',
+  scrollPaddingRight: '9rem',
+})
+;({
+  scrollPaddingTop: '9rem',
+  scrollPaddingBottom: '9rem',
+})
+;({
+  scrollPaddingTop: '9rem',
+})
+;({
+  scrollPaddingRight: '9rem',
+})
+;({
+  scrollPaddingBottom: '9rem',
+})
+;({
+  scrollPaddingLeft: '9rem',
+})
+;({
+  scrollPadding: '10rem',
+})
+;({
+  scrollPaddingLeft: '10rem',
+  scrollPaddingRight: '10rem',
+})
+;({
+  scrollPaddingTop: '10rem',
+  scrollPaddingBottom: '10rem',
+})
+;({
+  scrollPaddingTop: '10rem',
+})
+;({
+  scrollPaddingRight: '10rem',
+})
+;({
+  scrollPaddingBottom: '10rem',
+})
+;({
+  scrollPaddingLeft: '10rem',
+})
+;({
+  scrollPadding: '11rem',
+})
+;({
+  scrollPaddingLeft: '11rem',
+  scrollPaddingRight: '11rem',
+})
+;({
+  scrollPaddingTop: '11rem',
+  scrollPaddingBottom: '11rem',
+})
+;({
+  scrollPaddingTop: '11rem',
+})
+;({
+  scrollPaddingRight: '11rem',
+})
+;({
+  scrollPaddingBottom: '11rem',
+})
+;({
+  scrollPaddingLeft: '11rem',
+})
+;({
+  scrollPadding: '12rem',
+})
+;({
+  scrollPaddingLeft: '12rem',
+  scrollPaddingRight: '12rem',
+})
+;({
+  scrollPaddingTop: '12rem',
+  scrollPaddingBottom: '12rem',
+})
+;({
+  scrollPaddingTop: '12rem',
+})
+;({
+  scrollPaddingRight: '12rem',
+})
+;({
+  scrollPaddingBottom: '12rem',
+})
+;({
+  scrollPaddingLeft: '12rem',
+})
+;({
+  scrollPadding: '13rem',
+})
+;({
+  scrollPaddingLeft: '13rem',
+  scrollPaddingRight: '13rem',
+})
+;({
+  scrollPaddingTop: '13rem',
+  scrollPaddingBottom: '13rem',
+})
+;({
+  scrollPaddingTop: '13rem',
+})
+;({
+  scrollPaddingRight: '13rem',
+})
+;({
+  scrollPaddingBottom: '13rem',
+})
+;({
+  scrollPaddingLeft: '13rem',
+})
+;({
+  scrollPadding: '14rem',
+})
+;({
+  scrollPaddingLeft: '14rem',
+  scrollPaddingRight: '14rem',
+})
+;({
+  scrollPaddingTop: '14rem',
+  scrollPaddingBottom: '14rem',
+})
+;({
+  scrollPaddingTop: '14rem',
+})
+;({
+  scrollPaddingRight: '14rem',
+})
+;({
+  scrollPaddingBottom: '14rem',
+})
+;({
+  scrollPaddingLeft: '14rem',
+})
+;({
+  scrollPadding: '15rem',
+})
+;({
+  scrollPaddingLeft: '15rem',
+  scrollPaddingRight: '15rem',
+})
+;({
+  scrollPaddingTop: '15rem',
+  scrollPaddingBottom: '15rem',
+})
+;({
+  scrollPaddingTop: '15rem',
+})
+;({
+  scrollPaddingRight: '15rem',
+})
+;({
+  scrollPaddingBottom: '15rem',
+})
+;({
+  scrollPaddingLeft: '15rem',
+})
+;({
+  scrollPadding: '16rem',
+})
+;({
+  scrollPaddingLeft: '16rem',
+  scrollPaddingRight: '16rem',
+})
+;({
+  scrollPaddingTop: '16rem',
+  scrollPaddingBottom: '16rem',
+})
+;({
+  scrollPaddingTop: '16rem',
+})
+;({
+  scrollPaddingRight: '16rem',
+})
+;({
+  scrollPaddingBottom: '16rem',
+})
+;({
+  scrollPaddingLeft: '16rem',
+})
+;({
+  scrollPadding: '18rem',
+})
+;({
+  scrollPaddingLeft: '18rem',
+  scrollPaddingRight: '18rem',
+})
+;({
+  scrollPaddingTop: '18rem',
+  scrollPaddingBottom: '18rem',
+})
+;({
+  scrollPaddingTop: '18rem',
+})
+;({
+  scrollPaddingRight: '18rem',
+})
+;({
+  scrollPaddingBottom: '18rem',
+})
+;({
+  scrollPaddingLeft: '18rem',
+})
+;({
+  scrollPadding: '20rem',
+})
+;({
+  scrollPaddingLeft: '20rem',
+  scrollPaddingRight: '20rem',
+})
+;({
+  scrollPaddingTop: '20rem',
+  scrollPaddingBottom: '20rem',
+})
+;({
+  scrollPaddingTop: '20rem',
+})
+;({
+  scrollPaddingRight: '20rem',
+})
+;({
+  scrollPaddingBottom: '20rem',
+})
+;({
+  scrollPaddingLeft: '20rem',
+})
+;({
+  scrollPadding: '24rem',
+})
+;({
+  scrollPaddingLeft: '24rem',
+  scrollPaddingRight: '24rem',
+})
+;({
+  scrollPaddingTop: '24rem',
+  scrollPaddingBottom: '24rem',
+})
+;({
+  scrollPaddingTop: '24rem',
+})
+;({
+  scrollPaddingRight: '24rem',
+})
+;({
+  scrollPaddingBottom: '24rem',
+})
+;({
+  scrollPaddingLeft: '24rem',
+})
+;({
+  scrollPadding: '-24rem',
+})
+;({
+  scrollPaddingLeft: '-24rem',
+  scrollPaddingRight: '-24rem',
+})
+;({
+  scrollPaddingTop: '-24rem',
+  scrollPaddingBottom: '-24rem',
+})
+;({
+  scrollPaddingTop: '-24rem',
+})
+;({
+  scrollPaddingRight: '-24rem',
+})
+;({
+  scrollPaddingBottom: '-24rem',
+})
+;({
+  scrollPaddingLeft: '-24rem',
+})
+;({
+  scrollPadding: '-24rem',
+})
+;({
+  scrollPadding: '24rem',
+})
 
 
 `;
@@ -45094,13 +46446,26 @@ exports[`twin.macro scrollSnapAlign.js: scrollSnapAlign.js 1`] = `
 import tw from './macro'
 
 // https://tailwindcss.com/docs/scroll-snap-align
-// tw\`snap-start\`
-// tw\`snap-end\`
-// tw\`snap-center\`
-// tw\`snap-align-none\`
+tw\`snap-start\`
+tw\`snap-end\`
+tw\`snap-center\`
+tw\`snap-align-none\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// https://tailwindcss.com/docs/scroll-snap-align
+;({
+  scrollSnapAlign: 'start',
+})
+;({
+  scrollSnapAlign: 'end',
+})
+;({
+  scrollSnapAlign: 'center',
+})
+;({
+  scrollSnapAlign: 'none',
+})
 
 
 `;
@@ -45110,11 +46475,18 @@ exports[`twin.macro scrollSnapStop.js: scrollSnapStop.js 1`] = `
 import tw from './macro'
 
 // https://tailwindcss.com/docs/scroll-snap-stop
-// tw\`snap-normal\`
-// tw\`snap-always\`
+tw\`snap-normal\`
+tw\`snap-always\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// https://tailwindcss.com/docs/scroll-snap-stop
+;({
+  scrollSnapStop: 'normal',
+})
+;({
+  scrollSnapStop: 'always',
+})
 
 
 `;
@@ -45124,15 +46496,34 @@ exports[`twin.macro scrollSnapType.js: scrollSnapType.js 1`] = `
 import tw from './macro'
 
 // https://tailwindcss.com/docs/scroll-snap-type
-// tw\`snap-none\`
-// tw\`snap-x\`
-// tw\`snap-y\`
-// tw\`snap-both\`
-// tw\`snap-mandatory\`
-// tw\`snap-proximity\`
+tw\`snap-none\`
+tw\`snap-x\`
+tw\`snap-y\`
+tw\`snap-both\`
+tw\`snap-mandatory\`
+tw\`snap-proximity\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// https://tailwindcss.com/docs/scroll-snap-type
+;({
+  scrollSnapType: 'none',
+})
+;({
+  scrollSnapType: 'x var(--tw-scroll-snap-strictness)',
+})
+;({
+  scrollSnapType: 'y var(--tw-scroll-snap-strictness)',
+})
+;({
+  scrollSnapType: 'both var(--tw-scroll-snap-strictness)',
+})
+;({
+  '--tw-scroll-snap-strictness': 'mandatory',
+})
+;({
+  '--tw-scroll-snap-strictness': 'proximity',
+})
 
 
 `;
