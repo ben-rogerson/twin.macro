@@ -13,6 +13,7 @@ tw`peer-default:block`
 tw`peer-checked:block`
 tw`peer-indeterminate:block`
 tw`peer-placeholder-shown:block`
+tw`peer-not-placeholder-shown:block`
 tw`peer-autofill:block`
 tw`peer-required:block`
 tw`peer-valid:block`
