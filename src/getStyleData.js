@@ -93,7 +93,6 @@ export default (
   const classesMismatched = []
 
   // Merge styles into a single css object
-  // eslint-disable-next-line complexity
   const styles = classes.reduce((results, classNameRaw) => {
     const pieces = getPieces({ classNameRaw, state })
     const { hasPrefix, className, hasVariants } = pieces
@@ -136,8 +135,7 @@ export default (
       state.configTwin.disableShortCss && type === 'css' && !isCsOnly
     throwIf(isShortCssDisabled, () =>
       logBadGood(
-        `Short css has been disabled in the config so “${classNameRaw}” won’t work${
-          !state.configTwin.disableCsProp ? ' outside the cs prop' : ''
+        `Short css has been disabled in the config so “${classNameRaw}” won’t work${!state.configTwin.disableCsProp ? ' outside the cs prop' : ''
         }.`,
         !state.configTwin.disableCsProp
           ? `Add short css with the cs prop: &lt;div cs="${classNameRaw}" /&gt;`
@@ -161,6 +159,7 @@ export default (
       dynamicConfig,
       configTwin: state.configTwin,
     }
+
     const styleHandler = {
       static: () => handleStatic(styleContext),
       dynamic: () => handleDynamic(styleContext),

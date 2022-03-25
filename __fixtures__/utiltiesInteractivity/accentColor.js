@@ -233,3 +233,6 @@ tw`accent-auto`
 tw`accent-[#50d71e]`
 tw`accent-[theme('colors.red.500')]`
 tw`accent-[theme('colors.red.500')]/20`
+
+tw`accent-[color:red]`
+tw`accent-[any:red]`

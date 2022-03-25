@@ -1,14 +1,4 @@
-import { SPACE_ID } from './../contants'
-
-const formatProp = classes =>
-  classes
-    // Replace the "stand-in spaces" with real ones
-    .replace(new RegExp(SPACE_ID, 'g'), ' ')
-    // Normalize spacing
-    .replace(/\s\s+/g, ' ')
-    // Remove newline characters
-    .replace(/\n/g, ' ')
-    .trim()
+import { formatProp } from './../utils'
 
 const addDataTwPropToPath = ({
   t,

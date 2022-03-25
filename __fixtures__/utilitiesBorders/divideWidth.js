@@ -18,3 +18,9 @@ tw`divide-y-reverse`
 
 tw`divide-x-[3px]`
 tw`divide-y-[3px]`
+
+tw`divide-x-[line-width:3px]`
+tw`divide-x-[length:3px]`
+
+tw`divide-y-[line-width:3px]`
+tw`divide-y-[length:3px]`

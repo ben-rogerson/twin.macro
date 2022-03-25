@@ -1,14 +1,6 @@
 export default properties => {
-  const common = {
-    matchStart: 'accent',
-    property: 'accentColor',
-    configSearch: 'accentColor',
-  }
-  const color = properties.toColor([
-    { ...common, useSlashAlpha: false },
-    common,
-  ])
-  if (!color) properties.errors.errorSuggestions({ config: 'accentColor' })
+  const coercedColor = properties.getCoercedColor('accentColor')
+  if (coercedColor) return coercedColor
 
-  return color
+  return properties.errors.errorSuggestions({ config: 'accentColor' })
 }

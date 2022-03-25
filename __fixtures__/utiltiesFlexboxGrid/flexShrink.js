@@ -8,5 +8,5 @@ theme`flexShrink`
 tw`flex-shrink-0` // Deprecated
 tw`flex-shrink` // Deprecated
 
-// tw`shrink-[2]`
 tw`flex-shrink-[var(--shrink)]` // Deprecated
+tw`shrink-[var(--shrink)]`

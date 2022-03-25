@@ -251,3 +251,10 @@ tw`text-electric/[.555]`
 tw`text-electric/[var(--myvar)]`
 tw`text-[theme('colors.electric')]`
 tw`text-[theme('colors.electric')]/20`
+
+tw`text-[color:green]`
+tw`text-[color:rgba(255, 255, 255, .45)]`
+tw`text-[absolute-size:medium]`
+tw`text-[relative-size:larger]`
+tw`text-[length:10px]`
+tw`text-[percentage:10%]`

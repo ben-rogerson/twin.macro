@@ -1,5 +1,5 @@
 import getConfigValue from './../utils/getConfigValue'
-import { throwIf, transparentTo } from './../utils'
+import { throwIf } from './../utils'
 import { errorSuggestions } from './../logging'
 import { maybeAddNegative } from './../negative'
 
@@ -31,16 +31,15 @@ export default ({ theme, pieces, state, dynamicKey, dynamicConfig }) => {
       results =
         typeof item.value === 'function'
           ? item.value({
-              value,
-              transparentTo,
-              negative,
-              isEmotion: state.isEmotion,
-            })
+            value,
+            negative,
+            isEmotion: state.isEmotion,
+          })
           : styleify({
-              property: item.prop,
-              value,
-              negative,
-            })
+            property: item.prop,
+            value,
+            negative,
+          })
     }
 
     return value

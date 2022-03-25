@@ -10,3 +10,6 @@ tw`font-semibold`
 tw`font-bold`
 tw`font-extrabold`
 tw`font-black`
+
+tw`font-[300]`
+tw`font-[number:medium]`

@@ -12,3 +12,5 @@ tw`transition-shadow`
 tw`transition-transform`
 
 tw`transition-[height]`
+
+tw`transition-[lookup:green]`

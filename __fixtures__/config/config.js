@@ -34,3 +34,6 @@ tw`bg-blue-gray-green-200`
 tw`bg-blue-gray-green-deep-dish`
 tw`bg-blue-gray-green-deep-dish-200`
 tw`bg-blue-gray-green-pink`
+
+tw`font-customFontWeightAsString`
+tw`font-customFontWeightAsNumber`

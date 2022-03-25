@@ -12,3 +12,5 @@ tw`bg-gradient-to-b`
 tw`bg-gradient-to-bl`
 tw`bg-gradient-to-l`
 tw`bg-gradient-to-tl`
+
+tw`bg-[image:custom]`

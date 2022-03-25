@@ -1,61 +1,10 @@
-import createColor from 'color'
+import { parseColor, formatColor } from 'tailwindcss/lib/util/color'
+import { gradient } from 'tailwindcss/lib/util/dataTypes'
 
-function hasAlpha(color) {
-  return (
-    color.startsWith('rgba(') ||
-    color.startsWith('hsla(') ||
-    (color.startsWith('#') && color.length === 9) ||
-    (color.startsWith('#') && color.length === 5)
-  )
-}
-
-function toRgba(color) {
-  const [r, g, b, a] = createColor(color).rgb().array()
-  return [r, g, b, a === undefined && hasAlpha(color) ? 1 : a]
-}
-
-function toHsla(color) {
-  const [h, s, l, a] = createColor(color).hsl().array()
-  return [h, s, l, a === undefined && hasAlpha(color) ? 1 : a]
-}
-
-const toPercent = value => (value > 0 ? `${value}%` : value)
-
-const colorMap = {
-  hsl: color => {
-    const [h, s, l, a] = toHsla(color)
-    return {
-      values: [h, toPercent(s), toPercent(l)].join(' '),
-      alpha: a,
-      prefix: 'hsl',
-      alphaPrefix: 'hsl',
-    }
-  },
-  rgb: color => {
-    const [r, g, b, a] = toRgba(color)
-    return {
-      values: [r, g, b].join(' '),
-      alpha: a,
-      prefix: 'rgb',
-      alphaPrefix: 'rgb',
-    }
-  },
-}
-
-const makeColorValue = color => {
-  const type = color.slice(0, 3)
-  const colorType = colorMap[type] || colorMap.rgb
-  let alphaValue
-
-  const colorValue = ({ a }) => {
-    const { alphaPrefix, prefix, values, alpha } = colorType(color)
-    alphaValue = alpha !== undefined ? alpha : a
-    const finalColor = [values, alphaValue].filter(i => i !== undefined)
-    const finalPrefix = alphaValue !== undefined ? alphaPrefix : prefix
-    return `${finalPrefix}(${finalColor.join(' / ')})`
-  }
-
-  return [colorValue, alphaValue]
+const buildStyleSet = (property, color, pieces) => {
+  const value = `${color}${pieces.important}`
+  if (!property) return value
+  return { [property]: value }
 }
 
 const withAlpha = ({
@@ -63,19 +12,20 @@ const withAlpha = ({
   property,
   variable,
   pieces = {},
-  useSlashAlpha = pieces.hasAlpha,
-  hasFallback = true,
+  fallBackColor,
 }) => {
   if (!color) return
+
+  if (Array.isArray(color)) color = color.join(',')
 
   if (typeof color === 'function') {
     if (variable && property) {
       if (pieces.hasAlpha)
-        return {
-          [property]: `${color({ opacityValue: pieces.alpha })}${
-            pieces.important
-          }`,
-        }
+        return buildStyleSet(
+          property,
+          color({ opacityValue: pieces.alpha }),
+          pieces
+        )
 
       return {
         [variable]: '1',
@@ -89,46 +39,57 @@ const withAlpha = ({
     color = color({ opacityVariable: variable })
   }
 
-  if (!property && !useSlashAlpha) return `${color}${pieces.important}`
+  const parsed = parseColor(color)
 
-  try {
-    const [colorValue, a] = makeColorValue(color)
+  if (parsed === null) {
+    // Check for space separated color values
+    const spaceMatch =
+      typeof color === 'string' ? color.split(/\s+(?=[^)\]}]*(?:[([{]|$))/) : []
 
-    if (!useSlashAlpha) {
-      if (!variable || color.startsWith('var('))
-        // a !== undefined ||
-        return { [property]: `${color}${pieces.important}` }
-
-      const value = colorValue({ a: `var(${variable})` })
-      return {
-        ...(value.includes('var(') && { [variable]: '1' }),
-        [property]: `${value}${pieces.important}`,
-      }
+    if (spaceMatch.length > 1) {
+      const hasValidSpaceSeparatedColors = spaceMatch.every(color =>
+        Boolean(/^var\(--\w*\)$/.exec(color) ? color : parseColor(color))
+      )
+      if (!hasValidSpaceSeparatedColors) return
+      return buildStyleSet(property, color, pieces)
     }
 
-    const value = `${
-      (pieces.hasAlpha && colorValue({ a: pieces.alpha })) ||
-      (a && colorValue()) ||
-      colorValue()
-    }${pieces.important}`
-    return property ? { [property]: value } : value
-  } catch (_) {
-    if (!hasFallback) return
-    return { [property]: `${color}${pieces.important}` }
+    if (gradient(color)) return buildStyleSet(property, color, pieces)
+
+    if (fallBackColor) return buildStyleSet(property, fallBackColor, pieces)
+
+    return
   }
+
+  if (parsed.alpha !== undefined) {
+    // For gradients
+    if (color === 'transparent' && fallBackColor)
+      return buildStyleSet(
+        property,
+        formatColor({ ...parsed, alpha: pieces.alpha }),
+        pieces
+      )
+
+    // Has an alpha value, return color as-is
+    return buildStyleSet(property, color, pieces)
+  }
+
+  if (pieces.alpha)
+    return buildStyleSet(
+      property,
+      formatColor({ ...parsed, alpha: pieces.alpha }),
+      pieces
+    )
+
+  if (variable)
+    return {
+      [variable]: '1',
+      [property]: `${formatColor({ ...parsed, alpha: `var(${variable})` })}${
+        pieces.important
+      }`,
+    }
+
+  return buildStyleSet(property, color, pieces)
 }
 
-const transparentTo = value => {
-  if (typeof value === 'function') {
-    value = value({ opacityValue: 0 })
-  }
-
-  try {
-    const [r, g, b] = toRgba(value)
-    return `rgb(${r} ${g} ${b} / 0)`
-  } catch (_) {
-    return `rgb(255 255 255 / 0)`
-  }
-}
-
-export { toRgba, withAlpha, transparentTo }
+export { withAlpha }

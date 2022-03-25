@@ -1,3 +1,5 @@
+import { makeBoxShadow } from './../boxShadow'
+
 export const globalBoxShadowStyles = {
   '*, ::before, ::after': {
     '--tw-shadow': '0 0 #0000',
@@ -22,12 +24,5 @@ export default properties => {
     return errorSuggestions({ config: 'boxShadow' })
   }
 
-  return {
-    '--tw-shadow': value === 'none' ? '0 0 #0000' : value,
-    boxShadow: `${[
-      `var(--tw-ring-offset-shadow, 0 0 #0000)`,
-      `var(--tw-ring-shadow, 0 0 #0000)`,
-      `var(--tw-shadow)`,
-    ].join(', ')}${important}`,
-  }
+  return makeBoxShadow(value, important)
 }

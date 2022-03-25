@@ -233,3 +233,7 @@ theme`outlineColor`
 // tw`outline-rose-900/[.50]`
 tw`outline-[#243c5a]`
 tw`outline-[var(--outline)]`
+
+tw`outline-[length:500px]`
+tw`outline-[color:red]`
+tw`outline-[percentage:10%]`

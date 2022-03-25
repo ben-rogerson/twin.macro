@@ -23,6 +23,7 @@ module.exports = {
   ],
   plugins: ['chai-friendly', 'jest', 'import'],
   rules: {
+    'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0, maxBOF: 0 }],
     'no-unused-expressions': 0,
     'no-negated-condition': 0,
     'no-warning-comments': 0,

@@ -251,3 +251,5 @@ tw`bg-electric/[.555]`
 tw`bg-electric/[var(--myvar)]`
 tw`bg-[theme('colors.electric')]`
 tw`bg-[theme('colors.electric')]/20`
+
+tw`bg-[color:custom]`

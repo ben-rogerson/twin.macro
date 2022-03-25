@@ -40,5 +40,11 @@ module.exports = {
       },
       'blue-gray-green-pink': 'blue-gray-green-pink',
     },
+    fontWeight: {
+      customFontWeightAsString: '700',
+      // Tailwind accepts numbers in configuration as well
+      // https://tailwindcss.com/docs/font-weight#font-weights
+      customFontWeightAsNumber: 800,
+    },
   },
 }
