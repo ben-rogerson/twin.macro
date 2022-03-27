@@ -50,6 +50,8 @@ const variantConfig = ({
   placeholder: '::placeholder',
   'read-only': ':read-only',
   'read-write': ':read-write',
+  open: ':open',
+  'not-open': ':not(:open)',
 
   // Child selectors
   'not-disabled': ':not(:disabled)',
@@ -140,6 +142,10 @@ const variantConfig = ({
     prefixDarkLightModeClass('.group:read-only &', variantData),
   'group-empty': variantData =>
     prefixDarkLightModeClass('.group:empty &', variantData),
+  'group-open': variantData =>
+    prefixDarkLightModeClass('.group:open &', variantData),
+  'group-not-open': variantData =>
+    prefixDarkLightModeClass('.group:not(:open) &', variantData),
 
   // Media types
   print: '@media print',
@@ -209,6 +215,8 @@ const variantConfig = ({
   'peer-out-of-range': createPeer('out-of-range'),
   'peer-read-only': createPeer('read-only'),
   'peer-empty': createPeer('empty'),
+  'peer-open': createPeer('open'),
+  'peer-not-open': createPeer('not(:open)'),
 
   // Selection
   selection: '::selection',

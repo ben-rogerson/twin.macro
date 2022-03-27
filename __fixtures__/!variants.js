@@ -37,6 +37,8 @@ tw`placeholder-shown:flex`
 tw`not-placeholder-shown:flex`
 tw`read-only:flex`
 tw`read-write:flex`
+tw`open:flex`
+tw`not-open:flex`
 
 // Child selectors
 tw`not-disabled:flex`
@@ -104,6 +106,8 @@ tw`group-in-range:shadow-md`
 tw`group-out-of-range:shadow-md`
 tw`group-read-only:shadow-md`
 tw`group-empty:shadow-md`
+tw`group-open:shadow-md`
+tw`group-not-open:shadow-md`
 
 // Direction
 tw`rtl:shadow-md`

@@ -28,6 +28,8 @@ tw`peer-focus:block`
 tw`peer-focus-visible:block`
 tw`peer-active:block`
 tw`peer-disabled:block`
+tw`peer-open:block`
+tw`peer-not-open:block`
 
 tw`peer-focus:peer-hover:block`
 tw`peer-disabled:peer-focus:peer-hover:first:block`
