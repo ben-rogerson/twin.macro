@@ -1089,7 +1089,7 @@ const multipleClasses = {
     backgroundColor: 'rgb(0 0 0 / var(--tw-bg-opacity))',
     '--tw-text-opacity': '1',
     color: 'rgb(255 255 255 / var(--tw-text-opacity))',
-    textDecoration: 'underline',
+    textDecorationLine: 'underline',
   },
 }
 const pseudoElement = {
@@ -51867,7 +51867,7 @@ import tw from './macro'
 
 // https://tailwindcss.com/docs/text-decoration
 tw\`underline\`
-// tw\`overline\`
+tw\`overline\`
 tw\`line-through\`
 tw\`no-underline\`
 
@@ -51875,14 +51875,16 @@ tw\`no-underline\`
 
 // https://tailwindcss.com/docs/text-decoration
 ;({
-  textDecoration: 'underline',
-}) // tw\`overline\`
-
-;({
-  textDecoration: 'line-through',
+  textDecorationLine: 'underline',
 })
 ;({
-  textDecoration: 'none',
+  textDecorationLine: 'overline',
+})
+;({
+  textDecorationLine: 'line-through',
+})
+;({
+  textDecorationLine: 'none',
 })
 
 
