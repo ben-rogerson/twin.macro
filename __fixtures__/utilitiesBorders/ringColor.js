@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/ring-color
-theme`ringColor`
+theme`ringColor.`
 
 tw`ring-inherit`
 tw`ring-current`

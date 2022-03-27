@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/border-width
-theme`borderWidth`
+theme`borderWidth.`
 
 tw`border-0`
 tw`border-2`

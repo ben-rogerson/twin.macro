@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/ring-width
-theme`ringWidth`
+theme`ringWidth.`
 
 tw`ring-0`
 tw`ring-1`

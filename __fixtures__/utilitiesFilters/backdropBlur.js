@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/backdrop-blur
-theme`backdropBlur`
+theme`backdropBlur.`
 
 tw`backdrop-blur-none`
 tw`backdrop-blur-sm`

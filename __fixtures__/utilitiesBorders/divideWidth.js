@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/divide-width
-theme`divideWidth`
+theme`divideWidth.`
 
 tw`divide-x-0`
 tw`divide-x-2`

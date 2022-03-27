@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/border-radius
-theme`borderRadius`
+theme`borderRadius.`
 
 tw`rounded-none`
 tw`rounded-sm`

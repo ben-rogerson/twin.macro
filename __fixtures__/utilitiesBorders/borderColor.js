@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/border-color
-theme`borderColor`
+theme`borderColor.`
 
 tw`border-inherit`
 tw`border-current`

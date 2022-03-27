@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/transition-timing-function
-theme`transitionTimingFunction`
+theme`transitionTimingFunction.`
 
 tw`ease-linear`
 tw`ease-in`

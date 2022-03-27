@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/backdrop-grayscale
-theme`backdropGrayscale`
+theme`backdropGrayscale.`
 
 tw`backdrop-grayscale-0`
 tw`backdrop-grayscale`
