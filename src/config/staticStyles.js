@@ -441,9 +441,10 @@ export default {
   // See dynamicStyles.js
 
   // https://tailwindcss.com/docs/text-decoration
-  underline: { output: { textDecoration: 'underline' } },
-  'line-through': { output: { textDecoration: 'line-through' } },
-  'no-underline': { output: { textDecoration: 'none' } },
+  underline: { output: { textDecorationLine: 'underline' } },
+  overline: { output: { textDecorationLine: 'overline' } },
+  'line-through': { output: { textDecorationLine: 'line-through' } },
+  'no-underline': { output: { textDecorationLine: 'none' } },
 
   // https://tailwindcss.com/docs/text-transform
   uppercase: { output: { textTransform: 'uppercase' } },
