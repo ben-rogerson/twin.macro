@@ -244,6 +244,7 @@ const validImports = new Set([
   'theme',
   'screen',
   'TwStyle',
+  'TwComponent',
   'ThemeStyle',
   'GlobalStyles',
   'globalStyles',
