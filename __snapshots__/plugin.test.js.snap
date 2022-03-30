@@ -52184,17 +52184,17 @@ tw\`decoration-rose-700\`
 tw\`decoration-rose-800\`
 tw\`decoration-rose-900\`
 
-tw\`decoration-red-600\`;
+tw\`decoration-red-600\`
 tw\`decoration-[#50d71e]\`
-tw\`decoration-[black]\`;
-tw\`decoration-[rgb(123,123,123)]\`;
-tw\`decoration-[rgb(123,_123,_123)]\`;
-tw\`decoration-[rgb(123_123_123)]\`;
-tw\`decoration-[rgb(123_123_123)]/20\`;
-tw\`decoration-[rgb(123_123_123)]/[20]\`;
+tw\`decoration-[black]\`
+tw\`decoration-[rgb(123,123,123)]\`
+tw\`decoration-[rgb(123,_123,_123)]\`
+tw\`decoration-[rgb(123_123_123)]\`
+tw\`decoration-[rgb(123_123_123)]/20\`
+tw\`decoration-[rgb(123_123_123)]/[20]\`
 tw\`decoration-[color:#50d71e]\`
-tw\`decoration-[color:var(--color)]\`;
-tw\`decoration-[var(--color)]\`;
+tw\`decoration-[color:var(--color)]\`
+tw\`decoration-[var(--color)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -53232,8 +53232,8 @@ tw\`decoration-2\`
 tw\`decoration-4\`
 tw\`decoration-8\`
 
-tw\`decoration-[length:10px]\`;
-tw\`decoration-[percentage:10%]\`;
+tw\`decoration-[length:10px]\`
+tw\`decoration-[percentage:10%]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -53762,17 +53762,17 @@ import tw, { theme } from './macro'
 // https://tailwindcss.com/docs/text-underline-offset
 theme\`textUnderlineOffset\`
 
-tw\`underline-offset-auto\`;
-tw\`underline-offset-0\`;
-tw\`underline-offset-1\`;
-tw\`underline-offset-2\`;
-tw\`underline-offset-4\`;
-tw\`underline-offset-8\`;
+tw\`underline-offset-auto\`
+tw\`underline-offset-0\`
+tw\`underline-offset-1\`
+tw\`underline-offset-2\`
+tw\`underline-offset-4\`
+tw\`underline-offset-8\`
 
-tw\`underline-offset-[3px]\`;
-tw\`underline-offset-[length:3px]\`;
-tw\`underline-offset-[30%]\`;
-tw\`underline-offset-[percentage:30%]\`;
+tw\`underline-offset-[3px]\`
+tw\`underline-offset-[length:3px]\`
+tw\`underline-offset-[30%]\`
+tw\`underline-offset-[percentage:30%]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
