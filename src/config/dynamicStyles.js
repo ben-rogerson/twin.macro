@@ -134,6 +134,7 @@ export default {
     coerced: {
       color: {
         property: 'borderColor',
+        config: 'divideColor',
         variable: '--tw-divide-opacity',
         wrapWith: '> :not([hidden]) ~ :not([hidden])',
       },
@@ -320,10 +321,12 @@ export default {
         property: 'color',
         variable: '--tw-placeholder-opacity',
         wrapWith: '::placeholder',
+        config: 'placeholderColor',
       },
       any: {
         property: 'color',
         wrapWith: '::placeholder',
+        config: 'placeholderColor',
       },
     },
   },
@@ -342,7 +345,11 @@ export default {
     value: ['color', 'absolute-size', 'relative-size', 'length', 'percentage'],
     plugin: 'text',
     coerced: {
-      color: { property: 'color', variable: '--tw-text-opacity' },
+      color: {
+        property: 'color',
+        variable: '--tw-text-opacity',
+        config: 'textColor',
+      },
       'absolute-size': { property: 'fontSize' },
       'relative-size': { property: 'fontSize' },
       length: { property: 'fontSize' },
@@ -350,6 +357,34 @@ export default {
     },
   },
   // https://tailwindcss.com/docs/text-decoration
+  // See staticStyles.js
+
+  // https://tailwindcss.com/docs/text-decoration-color
+  // https://tailwindcss.com/docs/text-decoration-thickness
+  decoration: {
+    value: ['color', 'length', 'percentage', 'any'],
+    prop: 'textDecorationColor',
+    plugin: 'decoration',
+    coerced: {
+      color: { property: 'textDecorationColor' },
+      length: { property: 'textDecorationThickness' },
+      percentage: { property: 'textDecorationThickness' },
+      any: { property: 'textDecorationThickness' },
+    },
+  },
+
+  // https://tailwindcss.com/docs/text-underline-offset
+  'underline-offset': {
+    value: ['length', 'percentage'],
+    prop: 'textUnderlineOffset',
+    config: 'textUnderlineOffset',
+    coerced: {
+      length: { property: 'textUnderlineOffset' },
+      percentage: { property: 'textUnderlineOffset' },
+    },
+  },
+
+  // https://tailwindcss.com/docs/text-decoration-style
   // https://tailwindcss.com/docs/text-transform
   // https://tailwindcss.com/docs/text-overflow
   // See staticStyles.js
@@ -410,8 +445,9 @@ export default {
     coerced: {
       color: (value, { withAlpha }) => ({
         '--tw-gradient-from': withAlpha(value) || value,
-        '--tw-gradient-stops': `var(--tw-gradient-from), var(--tw-gradient-to, ${withAlpha(value, '0', 'rgb(255 255 255 / 0)') || value
-          })`,
+        '--tw-gradient-stops': `var(--tw-gradient-from), var(--tw-gradient-to, ${
+          withAlpha(value, '0', 'rgb(255 255 255 / 0)') || value
+        })`,
       }),
     },
   },
@@ -420,12 +456,13 @@ export default {
     value: ['color'],
     coerced: {
       color: (value, { withAlpha }) => ({
-        '--tw-gradient-stops': `var(--tw-gradient-from), ${withAlpha(value) || value
-          }, var(--tw-gradient-to, ${withAlpha(
-            value,
-            '0',
-            'rgb(255 255 255 / 0)'
-          )})`,
+        '--tw-gradient-stops': `var(--tw-gradient-from), ${
+          withAlpha(value) || value
+        }, var(--tw-gradient-to, ${withAlpha(
+          value,
+          '0',
+          'rgb(255 255 255 / 0)'
+        )})`,
       }),
     },
   },
@@ -591,7 +628,7 @@ export default {
     value: ['length', 'color'],
     plugin: 'ringOffset',
     coerced: {
-      color: { property: '--tw-ring-offset-color' },
+      color: { property: '--tw-ring-offset-color', config: 'ringOffsetColor' },
       length: { property: '--tw-ring-offset-width' },
     },
   },
@@ -602,7 +639,11 @@ export default {
     plugin: 'ring',
     value: ['color', 'length'],
     coerced: {
-      color: { property: '--tw-ring-color', variable: '--tw-ring-opacity' },
+      color: {
+        property: '--tw-ring-color',
+        variable: '--tw-ring-opacity',
+        config: 'ringColor',
+      },
       length: value => ({
         '--tw-ring-offset-shadow':
           'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
@@ -924,7 +965,12 @@ export default {
 
   // https://tailwindcss.com/docs/accent-color
   accent: {
-    plugin: 'accentColor',
+    plugin: properties => {
+      const coercedColor = properties.getCoerced('color')
+      if (coercedColor) return coercedColor
+
+      return properties.errors.errorSuggestions({ config: 'accentColor' })
+    },
     prop: 'accentColor',
     value: ['color', 'any'],
     coerced: {

@@ -16438,11 +16438,26 @@ exports[`twin.macro boxDecorationBreak.js: boxDecorationBreak.js 1`] = `
 import tw from './macro'
 
 // https://tailwindcss.com/docs/box-decoration-break
-// tw\`box-decoration-clone\`
-// tw\`box-decoration-slice\`
+tw\`decoration-clone\`
+tw\`decoration-slice\`
+tw\`box-decoration-clone\`
+tw\`box-decoration-slice\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// https://tailwindcss.com/docs/box-decoration-break
+;({
+  boxDecorationBreak: 'clone',
+})
+;({
+  boxDecorationBreak: 'slice',
+})
+;({
+  boxDecorationBreak: 'clone',
+})
+;({
+  boxDecorationBreak: 'slice',
+})
 
 
 `;
@@ -51943,235 +51958,243 @@ import tw, { theme } from './macro'
 // https://tailwindcss.com/docs/text-decoration-color
 theme\`textDecorationColor\`
 
-// tw\`decoration-inherit\`
-// tw\`decoration-current\`
-// tw\`decoration-transparent\`
-// tw\`decoration-black\`
-// tw\`decoration-white\`
-// tw\`decoration-slate-50\`
-// tw\`decoration-slate-100\`
-// tw\`decoration-slate-200\`
-// tw\`decoration-slate-300\`
-// tw\`decoration-slate-400\`
-// tw\`decoration-slate-500\`
-// tw\`decoration-slate-600\`
-// tw\`decoration-slate-700\`
-// tw\`decoration-slate-800\`
-// tw\`decoration-slate-900\`
-// tw\`decoration-gray-50\`
-// tw\`decoration-gray-100\`
-// tw\`decoration-gray-200\`
-// tw\`decoration-gray-300\`
-// tw\`decoration-gray-400\`
-// tw\`decoration-gray-500\`
-// tw\`decoration-gray-600\`
-// tw\`decoration-gray-700\`
-// tw\`decoration-gray-800\`
-// tw\`decoration-gray-900\`
-// tw\`decoration-zinc-50\`
-// tw\`decoration-zinc-100\`
-// tw\`decoration-zinc-200\`
-// tw\`decoration-zinc-300\`
-// tw\`decoration-zinc-400\`
-// tw\`decoration-zinc-500\`
-// tw\`decoration-zinc-600\`
-// tw\`decoration-zinc-700\`
-// tw\`decoration-zinc-800\`
-// tw\`decoration-zinc-900\`
-// tw\`decoration-neutral-50\`
-// tw\`decoration-neutral-100\`
-// tw\`decoration-neutral-200\`
-// tw\`decoration-neutral-300\`
-// tw\`decoration-neutral-400\`
-// tw\`decoration-neutral-500\`
-// tw\`decoration-neutral-600\`
-// tw\`decoration-neutral-700\`
-// tw\`decoration-neutral-800\`
-// tw\`decoration-neutral-900\`
-// tw\`decoration-stone-50\`
-// tw\`decoration-stone-100\`
-// tw\`decoration-stone-200\`
-// tw\`decoration-stone-300\`
-// tw\`decoration-stone-400\`
-// tw\`decoration-stone-500\`
-// tw\`decoration-stone-600\`
-// tw\`decoration-stone-700\`
-// tw\`decoration-stone-800\`
-// tw\`decoration-stone-900\`
-// tw\`decoration-red-50\`
-// tw\`decoration-red-100\`
-// tw\`decoration-red-200\`
-// tw\`decoration-red-300\`
-// tw\`decoration-red-400\`
-// tw\`decoration-red-500\`
-// tw\`decoration-red-600\`
-// tw\`decoration-red-700\`
-// tw\`decoration-red-800\`
-// tw\`decoration-red-900\`
-// tw\`decoration-orange-50\`
-// tw\`decoration-orange-100\`
-// tw\`decoration-orange-200\`
-// tw\`decoration-orange-300\`
-// tw\`decoration-orange-400\`
-// tw\`decoration-orange-500\`
-// tw\`decoration-orange-600\`
-// tw\`decoration-orange-700\`
-// tw\`decoration-orange-800\`
-// tw\`decoration-orange-900\`
-// tw\`decoration-amber-50\`
-// tw\`decoration-amber-100\`
-// tw\`decoration-amber-200\`
-// tw\`decoration-amber-300\`
-// tw\`decoration-amber-400\`
-// tw\`decoration-amber-500\`
-// tw\`decoration-amber-600\`
-// tw\`decoration-amber-700\`
-// tw\`decoration-amber-800\`
-// tw\`decoration-amber-900\`
-// tw\`decoration-yellow-50\`
-// tw\`decoration-yellow-100\`
-// tw\`decoration-yellow-200\`
-// tw\`decoration-yellow-300\`
-// tw\`decoration-yellow-400\`
-// tw\`decoration-yellow-500\`
-// tw\`decoration-yellow-600\`
-// tw\`decoration-yellow-700\`
-// tw\`decoration-yellow-800\`
-// tw\`decoration-yellow-900\`
-// tw\`decoration-lime-50\`
-// tw\`decoration-lime-100\`
-// tw\`decoration-lime-200\`
-// tw\`decoration-lime-300\`
-// tw\`decoration-lime-400\`
-// tw\`decoration-lime-500\`
-// tw\`decoration-lime-600\`
-// tw\`decoration-lime-700\`
-// tw\`decoration-lime-800\`
-// tw\`decoration-lime-900\`
-// tw\`decoration-green-50\`
-// tw\`decoration-green-100\`
-// tw\`decoration-green-200\`
-// tw\`decoration-green-300\`
-// tw\`decoration-green-400\`
-// tw\`decoration-green-500\`
-// tw\`decoration-green-600\`
-// tw\`decoration-green-700\`
-// tw\`decoration-green-800\`
-// tw\`decoration-green-900\`
-// tw\`decoration-emerald-50\`
-// tw\`decoration-emerald-100\`
-// tw\`decoration-emerald-200\`
-// tw\`decoration-emerald-300\`
-// tw\`decoration-emerald-400\`
-// tw\`decoration-emerald-500\`
-// tw\`decoration-emerald-600\`
-// tw\`decoration-emerald-700\`
-// tw\`decoration-emerald-800\`
-// tw\`decoration-emerald-900\`
-// tw\`decoration-teal-50\`
-// tw\`decoration-teal-100\`
-// tw\`decoration-teal-200\`
-// tw\`decoration-teal-300\`
-// tw\`decoration-teal-400\`
-// tw\`decoration-teal-500\`
-// tw\`decoration-teal-600\`
-// tw\`decoration-teal-700\`
-// tw\`decoration-teal-800\`
-// tw\`decoration-teal-900\`
-// tw\`decoration-cyan-50\`
-// tw\`decoration-cyan-100\`
-// tw\`decoration-cyan-200\`
-// tw\`decoration-cyan-300\`
-// tw\`decoration-cyan-400\`
-// tw\`decoration-cyan-500\`
-// tw\`decoration-cyan-600\`
-// tw\`decoration-cyan-700\`
-// tw\`decoration-cyan-800\`
-// tw\`decoration-cyan-900\`
-// tw\`decoration-sky-50\`
-// tw\`decoration-sky-100\`
-// tw\`decoration-sky-200\`
-// tw\`decoration-sky-300\`
-// tw\`decoration-sky-400\`
-// tw\`decoration-sky-500\`
-// tw\`decoration-sky-600\`
-// tw\`decoration-sky-700\`
-// tw\`decoration-sky-800\`
-// tw\`decoration-sky-900\`
-// tw\`decoration-blue-50\`
-// tw\`decoration-blue-100\`
-// tw\`decoration-blue-200\`
-// tw\`decoration-blue-300\`
-// tw\`decoration-blue-400\`
-// tw\`decoration-blue-500\`
-// tw\`decoration-blue-600\`
-// tw\`decoration-blue-700\`
-// tw\`decoration-blue-800\`
-// tw\`decoration-blue-900\`
-// tw\`decoration-indigo-50\`
-// tw\`decoration-indigo-100\`
-// tw\`decoration-indigo-200\`
-// tw\`decoration-indigo-300\`
-// tw\`decoration-indigo-400\`
-// tw\`decoration-indigo-500\`
-// tw\`decoration-indigo-600\`
-// tw\`decoration-indigo-700\`
-// tw\`decoration-indigo-800\`
-// tw\`decoration-indigo-900\`
-// tw\`decoration-violet-50\`
-// tw\`decoration-violet-100\`
-// tw\`decoration-violet-200\`
-// tw\`decoration-violet-300\`
-// tw\`decoration-violet-400\`
-// tw\`decoration-violet-500\`
-// tw\`decoration-violet-600\`
-// tw\`decoration-violet-700\`
-// tw\`decoration-violet-800\`
-// tw\`decoration-violet-900\`
-// tw\`decoration-purple-50\`
-// tw\`decoration-purple-100\`
-// tw\`decoration-purple-200\`
-// tw\`decoration-purple-300\`
-// tw\`decoration-purple-400\`
-// tw\`decoration-purple-500\`
-// tw\`decoration-purple-600\`
-// tw\`decoration-purple-700\`
-// tw\`decoration-purple-800\`
-// tw\`decoration-purple-900\`
-// tw\`decoration-fuchsia-50\`
-// tw\`decoration-fuchsia-100\`
-// tw\`decoration-fuchsia-200\`
-// tw\`decoration-fuchsia-300\`
-// tw\`decoration-fuchsia-400\`
-// tw\`decoration-fuchsia-500\`
-// tw\`decoration-fuchsia-600\`
-// tw\`decoration-fuchsia-700\`
-// tw\`decoration-fuchsia-800\`
-// tw\`decoration-fuchsia-900\`
-// tw\`decoration-pink-50\`
-// tw\`decoration-pink-100\`
-// tw\`decoration-pink-200\`
-// tw\`decoration-pink-300\`
-// tw\`decoration-pink-400\`
-// tw\`decoration-pink-500\`
-// tw\`decoration-pink-600\`
-// tw\`decoration-pink-700\`
-// tw\`decoration-pink-800\`
-// tw\`decoration-pink-900\`
-// tw\`decoration-rose-50\`
-// tw\`decoration-rose-100\`
-// tw\`decoration-rose-200\`
-// tw\`decoration-rose-300\`
-// tw\`decoration-rose-400\`
-// tw\`decoration-rose-500\`
-// tw\`decoration-rose-600\`
-// tw\`decoration-rose-700\`
-// tw\`decoration-rose-800\`
-// tw\`decoration-rose-900\`
+tw\`decoration-inherit\`
+tw\`decoration-current\`
+tw\`decoration-transparent\`
+tw\`decoration-black\`
+tw\`decoration-white\`
+tw\`decoration-slate-50\`
+tw\`decoration-slate-100\`
+tw\`decoration-slate-200\`
+tw\`decoration-slate-300\`
+tw\`decoration-slate-400\`
+tw\`decoration-slate-500\`
+tw\`decoration-slate-600\`
+tw\`decoration-slate-700\`
+tw\`decoration-slate-800\`
+tw\`decoration-slate-900\`
+tw\`decoration-gray-50\`
+tw\`decoration-gray-100\`
+tw\`decoration-gray-200\`
+tw\`decoration-gray-300\`
+tw\`decoration-gray-400\`
+tw\`decoration-gray-500\`
+tw\`decoration-gray-600\`
+tw\`decoration-gray-700\`
+tw\`decoration-gray-800\`
+tw\`decoration-gray-900\`
+tw\`decoration-zinc-50\`
+tw\`decoration-zinc-100\`
+tw\`decoration-zinc-200\`
+tw\`decoration-zinc-300\`
+tw\`decoration-zinc-400\`
+tw\`decoration-zinc-500\`
+tw\`decoration-zinc-600\`
+tw\`decoration-zinc-700\`
+tw\`decoration-zinc-800\`
+tw\`decoration-zinc-900\`
+tw\`decoration-neutral-50\`
+tw\`decoration-neutral-100\`
+tw\`decoration-neutral-200\`
+tw\`decoration-neutral-300\`
+tw\`decoration-neutral-400\`
+tw\`decoration-neutral-500\`
+tw\`decoration-neutral-600\`
+tw\`decoration-neutral-700\`
+tw\`decoration-neutral-800\`
+tw\`decoration-neutral-900\`
+tw\`decoration-stone-50\`
+tw\`decoration-stone-100\`
+tw\`decoration-stone-200\`
+tw\`decoration-stone-300\`
+tw\`decoration-stone-400\`
+tw\`decoration-stone-500\`
+tw\`decoration-stone-600\`
+tw\`decoration-stone-700\`
+tw\`decoration-stone-800\`
+tw\`decoration-stone-900\`
+tw\`decoration-red-50\`
+tw\`decoration-red-100\`
+tw\`decoration-red-200\`
+tw\`decoration-red-300\`
+tw\`decoration-red-400\`
+tw\`decoration-red-500\`
+tw\`decoration-red-600\`
+tw\`decoration-red-700\`
+tw\`decoration-red-800\`
+tw\`decoration-red-900\`
+tw\`decoration-orange-50\`
+tw\`decoration-orange-100\`
+tw\`decoration-orange-200\`
+tw\`decoration-orange-300\`
+tw\`decoration-orange-400\`
+tw\`decoration-orange-500\`
+tw\`decoration-orange-600\`
+tw\`decoration-orange-700\`
+tw\`decoration-orange-800\`
+tw\`decoration-orange-900\`
+tw\`decoration-amber-50\`
+tw\`decoration-amber-100\`
+tw\`decoration-amber-200\`
+tw\`decoration-amber-300\`
+tw\`decoration-amber-400\`
+tw\`decoration-amber-500\`
+tw\`decoration-amber-600\`
+tw\`decoration-amber-700\`
+tw\`decoration-amber-800\`
+tw\`decoration-amber-900\`
+tw\`decoration-yellow-50\`
+tw\`decoration-yellow-100\`
+tw\`decoration-yellow-200\`
+tw\`decoration-yellow-300\`
+tw\`decoration-yellow-400\`
+tw\`decoration-yellow-500\`
+tw\`decoration-yellow-600\`
+tw\`decoration-yellow-700\`
+tw\`decoration-yellow-800\`
+tw\`decoration-yellow-900\`
+tw\`decoration-lime-50\`
+tw\`decoration-lime-100\`
+tw\`decoration-lime-200\`
+tw\`decoration-lime-300\`
+tw\`decoration-lime-400\`
+tw\`decoration-lime-500\`
+tw\`decoration-lime-600\`
+tw\`decoration-lime-700\`
+tw\`decoration-lime-800\`
+tw\`decoration-lime-900\`
+tw\`decoration-green-50\`
+tw\`decoration-green-100\`
+tw\`decoration-green-200\`
+tw\`decoration-green-300\`
+tw\`decoration-green-400\`
+tw\`decoration-green-500\`
+tw\`decoration-green-600\`
+tw\`decoration-green-700\`
+tw\`decoration-green-800\`
+tw\`decoration-green-900\`
+tw\`decoration-emerald-50\`
+tw\`decoration-emerald-100\`
+tw\`decoration-emerald-200\`
+tw\`decoration-emerald-300\`
+tw\`decoration-emerald-400\`
+tw\`decoration-emerald-500\`
+tw\`decoration-emerald-600\`
+tw\`decoration-emerald-700\`
+tw\`decoration-emerald-800\`
+tw\`decoration-emerald-900\`
+tw\`decoration-teal-50\`
+tw\`decoration-teal-100\`
+tw\`decoration-teal-200\`
+tw\`decoration-teal-300\`
+tw\`decoration-teal-400\`
+tw\`decoration-teal-500\`
+tw\`decoration-teal-600\`
+tw\`decoration-teal-700\`
+tw\`decoration-teal-800\`
+tw\`decoration-teal-900\`
+tw\`decoration-cyan-50\`
+tw\`decoration-cyan-100\`
+tw\`decoration-cyan-200\`
+tw\`decoration-cyan-300\`
+tw\`decoration-cyan-400\`
+tw\`decoration-cyan-500\`
+tw\`decoration-cyan-600\`
+tw\`decoration-cyan-700\`
+tw\`decoration-cyan-800\`
+tw\`decoration-cyan-900\`
+tw\`decoration-sky-50\`
+tw\`decoration-sky-100\`
+tw\`decoration-sky-200\`
+tw\`decoration-sky-300\`
+tw\`decoration-sky-400\`
+tw\`decoration-sky-500\`
+tw\`decoration-sky-600\`
+tw\`decoration-sky-700\`
+tw\`decoration-sky-800\`
+tw\`decoration-sky-900\`
+tw\`decoration-blue-50\`
+tw\`decoration-blue-100\`
+tw\`decoration-blue-200\`
+tw\`decoration-blue-300\`
+tw\`decoration-blue-400\`
+tw\`decoration-blue-500\`
+tw\`decoration-blue-600\`
+tw\`decoration-blue-700\`
+tw\`decoration-blue-800\`
+tw\`decoration-blue-900\`
+tw\`decoration-indigo-50\`
+tw\`decoration-indigo-100\`
+tw\`decoration-indigo-200\`
+tw\`decoration-indigo-300\`
+tw\`decoration-indigo-400\`
+tw\`decoration-indigo-500\`
+tw\`decoration-indigo-600\`
+tw\`decoration-indigo-700\`
+tw\`decoration-indigo-800\`
+tw\`decoration-indigo-900\`
+tw\`decoration-violet-50\`
+tw\`decoration-violet-100\`
+tw\`decoration-violet-200\`
+tw\`decoration-violet-300\`
+tw\`decoration-violet-400\`
+tw\`decoration-violet-500\`
+tw\`decoration-violet-600\`
+tw\`decoration-violet-700\`
+tw\`decoration-violet-800\`
+tw\`decoration-violet-900\`
+tw\`decoration-purple-50\`
+tw\`decoration-purple-100\`
+tw\`decoration-purple-200\`
+tw\`decoration-purple-300\`
+tw\`decoration-purple-400\`
+tw\`decoration-purple-500\`
+tw\`decoration-purple-600\`
+tw\`decoration-purple-700\`
+tw\`decoration-purple-800\`
+tw\`decoration-purple-900\`
+tw\`decoration-fuchsia-50\`
+tw\`decoration-fuchsia-100\`
+tw\`decoration-fuchsia-200\`
+tw\`decoration-fuchsia-300\`
+tw\`decoration-fuchsia-400\`
+tw\`decoration-fuchsia-500\`
+tw\`decoration-fuchsia-600\`
+tw\`decoration-fuchsia-700\`
+tw\`decoration-fuchsia-800\`
+tw\`decoration-fuchsia-900\`
+tw\`decoration-pink-50\`
+tw\`decoration-pink-100\`
+tw\`decoration-pink-200\`
+tw\`decoration-pink-300\`
+tw\`decoration-pink-400\`
+tw\`decoration-pink-500\`
+tw\`decoration-pink-600\`
+tw\`decoration-pink-700\`
+tw\`decoration-pink-800\`
+tw\`decoration-pink-900\`
+tw\`decoration-rose-50\`
+tw\`decoration-rose-100\`
+tw\`decoration-rose-200\`
+tw\`decoration-rose-300\`
+tw\`decoration-rose-400\`
+tw\`decoration-rose-500\`
+tw\`decoration-rose-600\`
+tw\`decoration-rose-700\`
+tw\`decoration-rose-800\`
+tw\`decoration-rose-900\`
 
-// tw\`decoration-sky-500/50\`
-// tw\`decoration-sky-500/[.5]\`
-// tw\`decoration-[#50d71e]\`
+tw\`decoration-red-600\`;
+tw\`decoration-[#50d71e]\`
+tw\`decoration-[black]\`;
+tw\`decoration-[rgb(123,123,123)]\`;
+tw\`decoration-[rgb(123,_123,_123)]\`;
+tw\`decoration-[rgb(123_123_123)]\`;
+tw\`decoration-[rgb(123_123_123)]/20\`;
+tw\`decoration-[rgb(123_123_123)]/[20]\`;
+tw\`decoration-[color:#50d71e]\`
+tw\`decoration-[color:var(--color)]\`;
+tw\`decoration-[var(--color)]\`;
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -52448,234 +52471,809 @@ theme\`textDecorationColor\`
   },
   'red-500/fromConfig': '#000',
   electric: void 0,
-}) // tw\`decoration-inherit\`
-// tw\`decoration-current\`
-// tw\`decoration-transparent\`
-// tw\`decoration-black\`
-// tw\`decoration-white\`
-// tw\`decoration-slate-50\`
-// tw\`decoration-slate-100\`
-// tw\`decoration-slate-200\`
-// tw\`decoration-slate-300\`
-// tw\`decoration-slate-400\`
-// tw\`decoration-slate-500\`
-// tw\`decoration-slate-600\`
-// tw\`decoration-slate-700\`
-// tw\`decoration-slate-800\`
-// tw\`decoration-slate-900\`
-// tw\`decoration-gray-50\`
-// tw\`decoration-gray-100\`
-// tw\`decoration-gray-200\`
-// tw\`decoration-gray-300\`
-// tw\`decoration-gray-400\`
-// tw\`decoration-gray-500\`
-// tw\`decoration-gray-600\`
-// tw\`decoration-gray-700\`
-// tw\`decoration-gray-800\`
-// tw\`decoration-gray-900\`
-// tw\`decoration-zinc-50\`
-// tw\`decoration-zinc-100\`
-// tw\`decoration-zinc-200\`
-// tw\`decoration-zinc-300\`
-// tw\`decoration-zinc-400\`
-// tw\`decoration-zinc-500\`
-// tw\`decoration-zinc-600\`
-// tw\`decoration-zinc-700\`
-// tw\`decoration-zinc-800\`
-// tw\`decoration-zinc-900\`
-// tw\`decoration-neutral-50\`
-// tw\`decoration-neutral-100\`
-// tw\`decoration-neutral-200\`
-// tw\`decoration-neutral-300\`
-// tw\`decoration-neutral-400\`
-// tw\`decoration-neutral-500\`
-// tw\`decoration-neutral-600\`
-// tw\`decoration-neutral-700\`
-// tw\`decoration-neutral-800\`
-// tw\`decoration-neutral-900\`
-// tw\`decoration-stone-50\`
-// tw\`decoration-stone-100\`
-// tw\`decoration-stone-200\`
-// tw\`decoration-stone-300\`
-// tw\`decoration-stone-400\`
-// tw\`decoration-stone-500\`
-// tw\`decoration-stone-600\`
-// tw\`decoration-stone-700\`
-// tw\`decoration-stone-800\`
-// tw\`decoration-stone-900\`
-// tw\`decoration-red-50\`
-// tw\`decoration-red-100\`
-// tw\`decoration-red-200\`
-// tw\`decoration-red-300\`
-// tw\`decoration-red-400\`
-// tw\`decoration-red-500\`
-// tw\`decoration-red-600\`
-// tw\`decoration-red-700\`
-// tw\`decoration-red-800\`
-// tw\`decoration-red-900\`
-// tw\`decoration-orange-50\`
-// tw\`decoration-orange-100\`
-// tw\`decoration-orange-200\`
-// tw\`decoration-orange-300\`
-// tw\`decoration-orange-400\`
-// tw\`decoration-orange-500\`
-// tw\`decoration-orange-600\`
-// tw\`decoration-orange-700\`
-// tw\`decoration-orange-800\`
-// tw\`decoration-orange-900\`
-// tw\`decoration-amber-50\`
-// tw\`decoration-amber-100\`
-// tw\`decoration-amber-200\`
-// tw\`decoration-amber-300\`
-// tw\`decoration-amber-400\`
-// tw\`decoration-amber-500\`
-// tw\`decoration-amber-600\`
-// tw\`decoration-amber-700\`
-// tw\`decoration-amber-800\`
-// tw\`decoration-amber-900\`
-// tw\`decoration-yellow-50\`
-// tw\`decoration-yellow-100\`
-// tw\`decoration-yellow-200\`
-// tw\`decoration-yellow-300\`
-// tw\`decoration-yellow-400\`
-// tw\`decoration-yellow-500\`
-// tw\`decoration-yellow-600\`
-// tw\`decoration-yellow-700\`
-// tw\`decoration-yellow-800\`
-// tw\`decoration-yellow-900\`
-// tw\`decoration-lime-50\`
-// tw\`decoration-lime-100\`
-// tw\`decoration-lime-200\`
-// tw\`decoration-lime-300\`
-// tw\`decoration-lime-400\`
-// tw\`decoration-lime-500\`
-// tw\`decoration-lime-600\`
-// tw\`decoration-lime-700\`
-// tw\`decoration-lime-800\`
-// tw\`decoration-lime-900\`
-// tw\`decoration-green-50\`
-// tw\`decoration-green-100\`
-// tw\`decoration-green-200\`
-// tw\`decoration-green-300\`
-// tw\`decoration-green-400\`
-// tw\`decoration-green-500\`
-// tw\`decoration-green-600\`
-// tw\`decoration-green-700\`
-// tw\`decoration-green-800\`
-// tw\`decoration-green-900\`
-// tw\`decoration-emerald-50\`
-// tw\`decoration-emerald-100\`
-// tw\`decoration-emerald-200\`
-// tw\`decoration-emerald-300\`
-// tw\`decoration-emerald-400\`
-// tw\`decoration-emerald-500\`
-// tw\`decoration-emerald-600\`
-// tw\`decoration-emerald-700\`
-// tw\`decoration-emerald-800\`
-// tw\`decoration-emerald-900\`
-// tw\`decoration-teal-50\`
-// tw\`decoration-teal-100\`
-// tw\`decoration-teal-200\`
-// tw\`decoration-teal-300\`
-// tw\`decoration-teal-400\`
-// tw\`decoration-teal-500\`
-// tw\`decoration-teal-600\`
-// tw\`decoration-teal-700\`
-// tw\`decoration-teal-800\`
-// tw\`decoration-teal-900\`
-// tw\`decoration-cyan-50\`
-// tw\`decoration-cyan-100\`
-// tw\`decoration-cyan-200\`
-// tw\`decoration-cyan-300\`
-// tw\`decoration-cyan-400\`
-// tw\`decoration-cyan-500\`
-// tw\`decoration-cyan-600\`
-// tw\`decoration-cyan-700\`
-// tw\`decoration-cyan-800\`
-// tw\`decoration-cyan-900\`
-// tw\`decoration-sky-50\`
-// tw\`decoration-sky-100\`
-// tw\`decoration-sky-200\`
-// tw\`decoration-sky-300\`
-// tw\`decoration-sky-400\`
-// tw\`decoration-sky-500\`
-// tw\`decoration-sky-600\`
-// tw\`decoration-sky-700\`
-// tw\`decoration-sky-800\`
-// tw\`decoration-sky-900\`
-// tw\`decoration-blue-50\`
-// tw\`decoration-blue-100\`
-// tw\`decoration-blue-200\`
-// tw\`decoration-blue-300\`
-// tw\`decoration-blue-400\`
-// tw\`decoration-blue-500\`
-// tw\`decoration-blue-600\`
-// tw\`decoration-blue-700\`
-// tw\`decoration-blue-800\`
-// tw\`decoration-blue-900\`
-// tw\`decoration-indigo-50\`
-// tw\`decoration-indigo-100\`
-// tw\`decoration-indigo-200\`
-// tw\`decoration-indigo-300\`
-// tw\`decoration-indigo-400\`
-// tw\`decoration-indigo-500\`
-// tw\`decoration-indigo-600\`
-// tw\`decoration-indigo-700\`
-// tw\`decoration-indigo-800\`
-// tw\`decoration-indigo-900\`
-// tw\`decoration-violet-50\`
-// tw\`decoration-violet-100\`
-// tw\`decoration-violet-200\`
-// tw\`decoration-violet-300\`
-// tw\`decoration-violet-400\`
-// tw\`decoration-violet-500\`
-// tw\`decoration-violet-600\`
-// tw\`decoration-violet-700\`
-// tw\`decoration-violet-800\`
-// tw\`decoration-violet-900\`
-// tw\`decoration-purple-50\`
-// tw\`decoration-purple-100\`
-// tw\`decoration-purple-200\`
-// tw\`decoration-purple-300\`
-// tw\`decoration-purple-400\`
-// tw\`decoration-purple-500\`
-// tw\`decoration-purple-600\`
-// tw\`decoration-purple-700\`
-// tw\`decoration-purple-800\`
-// tw\`decoration-purple-900\`
-// tw\`decoration-fuchsia-50\`
-// tw\`decoration-fuchsia-100\`
-// tw\`decoration-fuchsia-200\`
-// tw\`decoration-fuchsia-300\`
-// tw\`decoration-fuchsia-400\`
-// tw\`decoration-fuchsia-500\`
-// tw\`decoration-fuchsia-600\`
-// tw\`decoration-fuchsia-700\`
-// tw\`decoration-fuchsia-800\`
-// tw\`decoration-fuchsia-900\`
-// tw\`decoration-pink-50\`
-// tw\`decoration-pink-100\`
-// tw\`decoration-pink-200\`
-// tw\`decoration-pink-300\`
-// tw\`decoration-pink-400\`
-// tw\`decoration-pink-500\`
-// tw\`decoration-pink-600\`
-// tw\`decoration-pink-700\`
-// tw\`decoration-pink-800\`
-// tw\`decoration-pink-900\`
-// tw\`decoration-rose-50\`
-// tw\`decoration-rose-100\`
-// tw\`decoration-rose-200\`
-// tw\`decoration-rose-300\`
-// tw\`decoration-rose-400\`
-// tw\`decoration-rose-500\`
-// tw\`decoration-rose-600\`
-// tw\`decoration-rose-700\`
-// tw\`decoration-rose-800\`
-// tw\`decoration-rose-900\`
-// tw\`decoration-sky-500/50\`
-// tw\`decoration-sky-500/[.5]\`
-// tw\`decoration-[#50d71e]\`
+})
+;({
+  textDecorationColor: 'inherit',
+})
+;({
+  textDecorationColor: 'currentColor',
+})
+;({
+  textDecorationColor: 'transparent',
+})
+;({
+  textDecorationColor: '#000',
+})
+;({
+  textDecorationColor: '#fff',
+})
+;({
+  textDecorationColor: '#f8fafc',
+})
+;({
+  textDecorationColor: '#f1f5f9',
+})
+;({
+  textDecorationColor: '#e2e8f0',
+})
+;({
+  textDecorationColor: '#cbd5e1',
+})
+;({
+  textDecorationColor: '#94a3b8',
+})
+;({
+  textDecorationColor: '#64748b',
+})
+;({
+  textDecorationColor: '#475569',
+})
+;({
+  textDecorationColor: '#334155',
+})
+;({
+  textDecorationColor: '#1e293b',
+})
+;({
+  textDecorationColor: '#0f172a',
+})
+;({
+  textDecorationColor: '#f9fafb',
+})
+;({
+  textDecorationColor: '#f3f4f6',
+})
+;({
+  textDecorationColor: '#e5e7eb',
+})
+;({
+  textDecorationColor: '#d1d5db',
+})
+;({
+  textDecorationColor: '#9ca3af',
+})
+;({
+  textDecorationColor: '#6b7280',
+})
+;({
+  textDecorationColor: '#4b5563',
+})
+;({
+  textDecorationColor: '#374151',
+})
+;({
+  textDecorationColor: '#1f2937',
+})
+;({
+  textDecorationColor: '#111827',
+})
+;({
+  textDecorationColor: '#fafafa',
+})
+;({
+  textDecorationColor: '#f4f4f5',
+})
+;({
+  textDecorationColor: '#e4e4e7',
+})
+;({
+  textDecorationColor: '#d4d4d8',
+})
+;({
+  textDecorationColor: '#a1a1aa',
+})
+;({
+  textDecorationColor: '#71717a',
+})
+;({
+  textDecorationColor: '#52525b',
+})
+;({
+  textDecorationColor: '#3f3f46',
+})
+;({
+  textDecorationColor: '#27272a',
+})
+;({
+  textDecorationColor: '#18181b',
+})
+;({
+  textDecorationColor: '#fafafa',
+})
+;({
+  textDecorationColor: '#f5f5f5',
+})
+;({
+  textDecorationColor: '#e5e5e5',
+})
+;({
+  textDecorationColor: '#d4d4d4',
+})
+;({
+  textDecorationColor: '#a3a3a3',
+})
+;({
+  textDecorationColor: '#737373',
+})
+;({
+  textDecorationColor: '#525252',
+})
+;({
+  textDecorationColor: '#404040',
+})
+;({
+  textDecorationColor: '#262626',
+})
+;({
+  textDecorationColor: '#171717',
+})
+;({
+  textDecorationColor: '#fafaf9',
+})
+;({
+  textDecorationColor: '#f5f5f4',
+})
+;({
+  textDecorationColor: '#e7e5e4',
+})
+;({
+  textDecorationColor: '#d6d3d1',
+})
+;({
+  textDecorationColor: '#a8a29e',
+})
+;({
+  textDecorationColor: '#78716c',
+})
+;({
+  textDecorationColor: '#57534e',
+})
+;({
+  textDecorationColor: '#44403c',
+})
+;({
+  textDecorationColor: '#292524',
+})
+;({
+  textDecorationColor: '#1c1917',
+})
+;({
+  textDecorationColor: '#fef2f2',
+})
+;({
+  textDecorationColor: '#fee2e2',
+})
+;({
+  textDecorationColor: '#fecaca',
+})
+;({
+  textDecorationColor: '#fca5a5',
+})
+;({
+  textDecorationColor: '#f87171',
+})
+;({
+  textDecorationColor: '#ef4444',
+})
+;({
+  textDecorationColor: '#dc2626',
+})
+;({
+  textDecorationColor: '#b91c1c',
+})
+;({
+  textDecorationColor: '#991b1b',
+})
+;({
+  textDecorationColor: '#7f1d1d',
+})
+;({
+  textDecorationColor: '#fff7ed',
+})
+;({
+  textDecorationColor: '#ffedd5',
+})
+;({
+  textDecorationColor: '#fed7aa',
+})
+;({
+  textDecorationColor: '#fdba74',
+})
+;({
+  textDecorationColor: '#fb923c',
+})
+;({
+  textDecorationColor: '#f97316',
+})
+;({
+  textDecorationColor: '#ea580c',
+})
+;({
+  textDecorationColor: '#c2410c',
+})
+;({
+  textDecorationColor: '#9a3412',
+})
+;({
+  textDecorationColor: '#7c2d12',
+})
+;({
+  textDecorationColor: '#fffbeb',
+})
+;({
+  textDecorationColor: '#fef3c7',
+})
+;({
+  textDecorationColor: '#fde68a',
+})
+;({
+  textDecorationColor: '#fcd34d',
+})
+;({
+  textDecorationColor: '#fbbf24',
+})
+;({
+  textDecorationColor: '#f59e0b',
+})
+;({
+  textDecorationColor: '#d97706',
+})
+;({
+  textDecorationColor: '#b45309',
+})
+;({
+  textDecorationColor: '#92400e',
+})
+;({
+  textDecorationColor: '#78350f',
+})
+;({
+  textDecorationColor: '#fefce8',
+})
+;({
+  textDecorationColor: '#fef9c3',
+})
+;({
+  textDecorationColor: '#fef08a',
+})
+;({
+  textDecorationColor: '#fde047',
+})
+;({
+  textDecorationColor: '#facc15',
+})
+;({
+  textDecorationColor: '#eab308',
+})
+;({
+  textDecorationColor: '#ca8a04',
+})
+;({
+  textDecorationColor: '#a16207',
+})
+;({
+  textDecorationColor: '#854d0e',
+})
+;({
+  textDecorationColor: '#713f12',
+})
+;({
+  textDecorationColor: '#f7fee7',
+})
+;({
+  textDecorationColor: '#ecfccb',
+})
+;({
+  textDecorationColor: '#d9f99d',
+})
+;({
+  textDecorationColor: '#bef264',
+})
+;({
+  textDecorationColor: '#a3e635',
+})
+;({
+  textDecorationColor: '#84cc16',
+})
+;({
+  textDecorationColor: '#65a30d',
+})
+;({
+  textDecorationColor: '#4d7c0f',
+})
+;({
+  textDecorationColor: '#3f6212',
+})
+;({
+  textDecorationColor: '#365314',
+})
+;({
+  textDecorationColor: '#f0fdf4',
+})
+;({
+  textDecorationColor: '#dcfce7',
+})
+;({
+  textDecorationColor: '#bbf7d0',
+})
+;({
+  textDecorationColor: '#86efac',
+})
+;({
+  textDecorationColor: '#4ade80',
+})
+;({
+  textDecorationColor: '#22c55e',
+})
+;({
+  textDecorationColor: '#16a34a',
+})
+;({
+  textDecorationColor: '#15803d',
+})
+;({
+  textDecorationColor: '#166534',
+})
+;({
+  textDecorationColor: '#14532d',
+})
+;({
+  textDecorationColor: '#ecfdf5',
+})
+;({
+  textDecorationColor: '#d1fae5',
+})
+;({
+  textDecorationColor: '#a7f3d0',
+})
+;({
+  textDecorationColor: '#6ee7b7',
+})
+;({
+  textDecorationColor: '#34d399',
+})
+;({
+  textDecorationColor: '#10b981',
+})
+;({
+  textDecorationColor: '#059669',
+})
+;({
+  textDecorationColor: '#047857',
+})
+;({
+  textDecorationColor: '#065f46',
+})
+;({
+  textDecorationColor: '#064e3b',
+})
+;({
+  textDecorationColor: '#f0fdfa',
+})
+;({
+  textDecorationColor: '#ccfbf1',
+})
+;({
+  textDecorationColor: '#99f6e4',
+})
+;({
+  textDecorationColor: '#5eead4',
+})
+;({
+  textDecorationColor: '#2dd4bf',
+})
+;({
+  textDecorationColor: '#14b8a6',
+})
+;({
+  textDecorationColor: '#0d9488',
+})
+;({
+  textDecorationColor: '#0f766e',
+})
+;({
+  textDecorationColor: '#115e59',
+})
+;({
+  textDecorationColor: '#134e4a',
+})
+;({
+  textDecorationColor: '#ecfeff',
+})
+;({
+  textDecorationColor: '#cffafe',
+})
+;({
+  textDecorationColor: '#a5f3fc',
+})
+;({
+  textDecorationColor: '#67e8f9',
+})
+;({
+  textDecorationColor: '#22d3ee',
+})
+;({
+  textDecorationColor: '#06b6d4',
+})
+;({
+  textDecorationColor: '#0891b2',
+})
+;({
+  textDecorationColor: '#0e7490',
+})
+;({
+  textDecorationColor: '#155e75',
+})
+;({
+  textDecorationColor: '#164e63',
+})
+;({
+  textDecorationColor: '#f0f9ff',
+})
+;({
+  textDecorationColor: '#e0f2fe',
+})
+;({
+  textDecorationColor: '#bae6fd',
+})
+;({
+  textDecorationColor: '#7dd3fc',
+})
+;({
+  textDecorationColor: '#38bdf8',
+})
+;({
+  textDecorationColor: '#0ea5e9',
+})
+;({
+  textDecorationColor: '#0284c7',
+})
+;({
+  textDecorationColor: '#0369a1',
+})
+;({
+  textDecorationColor: '#075985',
+})
+;({
+  textDecorationColor: '#0c4a6e',
+})
+;({
+  textDecorationColor: '#eff6ff',
+})
+;({
+  textDecorationColor: '#dbeafe',
+})
+;({
+  textDecorationColor: '#bfdbfe',
+})
+;({
+  textDecorationColor: '#93c5fd',
+})
+;({
+  textDecorationColor: '#60a5fa',
+})
+;({
+  textDecorationColor: '#3b82f6',
+})
+;({
+  textDecorationColor: '#2563eb',
+})
+;({
+  textDecorationColor: '#1d4ed8',
+})
+;({
+  textDecorationColor: '#1e40af',
+})
+;({
+  textDecorationColor: '#1e3a8a',
+})
+;({
+  textDecorationColor: '#eef2ff',
+})
+;({
+  textDecorationColor: '#e0e7ff',
+})
+;({
+  textDecorationColor: '#c7d2fe',
+})
+;({
+  textDecorationColor: '#a5b4fc',
+})
+;({
+  textDecorationColor: '#818cf8',
+})
+;({
+  textDecorationColor: '#6366f1',
+})
+;({
+  textDecorationColor: '#4f46e5',
+})
+;({
+  textDecorationColor: '#4338ca',
+})
+;({
+  textDecorationColor: '#3730a3',
+})
+;({
+  textDecorationColor: '#312e81',
+})
+;({
+  textDecorationColor: '#f5f3ff',
+})
+;({
+  textDecorationColor: '#ede9fe',
+})
+;({
+  textDecorationColor: '#ddd6fe',
+})
+;({
+  textDecorationColor: '#c4b5fd',
+})
+;({
+  textDecorationColor: '#a78bfa',
+})
+;({
+  textDecorationColor: '#8b5cf6',
+})
+;({
+  textDecorationColor: '#7c3aed',
+})
+;({
+  textDecorationColor: '#6d28d9',
+})
+;({
+  textDecorationColor: '#5b21b6',
+})
+;({
+  textDecorationColor: '#4c1d95',
+})
+;({
+  textDecorationColor: '#faf5ff',
+})
+;({
+  textDecorationColor: '#f3e8ff',
+})
+;({
+  textDecorationColor: '#e9d5ff',
+})
+;({
+  textDecorationColor: '#d8b4fe',
+})
+;({
+  textDecorationColor: '#c084fc',
+})
+;({
+  textDecorationColor: '#a855f7',
+})
+;({
+  textDecorationColor: '#9333ea',
+})
+;({
+  textDecorationColor: '#7e22ce',
+})
+;({
+  textDecorationColor: '#6b21a8',
+})
+;({
+  textDecorationColor: '#581c87',
+})
+;({
+  textDecorationColor: '#fdf4ff',
+})
+;({
+  textDecorationColor: '#fae8ff',
+})
+;({
+  textDecorationColor: '#f5d0fe',
+})
+;({
+  textDecorationColor: '#f0abfc',
+})
+;({
+  textDecorationColor: '#e879f9',
+})
+;({
+  textDecorationColor: '#d946ef',
+})
+;({
+  textDecorationColor: '#c026d3',
+})
+;({
+  textDecorationColor: '#a21caf',
+})
+;({
+  textDecorationColor: '#86198f',
+})
+;({
+  textDecorationColor: '#701a75',
+})
+;({
+  textDecorationColor: '#fdf2f8',
+})
+;({
+  textDecorationColor: '#fce7f3',
+})
+;({
+  textDecorationColor: '#fbcfe8',
+})
+;({
+  textDecorationColor: '#f9a8d4',
+})
+;({
+  textDecorationColor: '#f472b6',
+})
+;({
+  textDecorationColor: '#ec4899',
+})
+;({
+  textDecorationColor: '#db2777',
+})
+;({
+  textDecorationColor: '#be185d',
+})
+;({
+  textDecorationColor: '#9d174d',
+})
+;({
+  textDecorationColor: '#831843',
+})
+;({
+  textDecorationColor: '#fff1f2',
+})
+;({
+  textDecorationColor: '#ffe4e6',
+})
+;({
+  textDecorationColor: '#fecdd3',
+})
+;({
+  textDecorationColor: '#fda4af',
+})
+;({
+  textDecorationColor: '#fb7185',
+})
+;({
+  textDecorationColor: '#f43f5e',
+})
+;({
+  textDecorationColor: '#e11d48',
+})
+;({
+  textDecorationColor: '#be123c',
+})
+;({
+  textDecorationColor: '#9f1239',
+})
+;({
+  textDecorationColor: '#881337',
+})
+;({
+  textDecorationColor: '#dc2626',
+})
+;({
+  textDecorationColor: '#50d71e',
+})
+;({
+  textDecorationColor: 'black',
+})
+;({
+  textDecorationColor: 'rgb(123,123,123)',
+})
+;({
+  textDecorationColor: 'rgb(123, 123, 123)',
+})
+;({
+  textDecorationColor: 'rgb(123 123 123)',
+})
+;({
+  textDecorationColor: 'rgb(123 123 123 / 0.2)',
+})
+;({
+  textDecorationColor: 'rgb(123 123 123 / 20)',
+})
+;({
+  textDecorationColor: '#50d71e',
+})
+;({
+  textDecorationColor: 'var(--color)',
+})
+;({
+  textDecorationColor: 'var(--color)',
+})
+
+
+`;
+
+exports[`twin.macro textDecorationStyle.js: textDecorationStyle.js 1`] = `
+
+import tw from './macro'
+
+// https://tailwindcss.com/docs/text-decoration-style
+tw\`decoration-solid\`
+tw\`decoration-double\`
+tw\`decoration-dotted\`
+tw\`decoration-dashed\`
+tw\`decoration-wavy\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// https://tailwindcss.com/docs/text-decoration-style
+;({
+  textDecorationStyle: 'solid',
+})
+;({
+  textDecorationStyle: 'double',
+})
+;({
+  textDecorationStyle: 'dotted',
+})
+;({
+  textDecorationStyle: 'dashed',
+})
+;({
+  textDecorationStyle: 'wavy',
+})
+
+
+`;
+
+exports[`twin.macro textDecorationThickness.js: textDecorationThickness.js 1`] = `
+
+import tw, { theme } from './macro'
+
+// https://tailwindcss.com/docs/text-decoration-thickness
+theme\`textDecorationThickness\`
+
+tw\`decoration-auto\`
+tw\`decoration-from-font\`
+tw\`decoration-0\`
+tw\`decoration-1\`
+tw\`decoration-2\`
+tw\`decoration-4\`
+tw\`decoration-8\`
+
+tw\`decoration-[length:10px]\`;
+tw\`decoration-[percentage:10%]\`;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// https://tailwindcss.com/docs/text-decoration-thickness
+;({
+  0: '0px',
+  1: '1px',
+  2: '2px',
+  4: '4px',
+  8: '8px',
+  auto: 'auto',
+  'from-font': 'from-font',
+})
+;({
+  textDecorationThickness: 'auto',
+})
+;({
+  textDecorationThickness: 'from-font',
+})
+;({
+  textDecorationThickness: '0px',
+})
+;({
+  textDecorationThickness: '1px',
+})
+;({
+  textDecorationThickness: '2px',
+})
+;({
+  textDecorationThickness: '4px',
+})
+;({
+  textDecorationThickness: '8px',
+})
+;({
+  textDecorationThickness: '10px',
+})
+;({
+  textDecorationThickness: '10%',
+})
 
 
 `;
@@ -53152,6 +53750,70 @@ tw\`normal-case\`
 })
 ;({
   textTransform: 'none',
+})
+
+
+`;
+
+exports[`twin.macro textUnderlineOffset.js: textUnderlineOffset.js 1`] = `
+
+import tw, { theme } from './macro'
+
+// https://tailwindcss.com/docs/text-underline-offset
+theme\`textUnderlineOffset\`
+
+tw\`underline-offset-auto\`;
+tw\`underline-offset-0\`;
+tw\`underline-offset-1\`;
+tw\`underline-offset-2\`;
+tw\`underline-offset-4\`;
+tw\`underline-offset-8\`;
+
+tw\`underline-offset-[3px]\`;
+tw\`underline-offset-[length:3px]\`;
+tw\`underline-offset-[30%]\`;
+tw\`underline-offset-[percentage:30%]\`;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// https://tailwindcss.com/docs/text-underline-offset
+;({
+  0: '0px',
+  1: '1px',
+  2: '2px',
+  4: '4px',
+  8: '8px',
+  auto: 'auto',
+})
+;({
+  textUnderlineOffset: 'auto',
+})
+;({
+  textUnderlineOffset: '0px',
+})
+;({
+  textUnderlineOffset: '1px',
+})
+;({
+  textUnderlineOffset: '2px',
+})
+;({
+  textUnderlineOffset: '4px',
+})
+;({
+  textUnderlineOffset: '8px',
+})
+;({
+  textUnderlineOffset: '3px',
+})
+;({
+  textUnderlineOffset: '3px',
+})
+;({
+  textUnderlineOffset: '30%',
+})
+;({
+  textUnderlineOffset: '30%',
 })
 
 

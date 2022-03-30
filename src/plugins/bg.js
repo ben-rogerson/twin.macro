@@ -24,12 +24,12 @@ export default properties => {
     theme,
     match,
     getConfigValue,
-    getCoercedColor,
+    getCoerced,
     errors: { errorSuggestions },
     pieces: { important },
   } = properties
 
-  const coercedColor = getCoercedColor('backgroundColor')
+  const coercedColor = getCoerced('color')
   if (coercedColor) return coercedColor
 
   const classValue = match(/(?<=(bg)-)([^]*)/)

@@ -36,7 +36,7 @@ export default properties => {
   const {
     theme,
     match,
-    getCoercedColor,
+    getCoerced,
     getConfigValue,
     errors: { errorSuggestions },
     pieces: { important },
@@ -52,7 +52,7 @@ export default properties => {
   })
   if (width) return width
 
-  const coercedColor = getCoercedColor('ringColor')
+  const coercedColor = getCoerced('color')
   if (coercedColor) return coercedColor
 
   errorSuggestions({

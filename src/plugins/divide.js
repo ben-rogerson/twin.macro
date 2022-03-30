@@ -40,12 +40,12 @@ export default properties => {
   const {
     errors: { errorSuggestions },
     getConfigValue,
-    getCoercedColor,
+    getCoerced,
     theme,
     match,
   } = properties
 
-  const coercedColor = getCoercedColor(['divideColor', 'borderColor', 'colors'])
+  const coercedColor = getCoerced('color')
   if (coercedColor) return coercedColor
 
   const opacityMatch =

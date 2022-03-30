@@ -3,232 +3,240 @@ import tw, { theme } from './macro'
 // https://tailwindcss.com/docs/text-decoration-color
 theme`textDecorationColor`
 
-// tw`decoration-inherit`
-// tw`decoration-current`
-// tw`decoration-transparent`
-// tw`decoration-black`
-// tw`decoration-white`
-// tw`decoration-slate-50`
-// tw`decoration-slate-100`
-// tw`decoration-slate-200`
-// tw`decoration-slate-300`
-// tw`decoration-slate-400`
-// tw`decoration-slate-500`
-// tw`decoration-slate-600`
-// tw`decoration-slate-700`
-// tw`decoration-slate-800`
-// tw`decoration-slate-900`
-// tw`decoration-gray-50`
-// tw`decoration-gray-100`
-// tw`decoration-gray-200`
-// tw`decoration-gray-300`
-// tw`decoration-gray-400`
-// tw`decoration-gray-500`
-// tw`decoration-gray-600`
-// tw`decoration-gray-700`
-// tw`decoration-gray-800`
-// tw`decoration-gray-900`
-// tw`decoration-zinc-50`
-// tw`decoration-zinc-100`
-// tw`decoration-zinc-200`
-// tw`decoration-zinc-300`
-// tw`decoration-zinc-400`
-// tw`decoration-zinc-500`
-// tw`decoration-zinc-600`
-// tw`decoration-zinc-700`
-// tw`decoration-zinc-800`
-// tw`decoration-zinc-900`
-// tw`decoration-neutral-50`
-// tw`decoration-neutral-100`
-// tw`decoration-neutral-200`
-// tw`decoration-neutral-300`
-// tw`decoration-neutral-400`
-// tw`decoration-neutral-500`
-// tw`decoration-neutral-600`
-// tw`decoration-neutral-700`
-// tw`decoration-neutral-800`
-// tw`decoration-neutral-900`
-// tw`decoration-stone-50`
-// tw`decoration-stone-100`
-// tw`decoration-stone-200`
-// tw`decoration-stone-300`
-// tw`decoration-stone-400`
-// tw`decoration-stone-500`
-// tw`decoration-stone-600`
-// tw`decoration-stone-700`
-// tw`decoration-stone-800`
-// tw`decoration-stone-900`
-// tw`decoration-red-50`
-// tw`decoration-red-100`
-// tw`decoration-red-200`
-// tw`decoration-red-300`
-// tw`decoration-red-400`
-// tw`decoration-red-500`
-// tw`decoration-red-600`
-// tw`decoration-red-700`
-// tw`decoration-red-800`
-// tw`decoration-red-900`
-// tw`decoration-orange-50`
-// tw`decoration-orange-100`
-// tw`decoration-orange-200`
-// tw`decoration-orange-300`
-// tw`decoration-orange-400`
-// tw`decoration-orange-500`
-// tw`decoration-orange-600`
-// tw`decoration-orange-700`
-// tw`decoration-orange-800`
-// tw`decoration-orange-900`
-// tw`decoration-amber-50`
-// tw`decoration-amber-100`
-// tw`decoration-amber-200`
-// tw`decoration-amber-300`
-// tw`decoration-amber-400`
-// tw`decoration-amber-500`
-// tw`decoration-amber-600`
-// tw`decoration-amber-700`
-// tw`decoration-amber-800`
-// tw`decoration-amber-900`
-// tw`decoration-yellow-50`
-// tw`decoration-yellow-100`
-// tw`decoration-yellow-200`
-// tw`decoration-yellow-300`
-// tw`decoration-yellow-400`
-// tw`decoration-yellow-500`
-// tw`decoration-yellow-600`
-// tw`decoration-yellow-700`
-// tw`decoration-yellow-800`
-// tw`decoration-yellow-900`
-// tw`decoration-lime-50`
-// tw`decoration-lime-100`
-// tw`decoration-lime-200`
-// tw`decoration-lime-300`
-// tw`decoration-lime-400`
-// tw`decoration-lime-500`
-// tw`decoration-lime-600`
-// tw`decoration-lime-700`
-// tw`decoration-lime-800`
-// tw`decoration-lime-900`
-// tw`decoration-green-50`
-// tw`decoration-green-100`
-// tw`decoration-green-200`
-// tw`decoration-green-300`
-// tw`decoration-green-400`
-// tw`decoration-green-500`
-// tw`decoration-green-600`
-// tw`decoration-green-700`
-// tw`decoration-green-800`
-// tw`decoration-green-900`
-// tw`decoration-emerald-50`
-// tw`decoration-emerald-100`
-// tw`decoration-emerald-200`
-// tw`decoration-emerald-300`
-// tw`decoration-emerald-400`
-// tw`decoration-emerald-500`
-// tw`decoration-emerald-600`
-// tw`decoration-emerald-700`
-// tw`decoration-emerald-800`
-// tw`decoration-emerald-900`
-// tw`decoration-teal-50`
-// tw`decoration-teal-100`
-// tw`decoration-teal-200`
-// tw`decoration-teal-300`
-// tw`decoration-teal-400`
-// tw`decoration-teal-500`
-// tw`decoration-teal-600`
-// tw`decoration-teal-700`
-// tw`decoration-teal-800`
-// tw`decoration-teal-900`
-// tw`decoration-cyan-50`
-// tw`decoration-cyan-100`
-// tw`decoration-cyan-200`
-// tw`decoration-cyan-300`
-// tw`decoration-cyan-400`
-// tw`decoration-cyan-500`
-// tw`decoration-cyan-600`
-// tw`decoration-cyan-700`
-// tw`decoration-cyan-800`
-// tw`decoration-cyan-900`
-// tw`decoration-sky-50`
-// tw`decoration-sky-100`
-// tw`decoration-sky-200`
-// tw`decoration-sky-300`
-// tw`decoration-sky-400`
-// tw`decoration-sky-500`
-// tw`decoration-sky-600`
-// tw`decoration-sky-700`
-// tw`decoration-sky-800`
-// tw`decoration-sky-900`
-// tw`decoration-blue-50`
-// tw`decoration-blue-100`
-// tw`decoration-blue-200`
-// tw`decoration-blue-300`
-// tw`decoration-blue-400`
-// tw`decoration-blue-500`
-// tw`decoration-blue-600`
-// tw`decoration-blue-700`
-// tw`decoration-blue-800`
-// tw`decoration-blue-900`
-// tw`decoration-indigo-50`
-// tw`decoration-indigo-100`
-// tw`decoration-indigo-200`
-// tw`decoration-indigo-300`
-// tw`decoration-indigo-400`
-// tw`decoration-indigo-500`
-// tw`decoration-indigo-600`
-// tw`decoration-indigo-700`
-// tw`decoration-indigo-800`
-// tw`decoration-indigo-900`
-// tw`decoration-violet-50`
-// tw`decoration-violet-100`
-// tw`decoration-violet-200`
-// tw`decoration-violet-300`
-// tw`decoration-violet-400`
-// tw`decoration-violet-500`
-// tw`decoration-violet-600`
-// tw`decoration-violet-700`
-// tw`decoration-violet-800`
-// tw`decoration-violet-900`
-// tw`decoration-purple-50`
-// tw`decoration-purple-100`
-// tw`decoration-purple-200`
-// tw`decoration-purple-300`
-// tw`decoration-purple-400`
-// tw`decoration-purple-500`
-// tw`decoration-purple-600`
-// tw`decoration-purple-700`
-// tw`decoration-purple-800`
-// tw`decoration-purple-900`
-// tw`decoration-fuchsia-50`
-// tw`decoration-fuchsia-100`
-// tw`decoration-fuchsia-200`
-// tw`decoration-fuchsia-300`
-// tw`decoration-fuchsia-400`
-// tw`decoration-fuchsia-500`
-// tw`decoration-fuchsia-600`
-// tw`decoration-fuchsia-700`
-// tw`decoration-fuchsia-800`
-// tw`decoration-fuchsia-900`
-// tw`decoration-pink-50`
-// tw`decoration-pink-100`
-// tw`decoration-pink-200`
-// tw`decoration-pink-300`
-// tw`decoration-pink-400`
-// tw`decoration-pink-500`
-// tw`decoration-pink-600`
-// tw`decoration-pink-700`
-// tw`decoration-pink-800`
-// tw`decoration-pink-900`
-// tw`decoration-rose-50`
-// tw`decoration-rose-100`
-// tw`decoration-rose-200`
-// tw`decoration-rose-300`
-// tw`decoration-rose-400`
-// tw`decoration-rose-500`
-// tw`decoration-rose-600`
-// tw`decoration-rose-700`
-// tw`decoration-rose-800`
-// tw`decoration-rose-900`
+tw`decoration-inherit`
+tw`decoration-current`
+tw`decoration-transparent`
+tw`decoration-black`
+tw`decoration-white`
+tw`decoration-slate-50`
+tw`decoration-slate-100`
+tw`decoration-slate-200`
+tw`decoration-slate-300`
+tw`decoration-slate-400`
+tw`decoration-slate-500`
+tw`decoration-slate-600`
+tw`decoration-slate-700`
+tw`decoration-slate-800`
+tw`decoration-slate-900`
+tw`decoration-gray-50`
+tw`decoration-gray-100`
+tw`decoration-gray-200`
+tw`decoration-gray-300`
+tw`decoration-gray-400`
+tw`decoration-gray-500`
+tw`decoration-gray-600`
+tw`decoration-gray-700`
+tw`decoration-gray-800`
+tw`decoration-gray-900`
+tw`decoration-zinc-50`
+tw`decoration-zinc-100`
+tw`decoration-zinc-200`
+tw`decoration-zinc-300`
+tw`decoration-zinc-400`
+tw`decoration-zinc-500`
+tw`decoration-zinc-600`
+tw`decoration-zinc-700`
+tw`decoration-zinc-800`
+tw`decoration-zinc-900`
+tw`decoration-neutral-50`
+tw`decoration-neutral-100`
+tw`decoration-neutral-200`
+tw`decoration-neutral-300`
+tw`decoration-neutral-400`
+tw`decoration-neutral-500`
+tw`decoration-neutral-600`
+tw`decoration-neutral-700`
+tw`decoration-neutral-800`
+tw`decoration-neutral-900`
+tw`decoration-stone-50`
+tw`decoration-stone-100`
+tw`decoration-stone-200`
+tw`decoration-stone-300`
+tw`decoration-stone-400`
+tw`decoration-stone-500`
+tw`decoration-stone-600`
+tw`decoration-stone-700`
+tw`decoration-stone-800`
+tw`decoration-stone-900`
+tw`decoration-red-50`
+tw`decoration-red-100`
+tw`decoration-red-200`
+tw`decoration-red-300`
+tw`decoration-red-400`
+tw`decoration-red-500`
+tw`decoration-red-600`
+tw`decoration-red-700`
+tw`decoration-red-800`
+tw`decoration-red-900`
+tw`decoration-orange-50`
+tw`decoration-orange-100`
+tw`decoration-orange-200`
+tw`decoration-orange-300`
+tw`decoration-orange-400`
+tw`decoration-orange-500`
+tw`decoration-orange-600`
+tw`decoration-orange-700`
+tw`decoration-orange-800`
+tw`decoration-orange-900`
+tw`decoration-amber-50`
+tw`decoration-amber-100`
+tw`decoration-amber-200`
+tw`decoration-amber-300`
+tw`decoration-amber-400`
+tw`decoration-amber-500`
+tw`decoration-amber-600`
+tw`decoration-amber-700`
+tw`decoration-amber-800`
+tw`decoration-amber-900`
+tw`decoration-yellow-50`
+tw`decoration-yellow-100`
+tw`decoration-yellow-200`
+tw`decoration-yellow-300`
+tw`decoration-yellow-400`
+tw`decoration-yellow-500`
+tw`decoration-yellow-600`
+tw`decoration-yellow-700`
+tw`decoration-yellow-800`
+tw`decoration-yellow-900`
+tw`decoration-lime-50`
+tw`decoration-lime-100`
+tw`decoration-lime-200`
+tw`decoration-lime-300`
+tw`decoration-lime-400`
+tw`decoration-lime-500`
+tw`decoration-lime-600`
+tw`decoration-lime-700`
+tw`decoration-lime-800`
+tw`decoration-lime-900`
+tw`decoration-green-50`
+tw`decoration-green-100`
+tw`decoration-green-200`
+tw`decoration-green-300`
+tw`decoration-green-400`
+tw`decoration-green-500`
+tw`decoration-green-600`
+tw`decoration-green-700`
+tw`decoration-green-800`
+tw`decoration-green-900`
+tw`decoration-emerald-50`
+tw`decoration-emerald-100`
+tw`decoration-emerald-200`
+tw`decoration-emerald-300`
+tw`decoration-emerald-400`
+tw`decoration-emerald-500`
+tw`decoration-emerald-600`
+tw`decoration-emerald-700`
+tw`decoration-emerald-800`
+tw`decoration-emerald-900`
+tw`decoration-teal-50`
+tw`decoration-teal-100`
+tw`decoration-teal-200`
+tw`decoration-teal-300`
+tw`decoration-teal-400`
+tw`decoration-teal-500`
+tw`decoration-teal-600`
+tw`decoration-teal-700`
+tw`decoration-teal-800`
+tw`decoration-teal-900`
+tw`decoration-cyan-50`
+tw`decoration-cyan-100`
+tw`decoration-cyan-200`
+tw`decoration-cyan-300`
+tw`decoration-cyan-400`
+tw`decoration-cyan-500`
+tw`decoration-cyan-600`
+tw`decoration-cyan-700`
+tw`decoration-cyan-800`
+tw`decoration-cyan-900`
+tw`decoration-sky-50`
+tw`decoration-sky-100`
+tw`decoration-sky-200`
+tw`decoration-sky-300`
+tw`decoration-sky-400`
+tw`decoration-sky-500`
+tw`decoration-sky-600`
+tw`decoration-sky-700`
+tw`decoration-sky-800`
+tw`decoration-sky-900`
+tw`decoration-blue-50`
+tw`decoration-blue-100`
+tw`decoration-blue-200`
+tw`decoration-blue-300`
+tw`decoration-blue-400`
+tw`decoration-blue-500`
+tw`decoration-blue-600`
+tw`decoration-blue-700`
+tw`decoration-blue-800`
+tw`decoration-blue-900`
+tw`decoration-indigo-50`
+tw`decoration-indigo-100`
+tw`decoration-indigo-200`
+tw`decoration-indigo-300`
+tw`decoration-indigo-400`
+tw`decoration-indigo-500`
+tw`decoration-indigo-600`
+tw`decoration-indigo-700`
+tw`decoration-indigo-800`
+tw`decoration-indigo-900`
+tw`decoration-violet-50`
+tw`decoration-violet-100`
+tw`decoration-violet-200`
+tw`decoration-violet-300`
+tw`decoration-violet-400`
+tw`decoration-violet-500`
+tw`decoration-violet-600`
+tw`decoration-violet-700`
+tw`decoration-violet-800`
+tw`decoration-violet-900`
+tw`decoration-purple-50`
+tw`decoration-purple-100`
+tw`decoration-purple-200`
+tw`decoration-purple-300`
+tw`decoration-purple-400`
+tw`decoration-purple-500`
+tw`decoration-purple-600`
+tw`decoration-purple-700`
+tw`decoration-purple-800`
+tw`decoration-purple-900`
+tw`decoration-fuchsia-50`
+tw`decoration-fuchsia-100`
+tw`decoration-fuchsia-200`
+tw`decoration-fuchsia-300`
+tw`decoration-fuchsia-400`
+tw`decoration-fuchsia-500`
+tw`decoration-fuchsia-600`
+tw`decoration-fuchsia-700`
+tw`decoration-fuchsia-800`
+tw`decoration-fuchsia-900`
+tw`decoration-pink-50`
+tw`decoration-pink-100`
+tw`decoration-pink-200`
+tw`decoration-pink-300`
+tw`decoration-pink-400`
+tw`decoration-pink-500`
+tw`decoration-pink-600`
+tw`decoration-pink-700`
+tw`decoration-pink-800`
+tw`decoration-pink-900`
+tw`decoration-rose-50`
+tw`decoration-rose-100`
+tw`decoration-rose-200`
+tw`decoration-rose-300`
+tw`decoration-rose-400`
+tw`decoration-rose-500`
+tw`decoration-rose-600`
+tw`decoration-rose-700`
+tw`decoration-rose-800`
+tw`decoration-rose-900`
 
-// tw`decoration-sky-500/50`
-// tw`decoration-sky-500/[.5]`
-// tw`decoration-[#50d71e]`
+tw`decoration-red-600`
+tw`decoration-[#50d71e]`
+tw`decoration-[black]`
+tw`decoration-[rgb(123,123,123)]`
+tw`decoration-[rgb(123,_123,_123)]`
+tw`decoration-[rgb(123_123_123)]`
+tw`decoration-[rgb(123_123_123)]/20`
+tw`decoration-[rgb(123_123_123)]/[20]`
+tw`decoration-[color:#50d71e]`
+tw`decoration-[color:var(--color)]`
+tw`decoration-[var(--color)]`

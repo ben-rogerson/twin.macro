@@ -19,13 +19,13 @@ export default properties => {
   const {
     theme,
     match,
-    getCoercedColor,
+    getCoerced,
     getConfigValue,
     errors: { errorSuggestions },
     pieces: { important },
   } = properties
 
-  const coercedColor = getCoercedColor('stroke')
+  const coercedColor = getCoerced('color')
   if (coercedColor) return coercedColor
 
   const classValue = match(/(?<=(stroke)-)([^]*)/)

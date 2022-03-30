@@ -1,6 +1,6 @@
 export default properties => {
   const {
-    getCoercedColor,
+    getCoerced,
     matchConfigValue,
     errors: { errorSuggestions },
     pieces: { negative },
@@ -9,7 +9,7 @@ export default properties => {
   const width = matchConfigValue('ringOffsetWidth', /(?<=(ring-offset)-)([^]*)/)
   if (width) return { '--tw-ring-offset-width': `${negative}${width}` }
 
-  const coercedColor = getCoercedColor('ringOffsetColor')
+  const coercedColor = getCoerced('color')
   if (coercedColor) return coercedColor
 
   errorSuggestions({

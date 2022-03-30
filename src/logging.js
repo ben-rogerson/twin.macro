@@ -216,12 +216,11 @@ const themeErrorNotFound = ({ theme, input, trimInput }) => {
   return spaced(`${textNotFound}\n\n${suggestionText}`)
 }
 
-const opacityErrorNotFound = ({ className }) => {
-  const textNotFound = warning(
-    `The class ${color.errorLight(className)} doesn’t support an opacity`
+const opacityErrorNotFound = ({ className }) =>
+  logBadGood(
+    `The class \`${className}\` had an unsupported slash opacity`,
+    `Remove the opacity from the end of the class`
   )
-  return spaced(textNotFound)
-}
 
 const logNotFoundVariant = ({ classNameRaw }) =>
   logBadGood(

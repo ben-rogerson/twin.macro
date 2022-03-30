@@ -48,8 +48,10 @@ export default {
   'break-inside-avoid-column': { output: { breakInside: 'avoid-column' } },
 
   // https://tailwindcss.com/docs/box-decoration-break
-  'decoration-slice': { output: { boxDecorationBreak: 'slice' } },
-  'decoration-clone': { output: { boxDecorationBreak: 'clone' } },
+  'decoration-slice': { output: { boxDecorationBreak: 'slice' } }, // Deprecated
+  'decoration-clone': { output: { boxDecorationBreak: 'clone' } }, // Deprecated
+  'box-decoration-slice': { output: { boxDecorationBreak: 'slice' } },
+  'box-decoration-clone': { output: { boxDecorationBreak: 'clone' } },
 
   // https://tailwindcss.com/docs/box-sizing
   'box-border': { output: { boxSizing: 'border-box' } },
@@ -445,6 +447,20 @@ export default {
   overline: { output: { textDecorationLine: 'overline' } },
   'line-through': { output: { textDecorationLine: 'line-through' } },
   'no-underline': { output: { textDecorationLine: 'none' } },
+
+  // https://tailwindcss.com/docs/text-decoration-color
+  // See dynamicStyles.js
+
+  // https://tailwindcss.com/docs/text-decoration-style
+  'decoration-solid': { output: { textDecorationStyle: 'solid' } },
+  'decoration-double': { output: { textDecorationStyle: 'double' } },
+  'decoration-dotted': { output: { textDecorationStyle: 'dotted' } },
+  'decoration-dashed': { output: { textDecorationStyle: 'dashed' } },
+  'decoration-wavy': { output: { textDecorationStyle: 'wavy' } },
+
+  // https://tailwindcss.com/docs/text-decoration-thickness
+  // https://tailwindcss.com/docs/text-underline-offset
+  // See dynamicStyles.js
 
   // https://tailwindcss.com/docs/text-transform
   uppercase: { output: { textTransform: 'uppercase' } },
