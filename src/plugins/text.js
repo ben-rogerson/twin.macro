@@ -22,7 +22,7 @@ export default properties => {
   const {
     match,
     theme,
-    getCoercedColor,
+    getCoerced,
     getConfigValue,
     pieces: { important, hasNegative },
     errors: { errorSuggestions, errorNoNegatives },
@@ -30,7 +30,7 @@ export default properties => {
 
   hasNegative && errorNoNegatives()
 
-  const coercedColor = getCoercedColor('textColor')
+  const coercedColor = getCoerced('color')
   if (coercedColor) return coercedColor
 
   const classValue = match(/(?<=(text-))([^]*)/)

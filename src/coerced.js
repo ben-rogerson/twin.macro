@@ -194,46 +194,26 @@ const getCoercedValue = (customValue, context) => {
   return result
 }
 
-const getCoercedColor = ({
-  pieces,
-  theme,
-  config,
-  matchConfig,
-}) => configKey => {
-  if (!config) return
+const getCoerced = ({ pieces, theme, config, matchConfig }) => type => {
+  const coercedConfig = config && config[type]
+  if (!coercedConfig) return
 
-  // Match config including a custom slash alpha, eg: bg-black/[.5]
-  const keys = Array.isArray(configKey) ? configKey : [configKey]
-  let value
-  keys.find(k => {
-    const match = matchConfig(k.config || k.property || k)
-    if (match) value = match
-    return match
-  })
+  const value = matchConfig(
+    coercedConfig.config || coercedConfig.property || coercedConfig
+  )
   if (!value) return
-  return coercedTypeMap.color({
+
+  throwIf(!['color', 'any'].includes(type) && pieces.hasAlpha, () =>
+    opacityErrorNotFound({ className: pieces.classNameRaw })
+  )
+
+  return coercedTypeMap[type]({
     value,
-    config,
+    config: coercedConfig,
     pieces,
     theme,
     forceReturn: true,
   })
 }
 
-const getCoercedLength = ({
-  pieces,
-  theme,
-  config,
-  matchConfig,
-}) => configKey => {
-  const value = matchConfig(configKey.config || configKey.property || configKey)
-  if (!value) return
-
-  throwIf(pieces.hasAlpha, () =>
-    opacityErrorNotFound({ className: pieces.classNameRaw })
-  )
-
-  return coercedTypeMap.length({ value, config, pieces, theme })
-}
-
-export { coercedTypeMap, getCoercedValue, getCoercedColor, getCoercedLength }
+export { coercedTypeMap, getCoercedValue, getCoerced }

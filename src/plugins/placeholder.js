@@ -10,7 +10,7 @@ export default properties => {
     match,
     theme,
     getConfigValue,
-    getCoercedColor,
+    getCoerced,
     errors: { errorSuggestions },
   } = properties
 
@@ -21,7 +21,7 @@ export default properties => {
   })
   if (opacity) return opacity
 
-  const coercedColor = getCoercedColor('placeholderColor')
+  const coercedColor = getCoerced('color')
   if (coercedColor) return coercedColor
 
   errorSuggestions({

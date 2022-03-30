@@ -1,15 +1,14 @@
 export default properties => {
   const {
-    getCoercedLength,
-    getCoercedColor,
+    getCoerced,
     errors: { errorSuggestions },
     dynamicConfig: { coerced },
   } = properties
 
-  const coercedLength = getCoercedLength(coerced.length)
+  const coercedLength = getCoerced('length')
   if (coercedLength) return coercedLength
 
-  const coercedColor = getCoercedColor(coerced.color)
+  const coercedColor = getCoerced('color')
   if (coercedColor) return coercedColor
 
   errorSuggestions({ config: Object.values(coerced).map(v => v.property) })

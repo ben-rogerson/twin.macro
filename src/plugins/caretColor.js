@@ -1,5 +1,5 @@
 export default properties => {
-  const coercedColor = properties.getCoercedColor('caretColor')
+  const coercedColor = properties.getCoerced('color')
   if (!coercedColor)
     properties.errors.errorSuggestions({ config: 'caretColor' })
 
