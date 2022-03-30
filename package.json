@@ -19,7 +19,7 @@
     }
   },
   "engines": {
-    "node": ">=12.13.0"
+    "node": ">=16.14.2"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
