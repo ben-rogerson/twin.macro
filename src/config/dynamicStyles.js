@@ -443,36 +443,42 @@ export default {
     plugin: 'gradient',
     value: ['color'],
     coerced: {
-      color: (value, { withAlpha }) => ({
-        '--tw-gradient-from': withAlpha(value) || value,
-        '--tw-gradient-stops': `var(--tw-gradient-from), var(--tw-gradient-to, ${
-          withAlpha(value, '0', 'rgb(255 255 255 / 0)') || value
-        })`,
-      }),
+      color: {
+        output: (value, { withAlpha }) => ({
+          '--tw-gradient-from': withAlpha(value) || value,
+          '--tw-gradient-stops': `var(--tw-gradient-from), var(--tw-gradient-to, ${
+            withAlpha(value, '0', 'rgb(255 255 255 / 0)') || value
+          })`,
+        }),
+      },
     },
   },
   via: {
     plugin: 'gradient',
     value: ['color'],
     coerced: {
-      color: (value, { withAlpha }) => ({
-        '--tw-gradient-stops': `var(--tw-gradient-from), ${
-          withAlpha(value) || value
-        }, var(--tw-gradient-to, ${withAlpha(
-          value,
-          '0',
-          'rgb(255 255 255 / 0)'
-        )})`,
-      }),
+      color: {
+        output: (value, { withAlpha }) => ({
+          '--tw-gradient-stops': `var(--tw-gradient-from), ${
+            withAlpha(value) || value
+          }, var(--tw-gradient-to, ${withAlpha(
+            value,
+            '0',
+            'rgb(255 255 255 / 0)'
+          )})`,
+        }),
+      },
     },
   },
   to: {
     value: ['color'],
     plugin: 'gradient',
     coerced: {
-      color: (value, { withAlpha }) => ({
-        '--tw-gradient-to': `${withAlpha(value) || value}`,
-      }),
+      color: {
+        output: (value, { withAlpha }) => ({
+          '--tw-gradient-to': `${withAlpha(value) || value}`,
+        }),
+      },
     },
   },
 
@@ -673,9 +679,28 @@ export default {
 
   // https://tailwindcss.com/docs/box-shadow
   shadow: {
-    plugin: 'boxShadow',
-    value: ['shadow'],
-    coerced: { shadow: { property: 'boxShadow' } },
+    plugin: properties => {
+      const coercedColor = properties.getCoerced('color')
+      if (coercedColor) return coercedColor
+
+      const coercedShadow = properties.getCoerced('shadow')
+      if (coercedShadow) return coercedShadow
+
+      return properties.errors.errorSuggestions({
+        config: ['boxShadow', 'boxShadowColor'],
+      })
+    },
+    value: ['shadow', 'color'],
+    coerced: {
+      color: {
+        output: (value, { withAlpha }) => ({
+          '--tw-shadow-color': withAlpha(value) || value,
+          '--tw-shadow': 'var(--tw-shadow-colored)',
+        }),
+        config: 'boxShadowColor',
+      },
+      shadow: { config: 'boxShadow' },
+    },
   },
 
   // https://tailwindcss.com/docs/opacity

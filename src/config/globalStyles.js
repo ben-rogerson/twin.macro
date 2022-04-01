@@ -1,7 +1,6 @@
 import { globalPreflightStyles } from './preflightStyles'
 import { globalKeyframeStyles } from './../plugins/animation'
 import { globalRingStyles } from './../plugins/ring'
-import { globalBoxShadowStyles } from './../plugins/boxShadow'
 
 export const globalTransformStyles = {
   '*, ::before, ::after': {
@@ -36,6 +35,13 @@ export const globalFontVariantNumericStyles = {
     '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
     '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
     '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
+  },
+}
+
+export const globalBoxShadowStyles = {
+  '*, ::before, ::after': {
+    '--tw-shadow': '0 0 #0000',
+    '--tw-shadow-colored': '0 0 #0000',
   },
 }
 

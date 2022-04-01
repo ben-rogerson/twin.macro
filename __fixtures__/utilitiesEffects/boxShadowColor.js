@@ -1,234 +1,236 @@
-import { theme } from './macro'
+import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/box-shadow-color
 theme`boxShadowColor`
 
-// tw`shadow-inherit`
-// tw`shadow-current`
-// tw`shadow-transparent`
-// tw`shadow-black`
-// tw`shadow-white`
-// tw`shadow-slate-50`
-// tw`shadow-slate-100`
-// tw`shadow-slate-200`
-// tw`shadow-slate-300`
-// tw`shadow-slate-400`
-// tw`shadow-slate-500`
-// tw`shadow-slate-600`
-// tw`shadow-slate-700`
-// tw`shadow-slate-800`
-// tw`shadow-slate-900`
-// tw`shadow-gray-50`
-// tw`shadow-gray-100`
-// tw`shadow-gray-200`
-// tw`shadow-gray-300`
-// tw`shadow-gray-400`
-// tw`shadow-gray-500`
-// tw`shadow-gray-600`
-// tw`shadow-gray-700`
-// tw`shadow-gray-800`
-// tw`shadow-gray-900`
-// tw`shadow-zinc-50`
-// tw`shadow-zinc-100`
-// tw`shadow-zinc-200`
-// tw`shadow-zinc-300`
-// tw`shadow-zinc-400`
-// tw`shadow-zinc-500`
-// tw`shadow-zinc-600`
-// tw`shadow-zinc-700`
-// tw`shadow-zinc-800`
-// tw`shadow-zinc-900`
-// tw`shadow-neutral-50`
-// tw`shadow-neutral-100`
-// tw`shadow-neutral-200`
-// tw`shadow-neutral-300`
-// tw`shadow-neutral-400`
-// tw`shadow-neutral-500`
-// tw`shadow-neutral-600`
-// tw`shadow-neutral-700`
-// tw`shadow-neutral-800`
-// tw`shadow-neutral-900`
-// tw`shadow-stone-50`
-// tw`shadow-stone-100`
-// tw`shadow-stone-200`
-// tw`shadow-stone-300`
-// tw`shadow-stone-400`
-// tw`shadow-stone-500`
-// tw`shadow-stone-600`
-// tw`shadow-stone-700`
-// tw`shadow-stone-800`
-// tw`shadow-stone-900`
-// tw`shadow-red-50`
-// tw`shadow-red-100`
-// tw`shadow-red-200`
-// tw`shadow-red-300`
-// tw`shadow-red-400`
-// tw`shadow-red-500`
-// tw`shadow-red-600`
-// tw`shadow-red-700`
-// tw`shadow-red-800`
-// tw`shadow-red-900`
-// tw`shadow-orange-50`
-// tw`shadow-orange-100`
-// tw`shadow-orange-200`
-// tw`shadow-orange-300`
-// tw`shadow-orange-400`
-// tw`shadow-orange-500`
-// tw`shadow-orange-600`
-// tw`shadow-orange-700`
-// tw`shadow-orange-800`
-// tw`shadow-orange-900`
-// tw`shadow-amber-50`
-// tw`shadow-amber-100`
-// tw`shadow-amber-200`
-// tw`shadow-amber-300`
-// tw`shadow-amber-400`
-// tw`shadow-amber-500`
-// tw`shadow-amber-600`
-// tw`shadow-amber-700`
-// tw`shadow-amber-800`
-// tw`shadow-amber-900`
-// tw`shadow-yellow-50`
-// tw`shadow-yellow-100`
-// tw`shadow-yellow-200`
-// tw`shadow-yellow-300`
-// tw`shadow-yellow-400`
-// tw`shadow-yellow-500`
-// tw`shadow-yellow-600`
-// tw`shadow-yellow-700`
-// tw`shadow-yellow-800`
-// tw`shadow-yellow-900`
-// tw`shadow-lime-50`
-// tw`shadow-lime-100`
-// tw`shadow-lime-200`
-// tw`shadow-lime-300`
-// tw`shadow-lime-400`
-// tw`shadow-lime-500`
-// tw`shadow-lime-600`
-// tw`shadow-lime-700`
-// tw`shadow-lime-800`
-// tw`shadow-lime-900`
-// tw`shadow-green-50`
-// tw`shadow-green-100`
-// tw`shadow-green-200`
-// tw`shadow-green-300`
-// tw`shadow-green-400`
-// tw`shadow-green-500`
-// tw`shadow-green-600`
-// tw`shadow-green-700`
-// tw`shadow-green-800`
-// tw`shadow-green-900`
-// tw`shadow-emerald-50`
-// tw`shadow-emerald-100`
-// tw`shadow-emerald-200`
-// tw`shadow-emerald-300`
-// tw`shadow-emerald-400`
-// tw`shadow-emerald-500`
-// tw`shadow-emerald-600`
-// tw`shadow-emerald-700`
-// tw`shadow-emerald-800`
-// tw`shadow-emerald-900`
-// tw`shadow-teal-50`
-// tw`shadow-teal-100`
-// tw`shadow-teal-200`
-// tw`shadow-teal-300`
-// tw`shadow-teal-400`
-// tw`shadow-teal-500`
-// tw`shadow-teal-600`
-// tw`shadow-teal-700`
-// tw`shadow-teal-800`
-// tw`shadow-teal-900`
-// tw`shadow-cyan-50`
-// tw`shadow-cyan-100`
-// tw`shadow-cyan-200`
-// tw`shadow-cyan-300`
-// tw`shadow-cyan-400`
-// tw`shadow-cyan-500`
-// tw`shadow-cyan-600`
-// tw`shadow-cyan-700`
-// tw`shadow-cyan-800`
-// tw`shadow-cyan-900`
-// tw`shadow-sky-50`
-// tw`shadow-sky-100`
-// tw`shadow-sky-200`
-// tw`shadow-sky-300`
-// tw`shadow-sky-400`
-// tw`shadow-sky-500`
-// tw`shadow-sky-600`
-// tw`shadow-sky-700`
-// tw`shadow-sky-800`
-// tw`shadow-sky-900`
-// tw`shadow-blue-50`
-// tw`shadow-blue-100`
-// tw`shadow-blue-200`
-// tw`shadow-blue-300`
-// tw`shadow-blue-400`
-// tw`shadow-blue-500`
-// tw`shadow-blue-600`
-// tw`shadow-blue-700`
-// tw`shadow-blue-800`
-// tw`shadow-blue-900`
-// tw`shadow-indigo-50`
-// tw`shadow-indigo-100`
-// tw`shadow-indigo-200`
-// tw`shadow-indigo-300`
-// tw`shadow-indigo-400`
-// tw`shadow-indigo-500`
-// tw`shadow-indigo-600`
-// tw`shadow-indigo-700`
-// tw`shadow-indigo-800`
-// tw`shadow-indigo-900`
-// tw`shadow-violet-50`
-// tw`shadow-violet-100`
-// tw`shadow-violet-200`
-// tw`shadow-violet-300`
-// tw`shadow-violet-400`
-// tw`shadow-violet-500`
-// tw`shadow-violet-600`
-// tw`shadow-violet-700`
-// tw`shadow-violet-800`
-// tw`shadow-violet-900`
-// tw`shadow-purple-50`
-// tw`shadow-purple-100`
-// tw`shadow-purple-200`
-// tw`shadow-purple-300`
-// tw`shadow-purple-400`
-// tw`shadow-purple-500`
-// tw`shadow-purple-600`
-// tw`shadow-purple-700`
-// tw`shadow-purple-800`
-// tw`shadow-purple-900`
-// tw`shadow-fuchsia-50`
-// tw`shadow-fuchsia-100`
-// tw`shadow-fuchsia-200`
-// tw`shadow-fuchsia-300`
-// tw`shadow-fuchsia-400`
-// tw`shadow-fuchsia-500`
-// tw`shadow-fuchsia-600`
-// tw`shadow-fuchsia-700`
-// tw`shadow-fuchsia-800`
-// tw`shadow-fuchsia-900`
-// tw`shadow-pink-50`
-// tw`shadow-pink-100`
-// tw`shadow-pink-200`
-// tw`shadow-pink-300`
-// tw`shadow-pink-400`
-// tw`shadow-pink-500`
-// tw`shadow-pink-600`
-// tw`shadow-pink-700`
-// tw`shadow-pink-800`
-// tw`shadow-pink-900`
-// tw`shadow-rose-50`
-// tw`shadow-rose-100`
-// tw`shadow-rose-200`
-// tw`shadow-rose-300`
-// tw`shadow-rose-400`
-// tw`shadow-rose-500`
-// tw`shadow-rose-600`
-// tw`shadow-rose-700`
-// tw`shadow-rose-800`
-// tw`shadow-rose-900`
+tw`shadow-inherit`
+tw`shadow-current`
+tw`shadow-transparent`
+tw`shadow-black`
+tw`shadow-white`
+tw`shadow-slate-50`
+tw`shadow-slate-100`
+tw`shadow-slate-200`
+tw`shadow-slate-300`
+tw`shadow-slate-400`
+tw`shadow-slate-500`
+tw`shadow-slate-600`
+tw`shadow-slate-700`
+tw`shadow-slate-800`
+tw`shadow-slate-900`
+tw`shadow-gray-50`
+tw`shadow-gray-100`
+tw`shadow-gray-200`
+tw`shadow-gray-300`
+tw`shadow-gray-400`
+tw`shadow-gray-500`
+tw`shadow-gray-600`
+tw`shadow-gray-700`
+tw`shadow-gray-800`
+tw`shadow-gray-900`
+tw`shadow-zinc-50`
+tw`shadow-zinc-100`
+tw`shadow-zinc-200`
+tw`shadow-zinc-300`
+tw`shadow-zinc-400`
+tw`shadow-zinc-500`
+tw`shadow-zinc-600`
+tw`shadow-zinc-700`
+tw`shadow-zinc-800`
+tw`shadow-zinc-900`
+tw`shadow-neutral-50`
+tw`shadow-neutral-100`
+tw`shadow-neutral-200`
+tw`shadow-neutral-300`
+tw`shadow-neutral-400`
+tw`shadow-neutral-500`
+tw`shadow-neutral-600`
+tw`shadow-neutral-700`
+tw`shadow-neutral-800`
+tw`shadow-neutral-900`
+tw`shadow-stone-50`
+tw`shadow-stone-100`
+tw`shadow-stone-200`
+tw`shadow-stone-300`
+tw`shadow-stone-400`
+tw`shadow-stone-500`
+tw`shadow-stone-600`
+tw`shadow-stone-700`
+tw`shadow-stone-800`
+tw`shadow-stone-900`
+tw`shadow-red-50`
+tw`shadow-red-100`
+tw`shadow-red-200`
+tw`shadow-red-300`
+tw`shadow-red-400`
+tw`shadow-red-500`
+tw`shadow-red-600`
+tw`shadow-red-700`
+tw`shadow-red-800`
+tw`shadow-red-900`
+tw`shadow-orange-50`
+tw`shadow-orange-100`
+tw`shadow-orange-200`
+tw`shadow-orange-300`
+tw`shadow-orange-400`
+tw`shadow-orange-500`
+tw`shadow-orange-600`
+tw`shadow-orange-700`
+tw`shadow-orange-800`
+tw`shadow-orange-900`
+tw`shadow-amber-50`
+tw`shadow-amber-100`
+tw`shadow-amber-200`
+tw`shadow-amber-300`
+tw`shadow-amber-400`
+tw`shadow-amber-500`
+tw`shadow-amber-600`
+tw`shadow-amber-700`
+tw`shadow-amber-800`
+tw`shadow-amber-900`
+tw`shadow-yellow-50`
+tw`shadow-yellow-100`
+tw`shadow-yellow-200`
+tw`shadow-yellow-300`
+tw`shadow-yellow-400`
+tw`shadow-yellow-500`
+tw`shadow-yellow-600`
+tw`shadow-yellow-700`
+tw`shadow-yellow-800`
+tw`shadow-yellow-900`
+tw`shadow-lime-50`
+tw`shadow-lime-100`
+tw`shadow-lime-200`
+tw`shadow-lime-300`
+tw`shadow-lime-400`
+tw`shadow-lime-500`
+tw`shadow-lime-600`
+tw`shadow-lime-700`
+tw`shadow-lime-800`
+tw`shadow-lime-900`
+tw`shadow-green-50`
+tw`shadow-green-100`
+tw`shadow-green-200`
+tw`shadow-green-300`
+tw`shadow-green-400`
+tw`shadow-green-500`
+tw`shadow-green-600`
+tw`shadow-green-700`
+tw`shadow-green-800`
+tw`shadow-green-900`
+tw`shadow-emerald-50`
+tw`shadow-emerald-100`
+tw`shadow-emerald-200`
+tw`shadow-emerald-300`
+tw`shadow-emerald-400`
+tw`shadow-emerald-500`
+tw`shadow-emerald-600`
+tw`shadow-emerald-700`
+tw`shadow-emerald-800`
+tw`shadow-emerald-900`
+tw`shadow-teal-50`
+tw`shadow-teal-100`
+tw`shadow-teal-200`
+tw`shadow-teal-300`
+tw`shadow-teal-400`
+tw`shadow-teal-500`
+tw`shadow-teal-600`
+tw`shadow-teal-700`
+tw`shadow-teal-800`
+tw`shadow-teal-900`
+tw`shadow-cyan-50`
+tw`shadow-cyan-100`
+tw`shadow-cyan-200`
+tw`shadow-cyan-300`
+tw`shadow-cyan-400`
+tw`shadow-cyan-500`
+tw`shadow-cyan-600`
+tw`shadow-cyan-700`
+tw`shadow-cyan-800`
+tw`shadow-cyan-900`
+tw`shadow-sky-50`
+tw`shadow-sky-100`
+tw`shadow-sky-200`
+tw`shadow-sky-300`
+tw`shadow-sky-400`
+tw`shadow-sky-500`
+tw`shadow-sky-600`
+tw`shadow-sky-700`
+tw`shadow-sky-800`
+tw`shadow-sky-900`
+tw`shadow-blue-50`
+tw`shadow-blue-100`
+tw`shadow-blue-200`
+tw`shadow-blue-300`
+tw`shadow-blue-400`
+tw`shadow-blue-500`
+tw`shadow-blue-600`
+tw`shadow-blue-700`
+tw`shadow-blue-800`
+tw`shadow-blue-900`
+tw`shadow-indigo-50`
+tw`shadow-indigo-100`
+tw`shadow-indigo-200`
+tw`shadow-indigo-300`
+tw`shadow-indigo-400`
+tw`shadow-indigo-500`
+tw`shadow-indigo-600`
+tw`shadow-indigo-700`
+tw`shadow-indigo-800`
+tw`shadow-indigo-900`
+tw`shadow-violet-50`
+tw`shadow-violet-100`
+tw`shadow-violet-200`
+tw`shadow-violet-300`
+tw`shadow-violet-400`
+tw`shadow-violet-500`
+tw`shadow-violet-600`
+tw`shadow-violet-700`
+tw`shadow-violet-800`
+tw`shadow-violet-900`
+tw`shadow-purple-50`
+tw`shadow-purple-100`
+tw`shadow-purple-200`
+tw`shadow-purple-300`
+tw`shadow-purple-400`
+tw`shadow-purple-500`
+tw`shadow-purple-600`
+tw`shadow-purple-700`
+tw`shadow-purple-800`
+tw`shadow-purple-900`
+tw`shadow-fuchsia-50`
+tw`shadow-fuchsia-100`
+tw`shadow-fuchsia-200`
+tw`shadow-fuchsia-300`
+tw`shadow-fuchsia-400`
+tw`shadow-fuchsia-500`
+tw`shadow-fuchsia-600`
+tw`shadow-fuchsia-700`
+tw`shadow-fuchsia-800`
+tw`shadow-fuchsia-900`
+tw`shadow-pink-50`
+tw`shadow-pink-100`
+tw`shadow-pink-200`
+tw`shadow-pink-300`
+tw`shadow-pink-400`
+tw`shadow-pink-500`
+tw`shadow-pink-600`
+tw`shadow-pink-700`
+tw`shadow-pink-800`
+tw`shadow-pink-900`
+tw`shadow-rose-50`
+tw`shadow-rose-100`
+tw`shadow-rose-200`
+tw`shadow-rose-300`
+tw`shadow-rose-400`
+tw`shadow-rose-500`
+tw`shadow-rose-600`
+tw`shadow-rose-700`
+tw`shadow-rose-800`
+tw`shadow-rose-900`
 
-// tw`shadow-cyan-500/50`
-// tw`shadow-cyan-500/[.50]`
-// tw`shadow-[#50d71e]`
+tw`shadow-cyan-500/50`
+tw`shadow-cyan-500/[.50]`
+tw`shadow-[#50d71e]`
+tw`shadow-[color:#50d71e]`
+tw`shadow-[shadow:#50d71e]`
