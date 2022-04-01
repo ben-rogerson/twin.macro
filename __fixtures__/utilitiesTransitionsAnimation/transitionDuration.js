@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/transition-duration
-theme`transitionDuration`
+theme`transitionDuration.`
 
 tw`duration-75`
 tw`duration-100`

@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/box-shadow
-theme`boxShadow`
+theme`boxShadow.`
 
 tw`shadow-sm`
 tw`shadow`

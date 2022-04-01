@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/divide-color
-theme`divideColor`
+theme`divideColor.`
 
 tw`divide-inherit`
 tw`divide-current`

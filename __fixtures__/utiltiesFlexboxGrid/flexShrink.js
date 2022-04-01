@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/flex-shrink
-theme`flexShrink`
+theme`flexShrink.`
 
 // tw`shrink-0`
 // tw`shrink`

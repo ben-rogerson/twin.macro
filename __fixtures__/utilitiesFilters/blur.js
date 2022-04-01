@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/blur
-theme`blur` // TODO: This should bring back an object rather than the DEFAULT, check what tailwindcss does
+theme`blur.`
 
 tw`blur-none`
 tw`blur-sm`

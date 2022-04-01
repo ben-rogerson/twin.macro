@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/transition-property
-theme`transitionProperty`
+theme`transitionProperty.`
 
 tw`transition-none`
 tw`transition-all`

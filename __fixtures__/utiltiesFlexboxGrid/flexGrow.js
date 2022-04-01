@@ -1,7 +1,7 @@
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/flex-grow
-theme`flexGrow`
+theme`flexGrow.`
 
 // tw`grow-0`
 // tw`grow`

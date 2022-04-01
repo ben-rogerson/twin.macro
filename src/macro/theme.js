@@ -19,10 +19,23 @@ const trimInput = themeValue => {
   return arrayValues.slice(0, -1).join('.')
 }
 
+const getThemeValue = (input, { state, skipDefault = false }) => {
+  const theme = getTheme(state.config.theme)
+  let themeValue = theme(input)
+
+  // Return the whole object when input ends with a dot
+  if (!themeValue && input.endsWith('.'))
+    return getThemeValue(input.slice(0, -1), { state, skipDefault: true })
+
+  // Return the default key when an object is found
+  if (!skipDefault && themeValue && themeValue.DEFAULT)
+    themeValue = themeValue.DEFAULT
+
+  return [themeValue, theme]
+}
+
 const handleThemeFunction = ({ references, t, state }) => {
   if (!references.theme) return
-
-  const theme = getTheme(state.config.theme)
 
   references.theme.forEach(path => {
     const { input, parent } =
@@ -34,8 +47,7 @@ const handleThemeFunction = ({ references, t, state }) => {
       )
     )
 
-    let themeValue = theme(input)
-    if (themeValue && themeValue.DEFAULT) themeValue = themeValue.DEFAULT
+    const [themeValue, theme] = getThemeValue(input, { state })
 
     throwIf(!themeValue, () =>
       themeErrorNotFound({
