@@ -919,14 +919,14 @@ export default {
   'scale-x': {
     value: ({ value, negative }) => ({
       '--tw-scale-x': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'scaleX(var(--tw-scale-x))',
     }),
     config: 'scale',
   },
   'scale-y': {
     value: ({ value, negative }) => ({
       '--tw-scale-y': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'scaleY(var(--tw-scale-y))',
     }),
     config: 'scale',
   },
@@ -934,7 +934,7 @@ export default {
     value: ({ value, negative }) => ({
       '--tw-scale-x': `${negative}${value}`,
       '--tw-scale-y': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'scale(var(--tw-scale-x),var(--tw-scale-y))',
     }),
     config: 'scale',
   },
@@ -943,7 +943,7 @@ export default {
   rotate: {
     value: ({ value, negative }) => ({
       '--tw-rotate': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'rotate(var(--tw-rotate))',
     }),
     config: 'rotate',
   },
@@ -952,14 +952,14 @@ export default {
   'translate-x': {
     value: ({ value, negative }) => ({
       '--tw-translate-x': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'translateX(var(--tw-translate-x))',
     }),
     config: 'translate',
   },
   'translate-y': {
     value: ({ value, negative }) => ({
       '--tw-translate-y': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'translateY(var(--tw-translate-y))',
     }),
     config: 'translate',
   },
@@ -968,14 +968,14 @@ export default {
   'skew-x': {
     value: ({ value, negative }) => ({
       '--tw-skew-x': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'skewX(var(--tw-skew-x))',
     }),
     config: 'skew',
   },
   'skew-y': {
     value: ({ value, negative }) => ({
       '--tw-skew-y': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'skewY(var(--tw-skew-y))',
     }),
     config: 'skew',
   },

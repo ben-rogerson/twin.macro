@@ -35196,17 +35196,17 @@ tw\`translate-y-2 mt-5 md:(skew-y-6 transform) mb-5\`
 // Test the transform ordering - 'transform' should be moved to the start
 // https://github.com/ben-rogerson/twin.macro/issues/363
 ;({
-  transform: 'var(--tw-transform)',
+  transform: 'translateY(var(--tw-translate-y))',
   marginTop: '1.25rem',
   '--tw-translate-y': '0.5rem',
 })
 ;({
   '--tw-translate-y': '0.5rem',
-  transform: 'var(--tw-transform)',
+  transform: 'translateY(var(--tw-translate-y))',
   marginTop: '1.25rem',
   marginBottom: '1.25rem',
   '@media (min-width: 768px)': {
-    transform: 'var(--tw-transform)',
+    transform: 'skewY(var(--tw-skew-y))',
     '--tw-skew-y': '6deg',
   },
 })
@@ -45247,79 +45247,79 @@ tw\`rotate-[23deg] rotate-[2.3rad] rotate-[401grad] rotate-[1.5turn]\`
 })
 ;({
   '--tw-rotate': '0deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '1deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '2deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '3deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '6deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '12deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '45deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '90deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '180deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '-1deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '-2deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '-3deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '-6deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '-12deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '-45deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '-90deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '-180deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '17deg',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 ;({
   '--tw-rotate': '1.5turn',
-  transform: 'var(--tw-transform)',
+  transform: 'rotate(var(--tw-rotate))',
 })
 
 
@@ -45478,137 +45478,137 @@ tw\`scale-[1.7]\`
 ;({
   '--tw-scale-x': '0',
   '--tw-scale-y': '0',
-  transform: 'var(--tw-transform)',
+  transform: 'scale(var(--tw-scale-x),var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '0',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleX(var(--tw-scale-x))',
 })
 ;({
   '--tw-scale-y': '0',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.5',
   '--tw-scale-y': '.5',
-  transform: 'var(--tw-transform)',
+  transform: 'scale(var(--tw-scale-x),var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.5',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleX(var(--tw-scale-x))',
 })
 ;({
   '--tw-scale-y': '.5',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.75',
   '--tw-scale-y': '.75',
-  transform: 'var(--tw-transform)',
+  transform: 'scale(var(--tw-scale-x),var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.75',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleX(var(--tw-scale-x))',
 })
 ;({
   '--tw-scale-y': '.75',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.9',
   '--tw-scale-y': '.9',
-  transform: 'var(--tw-transform)',
+  transform: 'scale(var(--tw-scale-x),var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.9',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleX(var(--tw-scale-x))',
 })
 ;({
   '--tw-scale-y': '.9',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.95',
   '--tw-scale-y': '.95',
-  transform: 'var(--tw-transform)',
+  transform: 'scale(var(--tw-scale-x),var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.95',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleX(var(--tw-scale-x))',
 })
 ;({
   '--tw-scale-y': '.95',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1',
   '--tw-scale-y': '1',
-  transform: 'var(--tw-transform)',
+  transform: 'scale(var(--tw-scale-x),var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleX(var(--tw-scale-x))',
 })
 ;({
   '--tw-scale-y': '1',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.05',
   '--tw-scale-y': '1.05',
-  transform: 'var(--tw-transform)',
+  transform: 'scale(var(--tw-scale-x),var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.05',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleX(var(--tw-scale-x))',
 })
 ;({
   '--tw-scale-y': '1.05',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.1',
   '--tw-scale-y': '1.1',
-  transform: 'var(--tw-transform)',
+  transform: 'scale(var(--tw-scale-x),var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.1',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleX(var(--tw-scale-x))',
 })
 ;({
   '--tw-scale-y': '1.1',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.25',
   '--tw-scale-y': '1.25',
-  transform: 'var(--tw-transform)',
+  transform: 'scale(var(--tw-scale-x),var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.25',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleX(var(--tw-scale-x))',
 })
 ;({
   '--tw-scale-y': '1.25',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.5',
   '--tw-scale-y': '1.5',
-  transform: 'var(--tw-transform)',
+  transform: 'scale(var(--tw-scale-x),var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.5',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleX(var(--tw-scale-x))',
 })
 ;({
   '--tw-scale-y': '1.5',
-  transform: 'var(--tw-transform)',
+  transform: 'scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.7',
   '--tw-scale-y': '1.7',
-  transform: 'var(--tw-transform)',
+  transform: 'scale(var(--tw-scale-x),var(--tw-scale-y))',
 })
 
 
@@ -48722,107 +48722,107 @@ tw\`-skew-y-[17deg]\`
 })
 ;({
   '--tw-skew-x': '0deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewX(var(--tw-skew-x))',
 })
 ;({
   '--tw-skew-y': '0deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewY(var(--tw-skew-y))',
 })
 ;({
   '--tw-skew-x': '1deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewX(var(--tw-skew-x))',
 })
 ;({
   '--tw-skew-y': '1deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewY(var(--tw-skew-y))',
 })
 ;({
   '--tw-skew-x': '2deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewX(var(--tw-skew-x))',
 })
 ;({
   '--tw-skew-y': '2deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewY(var(--tw-skew-y))',
 })
 ;({
   '--tw-skew-x': '3deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewX(var(--tw-skew-x))',
 })
 ;({
   '--tw-skew-y': '3deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewY(var(--tw-skew-y))',
 })
 ;({
   '--tw-skew-x': '6deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewX(var(--tw-skew-x))',
 })
 ;({
   '--tw-skew-y': '6deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewY(var(--tw-skew-y))',
 })
 ;({
   '--tw-skew-x': '12deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewX(var(--tw-skew-x))',
 })
 ;({
   '--tw-skew-y': '12deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewY(var(--tw-skew-y))',
 })
 ;({
   '--tw-skew-x': '-1deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewX(var(--tw-skew-x))',
 })
 ;({
   '--tw-skew-y': '-1deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewY(var(--tw-skew-y))',
 })
 ;({
   '--tw-skew-x': '-2deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewX(var(--tw-skew-x))',
 })
 ;({
   '--tw-skew-y': '-2deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewY(var(--tw-skew-y))',
 })
 ;({
   '--tw-skew-x': '-3deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewX(var(--tw-skew-x))',
 })
 ;({
   '--tw-skew-y': '-3deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewY(var(--tw-skew-y))',
 })
 ;({
   '--tw-skew-x': '-6deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewX(var(--tw-skew-x))',
 })
 ;({
   '--tw-skew-y': '-6deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewY(var(--tw-skew-y))',
 })
 ;({
   '--tw-skew-x': '-12deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewX(var(--tw-skew-x))',
 })
 ;({
   '--tw-skew-y': '-12deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewY(var(--tw-skew-y))',
 })
 ;({
   '--tw-skew-x': '17deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewX(var(--tw-skew-x))',
 })
 ;({
   '--tw-skew-x': '-17deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewX(var(--tw-skew-x))',
 })
 ;({
   '--tw-skew-y': '17deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewY(var(--tw-skew-y))',
 })
 ;({
   '--tw-skew-y': '-17deg',
-  transform: 'var(--tw-transform)',
+  transform: 'skewY(var(--tw-skew-y))',
 })
 
 
