@@ -919,14 +919,14 @@ export default {
   'scale-x': {
     value: ({ value, negative }) => ({
       '--tw-scale-x': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
     }),
     config: 'scale',
   },
   'scale-y': {
     value: ({ value, negative }) => ({
       '--tw-scale-y': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
     }),
     config: 'scale',
   },
@@ -934,7 +934,7 @@ export default {
     value: ({ value, negative }) => ({
       '--tw-scale-x': `${negative}${value}`,
       '--tw-scale-y': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
     }),
     config: 'scale',
   },
@@ -943,7 +943,7 @@ export default {
   rotate: {
     value: ({ value, negative }) => ({
       '--tw-rotate': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
     }),
     config: 'rotate',
   },
@@ -952,14 +952,14 @@ export default {
   'translate-x': {
     value: ({ value, negative }) => ({
       '--tw-translate-x': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
     }),
     config: 'translate',
   },
   'translate-y': {
     value: ({ value, negative }) => ({
       '--tw-translate-y': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
     }),
     config: 'translate',
   },
@@ -968,14 +968,14 @@ export default {
   'skew-x': {
     value: ({ value, negative }) => ({
       '--tw-skew-x': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
     }),
     config: 'skew',
   },
   'skew-y': {
     value: ({ value, negative }) => ({
       '--tw-skew-y': `${negative}${value}`,
-      transform: 'var(--tw-transform)',
+      transform: 'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
     }),
     config: 'skew',
   },
