@@ -4,6 +4,7 @@ export default properties => {
     match,
     getConfigValue,
     errors: { errorSuggestions },
+    pieces: { important },
   } = properties
 
   const classValue = match(/(?<=(drop-shadow)-)([^]*)/)
@@ -21,6 +22,6 @@ export default properties => {
   return {
     '--tw-drop-shadow': dropShadowValue,
     filter:
-      'var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)',
+      `var(--tw-blur, blur(0)) var(--tw-brightness, brightness(1)) var(--tw-contrast, contrast(1)) var(--tw-grayscale, grayscale(0)) var(--tw-hue-rotate, hue-rotate(0deg)) var(--tw-invert, invert(0)) var(--tw-saturate, saturate(1)) var(--tw-sepia, sepia(0)) var(--tw-drop-shadow, drop-shadow(0 0 #0000))${important}`,
   }
 }

@@ -20,6 +20,6 @@ export default properties => {
     : `invert(${value})`
   return {
     '--tw-backdrop-invert': backdropInvertValue,
-    backdropFilter: `var(--tw-backdrop-filter)${important}`,
+    backdropFilter: `var(--tw-backdrop-blur, blur(0)) var(--tw-backdrop-brightness, brightness(1)) var(--tw-backdrop-contrast, contrast(1)) var(--tw-backdrop-grayscale, grayscale(0)) var(--tw-backdrop-hue-rotate, hue-rotate(0deg)) var(--tw-backdrop-invert, invert(0)) var(--tw-backdrop-opacity, opacity(1)) var(--tw-backdrop-saturate, saturate(1)) var(--tw-backdrop-sepia, sepia(0))${important}`,
   }
 }
