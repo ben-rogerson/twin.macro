@@ -16189,7 +16189,7 @@ tw\`border-solid\`
 tw\`border-dashed\`
 tw\`border-dotted\`
 tw\`border-double\`
-// tw\`border-hidden\`
+tw\`border-hidden\`
 tw\`border-none\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -16206,8 +16206,10 @@ tw\`border-none\`
 })
 ;({
   borderStyle: 'double',
-}) // tw\`border-hidden\`
-
+})
+;({
+  borderStyle: 'hidden',
+})
 ;({
   borderStyle: 'none',
 })

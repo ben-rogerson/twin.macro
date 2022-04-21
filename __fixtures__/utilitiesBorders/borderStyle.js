@@ -5,5 +5,5 @@ tw`border-solid`
 tw`border-dashed`
 tw`border-dotted`
 tw`border-double`
-// tw`border-hidden`
+tw`border-hidden`
 tw`border-none`

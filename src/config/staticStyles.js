@@ -540,6 +540,7 @@ export default {
   'border-dashed': { output: { borderStyle: 'dashed' } },
   'border-dotted': { output: { borderStyle: 'dotted' } },
   'border-double': { output: { borderStyle: 'double' } },
+  'border-hidden': { output: { borderStyle: 'hidden' } },
   'border-none': { output: { borderStyle: 'none' } },
 
   /**
