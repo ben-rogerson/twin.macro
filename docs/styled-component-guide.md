@@ -274,24 +274,28 @@ const Component = () => (
 ```js
 // Style the current element based on a theming/scoping className
 ;<body className="dark-theme">
-    <div tw="[.dark-theme &]:(bg-black text-white)">I'm dark theme</div>
+  <div tw="[.dark-theme &]:(bg-black text-white)">I'm dark theme</div>
 </body>
 
 // Add custom height queries
 ;<div tw="[@media (min-height: 800px)]:hidden">
-    I'm shown only on smaller window heights
+  I'm shown only on smaller window heights
 </div>
 
 // Add custom group selectors
 ;<button className="group" disabled>
-    <span tw="[.group:disabled &]:text-gray-500">I'm gray</span>
+  <span tw="[.group:disabled &]:text-gray-500">I'm gray</span>
 </button>
 
 // Use custom at-rules like @supports
 ;<div tw="[@supports (display: grid)]:grid">I'm grid</div>
 
 // Style the current element based on a dynamic className
-;const Component = ({ isLarge }) => <div className={isLarge && 'is-large'} tw="text-base [&.is-large]:text-lg">...</div>
+const Component = ({ isLarge }) => (
+  <div className={isLarge && 'is-large'} tw="text-base [&.is-large]:text-lg">
+    ...
+  </div>
+)
 ```
 
 </details>
@@ -414,7 +418,10 @@ const widthStyles = ({ tapColor }) => css`
   -webkit-tap-highlight-color: ${tapColor};
 `
 
-const Input = styled.div(({ tapColor }) => [tw`block`, widthStyles({ tapColor })])
+const Input = styled.div(({ tapColor }) => [
+  tw`block`,
+  widthStyles({ tapColor }),
+])
 
 const Component = () => <Input tapColor="red" />
 ```

@@ -1625,3 +1625,6 @@ tw`border-l-[color:rgba(255, 255, 255, .45)]`
 
 tw`border-[color:green]`
 tw`border-[color:rgba(255, 255, 255, .45)]`
+
+tw`border-x-[color:green]`
+tw`border-y-[color:rgba(255, 255, 255, .45)]`

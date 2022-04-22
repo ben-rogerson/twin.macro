@@ -3,68 +3,68 @@ import tw, { theme } from './macro'
 // https://tailwindcss.com/docs/flex-basis
 theme`flexBasis`
 
-// tw`basis-0`
-// tw`basis-1`
-// tw`basis-2`
-// tw`basis-3`
-// tw`basis-4`
-// tw`basis-5`
-// tw`basis-6`
-// tw`basis-7`
-// tw`basis-8`
-// tw`basis-9`
-// tw`basis-10`
-// tw`basis-11`
-// tw`basis-12`
-// tw`basis-14`
-// tw`basis-16`
-// tw`basis-20`
-// tw`basis-24`
-// tw`basis-28`
-// tw`basis-32`
-// tw`basis-36`
-// tw`basis-40`
-// tw`basis-44`
-// tw`basis-48`
-// tw`basis-52`
-// tw`basis-56`
-// tw`basis-60`
-// tw`basis-64`
-// tw`basis-72`
-// tw`basis-80`
-// tw`basis-96`
-// tw`basis-auto`
-// tw`basis-px`
-// tw`basis-0.5`
-// tw`basis-1.5`
-// tw`basis-2.5`
-// tw`basis-3.5`
-// tw`basis-1/2`
-// tw`basis-1/3`
-// tw`basis-2/3`
-// tw`basis-1/4`
-// tw`basis-2/4`
-// tw`basis-3/4`
-// tw`basis-1/5`
-// tw`basis-2/5`
-// tw`basis-3/5`
-// tw`basis-4/5`
-// tw`basis-1/6`
-// tw`basis-2/6`
-// tw`basis-3/6`
-// tw`basis-4/6`
-// tw`basis-5/6`
-// tw`basis-1/12`
-// tw`basis-2/12`
-// tw`basis-3/12`
-// tw`basis-4/12`
-// tw`basis-5/12`
-// tw`basis-6/12`
-// tw`basis-7/12`
-// tw`basis-8/12`
-// tw`basis-9/12`
-// tw`basis-10/12`
-// tw`basis-11/12`
-// tw`basis-full`
+tw`basis-0`
+tw`basis-1`
+tw`basis-2`
+tw`basis-3`
+tw`basis-4`
+tw`basis-5`
+tw`basis-6`
+tw`basis-7`
+tw`basis-8`
+tw`basis-9`
+tw`basis-10`
+tw`basis-11`
+tw`basis-12`
+tw`basis-14`
+tw`basis-16`
+tw`basis-20`
+tw`basis-24`
+tw`basis-28`
+tw`basis-32`
+tw`basis-36`
+tw`basis-40`
+tw`basis-44`
+tw`basis-48`
+tw`basis-52`
+tw`basis-56`
+tw`basis-60`
+tw`basis-64`
+tw`basis-72`
+tw`basis-80`
+tw`basis-96`
+tw`basis-auto`
+tw`basis-px`
+tw`basis-0.5`
+tw`basis-1.5`
+tw`basis-2.5`
+tw`basis-3.5`
+tw`basis-1/2`
+tw`basis-1/3`
+tw`basis-2/3`
+tw`basis-1/4`
+tw`basis-2/4`
+tw`basis-3/4`
+tw`basis-1/5`
+tw`basis-2/5`
+tw`basis-3/5`
+tw`basis-4/5`
+tw`basis-1/6`
+tw`basis-2/6`
+tw`basis-3/6`
+tw`basis-4/6`
+tw`basis-5/6`
+tw`basis-1/12`
+tw`basis-2/12`
+tw`basis-3/12`
+tw`basis-4/12`
+tw`basis-5/12`
+tw`basis-6/12`
+tw`basis-7/12`
+tw`basis-8/12`
+tw`basis-9/12`
+tw`basis-10/12`
+tw`basis-11/12`
+tw`basis-full`
 
-// tw`basis-[14.2857143%]`
+tw`basis-[14.2857143%]`

@@ -30,6 +30,8 @@ const updateStyledReferences = ({ references, state }) => {
   const styledReferences = references.styled
   if (isEmpty(styledReferences)) return
 
+  // FIXME: Remove comment and fix next line
+  // eslint-disable-next-line unicorn/no-array-for-each
   styledReferences.forEach(path => {
     path.node.name = state.styledIdentifier.name
   })
@@ -72,6 +74,8 @@ const handleStyledFunction = ({ references, t, state }) => {
   if (isEmpty(references)) return
   ;[...(references.default || []), ...(references.styled || [])]
     .filter(Boolean)
+    // FIXME: Remove comment and fix next line
+    // eslint-disable-next-line unicorn/no-array-for-each
     .forEach(path => {
       // convert tw.div`` & styled.div`` to styled('div', {})
       moveDotElementToParam({ path, t })

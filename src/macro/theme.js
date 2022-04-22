@@ -31,15 +31,19 @@ const getThemeValue = (input, { state, skipDefault = false }) => {
   if (!skipDefault && themeValue && themeValue.DEFAULT)
     themeValue = themeValue.DEFAULT
 
+  themeValue = typeof themeValue === 'function' ? themeValue({}) : themeValue
+
   return [themeValue, theme]
 }
 
 const handleThemeFunction = ({ references, t, state }) => {
   if (!references.theme) return
 
+  // FIXME: Remove comment and fix next line
+  // eslint-disable-next-line unicorn/no-array-for-each
   references.theme.forEach(path => {
-    const { input, parent } =
-      getTaggedTemplateValue(path) || getFunctionValue(path) || ''
+    const { input, parent } = getTaggedTemplateValue(path) ||
+      getFunctionValue(path) || { input: null, parent: null }
 
     throwIf(!parent, () =>
       logGeneralError(

@@ -1,140 +1,8 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
-import { MacroError } from 'babel-plugin-macros'
 import cleanSet from 'clean-set'
-import { stringifyScreen } from './screens'
-import { logNoVariant, logGeneralError } from './logging'
-import { variantConfig } from './config'
+import { logGeneralError } from './logging'
 import { get, throwIf } from './utils'
-import {
-  variantDarkMode,
-  variantLightMode,
-  prefixDarkLightModeClass,
-} from './darkLightMode'
-import { SPACE_ID } from './contants'
-
-const createPeer = selector => {
-  const selectors = Array.isArray(selector) ? selector : [selector]
-  return selectors.map(s => `.peer:${s} ~ &`).join(', ')
-}
-
-const fullVariantConfig = variantConfig({
-  variantDarkMode,
-  variantLightMode,
-  prefixDarkLightModeClass,
-  createPeer,
-})
-
-/**
- * Validate variants against the variants config key
- */
-const validateVariants = ({ variants, state, ...rest }) => {
-  if (!variants) return []
-
-  const screens = get(state.config, ['theme', 'screens'])
-  const screenNames = Object.keys(screens)
-
-  return variants
-    .map(variant => {
-      const isResponsive = screenNames && screenNames.includes(variant)
-      if (isResponsive) return stringifyScreen(state.config, variant)
-
-      let foundVariant = fullVariantConfig[variant]
-
-      if (!foundVariant) {
-        const arbitraryVariant = variant.match(/^\[(.+)]/)
-        if (arbitraryVariant) foundVariant = arbitraryVariant[1]
-      }
-
-      if (!foundVariant) {
-        if (variant === 'only-child') {
-          throw new MacroError(
-            logGeneralError(
-              'The "only-child:" variant was deprecated in favor of "only:"'
-            )
-          )
-        }
-
-        if (variant === 'not-only-child') {
-          throw new MacroError(
-            logGeneralError(
-              'The "not-only-child:" variant was deprecated in favor of "not-only:"'
-            )
-          )
-        }
-
-        const validVariants = {
-          ...(screenNames.length > 0 && { 'Screen breakpoints': screenNames }),
-          'Built-in variants': Object.keys(fullVariantConfig),
-        }
-        throw new MacroError(logNoVariant(variant, validVariants))
-      }
-
-      if (typeof foundVariant === 'function') {
-        const context = {
-          ...rest,
-          config: item => state.config[item] || null,
-          errorCustom: message => {
-            throw new MacroError(logGeneralError(message))
-          },
-        }
-        foundVariant = foundVariant(context)
-      }
-
-      return foundVariant
-    })
-    .filter(Boolean)
-}
-
-/**
- * Split the variant(s) from the className
- */
-const splitVariants = ({ classNameRaw, state }) => {
-  const variantsList = []
-  let variant
-  let className = classNameRaw
-  while (variant !== null) {
-    // Match arbitrary variants
-    variant = className.match(/^([\d_a-z-]+):|^\[.*?]:/)
-
-    if (variant) {
-      className = className.slice(variant[0].length)
-      variantsList.push(
-        variant[0].slice(0, -1).replace(new RegExp(SPACE_ID, 'g'), ' ')
-      )
-    }
-  }
-
-  // dark: and light: variants
-  const hasDarkVariant = variantsList.some(v => v === 'dark')
-  const hasLightVariant = variantsList.some(v => v === 'light')
-  if (hasDarkVariant && hasLightVariant) {
-    throw new MacroError(
-      logGeneralError(
-        'The light: and dark: variants can’t be used on the same element'
-      )
-    )
-  }
-
-  const hasGroupVariant = variantsList.some(v => v.startsWith('group-'))
-
-  // Match the filtered variants
-  const variants = validateVariants({
-    variants: variantsList,
-    state,
-    hasDarkVariant,
-    hasLightVariant,
-    hasGroupVariant,
-  })
-
-  const hasVariants = variants.length > 0
-
-  return {
-    classNameRawNoVariants: className,
-    className, // TODO: Hoist the definition for className up, it's buried here
-    variants,
-    hasVariants,
-  }
-}
+import { SPACE_ID } from './constants'
 
 const getPeerValueFromVariant = variant =>
   get(/\.peer:(.+) ~ &/.exec(variant), '1')
@@ -185,7 +53,9 @@ const addVariants = ({ results, style, pieces, state }) => {
     variants = task({ variants, state })
   }
 
-  const styleWithVariants = cleanSet(results, variants, {
+  let styleWithVariants
+  // eslint-disable-next-line prefer-const
+  styleWithVariants = cleanSet(results, variants, {
     ...get(styleWithVariants, variants, {}),
     ...style,
   })
@@ -345,4 +215,4 @@ function spreadVariantGroups(
 
 const handleVariantGroups = classes => spreadVariantGroups(classes).join(' ')
 
-export { splitVariants, addVariants, handleVariantGroups }
+export { addVariants, handleVariantGroups }

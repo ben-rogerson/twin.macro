@@ -1,4 +1,4 @@
-import { isEmpty } from './misc'
+import { isEmpty, getFirstValue, toArray } from './misc'
 import { logGeneralError } from './../logging'
 
 const normalizeValue = value => {
@@ -29,6 +29,14 @@ const splitAtDash = (twClass, fromEnd = 1) => {
  * Searches the tailwindConfig
  */
 const getConfigValue = (from, matcher) => {
+  const matchArray = toArray(matcher)
+  const [result] = getFirstValue(matchArray, match =>
+    getValueFromConfig(from, match)
+  )
+  return result
+}
+
+const getValueFromConfig = (from, matcher) => {
   if (!from) return
 
   // Match default value from current object
@@ -39,31 +47,26 @@ const getConfigValue = (from, matcher) => {
 
   // Match exact
   const match = from[matcher]
+  if (Array.isArray(match)) return normalizeValue(match)
+
   if (
     ['string', 'number', 'function'].includes(typeof match) ||
     Array.isArray(match)
-  ) {
+  )
     return normalizeValue(match)
-  }
 
   // Match a default value from child object
   const defaultMatch = typeof match === 'object' && match.DEFAULT
-  if (defaultMatch) {
-    return normalizeValue(defaultMatch)
-  }
+  if (defaultMatch) return normalizeValue(defaultMatch)
 
-  // A weird loop is used below so the return busts out of the parent
-  let index = 1
-  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-  for (const i of matcher.split('-')) {
-    const { firstPart, lastPart } = splitAtDash(matcher, index)
+  const [result] = getFirstValue(matcher.split('-'), (_, { index }) => {
+    const { firstPart, lastPart } = splitAtDash(matcher, Number(index) + 1)
     const objectMatch = from[firstPart]
-    if (objectMatch && typeof objectMatch === 'object') {
+    if (objectMatch && typeof objectMatch === 'object')
       return getConfigValue(objectMatch, lastPart)
-    }
+  })
 
-    index = index + 1
-  }
+  return result
 }
 
 export default getConfigValue

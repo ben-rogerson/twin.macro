@@ -15,7 +15,7 @@ const getDirectReplacement = ({ mediaQuery, parent, t }) => ({
 
 const handleDefinition = ({ mediaQuery, parent, type, t }) =>
   ({
-    TaggedTemplateExpression: () => {
+    TaggedTemplateExpression() {
       const newPath = parent.findParent(x => x.isTaggedTemplateExpression())
       const query = [`${mediaQuery} { `, ` }`]
       const quasis = [
@@ -26,7 +26,7 @@ const handleDefinition = ({ mediaQuery, parent, type, t }) =>
       const replacement = t.templateLiteral(quasis, expressions)
       return { newPath, replacement }
     },
-    CallExpression: () => {
+    CallExpression() {
       const newPath = parent.findParent(x => x.isCallExpression())
       const value = newPath.get('arguments')[0].node
       const replacement = t.objectExpression([
@@ -34,7 +34,7 @@ const handleDefinition = ({ mediaQuery, parent, type, t }) =>
       ])
       return { newPath, replacement }
     },
-    ObjectProperty: () => {
+    ObjectProperty() {
       // Remove brackets around keys so merges work with tailwind screens
       // styled.div({ [screen`2xl`]: tw`block`, ...tw`2xl:inline` })
       // https://github.com/ben-rogerson/twin.macro/issues/379
@@ -72,7 +72,7 @@ const validateScreenValue = ({ screen, screens, value }) =>
 const getMediaQuery = ({ input, screens }) => {
   validateScreenValue({ screen: screens[input], screens, value: input })
   const mediaQuery = `@media (min-width: ${screens[input]})`
-  return { mediaQuery }
+  return mediaQuery
 }
 
 const handleScreenFunction = ({ references, t, state }) => {
@@ -81,19 +81,20 @@ const handleScreenFunction = ({ references, t, state }) => {
   const theme = getTheme(state.config.theme)
   const screens = theme('screens')
 
+  // FIXME: Remove comment and fix next line
+  // eslint-disable-next-line unicorn/no-array-for-each
   references.screen.forEach(path => {
-    const { input, parent } =
-      getTaggedTemplateValue(path) || // screen.lg``
+    const { input, parent } = getTaggedTemplateValue(path) || // screen.lg``
       getFunctionValue(path) || // screen.lg({ })
-      getMemberExpression(path) || // screen`lg`
-      ''
-
-    const { mediaQuery, hasStyles } = getMediaQuery({ input, screens })
+      getMemberExpression(path) || {
+        // screen`lg`
+        input: null,
+        parent: null,
+      }
 
     const definition = handleDefinition({
       type: parent.parent.type,
-      hasStyles,
-      mediaQuery,
+      mediaQuery: getMediaQuery({ input, screens }),
       parent,
       t,
     })

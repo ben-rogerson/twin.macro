@@ -19,9 +19,10 @@ const addDataTwPropToPath = ({
 
   // Remove the existing debug attribute if you happen to have it
   const dataProperty = attributes.filter(
-    // TODO: Use @babel/plugin-proposal-optional-chaining
     p => p.node && p.node.name && p.node.name.name === propName
   )
+  // FIXME: Remove comment and fix next line
+  // eslint-disable-next-line unicorn/no-array-for-each
   dataProperty.forEach(path => path.remove())
 
   const classes = formatProp(rawClasses)
@@ -51,7 +52,6 @@ const addDataPropToExistingPath = ({
 
   // Append to the existing debug attribute
   const dataProperty = attributes.find(
-    // TODO: Use @babel/plugin-proposal-optional-chaining
     p => p.node && p.node.name && p.node.name.name === propName
   )
   if (dataProperty) {

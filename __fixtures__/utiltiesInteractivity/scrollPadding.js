@@ -249,13 +249,4 @@ tw`scroll-pr-96`
 tw`scroll-pb-96`
 tw`scroll-pl-96`
 
-tw`-scroll-p-96`
-tw`-scroll-px-96`
-tw`-scroll-py-96`
-tw`-scroll-pt-96`
-tw`-scroll-pr-96`
-tw`-scroll-pb-96`
-tw`-scroll-pl-96`
-
-tw`-scroll-p-[24rem]`
 tw`scroll-p-[24rem]`

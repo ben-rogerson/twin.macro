@@ -1,5 +1,5 @@
-import { isEmpty, isMediaQuery, isClass } from './../utils'
-import { splitPrefix } from './../prefix'
+import { isEmpty, isMediaQuery, isClass, getFirstValue } from './../utils'
+import { splitPrefix } from './../pieces'
 
 // If these tasks return true then the rule is matched
 const mergeChecks = [
@@ -37,9 +37,7 @@ const getMatches = ({ className, data, sassyPseudo, state }) =>
       if (!isEmpty(matches)) return { ...result, [key]: matches }
     }
 
-    const shouldMergeValue = mergeChecks.some(item =>
-      item({ key, value, className, data, prefix: '' })
-    )
+    const shouldMergeValue = mergeChecks.some(item => item({ key, className }))
 
     if (shouldMergeValue) {
       const newKey = formatKey(key, { className, sassyPseudo })
@@ -72,12 +70,12 @@ const formatTasks = [
   ({ key }) => key.replace(/{{/g, '.').replace(/}}/g, ''),
 ]
 
-const formatKey = (selector, { className, sassyPseudo, prefix }) => {
+const formatKey = (selector, { className, sassyPseudo }) => {
   if (selector === className) return
 
   let key = selector
   for (const task of formatTasks) {
-    key = task({ key, className, sassyPseudo, prefix })
+    key = task({ key, className, sassyPseudo })
   }
 
   return key
@@ -97,6 +95,8 @@ const normalizeUserPluginSelectors = data =>
           ? Object.keys(value).some(selector => isClass(selector))
           : isClass(s)
       )
+      // FIXME: Remove comment and fix next line
+      // eslint-disable-next-line unicorn/prefer-object-from-entries
       .reduce((result, property) => ({ ...result, [property]: value }), {})
     return { ...result, ...keys }
   }, {})
@@ -109,13 +109,11 @@ export default ({
   state,
   className,
 }) => {
-  let result
-  ;[base, components, utilities].find(rawData => {
+  const [result] = getFirstValue([base, components, utilities], rawData => {
     const data = normalizeUserPluginSelectors(rawData)
     const matches = getMatches({ className, data, sassyPseudo, state })
-    const hasMatches = !isEmpty(matches)
-    result = hasMatches ? matches : result
-    return hasMatches
+    if (isEmpty(matches)) return
+    return matches
   })
   return result
 }

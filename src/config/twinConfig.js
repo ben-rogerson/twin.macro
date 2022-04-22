@@ -5,11 +5,12 @@ const configDefaultsStitches = {
   convertStyledDot: true, // Convert styled.[element] to a default syntax
   moveTwPropToStyled: true, // Move the tw prop to a styled definition
   convertHtmlElementToStyled: true, // For packages like stitches, add a styled definition on css prop elements
+  stitchesConfig: undefined, // Set the path to the stitches config
 }
 
 const configDefaultsTwin = ({ isGoober, isStitches, isDev }) => ({
   allowStyleProp: false, // Allows styles within style="blah" without throwing an error
-  autoCssProp: false, // Automates the import of styled-components when you use their css prop
+  autoCssProp: false, // Deprecated since v2.8.2
   dataTwProp: isDev, // During development, add a data-tw="" prop containing your tailwind classes for backtracing
   hasSuggestions: true, // Switch suggestions on/off when you use a tailwind class that's not found
   sassyPseudo: false, // Sets selectors like hover to &:hover
@@ -18,11 +19,7 @@ const configDefaultsTwin = ({ isGoober, isStitches, isDev }) => ({
   dataCsProp: isDev, // During development, add a data-cs="" prop containing your short css classes for backtracing
   disableCsProp: false, // Disable converting css styles in the cs prop
   disableShortCss: false, // Disable converting css written using short css
-  stitchesConfig: undefined, // Set the path to the stitches config (stitches only)
   config: undefined, // Set the path to the tailwind config
-  convertStyledDot: false, // Convert styled.[element] to a default syntax (only used for stitches so far)
-  moveTwPropToStyled: false, // Move the tw prop to a styled definition (only used for stitches so far)
-  convertHtmlElementToStyled: false, // For packages like stitches, add a styled definition on css prop elements
   ...(isGoober && configDefaultsGoober),
   ...(isStitches && configDefaultsStitches),
 })

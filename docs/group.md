@@ -103,9 +103,8 @@ But if you’d like similar functionality to the attr function in styled-compone
 ```js
 import tw from 'twin.macro'
 
-const withAttrs = (Component, attrs) => props => (
+const withAttrs = (Component, attrs) => props =>
   <Component {...attrs} {...props} />
-)
 
 const Button = tw.button``
 const Group = withAttrs(Button, { className: 'group' })

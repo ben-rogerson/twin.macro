@@ -18,7 +18,7 @@ pluginTester({
     .sync(['__fixtures__/**/*.js', '!__fixtures__/**/*.config.js'])
     .map(file => ({
       title: path.basename(file),
-      code: fs.readFileSync(file, 'utf-8'),
+      code: fs.readFileSync(file, 'utf8'),
       pluginOptions: {
         twin: {
           ...(fs.existsSync(
@@ -27,7 +27,7 @@ pluginTester({
             config: path.join(path.dirname(file), 'tailwind.config.js'),
           }),
           ...(fs.existsSync(configFile(file)) &&
-            JSON.parse(fs.readFileSync(configFile(file), 'utf-8'))),
+            JSON.parse(fs.readFileSync(configFile(file), 'utf8'))),
         },
       },
     })),

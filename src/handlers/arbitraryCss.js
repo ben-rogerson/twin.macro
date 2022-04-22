@@ -1,163 +1,164 @@
 import stringSimilarity from 'string-similarity'
-import { SPACE_ID } from './../contants'
-import { dynamicStyles } from './../config'
-import { maybeAddNegative } from './../negative'
-import { coercedTypeMap, getCoercedValue } from './../coerced'
-import { throwIf, withAlpha, isEmpty, splitOnFirst, getTheme } from './../utils'
-import { logBadGood } from './../logging'
+import { corePlugins } from './../config'
+import { getTypeCoerced, getCoercedValueFromTypeMap } from './../coerced'
+import {
+  throwIf,
+  withAlpha,
+  splitOnFirst,
+  isObject,
+  getFirstValue,
+  maybeAddNegative,
+} from './../utils'
+import { logNotAllowed, logGeneralError } from './../logging'
+import {
+  getFlatCoercedConfigByProperty,
+  getCorePluginsByProperty,
+  supportsArbitraryValues,
+} from './../configHelpers'
 
-const searchDynamicConfigByProperty = propertyName => {
-  const found = Object.entries(dynamicStyles).find(([k]) => propertyName === k)
-  if (!found) return
+const hasSupport = item =>
+  getCorePluginsByProperty(item).some(i => supportsArbitraryValues(i))
 
-  const result = found[1]
-  if (result.length > 1) {
-    return {
-      value: result.map(r => r.value).flat(),
-      coerced: Object.assign({}, ...result.map(r => r.coerced)),
-    }
-  }
+const sortRatingHighestFirst = (a, b) => b.rating - a.rating
 
-  return result
-}
+const getSuggestions = (results, { color, value }) =>
+  results
+    .filter(r => r.rating > 0.25)
+    .sort(sortRatingHighestFirst)
+    .slice(0, 5)
+    .sort((a, b) => Number(hasSupport(b.target)) - Number(hasSupport(a.target)))
+    .map(s => {
+      const dash = color.subdued('-')
+      return `${dash} ${
+        hasSupport(s.target)
+          ? `${s.target}-[${value}] ${dash} ${color.success(
+              '✓ Arbitrary value support'
+            )}`
+          : `${s.target} ${dash} ${color.highlight('Static class')}`
+      }`
+    })
 
-const showSuggestions = (property, value) => {
-  const suggestions = getSuggestions(property, value)
-  throwIf(true, () =>
-    logBadGood(
-      `The arbitrary class “${property}” in “${property}-[${value}]” wasn’t found`,
-      suggestions.length > 0 && `Try one of these:\n\n${suggestions.join(', ')}`
-    )
-  )
-}
+const getErrorFeedback = (property, value) => {
+  const coercedConfig = getFlatCoercedConfigByProperty(property) || {}
 
-const getSuggestions = (property, value) => {
-  const results = stringSimilarity.findBestMatch(
-    property,
-    Object.keys(dynamicStyles).filter(s => s.hasArbitrary !== 'false')
-  )
-  const suggestions = results.ratings.filter(item => item.rating > 0.25)
+  const config = Object.entries(coercedConfig)
+  if (config.length > 0)
+    return [
+      'needs a type hint before the value',
+      color =>
+        `Specify the type:\n\n${config
+          .map(([pluginName, pluginConfig]) => {
+            const dash = color.subdued('-')
+            return `${dash} ${property}-[${color.highlight(
+              pluginName
+            )}:${value}] ${dash} ${pluginConfig.property}`
+          })
+          .join('\n')}`,
+    ]
 
-  return suggestions.length > 0
-    ? suggestions.map(s => `${s.target}-[${value}]`)
-    : []
+  return [
+    'was not found',
+    color => {
+      const pluginKeys = Object.keys(corePlugins)
+      const results = stringSimilarity.findBestMatch(
+        property,
+        pluginKeys
+      ).ratings
+      const suggestions = getSuggestions(results, { color, value })
+      return `Did you mean ${
+        suggestions.length > 1 ? 'one of these' : 'this'
+      }?\n\n${suggestions.join('\n')}`
+    },
+  ]
 }
 
 const getClassData = className => {
-  const [property, value] = splitOnFirst(
-    className
-      // Replace the "stand-in spaces" with real ones
-      .replace(new RegExp(SPACE_ID, 'g'), ' '),
-    '['
-  )
-  return {
-    property: property.slice(0, -1), // Remove the dash just before the brackets
-    value: value.slice(0, -1).replace(/_/g, ' ').trim(), // Remove underscores, the last ']' and whitespace
-  }
+  const [property, value] = splitOnFirst(className, '[')
+  return [
+    property.slice(0, -1), // Remove the dash just before the brackets
+    value.slice(0, -1).replace(/_/g, ' ').trim(), // Remove underscores, the last ']' and whitespace
+  ]
 }
 
-export default ({ state, pieces }) => {
-  let { property, value } = getClassData(pieces.classNameNoSlashAlpha)
+const getArbitraryStyle = (
+  config,
+  { classValue, theme, pieces, property, state }
+) => {
+  if (!config.config) return
 
-  let config = searchDynamicConfigByProperty(property) || {}
-
-  // Check for coerced value
-  // Values that have their type specified: [length:3px]/[color:red]/etc
-  const coercedConfig = Array.isArray(config)
-    ? config.map(c => c.coerced)
-    : config.coerced
-  const coercedValue = getCoercedValue(value, {
-    property,
+  // Type-coerced arbitrary values, eg: text-[length:3px] / text-[color:red]
+  const typeCoerced = getTypeCoerced(classValue, {
+    theme,
     pieces,
-    state,
-    coercedConfig,
+    property,
   })
-  if (coercedValue) return coercedValue
+  if (typeCoerced) return typeCoerced
 
-  // Theme values, eg: tw`text-[theme(colors.red.500)]`
-  const themeValue = value.match(/theme\('?([^']+)'?\)/)
-  if (themeValue) {
-    const val = getTheme(state.config.theme)(themeValue[1])
-    if (val) value = val
+  if (typeof config.output === 'function')
+    return config.output({
+      value: maybeAddNegative(classValue, pieces.negative),
+      color: props => withAlpha(props),
+      negative: pieces.negative,
+      isEmotion: state.isEmotion,
+      theme,
+    })
+
+  // Non-coerced class
+  if (config.coerced === undefined) {
+    const value = maybeAddNegative(classValue, pieces.negative)
+    return Array.isArray(config.property)
+      ? // eslint-disable-next-line unicorn/prefer-object-from-entries
+        config.property.reduce((result, p) => ({ ...result, [p]: value }), {})
+      : { [config.property]: value }
   }
 
-  // Deal with font array
-  if (Array.isArray(config)) {
-    const value = config.find(c => c.value)
-    value && (config = value)
-  }
+  if (!isObject(config.coerced)) return
 
-  ;(isEmpty(config) || Array.isArray(config)) &&
-    showSuggestions(property, value)
+  // Arbitrary value matched with array of coerced types
+  const [coercedConfigResult] = getFirstValue(
+    Object.entries(config.coerced),
+    ([type, coercedConfig]) =>
+      getCoercedValueFromTypeMap(type, {
+        config: coercedConfig,
+        value: classValue,
+        pieces,
+        theme,
+      })
+  )
+  return coercedConfigResult
+}
 
-  throwIf(config.hasArbitrary === false, () =>
-    logBadGood(
-      `There is no support for the arbitrary value “${property}” in “${property}-[${value}]”`
+// Arbitrary values with a theme value, eg: tw`text - [theme(colors.red.500)]`
+const replaceThemeValue = (value, { theme }) => {
+  const themeMatch = value.match(/theme\('?([^']+)'?\)/)
+  if (!themeMatch) return value
+
+  const themeValue = theme(themeMatch[1])
+  throwIf(!themeValue, () =>
+    logGeneralError(`No theme value found for “${themeMatch[1]}”`)
+  )
+
+  return themeValue
+}
+
+export default props => {
+  const [property, value] = getClassData(props.pieces.classNameNoSlashAlpha)
+
+  // Replace theme values, eg: `bg-[theme(color.red.500)]`
+  const classValue = replaceThemeValue(value, { theme: props.theme })
+
+  const config = getCorePluginsByProperty(property)
+
+  const [result] = getFirstValue(config, p =>
+    getArbitraryStyle(p, { ...props, property, classValue })
+  )
+
+  throwIf(!result, () =>
+    logNotAllowed(
+      props.pieces.classNameRawNoVariants,
+      ...getErrorFeedback(property, classValue)
     )
   )
 
-  if (Array.isArray(config.value)) {
-    let arbitraryValue
-    config.value.find(type => {
-      const result = coercedTypeMap[type]({
-        config: config.coerced[type],
-        value,
-        pieces,
-        theme: getTheme(state.config.theme),
-      })
-      if (result) arbitraryValue = result
-      return Boolean(result)
-    })
-
-    throwIf(!arbitraryValue, () =>
-      logBadGood(
-        `The arbitrary value in “${property}-[${value}]” isn’t valid`,
-        `Replace “${value}” with a valid ${config.value.join(
-          ' or '
-        )} based value`
-      )
-    )
-
-    return arbitraryValue
-  }
-
-  if (pieces.hasAlpha) {
-    throwIf(!config.coerced || !config.coerced.color, () =>
-      logBadGood(
-        `There is no support for a “${property}” alpha value in “${property}-[${value}]”`
-      )
-    )
-    return coercedTypeMap.color({
-      config: config.coerced.color,
-      value,
-      pieces,
-      theme: getTheme(state.config.theme),
-    })
-  }
-
-  const arbitraryProperty = config.prop
-
-  const color = props => withAlpha({ color: value, pieces, ...props })
-
-  const arbitraryValue =
-    typeof config.value === 'function'
-      ? config.value({
-          value,
-          color,
-          negative: pieces.negative,
-          isEmotion: state.isEmotion,
-        })
-      : maybeAddNegative(value, pieces.negative)
-
-  // Raw values - no prop value found in config
-  if (!arbitraryProperty)
-    return arbitraryValue || showSuggestions(property, value)
-
-  if (Array.isArray(arbitraryProperty))
-    return arbitraryProperty.reduce(
-      (result, p) => ({ ...result, [p]: arbitraryValue }),
-      {}
-    )
-
-  return { [arbitraryProperty]: arbitraryValue }
+  return result
 }

@@ -28,6 +28,8 @@ const updateCssReferences = ({ references, state }) => {
   const cssReferences = references.css
   if (isEmpty(cssReferences)) return
 
+  // FIXME: Remove comment and fix next line
+  // eslint-disable-next-line unicorn/no-array-for-each
   cssReferences.forEach(path => {
     path.node.name = state.cssIdentifier.name
   })
