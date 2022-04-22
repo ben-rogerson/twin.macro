@@ -39,10 +39,6 @@ tw`gap-96`
 tw`gap-px`
 
 tw`gap-[2.75rem]`
-tw`-gap-80`
-tw`-gap-96`
-tw`-gap-px`
-tw`-gap-[2.75rem]`
 
 // https://tailwindcss.com/docs/gap
 tw`gap-x-0`
@@ -70,8 +66,6 @@ tw`gap-x-64`
 tw`gap-x-px`
 
 tw`gap-x-[2.75rem]`
-tw`-gap-x-64`
-tw`-gap-x-[2.75rem]`
 
 // https://tailwindcss.com/docs/gap
 tw`gap-y-0`
@@ -110,5 +104,3 @@ tw`gap-y-96`
 tw`gap-y-px`
 
 tw`gap-y-[2.75rem]`
-tw`-gap-y-64`
-tw`-gap-y-[2.75rem]`

@@ -1,14 +1,16 @@
-const color = name => ({ opacityVariable, opacityValue }) => {
-  if (opacityValue !== undefined) {
-    return `rgba(var(--twc-${name}), ${opacityValue})`
-  }
+const color =
+  name =>
+  ({ opacityVariable, opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgba(var(--twc-${name}), ${opacityValue})`
+    }
 
-  if (opacityVariable !== undefined) {
-    return `rgba(var(--twc-${name}), var(${opacityVariable}, 1))`
-  }
+    if (opacityVariable !== undefined) {
+      return `rgba(var(--twc-${name}), var(${opacityVariable}, 1))`
+    }
 
-  return `rgb(var(--twc-${name}))`
-}
+    return `rgb(var(--twc-${name}))`
+  }
 
 const colorScale = name =>
   [50, 100, 200, 300, 400, 500, 600, 700, 800, 900].reduce(

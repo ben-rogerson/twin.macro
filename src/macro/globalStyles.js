@@ -88,11 +88,7 @@ ${convertCssObjectToString(v)}
     .join('\n')
 }
 
-/**
- * Trim out classes defined within the selector
- * @param {object} data Input object from userPluginData
- * @returns {object} An object containing unpacked selectors
- */
+// Trim out classes defined within the selector
 const filterClassSelectors = ruleset => {
   if (isEmpty(ruleset)) return
 
@@ -153,6 +149,8 @@ const handleGlobalStylesVariable = ({ references, state }) => {
 
   const styles = getGlobalStyles({ state })
 
+  // FIXME: Remove comment and fix next line
+  // eslint-disable-next-line unicorn/no-array-for-each
   references.globalStyles.forEach(path => {
     const templateStyles = `(${JSON.stringify(styles)})` // `template` requires () wrapping
     const convertedStyles = template(templateStyles, {
@@ -163,8 +161,6 @@ const handleGlobalStylesVariable = ({ references, state }) => {
   })
 }
 
-// TODO: Deprecate GlobalStyles in v3
-// Replaced with globalStyles import as it's more adaptable
 const handleGlobalStylesJsx = props => {
   const { references, program, t, state, config } = props
 
@@ -183,7 +179,7 @@ const handleGlobalStylesJsx = props => {
     )
   )
 
-  const styles = convertCssObjectToString(getGlobalStyles({ state, props }))
+  const styles = convertCssObjectToString(getGlobalStyles({ state }))
 
   const globalUid = generateUid('GlobalStyles', program)
   const stylesUid = generateUid('globalImport', program)

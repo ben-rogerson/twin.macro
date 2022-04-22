@@ -41,7 +41,6 @@ declare const tw: TwFn & TwComponentMap & TwComponentWrapper
 export default tw
 
 declare module 'react' {
-  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
   interface DOMAttributes<T> {
     tw?: string
   }

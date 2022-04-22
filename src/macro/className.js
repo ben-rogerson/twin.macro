@@ -23,7 +23,7 @@ const handleClassNameProperty = ({ path, t, state }) => {
   const rawClasses = nodeValue.value || ''
   if (!rawClasses) return
 
-  const { styles, mismatched, matched } = getStyleData(rawClasses, {
+  const { astStyles, mismatched, matched } = getStyleData(rawClasses, {
     silentMismatches: true,
     t,
     state,
@@ -40,7 +40,7 @@ const handleClassNameProperty = ({ path, t, state }) => {
   const { attribute: cssAttribute } = getCssAttributeData(attributes)
 
   if (!cssAttribute) {
-    const attribute = makeJsxAttribute(['css', styles], t)
+    const attribute = makeJsxAttribute(['css', astStyles], t)
     mismatched ? path.insertAfter(attribute) : path.replaceWith(attribute)
     addDataTwPropToPath({ t, attributes, rawClasses: matched, path, state })
     return
@@ -55,8 +55,8 @@ const handleClassNameProperty = ({ path, t, state }) => {
   if (cssExpression.isArrayExpression()) {
     //  The existing css prop is an array, eg: css={[...]}
     isBeforeCssAttribute
-      ? cssExpression.unshiftContainer('elements', styles)
-      : cssExpression.pushContainer('elements', styles)
+      ? cssExpression.unshiftContainer('elements', astStyles)
+      : cssExpression.pushContainer('elements', astStyles)
   } else {
     // The existing css prop is not an array, eg: css={{ ... }} / css={`...`}
     const existingCssAttribute = cssExpression.node
@@ -66,8 +66,8 @@ const handleClassNameProperty = ({ path, t, state }) => {
       )
     )
     const styleArray = isBeforeCssAttribute
-      ? [styles, existingCssAttribute]
-      : [existingCssAttribute, styles]
+      ? [astStyles, existingCssAttribute]
+      : [existingCssAttribute, astStyles]
     cssExpression.replaceWith(t.arrayExpression(styleArray))
   }
 

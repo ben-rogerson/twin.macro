@@ -42,7 +42,7 @@ export default function buildPluginApi(tailwindConfig, context) {
       return transformThemeValue(pathRoot)(value)
     },
     corePlugins: () => null, // Unavailable in twin
-    variants: () => {
+    variants() {
       // Preserved for backwards compatibility but not used in v3.0+
       return []
     },

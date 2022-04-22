@@ -1,13 +1,10 @@
 module.exports = {
-  settings: {
-    version: 'detect',
-  },
+  settings: { version: 'detect' },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:unicorn/recommended',
     'xo/browser',
-    'xo/esnext',
     'xo-typescript/space',
     'xo-react/space',
     'plugin:chai-friendly/recommended',
@@ -15,11 +12,7 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
-    'prettier/@typescript-eslint',
     'prettier',
-    'prettier/babel',
-    'prettier/react',
-    'prettier/unicorn',
   ],
   plugins: ['chai-friendly', 'jest', 'import'],
   rules: {
@@ -35,47 +28,42 @@ module.exports = {
     '@typescript-eslint/no-base-to-string': 0,
     '@typescript-eslint/prefer-nullish-coalescing': 0,
     '@typescript-eslint/no-unsafe-return': 0,
+    '@typescript-eslint/no-confusing-void-expression': 0,
+    '@typescript-eslint/no-unsafe-assignment': 0,
     '@typescript-eslint/semi': 0,
     '@typescript-eslint/restrict-template-expressions': 0,
     '@typescript-eslint/default-param-last': 0,
     '@typescript-eslint/prefer-optional-chain': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/no-var-requires': 0,
+    '@typescript-eslint/naming-convention': 0,
+    '@typescript-eslint/no-require-imports': 0,
+    '@typescript-eslint/no-throw-literal': 0,
+    '@typescript-eslint/no-implicit-any-catch': 0,
+    '@typescript-eslint/triple-slash-reference': 0,
     'react/prop-types': 0,
     'jest/prefer-expect-assertions': 0,
     'capitalized-comments': 0,
     'comma-dangle': 0,
-    'import/extensions': [
-      'error',
-      {
-        svg: 'allow',
-      },
-    ],
-    'import/no-unassigned-import': [
-      'error',
-      {
-        allow: ['**/*.css'],
-      },
-    ],
-    'unicorn/filename-case': [
-      'error',
-      {
-        case: 'camelCase',
-      },
-    ],
+    'import/extensions': ['error', { svg: 'allow' }],
+    'import/no-unassigned-import': ['error', { allow: ['**/*.css'] }],
+    'unicorn/filename-case': ['error', { case: 'camelCase' }],
     'unicorn/prefer-type-error': 0,
     'unicorn/no-reduce': 0,
     'unicorn/import-style': 0,
     'unicorn/prefer-optional-catch-binding': 0,
     'unicorn/no-null': 0,
     'unicorn/prevent-abbreviations': 0,
+    'unicorn/no-array-reduce': 0,
+    'unicorn/prefer-module': 0,
+    'unicorn/consistent-destructuring': 0,
+    'unicorn/prefer-node-protocol': 0,
+    'unicorn/prefer-export-from': ['error', { ignoreUsedVariables: true }],
   },
   overrides: [
     {
       files: ['**/*.ts', '**/*.js'],
-      rules: {
-        'jest/no-try-expect': 0,
-      },
+      rules: { 'jest/no-try-expect': 0 },
     },
     {
       files: ['**/*.js', '**/*.jsx'],
@@ -96,9 +84,12 @@ module.exports = {
       },
     },
   ],
-  ignorePatterns: ['.eslintrc.js'],
-  globals: {
-    JSX: true,
-    AriaAttributes: true,
-  },
+  ignorePatterns: [
+    '.eslintrc.js',
+    'macro.js',
+    'types',
+    '__fixtures__',
+    'tailwind.config.js',
+  ],
+  globals: { JSX: true, AriaAttributes: true },
 }

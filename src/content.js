@@ -1,5 +1,7 @@
 const addContentClass = (classes, state) => {
   const newClasses = []
+  // FIXME: Remove comment and fix next line
+  // eslint-disable-next-line unicorn/no-array-for-each
   classes.forEach(classSet => {
     const shouldAddContent = /(?!.*:content($|\[))(before:|after:)/.test(
       classSet

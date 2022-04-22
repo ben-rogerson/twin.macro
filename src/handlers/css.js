@@ -1,14 +1,8 @@
-import { SPACE_ID } from './../contants'
 import { throwIf, camelize, splitOnFirst } from './../utils'
 import { logBadGood } from './../logging'
 
 export default ({ className }) => {
-  let [property, value] = splitOnFirst(
-    className
-      // Replace the "stand-in spaces" with real ones
-      .replace(new RegExp(SPACE_ID, 'g'), ' '),
-    '['
-  )
+  let [property, value] = splitOnFirst(className, '[')
 
   property =
     (property.startsWith('--') && property) || // Retain css variables

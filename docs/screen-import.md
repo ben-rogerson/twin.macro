@@ -75,7 +75,7 @@ const styles = {
   },
 }
 
-<div css={styles} />
+;<div css={styles} />
 ```
 
 **With a styled component**

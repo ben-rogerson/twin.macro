@@ -161,10 +161,10 @@ tw`space-x-px space-x-reverse`
 tw`space-y-reverse space-y-px`
 tw`space-y-px space-y-reverse`
 
-tw`-space-x-reverse space-x-12`
-tw`space-x-12 -space-x-reverse`
-tw`-space-y-reverse space-y-12`
-tw`space-y-12 -space-y-reverse`
+tw`space-x-reverse space-x-12`
+tw`space-x-12 space-x-reverse`
+tw`space-y-reverse space-y-12`
+tw`space-y-12 space-y-reverse`
 
 tw`space-x-[20cm]`
 tw`space-x-[calc(20%-1cm)]`
