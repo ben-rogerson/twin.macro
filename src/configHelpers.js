@@ -30,8 +30,15 @@ const getConfigTailwindProperties = (state, config) => {
   const sourceRoot = state.file.opts.sourceRoot || '.'
   const configFile = config && config.config
 
-  const configPath = resolve(sourceRoot, configFile || `./tailwind.config.js`)
+  const configPath = resolve(sourceRoot, configFile || './tailwind.config.js')
   const configExists = existsSync(configPath)
+
+  // Look for a commonjs file as a fallback
+  if (!configExists && !configFile)
+    return getConfigTailwindProperties(state, {
+      ...config,
+      config: './tailwind.config.cjs',
+    })
 
   const configSelected = configExists
     ? require(configPath)
