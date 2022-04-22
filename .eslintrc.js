@@ -90,6 +90,7 @@ module.exports = {
     'types',
     '__fixtures__',
     'tailwind.config.js',
+    'sandbox',
   ],
   globals: { JSX: true, AriaAttributes: true },
 }

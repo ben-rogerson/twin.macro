@@ -5,12 +5,16 @@
   "main": "macro.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "dev": "nodemon --watch src -x \"npm run build:macro\" --delay .02",
+    "dev": "npm run dev:macro:sandbox",
+    "dev:macro": "NODE_ENV=dev nodemon --watch src --watch package.json -x \"npm run build:macro\" --delay .01",
+    "dev:sandbox": "NODE_ENV=dev nodemon --watch sandbox/in.js --watch tailwind.config.js --watch package.json -x \"npm run build:sandbox\" --delay .01",
+    "dev:macro:sandbox": "NODE_ENV=dev nodemon --watch src --watch sandbox/in.js --watch tailwind.config.js --watch package.json -x \"npm run build:macro && npm run build:sandbox\" --delay .01",
     "build": "npm run build:macro",
     "build:macro": "microbundle -i src/macro.js -f cjs -o ./macro.js --target node",
-    "test:types": "tsc -b ./types/tsconfig.json",
+    "build:sandbox": "babel sandbox/in.js --out-file sandbox/out.js",
     "test": "npm run build && jest && npm run test:types",
-    "fixup": "npm run build && jest --u",
+    "test:types": "tsc -b ./types/tsconfig.json",
+    "test:accept": "npm run build && jest --u",
     "prepublishOnly": "npm run build"
   },
   "husky": {
@@ -72,6 +76,7 @@
     "timsort": "^0.3.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.17.6",
     "@babel/plugin-syntax-jsx": "^7.16.7",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
