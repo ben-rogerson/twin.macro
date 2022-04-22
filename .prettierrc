@@ -4,7 +4,6 @@
   "singleQuote": true,
   "bracketSpacing": true,
   "tabWidth": 2,
-  "jsxBracketSameLine": false,
   "trailingComma": "es5",
   "useTabs": false,
   "arrowParens": "avoid"

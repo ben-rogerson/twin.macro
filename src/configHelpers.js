@@ -3,9 +3,10 @@ import { existsSync } from 'fs'
 import resolveTailwindConfig from 'tailwindcss/lib/util/resolveConfig'
 import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
 import { configTwinValidators, configDefaultsTwin } from './config/twinConfig'
+import corePlugins from './config/corePlugins'
 import flatMap from 'lodash.flatmap'
 import { logGeneralError } from './logging'
-import { throwIf, get } from './utils'
+import { throwIf, get, toArray, getFirstValue } from './utils'
 
 const getAllConfigs = config => {
   const configs = flatMap(
@@ -19,14 +20,32 @@ const getAllConfigs = config => {
   return [config, ...configs]
 }
 
+// Fix: Warning Tailwind throws when the content key is empty
+const silenceContentWarning = config => ({
+  ...(!config.content && { content: [''] }),
+  ...config,
+})
+
 const getConfigTailwindProperties = (state, config) => {
   const sourceRoot = state.file.opts.sourceRoot || '.'
   const configFile = config && config.config
 
-  const configPath = resolve(sourceRoot, configFile || `./tailwind.config.js`)
+  const configPath = resolve(sourceRoot, configFile || './tailwind.config.js')
   const configExists = existsSync(configPath)
-  const path = configExists ? require(configPath) : defaultTailwindConfig
-  const configTailwind = resolveTailwindConfig([...getAllConfigs(path)])
+
+  // Look for a commonjs file as a fallback
+  if (!configExists && !configFile)
+    return getConfigTailwindProperties(state, {
+      ...config,
+      config: './tailwind.config.cjs',
+    })
+
+  const configSelected = configExists
+    ? require(configPath)
+    : defaultTailwindConfig
+
+  const configUser = silenceContentWarning(configSelected)
+  const configTailwind = resolveTailwindConfig([...getAllConfigs(configUser)])
 
   throwIf(!configTailwind, () =>
     logGeneralError(`Couldn’t find the Tailwind config.\nLooked in ${config}`)
@@ -36,15 +55,10 @@ const getConfigTailwindProperties = (state, config) => {
 }
 
 const checkExists = (fileName, sourceRoot) => {
-  const fileNames = Array.isArray(fileName) ? fileName : [fileName]
-  let configPath
-  fileNames.find(fileName => {
-    const resolved = resolve(sourceRoot, `./${fileName}`)
-    const exists = existsSync(resolved)
-    if (exists) configPath = resolved
-    return exists
-  })
-  return configPath
+  const [, value] = getFirstValue(toArray(fileName), fileName =>
+    existsSync(resolve(sourceRoot, `./${fileName}`))
+  )
+  return value
 }
 
 const getRelativePath = ({ comparePath, state }) => {
@@ -99,10 +113,40 @@ const getConfigTwinValidated = (config, state) =>
     {}
   )
 
+const getCoercedTypesByProperty = property => {
+  const config = getFlatCoercedConfigByProperty(property)
+  if (!config) return []
+  return Object.keys(config)
+}
+
+const getFlatCoercedConfigByProperty = property => {
+  const coreConfig = getCorePluginsByProperty(property)
+  const config = coreConfig.map(i => i.coerced).filter(Boolean)
+  if (config.length === 0) return
+
+  return Object.assign({}, ...config)
+}
+
+const getCorePluginsByProperty = propertyName => {
+  const match = Object.entries(corePlugins).find(([k]) => propertyName === k)
+  if (!match) return []
+  const found = match[1]
+  return toArray(found)
+}
+
+const supportsArbitraryValues = coreConfigValue =>
+  toArray(coreConfigValue).some(
+    config =>
+      (config.output && typeof config.output === 'string') ||
+      (!config.output && config.coerced)
+  )
+
 export {
   getConfigTailwindProperties,
   getStitchesPath,
-  resolveTailwindConfig,
-  defaultTailwindConfig,
   getConfigTwinValidated,
+  getCoercedTypesByProperty,
+  getFlatCoercedConfigByProperty,
+  getCorePluginsByProperty,
+  supportsArbitraryValues,
 }

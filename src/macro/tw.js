@@ -12,9 +12,9 @@ import { addDataTwPropToPath, addDataPropToExistingPath } from './debug'
 import getStyleData from './../getStyleData'
 
 const moveTwPropToStyled = props => {
-  const { jsxPath, styles } = props
+  const { jsxPath, astStyles } = props
 
-  makeStyledComponent({ ...props, secondArg: styles })
+  makeStyledComponent({ ...props, secondArg: astStyles })
 
   // Remove the tw attribute
   const tagAttributes = jsxPath.node.attributes
@@ -25,7 +25,7 @@ const moveTwPropToStyled = props => {
   jsxPath.node.attributes.splice(twAttributeIndex, 1)
 }
 
-const mergeIntoCssAttribute = ({ path, styles, cssAttribute, t }) => {
+const mergeIntoCssAttribute = ({ path, astStyles, cssAttribute, t }) => {
   if (!cssAttribute) return
 
   // The expression is the value as a NodePath
@@ -50,8 +50,8 @@ const mergeIntoCssAttribute = ({ path, styles, cssAttribute, t }) => {
   if (existingCssAttribute.isArrayExpression()) {
     //  The existing css prop is an array, eg: css={[...]}
     isBeforeCssAttribute
-      ? existingCssAttribute.unshiftContainer('elements', styles)
-      : existingCssAttribute.pushContainer('elements', styles)
+      ? existingCssAttribute.unshiftContainer('elements', astStyles)
+      : existingCssAttribute.pushContainer('elements', astStyles)
   } else {
     // css prop is either:
     // TemplateLiteral
@@ -65,8 +65,8 @@ const mergeIntoCssAttribute = ({ path, styles, cssAttribute, t }) => {
 
     // The existing css prop is an array, eg: css={[...]}
     const styleArray = isBeforeCssAttribute
-      ? [styles, existingCssAttributeNode]
-      : [existingCssAttributeNode, styles]
+      ? [astStyles, existingCssAttributeNode]
+      : [existingCssAttributeNode, astStyles]
 
     const arrayExpression = t.arrayExpression(styleArray)
 
@@ -100,14 +100,14 @@ const handleTwProperty = ({ path, t, program, state }) => {
   )
 
   const rawClasses = expressionValue || nodeValue.value || ''
-  const { styles } = getStyleData(rawClasses, { t, state })
+  const { astStyles } = getStyleData(rawClasses, { t, state })
 
   const jsxPath = getParentJSX(path)
   const attributes = jsxPath.get('attributes')
   const { attribute: cssAttribute } = getCssAttributeData(attributes)
 
   if (state.configTwin.moveTwPropToStyled) {
-    moveTwPropToStyled({ styles, jsxPath, t, program, state })
+    moveTwPropToStyled({ astStyles, jsxPath, t, program, state })
     addDataTwPropToPath({ t, attributes, rawClasses, path, state })
     return
   }
@@ -115,14 +115,17 @@ const handleTwProperty = ({ path, t, program, state }) => {
   if (!cssAttribute) {
     // Replace the tw prop with the css prop
     path.replaceWith(
-      t.jsxAttribute(t.jsxIdentifier('css'), t.jsxExpressionContainer(styles))
+      t.jsxAttribute(
+        t.jsxIdentifier('css'),
+        t.jsxExpressionContainer(astStyles)
+      )
     )
     addDataTwPropToPath({ t, attributes, rawClasses, path, state })
     return
   }
 
   // Merge tw styles into an existing css prop
-  mergeIntoCssAttribute({ cssAttribute, path: jsxPath, styles, t })
+  mergeIntoCssAttribute({ cssAttribute, path: jsxPath, astStyles, t })
 
   path.remove() // remove the tw prop
 
@@ -132,6 +135,8 @@ const handleTwProperty = ({ path, t, program, state }) => {
 const handleTwFunction = ({ references, state, t }) => {
   const defaultImportReferences = references.default || references.tw || []
 
+  // FIXME: Remove comment and fix next line
+  // eslint-disable-next-line unicorn/no-array-for-each
   defaultImportReferences.forEach(path => {
     /**
      * Gotcha: After twin changes a className/tw/cs prop path then the reference
@@ -169,8 +174,8 @@ const handleTwFunction = ({ references, state, t }) => {
       addDataPropToExistingPath(pathData)
     }
 
-    const { styles } = getStyleData(rawClasses, { t, state })
-    replaceWithLocation(parsed.path, styles)
+    const { astStyles } = getStyleData(rawClasses, { t, state })
+    replaceWithLocation(parsed.path, astStyles)
   })
 }
 

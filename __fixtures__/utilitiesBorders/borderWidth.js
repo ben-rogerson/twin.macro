@@ -46,4 +46,7 @@ tw`border-t-[length:10px]`
 tw`border-r-[length:10px]`
 tw`border-b-[length:10px]`
 tw`border-l-[length:10px]`
+tw`border-l-[length:10px]`
+tw`border-x-[length:10px]`
+tw`border-y-[length:10px]`
 tw`border-[length:10px]`

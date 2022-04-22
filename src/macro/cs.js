@@ -1,5 +1,5 @@
 /**
- * cs - 'css shorts'
+ * cs = Short css
  */
 
 import {
@@ -34,7 +34,7 @@ const handleCsProperty = ({ path, t, state }) => {
   )
 
   const rawClasses = expressionValue || nodeValue.value || ''
-  const { styles } = getStyleData(rawClasses, { isCsOnly, t, state })
+  const { astStyles } = getStyleData(rawClasses, { isCsOnly, t, state })
 
   const jsxPath = getParentJSX(path)
   const attributes = jsxPath.get('attributes')
@@ -43,7 +43,10 @@ const handleCsProperty = ({ path, t, state }) => {
   if (!cssAttribute) {
     // Replace the tw prop with the css prop
     path.replaceWith(
-      t.jsxAttribute(t.jsxIdentifier('css'), t.jsxExpressionContainer(styles))
+      t.jsxAttribute(
+        t.jsxIdentifier('css'),
+        t.jsxExpressionContainer(astStyles)
+      )
     )
     // TODO: Update the naming of this function
     addDataTwPropToPath({
@@ -78,8 +81,8 @@ const handleCsProperty = ({ path, t, state }) => {
   if (existingCssAttribute.isArrayExpression()) {
     //  The existing css prop is an array, eg: css={[...]}
     isBeforeCssAttribute
-      ? existingCssAttribute.unshiftContainer('elements', styles)
-      : existingCssAttribute.pushContainer('elements', styles)
+      ? existingCssAttribute.unshiftContainer('elements', astStyles)
+      : existingCssAttribute.pushContainer('elements', astStyles)
   } else {
     // css prop is either:
     // TemplateLiteral
@@ -93,8 +96,8 @@ const handleCsProperty = ({ path, t, state }) => {
 
     // The existing css prop is an array, eg: css={[...]}
     const styleArray = isBeforeCssAttribute
-      ? [styles, existingCssAttributeNode]
-      : [existingCssAttributeNode, styles]
+      ? [astStyles, existingCssAttributeNode]
+      : [existingCssAttributeNode, astStyles]
 
     const arrayExpression = t.arrayExpression(styleArray)
 

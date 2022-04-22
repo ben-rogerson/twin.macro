@@ -1,7 +1,8 @@
+import { parseColor } from 'tailwindcss/lib/util/color'
 import deepMerge from 'lodash.merge'
 import { MacroError } from 'babel-plugin-macros'
 import get from 'lodash.get'
-import { SPACE_ID } from './../contants'
+import { SPACE_ID } from './../constants'
 
 const throwIf = (expression, callBack) => {
   if (!expression) return
@@ -13,8 +14,6 @@ const isEmpty = value =>
   value === null ||
   (typeof value === 'object' && Object.keys(value).length === 0) ||
   (typeof value === 'string' && value.trim().length === 0)
-
-const addPxTo0 = string => (Number(string) === 0 ? `${string}px` : string)
 
 function transformThemeValue(themeSection) {
   if (['fontSize', 'outline'].includes(themeSection)) {
@@ -78,6 +77,19 @@ const stripNegative = string =>
     ? string.slice(1, string.length)
     : string
 
+const maybeAddNegative = (value, negative) => {
+  if (!negative) return value
+
+  if (typeof value === 'string') {
+    if (value.startsWith('-')) return value.slice(1)
+    if (value.startsWith('var(')) return `calc(${value} * -1)`
+  }
+
+  if (isNumeric(value)) return `${negative}${value}`
+
+  return value
+}
+
 const camelize = string =>
   string && string.replace(/\W+(.)/g, (_, chr) => chr.toUpperCase())
 
@@ -101,21 +113,54 @@ function splitOnFirst(input, delim) {
 }
 
 const formatProp = classes =>
-  classes
-    // Replace the "stand-in spaces" with real ones
-    .replace(new RegExp(SPACE_ID, 'g'), ' ')
-    // Normalize spacing
-    .replace(/\s\s+/g, ' ')
-    // Remove newline characters
-    .replace(/\n/g, ' ')
-    .trim()
+  replaceSpaceId(
+    classes
+      // Normalize spacing
+      .replace(/\s\s+/g, ' ')
+      // Remove newline characters
+      .replace(/\n/g, ' ')
+      .trim()
+  )
+
+const isSpaceSeparatedColor = color => {
+  const spaceMatch =
+    typeof color === 'string' ? color.split(/\s+(?=[^)\]}]*(?:[([{]|$))/) : []
+  if (spaceMatch.length === 0) return
+  const hasValidSpaceSeparatedColors = spaceMatch.every(color =>
+    // FIXME: Remove comment and fix next line
+    // eslint-disable-next-line unicorn/prefer-regexp-test
+    Boolean(/^var\(--\w*\)$/.exec(color) ? color : parseColor(color))
+  )
+  return hasValidSpaceSeparatedColors
+}
+
+const isObject = val =>
+  // eslint-disable-next-line eqeqeq, no-eq-null, @typescript-eslint/no-unnecessary-boolean-literal-compare
+  val != null && typeof val === 'object' && Array.isArray(val) === false
+
+const getFirstValue = (list, getValue) => {
+  let firstValue
+  const listLength = list.length - 1
+  const listItem = list.find((listItem, index) => {
+    const isLast = index === listLength
+    firstValue = getValue(listItem, { index, isLast })
+    return Boolean(firstValue)
+  })
+
+  return [firstValue, listItem]
+}
+
+const replaceSpaceId = className =>
+  className.replace(new RegExp(SPACE_ID, 'g'), ' ')
+
+const toArray = arr => (Array.isArray(arr) ? arr : [arr])
 
 export {
   throwIf,
   isEmpty,
-  addPxTo0,
   getTheme,
   stripNegative,
+  maybeAddNegative,
   get,
   camelize,
   isNumeric,
@@ -125,4 +170,9 @@ export {
   isArbitraryCss,
   splitOnFirst,
   formatProp,
+  isSpaceSeparatedColor,
+  isObject,
+  getFirstValue,
+  replaceSpaceId,
+  toArray,
 }

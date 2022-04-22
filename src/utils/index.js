@@ -1,9 +1,9 @@
 export {
   throwIf,
   isEmpty,
-  addPxTo0,
   getTheme,
   stripNegative,
+  maybeAddNegative,
   get,
   camelize,
   isNumeric,
@@ -13,5 +13,10 @@ export {
   isArbitraryCss,
   splitOnFirst,
   formatProp,
+  isSpaceSeparatedColor,
+  isObject,
+  getFirstValue,
+  replaceSpaceId,
+  toArray,
 } from './misc'
-export { withAlpha } from './alpha'
+export { withAlpha, toAlpha, maybeAddAlpha } from './alpha'

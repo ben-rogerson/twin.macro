@@ -1,9 +1,10 @@
 import deepMerge from 'lodash.merge'
 import { throwIf, isEmpty, getTheme } from './utils'
 import { getProperties } from './getProperties'
-import getPieces from './utils/getPieces'
 import { astify } from './macroHelpers'
 import * as precheckExports from './prechecks'
+import * as ordering from './ordering'
+import * as pieces from './pieces'
 import {
   logGeneralError,
   errorSuggestions,
@@ -12,25 +13,24 @@ import {
   debugSuccess,
   logBadGood,
 } from './logging'
-import { orderByScreens } from './screens'
-import { orderGridProperty } from './grid'
-import { orderTransitionProperty } from './transition'
-import { orderTransformProperty } from './transform'
-import { orderRingProperty } from './ring'
-import { orderBgOpacityProperty } from './bgOpacity'
-import { orderBackdropProperty } from './backdrop'
-import { orderFilterProperty } from './filter'
 import { addContentClass } from './content'
 import applyTransforms from './transforms'
 import { addVariants, handleVariantGroups } from './variants'
 import {
   handleUserPlugins,
-  handleCorePlugins,
-  handleStatic,
   handleDynamic,
   handleCss,
   handleArbitraryCss,
 } from './handlers'
+
+const getPieces = context => {
+  const results = Object.values(pieces).reduce(
+    (results, splitter) => ({ ...results, ...splitter(results) }),
+    context
+  )
+  delete results.state
+  return results
+}
 
 // When removing a multiline comment, determine if a space is left or not
 // eg: You'd want a space left in this situation: tw`class1/* comment */class2`
@@ -49,32 +49,23 @@ const multilineReplaceWith = (match, index, input) => {
 
 const formatTasks = [
   // Strip pipe dividers " | "
-  ({ classes }) => classes.replace(/ \| /g, ' '),
+  classes => classes.replace(/ \| /g, ' '),
   // Strip multiline comments
-  ({ classes }) =>
+  classes =>
     classes.replace(/(?<!\/)\/(?!\/)\*[\S\s]*?\*\//g, multilineReplaceWith),
   // Strip singleline comments
-  ({ classes }) => classes.replace(/\/\/.*/g, ''),
+  classes => classes.replace(/\/\/.*/g, ''),
   // Unwrap grouped variants
-  ({ classes }) => handleVariantGroups(classes),
+  handleVariantGroups,
   // Move some properties to the front of the list so they work as expected
-  ({ classes }) => orderGridProperty(classes),
-  ({ classes }) => orderTransitionProperty(classes),
-  ({ classes }) => orderTransformProperty(classes),
-  ({ classes }) => orderRingProperty(classes),
-  ({ classes }) => orderBackdropProperty(classes),
-  ({ classes }) => orderFilterProperty(classes),
-  ({ classes }) => orderBgOpacityProperty(classes),
-  // Move and sort the responsive items to the end of the list
-  ({ classes, state }) => orderByScreens(classes, state),
+  ...Object.values(ordering),
   // Add a missing content class for after:/before: variants
-  ({ classes, state }) => addContentClass(classes, state),
+  addContentClass,
 ]
 
-export default (
-  classes,
-  { isCsOnly = false, silentMismatches = false, t, state } = {}
-) => {
+export default (classes, args) => {
+  const { isCsOnly = false, silentMismatches = false, t, state } = args
+
   const hasEmptyClasses = [null, 'null', undefined].includes(classes)
   if (silentMismatches && hasEmptyClasses) return
   throwIf(hasEmptyClasses, () =>
@@ -84,7 +75,7 @@ export default (
   )
 
   for (const task of formatTasks) {
-    classes = task({ classes, state })
+    classes = task(classes, state)
   }
 
   const theme = getTheme(state.config.theme)
@@ -116,14 +107,8 @@ export default (
       hasVariants ? logNotFoundVariant({ classNameRaw }) : logNotFoundClass
     )
 
-    const {
-      hasMatches,
-      hasUserPlugins,
-      dynamicKey,
-      dynamicConfig,
-      corePlugin,
-      type,
-    } = getProperties(className, state, { isCsOnly })
+    const { hasMatches, hasUserPlugins, corePluginName, coreConfig, type } =
+      getProperties(className, state, { isCsOnly })
 
     if (silentMismatches && !hasMatches && !hasUserPlugins) {
       classesMismatched.push(classNameRaw)
@@ -135,7 +120,8 @@ export default (
       state.configTwin.disableShortCss && type === 'css' && !isCsOnly
     throwIf(isShortCssDisabled, () =>
       logBadGood(
-        `Short css has been disabled in the config so “${classNameRaw}” won’t work${!state.configTwin.disableCsProp ? ' outside the cs prop' : ''
+        `Short css has been disabled in the config so “${classNameRaw}” won’t work${
+          !state.configTwin.disableCsProp ? ' outside the cs prop' : ''
         }.`,
         !state.configTwin.disableCsProp
           ? `Add short css with the cs prop: &lt;div cs="${classNameRaw}" /&gt;`
@@ -152,21 +138,18 @@ export default (
       theme,
       pieces,
       state,
-      corePlugin,
       className,
       classNameRaw,
-      dynamicKey,
-      dynamicConfig,
+      corePluginName,
+      coreConfig,
       configTwin: state.configTwin,
     }
 
     const styleHandler = {
-      static: () => handleStatic(styleContext),
-      dynamic: () => handleDynamic(styleContext),
-      css: () => handleCss(styleContext),
-      arbitraryCss: () => handleArbitraryCss(styleContext),
-      userPlugin: () => handleUserPlugins(styleContext),
-      corePlugin: () => handleCorePlugins(styleContext),
+      css: handleCss,
+      dynamic: handleDynamic,
+      arbitraryCss: handleArbitraryCss,
+      userPlugin: handleUserPlugins,
     }
 
     let style
@@ -175,7 +158,7 @@ export default (
       style = applyTransforms({
         type,
         pieces,
-        style: styleHandler.userPlugin(),
+        style: styleHandler.userPlugin(styleContext),
       })
     }
 
@@ -190,7 +173,8 @@ export default (
     )
 
     style =
-      style || applyTransforms({ type, pieces, style: styleHandler[type]() })
+      style ||
+      applyTransforms({ pieces, style: styleHandler[type](styleContext) })
 
     const result = deepMerge(
       results,
@@ -204,8 +188,7 @@ export default (
   }, {})
 
   return {
-    // TODO: Avoid astifying here, move it outside function
-    styles: astify(isEmpty(styles) ? {} : styles, t),
+    astStyles: astify(isEmpty(styles) ? {} : styles, t),
     mismatched: classesMismatched.join(' '),
     matched: classesMatched.join(' '),
   }

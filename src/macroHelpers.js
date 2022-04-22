@@ -25,6 +25,8 @@ function assignify(objectAst, t) {
   const currentChunk = []
   const chunks = []
 
+  // FIXME: Remove comment and fix next line
+  // eslint-disable-next-line unicorn/no-array-for-each
   objectAst.properties.forEach(property => {
     if (property.type === 'SpreadElement') {
       if (currentChunk.length > 0) {
@@ -53,9 +55,7 @@ function assignify(objectAst, t) {
 
 function objectExpressionElements(literal, t, spreadType) {
   return Object.keys(literal)
-    .filter(k => {
-      return typeof literal[k] !== 'undefined'
-    })
+    .filter(k => typeof literal[k] !== 'undefined')
     .map(k => {
       if (k.startsWith(SPREAD_ID)) {
         return t[spreadType](babylon.parseExpression(literal[k]))
@@ -229,6 +229,8 @@ function replaceWithLocation(path, replacement) {
   const { loc } = path.node
   const newPaths = replacement ? path.replaceWith(replacement) : []
   if (Array.isArray(newPaths) && newPaths.length > 0) {
+    // FIXME: Remove comment and fix next line
+    // eslint-disable-next-line unicorn/no-array-for-each
     newPaths.forEach(p => {
       p.node.loc = loc
     })

@@ -1,36 +1,38 @@
-import { staticStyles, dynamicStyles } from './config'
-import { get, isShortCss, isArbitraryCss } from './utils/misc'
+import { corePlugins } from './config'
+import { isShortCss, isArbitraryCss, toArray } from './utils/misc'
 
-const isStaticClass = className => {
-  const staticConfig = get(staticStyles, [className, 'config'])
-  const staticConfigOutput = get(staticStyles, [className, 'output'])
-  const staticConfigKey = staticConfigOutput
-    ? Object.keys(staticConfigOutput).shift()
-    : null
+const getCorePluginProperties = className => {
+  const matches = Object.entries(corePlugins)
+    .map(item => {
+      const [pluginName, config] = item
+      if (className === pluginName) return item
 
-  return Boolean(staticConfig || staticConfigKey)
-}
+      const startsWithPluginName = className.startsWith(
+        String(pluginName) + '-'
+      )
+      if (!startsWithPluginName) return
 
-const getDynamicProperties = className => {
-  // Get an array of matches (eg: ['col', 'col-span'])
-  const dynamicKeyMatches =
-    Object.keys(dynamicStyles).filter(
-      k => className.startsWith(k + '-') || className === k
-    ) || []
+      const supportsFurtherMatching = toArray(config).some(i =>
+        Boolean(i.config)
+      )
+      if (!supportsFurtherMatching) return
 
-  // Get the best match from the match array
-  const dynamicKey = dynamicKeyMatches.reduce(
-    (r, match) => (r.length < match.length ? match : r),
-    []
-  )
-  const dynamicConfig = dynamicStyles[dynamicKey] || {}
+      return item
+    })
+    .filter(Boolean)
 
-  // See if the config property is defined
-  const isDynamicClass = Array.isArray(dynamicConfig)
-    ? dynamicConfig.map(item => get(item, 'config') && !get(item, 'coerced'))
-    : get(dynamicStyles, [dynamicKey, 'config'])
+  if (matches.length === 0) return { isCorePluginClass: false }
 
-  return { isDynamicClass, dynamicConfig, dynamicKey }
+  const longestMatch = matches.sort((a, b) =>
+    a[0].length > b[0].length ? -1 : 1
+  )[0]
+  const [corePluginName, coreConfig] = longestMatch
+
+  return {
+    isCorePluginClass: true,
+    coreConfig: toArray(coreConfig),
+    corePluginName,
+  }
 }
 
 const isEmpty = value =>
@@ -48,24 +50,14 @@ export const getProperties = (className, state, { isCsOnly = false }) => {
   if (isArbitraryCss(className))
     return { hasMatches: true, type: 'arbitraryCss' }
 
-  const isStatic = isStaticClass(className)
-  const { isDynamicClass, dynamicConfig, dynamicKey } = getDynamicProperties(
-    className
-  )
-  const corePlugin = dynamicConfig.plugin
-  const hasUserPlugins = !isEmpty(state.config.plugins)
-
-  const type =
-    (isStatic && 'static') ||
-    (isDynamicClass && 'dynamic') ||
-    (corePlugin && 'corePlugin')
+  const { isCorePluginClass, coreConfig, corePluginName } =
+    getCorePluginProperties(className)
 
   return {
-    type,
-    corePlugin,
-    hasMatches: Boolean(type),
-    dynamicKey,
-    dynamicConfig,
-    hasUserPlugins,
+    type: isCorePluginClass && 'dynamic',
+    hasMatches: Boolean(isCorePluginClass),
+    hasUserPlugins: !isEmpty(state.config.plugins),
+    coreConfig,
+    corePluginName,
   }
 }

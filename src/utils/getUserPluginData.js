@@ -40,6 +40,8 @@ const parseSelector = selector => {
 
 const parseRuleProperty = string => {
   // https://stackoverflow.com/questions/448981/which-characters-are-valid-in-css-class-names-selectors
+  // FIXME: Remove comment and fix next line
+  // eslint-disable-next-line unicorn/prefer-regexp-test
   if (string && string.match(/^-{2,3}[_a-z]+[\w-]*/i)) {
     return string
   }
@@ -81,6 +83,8 @@ const getBuiltRules = (rule, { isBase }) => {
   }
 
   // Separate comma-separated selectors to allow twin's features
+  // FIXME: Remove comment and fix next line
+  // eslint-disable-next-line unicorn/prefer-object-from-entries
   return selector.split(',').reduce(
     (result, selector) => ({
       ...result,
@@ -92,6 +96,8 @@ const getBuiltRules = (rule, { isBase }) => {
 
 const buildDeclaration = items => {
   if (typeof items !== 'object') return items
+  // FIXME: Remove comment and fix next line
+  // eslint-disable-next-line unicorn/prefer-object-from-entries
   return Object.entries(items).reduce(
     (result, [, declaration]) => ({
       ...result,
@@ -101,39 +107,44 @@ const buildDeclaration = items => {
   )
 }
 
+const sortLength = (a, b) => {
+  const selectorA = a.selector ? a.selector.length : 0
+  const selectorB = b.selector ? b.selector.length : 0
+  return selectorA - selectorB
+}
+
+const sortScreenOrder = (a, b, screenOrder) => {
+  const screenIndexA = a.name === 'screen' ? screenOrder.indexOf(a.params) : 0
+  const screenIndexB = b.name === 'screen' ? screenOrder.indexOf(b.params) : 0
+  return screenIndexA - screenIndexB
+}
+
+const sortMediaRulesFirst = (a, b) => {
+  const atRuleA = a.type === 'atrule' ? 1 : 0
+  const atRuleB = b.type === 'atrule' ? 1 : 0
+  return atRuleA - atRuleB
+}
+
 const ruleSorter = (arr, screens) => {
   if (!Array.isArray(arr) || arr.length === 0) return []
 
   const screenOrder = screens ? Object.keys(screens) : []
 
   arr
-    // Tailwind supplies the classes reversed since 2.0.x
-    .reverse()
     // Tailwind also messes up the ordering so classes need to be resorted
     // Order selectors by length (don't know of a better way)
-    .sort((a, b) => {
-      const selectorA = a.selector ? a.selector.length : 0
-      const selectorB = b.selector ? b.selector.length : 0
-      return selectorA - selectorB
-    })
+    .sort(sortLength)
     // Place at rules at the end '@media' etc
-    .sort((a, b) => {
-      const atRuleA = a.type === 'atrule'
-      const atRuleB = b.type === 'atrule'
-      return atRuleA - atRuleB
-    })
+    .sort(sortMediaRulesFirst)
     // Sort @media by screens index
-    .sort(function (a, b) {
-      const screenIndexA =
-        a.name === 'screen' ? screenOrder.indexOf(a.params) : 0
-      const screenIndexB =
-        b.name === 'screen' ? screenOrder.indexOf(b.params) : 0
-      return screenIndexA - screenIndexB
-    })
+    .sort((a, b) => sortScreenOrder(a, b, screenOrder))
     // Traverse children and reorder aswell
+    // FIXME: Remove comment and fix next line
+    // eslint-disable-next-line unicorn/no-array-for-each
     .forEach(item => {
       if (!item.nodes || item.nodes.length === 0) return
-
+      // FIXME: Remove comment and fix next line
+      // eslint-disable-next-line unicorn/no-array-for-each
       item.nodes.forEach(i => {
         if (typeof i !== 'object') return
 
