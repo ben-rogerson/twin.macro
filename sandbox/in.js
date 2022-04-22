@@ -4,7 +4,7 @@
  * Good for general testing or for development of new features.
  *
  * Getting started
- * 1. Run the script: "npm run dev:demo" (or "npm run dev:demo:macro" if deving)
+ * 1. Run the script: "npm run dev:sandbox" (or "npm run dev:macro:sandbox" if deving)
  * 2. Make a change to this file
  * 3. Check 'out.js' for the macro output
  */
