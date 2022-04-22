@@ -23,6 +23,9 @@ const cssFilterValue = [
   'var(--tw-drop-shadow)',
 ].join(' ')
 
+const cssTouchActionValue =
+  'var(--tw-pan-x) var(--tw-pan-y) var(--tw-pinch-zoom)'
+
 export default {
   // https://tailwindcss.com/docs/container
   container: {
@@ -419,7 +422,33 @@ export default {
   cursor: { property: 'cursor', config: 'cursor' },
 
   // https://tailwindcss.com/docs/touch-action
-  // TODO...
+  'touch-auto': { output: { touchAction: 'auto' } },
+  'touch-none': { output: { touchAction: 'none' } },
+  'touch-pan-x': {
+    output: { '--tw-pan-x': 'pan-x', touchAction: cssTouchActionValue },
+  },
+  'touch-pan-left': {
+    output: { '--tw-pan-x': 'pan-left', touchAction: cssTouchActionValue },
+  },
+  'touch-pan-right': {
+    output: { '--tw-pan-x': 'pan-right', touchAction: cssTouchActionValue },
+  },
+  'touch-pan-y': {
+    output: { '--tw-pan-y': 'pan-y', touchAction: cssTouchActionValue },
+  },
+  'touch-pan-up': {
+    output: { '--tw-pan-y': 'pan-up', touchAction: cssTouchActionValue },
+  },
+  'touch-pan-down': {
+    output: { '--tw-pan-y': 'pan-down', touchAction: cssTouchActionValue },
+  },
+  'touch-pinch-zoom': {
+    output: {
+      '--tw-pinch-zoom': 'pinch-zoom',
+      touchAction: cssTouchActionValue,
+    },
+  },
+  'touch-manipulation': { output: { touchAction: 'manipulation' } },
 
   // https://tailwindcss.com/docs/user-select
   'select-none': { output: { userSelect: 'none' } },
