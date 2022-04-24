@@ -13,4 +13,3 @@ tw`blur-2xl`
 tw`blur-3xl`
 
 tw`blur-[2px]`
-tw`-blur-[2px]`

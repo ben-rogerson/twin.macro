@@ -62,7 +62,14 @@ const macroTasks = [
   addCssImport, // Gotcha: Must be after addStyledImport or issues with theme`` style transpile
 ]
 
-const twinMacro = ({ babel: { types: t }, references, state, config }) => {
+const twinMacro = args => {
+  const {
+    babel: { types: t },
+    references,
+    state,
+    config,
+  } = args
+
   validateImports(references)
 
   const program = state.file.path
@@ -148,7 +155,6 @@ const twinMacro = ({ babel: { types: t }, references, state, config }) => {
     task({
       styledImport,
       cssImport,
-      configTwin,
       references,
       program,
       config,
