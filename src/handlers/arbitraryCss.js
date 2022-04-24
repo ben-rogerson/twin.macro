@@ -9,7 +9,7 @@ import {
   getFirstValue,
   maybeAddNegative,
 } from './../utils'
-import { logNotAllowed, logGeneralError } from './../logging'
+import { logNotAllowed, logGeneralError, logBadGood } from './../logging'
 import {
   getFlatCoercedConfigByProperty,
   getCorePluginsByProperty,
@@ -149,7 +149,7 @@ export default props => {
 
   const config = getCorePluginsByProperty(property)
 
-  const [result] = getFirstValue(config, p =>
+  const [result, configUsed] = getFirstValue(config, p =>
     getArbitraryStyle(p, { ...props, property, classValue })
   )
 
@@ -157,6 +157,13 @@ export default props => {
     logNotAllowed(
       props.pieces.classNameRawNoVariants,
       ...getErrorFeedback(property, classValue)
+    )
+  )
+
+  throwIf(props.pieces.hasNegative && !configUsed.supportsNegativeValues, () =>
+    logBadGood(
+      `“${props.pieces.classNameRaw}” doesn’t support a negative prefix`,
+      `Apply the negative to the arbitrary value, eg: “${property}-[-5]”`
     )
   )
 

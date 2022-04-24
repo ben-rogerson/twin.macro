@@ -20,7 +20,4 @@ tw`opacity-95`
 tw`opacity-100`
 
 tw`opacity-[.1]`
-tw`-opacity-[.1]`
-tw`-opacity-[1]`
-tw`-opacity-[1]`
 tw`opacity-[var(--opacity)]`

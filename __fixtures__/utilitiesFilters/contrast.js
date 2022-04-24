@@ -13,4 +13,3 @@ tw`contrast-200`
 
 tw`contrast-[.25]`
 tw`contrast-[-.25]`
-tw`-contrast-[-.25]`

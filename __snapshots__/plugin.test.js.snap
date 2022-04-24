@@ -7231,7 +7231,6 @@ tw\`blur-2xl\`
 tw\`blur-3xl\`
 
 tw\`blur-[2px]\`
-tw\`-blur-[2px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -7281,10 +7280,6 @@ tw\`-blur-[2px]\`
 })
 ;({
   '--tw-blur': 'blur(2px)',
-  filter: 'var(--tw-filter)',
-})
-;({
-  '--tw-blur': 'blur(-2px)',
   filter: 'var(--tw-filter)',
 })
 
@@ -20830,7 +20825,6 @@ tw\`contrast-200\`
 
 tw\`contrast-[.25]\`
 tw\`contrast-[-.25]\`
-tw\`-contrast-[-.25]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -20878,10 +20872,6 @@ tw\`-contrast-[-.25]\`
 })
 ;({
   '--tw-contrast': 'contrast(-.25)',
-  filter: 'var(--tw-filter)',
-})
-;({
-  '--tw-contrast': 'contrast(.25)',
   filter: 'var(--tw-filter)',
 })
 
@@ -33036,6 +33026,8 @@ tw\`-mb-[5px]\`
 
 tw\`mt-[clamp(30px,100px)]\`
 
+tw\`!-mt-4\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // https://tailwindcss.com/docs/margin
@@ -34735,6 +34727,9 @@ tw\`mt-[clamp(30px,100px)]\`
 ;({
   marginTop: 'clamp(30px,100px)',
 })
+;({
+  marginTop: '-1rem !important',
+})
 
 
 `;
@@ -35655,9 +35650,6 @@ tw\`opacity-95\`
 tw\`opacity-100\`
 
 tw\`opacity-[.1]\`
-tw\`-opacity-[.1]\`
-tw\`-opacity-[1]\`
-tw\`-opacity-[1]\`
 tw\`opacity-[var(--opacity)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -35727,15 +35719,6 @@ tw\`opacity-[var(--opacity)]\`
 })
 ;({
   opacity: '.1',
-})
-;({
-  opacity: '-.1',
-})
-;({
-  opacity: '-1',
-})
-;({
-  opacity: '-1',
 })
 ;({
   opacity: 'var(--opacity)',
@@ -37593,11 +37576,6 @@ tw\`pt-[5px]\`
 tw\`pl-[5px]\`
 tw\`pr-[5px]\`
 tw\`pb-[5px]\`
-tw\`-p-[5px]\`
-tw\`-pt-[5px]\`
-tw\`-pl-[5px]\`
-tw\`-pr-[5px]\`
-tw\`-pb-[5px]\`
 tw\`p-[var(--app-padding)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -38453,21 +38431,6 @@ tw\`p-[var(--app-padding)]\`
 })
 ;({
   paddingBottom: '5px',
-})
-;({
-  padding: '-5px',
-})
-;({
-  paddingTop: '-5px',
-})
-;({
-  paddingLeft: '-5px',
-})
-;({
-  paddingRight: '-5px',
-})
-;({
-  paddingBottom: '-5px',
 })
 ;({
   padding: 'var(--app-padding)',

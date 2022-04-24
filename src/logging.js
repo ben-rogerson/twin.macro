@@ -389,7 +389,7 @@ const getSuggestions = args => {
   const customSuggestions = getCustomSuggestions(className)
   if (customSuggestions) return customSuggestions
 
-  if (config) {
+  if (!isEmpty(config)) {
     const theme = getTheme(state.config.theme)
     const properties = { config, theme, corePluginName, className, hasNegative }
     const matches = matchConfig(properties)
@@ -401,7 +401,7 @@ const getSuggestions = args => {
         match.target.endsWith('-default') &&
         match.target.replace('-default', '') === className
     )
-    if (defaultFound) return defaultFound.target
+    if (defaultFound) return [defaultFound]
 
     // If there's high rated suggestions then return them
     const trumpMatches = matches.filter(match => match.rating >= 0.5)
@@ -417,7 +417,7 @@ const getSuggestions = args => {
           toArray(v).map(v =>
             isObject(v.output)
               ? `${k}`
-              : v.config
+              : !isEmpty(v.config)
               ? getSuggestions({
                   ...args,
                   config: toArray(v.config),

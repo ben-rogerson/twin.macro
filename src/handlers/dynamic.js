@@ -92,7 +92,7 @@ export default props => {
       [
         `Remove the negative prefix`,
         supportsArbitraryValues(corePluginName) &&
-          `apply an arbitrary value, eg: “${corePluginName}-[-5px]” or “-${corePluginName}-[5px]”`,
+          `apply an arbitrary value, eg: “${corePluginName}-[-5]” or “-${corePluginName}-[5]”`,
       ]
         .filter(Boolean)
         .join(' or ')
