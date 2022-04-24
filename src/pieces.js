@@ -227,4 +227,4 @@ const splitAlpha = props => {
   }
 }
 
-export { splitVariants, splitPrefix, splitNegative, splitImportant, splitAlpha }
+export { splitVariants, splitPrefix, splitImportant, splitNegative, splitAlpha }
