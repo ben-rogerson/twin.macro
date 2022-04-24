@@ -12,27 +12,27 @@ const fontVariants = {
 }
 
 const cssFilterValue = [
-  'var(--tw-blur,blur(0))',
-  'var(--tw-brightness,brightness(1))',
-  'var(--tw-contrast,contrast(1))',
-  'var(--tw-grayscale,grayscale(0))',
-  'var(--tw-hue-rotate,hue-rotate(0deg))',
-  'var(--tw-invert,invert(0))',
-  'var(--tw-saturate,saturate(1))',
-  'var(--tw-sepia,sepia(0))',
-  'var(--tw-drop-shadow,drop-shadow(0 0 #0000))',
+  'var(--tw-blur)',
+  'var(--tw-brightness)',
+  'var(--tw-contrast)',
+  'var(--tw-grayscale)',
+  'var(--tw-hue-rotate)',
+  'var(--tw-invert)',
+  'var(--tw-saturate)',
+  'var(--tw-sepia)',
+  'var(--tw-drop-shadow)',
 ].join(' ')
 
 const cssBackdropFilterValue = [
-  'var(--tw-backdrop-blur,blur(0))',
-  'var(--tw-backdrop-brightness,brightness(1))',
-  'var(--tw-backdrop-contrast,contrast(1))',
-  'var(--tw-backdrop-grayscale,grayscale(0))',
-  'var(--tw-backdrop-hue-rotate,hue-rotate(0deg))',
-  'var(--tw-backdrop-invert,invert(0))',
-  'var(--tw-backdrop-opacity,opacity(1))',
-  'var(--tw-backdrop-saturate,saturate(1))',
-  'var(--tw-backdrop-sepia,sepia(0))',
+  'var(--tw-backdrop-blur)',
+  'var(--tw-backdrop-brightness)',
+  'var(--tw-backdrop-contrast)',
+  'var(--tw-backdrop-grayscale)',
+  'var(--tw-backdrop-hue-rotate)',
+  'var(--tw-backdrop-invert)',
+  'var(--tw-backdrop-opacity)',
+  'var(--tw-backdrop-saturate)',
+  'var(--tw-backdrop-sepia)',
 ].join(' ')
 
 const cssTouchActionValue =
