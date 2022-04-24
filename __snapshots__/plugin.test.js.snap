@@ -35388,12 +35388,14 @@ tw\`backdrop-filter backdrop-blur-2xl backdrop-brightness-50 backdrop-contrast-5
   filter: 'none',
 })
 ;({
-  filter: 'var(--tw-filter)',
+  filter:
+    'var(--tw-blur,blur(0)) var(--tw-brightness,brightness(1)) var(--tw-contrast,contrast(1)) var(--tw-grayscale,grayscale(0)) var(--tw-hue-rotate,hue-rotate(0deg)) var(--tw-invert,invert(0)) var(--tw-saturate,saturate(1)) var(--tw-sepia,sepia(0)) var(--tw-drop-shadow,drop-shadow(0 0 #0000))',
 }) // Deprecated
 // https://tailwindcss.com/docs/backdrop-filter
 
 ;({
-  backdropFilter: 'var(--tw-backdrop-filter)',
+  backdropFilter:
+    'var(--tw-backdrop-blur,blur(0)) var(--tw-backdrop-brightness,brightness(1)) var(--tw-backdrop-contrast,contrast(1)) var(--tw-backdrop-grayscale,grayscale(0)) var(--tw-backdrop-hue-rotate,hue-rotate(0deg)) var(--tw-backdrop-invert,invert(0)) var(--tw-backdrop-opacity,opacity(1)) var(--tw-backdrop-saturate,saturate(1)) var(--tw-backdrop-sepia,sepia(0))',
 }) // Deprecated
 
 ;({
@@ -51030,7 +51032,7 @@ styled('div', tw\`block\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { styled as _styled } from '__fixtures__/stitches/stitches.config.js'
+import { styled as _styled } from '__fixtures__\\\\stitches\\\\stitches.config.js'
 
 _styled('div', {
   display: 'block',
@@ -51309,8 +51311,8 @@ styled.div(tw\`block\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css as _css } from '__fixtures__/stitches/stitches.config.js'
-import { styled as _styled } from '__fixtures__/stitches/stitches.config.js'
+import { css as _css } from '__fixtures__\\\\stitches\\\\stitches.config.js'
+import { styled as _styled } from '__fixtures__\\\\stitches\\\\stitches.config.js'
 
 _css({
   display: 'block',
@@ -51352,7 +51354,7 @@ const Component = { Sub: () => [] }
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { styled as _styled } from '__fixtures__/stitches/stitches.config.js'
+import { styled as _styled } from '__fixtures__\\\\stitches\\\\stitches.config.js'
 
 const _TwComponent = _styled('div', {
   display: 'block',

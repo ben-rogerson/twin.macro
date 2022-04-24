@@ -1703,7 +1703,7 @@ export default {
 
   // https://tailwindcss.com/docs/filter
   'filter-none': { output: { filter: 'none' } },
-  filter: { output: { filter: 'var(--tw-filter)' } },
+  filter: { output: { filter: cssFilterValue } },
 
   // https://tailwindcss.com/docs/backdrop-blur
   'backdrop-blur': {
@@ -1789,7 +1789,7 @@ export default {
 
   // https://tailwindcss.com/docs/backdrop-filter
   'backdrop-filter': {
-    output: { backdropFilter: 'var(--tw-backdrop-filter)' },
+    output: { backdropFilter: cssBackdropFilterValue },
   },
   'backdrop-filter-none': { output: { backdropFilter: 'none' } },
 
