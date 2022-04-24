@@ -9,3 +9,5 @@ tw`align-text-top`
 tw`align-text-bottom`
 tw`align-sub`
 tw`align-super`
+
+tw`align-[something]`

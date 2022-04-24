@@ -1283,6 +1283,7 @@ export default {
   'align-text-bottom': { output: { verticalAlign: 'text-bottom' } },
   'align-sub': { output: { verticalAlign: 'sub' } },
   'align-super': { output: { verticalAlign: 'super' } },
+  align: { output: ({ value }) => value && { verticalAlign: value } },
 
   font: [
     // https://tailwindcss.com/docs/font-weight

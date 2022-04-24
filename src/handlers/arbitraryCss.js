@@ -84,7 +84,7 @@ const getArbitraryStyle = (
   config,
   { classValue, theme, pieces, property, state }
 ) => {
-  if (!config.config) return
+  if (!supportsArbitraryValues(config)) return
 
   // Type-coerced arbitrary values, eg: text-[length:3px] / text-[color:red]
   const typeCoerced = getTypeCoerced(classValue, {
