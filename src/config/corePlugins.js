@@ -12,15 +12,27 @@ const fontVariants = {
 }
 
 const cssFilterValue = [
-  'var(--tw-blur)',
-  'var(--tw-brightness)',
-  'var(--tw-contrast)',
-  'var(--tw-grayscale)',
-  'var(--tw-hue-rotate)',
-  'var(--tw-invert)',
-  'var(--tw-saturate)',
-  'var(--tw-sepia)',
-  'var(--tw-drop-shadow)',
+  'var(--tw-blur,blur(0))',
+  'var(--tw-brightness,brightness(1))',
+  'var(--tw-contrast,contrast(1))',
+  'var(--tw-grayscale,grayscale(0))',
+  'var(--tw-hue-rotate,hue-rotate(0deg))',
+  'var(--tw-invert,invert(0))',
+  'var(--tw-saturate,saturate(1))',
+  'var(--tw-sepia,sepia(0))',
+  'var(--tw-drop-shadow,drop-shadow(0 0 #0000))',
+].join(' ')
+
+const cssBackdropFilterValue = [
+  'var(--tw-backdrop-blur,blur(0))',
+  'var(--tw-backdrop-brightness,brightness(1))',
+  'var(--tw-backdrop-contrast,contrast(1))',
+  'var(--tw-backdrop-grayscale,grayscale(0))',
+  'var(--tw-backdrop-hue-rotate,hue-rotate(0deg))',
+  'var(--tw-backdrop-invert,invert(0))',
+  'var(--tw-backdrop-opacity,opacity(1))',
+  'var(--tw-backdrop-saturate,saturate(1))',
+  'var(--tw-backdrop-sepia,sepia(0))',
 ].join(' ')
 
 const cssTouchActionValue =
@@ -1607,7 +1619,7 @@ export default {
     config: 'blur',
     output: ({ value }) => ({
       '--tw-blur': `blur(${value})`,
-      filter: 'var(--tw-filter)',
+      filter: cssFilterValue,
     }),
   },
 
@@ -1616,7 +1628,7 @@ export default {
     config: 'brightness',
     output: ({ value }) => ({
       '--tw-brightness': `brightness(${value})`,
-      filter: 'var(--tw-filter)',
+      filter: cssFilterValue,
     }),
   },
 
@@ -1625,7 +1637,7 @@ export default {
     config: 'contrast',
     output: ({ value }) => ({
       '--tw-contrast': `contrast(${value})`,
-      filter: 'var(--tw-filter)',
+      filter: cssFilterValue,
     }),
   },
 
@@ -1648,7 +1660,7 @@ export default {
     config: 'grayscale',
     output: ({ value }) => ({
       '--tw-grayscale': `grayscale(${value})`,
-      filter: 'var(--tw-filter)',
+      filter: cssFilterValue,
     }),
   },
 
@@ -1657,7 +1669,7 @@ export default {
     config: 'hueRotate',
     output: ({ value }) => ({
       '--tw-hue-rotate': `hue-rotate(${value})`,
-      filter: 'var(--tw-filter)',
+      filter: cssFilterValue,
     }),
     supportsNegativeValues: true,
   },
@@ -1667,7 +1679,7 @@ export default {
     config: 'invert',
     output: ({ value }) => ({
       '--tw-invert': `invert(${value})`,
-      filter: 'var(--tw-filter)',
+      filter: cssFilterValue,
     }),
   },
 
@@ -1676,7 +1688,7 @@ export default {
     config: 'saturate',
     output: ({ value }) => ({
       '--tw-saturate': `saturate(${value})`,
-      filter: 'var(--tw-filter)',
+      filter: cssFilterValue,
     }),
   },
 
@@ -1685,20 +1697,20 @@ export default {
     config: 'sepia',
     output: ({ value }) => ({
       '--tw-sepia': `sepia(${value})`,
-      filter: 'var(--tw-filter)',
+      filter: cssFilterValue,
     }),
   },
 
   // https://tailwindcss.com/docs/filter
   'filter-none': { output: { filter: 'none' } },
-  filter: { output: { filter: 'var(--tw-filter)' } },
+  filter: { output: { filter: cssFilterValue } },
 
   // https://tailwindcss.com/docs/backdrop-blur
   'backdrop-blur': {
     config: 'backdropBlur',
     output: ({ value }) => ({
       '--tw-backdrop-blur': `blur(${value})`,
-      backdropFilter: 'var(--tw-backdrop-filter)',
+      backdropFilter: cssBackdropFilterValue,
     }),
   },
 
@@ -1707,7 +1719,7 @@ export default {
     config: 'backdropBrightness',
     output: ({ value }) => ({
       '--tw-backdrop-brightness': `brightness(${value})`,
-      backdropFilter: 'var(--tw-backdrop-filter)',
+      backdropFilter: cssBackdropFilterValue,
     }),
   },
 
@@ -1716,7 +1728,7 @@ export default {
     config: 'backdropContrast',
     output: ({ value }) => ({
       '--tw-backdrop-contrast': `contrast(${value})`,
-      backdropFilter: 'var(--tw-backdrop-filter)',
+      backdropFilter: cssBackdropFilterValue,
     }),
   },
 
@@ -1725,7 +1737,7 @@ export default {
     config: 'backdropGrayscale',
     output: ({ value }) => ({
       '--tw-backdrop-grayscale': `grayscale(${value})`,
-      backdropFilter: 'var(--tw-backdrop-filter)',
+      backdropFilter: cssBackdropFilterValue,
     }),
   },
 
@@ -1734,7 +1746,7 @@ export default {
     config: 'backdropHueRotate',
     output: ({ value }) => ({
       '--tw-backdrop-hue-rotate': `hue-rotate(${value})`,
-      backdropFilter: 'var(--tw-backdrop-filter)',
+      backdropFilter: cssBackdropFilterValue,
     }),
     supportsNegativeValues: true,
   },
@@ -1744,7 +1756,7 @@ export default {
     config: 'backdropInvert',
     output: ({ value }) => ({
       '--tw-backdrop-invert': `invert(${value})`,
-      backdropFilter: 'var(--tw-backdrop-filter)',
+      backdropFilter: cssBackdropFilterValue,
     }),
   },
 
@@ -1753,7 +1765,7 @@ export default {
     config: 'backdropOpacity',
     output: ({ value }) => ({
       '--tw-backdrop-opacity': `opacity(${value})`,
-      backdropFilter: 'var(--tw-backdrop-filter)',
+      backdropFilter: cssBackdropFilterValue,
     }),
   },
 
@@ -1762,7 +1774,7 @@ export default {
     config: 'backdropSaturate',
     output: ({ value }) => ({
       '--tw-backdrop-saturate': `saturate(${value})`,
-      backdropFilter: 'var(--tw-backdrop-filter)',
+      backdropFilter: cssBackdropFilterValue,
     }),
   },
 
@@ -1771,13 +1783,13 @@ export default {
     config: 'backdropSepia',
     output: ({ value }) => ({
       '--tw-backdrop-sepia': `sepia(${value})`,
-      backdropFilter: 'var(--tw-backdrop-filter)',
+      backdropFilter: cssBackdropFilterValue,
     }),
   },
 
   // https://tailwindcss.com/docs/backdrop-filter
   'backdrop-filter': {
-    output: { backdropFilter: 'var(--tw-backdrop-filter)' },
+    output: { backdropFilter: cssBackdropFilterValue },
   },
   'backdrop-filter-none': { output: { backdropFilter: 'none' } },
 
