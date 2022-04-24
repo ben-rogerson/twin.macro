@@ -137,8 +137,9 @@ const getCorePluginsByProperty = propertyName => {
 const supportsArbitraryValues = coreConfigValue =>
   toArray(coreConfigValue).some(
     config =>
-      (config.output && typeof config.output === 'string') ||
-      (!config.output && config.coerced)
+      (config.output && typeof config.output === 'function') ||
+      (!config.output && config.coerced) ||
+      config.config
   )
 
 export {

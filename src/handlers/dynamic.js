@@ -55,13 +55,9 @@ export default props => {
       corePluginName === pieces.className && isObject(c.output)
     if (isStaticOutput) return c.output
 
-    let classValue
     const config = c.config && theme(c.config)
-
-    if (config) {
-      classValue = getConfigValue(config, configSearch)
-      if (!classValue) return
-    }
+    const classValue = config && getConfigValue(config, configSearch)
+    if (config && !classValue) return
 
     // { property: value } determined via a function (eg: 'container')
     if (typeof c.output === 'function')
@@ -81,7 +77,7 @@ export default props => {
     errorSuggestions({
       pieces,
       state,
-      config: coreConfig.map(item => item.config).filter(Boolean) || [],
+      config: coreConfig.map(item => item.config).filter(Boolean),
       corePluginName,
     })
   )

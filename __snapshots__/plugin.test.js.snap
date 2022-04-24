@@ -59490,6 +59490,8 @@ tw\`align-text-bottom\`
 tw\`align-sub\`
 tw\`align-super\`
 
+tw\`align-[something]\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // https://tailwindcss.com/docs/vertical-align
@@ -59516,6 +59518,9 @@ tw\`align-super\`
 })
 ;({
   verticalAlign: 'super',
+})
+;({
+  verticalAlign: 'something',
 })
 
 
