@@ -978,47 +978,6 @@ const Component7 = () => (
 
 `;
 
-exports[`twin.macro !screens.js: !screens.js 1`] = `
-
-import tw from './macro'
-
-tw\`sm:block\`
-tw\`md:block\`
-tw\`lg:block\`
-tw\`xl:block\`
-tw\`2xl:block\`
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-;({
-  '@media (min-width: 640px)': {
-    display: 'block',
-  },
-})
-;({
-  '@media (min-width: 768px)': {
-    display: 'block',
-  },
-})
-;({
-  '@media (min-width: 1024px)': {
-    display: 'block',
-  },
-})
-;({
-  '@media (min-width: 1280px)': {
-    display: 'block',
-  },
-})
-;({
-  '@media (min-width: 1536px)': {
-    display: 'block',
-  },
-})
-
-
-`;
-
 exports[`twin.macro !variantGrouping.js: !variantGrouping.js 1`] = `
 
 import tw from './macro'
@@ -25807,72 +25766,40 @@ tw\`stacked-fractions\`
 })
 ;({
   '--tw-ordinal': 'ordinal',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 })
 ;({
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
   '--tw-slashed-zero': 'slashed-zero',
-  '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 })
 ;({
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
   '--tw-numeric-figure': 'lining-nums',
-  '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 })
 ;({
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
   '--tw-numeric-figure': 'oldstyle-nums',
-  '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 })
 ;({
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
   '--tw-numeric-spacing': 'proportional-nums',
-  '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 })
 ;({
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
   '--tw-numeric-spacing': 'tabular-nums',
-  '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 })
 ;({
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
   '--tw-numeric-fraction': 'diagonal-fractions',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 })
 ;({
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
   '--tw-numeric-fraction': 'stacked-fractions',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
