@@ -406,7 +406,7 @@ export default {
 
   'transform-gpu': {
     output: {
-      '--tw-transform':
+      transform:
         'translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
     },
   },
