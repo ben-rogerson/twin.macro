@@ -10,6 +10,5 @@ yarn.lock
 *.tsbuildinfo
 types/build
 .eslintcache
-macro.d.ts
 
 sandbox/out.js
