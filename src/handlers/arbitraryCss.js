@@ -128,17 +128,18 @@ const getArbitraryStyle = (
   return coercedConfigResult
 }
 
-// Arbitrary values with a theme value, eg: tw`text - [theme(colors.red.500)]`
+// Arbitrary values with a theme value, eg: tw`h-[calc(100%-theme('spacing.16'))]`
 const replaceThemeValue = (value, { theme }) => {
-  const themeMatch = value.match(/theme\('?([^']+)'?\)/)
-  if (!themeMatch) return value
+  const match = value.match(/theme\(["']?([^"']+)["']?\)/)
+  if (!match) return value
 
-  const themeValue = theme(themeMatch[1])
+  const themeFunction = match[0]
+  const themeValue = theme(match[1])
   throwIf(!themeValue, () =>
-    logGeneralError(`No theme value found for “${themeMatch[1]}”`)
+    logGeneralError(`No theme value found for “${match[1]}”`)
   )
 
-  return themeValue
+  return value.replace(themeFunction, themeValue)
 }
 
 export default props => {

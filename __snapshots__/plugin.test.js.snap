@@ -31271,6 +31271,9 @@ tw\`h-[3.23rem]\`
 tw\`h-[calc(100%+1rem)]\`
 tw\`h-[var(--height)]\`
 
+tw\`h-[calc(100%-theme('spacing.16'))]\`
+tw\`h-[calc(100%-theme("spacing.16"))]\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // https://tailwindcss.com/docs/height
@@ -31511,6 +31514,12 @@ tw\`h-[var(--height)]\`
 })
 ;({
   height: 'var(--height)',
+})
+;({
+  height: 'calc(100%-4rem)',
+})
+;({
+  height: 'calc(100%-4rem)',
 })
 
 
