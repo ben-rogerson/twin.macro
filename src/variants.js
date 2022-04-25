@@ -102,7 +102,7 @@ function spreadVariantGroups(
   classes = classes.slice(start, end).trim()
 
   // variant / class / group
-  const reg = /(\[.*?]:|[\w-]+:)|([\w-./[\]]+!?)|\(|(\S+)/g
+  const reg = /(\[.*?]:|[\w-<>]+:)|([\w-./[\]]+!?)|\(|(\S+)/g
 
   let match
   const baseContext = context

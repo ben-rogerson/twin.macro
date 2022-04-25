@@ -98,7 +98,7 @@ const splitVariants = ({ classNameRaw, state }) => {
   let className = classNameRaw
   while (variant !== null) {
     // Match arbitrary variants
-    variant = className.match(/^([\d_a-z-]+):|^\[.*?]:/)
+    variant = className.match(/^([\d<>_a-z-]+):|^\[.*?]:/)
 
     if (variant) {
       className = className.slice(variant[0].length)
