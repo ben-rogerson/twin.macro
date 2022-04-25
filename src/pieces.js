@@ -28,10 +28,7 @@ const fullVariantConfig = variantConfig({
   createPeer,
 })
 
-/**
- * Validate variants against the variants config key
- */
-const validateVariants = ({ variants, state, ...rest }) => {
+const getVariants = ({ variants, state, ...rest }) => {
   if (!variants) return []
 
   const screens = get(state.config, ['theme', 'screens'])
@@ -124,7 +121,7 @@ const splitVariants = ({ classNameRaw, state }) => {
   const hasGroupVariant = variantsList.some(v => v.startsWith('group-'))
 
   // Match the filtered variants
-  const variants = validateVariants({
+  const variants = getVariants({
     variants: variantsList,
     state,
     hasDarkVariant,
@@ -140,6 +137,7 @@ const splitVariants = ({ classNameRaw, state }) => {
     className,
     variants,
     hasVariants,
+    hasVariantVisited: variants.includes(':visited'),
   }
 }
 
