@@ -502,7 +502,6 @@ html {
 line-height: 1.5;
 -webkit-text-size-adjust: 100%;
 -moz-tab-size: 4;
--o-tab-size: 4;
 tab-size: 4;
 font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
@@ -516,7 +515,6 @@ color: inherit;
 border-top-width: 1px;
         }
 abbr:where([title]) {
--webkit-text-decoration: underline dotted;
 text-decoration: underline dotted;
         }
 h1, h2, h3, h4, h5, h6 {
@@ -3541,7 +3539,6 @@ html {
 line-height: 1.5;
 -webkit-text-size-adjust: 100%;
 -moz-tab-size: 4;
--o-tab-size: 4;
 tab-size: 4;
 font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
@@ -3557,7 +3554,6 @@ color: inherit;
 border-top-width: 1px;
         }
 abbr:where([title]) {
--webkit-text-decoration: underline dotted;
 text-decoration: underline dotted;
         }
 h1, h2, h3, h4, h5, h6 {
@@ -3796,7 +3792,6 @@ src: url('./fonts/myfont.ttf');
     lineHeight: '1.5',
     WebkitTextSizeAdjust: '100%',
     MozTabSize: '4',
-    OTabSize: '4',
     tabSize: '4',
     fontFamily:
       'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
@@ -3813,7 +3808,6 @@ src: url('./fonts/myfont.ttf');
     borderTopWidth: '1px',
   },
   'abbr:where([title])': {
-    WebkitTextDecoration: 'underline dotted',
     textDecoration: 'underline dotted',
   },
   'h1, h2, h3, h4, h5, h6': {
@@ -4047,7 +4041,6 @@ theme\`keyframes\`
     lineHeight: '1.5',
     WebkitTextSizeAdjust: '100%',
     MozTabSize: '4',
-    OTabSize: '4',
     tabSize: '4',
     fontFamily:
       'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
@@ -4062,7 +4055,6 @@ theme\`keyframes\`
     borderTopWidth: '1px',
   },
   'abbr:where([title])': {
-    WebkitTextDecoration: 'underline dotted',
     textDecoration: 'underline dotted',
   },
   'h1, h2, h3, h4, h5, h6': {
@@ -20027,7 +20019,6 @@ html {
 line-height: 1.5;
 -webkit-text-size-adjust: 100%;
 -moz-tab-size: 4;
--o-tab-size: 4;
 tab-size: 4;
 font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
@@ -20041,7 +20032,6 @@ color: inherit;
 border-top-width: 1px;
         }
 abbr:where([title]) {
--webkit-text-decoration: underline dotted;
 text-decoration: underline dotted;
         }
 h1, h2, h3, h4, h5, h6 {
@@ -26469,7 +26459,6 @@ const _GlobalStyles = () => (
         line-height: 1.5;
         -webkit-text-size-adjust: 100%;
         -moz-tab-size: 4;
-        -o-tab-size: 4;
         tab-size: 4;
         font-family: testSans, testSans2;
       }
@@ -26483,7 +26472,6 @@ const _GlobalStyles = () => (
         border-top-width: 1px;
       }
       abbr:where([title]) {
-        -webkit-text-decoration: underline dotted;
         text-decoration: underline dotted;
       }
       h1,
@@ -40769,7 +40757,6 @@ html {
 line-height: 1.5;
 -webkit-text-size-adjust: 100%;
 -moz-tab-size: 4;
--o-tab-size: 4;
 tab-size: 4;
 font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
@@ -40783,7 +40770,6 @@ color: inherit;
 border-top-width: 1px;
         }
 abbr:where([title]) {
--webkit-text-decoration: underline dotted;
 text-decoration: underline dotted;
         }
 h1, h2, h3, h4, h5, h6 {
@@ -51085,7 +51071,6 @@ const globals = global({
     lineHeight: '1.5',
     WebkitTextSizeAdjust: '100%',
     MozTabSize: '4',
-    OTabSize: '4',
     tabSize: '4',
     fontFamily:
       'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
@@ -51100,7 +51085,6 @@ const globals = global({
     borderTopWidth: '1px',
   },
   'abbr:where([title])': {
-    WebkitTextDecoration: 'underline dotted',
     textDecoration: 'underline dotted',
   },
   'h1, h2, h3, h4, h5, h6': {

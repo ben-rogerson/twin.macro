@@ -1,3 +1,4 @@
+// Reference: https://github.com/tailwindlabs/tailwindcss/blob/master/src/css/preflight.css
 export const globalPreflightStyles = ({ theme }) => ({
   '*, ::before, ::after': {
     boxSizing: 'border-box',
@@ -5,14 +6,11 @@ export const globalPreflightStyles = ({ theme }) => ({
     borderStyle: 'solid',
     borderColor: theme`borderColor.DEFAULT` || 'currentColor',
   },
-  '::before, ::after': {
-    '--tw-content': "''",
-  },
+  '::before, ::after': { '--tw-content': "''" },
   html: {
     lineHeight: '1.5',
     WebkitTextSizeAdjust: '100%',
     MozTabSize: '4',
-    OTabSize: '4',
     tabSize: '4',
     fontFamily:
       theme`fontFamily.sans` ||
@@ -20,10 +18,7 @@ export const globalPreflightStyles = ({ theme }) => ({
   },
   body: { margin: '0', lineHeight: 'inherit' },
   hr: { height: '0', color: 'inherit', borderTopWidth: '1px' },
-  'abbr:where([title])': {
-    WebkitTextDecoration: 'underline dotted',
-    textDecoration: 'underline dotted',
-  },
+  'abbr:where([title])': { textDecoration: 'underline dotted' },
   'h1, h2, h3, h4, h5, h6': { fontSize: 'inherit', fontWeight: 'inherit' },
   a: { color: 'inherit', textDecoration: 'inherit' },
   'b, strong': { fontWeight: 'bolder' },
