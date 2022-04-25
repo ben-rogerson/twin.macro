@@ -4,6 +4,8 @@ import tw from './macro'
  * Test the config matching is working correctly
  */
 
+tw`animate-zoom-.5`
+
 tw`text-number`
 tw`text-purple`
 tw`text-purple-hyphen`
