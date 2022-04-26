@@ -1,15 +1,8 @@
 // https://tailwindcss.com/docs/font-variant-numeric
 // This feature uses var+comment hacks to get around property stripping:
 // https://github.com/tailwindlabs/tailwindcss.com/issues/522#issuecomment-687667238
-const fontVariants = {
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
-  fontVariantNumeric:
-    'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
-}
+const cssFontVariantNumericValue =
+  'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)'
 
 const cssFilterValue = [
   'var(--tw-blur)',
@@ -413,7 +406,7 @@ export default {
 
   'transform-gpu': {
     output: {
-      '--tw-transform':
+      transform:
         'translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
     },
   },
@@ -1325,27 +1318,53 @@ export default {
 
   // https://tailwindcss.com/docs/font-variant-numeric
   'normal-nums': { output: { fontVariantNumeric: 'normal' } },
-  ordinal: { output: { ...fontVariants, '--tw-ordinal': 'ordinal' } },
+  ordinal: {
+    output: {
+      '--tw-ordinal': 'ordinal',
+      fontVariantNumeric: cssFontVariantNumericValue,
+    },
+  },
   'slashed-zero': {
-    output: { ...fontVariants, '--tw-slashed-zero': 'slashed-zero' },
+    output: {
+      '--tw-slashed-zero': 'slashed-zero',
+      fontVariantNumeric: cssFontVariantNumericValue,
+    },
   },
   'lining-nums': {
-    output: { ...fontVariants, '--tw-numeric-figure': 'lining-nums' },
+    output: {
+      '--tw-numeric-figure': 'lining-nums',
+      fontVariantNumeric: cssFontVariantNumericValue,
+    },
   },
   'oldstyle-nums': {
-    output: { ...fontVariants, '--tw-numeric-figure': 'oldstyle-nums' },
+    output: {
+      '--tw-numeric-figure': 'oldstyle-nums',
+      fontVariantNumeric: cssFontVariantNumericValue,
+    },
   },
   'proportional-nums': {
-    output: { ...fontVariants, '--tw-numeric-spacing': 'proportional-nums' },
+    output: {
+      '--tw-numeric-spacing': 'proportional-nums',
+      fontVariantNumeric: cssFontVariantNumericValue,
+    },
   },
   'tabular-nums': {
-    output: { ...fontVariants, '--tw-numeric-spacing': 'tabular-nums' },
+    output: {
+      '--tw-numeric-spacing': 'tabular-nums',
+      fontVariantNumeric: cssFontVariantNumericValue,
+    },
   },
   'diagonal-fractions': {
-    output: { ...fontVariants, '--tw-numeric-fraction': 'diagonal-fractions' },
+    output: {
+      '--tw-numeric-fraction': 'diagonal-fractions',
+      fontVariantNumeric: cssFontVariantNumericValue,
+    },
   },
   'stacked-fractions': {
-    output: { ...fontVariants, '--tw-numeric-fraction': 'stacked-fractions' },
+    output: {
+      '--tw-numeric-fraction': 'stacked-fractions',
+      fontVariantNumeric: cssFontVariantNumericValue,
+    },
   },
 
   // https://tailwindcss.com/docs/line-height

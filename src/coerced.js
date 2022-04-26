@@ -1,7 +1,6 @@
 import deepMerge from 'lodash.merge'
 import {
   throwIf,
-  withAlpha,
   toAlpha,
   splitOnFirst,
   isSpaceSeparatedColor,
@@ -50,12 +49,7 @@ const coercedTypeMap = {
       .map(p =>
         typeof value === 'string' && value.startsWith('var(')
           ? null
-          : withAlpha({
-              color: value,
-              property: p,
-              pieces,
-              ...(variable && { variable }),
-            })
+          : toAlpha({ pieces, variable, property: p })(value, pieces.alpha)
       )
       .filter(Boolean)
 

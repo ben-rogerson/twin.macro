@@ -1,5 +1,8 @@
 module.exports = {
   theme: {
+    animation: {
+      'zoom-.5': 'zoom-.5 2s',
+    },
     colors: {
       number: 0,
       purple: 'purple',

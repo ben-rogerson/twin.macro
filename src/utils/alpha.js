@@ -21,11 +21,15 @@ const maybeAddAlpha = (value, { pieces, variable = '' }) =>
 const toAlpha =
   ({ pieces, property, variable }) =>
   (color, alpha, fallBackColor) => {
-    const newPieces = alpha ? { ...pieces, alpha, hasAlpha: true } : pieces
+    const newPieces =
+      (pieces.hasVariantVisited && { ...pieces, alpha: '', hasAlpha: false }) ||
+      (alpha && { ...pieces, alpha, hasAlpha: true }) ||
+      pieces
+
     return withAlpha({
       color,
       property,
-      variable,
+      ...(!pieces.hasVariantVisited && { variable }),
       pieces: newPieces,
       fallBackColor,
     })

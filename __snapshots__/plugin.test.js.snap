@@ -502,7 +502,6 @@ html {
 line-height: 1.5;
 -webkit-text-size-adjust: 100%;
 -moz-tab-size: 4;
--o-tab-size: 4;
 tab-size: 4;
 font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
@@ -516,7 +515,6 @@ color: inherit;
 border-top-width: 1px;
         }
 abbr:where([title]) {
--webkit-text-decoration: underline dotted;
 text-decoration: underline dotted;
         }
 h1, h2, h3, h4, h5, h6 {
@@ -976,47 +974,6 @@ const Component7 = () => (
     ]}
   />
 )
-
-
-`;
-
-exports[`twin.macro !screens.js: !screens.js 1`] = `
-
-import tw from './macro'
-
-tw\`sm:block\`
-tw\`md:block\`
-tw\`lg:block\`
-tw\`xl:block\`
-tw\`2xl:block\`
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-;({
-  '@media (min-width: 640px)': {
-    display: 'block',
-  },
-})
-;({
-  '@media (min-width: 768px)': {
-    display: 'block',
-  },
-})
-;({
-  '@media (min-width: 1024px)': {
-    display: 'block',
-  },
-})
-;({
-  '@media (min-width: 1280px)': {
-    display: 'block',
-  },
-})
-;({
-  '@media (min-width: 1536px)': {
-    display: 'block',
-  },
-})
 
 
 `;
@@ -3541,7 +3498,6 @@ html {
 line-height: 1.5;
 -webkit-text-size-adjust: 100%;
 -moz-tab-size: 4;
--o-tab-size: 4;
 tab-size: 4;
 font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
@@ -3557,7 +3513,6 @@ color: inherit;
 border-top-width: 1px;
         }
 abbr:where([title]) {
--webkit-text-decoration: underline dotted;
 text-decoration: underline dotted;
         }
 h1, h2, h3, h4, h5, h6 {
@@ -3796,7 +3751,6 @@ src: url('./fonts/myfont.ttf');
     lineHeight: '1.5',
     WebkitTextSizeAdjust: '100%',
     MozTabSize: '4',
-    OTabSize: '4',
     tabSize: '4',
     fontFamily:
       'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
@@ -3813,7 +3767,6 @@ src: url('./fonts/myfont.ttf');
     borderTopWidth: '1px',
   },
   'abbr:where([title])': {
-    WebkitTextDecoration: 'underline dotted',
     textDecoration: 'underline dotted',
   },
   'h1, h2, h3, h4, h5, h6': {
@@ -4047,7 +4000,6 @@ theme\`keyframes\`
     lineHeight: '1.5',
     WebkitTextSizeAdjust: '100%',
     MozTabSize: '4',
-    OTabSize: '4',
     tabSize: '4',
     fontFamily:
       'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
@@ -4062,7 +4014,6 @@ theme\`keyframes\`
     borderTopWidth: '1px',
   },
   'abbr:where([title])': {
-    WebkitTextDecoration: 'underline dotted',
     textDecoration: 'underline dotted',
   },
   'h1, h2, h3, h4, h5, h6': {
@@ -20027,7 +19978,6 @@ html {
 line-height: 1.5;
 -webkit-text-size-adjust: 100%;
 -moz-tab-size: 4;
--o-tab-size: 4;
 tab-size: 4;
 font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
@@ -20041,7 +19991,6 @@ color: inherit;
 border-top-width: 1px;
         }
 abbr:where([title]) {
--webkit-text-decoration: underline dotted;
 text-decoration: underline dotted;
         }
 h1, h2, h3, h4, h5, h6 {
@@ -20512,6 +20461,8 @@ import tw from './macro'
  * Test the config matching is working correctly
  */
 
+tw\`animate-zoom-.5\`
+
 tw\`text-number\`
 tw\`text-purple\`
 tw\`text-purple-hyphen\`
@@ -20551,6 +20502,9 @@ tw\`font-customFontWeightAsNumber\`
 /**
  * Test the config matching is working correctly
  */
+;({
+  animation: 'zoom-.5 2s',
+})
 ;({
   color: '0',
 })
@@ -25817,72 +25771,40 @@ tw\`stacked-fractions\`
 })
 ;({
   '--tw-ordinal': 'ordinal',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 })
 ;({
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
   '--tw-slashed-zero': 'slashed-zero',
-  '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 })
 ;({
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
   '--tw-numeric-figure': 'lining-nums',
-  '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 })
 ;({
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
   '--tw-numeric-figure': 'oldstyle-nums',
-  '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 })
 ;({
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
   '--tw-numeric-spacing': 'proportional-nums',
-  '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 })
 ;({
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
   '--tw-numeric-spacing': 'tabular-nums',
-  '--tw-numeric-fraction': 'var(--tw-empty,/*!*/ /*!*/)',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 })
 ;({
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
   '--tw-numeric-fraction': 'diagonal-fractions',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
 })
 ;({
-  '--tw-ordinal': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-slashed-zero': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-figure': 'var(--tw-empty,/*!*/ /*!*/)',
-  '--tw-numeric-spacing': 'var(--tw-empty,/*!*/ /*!*/)',
   '--tw-numeric-fraction': 'stacked-fractions',
   fontVariantNumeric:
     'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)',
@@ -26469,7 +26391,6 @@ const _GlobalStyles = () => (
         line-height: 1.5;
         -webkit-text-size-adjust: 100%;
         -moz-tab-size: 4;
-        -o-tab-size: 4;
         tab-size: 4;
         font-family: testSans, testSans2;
       }
@@ -26483,7 +26404,6 @@ const _GlobalStyles = () => (
         border-top-width: 1px;
       }
       abbr:where([title]) {
-        -webkit-text-decoration: underline dotted;
         text-decoration: underline dotted;
       }
       h1,
@@ -31356,6 +31276,9 @@ tw\`h-[3.23rem]\`
 tw\`h-[calc(100%+1rem)]\`
 tw\`h-[var(--height)]\`
 
+tw\`h-[calc(100%-theme('spacing.16'))]\`
+tw\`h-[calc(100%-theme("spacing.16"))]\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // https://tailwindcss.com/docs/height
@@ -31596,6 +31519,12 @@ tw\`h-[var(--height)]\`
 })
 ;({
   height: 'var(--height)',
+})
+;({
+  height: 'calc(100%-4rem)',
+})
+;({
+  height: 'calc(100%-4rem)',
 })
 
 
@@ -40769,7 +40698,6 @@ html {
 line-height: 1.5;
 -webkit-text-size-adjust: 100%;
 -moz-tab-size: 4;
--o-tab-size: 4;
 tab-size: 4;
 font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
@@ -40783,7 +40711,6 @@ color: inherit;
 border-top-width: 1px;
         }
 abbr:where([title]) {
--webkit-text-decoration: underline dotted;
 text-decoration: underline dotted;
         }
 h1, h2, h3, h4, h5, h6 {
@@ -46791,6 +46718,63 @@ tw\`not-sr-only\`
 
 `;
 
+exports[`twin.macro screens.js: screens.js 1`] = `
+
+import tw from './macro'
+
+tw\`sm:block\`
+tw\`md:block\`
+tw\`lg:block\`
+tw\`xl:block\`
+tw\`2xl:block\`
+tw\`2xl:block\`
+
+tw\`<sm:underline md>:font-bold\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+;({
+  '@media (min-width: 640px)': {
+    display: 'block',
+  },
+})
+;({
+  '@media (min-width: 768px)': {
+    display: 'block',
+  },
+})
+;({
+  '@media (min-width: 1024px)': {
+    display: 'block',
+  },
+})
+;({
+  '@media (min-width: 1280px)': {
+    display: 'block',
+  },
+})
+;({
+  '@media (min-width: 1536px)': {
+    display: 'block',
+  },
+})
+;({
+  '@media (min-width: 1536px)': {
+    display: 'block',
+  },
+})
+;({
+  '@media (max-width: 399px)': {
+    textDecorationLine: 'underline',
+  },
+  '@media (min-width: 500px)': {
+    fontWeight: '700',
+  },
+})
+
+
+`;
+
 exports[`twin.macro scrollBehavior.js: scrollBehavior.js 1`] = `
 
 import tw from './macro'
@@ -51085,7 +51069,6 @@ const globals = global({
     lineHeight: '1.5',
     WebkitTextSizeAdjust: '100%',
     MozTabSize: '4',
-    OTabSize: '4',
     tabSize: '4',
     fontFamily:
       'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
@@ -51100,7 +51083,6 @@ const globals = global({
     borderTopWidth: '1px',
   },
   'abbr:where([title])': {
-    WebkitTextDecoration: 'underline dotted',
     textDecoration: 'underline dotted',
   },
   'h1, h2, h3, h4, h5, h6': {
@@ -59505,7 +59487,7 @@ tw\`transform-none\`
   transform: 'var(--tw-transform)',
 })
 ;({
-  '--tw-transform':
+  transform:
     'translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
@@ -59678,6 +59660,52 @@ tw\`invisible\`
 })
 ;({
   visibility: 'hidden',
+})
+
+
+`;
+
+exports[`twin.macro visitedOpacity.js: visitedOpacity.js 1`] = `
+
+import tw from './macro'
+
+tw\`visited:border-red-500 visited:bg-red-500 visited:text-red-500\`
+tw\`visited:border-red-500/20 visited:bg-red-500/20 visited:text-red-500/20\`
+tw\`visited:border-red-500/[20] visited:bg-red-500/[20] visited:text-red-500/[20]\`
+tw\`visited:(border-red-500 border-opacity-50) visited:(bg-red-500 bg-opacity-50) visited:(text-red-500 text-opacity-50)\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+;({
+  ':visited': {
+    borderColor: '#ef4444',
+    backgroundColor: '#ef4444',
+    color: '#ef4444',
+  },
+})
+;({
+  ':visited': {
+    borderColor: '#ef4444',
+    backgroundColor: '#ef4444',
+    color: '#ef4444',
+  },
+})
+;({
+  ':visited': {
+    borderColor: '#ef4444',
+    backgroundColor: '#ef4444',
+    color: '#ef4444',
+  },
+})
+;({
+  ':visited': {
+    borderColor: '#ef4444',
+    '--tw-border-opacity': '0.5',
+    backgroundColor: '#ef4444',
+    color: '#ef4444',
+    '--tw-text-opacity': '0.5',
+    '--tw-bg-opacity': '0.5',
+  },
 })
 
 

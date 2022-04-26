@@ -64,3 +64,6 @@ tw`h-[32rem]`
 tw`h-[3.23rem]`
 tw`h-[calc(100%+1rem)]`
 tw`h-[var(--height)]`
+
+tw`h-[calc(100%-theme('spacing.16'))]`
+tw`h-[calc(100%-theme("spacing.16"))]`
