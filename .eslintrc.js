@@ -87,10 +87,11 @@ module.exports = {
   ignorePatterns: [
     '.eslintrc.js',
     'macro.js',
-    'types',
+    // 'types',
     '__fixtures__',
     'tailwind.config.js',
     'sandbox',
+    'types/macro.d.ts',
   ],
   globals: { JSX: true, AriaAttributes: true },
 }
