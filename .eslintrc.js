@@ -87,7 +87,7 @@ module.exports = {
   ignorePatterns: [
     '.eslintrc.js',
     'macro.js',
-    // 'types',
+    'types',
     '__fixtures__',
     'tailwind.config.js',
     'sandbox',
