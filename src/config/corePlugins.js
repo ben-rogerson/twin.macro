@@ -4,6 +4,15 @@
 const cssFontVariantNumericValue =
   'var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)'
 
+const cssTransformValue = [
+  'translate(var(--tw-translate-x), var(--tw-translate-y))',
+  'rotate(var(--tw-rotate))',
+  'skewX(var(--tw-skew-x))',
+  'skewY(var(--tw-skew-y))',
+  'scaleX(var(--tw-scale-x))',
+  'scaleY(var(--tw-scale-y))',
+].join(' ')
+
 const cssFilterValue = [
   'var(--tw-blur)',
   'var(--tw-brightness)',
@@ -325,8 +334,7 @@ export default {
   'translate-x': {
     output: ({ value }) => ({
       '--tw-translate-x': value,
-      transform:
-        'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+      transform: cssTransformValue,
     }),
     config: 'translate',
     supportsNegativeValues: true,
@@ -334,8 +342,7 @@ export default {
   'translate-y': {
     output: ({ value }) => ({
       '--tw-translate-y': value,
-      transform:
-        'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+      transform: cssTransformValue,
     }),
     config: 'translate',
     supportsNegativeValues: true,
@@ -345,8 +352,7 @@ export default {
   rotate: {
     output: ({ value }) => ({
       '--tw-rotate': value,
-      transform:
-        'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+      transform: cssTransformValue,
     }),
     config: 'rotate',
     supportsNegativeValues: true,
@@ -356,8 +362,7 @@ export default {
   'skew-x': {
     output: ({ value }) => ({
       '--tw-skew-x': value,
-      transform:
-        'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+      transform: cssTransformValue,
     }),
     config: 'skew',
     supportsNegativeValues: true,
@@ -365,8 +370,7 @@ export default {
   'skew-y': {
     output: ({ value }) => ({
       '--tw-skew-y': value,
-      transform:
-        'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+      transform: cssTransformValue,
     }),
     config: 'skew',
     supportsNegativeValues: true,
@@ -376,8 +380,7 @@ export default {
   'scale-x': {
     output: ({ value }) => ({
       '--tw-scale-x': value,
-      transform:
-        'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+      transform: cssTransformValue,
     }),
     config: 'scale',
     supportsNegativeValues: true,
@@ -385,8 +388,7 @@ export default {
   'scale-y': {
     output: ({ value }) => ({
       '--tw-scale-y': value,
-      transform:
-        'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+      transform: cssTransformValue,
     }),
     config: 'scale',
     supportsNegativeValues: true,
@@ -395,26 +397,22 @@ export default {
     output: ({ value }) => ({
       '--tw-scale-x': value,
       '--tw-scale-y': value,
-      transform:
-        'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+      transform: cssTransformValue,
     }),
     config: 'scale',
     supportsNegativeValues: true,
   },
 
-  transform: { output: { transform: 'var(--tw-transform)' } },
+  transform: { output: { transform: cssTransformValue } },
+
+  'transform-cpu': { output: { transform: cssTransformValue } },
 
   'transform-gpu': {
     output: {
-      transform:
-        'translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-    },
-  },
-
-  'transform-cpu': {
-    output: {
-      '--tw-transform':
-        'translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+      transform: cssTransformValue.replace(
+        'translate(var(--tw-translate-x), var(--tw-translate-y))',
+        'translate3d(var(--tw-translate-x), var(--tw-translate-y), 0)'
+      ),
     },
   },
 
