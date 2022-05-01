@@ -35370,19 +35370,19 @@ tw\`translate-y-2 mt-5 md:(skew-y-6 transform) mb-5\`
 // https://github.com/ben-rogerson/twin.macro/issues/363
 ;({
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
   marginTop: '1.25rem',
   '--tw-translate-y': '0.5rem',
 })
 ;({
   '--tw-translate-y': '0.5rem',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
   marginTop: '1.25rem',
   marginBottom: '1.25rem',
   '@media (min-width: 768px)': {
     transform:
-      'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+      'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
     '--tw-skew-y': '6deg',
   },
 })
@@ -45944,97 +45944,97 @@ tw\`rotate-[23deg] rotate-[2.3rad] rotate-[401grad] rotate-[1.5turn]\`
 ;({
   '--tw-rotate': '0deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '1deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '2deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '3deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '6deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '12deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '45deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '90deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '180deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '-1deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '-2deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '-3deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '-6deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '-12deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '-45deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '-90deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '-180deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '17deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-rotate': '1.5turn',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 
 
@@ -46200,167 +46200,167 @@ tw\`scale-[1.7]\`
   '--tw-scale-x': '0',
   '--tw-scale-y': '0',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '0',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-y': '0',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.5',
   '--tw-scale-y': '.5',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.5',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-y': '.5',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.75',
   '--tw-scale-y': '.75',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.75',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-y': '.75',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.9',
   '--tw-scale-y': '.9',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.9',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-y': '.9',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.95',
   '--tw-scale-y': '.95',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '.95',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-y': '.95',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1',
   '--tw-scale-y': '1',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-y': '1',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.05',
   '--tw-scale-y': '1.05',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.05',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-y': '1.05',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.1',
   '--tw-scale-y': '1.1',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.1',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-y': '1.1',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.25',
   '--tw-scale-y': '1.25',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.25',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-y': '1.25',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.5',
   '--tw-scale-y': '1.5',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.5',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-y': '1.5',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-scale-x': '1.7',
   '--tw-scale-y': '1.7',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 
 
@@ -49500,132 +49500,132 @@ tw\`-skew-y-[17deg]\`
 ;({
   '--tw-skew-x': '0deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-y': '0deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-x': '1deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-y': '1deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-x': '2deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-y': '2deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-x': '3deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-y': '3deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-x': '6deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-y': '6deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-x': '12deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-y': '12deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-x': '-1deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-y': '-1deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-x': '-2deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-y': '-2deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-x': '-3deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-y': '-3deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-x': '-6deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-y': '-6deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-x': '-12deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-y': '-12deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-x': '17deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-x': '-17deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-y': '17deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   '--tw-skew-y': '-17deg',
   transform:
-    'translate(var(--tw-translate-x,0px), var(--tw-translate-y,0px)) rotate(var(--tw-rotate,0deg)) skewX(var(--tw-skew-x,0deg)) skewY(var(--tw-skew-y,0deg)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))',
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 
 
@@ -59484,15 +59484,16 @@ tw\`transform-none\`
 
 // https://tailwindcss.com/docs/transform
 ;({
-  transform: 'var(--tw-transform)',
+  transform:
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   transform:
     'translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
-  '--tw-transform':
-    'translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+  transform:
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
   transform: 'none',
