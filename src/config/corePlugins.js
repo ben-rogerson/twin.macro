@@ -1175,30 +1175,10 @@ export default {
   'bg-scroll': { output: { backgroundAttachment: 'scroll' } },
 
   // https://tailwindcss.com/docs/background-clip
-  'bg-clip-border': {
-    output: {
-      WebkitBackgroundClip: 'border-box',
-      backgroundClip: 'border-box',
-    },
-  },
-  'bg-clip-padding': {
-    output: {
-      WebkitBackgroundClip: 'padding-box',
-      backgroundClip: 'padding-box',
-    },
-  },
-  'bg-clip-content': {
-    output: {
-      WebkitBackgroundClip: 'content-box',
-      backgroundClip: 'content-box',
-    },
-  },
-  'bg-clip-text': {
-    output: {
-      WebkitBackgroundClip: 'text',
-      backgroundClip: 'text',
-    },
-  },
+  'bg-clip-border': { output: { backgroundClip: 'border-box' } },
+  'bg-clip-padding': { output: { backgroundClip: 'padding-box' } },
+  'bg-clip-content': { output: { backgroundClip: 'content-box' } },
+  'bg-clip-text': { output: { backgroundClip: 'text' } },
 
   // https://tailwindcss.com/docs/background-repeat
   'bg-repeat': { output: { backgroundRepeat: 'repeat' } },

@@ -5374,19 +5374,15 @@ tw\`bg-clip-text\`
 
 // https://tailwindcss.com/docs/background-clip
 ;({
-  WebkitBackgroundClip: 'border-box',
   backgroundClip: 'border-box',
 })
 ;({
-  WebkitBackgroundClip: 'padding-box',
   backgroundClip: 'padding-box',
 })
 ;({
-  WebkitBackgroundClip: 'content-box',
   backgroundClip: 'content-box',
 })
 ;({
-  WebkitBackgroundClip: 'text',
   backgroundClip: 'text',
 })
 
