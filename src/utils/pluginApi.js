@@ -1,13 +1,86 @@
-/* eslint-disable prefer-const, prefer-object-spread, @typescript-eslint/restrict-plus-operands */
+/* eslint-disable prefer-object-spread, @typescript-eslint/restrict-plus-operands */
 import postcss from 'postcss'
+import deepMerge from 'lodash.merge'
 import dlv from 'dlv'
 import selectorParser from 'postcss-selector-parser'
 import transformThemeValue from 'tailwindcss/lib/util/transformThemeValue'
 import parseObjectStyles from 'tailwindcss/lib/util/parseObjectStyles'
 import isPlainObject from 'tailwindcss/lib/util/isPlainObject'
 import { toPath } from 'tailwindcss/lib/util/toPath'
-import { throwIf } from './index'
+import { throwIf, toArray, formatCssProperty } from './index'
 import { getUnsupportedError } from '../logging'
+
+const matchPlugin = (rules, options, { layer, context, prefixIdentifier }) => {
+  const defaultOptions = {
+    respectPrefix: true,
+    respectImportant: layer === 'utilities',
+  }
+
+  options = { ...defaultOptions, ...options }
+
+  for (const [identifier] of Object.entries(rules)) {
+    const prefixedIdentifier = prefixIdentifier(identifier, options)
+    const rule = rules[identifier]
+
+    // eslint-disable-next-line no-inner-declarations
+    function wrapped() {
+      const value = []
+      for (const configValue of Object.values(options.values)) {
+        const result = toArray(rule(configValue)).map(val => ({
+          [['.', prefixedIdentifier, '-', configValue].join('')]:
+            // eslint-disable-next-line unicorn/prefer-object-from-entries
+            Object.entries(val).reduce(
+              (result, [prop, value]) => ({
+                ...result,
+                [typeof value === 'string' ? formatCssProperty(prop) : prop]:
+                  value,
+              }),
+              {}
+            ),
+        }))
+
+        value.push(deepMerge({}, ...result))
+      }
+
+      if (value === undefined) return {}
+
+      return deepMerge({}, ...value)
+    }
+
+    const withOffsets = [{ layer, options }, wrapped]
+
+    if (!context.candidateRuleMap.has(prefixedIdentifier)) {
+      context.candidateRuleMap.set(prefixedIdentifier, [])
+    }
+
+    context.candidateRuleMap.get(prefixedIdentifier).push(withOffsets)
+  }
+}
+
+const asPlugin = (rules, options, { layer, context, prefixIdentifier }) => {
+  const defaultOptions = {
+    respectPrefix: true,
+    respectImportant: layer === 'utilities',
+  }
+
+  options = Object.assign(
+    {},
+    defaultOptions,
+    Array.isArray(options) ? {} : options
+  )
+
+  for (const [identifier, rule] of withIdentifiers(rules)) {
+    const prefixedIdentifier = prefixIdentifier(identifier, options)
+
+    if (!context.candidateRuleMap.has(prefixedIdentifier)) {
+      context.candidateRuleMap.set(prefixedIdentifier, [])
+    }
+
+    context.candidateRuleMap
+      .get(prefixedIdentifier)
+      .push([{ layer, options }, rule])
+  }
+}
 
 export default function buildPluginApi(tailwindConfig, context) {
   function getConfigValue(path, defaultValue) {
@@ -64,8 +137,8 @@ export default function buildPluginApi(tailwindConfig, context) {
       return null
     },
     addBase(base) {
-      for (let [identifier, rule] of withIdentifiers(base)) {
-        let prefixedIdentifier = prefixIdentifier(identifier, {})
+      for (const [identifier, rule] of withIdentifiers(base)) {
+        const prefixedIdentifier = prefixIdentifier(identifier, {})
 
         if (!context.candidateRuleMap.has(prefixedIdentifier)) {
           context.candidateRuleMap.set(prefixedIdentifier, [])
@@ -82,56 +155,30 @@ export default function buildPluginApi(tailwindConfig, context) {
       )
       return null
     },
-    addComponents(components, options) {
-      let defaultOptions = {
-        respectPrefix: true,
-        respectImportant: false,
-      }
-
-      options = Object.assign(
-        {},
-        defaultOptions,
-        Array.isArray(options) ? {} : options
-      )
-
-      for (let [identifier, rule] of withIdentifiers(components)) {
-        let prefixedIdentifier = prefixIdentifier(identifier, options)
-
-        if (!context.candidateRuleMap.has(prefixedIdentifier)) {
-          context.candidateRuleMap.set(prefixedIdentifier, [])
-        }
-
-        context.candidateRuleMap
-          .get(prefixedIdentifier)
-          .push([{ layer: 'components', options }, rule])
-      }
-    },
-    addUtilities(utilities, options) {
-      let defaultOptions = {
-        respectPrefix: true,
-        respectImportant: true,
-      }
-
-      options = Object.assign(
-        {},
-        defaultOptions,
-        Array.isArray(options) ? {} : options
-      )
-
-      for (let [identifier, rule] of withIdentifiers(utilities)) {
-        let prefixedIdentifier = prefixIdentifier(identifier, options)
-
-        if (!context.candidateRuleMap.has(prefixedIdentifier)) {
-          context.candidateRuleMap.set(prefixedIdentifier, [])
-        }
-
-        context.candidateRuleMap
-          .get(prefixedIdentifier)
-          .push([{ layer: 'utilities', options }, rule])
-      }
-    },
-    matchUtilities: () => null, // Unavailable in twin
-    matchComponents: () => null, // Unavailable in twin
+    addComponents: (components, options) =>
+      asPlugin(components, options, {
+        layer: 'components',
+        prefixIdentifier,
+        context,
+      }),
+    matchComponents: (components, options) =>
+      matchPlugin(components, options, {
+        layer: 'components',
+        prefixIdentifier,
+        context,
+      }),
+    addUtilities: (utilities, options) =>
+      asPlugin(utilities, options, {
+        layer: 'utilities',
+        prefixIdentifier,
+        context,
+      }),
+    matchUtilities: (utilities, options) =>
+      matchPlugin(utilities, options, {
+        layer: 'utilities',
+        prefixIdentifier,
+        context,
+      }),
   }
 }
 

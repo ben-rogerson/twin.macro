@@ -1,6 +1,6 @@
 import buildPluginApi from './pluginApi'
 import deepMerge from 'lodash.merge'
-import { camelize } from './../utils'
+import { formatCssProperty } from './../utils'
 
 const stripLeadingDot = string =>
   string.startsWith('.') ? string.slice(1) : string
@@ -36,17 +36,6 @@ const parseSelector = selector => {
   }
 
   return match
-}
-
-const parseRuleProperty = string => {
-  // https://stackoverflow.com/questions/448981/which-characters-are-valid-in-css-class-names-selectors
-  // FIXME: Remove comment and fix next line
-  // eslint-disable-next-line unicorn/prefer-regexp-test
-  if (string && string.match(/^-{2,3}[_a-z]+[\w-]*/i)) {
-    return string
-  }
-
-  return camelize(string)
 }
 
 const escapeSelector = selector => selector.replace(/\\\//g, '/').trim()
@@ -101,7 +90,7 @@ const buildDeclaration = items => {
   return Object.entries(items).reduce(
     (result, [, declaration]) => ({
       ...result,
-      [parseRuleProperty(declaration.prop)]: declaration.value,
+      [formatCssProperty(declaration.prop)]: declaration.value,
     }),
     {}
   )
@@ -157,6 +146,10 @@ const ruleSorter = (arr, screens) => {
 
 const getUserPluginRules = (rules, screens, isBase) =>
   ruleSorter(rules, screens).reduce((result, rule) => {
+    if (typeof rule === 'function') {
+      return deepMerge(result, rule())
+    }
+
     if (rule.type === 'decl') {
       const builtRules = { [rule.prop]: rule.value }
       return deepMerge(result, builtRules)
@@ -165,7 +158,6 @@ const getUserPluginRules = (rules, screens, isBase) =>
     // Build the media queries
     if (rule.type !== 'atrule') {
       const builtRules = getBuiltRules(rule, { isBase })
-
       return deepMerge(result, builtRules)
     }
 

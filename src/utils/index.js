@@ -18,5 +18,6 @@ export {
   getFirstValue,
   replaceSpaceId,
   toArray,
+  formatCssProperty,
 } from './misc'
 export { withAlpha, toAlpha, maybeAddAlpha } from './alpha'

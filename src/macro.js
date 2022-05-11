@@ -152,15 +152,7 @@ const twinMacro = args => {
     state.cssIdentifier = generateUid('css', program)
 
   for (const task of macroTasks) {
-    task({
-      styledImport,
-      cssImport,
-      references,
-      program,
-      config,
-      state,
-      t,
-    })
+    task({ styledImport, cssImport, references, program, config, state, t })
   }
 
   program.scope.crawl()
