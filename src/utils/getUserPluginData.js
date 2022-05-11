@@ -185,7 +185,7 @@ const getUserPluginRules = (rules, screens, isBase) =>
     })
   }, {})
 
-const getUserPluginData = ({ config }) => {
+const getUserPluginData = ({ config, configTwin }) => {
   if (!config.plugins || config.plugins.length === 0) {
     return
   }
@@ -193,6 +193,7 @@ const getUserPluginData = ({ config }) => {
   const context = {
     candidateRuleMap: new Map(),
     tailwindConfig: config,
+    configTwin,
   }
 
   const pluginApi = buildPluginApi(config, context)
