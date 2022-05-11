@@ -121,12 +121,15 @@ tw`text-sm md:text-lg`
 **🛎 Helpful suggestions for mistypings** - Twin chimes in with class and variant values from your Tailwind config:
 
 ```bash
-✕ ml-7 was not found
+✕ ml-1.25 was not found
 
 Try one of these classes:
-ml-0 [0] / ml-1 [0.25rem] / ml-2 [0.5rem] / ml-3 [0.75rem] / ml-4 [1rem] / ml-5 [1.25rem] / ml-6 [1.5rem]
-ml-8 [2rem] / ml-10 [2.5rem] / ml-12 [3rem] / ml-16 [4rem] / ml-20 [5rem] / ml-24 [6rem] / ml-32 [8rem]
-ml-40 [10rem] / ml-48 [12rem] / ml-56 [14rem] / ml-64 [16rem] / ml-auto [auto] / ml-px [1px]
+
+- ml-1.5 > 0.375rem
+- ml-1 > 0.25rem
+- ml-10 > 2.5rem
+- ml-11 > 2.75rem
+- ml-12 > 3rem
 ```
 
 **💡 Works with the official tailwind vscode plugin** - Avoid having to look up your classes with auto-completions straight from your Tailwind config - [See setup instructions →](https://github.com/ben-rogerson/twin.macro/discussions/227)
