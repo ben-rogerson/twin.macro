@@ -6,6 +6,8 @@ import transformThemeValue from 'tailwindcss/lib/util/transformThemeValue'
 import parseObjectStyles from 'tailwindcss/lib/util/parseObjectStyles'
 import isPlainObject from 'tailwindcss/lib/util/isPlainObject'
 import { toPath } from 'tailwindcss/lib/util/toPath'
+import { throwIf } from './index'
+import { getUnsupportedError } from '../logging'
 
 export default function buildPluginApi(tailwindConfig, context) {
   function getConfigValue(path, defaultValue) {
@@ -24,9 +26,13 @@ export default function buildPluginApi(tailwindConfig, context) {
     return context.tailwindConfig.prefix + identifier
   }
 
+  const { allowUnsupportedPlugins } = context.configTwin
+
   return {
     addVariant() {
-      // Unavailable in twin
+      throwIf(!allowUnsupportedPlugins, () =>
+        getUnsupportedError('addVariant()')
+      )
       return null
     },
     postcss,
@@ -41,13 +47,20 @@ export default function buildPluginApi(tailwindConfig, context) {
       )
       return transformThemeValue(pathRoot)(value)
     },
-    corePlugins: () => null, // Unavailable in twin
+    corePlugins() {
+      throwIf(!allowUnsupportedPlugins, () =>
+        getUnsupportedError('corePlugins()')
+      )
+      return null
+    },
     variants() {
       // Preserved for backwards compatibility but not used in v3.0+
       return []
     },
     addUserCss() {
-      // Unavailable in twin
+      throwIf(!allowUnsupportedPlugins, () =>
+        getUnsupportedError('addUserCss()')
+      )
       return null
     },
     addBase(base) {
@@ -64,7 +77,9 @@ export default function buildPluginApi(tailwindConfig, context) {
       }
     },
     addDefaults() {
-      // Unavailable in twin
+      throwIf(!allowUnsupportedPlugins, () =>
+        getUnsupportedError('addDefaults()')
+      )
       return null
     },
     addComponents(components, options) {

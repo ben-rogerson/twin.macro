@@ -74,7 +74,7 @@ const logBadGood = (bad, good) =>
     : logGeneralError(bad)
 
 const logErrorFix = (error, good) =>
-  `${color.error(error)}\n${color.success('Fix:')} ${good}`
+  spaced(`${color.error(error)}\n${color.success('Fix:')} ${good}`)
 
 const logGeneralError = error => spaced(warning(error))
 
@@ -245,11 +245,9 @@ const logNotFoundVariant = ({ classNameRaw }) =>
 
 const logNotFoundClass = logGeneralError('That class was not found')
 
-const logStylePropertyError = spaced(
-  logErrorFix(
-    'Styles shouldn’t be added within a `style={...}` prop',
-    'Use the tw or css prop instead: <div tw="" /> or <div css={tw``} />\n\nDisable this error by adding this in your twin config: `{ "allowStyleProp": true }`\nRead more at https://twinredirect.page.link/style-prop'
-  )
+const logStylePropertyError = logErrorFix(
+  'Styles shouldn’t be added within a `style={...}` prop',
+  'Use the tw or css prop instead: <div tw="" /> or <div css={tw``} />\n\nDisable this error by adding this in your twin config: `{ "allowStyleProp": true }`\nRead more at https://twinredirect.page.link/style-prop'
 )
 
 const debug = state => message => {
@@ -453,6 +451,12 @@ const getSuggestions = args => {
   return matches.slice(0, 5)
 }
 
+const getUnsupportedError = feature =>
+  logErrorFix(
+    `A plugin is trying to use the unsupported “${feature}” function`,
+    `Either remove the plugin or add this in your twin config: \`{ "allowUnsupportedPlugins": true }\``
+  )
+
 export {
   logNoVariant,
   logNotAllowed,
@@ -467,4 +471,5 @@ export {
   errorSuggestions,
   opacityErrorNotFound,
   themeErrorNotFound,
+  getUnsupportedError,
 }

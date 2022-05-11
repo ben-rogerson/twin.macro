@@ -105,7 +105,7 @@ const twinMacro = args => {
   state.tailwindConfigIdentifier = generateUid('tailwindConfig', program)
   state.tailwindUtilsIdentifier = generateUid('tailwindUtils', program)
 
-  state.userPluginData = getUserPluginData({ config: state.config })
+  state.userPluginData = getUserPluginData({ config: state.config, configTwin })
   isDev &&
     Boolean(config.debugPlugins) &&
     state.userPluginData &&
