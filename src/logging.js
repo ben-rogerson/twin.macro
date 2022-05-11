@@ -25,8 +25,8 @@ const color = {
 const spaced = string => `\n\n${string}\n`
 const warning = string => color.error(`✕ ${string}`)
 
-const inOutPlugins = (input, output) =>
-  `${color.highlight2('→')} ${input} ${color.highlight2(
+const inOutPlugins = (input, output, layer) =>
+  `${layer} ${color.highlight2('→')} ${input} ${color.highlight2(
     JSON.stringify(output)
   )}`
 
@@ -35,9 +35,9 @@ const inOut = (input, output) =>
 
 const logNoVariant = (variant, validVariants) =>
   spaced(
-    `${warning(`The variant “${variant}:” was not found`)}\n\n${Object.entries(
-      validVariants
-    )
+    `${warning(
+      `The variant ${color.errorLight(`${variant}:`)} was not found`
+    )}\n\n${Object.entries(validVariants)
       .map(
         ([k, v]) =>
           `${k}\n${v
@@ -85,10 +85,10 @@ const formatPluginKey = key => key.replace(/(\\|(}}))/g, '').replace(/{{/g, '.')
 const debugPlugins = processedPlugins => {
   console.log(
     Object.entries(processedPlugins)
-      .map(([, group]) =>
+      .map(([layer, group]) =>
         Object.entries(group)
           .map(([className, styles]) =>
-            inOutPlugins(formatPluginKey(className), styles)
+            inOutPlugins(formatPluginKey(className), styles, layer)
           )
           .join('\n')
       )
