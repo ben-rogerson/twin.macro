@@ -155,6 +155,15 @@ const replaceSpaceId = className =>
 
 const toArray = arr => (Array.isArray(arr) ? arr : [arr])
 
+const formatCssProperty = string => {
+  // https://stackoverflow.com/questions/448981/which-characters-are-valid-in-css-class-names-selectors
+  // FIXME: Remove comment and fix next line
+  // eslint-disable-next-line unicorn/prefer-regexp-test
+  if (string && string.match(/^-{2,3}[_a-z]+[\w-]*/i)) return string
+
+  return camelize(string)
+}
+
 export {
   throwIf,
   isEmpty,
@@ -175,4 +184,5 @@ export {
   getFirstValue,
   replaceSpaceId,
   toArray,
+  formatCssProperty,
 }
