@@ -1,4 +1,4 @@
-import { resolve, relative, parse } from 'path'
+import { resolve, relative, parse, dirname } from 'path'
 import { existsSync } from 'fs'
 import resolveTailwindConfig from 'tailwindcss/lib/util/resolveConfig'
 import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
@@ -7,6 +7,8 @@ import corePlugins from './config/corePlugins'
 import flatMap from 'lodash.flatmap'
 import { logGeneralError } from './logging'
 import { throwIf, get, toArray, getFirstValue } from './utils'
+import escalade from 'escalade/sync'
+import requireFresh from 'import-fresh'
 
 const getAllConfigs = config => {
   const configs = flatMap(
@@ -27,10 +29,20 @@ const silenceContentWarning = config => ({
 })
 
 const getConfigTailwindProperties = (state, config) => {
-  const sourceRoot = state.file.opts.sourceRoot || '.'
   const configFile = config && config.config
 
-  const configPath = resolve(sourceRoot, configFile || './tailwind.config.js')
+  const baseDir = state.filename ? dirname(state.filename) : process.cwd()
+
+  const configPath = escalade(baseDir, (_dir, names) => {
+    if (names.includes('tailwind.config.js')) {
+      return 'tailwind.config.js'
+    }
+
+    if (names.includes('tailwind.config.cjs')) {
+      return 'tailwind.config.cjs'
+    }
+  })
+
   const configExists = existsSync(configPath)
 
   // Look for a commonjs file as a fallback
@@ -41,7 +53,7 @@ const getConfigTailwindProperties = (state, config) => {
     })
 
   const configSelected = configExists
-    ? require(configPath)
+    ? requireFresh(configPath)
     : defaultTailwindConfig
 
   const configUser = silenceContentWarning(configSelected)
