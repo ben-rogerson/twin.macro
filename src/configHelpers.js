@@ -29,19 +29,22 @@ const silenceContentWarning = config => ({
 })
 
 const getConfigTailwindProperties = (state, config) => {
+  const sourceRoot = state.file.opts.sourceRoot || '.'
   const configFile = config && config.config
 
   const baseDir = state.filename ? dirname(state.filename) : process.cwd()
 
-  const configPath = escalade(baseDir, (_dir, names) => {
-    if (names.includes('tailwind.config.js')) {
-      return 'tailwind.config.js'
-    }
+  const configPath = configFile
+    ? resolve(sourceRoot, configFile)
+    : escalade(baseDir, (_dir, names) => {
+        if (names.includes('tailwind.config.js')) {
+          return 'tailwind.config.js'
+        }
 
-    if (names.includes('tailwind.config.cjs')) {
-      return 'tailwind.config.cjs'
-    }
-  })
+        if (names.includes('tailwind.config.cjs')) {
+          return 'tailwind.config.cjs'
+        }
+      })
 
   const configExists = existsSync(configPath)
 
