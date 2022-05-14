@@ -41182,7 +41182,7 @@ background-position: right 0.5rem center;
 background-repeat: no-repeat;
 background-size: 1.5em 1.5em;
 padding-right: 2.5rem;
-color-adjust: exact;
+print-color-adjust: exact;
         }
 [multiple] {
 background-image: initial;
@@ -41190,7 +41190,7 @@ background-position: initial;
 background-repeat: unset;
 background-size: initial;
 padding-right: 0.75rem;
-color-adjust: unset;
+print-color-adjust: unset;
         }
 [type='file'] {
 background: unset;
@@ -41230,7 +41230,7 @@ background-repeat: no-repeat;
 [type='checkbox'],[type='radio'] {
 appearance: none;
 padding: 0;
-color-adjust: exact;
+print-color-adjust: exact;
 display: inline-block;
 vertical-align: middle;
 background-origin: border-box;
@@ -41529,7 +41529,7 @@ tw\`form-multiselect\`
   borderRadius: '100%',
   appearance: 'none',
   padding: '0',
-  colorAdjust: 'exact',
+  printColorAdjust: 'exact',
   display: 'inline-block',
   verticalAlign: 'middle',
   backgroundOrigin: 'border-box',
@@ -41581,7 +41581,7 @@ tw\`form-multiselect\`
   backgroundRepeat: 'no-repeat',
   backgroundSize: '1.5em 1.5em',
   paddingRight: '0.75rem',
-  colorAdjust: 'exact',
+  printColorAdjust: 'exact',
   appearance: 'none',
   backgroundColor: '#fff',
   borderColor: '#6b7280',
@@ -41613,7 +41613,7 @@ tw\`form-multiselect\`
   borderRadius: '0px',
   appearance: 'none',
   padding: '0',
-  colorAdjust: 'exact',
+  printColorAdjust: 'exact',
   display: 'inline-block',
   verticalAlign: 'middle',
   backgroundOrigin: 'border-box',

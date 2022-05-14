@@ -19,7 +19,7 @@ import { addVariants, handleVariantGroups } from './variants'
 import {
   handleUserPlugins,
   handleDynamic,
-  handleCss,
+  handleShortCss,
   handleArbitraryCss,
 } from './handlers'
 
@@ -117,7 +117,7 @@ export default (classes, args) => {
 
     // Error if short css is used and disabled
     const isShortCssDisabled =
-      state.configTwin.disableShortCss && type === 'css' && !isCsOnly
+      state.configTwin.disableShortCss && type === 'shortCss' && !isCsOnly
     throwIf(isShortCssDisabled, () =>
       logBadGood(
         `Short css has been disabled in the config so “${classNameRaw}” won’t work${
@@ -146,7 +146,7 @@ export default (classes, args) => {
     }
 
     const styleHandler = {
-      css: handleCss,
+      shortCss: handleShortCss,
       dynamic: handleDynamic,
       arbitraryCss: handleArbitraryCss,
       userPlugin: handleUserPlugins,

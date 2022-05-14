@@ -3,7 +3,6 @@ export {
   isEmpty,
   getTheme,
   stripNegative,
-  maybeAddNegative,
   get,
   camelize,
   isNumeric,

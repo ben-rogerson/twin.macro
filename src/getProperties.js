@@ -1,5 +1,9 @@
 import { corePlugins } from './config'
-import { isShortCss, isArbitraryCss, toArray } from './utils/misc'
+import {
+  isShortCss as getIsShortCss,
+  isArbitraryCss,
+  toArray,
+} from './utils/misc'
 
 const getCorePluginProperties = className => {
   const matches = Object.entries(corePlugins)
@@ -44,8 +48,9 @@ const isEmpty = value =>
 export const getProperties = (className, state, { isCsOnly = false }) => {
   if (!className) return
 
-  const isCss = isShortCss(className)
-  if (isCsOnly || isCss) return { hasMatches: isCss, type: 'css' }
+  const isShortCss = getIsShortCss(className)
+  if (isCsOnly || isShortCss)
+    return { hasMatches: isShortCss, type: 'shortCss' }
 
   if (isArbitraryCss(className))
     return { hasMatches: true, type: 'arbitraryCss' }

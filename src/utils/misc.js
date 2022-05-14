@@ -77,19 +77,6 @@ const stripNegative = string =>
     ? string.slice(1, string.length)
     : string
 
-const maybeAddNegative = (value, negative) => {
-  if (!negative) return value
-
-  if (typeof value === 'string') {
-    if (value.startsWith('-')) return value.slice(1)
-    if (value.startsWith('var(')) return `calc(${value} * -1)`
-  }
-
-  if (isNumeric(value)) return `${negative}${value}`
-
-  return value
-}
-
 const camelize = string =>
   string && string.replace(/\W+(.)/g, (_, chr) => chr.toUpperCase())
 
@@ -169,7 +156,6 @@ export {
   isEmpty,
   getTheme,
   stripNegative,
-  maybeAddNegative,
   get,
   camelize,
   isNumeric,

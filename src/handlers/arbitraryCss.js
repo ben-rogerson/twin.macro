@@ -7,14 +7,14 @@ import {
   splitOnFirst,
   isObject,
   getFirstValue,
-  maybeAddNegative,
 } from './../utils'
-import { logNotAllowed, logGeneralError, logBadGood } from './../logging'
+import { logNotAllowed, logBadGood } from './../logging'
 import {
   getFlatCoercedConfigByProperty,
   getCorePluginsByProperty,
   supportsArbitraryValues,
 } from './../configHelpers'
+import { replaceThemeValue, maybeAddNegative } from './helpers'
 
 const hasSupport = item =>
   getCorePluginsByProperty(item).some(i => supportsArbitraryValues(i))
@@ -126,20 +126,6 @@ const getArbitraryStyle = (
       })
   )
   return coercedConfigResult
-}
-
-// Arbitrary values with a theme value, eg: tw`h-[calc(100%-theme('spacing.16'))]`
-const replaceThemeValue = (value, { theme }) => {
-  const match = value.match(/theme\(["']?([^"']+)["']?\)/)
-  if (!match) return value
-
-  const themeFunction = match[0]
-  const themeValue = theme(match[1])
-  throwIf(!themeValue, () =>
-    logGeneralError(`No theme value found for “${match[1]}”`)
-  )
-
-  return value.replace(themeFunction, themeValue)
 }
 
 export default props => {

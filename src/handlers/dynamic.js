@@ -1,14 +1,9 @@
 import getConfigValue from './../utils/getConfigValue'
-import {
-  throwIf,
-  maybeAddAlpha,
-  maybeAddNegative,
-  getFirstValue,
-  isObject,
-} from './../utils'
+import { throwIf, maybeAddAlpha, getFirstValue, isObject } from './../utils'
 import { errorSuggestions, logBadGood } from './../logging'
 import { supportsArbitraryValues } from './../configHelpers'
 import { getCoercedValueFromTypeMap } from './../coerced'
+import { maybeAddNegative } from './helpers'
 
 const getDynamicStyle = (config, { classValue, theme, pieces }) => {
   // Array values loop over cooerced object - { coerced: { color: () => {}, length () => {} } }
