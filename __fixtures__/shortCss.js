@@ -56,3 +56,7 @@ tw`padding[
     calc((2em * -1) +
     var(--myVar))
 ]`
+
+// Theme value
+tw`--color[theme(colors.red.500)]`
+tw`--color[this theme(colors.red.500) that]`
