@@ -49720,6 +49720,7 @@ tw\`padding[
 
 // Theme value
 tw\`--color[theme(colors.red.500)]\`
+tw\`--color[this theme(colors.red.500) that]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -49939,6 +49940,9 @@ tw\`--color[theme(colors.red.500)]\`
 
 ;({
   '--color': '#ef4444',
+})
+;({
+  '--color': 'this #ef4444 that',
 })
 
 
