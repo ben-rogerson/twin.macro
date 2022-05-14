@@ -1,7 +1,8 @@
 import { throwIf, camelize, splitOnFirst } from '../utils'
 import { logBadGood } from '../logging'
+import { replaceThemeValue } from './helpers'
 
-export default ({ className }) => {
+export default ({ className, theme }) => {
   let [property, value] = splitOnFirst(className, '[')
 
   property =
@@ -18,5 +19,7 @@ export default ({ className }) => {
     )
   )
 
-  return { [property]: value }
+  const themeReplacedValue = replaceThemeValue(value, { theme })
+
+  return { [property]: themeReplacedValue }
 }
