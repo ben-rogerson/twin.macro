@@ -37,11 +37,13 @@ export default props => {
   const { theme, pieces, state, corePluginName, coreConfig } = props
   const { classNameRaw, className, classNameNoSlashAlpha } = pieces
 
+  const configSearch = []
   const classNameValue = className.slice(Number(corePluginName.length) + 1)
-  const configSearch = [classNameValue]
 
   // Search config for a negative valued key, eg: `zIndex: { "-1": "-1" }`
   if (pieces.hasNegative) configSearch.push(`-${classNameValue}`)
+
+  configSearch.push(classNameValue)
 
   // Search config for a slash, eg: `h-1/5`
   if (className !== classNameNoSlashAlpha)
