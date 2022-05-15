@@ -16681,24 +16681,24 @@ tw\`border-[length:10px]\`
   borderRightWidth: '1px',
 })
 ;({
-  borderTopColor: '0px',
-  borderBottomColor: '0px',
+  borderTopWidth: '0px',
+  borderBottomWidth: '0px',
 })
 ;({
-  borderTopColor: '2px',
-  borderBottomColor: '2px',
+  borderTopWidth: '2px',
+  borderBottomWidth: '2px',
 })
 ;({
-  borderTopColor: '4px',
-  borderBottomColor: '4px',
+  borderTopWidth: '4px',
+  borderBottomWidth: '4px',
 })
 ;({
-  borderTopColor: '8px',
-  borderBottomColor: '8px',
+  borderTopWidth: '8px',
+  borderBottomWidth: '8px',
 })
 ;({
-  borderTopColor: '1px',
-  borderBottomColor: '1px',
+  borderTopWidth: '1px',
+  borderBottomWidth: '1px',
 })
 ;({
   borderTopWidth: '0px',
@@ -16786,8 +16786,8 @@ tw\`border-[length:10px]\`
   borderRightWidth: '10px',
 })
 ;({
-  borderTopColor: '10px',
-  borderBottomColor: '10px',
+  borderTopWidth: '10px',
+  borderBottomWidth: '10px',
 })
 ;({
   borderWidth: '10px',

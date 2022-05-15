@@ -978,10 +978,10 @@ export default {
       config: 'borderWidth',
       coerced: {
         'line-width': {
-          property: ['borderTopColor', 'borderBottomColor'],
+          property: ['borderTopWidth', 'borderBottomWidth'],
         },
         length: {
-          property: ['borderTopColor', 'borderBottomColor'],
+          property: ['borderTopWidth', 'borderBottomWidth'],
         },
       },
     },
