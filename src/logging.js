@@ -1,6 +1,5 @@
 import stringSimilarity from 'string-similarity'
 import chalk from 'chalk'
-import { formatProp } from './macro/debug'
 import { corePlugins } from './config'
 import {
   getTheme,
@@ -78,7 +77,7 @@ const logErrorFix = (error, good) =>
 
 const logGeneralError = error => spaced(warning(error))
 
-const debugSuccess = (className, log) => inOut(formatProp(className), log)
+const debugSuccess = (className, log) => inOut(className, log)
 
 const formatPluginKey = key => key.replace(/(\\|(}}))/g, '').replace(/{{/g, '.')
 
@@ -154,22 +153,41 @@ const checkDarkLightClasses = className =>
 
 const isHex = hex => /^#([\da-f]{3}){1,2}$/i.test(hex)
 
+const logAlphaError = alphaError => {
+  const [errorText, errorResolve, errorConfig] = alphaError
+  return logErrorFix(
+    errorText,
+    `${errorResolve}\n\n${Object.entries(errorConfig)
+      .map(
+        ([k, v]) =>
+          `${color.subdued('-')} ${color.highlight(k)} ${color.subdued(
+            '>'
+          )} ${v}`
+      )
+      .join('\n')}`
+  )
+}
+
+const logInvalidShortCssError = className =>
+  spaced(
+    `${color.highlight(
+      className
+    )} isn’t valid “short css”.\n\nThe syntax is like this: max-width[100vw]\nRead more at https://twinredirect.page.link/cs-classes`
+  )
+
 const errorSuggestions = properties => {
   const {
     state: {
       configTwin: { hasSuggestions },
       config: { prefix },
     },
-    pieces: { className },
+    pieces: { className, alphaError },
     isCsOnly,
   } = properties
 
-  if (isCsOnly)
-    return spaced(
-      `${color.highlight(
-        className
-      )} isn’t valid “short css”.\n\nThe syntax is like this: max-width[100vw]\nRead more at https://twinredirect.page.link/cs-classes`
-    )
+  if (isCsOnly) return logInvalidShortCssError(className)
+
+  if (alphaError) return logAlphaError(alphaError)
 
   checkDarkLightClasses(className)
 
@@ -231,8 +249,8 @@ const themeErrorNotFound = ({ theme, input, trimInput }) => {
 
 const opacityErrorNotFound = ({ className }) =>
   logBadGood(
-    `The class \`${className}\` had an unsupported slash opacity`,
-    `Remove the opacity from the end of the class`
+    `The class “${className}” shouldn’t have a slash opacity`,
+    `Remove the slash opacity or add the class to your config, eg: \`{ "${className}": "value" }\``
   )
 
 const logNotFoundVariant = ({ classNameRaw }) =>

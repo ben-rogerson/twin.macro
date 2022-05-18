@@ -30,7 +30,7 @@ const splitAtDash = (twClass, fromEnd = 1) => {
  */
 const getConfigValue = (from, matcher) => {
   const matchArray = toArray(matcher)
-  const [result] = getFirstValue(matchArray, match =>
+  const result = getFirstValue(matchArray, match =>
     getValueFromConfig(from, match)
   )
   return result
@@ -62,8 +62,11 @@ const getValueFromConfig = (from, matcher) => {
   const [result] = getFirstValue(matcher.split('-'), (_, { index }) => {
     const { firstPart, lastPart } = splitAtDash(matcher, Number(index) + 1)
     const objectMatch = from[firstPart]
-    if (objectMatch && typeof objectMatch === 'object')
-      return getConfigValue(objectMatch, lastPart)
+
+    if (objectMatch && typeof objectMatch === 'object') {
+      const [value] = getConfigValue(objectMatch, lastPart) || []
+      return value
+    }
   })
 
   return result
