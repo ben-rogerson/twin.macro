@@ -56,7 +56,6 @@ const coercedTypeMap = {
     if (result.length === 0)
       result = properties.map(p => ({ [p]: `${value}${pieces.important}` }))
 
-    // @ts-expect-error TODO: Investigate TS error
     return deepMerge(...result)
   },
   'line-width'({ config, value, theme, output, forceReturn }) {
