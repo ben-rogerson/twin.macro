@@ -200,27 +200,35 @@ const splitAlpha = props => {
     rawAlpha[0] === '[' && rawAlpha[rawAlpha.length - 1] === ']'
   )
 
-  const hasMatchedAlpha = Boolean(
-    !hasAlphaArbitrary && get(props, 'state.config.theme.opacity')[rawAlpha]
-  )
-
-  const hasAlpha = hasAlphaArbitrary || hasMatchedAlpha || false
-
-  const context = { hasAlpha, hasAlphaArbitrary }
-
-  if (!hasAlpha) return { ...context, classNameNoSlashAlpha: className }
-
+  // Arbitrary slash alpha values, eg: `bg-black/[.50]`
   if (hasAlphaArbitrary)
     return {
-      ...context,
+      hasAlpha: true,
+      hasAlphaArbitrary,
       alpha: formatProp(rawAlpha.slice(1, -1)),
       classNameNoSlashAlpha: className.slice(0, slashIdx),
     }
 
+  const opacityConfig = get(props, 'state.config.theme.opacity')
+  const hasMatchedAlpha = Boolean(opacityConfig[rawAlpha])
+
+  if (!hasMatchedAlpha)
+    return {
+      hasAlpha: false,
+      classNameNoSlashAlpha: className,
+      // Set some error data for later - we still don't know if the className is
+      // incorrect as there could be a slash in the className, eg: `h-2/4`
+      alphaError: [
+        `The slash opacity “${rawAlpha}” isn’t a valid opacity for “${className}”`,
+        `Try one of these opacity values:`,
+        opacityConfig,
+      ],
+    }
+
   // Opacity value has been matched in the config
   return {
-    ...context,
     alpha: String(getAlphaValue(rawAlpha)),
+    hasAlpha: hasMatchedAlpha,
     classNameNoSlashAlpha: className.slice(0, slashIdx),
   }
 }

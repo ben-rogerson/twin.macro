@@ -1,11 +1,18 @@
 import getConfigValue from './../utils/getConfigValue'
 import { throwIf, maybeAddAlpha, getFirstValue, isObject } from './../utils'
-import { errorSuggestions, logBadGood } from './../logging'
+import {
+  errorSuggestions,
+  logBadGood,
+  opacityErrorNotFound,
+} from './../logging'
 import { supportsArbitraryValues } from './../configHelpers'
 import { getCoercedValueFromTypeMap } from './../coerced'
 import { maybeAddNegative } from './helpers'
 
-const getDynamicStyle = (config, { classValue, theme, pieces }) => {
+const getDynamicStyle = (
+  config,
+  { matchedConfig, classValue, theme, pieces }
+) => {
   // Array values loop over cooerced object - { coerced: { color: () => {}, length () => {} } }
   if (config.coerced) {
     const coerced = ([type, config], forceReturn) =>
@@ -25,7 +32,15 @@ const getDynamicStyle = (config, { classValue, theme, pieces }) => {
 
   const value = Array.isArray(classValue)
     ? classValue.join(', ')
-    : maybeAddNegative(maybeAddAlpha(classValue, { pieces }), pieces.negative)
+    : maybeAddNegative(
+        maybeAddAlpha(classValue, { matchedConfig, pieces }),
+        pieces.negative
+      )
+
+  throwIf(!value, () =>
+    opacityErrorNotFound({ className: pieces.classNameRaw })
+  )
+
   return Array.isArray(config.property)
     ? // FIXME: Remove comment and fix next line
       // eslint-disable-next-line unicorn/prefer-object-from-entries
@@ -57,7 +72,9 @@ export default props => {
     if (isStaticOutput) return c.output
 
     const config = c.config && theme(c.config)
-    const classValue = config && getConfigValue(config, configSearch)
+    const [classValue, matchedConfig] =
+      (config && getConfigValue(config, configSearch)) || []
+
     if (config && !classValue) return
 
     // { property: value } determined via a function (eg: 'container')
@@ -71,7 +88,7 @@ export default props => {
 
     if (c.output) return
 
-    return getDynamicStyle(c, { ...props, classValue })
+    return getDynamicStyle(c, { ...props, matchedConfig, classValue })
   })
 
   throwIf(!result || className.endsWith('-'), () =>

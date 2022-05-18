@@ -8,15 +8,23 @@ const buildStyleSet = (property, color, pieces) => {
   return { [property]: value }
 }
 
-const maybeAddAlpha = (value, { pieces, variable = '' }) =>
-  typeof value === 'function' ||
-  (pieces.alpha && typeof value === 'string' && color(value))
-    ? toAlpha({ pieces, variable, property: undefined })(
-        value,
-        pieces.alpha,
-        value
-      )
-    : value
+const maybeAddAlpha = (value, { matchedConfig, pieces, variable = '' }) => {
+  const isAlphable =
+    typeof value === 'function' ||
+    (pieces.alpha && typeof value === 'string' && color(value))
+
+  if (!isAlphable) {
+    const hasIssue = pieces.hasAlpha && !matchedConfig.includes('/')
+    if (hasIssue) return
+    return value
+  }
+
+  return toAlpha({ pieces, variable, property: undefined })(
+    value,
+    pieces.alpha,
+    value
+  )
+}
 
 const toAlpha =
   ({ pieces, property, variable }) =>

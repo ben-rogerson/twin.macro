@@ -1,5 +1,5 @@
 import deepMerge from 'lodash.merge'
-import { throwIf, isEmpty, getTheme } from './utils'
+import { throwIf, isEmpty, getTheme, formatProp } from './utils'
 import { getProperties } from './getProperties'
 import { astify } from './macroHelpers'
 import * as precheckExports from './prechecks'
@@ -181,7 +181,7 @@ export default (classes, args) => {
       addVariants({ results, style, pieces, state })
     )
 
-    state.debug(debugSuccess(classNameRaw, style))
+    state.debug(debugSuccess(formatProp(classNameRaw), style))
 
     classesMatched.push(classNameRaw)
     return result
