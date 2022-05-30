@@ -94,6 +94,9 @@ const isShortCss = className => new RegExp(/[^/-]\[/).test(className)
 
 const isArbitraryCss = className => new RegExp(/-\[/).test(className)
 
+const isArbitraryProperty = className =>
+  className.startsWith('[') && className.endsWith(']')
+
 // Split a string at a value
 function splitOnFirst(input, delim) {
   return (([first, ...rest]) => [first, rest.join(delim)])(input.split(delim))
@@ -163,6 +166,7 @@ export {
   isMediaQuery,
   isShortCss,
   isArbitraryCss,
+  isArbitraryProperty,
   splitOnFirst,
   formatProp,
   isSpaceSeparatedColor,

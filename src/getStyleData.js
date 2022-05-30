@@ -21,6 +21,7 @@ import {
   handleDynamic,
   handleShortCss,
   handleArbitraryCss,
+  handleArbitraryProperty,
 } from './handlers'
 
 const getPieces = context => {
@@ -150,6 +151,7 @@ export default (classes, args) => {
       dynamic: handleDynamic,
       arbitraryCss: handleArbitraryCss,
       userPlugin: handleUserPlugins,
+      arbitraryProperty: handleArbitraryProperty,
     }
 
     let style
