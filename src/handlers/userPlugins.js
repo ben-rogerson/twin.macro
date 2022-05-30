@@ -1,4 +1,5 @@
-import { isEmpty, isMediaQuery, isClass, getFirstValue } from './../utils'
+import deepMerge from 'lodash.merge'
+import { isEmpty, getFirstValue } from './../utils'
 import { splitPrefix } from './../pieces'
 
 // If these tasks return true then the rule is matched
@@ -9,7 +10,13 @@ const mergeChecks = [
   ({ key, className }) =>
     !key.includes('{{') &&
     key.match(
-      new RegExp(`(?:^|>|~|\\+|\\*| )\\.${className}(?: |>|~|\\+|\\*|:|$)`, 'g')
+      new RegExp(
+        `(?:^|>|~|\\+|\\*| )\\.${className.replace(
+          /\[/g,
+          '\\['
+        )}(?: |>|~|\\+|\\*|:|$)`,
+        'g'
+      )
     ),
   // Match parent selector placeholder
   ({ key, className }) => key.includes(`{{${className}}}`),
@@ -23,7 +30,6 @@ const mergeChecks = [
 const getMatches = ({ className, data, sassyPseudo, state }) =>
   Object.entries(data).reduce((result, item) => {
     const [rawKey, value] = item
-
     // Remove the prefix before attempting match
     let { className: key } = splitPrefix({ className: rawKey, state })
 
@@ -38,10 +44,9 @@ const getMatches = ({ className, data, sassyPseudo, state }) =>
     }
 
     const shouldMergeValue = mergeChecks.some(item => item({ key, className }))
-
     if (shouldMergeValue) {
       const newKey = formatKey(key, { className, sassyPseudo })
-      return newKey ? { ...result, [newKey]: value } : { ...result, ...value }
+      return deepMerge({ ...result }, newKey ? { [newKey]: value } : value)
     }
 
     return result
@@ -53,11 +58,7 @@ const formatTasks = [
   // Match exact selector
   ({ key, className }) => (key === `.${className}` ? '' : key),
   // Replace the parent selector placeholder
-  ({ key, className }) => {
-    const parentSelectorIndex = key.indexOf(`{{${className}}}`)
-    const replacement = parentSelectorIndex > 0 ? '&' : ''
-    return key.replace(`{{${className}}}`, replacement)
-  },
+  ({ key, className }) => key.replace(new RegExp(`{{${className}}}`, 'g'), '&'),
   // Replace the classname at start of selector (eg: &:hover) (postCSS supplies
   // flattened selectors so it looks like .blah:hover at this point)
   ({ key, className }) =>
@@ -68,6 +69,10 @@ const formatTasks = [
     sassyPseudo && key.startsWith(':') ? `&${key}` : key,
   // Remove the unmatched class wrapping
   ({ key }) => key.replace(/{{/g, '.').replace(/}}/g, ''),
+  // Fix class within where, eg: `:where(&)`
+  ({ key }) => key.replace(/:where\(&\)/g, ''),
+  // Hacky fix for spotty `:root` selector support in emotion/styled-components
+  ({ key }) => key.replace(/(^| ):root(?!\w)/g, '*:root'),
 ]
 
 const formatKey = (selector, { className, sassyPseudo }) => {
@@ -81,26 +86,6 @@ const formatKey = (selector, { className, sassyPseudo }) => {
   return key
 }
 
-/**
- * Split grouped selectors (`.class1, class2 {}`) and filter non-selectors
- * @param {object} data Input object from userPluginData
- * @returns {object} An object containing unpacked selectors
- */
-const normalizeUserPluginSelectors = data =>
-  Object.entries(data).reduce((result, [selector, value]) => {
-    const keys = selector
-      .split(',')
-      .filter(s =>
-        isMediaQuery(s)
-          ? Object.keys(value).some(selector => isClass(selector))
-          : isClass(s)
-      )
-      // FIXME: Remove comment and fix next line
-      // eslint-disable-next-line unicorn/prefer-object-from-entries
-      .reduce((result, property) => ({ ...result, [property]: value }), {})
-    return { ...result, ...keys }
-  }, {})
-
 export default ({
   state: {
     configTwin: { sassyPseudo },
@@ -109,8 +94,7 @@ export default ({
   state,
   className,
 }) => {
-  const [result] = getFirstValue([base, components, utilities], rawData => {
-    const data = normalizeUserPluginSelectors(rawData)
+  const [result] = getFirstValue([base, components, utilities], data => {
     const matches = getMatches({ className, data, sassyPseudo, state })
     if (isEmpty(matches)) return
     return matches

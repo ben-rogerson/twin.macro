@@ -13,7 +13,7 @@
     "build:sandbox": "babel sandbox/in.js --out-file sandbox/out.js",
     "test": "npm run build && jest && npm run test:types",
     "test:types": "tsc -b ./types/tsconfig.json",
-    "test:accept": "npm run build && jest --u",
+    "test:update": "npm run build && jest --u",
     "prepublishOnly": "npm run build"
   },
   "husky": {
@@ -80,7 +80,7 @@
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@tailwindcss/aspect-ratio": "^0.4.0",
-    "@tailwindcss/forms": "^0.5.0",
+    "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/line-clamp": "^0.4.0",
     "@tailwindcss/typography": "^0.5.2",
     "@types/react": "^18.0.5",
@@ -90,6 +90,7 @@
     "babel-plugin-tester": "^10.1.0",
     "concurrently": "^7.1.0",
     "escalade": "^3.1.1",
+    "daisyui": "^2.15.1",
     "eslint": "^8.13.0",
     "eslint-config-import": "^0.13.0",
     "eslint-config-prettier": "^8.5.0",

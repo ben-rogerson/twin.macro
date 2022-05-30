@@ -58,6 +58,7 @@ module.exports = {
     'unicorn/prefer-module': 0,
     'unicorn/consistent-destructuring': 0,
     'unicorn/prefer-node-protocol': 0,
+    'unicorn/prefer-array-flat': 0,
     'unicorn/prefer-export-from': ['error', { ignoreUsedVariables: true }],
   },
   overrides: [
