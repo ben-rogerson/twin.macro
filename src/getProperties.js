@@ -3,6 +3,7 @@ import {
   isShortCss as getIsShortCss,
   isArbitraryCss,
   toArray,
+  isArbitraryProperty,
 } from './utils/misc'
 
 const getCorePluginProperties = className => {
@@ -51,6 +52,9 @@ export const getProperties = (className, state, { isCsOnly = false }) => {
   const isShortCss = getIsShortCss(className)
   if (isCsOnly || isShortCss)
     return { hasMatches: isShortCss, type: 'shortCss' }
+
+  if (isArbitraryProperty(className))
+    return { hasMatches: true, type: 'arbitraryProperty' }
 
   if (isArbitraryCss(className))
     return { hasMatches: true, type: 'arbitraryCss' }
