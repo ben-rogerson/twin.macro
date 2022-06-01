@@ -31,23 +31,16 @@ import { handleClassNameProperty } from './macro/className'
 import getUserPluginData from './utils/getUserPluginData'
 import { debugPlugins, debug } from './logging'
 
-const getPackageUsed = ({ config: { preset }, cssImport, styledImport }) => ({
-  isEmotion:
-    preset === 'emotion' ||
-    styledImport.from.includes('emotion') ||
-    cssImport.from.includes('emotion'),
-  isStyledComponents:
-    preset === 'styled-components' ||
-    styledImport.from.includes('styled-components') ||
-    cssImport.from.includes('styled-components'),
-  isGoober:
-    preset === 'goober' ||
-    styledImport.from.includes('goober') ||
-    cssImport.from.includes('goober'),
-  isStitches:
-    preset === 'stitches' ||
-    styledImport.from.includes('stitches') ||
-    cssImport.from.includes('stitches'),
+const packageCheck = (pkg, ctx) =>
+  ctx.config.preset === pkg ||
+  ctx.styledImport.from.includes(pkg) ||
+  ctx.cssImport.from.includes(pkg)
+
+const getPackageUsed = ctx => ({
+  isEmotion: packageCheck('emotion', ctx),
+  isStyledComponents: packageCheck('styled-components', ctx),
+  isGoober: packageCheck('goober', ctx),
+  isStitches: packageCheck('stitches', ctx),
 })
 
 const macroTasks = [
@@ -66,9 +59,9 @@ const twinMacro = args => {
   const {
     babel: { types: t },
     references,
-    state,
     config,
   } = args
+  let { state } = args
 
   validateImports(references)
 
@@ -96,27 +89,28 @@ const twinMacro = args => {
 
   const configTwin = getConfigTwinValidated(config, state)
 
-  state.configExists = configExists
-  state.config = configTailwind
-  state.configTwin = configTwin
-  state.debug = debug(state)
-  state.globalStyles = new Map()
+  const stateContext = {
+    configExists: configExists,
+    config: configTailwind,
+    configTwin: configTwin,
+    debug: debug(isDev, configTwin),
+    globalStyles: new Map(),
+    tailwindConfigIdentifier: generateUid('tailwindConfig', program),
+    tailwindUtilsIdentifier: generateUid('tailwindUtils', program),
+    userPluginData:
+      getUserPluginData({ config: configTailwind, configTwin }) || {},
+    styledImport: styledImport,
+    cssImport: cssImport,
+    styledIdentifier: null,
+    cssIdentifier: null,
+  }
 
-  state.tailwindConfigIdentifier = generateUid('tailwindConfig', program)
-  state.tailwindUtilsIdentifier = generateUid('tailwindUtils', program)
+  state = { ...state, ...stateContext }
 
-  state.userPluginData = getUserPluginData({ config: state.config, configTwin })
   isDev &&
     Boolean(config.debugPlugins) &&
     state.userPluginData &&
     debugPlugins(state.userPluginData)
-
-  state.styledImport = styledImport
-  state.cssImport = cssImport
-
-  // Init identifiers
-  state.styledIdentifier = null
-  state.cssIdentifier = null
 
   // Group traversals together for better performance
   program.traverse({

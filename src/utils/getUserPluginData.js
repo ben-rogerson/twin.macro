@@ -1,6 +1,12 @@
-import buildPluginApi from './pluginApi'
 import deepMerge from 'lodash.merge'
-import { formatCssProperty } from './../utils'
+import buildPluginApi from './pluginApi'
+import { formatCssProperty, isMediaQuery, isClass } from '../utils'
+import {
+  LAYER_BASE,
+  LAYER_COMPONENTS,
+  LAYER_UTILITIES,
+  SELECTOR_ALL,
+} from '../constants'
 
 const stripLeadingDot = string =>
   string.startsWith('.') ? string.slice(1) : string
@@ -13,32 +19,31 @@ const parseSelector = selector => {
 
   const matches = selector.trim().match(/^(\S+)(\s+.*?)?$/)
   if (matches === null) return
+  let match = escapeSelector(matches[0]).trim()
 
-  let match = matches[0]
-
-  // Fix spacing that goes missing when provided by tailwindcss
-  // Unfortunately this removes the ability to have classes on the same element
-  // eg: .something.something or &.something
-  match = match.replace(/(?<=\w)\./g, ' .')
-
-  // If the selector is just a single selector then return
-  if (!match.includes(' ')) return match
+  // Single selector then return
+  // Avoid matching spaces within parentheses, eg: `:where(ul, ol)`
+  const hasSpace = / (?=(((?!\)).)*\()|[^()]*$)/.test(match)
+  const hasSelectorInParentheses = /\.\w+(?!(((?!\)).)*\()|[^()]*$)/.test(match)
+  const hasClasses = (match.match(/\./g) || []).length
+  if (!hasSpace && !hasSelectorInParentheses && hasClasses < 2) return match
 
   // Look for class matching candidates
   const match2 = match.match(
-    /(?<=>|^|~|\+|\*| )\.[\w.\\-]+(?= |>|~|\+|\*|:|$)/gm
+    /(?<=\w|>|^|~|\+|\*| |\()\.[\w\\-]+(?:\.\d)?(?=\.| |>|~|\+|\*|:|$|\))/gm
   )
-
   if (!match2) return match
+
   // Wrap the matching classes in {{class}}
   for (const item of match2) {
+    if (!isClass(item) || isMediaQuery(item)) return match
     match = replaceSelectorWithParent(match, item)
   }
 
-  return match
+  return escapeSelector(match).trim()
 }
 
-const escapeSelector = selector => selector.replace(/\\\//g, '/').trim()
+const escapeSelector = selector => selector.replace(/\\\//g, '/')
 
 const buildAtSelector = (name, values, screens) => {
   // Support @screen selectors
@@ -61,25 +66,19 @@ const getBuiltRules = (rule, { isBase }) => {
     .filter(Boolean)
 
   // Join them back into a string
-  const selector = selectorParsed.join(',')
-
-  // Rule isn't formatted correctly
+  const selector = selectorParsed.join(', ')
   if (!selector) return null
 
-  if (isBase) {
-    // Base values stay as-is because they aren't interactive
-    return { [escapeSelector(selector)]: buildDeclaration(rule.nodes) }
-  }
+  // Base values stay as-is because they aren't interactive
+  if (isBase) return { [selector]: buildDeclaration(rule.nodes) }
 
-  // Separate comma-separated selectors to allow twin's features
-  // FIXME: Remove comment and fix next line
-  // eslint-disable-next-line unicorn/prefer-object-from-entries
-  return selector.split(',').reduce(
-    (result, selector) => ({
-      ...result,
-      [escapeSelector(selector)]: buildDeclaration(rule.nodes),
-    }),
-    {}
+  return Object.fromEntries(
+    selector
+      // Separate comma-separated selectors to allow twin's features.
+      // But avoid splitting if the comma is within parentheses, eg:
+      // :where(ul ul, ul ol, ol ul, ol ol) (from official typography plugin)
+      .split(/,(?=(?:(?:(?!\)).)*\()|[^()]*$)/g)
+      .map(selector => [selector, buildDeclaration(rule.nodes)])
   )
 }
 
@@ -96,19 +95,13 @@ const buildDeclaration = items => {
   )
 }
 
-const sortLength = (a, b) => {
-  const selectorA = a.selector ? a.selector.length : 0
-  const selectorB = b.selector ? b.selector.length : 0
-  return selectorA - selectorB
-}
-
 const sortScreenOrder = (a, b, screenOrder) => {
   const screenIndexA = a.name === 'screen' ? screenOrder.indexOf(a.params) : 0
   const screenIndexB = b.name === 'screen' ? screenOrder.indexOf(b.params) : 0
   return screenIndexA - screenIndexB
 }
 
-const sortMediaRulesFirst = (a, b) => {
+const sortMediaRules = (a, b) => {
   const atRuleA = a.type === 'atrule' ? 1 : 0
   const atRuleB = b.type === 'atrule' ? 1 : 0
   return atRuleA - atRuleB
@@ -120,19 +113,14 @@ const ruleSorter = (arr, screens) => {
   const screenOrder = screens ? Object.keys(screens) : []
 
   arr
-    // Tailwind also messes up the ordering so classes need to be resorted
-    // Order selectors by length (don't know of a better way)
-    .sort(sortLength)
     // Place at rules at the end '@media' etc
-    .sort(sortMediaRulesFirst)
+    .sort(sortMediaRules)
     // Sort @media by screens index
     .sort((a, b) => sortScreenOrder(a, b, screenOrder))
     // Traverse children and reorder aswell
-    // FIXME: Remove comment and fix next line
     // eslint-disable-next-line unicorn/no-array-for-each
     .forEach(item => {
       if (!item.nodes || item.nodes.length === 0) return
-      // FIXME: Remove comment and fix next line
       // eslint-disable-next-line unicorn/no-array-for-each
       item.nodes.forEach(i => {
         if (typeof i !== 'object') return
@@ -144,46 +132,29 @@ const ruleSorter = (arr, screens) => {
   return arr
 }
 
-const getUserPluginRules = (rules, screens, isBase) =>
-  ruleSorter(rules, screens).reduce((result, rule) => {
-    if (typeof rule === 'function') {
-      return deepMerge(result, rule())
-    }
-
-    if (rule.type === 'decl') {
-      const builtRules = { [rule.prop]: rule.value }
-      return deepMerge(result, builtRules)
-    }
-
-    // Build the media queries
-    if (rule.type !== 'atrule') {
-      const builtRules = getBuiltRules(rule, { isBase })
-      return deepMerge(result, builtRules)
-    }
-
+const getUserPluginRules = (rules, screens, isBase) => {
+  const sortedRules = ruleSorter(rules, screens)
+  const ruleList = sortedRules.map(rule => {
+    if (typeof rule === 'function') return rule()
+    if (rule.type === 'decl') return { [rule.prop]: rule.value }
+    if (rule.type !== 'atrule') return getBuiltRules(rule, { isBase })
     // Remove a bunch of nodes that tailwind uses for limiting rule generation
     // https://github.com/tailwindlabs/tailwindcss/commit/b69e46cc1b32608d779dad35121077b48089485d#diff-808341f38c6f7093a7979961a53f5922R20
-    if (['layer', 'variants', 'responsive'].includes(rule.name)) {
-      return deepMerge(
-        result,
-        ...getUserPluginRules(rule.nodes, screens, isBase)
-      )
-    }
-
+    if (['layer', 'variants', 'responsive'].includes(rule.name))
+      return getUserPluginRules(rule.nodes, screens, isBase)
     const atSelector = buildAtSelector(rule.name, rule.params, screens)
+    return { [atSelector]: getUserPluginRules(rule.nodes, screens, isBase) }
+  })
 
-    return deepMerge(result, {
-      [atSelector]: getUserPluginRules(rule.nodes, screens, isBase),
-    })
-  }, {})
+  return deepMerge(...ruleList)
+}
 
 const getUserPluginData = ({ config, configTwin }) => {
-  if (!config.plugins || config.plugins.length === 0) {
-    return
-  }
+  if (!config.plugins || config.plugins.length === 0) return
 
   const context = {
     candidateRuleMap: new Map(),
+    variants: new Map(),
     tailwindConfig: config,
     configTwin,
   }
@@ -209,50 +180,32 @@ const getUserPluginData = ({ config, configTwin }) => {
     }
   }
 
-  const rulesets = context.candidateRuleMap.values()
-
   const baseRaw = []
   const componentsRaw = []
   const utilitiesRaw = []
 
-  // eslint-disable-next-line unicorn/prefer-spread
-  for (const rules of Array.from(rulesets)) {
+  for (const [keyname, rules] of context.candidateRuleMap) {
     for (const [data, rule] of rules) {
-      if (data.layer === 'base') {
+      if (data.layer === LAYER_BASE || keyname === SELECTOR_ALL) {
         baseRaw.push(rule)
       }
 
-      if (data.layer === 'components') {
+      if (data.layer === LAYER_COMPONENTS && keyname !== SELECTOR_ALL) {
         componentsRaw.push(rule)
       }
 
-      if (data.layer === 'utilities') {
+      if (data.layer === LAYER_UTILITIES && keyname !== SELECTOR_ALL) {
         utilitiesRaw.push(rule)
       }
     }
   }
 
-  /**
-   * Variants
-   */
-  // No support for Tailwind's addVariant() function
-
-  /**
-   * Base
-   */
-  const base = getUserPluginRules(baseRaw, config.theme.screens, true)
-
-  /**
-   * Components
-   */
-  const components = getUserPluginRules(componentsRaw, config.theme.screens)
-
-  /**
-   * Utilities
-   */
-  const utilities = getUserPluginRules(utilitiesRaw, config.theme.screens)
-
-  return { base, components, utilities }
+  return {
+    base: getUserPluginRules(baseRaw, config.theme.screens, true),
+    components: getUserPluginRules(componentsRaw, config.theme.screens),
+    utilities: getUserPluginRules(utilitiesRaw, config.theme.screens),
+    variants: context.variants,
+  }
 }
 
 export default getUserPluginData

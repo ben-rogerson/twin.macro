@@ -197,6 +197,12 @@ const applyStyleToProperty = (property, pieces) => style => {
 const getCoercedValueFromTypeMap = (type, context) => {
   context.output = applyStyleToProperty(context.config.property, context.pieces)
 
+  if (typeof context.value === 'function') {
+    const opacityVariable = context.config.variable
+    const opacityValue = context.pieces.alpha
+    context.value = context.value({ opacityValue, opacityVariable })
+  }
+
   let extraStyles
   if (Array.isArray(context.value)) {
     const [value, ...rest] = context.value

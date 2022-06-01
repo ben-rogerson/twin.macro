@@ -85,7 +85,10 @@ const debugPlugins = processedPlugins => {
   console.log(
     Object.entries(processedPlugins)
       .map(([layer, group]) =>
-        Object.entries(group)
+        (layer === 'variants'
+          ? [...group].map(([k, v]) => [k, v.join(', ')])
+          : Object.entries(group)
+        )
           .map(([className, styles]) =>
             inOutPlugins(formatPluginKey(className), styles, layer)
           )
@@ -151,6 +154,16 @@ const checkDarkLightClasses = className =>
       )}\nRead more at https://twinredirect.page.link/darkLightMode\n`
   )
 
+const checkTypographyClasses = (className, config) =>
+  throwIf(
+    className === 'lead' && config.plugins.length > 0,
+    () =>
+      `\n\n"${className}" (from the official typography plugin) must be added as className:${logBadGood(
+        `tw\`${className}\``,
+        `<div className="${className}">`
+      )}`
+  )
+
 const isHex = hex => /^#([\da-f]{3}){1,2}$/i.test(hex)
 
 const logAlphaError = alphaError => {
@@ -180,6 +193,7 @@ const errorSuggestions = properties => {
     state: {
       configTwin: { hasSuggestions },
       config: { prefix },
+      config,
     },
     pieces: { className, alphaError },
     isCsOnly,
@@ -190,6 +204,7 @@ const errorSuggestions = properties => {
   if (alphaError) return logAlphaError(alphaError)
 
   checkDarkLightClasses(className)
+  checkTypographyClasses(className, config)
 
   const textNotFound = logNoClass(properties)
   if (!hasSuggestions) return spaced(textNotFound)
@@ -268,9 +283,9 @@ const logStylePropertyError = logErrorFix(
   'Use the tw or css prop instead: <div tw="" /> or <div css={tw``} />\n\nDisable this error by adding this in your twin config: `{ "allowStyleProp": true }`\nRead more at https://twinredirect.page.link/style-prop'
 )
 
-const debug = state => message => {
-  if (state.isDev !== true) return
-  if (state.configTwin.debug !== true) return
+const debug = (isDev, configTwin) => message => {
+  if (isDev !== true) return
+  if (configTwin.debug !== true) return
 
   return console.log(message)
 }
@@ -472,7 +487,7 @@ const getSuggestions = args => {
 const getUnsupportedError = feature =>
   logErrorFix(
     `A plugin is trying to use the unsupported “${feature}” function`,
-    `Either remove the plugin or add this in your twin config: \`{ "allowUnsupportedPlugins": true }\``
+    `Please remove the plugin from your tailwind config\n\nSilence this message with this twin config:\n\`{ "allowUnsupportedPlugins": true }\``
   )
 
 export {

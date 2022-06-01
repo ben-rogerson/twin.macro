@@ -33,13 +33,20 @@ const getVariants = ({ variants, state, ...rest }) => {
 
   const screens = get(state.config, ['theme', 'screens'])
   const screenNames = Object.keys(screens)
+  const { variants: variantMap } = state.userPluginData
 
-  return variants
+  const list = variants
     .map(variant => {
       const isResponsive = screenNames && screenNames.includes(variant)
       if (isResponsive) return stringifyScreen(state.config, variant)
 
-      let foundVariant = fullVariantConfig[variant]
+      let foundVariant = {
+        ...fullVariantConfig,
+        ...(variantMap &&
+          Object.fromEntries(
+            [...variantMap].map(([c, v]) => [c, v.join(', ')])
+          )),
+      }[variant]
 
       if (!foundVariant) {
         const arbitraryVariant = variant.match(/^\[(.+)]/)
@@ -64,6 +71,9 @@ const getVariants = ({ variants, state, ...rest }) => {
         }
 
         const validVariants = {
+          ...(variantMap && {
+            'Plugin variants': [...variantMap].map(([c]) => c),
+          }),
           ...(screenNames.length > 0 && { 'Screen breakpoints': screenNames }),
           'Built-in variants': Object.keys(fullVariantConfig),
         }
@@ -84,6 +94,8 @@ const getVariants = ({ variants, state, ...rest }) => {
       return foundVariant
     })
     .filter(Boolean)
+
+  return list
 }
 
 /**
