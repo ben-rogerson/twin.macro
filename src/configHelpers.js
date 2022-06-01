@@ -46,14 +46,7 @@ const getConfigTailwindProperties = (state, config) => {
         }
       })
 
-  const configExists = existsSync(configPath)
-
-  // Look for a commonjs file as a fallback
-  if (!configExists && !configFile)
-    return getConfigTailwindProperties(state, {
-      ...config,
-      config: './tailwind.config.cjs',
-    })
+  const configExists = configPath && existsSync(configPath)
 
   const configSelected = configExists
     ? requireFresh(configPath)
