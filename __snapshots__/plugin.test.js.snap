@@ -41009,7 +41009,6 @@ exports[`twin.macro pluginDaisyUi.js: pluginDaisyUi.js 1`] = `
 import { globalStyles } from './macro'
 
 globalStyles
-
 ;() => (
   <>
     <div tw="p-5 m-5">
