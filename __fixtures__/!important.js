@@ -29,6 +29,8 @@ const MediaStateMultiplePropertiesImportantPrefix = tw.input`lg:hover:!truncate`
 const ElementMediaStateMultiplePropertiesImportantPrefix = tw(
   Box
 )`lg:hover:!truncate`
+const VariantImportantPrefixMergeCheck = tw.div`md:!from-black to-[#dc4fc2] bg-gradient-to-r`
+const MultiVariantImportantPrefixMergeCheck = tw.div`first:md:!from-black to-[#dc4fc2] bg-gradient-to-r`
 
 const JsxPlaceholderImportantPrefix = () => (
   <input tw="!placeholder-green-500" />

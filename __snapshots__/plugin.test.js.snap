@@ -163,6 +163,8 @@ const MediaStateMultiplePropertiesImportantPrefix = tw.input\`lg:hover:!truncate
 const ElementMediaStateMultiplePropertiesImportantPrefix = tw(
   Box
 )\`lg:hover:!truncate\`
+const VariantImportantPrefixMergeCheck = tw.div\`md:!from-black to-[#dc4fc2] bg-gradient-to-r\`
+const MultiVariantImportantPrefixMergeCheck = tw.div\`first:md:!from-black to-[#dc4fc2] bg-gradient-to-r\`
 
 const JsxPlaceholderImportantPrefix = () => (
   <input tw="!placeholder-green-500" />
@@ -350,6 +352,28 @@ const ElementMediaStateMultiplePropertiesImportantPrefix = _styled(Box)({
       whiteSpace: 'nowrap !important',
     },
   },
+})
+
+const VariantImportantPrefixMergeCheck = _styled.div({
+  '--tw-gradient-to': '#dc4fc2',
+  backgroundImage: 'linear-gradient(to right, var(--tw-gradient-stops))',
+  '@media (min-width: 768px)': {
+    '--tw-gradient-from': '#000 !important',
+    '--tw-gradient-stops':
+      'var(--tw-gradient-from), var(--tw-gradient-to, rgb(0 0 0 / 0) !important)',
+  },
+})
+
+const MultiVariantImportantPrefixMergeCheck = _styled.div({
+  ':first-child': {
+    '@media (min-width: 768px)': {
+      '--tw-gradient-from': '#000 !important',
+      '--tw-gradient-stops':
+        'var(--tw-gradient-from), var(--tw-gradient-to, rgb(0 0 0 / 0) !important)',
+    },
+  },
+  '--tw-gradient-to': '#dc4fc2',
+  backgroundImage: 'linear-gradient(to right, var(--tw-gradient-stops))',
 })
 
 const JsxPlaceholderImportantPrefix = () => (
