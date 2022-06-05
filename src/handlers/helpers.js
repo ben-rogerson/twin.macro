@@ -15,11 +15,12 @@ const replaceThemeValue = (value, { theme }) => {
   return value.replace(themeFunction, themeValue)
 }
 
-const maybeAddNegative = (value, negative) => {
+const maybeAddNegative = (value, negative, isMatchedKeyNegative = false) => {
   if (!negative) return value
+  if (negative && isMatchedKeyNegative) return value
 
   if (typeof value === 'string') {
-    if (value.startsWith('-')) return value.slice(1)
+    if (value.startsWith('-')) return negative ? value.slice(1) : value
     if (value.startsWith('var(')) return `calc(${value} * -1)`
   }
 
