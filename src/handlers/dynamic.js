@@ -80,7 +80,11 @@ export default props => {
     // { property: value } determined via a function (eg: 'container')
     if (typeof c.output === 'function')
       return c.output({
-        value: maybeAddNegative(classValue, pieces.negative),
+        value: maybeAddNegative(
+          classValue,
+          pieces.negative,
+          String(matchedConfig).startsWith('-')
+        ),
         isEmotion: state.isEmotion,
         theme,
         pieces,
