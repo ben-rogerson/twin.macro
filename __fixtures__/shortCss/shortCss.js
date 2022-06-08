@@ -18,6 +18,9 @@ import tw from './macro'
 ;<div tw="hover:(maxWidth[100vw - 2rem] before:content['test'])!" />
 ;<div tw="hover:(maxWidth[100vw - 2rem]! before:content['test'])" />
 
+// within css prop
+;<div css={tw`lg:bg-red-500 max-width[100vw]`} />
+
 // within tw import
 tw`maxWidth[100vw - 2rem]`
 tw`maxWidth[100vw - 2rem] block`

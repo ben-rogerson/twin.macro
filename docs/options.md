@@ -13,10 +13,10 @@ These options are available in your [twin config](#twin-config-location):
 | dataTwProp        | `true`                 | Add a prop to jsx components in development showing the original tailwind classes.<br/> Use `"all"` to keep the prop in production.                                                                                                           |
 | debugPlugins      | `false`                | Display generated class information in your terminal from your plugins.                                                                                                                                                                       |
 | debug             | `false`                | Display information in your terminal about the Tailwind class conversions.                                                                                                                                                                    |
-| disableShortCss   | `false`                | Disable converting short css within the tw import/prop.                                                                                                                                                                                       |
+| disableShortCss   | `true`                 | Disable converting short css within the tw import/prop.                                                                                                                                                                                       |
 | includeClassNames | `false`                | Look in className props for tailwind classes to convert.                                                                                                                                                                                      |
 | dataCsProp        | `true`                 | Add a prop to your elements in development so you can see the original cs prop classes, eg: `<div data-cs="maxWidth[1em]" />`.                                                                                                                |
-| disableCsProp     | `false`                | Disable twin from reading values specified in the cs prop.                                                                                                                                                                                    |
+| disableCsProp     | `true`                 | Disable twin from reading values specified in the cs prop.                                                                                                                                                                                    |
 | sassyPseudo       | `false`                | Some css-in-js frameworks require the `&` in selectors like `&:hover`, this option ensures it’s added.                                                                                                                                        |
 
 ### Options
@@ -155,12 +155,12 @@ This feedback only displays in development.
 <br />
 
 ```js
-disableShortCss: true, // Disable converting short css within the tw import/prop
+disableShortCss: false, // Enable converting short css within the tw import/prop
 ```
 
 When set to `true`, this will throw an error if short css is added within the tw import or tw prop.
 
-If you want to disable short css completely, you’ll also need to set `dataCsProp: false`.
+Disable short css completely with `dataCsProp: false`.
 
 </details>
 

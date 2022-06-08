@@ -98,8 +98,12 @@ const isArbitraryProperty = className =>
   className.startsWith('[') && className.endsWith(']')
 
 // Split a string at a value
-function splitOnFirst(input, delim) {
-  return (([first, ...rest]) => [first, rest.join(delim)])(input.split(delim))
+const splitOnFirst = (input, delim) =>
+  (([first, ...rest]) => [first, rest.join(delim)])(input.split(delim))
+
+const splitShortCss = className => {
+  const [property, value] = splitOnFirst(className, '[')
+  return [property, value.slice(0, -1).trim()]
 }
 
 const formatProp = classes =>
@@ -168,6 +172,7 @@ export {
   isArbitraryCss,
   isArbitraryProperty,
   splitOnFirst,
+  splitShortCss,
   formatProp,
   isSpaceSeparatedColor,
   isObject,

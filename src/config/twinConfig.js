@@ -9,7 +9,7 @@ const configDefaultsStitches = {
 }
 
 const configDefaultsTwin = ({ isGoober, isStitches, isDev }) => ({
-  allowUnsupportedPlugins: false, // Allow plugins to use an unsupported API function, eg: addVariant()
+  allowUnsupportedPlugins: false, // Allow plugins to call unsupported API functions
   allowStyleProp: false, // Allows styles within style="blah" without throwing an error
   autoCssProp: false, // Deprecated since v2.8.2
   dataTwProp: isDev, // During development, add a data-tw="" prop containing your tailwind classes for backtracing
@@ -19,8 +19,8 @@ const configDefaultsTwin = ({ isGoober, isStitches, isDev }) => ({
   debugPlugins: false, // Display generated class information from your plugins
   includeClassNames: false, // Look in the className props for tailwind classes to convert
   dataCsProp: isDev, // During development, add a data-cs="" prop containing your short css classes for backtracing
-  disableCsProp: false, // Disable converting css styles in the cs prop
-  disableShortCss: false, // Disable converting css written using short css
+  disableCsProp: true, // Disable converting css styles in the cs prop
+  disableShortCss: true, // Disable converting css written using short css
   config: undefined, // Set the path to the tailwind config
   ...(isGoober && configDefaultsGoober),
   ...(isStitches && configDefaultsStitches),

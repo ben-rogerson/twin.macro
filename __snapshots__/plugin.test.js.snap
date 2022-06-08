@@ -4420,6 +4420,7 @@ tw\`[.class1 .class2]:[.class3]:block\` // Multiple dynamic variants
 tw\`[p]:placeholder-red-500/[var(--myvar)]\`
 tw\`[p]:mt-[var(--myvar)]\`
 tw\`[p]:marginTop[var(--myvar)]\`
+tw\`[p]:[margin-top:var(--myvar)]\`
 
 tw\`[p]:(mt-4 mb-4)\`
 
@@ -4479,6 +4480,11 @@ tw\`[p]:(mt-4 mb-4)\`
     '::placeholder': {
       color: 'rgb(239 68 68 / var(--myvar))',
     },
+  },
+})
+;({
+  p: {
+    marginTop: 'var(--myvar)',
   },
 })
 ;({
@@ -20433,7 +20439,7 @@ hum
 // break right bracket
 ;<div
   css={tw\`2xl:(// ####@@@@ 
-  background[/*start*/rgb(191, 201/*inner*/, 211)])\`}
+  [background:/*start*/rgb(191, 201/*inner*/, 211)])\`}
 />
 
 // comments within multiline comment
@@ -20491,7 +20497,9 @@ hum
       background: 'rgb(191, 201, 211)',
     },
   }}
-  data-tw={'2xl:(// ####@@@@ background[/*start*/rgb(191, 201/*inner*/, 211)])'}
+  data-tw={
+    '2xl:(// ####@@@@ [background:/*start*/rgb(191, 201/*inner*/, 211)])'
+  }
 /> // comments within multiline comment
 ;<div
   css={{
@@ -55792,6 +55800,9 @@ import tw from './macro'
 // tw import + short css
 ;<div css={tw\`lg:tw-bg-red-500 max-width[100vw]\`} />
 
+// tw import + arbitrary property
+;<div css={tw\`lg:tw-bg-red-500 [max-width:100vw]\`} />
+
 // className should be ignored without the prefix
 ;<div className="block" />
 
@@ -55801,8 +55812,10 @@ import tw from './macro'
 // group
 ;<div tw="hover:(lg:tw-bg-red-500)" />
 ;<div tw="hover:(lg:tw-bg-red-500 max-width[100vw])" />
+;<div tw="hover:(lg:tw-bg-red-500 [max-width:100vw])" />
 ;<div css={tw\`hover:(lg:tw-bg-red-500)\`} />
 ;<div css={tw\`hover:(lg:tw-bg-red-500 max-width[100vw])\`} />
+;<div css={tw\`hover:(lg:tw-bg-red-500 [max-width:100vw])\`} />
 
 // custom plugin classes
 ;<div tw="tw-plugin-class" />
@@ -55849,6 +55862,16 @@ import tw from './macro'
     },
   }}
   data-tw={'lg:tw-bg-red-500 max-width[100vw]'}
+/> // tw import + arbitrary property
+;<div
+  css={{
+    maxWidth: '100vw',
+    '@media (min-width: 1024px)': {
+      '--tw-bg-opacity': '1',
+      backgroundColor: 'rgb(239 68 68 / var(--tw-bg-opacity))',
+    },
+  }}
+  data-tw={'lg:tw-bg-red-500 [max-width:100vw]'}
 /> // className should be ignored without the prefix
 ;<div className="block" /> // className should be converted with a prefix
 ;<div
@@ -55887,6 +55910,18 @@ import tw from './macro'
         '--tw-bg-opacity': '1',
         backgroundColor: 'rgb(239 68 68 / var(--tw-bg-opacity))',
       },
+      maxWidth: '100vw',
+    },
+  }}
+  data-tw="hover:(lg:tw-bg-red-500 [max-width:100vw])"
+/>
+;<div
+  css={{
+    ':hover': {
+      '@media (min-width: 1024px)': {
+        '--tw-bg-opacity': '1',
+        backgroundColor: 'rgb(239 68 68 / var(--tw-bg-opacity))',
+      },
     },
   }}
   data-tw={'hover:(lg:tw-bg-red-500)'}
@@ -55902,6 +55937,18 @@ import tw from './macro'
     },
   }}
   data-tw={'hover:(lg:tw-bg-red-500 max-width[100vw])'}
+/>
+;<div
+  css={{
+    ':hover': {
+      '@media (min-width: 1024px)': {
+        '--tw-bg-opacity': '1',
+        backgroundColor: 'rgb(239 68 68 / var(--tw-bg-opacity))',
+      },
+      maxWidth: '100vw',
+    },
+  }}
+  data-tw={'hover:(lg:tw-bg-red-500 [max-width:100vw])'}
 /> // custom plugin classes
 ;<div
   css={{
@@ -59293,6 +59340,7 @@ exports[`twin.macro sassyPseudo.js: sassyPseudo.js 1`] = `
 import tw from './macro'
 
 tw\`hover:block first:mt-2 last-of-type:max-width[20px]\`
+tw\`hover:block first:mt-2 last-of-type:[max-width:20px]\`
 
 tw\`my-class1\`
 tw\`my-class2\`
@@ -59300,6 +59348,17 @@ tw\`my-class3\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+;({
+  '&:hover': {
+    display: 'block',
+  },
+  '&:first-child': {
+    marginTop: '0.5rem',
+  },
+  '&:last-of-type': {
+    maxWidth: '20px',
+  },
+})
 ;({
   '&:hover': {
     display: 'block',
@@ -62440,6 +62499,9 @@ import tw from './macro'
 ;<div tw="hover:(maxWidth[100vw - 2rem] before:content['test'])!" />
 ;<div tw="hover:(maxWidth[100vw - 2rem]! before:content['test'])" />
 
+// within css prop
+;<div css={tw\`lg:bg-red-500 max-width[100vw]\`} />
+
 // within tw import
 tw\`maxWidth[100vw - 2rem]\`
 tw\`maxWidth[100vw - 2rem] block\`
@@ -62593,6 +62655,15 @@ tw\`--color[this theme(colors.red.500) that]\`
       ':before': {
         content: "'test'",
       },
+    },
+  }}
+/> // within css prop
+;<div
+  css={{
+    maxWidth: '100vw',
+    '@media (min-width: 1024px)': {
+      '--tw-bg-opacity': '1',
+      backgroundColor: 'rgb(239 68 68 / var(--tw-bg-opacity))',
     },
   }}
 /> // within tw import

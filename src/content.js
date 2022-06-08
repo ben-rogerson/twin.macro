@@ -1,26 +1,28 @@
 const addContentClass = (classes, state) => {
-  const newClasses = []
-  // FIXME: Remove comment and fix next line
-  // eslint-disable-next-line unicorn/no-array-for-each
-  classes.forEach(classSet => {
+  const classList = []
+  const newContentValue = state.isEmotion ? '""' : 'var(--tw-content)'
+
+  for (const classSet of classes) {
     const shouldAddContent = /(?!.*:content($|\[))(before:|after:)/.test(
       classSet
     )
-    if (!shouldAddContent) return newClasses.push(classSet)
+    if (!shouldAddContent) {
+      classList.push(classSet)
+      continue
+    }
 
     const variants = classSet.split(':').slice(0, -1).join(':')
+    const classCheck = `${variants}:content`
 
     // Avoid adding content if it's already in the new class list
-    if (!newClasses.some(c => c.startsWith(`${variants}:content`)))
+    if (!classList.some(c => c.startsWith(classCheck)))
       // Temp fix until emotion supports css variables with the content property
-      newClasses.push(
-        `${variants}:content[${state.isEmotion ? '""' : 'var(--tw-content)'}]`
-      )
+      classList.push(`${variants}:[content:${newContentValue}]`)
 
-    newClasses.push(classSet)
-  })
+    classList.push(classSet)
+  }
 
-  return newClasses
+  return classList
 }
 
 export { addContentClass }

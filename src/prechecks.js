@@ -1,4 +1,4 @@
-import { throwIf, isShortCss } from './utils'
+import { throwIf, isShortCss, isArbitraryProperty } from './utils'
 import { logBadGood } from './logging'
 
 const precheckGroup = ({ classNameRaw }) =>
@@ -25,6 +25,7 @@ const joinWithNoDoubleHyphens = arr => arr.join('-').replace(/-+/g, '-')
 
 const preCheckPrefix = ({ pieces: { className, hasPrefix }, state }) => {
   if (isShortCss(className)) return
+  if (isArbitraryProperty(className)) return
 
   const { prefix } = state.config
   if (hasPrefix === Boolean(prefix)) return

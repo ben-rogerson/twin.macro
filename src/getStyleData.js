@@ -11,7 +11,6 @@ import {
   logNotFoundVariant,
   logNotFoundClass,
   debugSuccess,
-  logBadGood,
 } from './logging'
 import { addContentClass } from './content'
 import applyTransforms from './transforms'
@@ -116,20 +115,6 @@ export default (classes, args) => {
       return results
     }
 
-    // Error if short css is used and disabled
-    const isShortCssDisabled =
-      state.configTwin.disableShortCss && type === 'shortCss' && !isCsOnly
-    throwIf(isShortCssDisabled, () =>
-      logBadGood(
-        `Short css has been disabled in the config so “${classNameRaw}” won’t work${
-          !state.configTwin.disableCsProp ? ' outside the cs prop' : ''
-        }.`,
-        !state.configTwin.disableCsProp
-          ? `Add short css with the cs prop: &lt;div cs="${classNameRaw}" /&gt;`
-          : ''
-      )
-    )
-
     // Kick off suggestions when no class matches
     throwIf(!hasMatches && !hasUserPlugins, () =>
       errorSuggestions({ pieces, state, isCsOnly })
@@ -139,6 +124,7 @@ export default (classes, args) => {
       theme,
       pieces,
       state,
+      isCsOnly,
       className,
       classNameRaw,
       corePluginName,

@@ -1,4 +1,4 @@
 {
-  "includeClassNames": true,
+  "disableShortCss": false,
   "disableCsProp": false
 }
