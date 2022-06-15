@@ -370,7 +370,10 @@ const normalizeCoreConfig = ({
       (result, transformer) => transformer({ corePluginName, target: result }),
       target
     ),
-    value: typeof value === 'function' ? '' : String(value), // Make sure objects are flattened and viewable
+    value:
+      (typeof value === 'function' && '') ||
+      (Array.isArray(value) && JSON.stringify(value)) ||
+      String(value), // Make sure objects are flattened and viewable
   }))
 
   const filteredResults = results.filter(
