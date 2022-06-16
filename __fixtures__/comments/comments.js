@@ -58,7 +58,7 @@ hum
 // break right bracket
 ;<div
   css={tw`2xl:(// ####@@@@ 
-  background[/*start*/rgb(191, 201/*inner*/, 211)])`}
+  [background:/*start*/rgb(191, 201/*inner*/, 211)])`}
 />
 
 // comments within multiline comment

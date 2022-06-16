@@ -14,5 +14,6 @@ tw`[.class1 .class2]:[.class3]:block` // Multiple dynamic variants
 tw`[p]:placeholder-red-500/[var(--myvar)]`
 tw`[p]:mt-[var(--myvar)]`
 tw`[p]:marginTop[var(--myvar)]`
+tw`[p]:[margin-top:var(--myvar)]`
 
 tw`[p]:(mt-4 mb-4)`

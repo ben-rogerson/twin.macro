@@ -1,4 +1,4 @@
 {
-  "sassyPseudo": true,
+  "disableCsProp": false,
   "disableShortCss": false
 }

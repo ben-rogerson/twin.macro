@@ -83,6 +83,8 @@ const Component = () => (
 )
 ```
 
+[...]
+
 ## Keeping jsx clean
 
 It’s no secret that when tailwind class sets become larger, they obstruct the readability of other jsx props.
@@ -207,13 +209,13 @@ const Component = ({ variant }: ContainerProps) => (
 
 ## Interpolation workaround
 
-Due to Babel limitations, tailwind classes and short css values can’t have any part of them dynamically created.
+Due to Babel limitations, tailwind classes and arbitrary properties can’t have any part of them dynamically created.
 
 So interpolated values like this won’t work:
 
 ```js
 <div tw="mt-${spacing === 'sm' ? 2 : 4}" /> // Won't work with tailwind classes
-<div tw="margin-top[${spacing === 'sm' ? 2 : 4}rem]" /> // Won't work with short css
+<div tw="[margin-top:${spacing === 'sm' ? 2 : 4}rem]" /> // Won't work with arbitrary properties
 ```
 
 This is because babel doesn’t know the values of the variables and so twin can’t make a conversion to css.
@@ -249,6 +251,61 @@ import 'twin.macro'
 const Component = ({ width = 5 }) => <div css={{ maxWidth: `${width}rem` }} />
 ```
 
+## Custom selectors (Arbitrary variants)
+
+Use square-bracketed arbitrary variants to style elements with a custom selector:
+
+```js
+import tw from 'twin.macro'
+
+const buttonStyles = tw`
+  bg-black
+  [> i]:block
+  [> span]:(text-blue-500 w-10)
+`
+
+const Component = () => (
+  <button css={buttonStyles}>
+    <i>Icon</i>
+    <span>Label</span>
+  </button>
+)
+```
+
+<details>
+  <summary>More examples</summary>
+
+<br/>
+
+```js
+// Style the current element based on a theming/scoping className
+;<body className="dark-theme">
+  <div tw="[.dark-theme &]:(bg-black text-white)">Dark theme</div>
+</body>
+
+// Add custom group selectors
+;<button className="group" disabled>
+  <span tw="[.group:disabled &]:text-gray-500">Text gray</span>
+</button>
+
+// Add custom height queries
+;<div tw="[@media (min-height: 800px)]:hidden">
+  This window is less than 800px height
+</div>
+
+// Use custom at-rules like @supports
+;<div tw="[@supports (display: grid)]:grid">A grid</div>
+
+// Style the current element based on a dynamic className
+const Component = ({ isLarge }) => (
+  <div className={isLarge && 'is-large'} tw="text-base [&.is-large]:text-lg">
+    ...
+  </div>
+)
+```
+
+</details>
+
 ## Custom class values (Arbitrary values)
 
 Custom values can be added to many tailwind classes by using square brackets to define the custom value:
@@ -265,44 +322,43 @@ Custom values can be added to many tailwind classes by using square brackets to 
 
 ## Custom css
 
-Basic css is added using the “short css” syntax or within vanilla css which supports more advanced use cases like dynamic/interpolated values.
+Basic css is added using [arbitrary properties](https://tailwindcss.com/docs/adding-custom-styles#arbitrary-properties) or within vanilla css which supports more advanced use cases like dynamic/interpolated values.
 
 ### Simple css styling
 
-To add simple custom styling, use twins “short css” syntax:
+To add simple custom styling, use [arbitrary properties](https://tailwindcss.com/docs/adding-custom-styles#arbitrary-properties):
 
 ```js
 // Set css variables
-<div tw="--my-width-variable[calc(100vw - 10rem)]" />
+<div tw="[--my-width-variable:calc(100vw - 10rem)]" />
 
 // Set vendor prefixes
-<div tw="-webkit-line-clamp[3]" />
+<div tw="[-webkit-line-clamp:3]" />
 
 // Set grid areas
-<div tw="grid-area[1 / 1 / 4 / 2]" />
+<div tw="[grid-area:1 / 1 / 4 / 2]" />
 ```
 
-Use short css with twin’s variants and grouping features:
+Use arbitrary properties with variants or twins grouping features:
 
 ```js
-<div tw="block md:(relative grid-area[1 / 1 / 4 / 2])" />
+<div tw="block md:(relative [grid-area:1 / 1 / 4 / 2])" />
 ```
 
-Short css also works with the `tw` import:
+Arbitrary properties also work with the `tw` import:
 
 ```js
 import tw from 'twin.macro'
 ;<div
   css={tw`
     block
-    md:(relative grid-area[1 / 1 / 4 / 2])
+    md:(relative [grid-area:1 / 1 / 4 / 2])
   `}
 />
 ```
 
-- Add a trailing bang to make the custom css !important: `grid-area[1 / 1 / 4 / 2]!`
-- To keep short css separate from tw classes, add it in the `cs` prop: `<div cs="grid-area[1 / 1 / 4 / 2]" />`
-- Short css can have camelCase properties: `gridArea[1 / 1 / 4 / 2]`
+- Add a bang to make the custom css !important: `![grid-area:1 / 1 / 4 / 2]`
+- Arbitrary properties can have camelCase properties: `[gridArea:1 / 1 / 4 / 2]`
 
 ### Advanced css styling
 

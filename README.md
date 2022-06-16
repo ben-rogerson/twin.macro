@@ -11,7 +11,7 @@
 
 ---
 
-Style jsx elements using Tailwind classes:
+Style jsx elements using Tailwind v3 classes:
 
 ```js
 import 'twin.macro'
@@ -118,30 +118,6 @@ tw`text-sm md:text-lg`
 
 **🐹 Adds no size to your build** - Twin converts the classes you’ve used into css objects using Babel and then compiles away, leaving no runtime code
 
-**🛎 Helpful suggestions for mistypings** - Twin chimes in with class and variant values from your Tailwind config:
-
-```bash
-✕ ml-1.25 was not found
-
-Try one of these classes:
-
-- ml-1.5 > 0.375rem
-- ml-1 > 0.25rem
-- ml-10 > 2.5rem
-- ml-11 > 2.75rem
-- ml-12 > 3rem
-```
-
-**💡 Works with the official tailwind vscode plugin** - Avoid having to look up your classes with auto-completions straight from your Tailwind config - [See setup instructions →](https://github.com/ben-rogerson/twin.macro/discussions/227)
-
-**🚥 Over 40 variants to prefix on your classes** - The prefixes are “always on” and available for your classes
-
-- Prefix with `hocus:` to style hover + focus at the same time
-- Style form field states with `checked:`, `invalid:` and `required:`
-- Stack up variants whenever you need them `sm:hover:first:bg-black`
-
-Check out the [full list of variants →](https://github.com/ben-rogerson/twin.macro/blob/master/src/config/variantConfig.js)
-
 **🍱 Apply variants to multiple classes at once with variant groups**
 
 ```js
@@ -160,14 +136,18 @@ const stackedVariants = () => <div tw="sm:hover:(bg-black text-white)" />
 const groupsInGroups = () => <div tw="sm:(bg-black hover:(bg-white w-10))" />
 ```
 
-**👑 Add vanilla css that integrates with twins features**
+**🛎 Helpful suggestions for mistypings** - Twin chimes in with class and variant values from your Tailwind config:
 
-```js
-const setCssVariables = () => <div tw="--base-color[#C0FFEE]" />
+```bash
+✕ ml-1.25 was not found
 
-const customGridProperties = () => <div tw="grid-area[1 / 1 / 4 / 2]" />
+Try one of these classes:
 
-const vendorPrefixes = () => <div tw="-webkit-mask-image[url(mask.png)]" />
+- ml-1.5 > 0.375rem
+- ml-1 > 0.25rem
+- ml-10 > 2.5rem
+- ml-11 > 2.75rem
+- ml-12 > 3rem
 ```
 
 **🖌️ Use the theme import to add values from your tailwind config**
@@ -179,6 +159,8 @@ const Input = () => <input css={css({ color: theme`colors.purple.500` })} />
 ```
 
 See more examples [using the theme import →](https://github.com/ben-rogerson/twin.macro/pull/106)
+
+**💡 Works with the official tailwind vscode plugin** - Avoid having to look up your classes with auto-completions straight from your Tailwind config - [setup instructions →](https://github.com/ben-rogerson/twin.macro/discussions/227)
 
 **💥 Add !important to any class with a trailing or leading bang!**
 
@@ -211,8 +193,8 @@ Twin works within many modern stacks - take a look at these examples to get star
 ### Advanced frameworks
 
 - **Gatsby**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-emotion)
-- **Next.js**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion) / [emotion (ts) 🎉](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion-typescript) / [stitches (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/next-stitches-typescript)
-- **Blitz.js**<br/>[emotion (ts) 🎉](https://github.com/ben-rogerson/twin.examples/tree/master/blitz-emotion-typescript)
+- **Next.js**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion) / [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion-typescript) / [stitches (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/next-stitches-typescript)
+- **Blitz.js**<br/>[emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/blitz-emotion-typescript)
 - **Laravel**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/laravel-styled-components-typescript)
 
 ### Component libraries
@@ -220,9 +202,7 @@ Twin works within many modern stacks - take a look at these examples to get star
 - **Storybook**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-styled-components-typescript) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-emotion)
 - **yarn/npm workspaces + Next.js + shared ui components**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-styled-components)
 - **Yarn workspaces + Rollup**<br/>[emotion](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-emotion)
-- [**HeadlessUI** (ts) 🎉](https://github.com/ben-rogerson/twin.examples/tree/master/headlessui-typescript)
-
-🎉&nbsp;: Fresh example
+- [**HeadlessUI** (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/headlessui-typescript)
 
 ## Community
 

@@ -497,6 +497,7 @@ export {
   logNoVariant,
   logNotAllowed,
   logBadGood,
+  logErrorFix,
   logGeneralError,
   logNotFoundVariant,
   logNotFoundClass,
