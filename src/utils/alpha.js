@@ -72,7 +72,7 @@ const withAlpha = ({
       }
     }
 
-    color = color({ opacityVariable: variable })
+    color = color({ opacityVariable: variable || '' })
   }
 
   const parsed = parseColor(color)

@@ -3,7 +3,6 @@ import chalk from 'chalk'
 import { corePlugins } from './config'
 import {
   getTheme,
-  stripNegative,
   isEmpty,
   throwIf,
   toArray,
@@ -327,6 +326,11 @@ const flattenObject = (object, prefix = '') => {
     return result
   }, {})
 }
+
+const stripNegative = string =>
+  string && string.length > 1 && string.slice(0, 1) === '-'
+    ? string.slice(1, string.length)
+    : string
 
 const targetTransforms = [
   ({ target }) => (target === 'DEFAULT' ? '' : target),

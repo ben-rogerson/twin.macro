@@ -1,7 +1,6 @@
 import { corePlugins } from './config'
 import {
   isShortCss as getIsShortCss,
-  isArbitraryCss,
   toArray,
   isArbitraryProperty,
 } from './utils/misc'
@@ -45,6 +44,8 @@ const isEmpty = value =>
   value === null ||
   (typeof value === 'object' && Object.keys(value).length === 0) ||
   (typeof value === 'string' && value.trim().length === 0)
+
+const isArbitraryCss = className => new RegExp(/-\[/).test(className)
 
 export const getProperties = (className, state, { isCsOnly = false }) => {
   if (!className) return

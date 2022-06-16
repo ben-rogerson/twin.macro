@@ -1,6 +1,6 @@
 import deepMerge from 'lodash.merge'
 import buildPluginApi from './pluginApi'
-import { formatCssProperty, isMediaQuery, isClass } from '../utils'
+import { formatCssProperty, isClass } from '../utils'
 import {
   LAYER_BASE,
   LAYER_COMPONENTS,
@@ -13,6 +13,8 @@ const stripLeadingDot = string =>
 
 const replaceSelectorWithParent = (string, replacement) =>
   string.replace(replacement, `{{${stripLeadingDot(replacement)}}}`)
+
+const isMediaQuery = str => str.startsWith('@media')
 
 const parseSelector = selector => {
   if (!selector) return

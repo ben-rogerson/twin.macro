@@ -1,4 +1,4 @@
-import { throwIf, isNumeric } from '../utils'
+import { throwIf } from '../utils'
 import { logGeneralError } from '../logging'
 
 // Arbitrary values with a theme value, eg: tw`h-[calc(100%-theme('spacing.16'))]`
@@ -13,6 +13,12 @@ const replaceThemeValue = (value, { theme }) => {
   )
 
   return value.replace(themeFunction, themeValue)
+}
+
+const isNumeric = str => {
+  /* eslint-disable-next-line eqeqeq */
+  if (typeof str != 'string') return false
+  return !Number.isNaN(str) && !Number.isNaN(Number.parseFloat(str))
 }
 
 const maybeAddNegative = (value, negative, isMatchedKeyNegative = false) => {

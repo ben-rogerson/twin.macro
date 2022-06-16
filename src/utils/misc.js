@@ -72,27 +72,12 @@ const getTheme = configTheme => grab => {
   return objectToStringValues(transformThemeValue(themeKey)(themeValue))
 }
 
-const stripNegative = string =>
-  string && string.length > 1 && string.slice(0, 1) === '-'
-    ? string.slice(1, string.length)
-    : string
-
 const camelize = string =>
   string && string.replace(/\W+(.)/g, (_, chr) => chr.toUpperCase())
 
-const isNumeric = str => {
-  /* eslint-disable-next-line eqeqeq */
-  if (typeof str != 'string') return false
-  return !Number.isNaN(str) && !Number.isNaN(Number.parseFloat(str))
-}
-
 const isClass = str => new RegExp(/(\s*\.|{{)\w/).test(str)
 
-const isMediaQuery = str => str.startsWith('@media')
-
 const isShortCss = className => new RegExp(/[^/-]\[/).test(className)
-
-const isArbitraryCss = className => new RegExp(/-\[/).test(className)
 
 const isArbitraryProperty = className =>
   className.startsWith('[') && className.endsWith(']')
@@ -100,11 +85,6 @@ const isArbitraryProperty = className =>
 // Split a string at a value
 const splitOnFirst = (input, delim) =>
   (([first, ...rest]) => [first, rest.join(delim)])(input.split(delim))
-
-const splitShortCss = className => {
-  const [property, value] = splitOnFirst(className, '[')
-  return [property, value.slice(0, -1).trim()]
-}
 
 const formatProp = classes =>
   replaceSpaceId(
@@ -162,17 +142,12 @@ export {
   throwIf,
   isEmpty,
   getTheme,
-  stripNegative,
   get,
   camelize,
-  isNumeric,
   isClass,
-  isMediaQuery,
   isShortCss,
-  isArbitraryCss,
   isArbitraryProperty,
   splitOnFirst,
-  splitShortCss,
   formatProp,
   isSpaceSeparatedColor,
   isObject,

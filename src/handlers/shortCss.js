@@ -1,6 +1,11 @@
-import { throwIf, camelize, splitShortCss, replaceSpaceId } from '../utils'
+import { throwIf, camelize, splitOnFirst, replaceSpaceId } from '../utils'
 import { logBadGood } from '../logging'
 import { replaceThemeValue } from './helpers'
+
+const splitShortCss = className => {
+  const [property, value] = splitOnFirst(className, '[')
+  return [property, value.slice(0, -1).trim()]
+}
 
 /**
  * @deprecated
