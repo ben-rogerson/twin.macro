@@ -9,22 +9,20 @@ import { supportsArbitraryValues } from './../configHelpers'
 import { getCoercedValueFromTypeMap } from './../coerced'
 import { maybeAddNegative } from './helpers'
 
-const getDynamicStyle = (
-  config,
-  { matchedConfig, classValue, theme, pieces }
-) => {
+const getDynamicStyle = (c, { matchedConfig, classValue, theme, pieces }) => {
   // Array values loop over cooerced object - { coerced: { color: () => {}, length () => {} } }
-  if (config.coerced) {
+  if (c.coerced) {
     const coerced = ([type, config], forceReturn) =>
       getCoercedValueFromTypeMap(type, {
         value: classValue,
+        configKey: c.config,
         config,
         pieces,
         theme,
         forceReturn,
       })
     const [result] = getFirstValue(
-      Object.entries(config.coerced),
+      Object.entries(c.coerced),
       (type, { isLast }) => coerced(type, isLast)
     )
     return result
@@ -41,11 +39,11 @@ const getDynamicStyle = (
     opacityErrorNotFound({ className: pieces.classNameRaw })
   )
 
-  return Array.isArray(config.property)
+  return Array.isArray(c.property)
     ? // FIXME: Remove comment and fix next line
       // eslint-disable-next-line unicorn/prefer-object-from-entries
-      config.property.reduce((result, p) => ({ ...result, [p]: value }), {})
-    : { [config.property]: value }
+      c.property.reduce((result, p) => ({ ...result, [p]: value }), {})
+    : { [c.property]: value }
 }
 
 export default props => {

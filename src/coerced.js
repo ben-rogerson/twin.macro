@@ -204,13 +204,24 @@ const getCoercedValueFromTypeMap = (type, context) => {
   }
 
   let extraStyles
-  if (Array.isArray(context.value)) {
+
+  if (type === 'family-name' && Array.isArray(context.value)) {
+    context.value = context.value.join(', ')
+  }
+
+  if (
+    context.configKey &&
+    context.configKey === 'fontSize' &&
+    Array.isArray(context.value)
+  ) {
     const [value, ...rest] = context.value
-    if (rest.length === 1 && isObject(rest[0])) {
-      extraStyles = rest[0]
+    if (rest.length === 1) {
       context.value = value
-    } else {
-      context.value = context.value.join(', ')
+      // fontSize: { base: ['0.875rem', { lineHeight: '2em' }]}
+      extraStyles =
+        (isObject(rest[0]) && rest[0]) ||
+        // fontSize: { base: ['0.875rem', '1.5']}
+        (typeof value === 'string' && { lineHeight: rest[0] })
     }
   }
 

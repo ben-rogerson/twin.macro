@@ -20594,7 +20594,7 @@ tw\`font-customFontWeightAsNumber\`
   color: '0',
 })
 ;({
-  color: 'blue, purple, orange',
+  color: 'blue,purple,orange',
 })
 ;({
   '--tw-text-opacity': '1',
@@ -20629,7 +20629,7 @@ tw\`font-customFontWeightAsNumber\`
   backgroundColor: '0',
 })
 ;({
-  backgroundColor: 'blue, purple, orange',
+  backgroundColor: 'blue,purple,orange',
 })
 ;({
   '--tw-bg-opacity': '1',
@@ -25624,6 +25624,9 @@ tw\`text-9xl\`
 tw\`text-[2.23rem]\`
 tw\`text-[length:var(--font-size)]\`
 
+tw\`text-arraystring\`
+tw\`text-arrayobject\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // https://tailwindcss.com/docs/font-size
@@ -25706,6 +25709,14 @@ tw\`text-[length:var(--font-size)]\`
       lineHeight: '1',
     },
   ],
+  arraystring: ['0.875rem', '1.5'],
+  arrayobject: [
+    '0.875rem',
+    {
+      lineHeight: '2rem',
+      color: 'red',
+    },
+  ],
 })
 ;({
   fontSize: '0.75rem',
@@ -25764,6 +25775,15 @@ tw\`text-[length:var(--font-size)]\`
 })
 ;({
   fontSize: 'var(--font-size)',
+})
+;({
+  fontSize: '0.875rem',
+  lineHeight: '1.5',
+})
+;({
+  fontSize: '0.875rem',
+  lineHeight: '2rem',
+  color: 'red',
 })
 
 
