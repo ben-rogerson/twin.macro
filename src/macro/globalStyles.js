@@ -130,8 +130,10 @@ const getGlobalStyles = ({ state }) => {
     state.userPluginData && state.userPluginData.base
   )
 
+  const hasPreflight = state.config.corePlugins.includes('preflight')
+
   const resolvedStyles = globalStyles.map(gs =>
-    typeof gs === 'function' ? gs({ theme, withAlpha }) : gs
+    typeof gs === 'function' ? gs({ theme, withAlpha, hasPreflight }) : gs
   )
 
   if (strippedPlugins) resolvedStyles.push(strippedPlugins)
