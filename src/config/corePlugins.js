@@ -1,3 +1,7 @@
+import { toArray } from '../utils'
+import { normalizeScreens } from 'tailwindcss/lib/util/normalizeScreens'
+import buildMediaQuery from 'tailwindcss/lib/util/buildMediaQuery'
+
 // https://tailwindcss.com/docs/font-variant-numeric
 // This feature uses var+comment hacks to get around property stripping:
 // https://github.com/tailwindlabs/tailwindcss.com/issues/522#issuecomment-687667238
@@ -40,7 +44,204 @@ const cssBackdropFilterValue = [
 const cssTouchActionValue =
   'var(--tw-pan-x) var(--tw-pan-y) var(--tw-pinch-zoom)'
 
-export default {
+const variantPlugins = {
+  pseudoElementVariants({ addVariant }) {
+    addVariant('first-letter', '&::first-letter')
+    addVariant('first-line', '&::first-line')
+
+    addVariant('marker', ['& *::marker', '&::marker'])
+    addVariant('selection', ['& *::selection', '&::selection'])
+
+    addVariant('file', '&::file-selector-button')
+
+    addVariant('placeholder', '&::placeholder')
+
+    addVariant('backdrop', '&::backdrop')
+
+    addVariant('before', '&:before') // content is auto added in getStyleData@addContentClass
+    addVariant('after', '&:after') // content is auto added in getStyleData@addContentClass
+  },
+
+  pseudoClassVariants({ addVariant }) {
+    const pseudoVariants = [
+      // Positional
+      ['first', '&:first-child'],
+      ['last', '&:last-child'],
+      ['only', '&:only-child'],
+      ['odd', '&:nth-child(odd)'],
+      ['even', '&:nth-child(even)'],
+      'first-of-type',
+      'last-of-type',
+      'only-of-type',
+
+      // State
+      'visited', // uses avoidAlpha feature
+      'target',
+      ['open', '&[open]'],
+
+      // Forms
+      'default',
+      'checked',
+      'indeterminate',
+      'placeholder-shown',
+      'autofill',
+      'optional',
+      'required',
+      'valid',
+      'invalid',
+      'in-range',
+      'out-of-range',
+      'read-only',
+
+      // Content
+      'empty',
+
+      // Interactive
+      'focus-within',
+      'hover',
+      'focus',
+      'focus-visible',
+      'active',
+      'enabled',
+      'disabled',
+
+      // Twin custom
+      ['all', '& *'],
+      ['all-child', '& > *'],
+      ['sibling', '& ~ *'],
+      ['hocus', ['&:hover', '&:focus']],
+      'link',
+      'read-write',
+      ['svg', '& svg'],
+      ['even-of-type', '&:nth-of-type(even)'],
+      ['odd-of-type', '&:nth-of-type(odd)'],
+    ].flatMap(v => {
+      let [name, selector] = toArray(v)
+      selector = selector || `&:${name}`
+      const config = [name, selector]
+
+      // Create a :not() version of the selectors above
+      const notConfig = [
+        `not-${name}`,
+        toArray(selector).map(s => `&:not(${stripAmpersands(s)})`),
+      ]
+
+      return [config, notConfig]
+    })
+
+    for (const [name, selector] of pseudoVariants) {
+      addVariant(name, toArray(selector).join(','))
+    }
+
+    for (const [name, selector] of pseudoVariants) {
+      const groupSelector = toArray(selector).map(s =>
+        s.replace(/&(.+)/g, ':merge(.group){{$1}} &')
+      )
+      addVariant(`group-${name}`, groupSelector)
+    }
+
+    for (const [name, selector] of pseudoVariants) {
+      const peerSelector = toArray(selector).map(s =>
+        s.replace(/&(.+)/g, ':merge(.peer){{$1}} ~ &')
+      )
+      addVariant(`peer-${name}`, peerSelector)
+    }
+  },
+
+  directionVariants({ addVariant }) {
+    addVariant('ltr', '[dir="ltr"] &')
+    addVariant('rtl', '[dir="rtl"] &')
+  },
+
+  reducedMotionVariants({ addVariant }) {
+    addVariant('motion-safe', '@media (prefers-reduced-motion: no-preference)')
+    addVariant('motion-reduce', '@media (prefers-reduced-motion: reduce)')
+  },
+
+  darkVariants({ config, addVariant }) {
+    let [mode, className = '.dark'] = [config('darkMode', 'media')]
+
+    if (mode === false) {
+      mode = 'media'
+      console.warn('darkmode-false', [
+        'The `darkMode` option in your Tailwind CSS configuration is set to `false`, which now behaves the same as `media`.',
+        'Change `darkMode` to `media` or remove it entirely.',
+        'https://tailwindcss.com/docs/upgrade-guide#remove-dark-mode-configuration',
+      ])
+    }
+
+    if (mode === 'class') {
+      addVariant('dark', `${className} &`)
+    } else if (mode === 'media') {
+      addVariant('dark', '@media (prefers-color-scheme: dark)')
+    }
+  },
+
+  lightVariants({ config, addVariant }) {
+    let [mode, className = '.light'] = [
+      config('lightMode') || config('darkMode') || 'media',
+    ]
+
+    if (mode === false) {
+      mode = 'media'
+      console.warn('lightmode-false', [
+        'The `lightMode` option in your Tailwind CSS configuration is set to `false`, which now behaves the same as `media`.',
+        'Change `lightMode` to `media` or remove it entirely.',
+        'https://tailwindcss.com/docs/upgrade-guide#remove-dark-mode-configuration',
+      ])
+    }
+
+    if (mode === 'class') {
+      addVariant('light', `${className} &`)
+    } else if (mode === 'media') {
+      addVariant('light', '@media (prefers-color-scheme: light)')
+    }
+  },
+
+  printVariants({ addVariant }) {
+    addVariant('print', '@media print')
+    addVariant('screen', '@media screen') // Twin only: Extra media type
+  },
+
+  screenVariants({ theme, addVariant }) {
+    for (const screen of normalizeScreens(theme('screens'))) {
+      const query = buildMediaQuery(screen)
+      addVariant(screen.name, `@media ${query}`)
+    }
+  },
+
+  orientationVariants({ addVariant }) {
+    addVariant('portrait', '@media (orientation: portrait)')
+    addVariant('landscape', '@media (orientation: landscape)')
+  },
+
+  prefersContrastVariants({ addVariant }) {
+    addVariant('contrast-more', '@media (prefers-contrast: more)')
+    addVariant('contrast-less', '@media (prefers-contrast: less)')
+  },
+
+  extraCursorVariants({ addVariant }) {
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-pointer
+    addVariant('any-pointer-none', '@media (any-pointer: none)')
+    addVariant('any-pointer-fine', '@media (any-pointer: fine)')
+    addVariant('any-pointer-coarse', '@media (any-pointer: coarse)')
+
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer
+    addVariant('pointer-none', '@media (pointer: none)')
+    addVariant('pointer-fine', '@media (pointer: fine)')
+    addVariant('pointer-coarse', '@media (pointer: coarse)')
+
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover
+    addVariant('any-hover-none', '@media (any-hover: none)')
+    addVariant('any-hover', '@media (any-hover: hover)')
+
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/@media/hover
+    addVariant('can-hover', '@media (hover: hover)')
+    addVariant('cant-hover', '@media (hover: none)')
+  },
+}
+
+const corePlugins = {
   // https://tailwindcss.com/docs/container
   container: {
     output({ theme, pieces }) {
@@ -324,8 +525,6 @@ export default {
   // https://tailwindcss.com/docs/border-collapse
   'border-collapse': { output: { borderCollapse: 'collapse' } },
   'border-separate': { output: { borderCollapse: 'separate' } },
-
-  // TODO: Border spacing
 
   // https://tailwindcss.com/docs/transform-origin
   origin: { property: 'transformOrigin', config: 'transformOrigin' },
@@ -1848,3 +2047,9 @@ export default {
     { output: { content: '""' } }, // Deprecated (keep last in array here)
   ],
 }
+
+function stripAmpersands(string) {
+  return typeof string === 'string' ? string.replace(/&/g, '').trim() : string
+}
+
+export { corePlugins, variantPlugins }

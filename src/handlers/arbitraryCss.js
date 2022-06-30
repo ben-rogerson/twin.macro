@@ -1,5 +1,5 @@
 import stringSimilarity from 'string-similarity'
-import { corePlugins } from './../config'
+import { corePlugins } from './../config/corePlugins'
 import { getTypeCoerced, getCoercedValueFromTypeMap } from './../coerced'
 import {
   throwIf,

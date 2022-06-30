@@ -19,7 +19,7 @@ module.exports = {
     'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0, maxBOF: 0 }],
     'no-unused-expressions': 0,
     'no-negated-condition': 0,
-    'no-warning-comments': 0,
+    'no-warning-comments': ['warn', { terms: ['todo'], location: 'start' }],
     'operator-assignment': 0,
     'import/no-unresolved': 0,
     'chai-friendly/no-unused-expressions': 0,

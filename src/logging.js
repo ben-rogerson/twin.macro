@@ -1,13 +1,15 @@
 import stringSimilarity from 'string-similarity'
 import chalk from 'chalk'
-import { corePlugins } from './config'
+import { corePlugins } from './config/corePlugins'
 import {
+  get,
   getTheme,
   isEmpty,
   throwIf,
   toArray,
   isObject,
   splitOnFirst,
+  stripMergePlaceholders,
 } from './utils'
 
 const color = {
@@ -23,32 +25,47 @@ const color = {
 const spaced = string => `\n\n${string}\n`
 const warning = string => color.error(`✕ ${string}`)
 
-const inOutPlugins = (input, output, layer) =>
-  `${layer} ${color.highlight2('→')} ${input} ${color.highlight2(
-    JSON.stringify(output)
-  )}`
-
 const inOut = (input, output) =>
   `${color.success('✓')} ${input} ${color.success(JSON.stringify(output))}`
 
-const logNoVariant = (variant, validVariants) =>
-  spaced(
-    `${warning(
-      `The variant ${color.errorLight(`${variant}:`)} was not found`
-    )}\n\n${Object.entries(validVariants)
-      .map(
-        ([k, v]) =>
-          `${k}\n${v
-            .map(
-              (item, index) =>
-                `${
-                  v.length > 6 && index % 6 === 0 && index > 0 ? '\n' : ''
-                }${color.highlight(item)}:`
-            )
-            .join(color.subdued(' / '))}`
+const logNoVariant = (variant, state) => {
+  const screensList = Object.entries(
+    get(state.config, ['theme', 'screens']) || {}
+  ).map(([k, v]) => [k, [v]])
+  const variantList = [...screensList, ...state.userPluginData.variants]
+
+  const textNotFound = `The variant ${color.errorLight(
+    `${variant}:`
+  )} was not found`
+
+  const suggestions = variantList
+    .map(([variantName, styleList]) => {
+      const rating = Number(
+        stringSimilarity.compareTwoStrings(variant, variantName)
       )
-      .join('\n\n')}\n\nRead more at https://twinredirect.page.link/variantList`
-  )
+      if (rating < 0.15) return
+      return [rating, variantName, styleList]
+    })
+    .filter(Boolean)
+    .sort(([a] = [], [b] = []) => b - a)
+    .slice(0, 5)
+    .map(([, variantName, styleList] = []) =>
+      [
+        color.subdued('-'),
+        `${color.highlight(variantName)}:`,
+        color.subdued('>'),
+        styleList.map(s => stripMergePlaceholders(s)).join(', '),
+      ].join(' ')
+    )
+    .join('\n')
+
+  const suggestionText =
+    suggestions.length > 0
+      ? `\n\nTry one of these variants:\n\n${suggestions}`
+      : ''
+
+  return spaced(`${warning(textNotFound)}${suggestionText}`)
+}
 
 const logNotAllowed = (className, error, fix) =>
   spaced(
@@ -80,12 +97,20 @@ const debugSuccess = (className, log) => inOut(className, log)
 
 const formatPluginKey = key => key.replace(/(\\|(}}))/g, '').replace(/{{/g, '.')
 
+const inOutPlugins = (input, output, layer) =>
+  `${layer} ${color.highlight2('→ ')} ${input} ${color.highlight2(
+    JSON.stringify(output)
+  )}`
+
 const debugPlugins = processedPlugins => {
   console.log(
     Object.entries(processedPlugins)
       .map(([layer, group]) =>
         (layer === 'variants'
-          ? [...group].map(([k, v]) => [k, v.join(', ')])
+          ? [...group].map(([k, v]) => [
+              `${k}:`,
+              v.map(a => stripMergePlaceholders(a)).join(', '),
+            ])
           : Object.entries(group)
         )
           .map(([className, styles]) =>

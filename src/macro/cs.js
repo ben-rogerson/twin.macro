@@ -48,7 +48,6 @@ const handleCsProperty = ({ path, t, state }) => {
         t.jsxExpressionContainer(astStyles)
       )
     )
-    // TODO: Update the naming of this function
     addDataTwPropToPath({
       t,
       attributes,

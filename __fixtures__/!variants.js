@@ -1,157 +1,158 @@
 import tw from './macro'
 
-// Before/after pseudo elements
-tw`before:flex`
-tw`after:flex`
+// Pseudo element variants
+tw`first-letter:block`
+tw`first-line:block`
+tw`marker:block`
+tw`selection:block`
+tw`file:block`
+tw`placeholder:block`
+tw`backdrop:block`
+tw`before:block`
+tw`after:block`
+tw`before:(content block)`
+tw`after:(content block)`
 
-// Interactive links/buttons
-tw`hover:flex`
-tw`focus:flex`
-tw`active:flex`
-tw`visited:flex`
-tw`hocus:flex` // Twin only
-tw`link:flex`
-tw`target:flex`
-tw`focus-visible:flex`
+// Positional
+tw`first:block`
+tw`last:block`
+tw`only:block`
+tw`odd:block`
+tw`even:block`
+tw`first-of-type:block`
+tw`last-of-type:block`
+tw`only-of-type:block`
 
-// Form elements
-tw`file:flex`
+// State
+tw`visited:block`
+tw`target:block`
+tw`open:block`
 
-// Form element states
-tw`autofill:flex`
-tw`focus-within:flex`
-tw`disabled:flex`
-tw`checked:flex`
-tw`not-checked:flex`
-tw`default:flex`
-tw`enabled:flex`
-tw`indeterminate:flex`
-tw`in-range:flex`
-tw`invalid:flex`
-tw`valid:flex`
-tw`optional:flex`
-tw`out-of-range:flex`
-tw`required:flex`
-tw`placeholder:flex`
-tw`placeholder-shown:flex`
-tw`not-placeholder-shown:flex`
-tw`read-only:flex`
-tw`read-write:flex`
-tw`open:flex`
-tw`not-open:flex`
-
-// Child selectors
-tw`not-disabled:flex`
-tw`first-of-type:flex`
-tw`not-first-of-type:flex`
-tw`last-of-type:flex`
-tw`not-last-of-type:flex`
-tw`first-letter:flex`
-tw`first-line:flex`
-tw`first:flex`
-tw`not-first:flex`
-tw`last:flex`
-tw`not-last:flex`
-tw`only:flex`
-tw`not-only:flex`
-tw`only-of-type:flex`
-tw`not-only-of-type:flex`
-tw`even:flex`
-tw`odd:flex`
-tw`odd-of-type:flex`
-tw`even-of-type:flex`
-tw`svg:flex`
-tw`all:flex`
-tw`all-child:flex`
-tw`sibling:flex`
+// Forms
+tw`default:block`
+tw`checked:block`
+tw`indeterminate:block`
+tw`placeholder-shown:block`
+tw`autofill:block`
+tw`optional:block`
+tw`required:block`
+tw`valid:block`
+tw`invalid:block`
+tw`in-range:block`
+tw`out-of-range:block`
+tw`read-only:block`
 
 // Content
-tw`empty:flex`
+tw`empty:block`
 
-// Group states
-tw`group-hover:flex`
-tw`group-focus:flex`
+// Interactive
+tw`focus-within:block`
+tw`hover:block`
+tw`focus:block`
+tw`focus-visible:block`
+tw`active:block`
+tw`enabled:block`
+tw`disabled:block`
 
-// Media types
-tw`screen:flex`
-tw`print:flex`
+// Twin custom
+tw`all:block`
+tw`all-child:block`
+tw`sibling:block`
+tw`hocus:block`
+tw`link:block`
+tw`read-write:block`
+tw`svg:block`
+tw`even-of-type:block`
+tw`odd-of-type:block`
 
-// Group
-tw`group-hocus:flex` // Twin only
-tw`group-first:shadow-md`
-tw`group-last:shadow-md`
-tw`group-only:shadow-md`
-tw`group-even:shadow-md`
-tw`group-odd:shadow-md`
-tw`group-first-of-type:shadow-md`
-tw`group-last-of-type:shadow-md`
-tw`group-only-of-type:shadow-md`
-tw`group-hover:shadow-md`
-tw`group-focus:shadow-md`
-tw`group-disabled:shadow-md`
-tw`group-active:shadow-md`
-tw`group-target:shadow-md`
-tw`group-visited:shadow-md`
-tw`group-default:shadow-md`
-tw`group-checked:shadow-md`
-tw`group-indeterminate:shadow-md`
-tw`group-placeholder-shown:shadow-md`
-tw`group-autofill:shadow-md`
-tw`group-focus-within:shadow-md`
-tw`group-focus-visible:shadow-md`
-tw`group-required:shadow-md`
-tw`group-valid:shadow-md`
-tw`group-invalid:shadow-md`
-tw`group-in-range:shadow-md`
-tw`group-out-of-range:shadow-md`
-tw`group-read-only:shadow-md`
-tw`group-empty:shadow-md`
-tw`group-open:shadow-md`
-tw`group-not-open:shadow-md`
+// Not versions of the above
 
-// Direction
-tw`rtl:shadow-md`
-tw`ltr:shadow-md`
+// Positional
+tw`not-first:block`
+tw`not-last:block`
+tw`not-only:block`
+tw`not-odd:block`
+tw`not-even:block`
+tw`not-first-of-type:block`
+tw`not-last-of-type:block`
+tw`not-only-of-type:block`
 
-// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
-tw`motion-safe:flex`
-tw`motion-reduce:flex`
+// State
+tw`not-visited:block`
+tw`not-target:block`
+tw`not-open:block`
 
-// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-pointer
-tw`any-pointer-none:flex`
-tw`any-pointer-fine:flex`
-tw`any-pointer-coarse:flex`
+// Forms
+tw`not-default:block`
+tw`not-checked:block`
+tw`not-indeterminate:block`
+tw`not-placeholder-shown:block`
+tw`not-autofill:block`
+tw`not-optional:block`
+tw`not-required:block`
+tw`not-valid:block`
+tw`not-invalid:block`
+tw`not-in-range:block`
+tw`not-out-of-range:block`
+tw`not-read-only:block`
 
-// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer
-tw`pointer-none:flex`
-tw`pointer-fine:flex`
-tw`pointer-coarse:flex`
+// Content
+tw`not-empty:block`
 
-// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover
-tw`any-hover-none:flex`
-tw`any-hover:flex`
+// Interactive
+tw`not-focus-within:block`
+tw`not-hover:block`
+tw`not-focus:block`
+tw`not-focus-visible:block`
+tw`not-active:block`
+tw`not-enabled:block`
+tw`not-disabled:block`
 
-// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/hover
-tw`can-hover:flex`
-tw`cant-hover:flex`
+// Twin custom
+tw`not-all:block`
+tw`not-all-child:block`
+tw`not-sibling:block`
+tw`not-hocus:block`
+tw`not-link:block`
+tw`not-read-write:block`
+tw`not-svg:block`
+tw`not-even-of-type:block`
+tw`not-odd-of-type:block`
 
-// https://developer.mozilla.org/en-US/docs/Web/CSS/@media/orientation
-tw`landscape:flex`
-tw`portrait:flex`
+tw`ltr:block`
+tw`rtl:block`
 
-// Dark/Light themes
-tw`dark:bg-black`
-tw`light:bg-black`
-tw`dark:sm:bg-black`
-tw`light:sm:bg-black`
-tw`dark:group-hover:sm:bg-black`
-tw`light:group-hocus:sm:bg-black`
+tw`motion-safe:block`
+tw`motion-reduce:block`
 
-// Selection
-tw`selection:bg-black`
+tw`dark:block`
+tw`light:block`
+tw`dark:sm:block`
+tw`light:sm:block`
+tw`dark:group-hover:sm:block`
+tw`light:group-hocus:sm:block`
 
-// Lists
-tw`marker:bg-black`
+tw`print:block`
+tw`screen:block`
+
+tw`portrait:block`
+tw`landscape:block`
+tw`contrast-more:block`
+tw`contrast-less:block`
+
+tw`any-pointer-none:block`
+tw`any-pointer-fine:block`
+tw`any-pointer-coarse:block`
+
+tw`pointer-none:block`
+tw`pointer-fine:block`
+tw`pointer-coarse:block`
+
+tw`any-hover-none:block`
+tw`any-hover:block`
+
+tw`can-hover:block`
+tw`cant-hover:block`
 
 // Arbitrary values
 tw`first:inset-[50px]`

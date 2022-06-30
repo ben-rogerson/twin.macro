@@ -7,7 +7,7 @@ import {
   getCssAttributeData,
 } from './macroHelpers'
 import {
-  getConfigTailwindProperties,
+  getTailwindConfigProperties,
   getConfigTwinValidated,
 } from './configHelpers'
 import {
@@ -74,7 +74,7 @@ const twinMacro = args => {
   state.isDev = isDev
   state.isProd = !isDev
 
-  const { configExists, configTailwind } = getConfigTailwindProperties(
+  const { configExists, tailwindConfig } = getTailwindConfigProperties(
     state,
     config
   )
@@ -91,14 +91,14 @@ const twinMacro = args => {
 
   const stateContext = {
     configExists: configExists,
-    config: configTailwind,
+    config: tailwindConfig,
     configTwin: configTwin,
     debug: debug(isDev, configTwin),
     globalStyles: new Map(),
     tailwindConfigIdentifier: generateUid('tailwindConfig', program),
     tailwindUtilsIdentifier: generateUid('tailwindUtils', program),
     userPluginData:
-      getUserPluginData({ config: configTailwind, configTwin }) || {},
+      getUserPluginData({ tailwindConfig, configTwin, state }) || {},
     styledImport: styledImport,
     cssImport: cssImport,
     styledIdentifier: null,
@@ -106,11 +106,6 @@ const twinMacro = args => {
   }
 
   state = { ...state, ...stateContext }
-
-  isDev &&
-    Boolean(config.debugPlugins) &&
-    state.userPluginData &&
-    debugPlugins(state.userPluginData)
 
   // Group traversals together for better performance
   program.traverse({

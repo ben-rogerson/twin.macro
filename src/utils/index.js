@@ -15,5 +15,6 @@ export {
   replaceSpaceId,
   toArray,
   formatCssProperty,
+  stripMergePlaceholders,
 } from './misc'
 export { withAlpha, toAlpha, maybeAddAlpha } from './alpha'

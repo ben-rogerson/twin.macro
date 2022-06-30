@@ -1,56 +1,67 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 import cleanSet from 'clean-set'
 import { logGeneralError } from './logging'
-import { get, throwIf } from './utils'
+import { get, throwIf, stripMergePlaceholders } from './utils'
 import { SPACE_ID } from './constants'
 
-const getPeerValueFromVariant = variant =>
-  get(/\.peer:(.+) ~ &/.exec(variant), '1')
+const MERGE_MAP_DIVIDER = '///'
 
-/**
- * Combine peers when they are used in succession
- */
-const combinePeers = ({ variants }) =>
-  variants
-    .map((_, i) => {
-      let isPeer = false
-      let index = i
-      let returnVariant
-      const peerList = []
+const handleMergeAndOrder = ({ variants }) => {
+  const variantMap = new Map()
+    .set(
+      '@', // at-rule
+      [] // plain variants
+    )
+    .set('', [])
 
-      do {
-        const peer = getPeerValueFromVariant(variants[index])
+  for (const variant of variants) {
+    const mergeVariantValues = /:merge\((\S+?)\){{2}(.+?)}{2}( .+)?/.exec(
+      variant
+    )
 
-        isPeer = Boolean(peer)
-        if (isPeer) {
-          peerList.push(peer)
-          variants[index] = null
-          index = index + 1
-        } else {
-          returnVariant =
-            peerList.length === 0
-              ? variants[index]
-              : `.peer:${peerList.join(':')} ~ &`
-        }
-      } while (isPeer)
+    if (!mergeVariantValues) {
+      variantMap.get(variant.startsWith('@') ? '@' : '').push(variant)
+      continue
+    }
 
-      return returnVariant
-    })
-    .filter(Boolean)
+    const [, className, selector, after] = mergeVariantValues
 
-const addSassyPseudo = ({ variants, state }) => {
-  if (!state.configTwin.sassyPseudo) return variants
-  return variants.map(v => v.replace(/(?<= ):|^:/g, '&:'))
+    // Remove any extra placeholders (for variant arrays)
+    const afterSelector = stripMergePlaceholders(after)
+
+    const key = [className, afterSelector].join(MERGE_MAP_DIVIDER)
+
+    if (!variantMap.has(key)) {
+      variantMap.set(key, [])
+    }
+
+    variantMap.get(key).push(selector)
+  }
+
+  const [[, atRuleVariants], [, plainVariants], ...mergeVariantsRaw] =
+    variantMap
+
+  const mergeVariants = [...mergeVariantsRaw].flatMap(
+    ([beforeAfter, selectors]) => {
+      const [before = '', after = ''] = beforeAfter.split(MERGE_MAP_DIVIDER)
+      return [before, [selectors, after].join(' ')].join('')
+    }
+  )
+
+  return [...atRuleVariants, ...mergeVariants, ...plainVariants]
 }
 
-const formatTasks = [combinePeers, addSassyPseudo]
+const formatTasks = [
+  handleMergeAndOrder,
+  // ...
+]
 
-const addVariants = ({ results, style, pieces, state }) => {
+const addVariants = ({ results, style, pieces }) => {
   let { variants, hasVariants } = pieces
   if (!hasVariants) return style
 
   for (const task of formatTasks) {
-    variants = task({ variants, state })
+    variants = task({ variants })
   }
 
   let styleWithVariants
@@ -84,7 +95,6 @@ function findRightBracket(
 const sliceToSpace = str => {
   const spaceIndex = str.indexOf(' ')
   if (spaceIndex === -1) return str
-
   return str.slice(0, spaceIndex)
 }
 

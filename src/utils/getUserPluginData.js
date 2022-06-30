@@ -7,6 +7,8 @@ import {
   LAYER_UTILITIES,
   SELECTOR_ALL,
 } from '../constants'
+import { variantPlugins } from '../config/corePlugins'
+import { debugPlugins } from '../logging'
 
 const stripLeadingDot = string =>
   string.startsWith('.') ? string.slice(1) : string
@@ -151,19 +153,8 @@ const getUserPluginRules = (rules, screens, isBase) => {
   return deepMerge(...ruleList)
 }
 
-const getUserPluginData = ({ config, configTwin }) => {
-  if (!config.plugins || config.plugins.length === 0) return
-
-  const context = {
-    candidateRuleMap: new Map(),
-    variants: new Map(),
-    tailwindConfig: config,
-    configTwin,
-  }
-
-  const pluginApi = buildPluginApi(config, context)
-
-  const userPlugins = config.plugins.map(plugin => {
+const resolvePlugins = context => {
+  const userPlugins = context.tailwindConfig.plugins.map(plugin => {
     if (plugin.__isOptionsFunction) {
       plugin = plugin()
     }
@@ -171,8 +162,32 @@ const getUserPluginData = ({ config, configTwin }) => {
     return typeof plugin === 'function' ? plugin : plugin.handler
   })
 
+  // This is a workaround for backwards compatibility, since custom variants
+  // were historically sorted before screen/stackable variants.
+  const beforeVariants = [
+    variantPlugins.pseudoElementVariants,
+    variantPlugins.pseudoClassVariants,
+  ]
+  const afterVariants = [
+    variantPlugins.directionVariants,
+    variantPlugins.reducedMotionVariants,
+    variantPlugins.prefersContrastVariants,
+    variantPlugins.darkVariants,
+    variantPlugins.lightVariants,
+    variantPlugins.printVariants,
+    variantPlugins.screenVariants,
+    variantPlugins.orientationVariants,
+    variantPlugins.extraCursorVariants,
+  ]
+
+  return [...beforeVariants, ...userPlugins, ...afterVariants]
+}
+
+const registerPlugins = (plugins, context) => {
+  const pluginApi = buildPluginApi(context.tailwindConfig, context)
+
   // Call each of the plugins with the pluginApi
-  for (const plugin of userPlugins) {
+  for (const plugin of plugins) {
     if (Array.isArray(plugin)) {
       for (const pluginItem of plugin) {
         pluginItem(pluginApi)
@@ -181,7 +196,23 @@ const getUserPluginData = ({ config, configTwin }) => {
       plugin(pluginApi)
     }
   }
+}
 
+const createContext = (tailwindConfig, configTwin) => {
+  const context = {
+    candidateRuleMap: new Map(),
+    variants: new Map(),
+    tailwindConfig,
+    configTwin,
+  }
+
+  const resolvedPlugins = resolvePlugins(context)
+  registerPlugins(resolvedPlugins, context)
+
+  return context
+}
+
+const getLayeredPluginData = context => {
   const baseRaw = []
   const componentsRaw = []
   const utilitiesRaw = []
@@ -202,12 +233,25 @@ const getUserPluginData = ({ config, configTwin }) => {
     }
   }
 
+  const { screens } = context.tailwindConfig.theme
   return {
-    base: getUserPluginRules(baseRaw, config.theme.screens, true),
-    components: getUserPluginRules(componentsRaw, config.theme.screens),
-    utilities: getUserPluginRules(utilitiesRaw, config.theme.screens),
+    base: getUserPluginRules(baseRaw, screens, true),
+    components: getUserPluginRules(componentsRaw, screens),
+    utilities: getUserPluginRules(utilitiesRaw, screens),
     variants: context.variants,
   }
+}
+
+const getUserPluginData = ({ tailwindConfig, configTwin, state }) => {
+  const context = createContext(tailwindConfig, configTwin)
+
+  const layeredPluginData = getLayeredPluginData(context)
+
+  if (state.isDev && configTwin.debugPlugins) {
+    debugPlugins(layeredPluginData)
+  }
+
+  return layeredPluginData
 }
 
 export default getUserPluginData

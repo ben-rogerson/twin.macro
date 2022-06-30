@@ -43,27 +43,43 @@ export default function buildPluginApi(tailwindConfig, context) {
             wrap,
             format,
           }) => {
-            const result = variantFunction({
+            const extraParams = variantFunction[MATCH_VARIANT] && {
+              args,
+              wrap,
+              format,
+            }
+            let result = variantFunction({
               modifySelectors,
               container,
               separator,
-              ...(variantFunction[MATCH_VARIANT] && { args, wrap, format }),
+              ...extraParams,
             })
+
             throwIf(
               typeof result === 'string' && !isValidVariantFormatString(result),
               () =>
                 logGeneralError(
-                  `Your custom variant \`${variantName}\` has an invalid format string. Make sure it's an at-rule or contains a \`&\` placeholder.`
+                  `\`${variantName}\` isn’t a valid at-rule or doesn’t contain a \`&\` placeholder`
                 )
             )
+
+            if (!context.configTwin.sassyPseudo) {
+              result = stripSassyPseudo(result)
+            }
+
             return result
           }
 
         throwIf(!isValidVariantFormatString(variantFunction), () =>
           logGeneralError(
-            `Your custom variant \`${variantName}\` has an invalid format string. Make sure it's an at-rule or contains a \`&\` placeholder.`
+            `\`${variantName}\` isn’t a valid at-rule or doesn’t contain a \`&\` placeholder`
           )
         )
+
+        if (!context.configTwin.sassyPseudo) {
+          variantFunction = stripSassyPseudo(variantFunction)
+        }
+
         return variantFunction
       })
 
@@ -203,6 +219,14 @@ const matchPlugin = (rules, options, { layer, context, prefixIdentifier }) => {
 
     context.candidateRuleMap.get(prefixedIdentifier).push(withOffsets)
   }
+}
+
+function stripSassyPseudo(string) {
+  if (typeof string !== 'string') return
+  return string
+    .split(',')
+    .map(v => v.replace(/(?<=^ *)&/, '').trim())
+    .join(', ')
 }
 
 const asPlugin = (rules, options, { layer, context, prefixIdentifier }) => {
