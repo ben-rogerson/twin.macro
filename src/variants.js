@@ -8,10 +8,9 @@ const MERGE_MAP_DIVIDER = '///'
 
 const handleMergeAndOrder = ({ variants }) => {
   const variantMap = new Map()
-    .set(
-      '@', // at-rule
-      [] // plain variants
-    )
+    // at-rules
+    .set('@', [])
+    // plain variants
     .set('', [])
 
   for (const variant of variants) {
