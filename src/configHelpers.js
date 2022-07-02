@@ -3,7 +3,7 @@ import { existsSync } from 'fs'
 import resolveTailwindConfig from 'tailwindcss/lib/util/resolveConfig'
 import defaultTailwindConfig from 'tailwindcss/stubs/defaultConfig.stub'
 import { configTwinValidators, configDefaultsTwin } from './config/twinConfig'
-import corePlugins from './config/corePlugins'
+import { corePlugins } from './config/corePlugins'
 import flatMap from 'lodash.flatmap'
 import { logGeneralError } from './logging'
 import { throwIf, get, toArray, getFirstValue } from './utils'
@@ -28,7 +28,7 @@ const silenceContentWarning = config => ({
   ...config,
 })
 
-const getConfigTailwindProperties = (state, config) => {
+const getTailwindConfigProperties = (state, config) => {
   const sourceRoot = state.file.opts.sourceRoot || '.'
   const configFile = config && config.config
 
@@ -53,13 +53,13 @@ const getConfigTailwindProperties = (state, config) => {
     : defaultTailwindConfig
 
   const configUser = silenceContentWarning(configSelected)
-  const configTailwind = resolveTailwindConfig([...getAllConfigs(configUser)])
+  const tailwindConfig = resolveTailwindConfig([...getAllConfigs(configUser)])
 
-  throwIf(!configTailwind, () =>
+  throwIf(!tailwindConfig, () =>
     logGeneralError(`Couldn’t find the Tailwind config.\nLooked in ${config}`)
   )
 
-  return { configExists, configTailwind, configPath }
+  return { configExists, tailwindConfig, configPath }
 }
 
 const checkExists = (fileName, sourceRoot) => {
@@ -151,7 +151,7 @@ const supportsArbitraryValues = coreConfigValue =>
   )
 
 export {
-  getConfigTailwindProperties,
+  getTailwindConfigProperties,
   getStitchesPath,
   getConfigTwinValidated,
   getCoercedTypesByProperty,

@@ -59,7 +59,7 @@ const formatTasks = [
   handleVariantGroups,
   // Move some properties to the front of the list so they work as expected
   ...Object.values(ordering),
-  // Add a missing content class for after:/before: variants
+  // Add a missing content class for before:/after: variants
   addContentClass,
 ]
 
@@ -144,7 +144,6 @@ export default (classes, args) => {
 
     if (hasUserPlugins) {
       style = applyTransforms({
-        type,
         pieces,
         style: styleHandler.userPlugin(styleContext),
       })
@@ -164,15 +163,13 @@ export default (classes, args) => {
       style ||
       applyTransforms({ pieces, style: styleHandler[type](styleContext) })
 
-    const result = deepMerge(
-      results,
-      addVariants({ results, style, pieces, state })
-    )
+    deepMerge(results, addVariants({ results, style, pieces, state }))
 
     state.debug(debugSuccess(formatProp(classNameRaw), style))
 
     classesMatched.push(classNameRaw)
-    return result
+
+    return results
   }, {})
 
   return {

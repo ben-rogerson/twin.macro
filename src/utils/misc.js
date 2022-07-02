@@ -138,6 +138,12 @@ const formatCssProperty = string => {
   return camelize(string)
 }
 
+const stripMergePlaceholders = str =>
+  str
+    .replace(/:merge\((\S*?)\)/, '$1')
+    .replace(/({{)|(}})/g, '')
+    .trim()
+
 export {
   throwIf,
   isEmpty,
@@ -155,4 +161,5 @@ export {
   replaceSpaceId,
   toArray,
   formatCssProperty,
+  stripMergePlaceholders,
 }

@@ -30,14 +30,14 @@ const toAlpha =
   ({ pieces, property, variable }) =>
   (color, alpha, fallBackColor) => {
     const newPieces =
-      (pieces.hasVariantVisited && { ...pieces, alpha: '', hasAlpha: false }) ||
+      (pieces.avoidAlpha && { ...pieces, alpha: '', hasAlpha: false }) ||
       (alpha && { ...pieces, alpha, hasAlpha: true }) ||
       pieces
 
     return withAlpha({
       color,
       property,
-      ...(!pieces.hasVariantVisited && { variable }),
+      ...(!pieces.avoidAlpha && { variable }),
       pieces: newPieces,
       fallBackColor,
     })

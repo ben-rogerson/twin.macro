@@ -1,4 +1,4 @@
-import { corePlugins } from './config'
+import { corePlugins } from './config/corePlugins'
 import {
   isShortCss as getIsShortCss,
   toArray,

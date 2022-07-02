@@ -1,95 +1,56 @@
 import { MacroError } from 'babel-plugin-macros'
-import { stringifyScreen } from './screens'
 import { logNoVariant, logGeneralError } from './logging'
-import { variantConfig } from './config'
 import {
   get,
   throwIf,
   formatProp,
   isShortCss,
   replaceSpaceId,
-  toArray,
+  getFirstValue,
 } from './utils'
-import {
-  variantDarkMode,
-  variantLightMode,
-  prefixDarkLightModeClass,
-} from './darkLightMode'
 
-const createPeer = selector => {
-  const selectors = toArray(selector)
-  return selectors.map(s => `.peer:${s} ~ &`).join(', ')
+const logVariantError = (variant, state) => {
+  if (variant === 'only-child') {
+    throw new MacroError(
+      logGeneralError(
+        'The "only-child:" variant was deprecated in favor of "only:"'
+      )
+    )
+  }
+
+  if (variant === 'not-only-child') {
+    throw new MacroError(
+      logGeneralError(
+        'The "not-only-child:" variant was deprecated in favor of "not-only:"'
+      )
+    )
+  }
+
+  throw new MacroError(logNoVariant(variant, state))
 }
 
-const fullVariantConfig = variantConfig({
-  variantDarkMode,
-  variantLightMode,
-  prefixDarkLightModeClass,
-  createPeer,
-})
-
-const getVariants = ({ variants, state, ...rest }) => {
+const getVariants = ({ variants, state, className }) => {
   if (!variants) return []
-
-  const screens = get(state.config, ['theme', 'screens'])
-  const screenNames = Object.keys(screens)
-  const { variants: variantMap } = state.userPluginData
 
   const list = variants
     .map(variant => {
-      const isResponsive = screenNames && screenNames.includes(variant)
-      if (isResponsive) return stringifyScreen(state.config, variant)
+      const arbitraryVariant = variant.match(/^\[(.+)]/)
+      if (arbitraryVariant) return arbitraryVariant[1]
 
-      let foundVariant = {
-        ...fullVariantConfig,
-        ...(variantMap &&
-          Object.fromEntries(
-            [...variantMap].map(([c, v]) => [c, v.join(', ')])
-          )),
-      }[variant]
-
-      if (!foundVariant) {
-        const arbitraryVariant = variant.match(/^\[(.+)]/)
-        if (arbitraryVariant) foundVariant = arbitraryVariant[1]
-      }
-
-      if (!foundVariant) {
-        if (variant === 'only-child') {
-          throw new MacroError(
-            logGeneralError(
-              'The "only-child:" variant was deprecated in favor of "only:"'
-            )
-          )
-        }
-
-        if (variant === 'not-only-child') {
-          throw new MacroError(
-            logGeneralError(
-              'The "not-only-child:" variant was deprecated in favor of "not-only:"'
-            )
-          )
-        }
-
-        const validVariants = {
-          ...(variantMap && {
-            'Plugin variants': [...variantMap].map(([c]) => c),
-          }),
-          ...(screenNames.length > 0 && { 'Screen breakpoints': screenNames }),
-          'Built-in variants': Object.keys(fullVariantConfig),
-        }
-        throw new MacroError(logNoVariant(variant, validVariants))
-      }
+      let [foundVariant] = getFirstValue(
+        [...state.userPluginData.variants],
+        ([name, value]) => (name === variant ? value.join(', ') : false)
+      )
 
       if (typeof foundVariant === 'function') {
         const context = {
-          ...rest,
+          className,
           config: item => state.config[item] || null,
-          errorCustom(message) {
-            throw new MacroError(logGeneralError(message))
-          },
         }
         foundVariant = foundVariant(context)
       }
+
+      if (!foundVariant) logVariantError(variant, state)
 
       return foundVariant
     })
@@ -115,41 +76,19 @@ const splitVariants = ({ classNameRaw, state }) => {
     }
   }
 
-  // dark: and light: variants
-  // FIXME: Remove comment and fix next line
-  // eslint-disable-next-line unicorn/prefer-includes
-  const hasDarkVariant = variantsList.some(v => v === 'dark')
-  // FIXME: Remove comment and fix next line
-  // eslint-disable-next-line unicorn/prefer-includes
-  const hasLightVariant = variantsList.some(v => v === 'light')
-  if (hasDarkVariant && hasLightVariant) {
-    throw new MacroError(
-      logGeneralError(
-        'The light: and dark: variants can’t be used on the same element'
-      )
-    )
-  }
-
-  const hasGroupVariant = variantsList.some(v => v.startsWith('group-'))
+  className = replaceSpaceId(className)
 
   // Match the filtered variants
-  const variants = getVariants({
-    variants: variantsList,
-    state,
-    hasDarkVariant,
-    hasLightVariant,
-    hasGroupVariant,
-  })
+  const variants = getVariants({ variants: variantsList, state, className })
 
   const hasVariants = variants.length > 0
 
-  className = replaceSpaceId(className)
   return {
     classNameRawNoVariants: className,
     className,
     variants,
     hasVariants,
-    hasVariantVisited: variants.includes(':visited'),
+    avoidAlpha: variants.includes(':visited'),
   }
 }
 
