@@ -159,12 +159,13 @@ const variantPlugins = {
   },
 
   darkVariants({ config, addVariant }) {
-    let [mode, className = '.dark'] = [config('darkMode', 'media')]
+    // eslint-disable-next-line unicorn/prefer-spread
+    let [mode, className = '.dark'] = [].concat(config('darkMode', 'media'))
 
     if (mode === false) {
       mode = 'media'
       console.warn('darkmode-false', [
-        'The `darkMode` option in your Tailwind CSS configuration is set to `false`, which now behaves the same as `media`.',
+        'The `darkMode` option in your tailwind config is set to `false`, which now behaves the same as `media`.',
         'Change `darkMode` to `media` or remove it entirely.',
         'https://tailwindcss.com/docs/upgrade-guide#remove-dark-mode-configuration',
       ])
@@ -177,19 +178,10 @@ const variantPlugins = {
     }
   },
 
+  // Twin feature
   lightVariants({ config, addVariant }) {
-    let [mode, className = '.light'] = [
-      config('lightMode') || config('darkMode') || 'media',
-    ]
-
-    if (mode === false) {
-      mode = 'media'
-      console.warn('lightmode-false', [
-        'The `lightMode` option in your Tailwind CSS configuration is set to `false`, which now behaves the same as `media`.',
-        'Change `lightMode` to `media` or remove it entirely.',
-        'https://tailwindcss.com/docs/upgrade-guide#remove-dark-mode-configuration',
-      ])
-    }
+    // eslint-disable-next-line unicorn/prefer-spread
+    const [mode, className = '.light'] = [].concat(config('lightMode', 'media'))
 
     if (mode === 'class') {
       addVariant('light', `${className} &`)
