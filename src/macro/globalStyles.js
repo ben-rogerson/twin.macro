@@ -1,14 +1,14 @@
-import deepMerge from 'lodash.merge'
 import template from '@babel/template'
+// eslint-disable-next-line import/no-relative-parent-imports
+import { getGlobalStyles } from '../core'
+import userPresets from './config/userPresets'
+import { logGeneralError } from './lib/logging'
 import {
   addImport,
   generateUid,
   generateTaggedTemplateExpression,
-} from '../macroHelpers'
-import { throwIf, getTheme, isClass, isEmpty, withAlpha } from '../utils'
-import { logGeneralError } from './../logging'
-import userPresets from './../config/userPresets'
-import globalStyles from './../config/globalStyles'
+} from './lib/astHelpers'
+import throwIf from './lib/util/throwIf'
 
 const getGlobalConfig = config => {
   const usedConfig =
@@ -20,7 +20,7 @@ const getGlobalConfig = config => {
 
 const addGlobalStylesImport = ({ program, t, identifier, config }) => {
   const globalConfig = getGlobalConfig(config)
-  return addImport({
+  addImport({
     types: t,
     program,
     identifier,
@@ -37,8 +37,8 @@ const getGlobalDeclarationTte = ({ t, stylesUid, globalUid, styles }) =>
     ),
   ])
 
-const getGlobalDeclarationProperty = props => {
-  const { t, stylesUid, globalUid, state, styles } = props
+const getGlobalDeclarationProperty = params => {
+  const { t, stylesUid, globalUid, state, styles } = params
 
   const ttExpression = generateTaggedTemplateExpression({
     t,
@@ -88,68 +88,18 @@ ${convertCssObjectToString(v)}
     .join('\n')
 }
 
-// Trim out classes defined within the selector
-const filterClassSelectors = ruleset => {
-  if (isEmpty(ruleset)) return
+const handleGlobalStylesFunction = params => {
+  const { references } = params
 
-  return Object.entries(ruleset).reduce((result, [selector, value]) => {
-    // Trim out the classes defined within the selector
-    // Classes added using addBase have already been grabbed so they get filtered to avoid duplication
-    const filteredSelectorSet = selector
-      .split(',')
-      .filter(s => {
-        if (isClass(s)) return false
-
-        // Remove sub selectors with a class as one of their keys
-        const subSelectors = Object.keys(value)
-        const hasSubClasses = subSelectors.some(selector => isClass(selector))
-        if (hasSubClasses) return false
-
-        return true
-      })
-      .join(',')
-    if (!filteredSelectorSet) return result
-
-    return { ...result, [filteredSelectorSet]: value }
-  }, {})
+  if (references.GlobalStyles) handleGlobalStylesJsx(params)
+  if (references.globalStyles) handleGlobalStylesVariable(params)
 }
 
-const handleGlobalStylesFunction = props => {
-  const { references } = props
-
-  references.GlobalStyles && handleGlobalStylesJsx(props)
-  references.globalStyles && handleGlobalStylesVariable(props)
-}
-
-const getGlobalStyles = ({ state }) => {
-  // Create the magic theme function
-  const theme = getTheme(state.config.theme)
-
-  // Filter out classes as they're extracted as usable classes
-  const strippedPlugins = filterClassSelectors(
-    state.userPluginData && state.userPluginData.base
-  )
-
-  const hasPreflight = state.config.corePlugins.includes('preflight')
-
-  const resolvedStyles = globalStyles.map(gs =>
-    typeof gs === 'function' ? gs({ theme, withAlpha, hasPreflight }) : gs
-  )
-
-  if (strippedPlugins) resolvedStyles.push(strippedPlugins)
-
-  const styles = resolvedStyles.reduce(
-    (result, item) => deepMerge(result, item),
-    {}
-  )
-
-  return styles
-}
-
-const handleGlobalStylesVariable = ({ references, state }) => {
+const handleGlobalStylesVariable = params => {
+  const { references } = params
   if (references.globalStyles.length === 0) return
 
-  const styles = getGlobalStyles({ state })
+  const styles = getGlobalStyles(params.coreContext)
 
   // FIXME: Remove comment and fix next line
   // eslint-disable-next-line unicorn/no-array-for-each
@@ -163,9 +113,8 @@ const handleGlobalStylesVariable = ({ references, state }) => {
   })
 }
 
-const handleGlobalStylesJsx = props => {
-  const { references, program, t, state, config } = props
-
+const handleGlobalStylesJsx = params => {
+  const { references, program, t, state, config } = params
   if (references.GlobalStyles.length === 0) return
 
   throwIf(references.GlobalStyles.length > 1, () =>
@@ -181,19 +130,21 @@ const handleGlobalStylesJsx = props => {
     )
   )
 
-  const styles = convertCssObjectToString(getGlobalStyles({ state }))
+  const globalStyles = getGlobalStyles(params.coreContext)
+
+  const styles = convertCssObjectToString(globalStyles)
 
   const globalUid = generateUid('GlobalStyles', program)
   const stylesUid = generateUid('globalImport', program)
   const declarationData = { t, globalUid, stylesUid, styles, state }
 
-  if (state.isStyledComponents) {
+  if (state.packageUsed.isStyledComponents) {
     const declaration = getGlobalDeclarationTte(declarationData)
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
   }
 
-  if (state.isEmotion) {
+  if (state.packageUsed.isEmotion) {
     const declaration = getGlobalDeclarationProperty(declarationData)
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
@@ -202,14 +153,14 @@ const handleGlobalStylesJsx = props => {
     state.isImportingCss = !state.existingCssIdentifier
   }
 
-  if (state.isGoober) {
+  if (state.packageUsed.isGoober) {
     const declaration = getGlobalDeclarationTte(declarationData)
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
   }
 
-  throwIf(state.isStitches, () =>
-    logGeneralError('Use the “globalStyles” import with stitches')
+  throwIf(state.packageUsed.isStitches, () =>
+    logGeneralError('Use the `globalStyles` import with stitches')
   )
 
   addGlobalStylesImport({ identifier: stylesUid, t, program, config })

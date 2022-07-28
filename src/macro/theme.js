@@ -3,40 +3,9 @@ import {
   astify,
   getFunctionValue,
   getTaggedTemplateValue,
-} from './../macroHelpers'
-import { getTheme, throwIf, get } from './../utils'
-import { logGeneralError, themeErrorNotFound } from './../logging'
+} from './lib/astHelpers'
 
-const trimInput = themeValue => {
-  const arrayValues = themeValue
-    // Split at dots outside of square brackets
-    .split(/\.(?=(((?!]).)*\[)|[^[\]]*$)/)
-    .filter(Boolean)
-  if (arrayValues.length === 1) {
-    return arrayValues[0]
-  }
-
-  return arrayValues.slice(0, -1).join('.')
-}
-
-const getThemeValue = (input, { state, skipDefault = false }) => {
-  const theme = getTheme(state.config.theme)
-  let themeValue = theme(input)
-
-  // Return the whole object when input ends with a dot
-  if (!themeValue && input.endsWith('.'))
-    return getThemeValue(input.slice(0, -1), { state, skipDefault: true })
-
-  // Return the default key when an object is found
-  if (!skipDefault && themeValue && themeValue.DEFAULT)
-    themeValue = themeValue.DEFAULT
-
-  themeValue = typeof themeValue === 'function' ? themeValue({}) : themeValue
-
-  return [themeValue, theme]
-}
-
-const handleThemeFunction = ({ references, t, state }) => {
+const handleThemeFunction = ({ references, t, state, coreContext }) => {
   if (!references.theme) return
 
   // FIXME: Remove comment and fix next line
@@ -45,20 +14,16 @@ const handleThemeFunction = ({ references, t, state }) => {
     const { input, parent } = getTaggedTemplateValue(path) ||
       getFunctionValue(path) || { input: null, parent: null }
 
-    throwIf(!parent, () =>
-      logGeneralError(
+    state.assert(
+      parent,
+      () =>
         "The theme value doesn’t look right\n\nTry using it like this: theme`colors.black` or theme('colors.black')"
-      )
     )
 
-    const [themeValue, theme] = getThemeValue(input, { state })
+    const themeValue = coreContext.theme(input)
 
-    throwIf(!themeValue, () =>
-      themeErrorNotFound({
-        theme: input.includes('.') ? get(theme(), trimInput(input)) : theme(),
-        input,
-        trimInput: trimInput(input),
-      })
+    state.assert(Boolean(themeValue), c =>
+      c.error(`✕ ${c.errorLight(input)} was not found in the tailwind config`)
     )
 
     return replaceWithLocation(parent, astify(themeValue, t))

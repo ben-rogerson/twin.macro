@@ -1,5 +1,4 @@
 {
-  "config": "__fixtures__/prefix/tailwind.config.js",
   "includeClassNames": true,
   "dataTwProp": "all",
   "disableShortCss": false

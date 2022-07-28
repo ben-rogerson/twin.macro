@@ -65,7 +65,6 @@ tw`group-not-last-of-type:block`
 tw`group-not-only-of-type:block`
 
 // State
-tw`group-not-visited:block`
 tw`group-not-target:block`
 tw`group-not-open:block`
 

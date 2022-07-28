@@ -65,7 +65,6 @@ tw`peer-not-last-of-type:block`
 tw`peer-not-only-of-type:block`
 
 // State
-tw`peer-not-visited:block`
 tw`peer-not-target:block`
 tw`peer-not-open:block`
 

@@ -4,9 +4,9 @@ import {
   getFunctionValue,
   getTaggedTemplateValue,
   getMemberExpression,
-} from './../macroHelpers'
-import { getTheme, throwIf } from './../utils'
-import { logBadGood } from './../logging'
+} from './lib/astHelpers'
+import throwIf from './lib/util/throwIf'
+import { logBadGood } from './lib/logging'
 
 const getDirectReplacement = ({ mediaQuery, parent, t }) => ({
   newPath: parent,
@@ -55,7 +55,7 @@ const handleDefinition = ({ mediaQuery, parent, type, t }) =>
     TSAsExpression: () => getDirectReplacement({ mediaQuery, parent, t }),
   }[type])
 
-const validateScreenValue = ({ screen, screens, value }) =>
+const validateScreenValue = ({ screen, screens, value }) => {
   throwIf(!screen, () =>
     logBadGood(
       `${
@@ -68,6 +68,7 @@ const validateScreenValue = ({ screen, screens, value }) =>
         .join('\n')}`
     )
   )
+}
 
 const getMediaQuery = ({ input, screens }) => {
   validateScreenValue({ screen: screens[input], screens, value: input })
@@ -75,11 +76,10 @@ const getMediaQuery = ({ input, screens }) => {
   return mediaQuery
 }
 
-const handleScreenFunction = ({ references, t, state }) => {
+const handleScreenFunction = ({ references, t, coreContext }) => {
   if (!references.screen) return
 
-  const theme = getTheme(state.config.theme)
-  const screens = theme('screens')
+  const screens = coreContext.theme('screens')
 
   // FIXME: Remove comment and fix next line
   // eslint-disable-next-line unicorn/no-array-for-each

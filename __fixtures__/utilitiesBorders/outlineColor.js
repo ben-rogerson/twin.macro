@@ -237,7 +237,7 @@ tw`outline-[length:500px]`
 tw`outline-[color:red]`
 tw`outline-[percentage:10%]`
 
-tw`outline-[var(--outline)]`
+// tw`outline-[var(--outline)]` // Unsupported by tailwindcss
 tw`outline-[color:var(--outline)]`
 tw`outline-[length:var(--outline)]`
 

@@ -1,7 +1,9 @@
-import { addImport, replaceWithLocation } from './../macroHelpers'
-import { isEmpty, get } from './../utils'
-import userPresets from './../config/userPresets'
-import { getStitchesPath } from './../configHelpers'
+// eslint-disable-next-line import/no-relative-parent-imports
+import { getStitchesPath } from '../core'
+import userPresets from './config/userPresets'
+import { addImport, replaceWithLocation } from './lib/astHelpers'
+import isEmpty from './lib/util/isEmpty'
+import get from './lib/util/get'
 
 const getStyledConfig = ({ state, config }) => {
   const usedConfig =

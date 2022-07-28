@@ -1,7 +1,8 @@
-import { addImport, makeStyledComponent } from './../macroHelpers'
-import { isEmpty } from './../utils'
-import userPresets from './../config/userPresets'
-import { getStitchesPath } from './../configHelpers'
+// eslint-disable-next-line import/no-relative-parent-imports
+import { getStitchesPath } from '../core'
+import userPresets from './config/userPresets'
+import { addImport, makeStyledComponent } from './lib/astHelpers'
+import isEmpty from './lib/util/isEmpty'
 
 const getCssConfig = ({ state, config }) => {
   const usedConfig =
@@ -53,12 +54,12 @@ const addCssImport = ({ references, program, t, cssImport, state }) => {
   })
 }
 
-const convertHtmlElementToStyled = props => {
-  const { path, t, state } = props
+const convertHtmlElementToStyled = params => {
+  const { path, t, state } = params
   if (!state.configTwin.convertHtmlElementToStyled) return
 
   const jsxPath = path.parentPath
-  makeStyledComponent({ ...props, jsxPath, secondArg: t.objectExpression([]) })
+  makeStyledComponent({ ...params, jsxPath, secondArg: t.objectExpression([]) })
 }
 
 export {

@@ -1604,7 +1604,7 @@ tw`border-electric/[var(--myvar)]`
 tw`border-[theme('colors.electric')]`
 tw`border-[theme('colors.electric')]/20`
 
-tw`border-[hsl(60 50% 10% / 50%)]`
+tw`border-[hsla(235, 100%, 50%, .5)]`
 tw`border-[rgba(255, 255, 255, 0)]`
 tw`border-[red_black_white rgb(255, 255,255,0)]`
 tw`border-[red black_blue]`

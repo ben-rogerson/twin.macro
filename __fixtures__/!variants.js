@@ -78,7 +78,6 @@ tw`not-last-of-type:block`
 tw`not-only-of-type:block`
 
 // State
-tw`not-visited:block`
 tw`not-target:block`
 tw`not-open:block`
 

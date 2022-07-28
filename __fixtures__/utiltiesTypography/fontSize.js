@@ -20,5 +20,5 @@ tw`text-9xl`
 tw`text-[2.23rem]`
 tw`text-[length:var(--font-size)]`
 
-tw`text-arraystring`
-tw`text-arrayobject`
+tw`text-2xl`
+tw`text-3xl`

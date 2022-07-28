@@ -235,8 +235,7 @@ tw`decoration-[black]`
 tw`decoration-[rgb(123,123,123)]`
 tw`decoration-[rgb(123,_123,_123)]`
 tw`decoration-[rgb(123_123_123)]`
-tw`decoration-[rgb(123_123_123)]/20`
-tw`decoration-[rgb(123_123_123)]/[20]`
+tw`decoration-[black]/20` // `decoration-[rgb(123_123_123)]/20` unsupported
+tw`decoration-[black]/[20]` // `decoration-[rgb(123_123_123)]/[20]` unsupported
 tw`decoration-[color:#50d71e]`
-tw`decoration-[color:var(--color)]`
-tw`decoration-[var(--color)]`
+tw`decoration-[color:var(--color)]` // `decoration-[var(--color)]` unsupported

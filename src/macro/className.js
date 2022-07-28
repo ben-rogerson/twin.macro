@@ -1,17 +1,20 @@
-import { throwIf } from './../utils'
-import { logGeneralError } from './../logging'
-import { addDataTwPropToPath, addDataPropToExistingPath } from './debug'
-import getStyleData from './../getStyleData'
+// eslint-disable-next-line import/no-relative-parent-imports
+import { getStyles } from '../core'
+import { addDataTwPropToPath, addDataPropToExistingPath } from './dataProp'
+import throwIf from './lib/util/throwIf'
+import isEmpty from './lib/util/isEmpty'
+import { logGeneralError } from './lib/logging'
 import {
+  astify,
   getParentJSX,
   getAttributeNames,
   getCssAttributeData,
-} from './../macroHelpers'
+} from './lib/astHelpers'
 
 const makeJsxAttribute = ([key, value], t) =>
   t.jsxAttribute(t.jsxIdentifier(key), t.jsxExpressionContainer(value))
 
-const handleClassNameProperty = ({ path, t, state }) => {
+const handleClassNameProperty = ({ path, t, state, coreContext }) => {
   if (!state.configTwin.includeClassNames) return
   if (path.node.name.name !== 'className') return
 
@@ -23,17 +26,21 @@ const handleClassNameProperty = ({ path, t, state }) => {
   const rawClasses = nodeValue.value || ''
   if (!rawClasses) return
 
-  const { astStyles, mismatched, matched } = getStyleData(rawClasses, {
-    silentMismatches: true,
-    t,
-    state,
+  let { styles, unmatched, matched } = getStyles(rawClasses, {
+    ...coreContext,
+    isSilent: true,
   })
+
+  unmatched = unmatched.join(' ')
+  matched = matched.join(' ')
+
+  const astStyles = astify(isEmpty(styles) ? {} : styles, t)
   if (!matched) return
 
   // When classes can't be matched we add them back into the className (it exists as a few properties)
-  path.node.value.value = mismatched
-  path.node.value.extra.rawValue = mismatched
-  path.node.value.extra.raw = `"${mismatched}"`
+  path.node.value.value = unmatched
+  path.node.value.extra.rawValue = unmatched
+  path.node.value.extra.raw = `"${unmatched}"`
 
   const jsxPath = getParentJSX(path)
   const attributes = jsxPath.get('attributes')
@@ -41,7 +48,12 @@ const handleClassNameProperty = ({ path, t, state }) => {
 
   if (!cssAttribute) {
     const attribute = makeJsxAttribute(['css', astStyles], t)
-    mismatched ? path.insertAfter(attribute) : path.replaceWith(attribute)
+    if (unmatched) {
+      path.insertAfter(attribute)
+    } else {
+      path.replaceWith(attribute)
+    }
+
     addDataTwPropToPath({ t, attributes, rawClasses: matched, path, state })
     return
   }
@@ -54,9 +66,11 @@ const handleClassNameProperty = ({ path, t, state }) => {
 
   if (cssExpression.isArrayExpression()) {
     //  The existing css prop is an array, eg: css={[...]}
-    isBeforeCssAttribute
-      ? cssExpression.unshiftContainer('elements', astStyles)
-      : cssExpression.pushContainer('elements', astStyles)
+    if (isBeforeCssAttribute) {
+      cssExpression.unshiftContainer('elements', astStyles)
+    } else {
+      cssExpression.pushContainer('elements', astStyles)
+    }
   } else {
     // The existing css prop is not an array, eg: css={{ ... }} / css={`...`}
     const existingCssAttribute = cssExpression.node
@@ -71,7 +85,7 @@ const handleClassNameProperty = ({ path, t, state }) => {
     cssExpression.replaceWith(t.arrayExpression(styleArray))
   }
 
-  if (!mismatched) path.remove()
+  if (!unmatched) path.remove()
 
   addDataPropToExistingPath({
     t,

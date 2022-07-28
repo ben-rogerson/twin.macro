@@ -11,7 +11,7 @@ module.exports = {
         DEFAULT: 'blue',
         'a-purple': 'purple',
         'a-number': 0,
-        array: ['blue', 'purple', 'orange'],
+        // array: ['blue', 'purple', 'orange'],  // Arrays aren't supported
       },
       'my-blue': {
         100: 'blue',
