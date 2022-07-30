@@ -68,12 +68,12 @@ function twinMacro(params) {
     cssIdentifier: null,
   }
 
-  const handlerProperties = { t, program, state, coreContext }
+  const handlerParameters = { t, program, state, coreContext }
 
   program.traverse({
     ImportDeclaration(path) {
-      setStyledIdentifier({ ...handlerProperties, path })
-      setCssIdentifier({ ...handlerProperties, path })
+      setStyledIdentifier({ ...handlerParameters, path })
+      setCssIdentifier({ ...handlerParameters, path })
     },
     JSXElement(path) {
       const jsxAttributes = getJsxAttributes(path)
@@ -81,13 +81,13 @@ function twinMacro(params) {
       state.hasCssAttribute = state.hasCssAttribute || hasCssAttribute
       const attributePaths = index > 1 ? jsxAttributes.reverse() : jsxAttributes
       for (path of attributePaths) {
-        handleClassNameProperty({ ...handlerProperties, path })
-        handleTwProperty({ ...handlerProperties, path })
-        handleCsProperty({ ...handlerProperties, path })
+        handleClassNameProperty({ ...handlerParameters, path })
+        handleTwProperty({ ...handlerParameters, path })
+        handleCsProperty({ ...handlerParameters, path })
       }
 
       if (hasCssAttribute)
-        convertHtmlElementToStyled({ ...handlerProperties, path })
+        convertHtmlElementToStyled({ ...handlerParameters, path })
     },
   })
 
@@ -98,7 +98,7 @@ function twinMacro(params) {
     state.cssIdentifier = generateUid('css', program)
 
   for (const task of macroTasks) {
-    task({ ...handlerProperties, references: params.references })
+    task({ ...handlerParameters, references: params.references })
   }
 
   program.scope.crawl()

@@ -4,18 +4,62 @@ function stripAmpersands(string) {
   return typeof string === 'string' ? string.replace(/&/g, '').trim() : string
 }
 
+const EXTRA_VARIANTS = [
+  ['all', '& *'],
+  ['all-child', '& > *'],
+  ['sibling', '& ~ *'],
+  ['hocus', ['&:hover', '&:focus']],
+  'link',
+  'read-write',
+  ['svg', '& svg'],
+  ['even-of-type', '&:nth-of-type(even)'],
+  ['odd-of-type', '&:nth-of-type(odd)'],
+]
+
+const EXTRA_NOT_VARIANTS = [
+  // Positional
+  ['first', '&:first-child'],
+  ['last', '&:last-child'],
+  ['only', '&:only-child'],
+  ['odd', '&:nth-child(odd)'],
+  ['even', '&:nth-child(even)'],
+  'first-of-type',
+  'last-of-type',
+  'only-of-type',
+
+  // State
+  'target',
+  ['open', '&[open]'],
+
+  // Forms
+  'default',
+  'checked',
+  'indeterminate',
+  'placeholder-shown',
+  'autofill',
+  'optional',
+  'required',
+  'valid',
+  'invalid',
+  'in-range',
+  'out-of-range',
+  'read-only',
+
+  // Content
+  'empty',
+
+  // Interactive
+  'focus-within',
+  'hover',
+  'focus',
+  'focus-visible',
+  'active',
+  'enabled',
+  'disabled',
+]
+
 function defaultVariants({ config, addVariant }) {
-  const customVariants = [
-    ['all', '& *'],
-    ['all-child', '& > *'],
-    ['sibling', '& ~ *'],
-    ['hocus', ['&:hover', '&:focus']],
-    'link',
-    'read-write',
-    ['svg', '& svg'],
-    ['even-of-type', '&:nth-of-type(even)'],
-    ['odd-of-type', '&:nth-of-type(odd)'],
-  ].flatMap(v => {
+  const extraVariants = EXTRA_VARIANTS.flatMap(v => {
     let [name, selector] = toArray(v)
     selector = selector || `&:${name}`
     const config = [name, selector]
@@ -30,47 +74,7 @@ function defaultVariants({ config, addVariant }) {
   })
 
   // Create :not() versions of these selectors
-  const notPseudoVariants = [
-    // Positional
-    ['first', '&:first-child'],
-    ['last', '&:last-child'],
-    ['only', '&:only-child'],
-    ['odd', '&:nth-child(odd)'],
-    ['even', '&:nth-child(even)'],
-    'first-of-type',
-    'last-of-type',
-    'only-of-type',
-
-    // State
-    'target',
-    ['open', '&[open]'],
-
-    // Forms
-    'default',
-    'checked',
-    'indeterminate',
-    'placeholder-shown',
-    'autofill',
-    'optional',
-    'required',
-    'valid',
-    'invalid',
-    'in-range',
-    'out-of-range',
-    'read-only',
-
-    // Content
-    'empty',
-
-    // Interactive
-    'focus-within',
-    'hover',
-    'focus',
-    'focus-visible',
-    'active',
-    'enabled',
-    'disabled',
-  ].map(v => {
+  const notPseudoVariants = EXTRA_NOT_VARIANTS.map(v => {
     const [name, selector] = toArray(v)
     const notConfig = [
       `not-${name}`,
@@ -80,7 +84,7 @@ function defaultVariants({ config, addVariant }) {
     return notConfig
   })
 
-  const variants = [...customVariants, ...notPseudoVariants]
+  const variants = [...extraVariants, ...notPseudoVariants]
 
   for (const [name, selector] of variants) {
     addVariant(name, toArray(selector))
