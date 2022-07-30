@@ -6,12 +6,16 @@
     <a href="https://discord.gg/Xj6x9z7"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
     <br>
     <br>
-    <a href="https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/react-emotion?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&theme=dark">Demo twin on CodeSandbox →</a>
+    <a href="https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/react-emotion?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&theme=dark">Demo twin on CodeSandbox</a>
 </p>
 
 ---
 
-Style jsx elements using Tailwind v3 classes:
+🌟 **August 2022 update**<br/>In version 3, Twin now includes full tailwindcss plugin support, faster compilation speeds and all the features from tailwindcss v3. [Release notes →](https://github.com/ben-rogerson/twin.macro/releases)
+
+---
+
+Style jsx elements using Tailwind classes:
 
 ```js
 import 'twin.macro'
