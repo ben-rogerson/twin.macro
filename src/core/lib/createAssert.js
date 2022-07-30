@@ -1,8 +1,7 @@
 import { color } from './logging'
 
-const createAssert =
-  (CustomError = Error, isSilent = false) =>
-  (expression, message) => {
+function createAssert(CustomError = Error, isSilent = false) {
+  return (expression, message) => {
     if (isSilent) return
 
     if (typeof expression === 'string') {
@@ -23,5 +22,6 @@ const createAssert =
       throw new CustomError(`\n\n${message(color)}\n\n`)
     }
   }
+}
 
 export default createAssert

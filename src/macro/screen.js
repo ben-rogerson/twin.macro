@@ -8,13 +8,15 @@ import {
 import throwIf from './lib/util/throwIf'
 import { logBadGood } from './lib/logging'
 
-const getDirectReplacement = ({ mediaQuery, parent, t }) => ({
-  newPath: parent,
-  replacement: astify(mediaQuery, t),
-})
+function getDirectReplacement({ mediaQuery, parent, t }) {
+  return {
+    newPath: parent,
+    replacement: astify(mediaQuery, t),
+  }
+}
 
-const handleDefinition = ({ mediaQuery, parent, type, t }) =>
-  ({
+function handleDefinition({ mediaQuery, parent, type, t }) {
+  return {
     TaggedTemplateExpression() {
       const newPath = parent.findParent(x => x.isTaggedTemplateExpression())
       const query = [`${mediaQuery} { `, ` }`]
@@ -53,9 +55,10 @@ const handleDefinition = ({ mediaQuery, parent, type, t }) =>
     VariableDeclarator: () => getDirectReplacement({ mediaQuery, parent, t }),
     TemplateLiteral: () => getDirectReplacement({ mediaQuery, parent, t }),
     TSAsExpression: () => getDirectReplacement({ mediaQuery, parent, t }),
-  }[type])
+  }[type]
+}
 
-const validateScreenValue = ({ screen, screens, value }) => {
+function validateScreenValue({ screen, screens, value }) {
   throwIf(!screen, () =>
     logBadGood(
       `${
@@ -70,13 +73,13 @@ const validateScreenValue = ({ screen, screens, value }) => {
   )
 }
 
-const getMediaQuery = ({ input, screens }) => {
+function getMediaQuery({ input, screens }) {
   validateScreenValue({ screen: screens[input], screens, value: input })
   const mediaQuery = `@media (min-width: ${screens[input]})`
   return mediaQuery
 }
 
-const handleScreenFunction = ({ references, t, coreContext }) => {
+function handleScreenFunction({ references, t, coreContext }) {
   if (!references.screen) return
 
   const screens = coreContext.theme('screens')

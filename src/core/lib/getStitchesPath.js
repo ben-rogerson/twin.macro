@@ -5,21 +5,20 @@ import throwIf from './util/throwIf'
 import toArray from './util/toArray'
 import getFirstValue from './util/getFirstValue'
 
-const checkExists = (fileName, sourceRoot) => {
+function checkExists(fileName, sourceRoot) {
   const [, value] = getFirstValue(toArray(fileName), fileName =>
     existsSync(resolve(sourceRoot, `./${fileName}`))
   )
   return value
 }
 
-const getRelativePath = ({ comparePath, state }) => {
-  const { filename } = state.file.opts
+function getRelativePath({ comparePath, filename }) {
   const pathName = parse(filename).dir
   return relative(pathName, comparePath)
 }
 
-const getStitchesPath = (state, config) => {
-  const sourceRoot = state.file.opts.sourceRoot || '.'
+function getStitchesPath({ sourceRoot, filename, config }) {
+  sourceRoot = sourceRoot || '.'
 
   const configPathCheck = config.stitchesConfig || [
     'stitches.config.ts',
@@ -36,7 +35,7 @@ const getStitchesPath = (state, config) => {
     )
   )
 
-  return getRelativePath({ comparePath: configPath, state })
+  return getRelativePath({ comparePath: configPath, filename })
 }
 
 export default getStitchesPath

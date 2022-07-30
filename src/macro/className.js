@@ -11,11 +11,12 @@ import {
   getCssAttributeData,
 } from './lib/astHelpers'
 
-const makeJsxAttribute = ([key, value], t) =>
-  t.jsxAttribute(t.jsxIdentifier(key), t.jsxExpressionContainer(value))
+function makeJsxAttribute([key, value], t) {
+  return t.jsxAttribute(t.jsxIdentifier(key), t.jsxExpressionContainer(value))
+}
 
-const handleClassNameProperty = ({ path, t, state, coreContext }) => {
-  if (!state.configTwin.includeClassNames) return
+function handleClassNameProperty({ path, t, state, coreContext }) {
+  if (!coreContext.twinConfig.includeClassNames) return
   if (path.node.name.name !== 'className') return
 
   const nodeValue = path.node.value
@@ -54,7 +55,14 @@ const handleClassNameProperty = ({ path, t, state, coreContext }) => {
       path.replaceWith(attribute)
     }
 
-    addDataTwPropToPath({ t, attributes, rawClasses: matched, path, state })
+    addDataTwPropToPath({
+      t,
+      path,
+      state,
+      attributes,
+      coreContext,
+      rawClasses: matched,
+    })
     return
   }
 
@@ -93,6 +101,7 @@ const handleClassNameProperty = ({ path, t, state, coreContext }) => {
     rawClasses: matched,
     path: jsxPath,
     state,
+    coreContext,
   })
 }
 

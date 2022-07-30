@@ -1,10 +1,7 @@
 import babylon from '@babel/parser'
 import throwIf from './util/throwIf'
 import get from './util/get'
-import { logGeneralError } from './logging'
-
-const SPREAD_ID = '__spread__'
-const COMPUTED_ID = '__computed__'
+import { jsxElementNameError } from './logging'
 
 function addImport({ types: t, program, mod, name, identifier }) {
   const importName =
@@ -19,40 +16,8 @@ function addImport({ types: t, program, mod, name, identifier }) {
   )
 }
 
-function assignify(objectAst, t) {
-  if (objectAst.type !== 'ObjectExpression') return objectAst
-
-  const cloneNode = t.cloneNode || t.cloneDeep
-  const currentChunk = []
-  const chunks = []
-
-  // FIXME: Remove comment and fix next line
-  // eslint-disable-next-line unicorn/no-array-for-each
-  objectAst.properties.forEach(property => {
-    if (property.type === 'SpreadElement') {
-      if (currentChunk.length > 0) {
-        chunks.push(cloneNode(t.objectExpression(currentChunk)))
-        currentChunk.length = 0
-      }
-
-      chunks.push(cloneNode(property.argument))
-    } else {
-      property.value = assignify(property.value, t)
-      currentChunk.push(property)
-    }
-  })
-
-  if (chunks.length === 0) return objectAst
-
-  if (currentChunk.length > 0) {
-    chunks.push(cloneNode(t.objectExpression(currentChunk)))
-  }
-
-  return t.callExpression(
-    t.memberExpression(t.identifier('Object'), t.identifier('assign')),
-    chunks
-  )
-}
+const SPREAD_ID = '__spread__'
+const COMPUTED_ID = '__computed__'
 
 function objectExpressionElements(literal, t, spreadType) {
   return Object.keys(literal)
@@ -112,10 +77,12 @@ function astify(literal, t) {
   }
 }
 
-const setStyledIdentifier = ({ state, path, styledImport }) => {
+function setStyledIdentifier({ state, path, coreContext }) {
   const importFromStitches =
-    state.isStitches && styledImport.from.includes(path.node.source.value)
-  const importFromLibrary = path.node.source.value === styledImport.from
+    coreContext.packageUsed.isStitches &&
+    coreContext.importConfig.styled.from.includes(path.node.source.value)
+  const importFromLibrary =
+    path.node.source.value === coreContext.importConfig.styled.from
 
   if (!importFromLibrary && !importFromStitches) return
 
@@ -124,7 +91,7 @@ const setStyledIdentifier = ({ state, path, styledImport }) => {
   path.node.specifiers.some(specifier => {
     if (
       specifier.type === 'ImportDefaultSpecifier' &&
-      styledImport.import === 'default' &&
+      coreContext.importConfig.styled.import === 'default' &&
       // fixes an issue in gatsby where the styled-components plugin has run
       // before twin. fix is to ignore import aliases which babel creates
       // https://github.com/ben-rogerson/twin.macro/issues/192
@@ -135,7 +102,10 @@ const setStyledIdentifier = ({ state, path, styledImport }) => {
       return true
     }
 
-    if (specifier.imported && specifier.imported.name === styledImport.import) {
+    if (
+      specifier.imported &&
+      specifier.imported.name === coreContext.importConfig.styled.import
+    ) {
       state.styledIdentifier = specifier.local
       state.existingStyledIdentifier = true
       return true
@@ -146,10 +116,12 @@ const setStyledIdentifier = ({ state, path, styledImport }) => {
   })
 }
 
-const setCssIdentifier = ({ state, path, cssImport }) => {
+function setCssIdentifier({ state, path, coreContext }) {
   const importFromStitches =
-    state.isStitches && cssImport.from.includes(path.node.source.value)
-  const isLibraryImport = path.node.source.value === cssImport.from
+    coreContext.packageUsed.isStitches &&
+    coreContext.importConfig.css.from.includes(path.node.source.value)
+  const isLibraryImport =
+    path.node.source.value === coreContext.importConfig.css.from
 
   if (!isLibraryImport && !importFromStitches) return
 
@@ -158,14 +130,17 @@ const setCssIdentifier = ({ state, path, cssImport }) => {
   path.node.specifiers.some(specifier => {
     if (
       specifier.type === 'ImportDefaultSpecifier' &&
-      cssImport.import === 'default'
+      coreContext.importConfig.css.import === 'default'
     ) {
       state.cssIdentifier = specifier.local
       state.existingCssIdentifier = true
       return true
     }
 
-    if (specifier.imported && specifier.imported.name === cssImport.import) {
+    if (
+      specifier.imported &&
+      specifier.imported.name === coreContext.importConfig.css.import
+    ) {
       state.cssIdentifier = specifier.local
       state.existingCssIdentifier = true
       return true
@@ -240,18 +215,22 @@ function replaceWithLocation(path, replacement) {
   return newPaths
 }
 
-const generateUid = (name, program) => program.scope.generateUidIdentifier(name)
+function generateUid(name, program) {
+  return program.scope.generateUidIdentifier(name)
+}
 
-const getParentJSX = path => path.findParent(p => p.isJSXOpeningElement())
+function getParentJSX(path) {
+  return path.findParent(p => p.isJSXOpeningElement())
+}
 
-const getAttributeNames = jsxPath => {
+function getAttributeNames(jsxPath) {
   const attributes = jsxPath.get('attributes')
   // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
   const attributeNames = attributes.map(p => p.node.name && p.node.name.name)
   return attributeNames
 }
 
-const getCssAttributeData = attributes => {
+function getCssAttributeData(attributes) {
   if (!String(attributes)) return {}
   const index = attributes.findIndex(
     attribute =>
@@ -261,7 +240,7 @@ const getCssAttributeData = attributes => {
   return { index, hasCssAttribute: index >= 0, attribute: attributes[index] }
 }
 
-const getFunctionValue = path => {
+function getFunctionValue(path) {
   if (path.parent.type !== 'CallExpression') return
 
   const parent = path.findParent(x => x.isCallExpression())
@@ -276,7 +255,7 @@ const getFunctionValue = path => {
   }
 }
 
-const getTaggedTemplateValue = path => {
+function getTaggedTemplateValue(path) {
   if (path.parent.type !== 'TaggedTemplateExpression') return
 
   const parent = path.findParent(x => x.isTaggedTemplateExpression())
@@ -286,7 +265,7 @@ const getTaggedTemplateValue = path => {
   return { parent, input: parent.get('quasi').evaluate().value }
 }
 
-const getMemberExpression = path => {
+function getMemberExpression(path) {
   if (path.parent.type !== 'MemberExpression') return
 
   const parent = path.findParent(x => x.isMemberExpression())
@@ -295,7 +274,7 @@ const getMemberExpression = path => {
   return { parent, input: parent.get('property').node.name }
 }
 
-const generateTaggedTemplateExpression = ({ identifier, t, styles }) => {
+function generateTaggedTemplateExpression({ identifier, t, styles }) {
   const backtickStyles = t.templateElement({
     raw: `${styles}`,
     cooked: `${styles}`,
@@ -307,14 +286,11 @@ const generateTaggedTemplateExpression = ({ identifier, t, styles }) => {
   return ttExpression
 }
 
-const isComponent = name => name.slice(0, 1).toUpperCase() === name.slice(0, 1)
+function isComponent(name) {
+  return name.slice(0, 1).toUpperCase() === name.slice(0, 1)
+}
 
-const jsxElementNameError = () =>
-  logGeneralError(
-    `The css prop + tw props can only be added to jsx elements with a single dot in their name (or no dot at all).`
-  )
-
-const getFirstStyledArgument = (jsxPath, t) => {
+function getFirstStyledArgument(jsxPath, t) {
   const path = get(jsxPath, 'node.name.name')
 
   if (path)
@@ -336,7 +312,7 @@ const getFirstStyledArgument = (jsxPath, t) => {
   )
 }
 
-const makeStyledComponent = ({ secondArg, jsxPath, t, program, state }) => {
+function makeStyledComponent({ secondArg, jsxPath, t, program, state }) {
   const constName = program.scope.generateUidIdentifier('TwComponent')
 
   if (!state.styledIdentifier) {
@@ -367,11 +343,12 @@ const makeStyledComponent = ({ secondArg, jsxPath, t, program, state }) => {
   }
 }
 
+function getJsxAttributes(path) {
+  return path.get('openingElement.attributes').filter(a => a.isJSXAttribute())
+}
+
 export {
-  SPREAD_ID,
-  COMPUTED_ID,
   addImport,
-  assignify,
   astify,
   parseTte,
   replaceWithLocation,
@@ -386,4 +363,5 @@ export {
   getMemberExpression,
   generateTaggedTemplateExpression,
   makeStyledComponent,
+  getJsxAttributes,
 }

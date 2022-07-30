@@ -7,10 +7,10 @@ const SPLIT_COLON_AVOID_WITHIN_SQUARE_BRACKETS =
   /:(?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g
 const ARBITRARY_VARIANTS = /(?!\[)([^[\]]+)(?=]:)/g
 
-const convertShortCssToArbitraryProperty = (
+function convertShortCssToArbitraryProperty(
   className,
-  { assert, disableShortCss, isCsOnly }
-) => {
+  { assert, disableShortCss, isShortCssOnly }
+) {
   const splitArray = className.split(SPLIT_COLON_AVOID_WITHIN_SQUARE_BRACKETS)
 
   const lastValue = splitArray.slice(-1)[0]
@@ -32,7 +32,7 @@ const convertShortCssToArbitraryProperty = (
 
   const arbitraryProperty = splitArray.join(':')
 
-  const isShortCssDisabled = disableShortCss && !isCsOnly
+  const isShortCssDisabled = disableShortCss && !isShortCssOnly
   assert(
     !isShortCssDisabled,
     `\`${className}\` uses the deprecated short css syntax${logBadGood(
@@ -45,10 +45,10 @@ const convertShortCssToArbitraryProperty = (
   return arbitraryProperty
 }
 
-const convertClassName = (
+function convertClassName(
   className,
-  { theme, isCsOnly, disableShortCss, assert, debug }
-) => {
+  { theme, isShortCssOnly, disableShortCss, assert, debug }
+) {
   // Move the bang to the front of the class
   if (className.endsWith('!')) {
     debug('trailing bang found', className)
@@ -68,7 +68,7 @@ const convertClassName = (
     className = convertShortCssToArbitraryProperty(className, {
       assert,
       disableShortCss,
-      isCsOnly,
+      isShortCssOnly,
     })
   }
 

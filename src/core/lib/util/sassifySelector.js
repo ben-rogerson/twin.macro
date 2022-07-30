@@ -32,7 +32,7 @@ const sassifySelectorTasks = [
   selector => selector.trim(),
 ]
 
-const sassifySelector = (selector, params) => {
+function sassifySelector(selector, params) {
   // Remove the selector if it only contains the parent selector
   if (selector === `.${params.className}` || selector === '&') {
     params.debug('selector not required', selector)

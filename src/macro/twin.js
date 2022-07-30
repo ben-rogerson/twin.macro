@@ -1,26 +1,18 @@
 import { MacroError } from 'babel-plugin-macros'
-// eslint-disable-next-line import/no-relative-parent-imports
-import { getTailwindConfig, getConfigTwinValidated } from '../core'
-import createTheme from './lib/createTheme'
-import createAssert from './lib/createAssert'
-import { createContext } from './lib/util/twImports'
-import { createDebug } from './lib/logging'
-
 import {
   setStyledIdentifier,
   setCssIdentifier,
   generateUid,
   getCssAttributeData,
+  getJsxAttributes,
 } from './lib/astHelpers'
 import validateImports from './lib/validateImports'
 import {
-  getCssConfig,
   updateCssReferences,
   addCssImport,
   convertHtmlElementToStyled,
 } from './css'
 import {
-  getStyledConfig,
   updateStyledReferences,
   addStyledImport,
   handleStyledFunction,
@@ -31,18 +23,8 @@ import { handleGlobalStylesFunction } from './globalStyles'
 import { handleTwProperty, handleTwFunction } from './tw'
 import { handleCsProperty } from './shortCss'
 import { handleClassNameProperty } from './className'
-
-const packageCheck = (packageToCheck, params) =>
-  params.config.preset === packageToCheck ||
-  params.styledImport.from.includes(packageToCheck) ||
-  params.cssImport.from.includes(packageToCheck)
-
-const getPackageUsed = params => ({
-  isEmotion: packageCheck('emotion', params),
-  isStyledComponents: packageCheck('styled-components', params),
-  isGoober: packageCheck('goober', params),
-  isStitches: packageCheck('stitches', params),
-})
+// eslint-disable-next-line import/no-relative-parent-imports
+import { createCoreContext } from '../core'
 
 const macroTasks = [
   handleTwFunction,
@@ -56,83 +38,56 @@ const macroTasks = [
   addCssImport, // Gotcha: Must be after addStyledImport or issues with theme`` style transpile
 ]
 
-const twinMacro = params => {
-  const {
-    babel: { types: t },
-    references,
-    config,
-  } = params
+function twinMacro(params) {
+  const t = params.babel.types
   let { state } = params
-
-  validateImports(references)
-
   const program = state.file.path
+
+  validateImports(params.references)
 
   const isDev =
     process.env.NODE_ENV === 'development' ||
     process.env.NODE_ENV === 'dev' ||
     false
-  state.isDev = isDev
-  state.isProd = !isDev
 
-  const tailwindConfig = getTailwindConfig(state, config)
-
-  // Get import presets
-  const styledImport = getStyledConfig({ state, config })
-  const cssImport = getCssConfig({ state, config })
-
-  const packageUsed = getPackageUsed({ config, cssImport, styledImport })
-  const configTwin = getConfigTwinValidated(config, { ...packageUsed, isDev })
+  const coreContext = createCoreContext({
+    isDev,
+    config: params.config,
+    filename: params.state.filename,
+    sourceRoot: params.state.file.opts.sourceRoot,
+    CustomError: MacroError,
+  })
 
   state = {
     ...state,
-    packageUsed,
-    tailwindConfig,
-    assert: createAssert(MacroError, false),
-    configTwin,
+    isDev,
+    isProd: !isDev,
     tailwindConfigIdentifier: generateUid('tailwindConfig', program),
     tailwindUtilsIdentifier: generateUid('tailwindUtils', program),
-    styledImport,
-    cssImport,
     styledIdentifier: null,
     cssIdentifier: null,
   }
 
-  const coreContext = {
-    configTwin,
-    isDev,
-    assert: state.assert,
-    debug: createDebug(isDev, configTwin),
-    theme: createTheme(tailwindConfig),
-    context: createContext(tailwindConfig),
-    tailwindConfig,
-    CustomError: MacroError,
-  }
+  const handlerProperties = { t, program, state, coreContext }
 
   program.traverse({
     ImportDeclaration(path) {
-      setStyledIdentifier({ state, path, styledImport })
-      setCssIdentifier({ state, path, cssImport })
+      setStyledIdentifier({ ...handlerProperties, path })
+      setCssIdentifier({ ...handlerProperties, path })
     },
     JSXElement(path) {
-      const allAttributes = path.get('openingElement.attributes')
-      const jsxAttributes = allAttributes.filter(a => a.isJSXAttribute())
+      const jsxAttributes = getJsxAttributes(path)
       const { index, hasCssAttribute } = getCssAttributeData(jsxAttributes)
-      // Make sure hasCssAttribute remains true once css prop has been found
-      // so twin can add the css prop
       state.hasCssAttribute = state.hasCssAttribute || hasCssAttribute
-
-      // Reverse the attributes so the items keep their order when replaced
-      const orderedAttributes =
-        index > 1 ? jsxAttributes.reverse() : jsxAttributes
-      for (path of orderedAttributes) {
-        handleClassNameProperty({ path, t, state, coreContext })
-        handleTwProperty({ path, t, state, program, coreContext })
-        handleCsProperty({ path, t, state, coreContext })
+      const attributePaths = index > 1 ? jsxAttributes.reverse() : jsxAttributes
+      for (path of attributePaths) {
+        handleClassNameProperty({ ...handlerProperties, path })
+        handleTwProperty({ ...handlerProperties, path })
+        handleCsProperty({ ...handlerProperties, path })
       }
 
       if (hasCssAttribute)
-        convertHtmlElementToStyled({ path, t, program, state })
+        convertHtmlElementToStyled({ ...handlerProperties, path })
     },
   })
 
@@ -143,16 +98,7 @@ const twinMacro = params => {
     state.cssIdentifier = generateUid('css', program)
 
   for (const task of macroTasks) {
-    task({
-      styledImport,
-      cssImport,
-      references,
-      program,
-      config,
-      state,
-      t,
-      coreContext,
-    })
+    task({ ...handlerProperties, references: params.references })
   }
 
   program.scope.crawl()

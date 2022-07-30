@@ -8,23 +8,27 @@ const configDefaultsStitches = {
   stitchesConfig: undefined, // Set the path to the stitches config
 }
 
-const configDefaultsTwin = ({ isGoober, isStitches, isDev }) => ({
-  allowStyleProp: false, // Allows styles within style="blah" without throwing an error
-  autoCssProp: false, // Deprecated since v2.8.2
-  dataTwProp: isDev, // During development, add a data-tw="" prop containing your tailwind classes for backtracing
-  hasSuggestions: true, // Switch suggestions on/off when you use a tailwind class that's not found
-  sassyPseudo: false, // Sets selectors like hover to &:hover
-  debug: false, // Show the output of the classes twin converts
-  includeClassNames: false, // Look in the className props for tailwind classes to convert
-  dataCsProp: isDev, // During development, add a data-cs="" prop containing your short css classes for backtracing
-  disableCsProp: true, // Disable converting css styles in the cs prop
-  disableShortCss: true, // Disable converting css written using short css
-  config: undefined, // Set the path to the tailwind config
-  ...(isGoober && configDefaultsGoober),
-  ...(isStitches && configDefaultsStitches),
-})
+function configDefaultsTwin({ isGoober, isStitches, isDev }) {
+  return {
+    allowStyleProp: false,
+    autoCssProp: false,
+    dataTwProp: isDev,
+    hasSuggestions: true,
+    sassyPseudo: false,
+    debug: false,
+    includeClassNames: false,
+    dataCsProp: isDev,
+    disableCsProp: true,
+    disableShortCss: true,
+    config: undefined,
+    ...(isGoober && configDefaultsGoober),
+    ...(isStitches && configDefaultsStitches),
+  }
+}
 
-const isBoolean = value => typeof value === 'boolean'
+function isBoolean(value) {
+  return typeof value === 'boolean'
+}
 
 const allowedPresets = ['styled-components', 'emotion', 'goober', 'stitches']
 

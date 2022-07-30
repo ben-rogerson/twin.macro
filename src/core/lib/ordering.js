@@ -2,7 +2,7 @@
 // https://github.com/ben-rogerson/twin.macro/issues/20
 import timSort from 'timsort'
 
-const compareBackdropProperty = (a, b) => {
+function compareBackdropProperty(a, b) {
   // The order of grid properties matter when combined into a single object
   // So here we move backdrop-filter to the beginning to avoid being trumped
   // https://github.com/ben-rogerson/twin.macro/issues/363
@@ -11,13 +11,13 @@ const compareBackdropProperty = (a, b) => {
   return A - B
 }
 
-const orderBackdropProperty = className => {
+function orderBackdropProperty(className) {
   const classNames = className.match(/\S+/g) || []
   timSort.sort(classNames, compareBackdropProperty)
   return classNames.join(' ')
 }
 
-const compareBgOpacityProperty = (a, b) => {
+function compareBgOpacityProperty(a, b) {
   // The order of bg-opacity matters when combined into a single object
   // So we move bg-opacity-xxx to the end to avoid being trumped by the bg color
   const A = /(^|:)bg-opacity-/.test(a) ? 0 : -1
@@ -25,13 +25,13 @@ const compareBgOpacityProperty = (a, b) => {
   return A - B
 }
 
-const orderBgOpacityProperty = className => {
+function orderBgOpacityProperty(className) {
   const classNames = className.match(/\S+/g) || []
   timSort.sort(classNames, compareBgOpacityProperty)
   return classNames.join(' ')
 }
 
-const compareFilterProperty = (a, b) => {
+function compareFilterProperty(a, b) {
   // The order of grid properties matter when combined into a single object
   // So here we move filter to the beginning to avoid being trumped
   // https://github.com/ben-rogerson/twin.macro/issues/363
@@ -40,13 +40,13 @@ const compareFilterProperty = (a, b) => {
   return A - B
 }
 
-const orderFilterProperty = className => {
+function orderFilterProperty(className) {
   const classNames = className.match(/\S+/g) || []
   timSort.sort(classNames, compareFilterProperty)
   return classNames.join(' ')
 }
 
-const compareGridProperty = (a, b) => {
+function compareGridProperty(a, b) {
   // The order of grid properties matter when combined into a single object
   // So here we move col-span-x to the beginning to avoid being trumped
   // https://github.com/ben-rogerson/twin.macro/issues/363
@@ -55,13 +55,13 @@ const compareGridProperty = (a, b) => {
   return A - B
 }
 
-const orderGridProperty = className => {
+function orderGridProperty(className) {
   const classNames = className.match(/\S+/g) || []
   timSort.sort(classNames, compareGridProperty)
   return classNames.join(' ')
 }
 
-const compareOrderRingProperty = (a, b) => {
+function compareOrderRingProperty(a, b) {
   // The order of ring properties matter when combined into a single object
   // So here we move ring-opacity-xxx to the end to avoid being trumped
   // https://github.com/ben-rogerson/twin.macro/issues/374
@@ -70,13 +70,13 @@ const compareOrderRingProperty = (a, b) => {
   return A - B
 }
 
-const orderRingProperty = className => {
+function orderRingProperty(className) {
   const classNames = className.match(/\S+/g) || []
   timSort.sort(classNames, compareOrderRingProperty)
   return classNames.join(' ')
 }
 
-const compareTransformProperty = (a, b) => {
+function compareTransformProperty(a, b) {
   // The order of transform properties matter when combined into a single object
   // So here we move transform to the beginning to avoid being trumped
   // https://github.com/ben-rogerson/twin.macro/issues/363
@@ -85,13 +85,13 @@ const compareTransformProperty = (a, b) => {
   return A - B
 }
 
-const orderTransformProperty = className => {
+function orderTransformProperty(className) {
   const classNames = className.match(/\S+/g) || []
   timSort.sort(classNames, compareTransformProperty)
   return classNames.join(' ')
 }
 
-const compareTransition = (a, b) => {
+function compareTransition(a, b) {
   // The order of transition properties matter when combined into a single object
   // So here we move transition-x to the beginning to avoid being trumped
   // https://github.com/ben-rogerson/twin.macro/issues/363
@@ -100,13 +100,15 @@ const compareTransition = (a, b) => {
   return A - B
 }
 
-const orderTransitionProperty = className => {
+function orderTransitionProperty(className) {
   const classNames = className.match(/\S+/g) || []
   timSort.sort(classNames, compareTransition)
   return classNames.join(' ')
 }
 
-const splitAtSpace = className => className.match(/\S+/g) || []
+function splitAtSpace(className) {
+  return className.match(/\S+/g) || []
+}
 
 export {
   orderBackdropProperty,

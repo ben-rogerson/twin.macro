@@ -1,7 +1,7 @@
 const MATCH_THEME = /theme\((.+?)\)/
 const MATCH_QUOTES = /["'`]/g
 
-const replaceThemeValue = (value, { assert, theme }) => {
+function replaceThemeValue(value, { assert, theme }) {
   const match = value.match(MATCH_THEME)
   if (!match) return value
 

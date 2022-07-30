@@ -1,4 +1,3 @@
-import deepMerge from 'lodash.merge'
 import { resolve, dirname } from 'path'
 import { existsSync } from 'fs'
 import escalade from 'escalade/sync'
@@ -11,8 +10,9 @@ import { logGeneralError } from './logging'
 import throwIf from './util/throwIf'
 import get from './util/get'
 import toArray from './util/toArray'
+import deepMerge from './util/deepMerge'
 
-const getAllConfigs = config => {
+function getAllConfigs(config) {
   const configs = flatMap(
     [...get(config, 'presets', [defaultTailwindConfig])].reverse(),
     preset => {
@@ -24,12 +24,13 @@ const getAllConfigs = config => {
   return [config, ...configs]
 }
 
-const getTailwindConfig = (state, config) => {
-  const sourceRoot = state.file.opts.sourceRoot || '.'
+function getTailwindConfig({ sourceRoot, filename, config }) {
+  sourceRoot = sourceRoot || '.'
+
   // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
   const configFile = config && config.config
 
-  const baseDirectory = state.filename ? dirname(state.filename) : process.cwd()
+  const baseDirectory = filename ? dirname(filename) : process.cwd()
 
   const configPath = configFile
     ? resolve(sourceRoot, configFile)
@@ -60,7 +61,7 @@ const getTailwindConfig = (state, config) => {
   return tailwindConfig
 }
 
-const runConfigValidator = ([item, value]) => {
+function runConfigValidator([item, value]) {
   const validatorConfig = configTwinValidators[item]
   if (!validatorConfig) return true
 
@@ -71,28 +72,31 @@ const runConfigValidator = ([item, value]) => {
   return true
 }
 
-const getConfigTwin = (config, params) => ({
-  ...configDefaultsTwin(params),
-  ...config,
-})
+function getConfigTwin(config, params) {
+  return {
+    ...configDefaultsTwin(params),
+    ...config,
+  }
+}
 
-const getConfigTwinValidated = (config, params) =>
+function getConfigTwinValidated(config, params) {
   // eslint-disable-next-line unicorn/no-array-reduce
-  Object.entries(getConfigTwin(config, params)).reduce(
+  return Object.entries(getConfigTwin(config, params)).reduce(
     (result, item) => ({
       ...result,
       ...(runConfigValidator(item) && { [item[0]]: item[1] }),
     }),
     {}
   )
+}
 
-const getCoercedTypesByProperty = property => {
+function getCoercedTypesByProperty(property) {
   const config = getFlatCoercedConfigByProperty(property)
   if (!config) return []
   return Object.keys(config)
 }
 
-const getFlatCoercedConfigByProperty = property => {
+function getFlatCoercedConfigByProperty(property) {
   const coreConfig = getCorePluginsByProperty(property)
   const config = coreConfig.map(item => item.coerced).filter(Boolean)
   if (config.length === 0) return
@@ -100,10 +104,13 @@ const getFlatCoercedConfigByProperty = property => {
   return Object.assign({}, ...config)
 }
 
-const filterCorePlugins = corePlugins =>
-  Object.entries(corePlugins).filter(([, value]) => typeof value !== 'function')
+function filterCorePlugins(corePlugins) {
+  return Object.entries(corePlugins).filter(
+    ([, value]) => typeof value !== 'function'
+  )
+}
 
-const getCorePluginsByProperty = propertyName => {
+function getCorePluginsByProperty(propertyName) {
   const match = filterCorePlugins('corePlugins').find(
     ([k]) => propertyName === k
   )
@@ -113,13 +120,14 @@ const getCorePluginsByProperty = propertyName => {
   return toArray(found)
 }
 
-const supportsArbitraryValues = coreConfigValue =>
-  toArray(coreConfigValue).some(
+function supportsArbitraryValues(coreConfigValue) {
+  return toArray(coreConfigValue).some(
     config =>
       (config.output && typeof config.output === 'function') ||
       (!config.output && config.coerced) ||
       config.config
   )
+}
 
 export {
   getTailwindConfig,

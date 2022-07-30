@@ -12,17 +12,11 @@
 // @ts-nocheck
 import tw, { globalStyles, css, styled, theme } from '../macro'
 
-// tw`block`
-// tw`flex`
-// tw`h-[32]`
-// tw`flex-[2 2 0%]`
-
 // Tw block
-// tw`mt-5`
-// tw`block`
+tw`bg-black/25`
 
-// // Styled component
-// tw.div`bg-black/25`
+// Styled component
+tw.div`bg-black/25`
 
-// // Inline tw
-// ;<div tw="bg-black/25" />
+// Inline tw
+;<div tw="bg-black/25" />

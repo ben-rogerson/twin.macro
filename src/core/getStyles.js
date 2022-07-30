@@ -1,8 +1,8 @@
-import deepMerge from 'lodash.merge'
 import extractRuleStyles from './extractRuleStyles'
 import * as ordering from './lib/ordering'
 import createAssert from './lib/createAssert'
 import expandVariantGroups from './lib/expandVariantGroups'
+import deepMerge from './lib/util/deepMerge'
 import { resolveMatches } from './lib/util/twImports'
 import escapeRegex from './lib/util/escapeRegex'
 import convertClassName from './lib/convertClassName'
@@ -13,7 +13,7 @@ import {
   CLASS_DIVIDER_PIPE,
 } from './constants'
 
-const getStylesFromMatches = (matches, params) => {
+function getStylesFromMatches(matches, params) {
   if (matches.length === 0) {
     params.debug('no matches supplied', {}, 'error')
     return
@@ -35,7 +35,7 @@ const getStylesFromMatches = (matches, params) => {
 
 // When removing a multiline comment, determine if a space is left or not
 // eg: You'd want a space left in this situation: tw`class1/* comment */class2`
-const multilineReplaceWith = (match, index, input) => {
+function multilineReplaceWith(match, index, input) {
   const charBefore = input[index - 1]
   // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
   const directPrefixMatch = charBefore && charBefore.match(/\w/)
@@ -76,22 +76,21 @@ export default (classes, params) => {
   let styles = []
 
   const convertedClassNameContext = {
-    theme: params.theme,
-    isCsOnly: params.isCsOnly,
-    debug: params.debug,
-    disableShortCss: params.configTwin.disableShortCss,
     assert,
+    theme: params.theme,
+    debug: params.debug,
+    isShortCssOnly: params.isShortCssOnly,
+    disableShortCss: params.twinConfig.disableShortCss,
   }
 
   const commonMatchContext = {
     assert,
-    processLayerDefaults: false,
-    context: params.context,
     theme: params.theme,
     debug: params.debug,
+    includeUniversalStyles: false,
     tailwindConfig: params.tailwindConfig,
-    screens: params.tailwindConfig.theme.screens,
-    sassyPseudo: params.configTwin.sassyPseudo,
+    tailwindContext: params.tailwindContext,
+    sassyPseudo: params.twinConfig.sassyPseudo,
   }
 
   for (const className of classes) {
@@ -102,7 +101,9 @@ export default (classes, params) => {
       convertedClassNameContext
     )
 
-    const matches = [...resolveMatches(convertedClassName, params.context)]
+    const matches = [
+      ...resolveMatches(convertedClassName, params.tailwindContext),
+    ]
 
     const results = getStylesFromMatches(matches, {
       ...commonMatchContext,

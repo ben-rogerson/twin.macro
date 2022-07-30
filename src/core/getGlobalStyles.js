@@ -1,9 +1,9 @@
-import deepMerge from 'lodash.merge'
+import deepMerge from './lib/util/deepMerge'
 import extractRuleStyles from './extractRuleStyles'
 import { LAYER_DEFAULTS } from './constants'
 
-const getGlobalStyles = params => {
-  const candidates = [...params.context.candidateRuleMap]
+function getGlobalStyles(params) {
+  const candidates = [...params.tailwindContext.candidateRuleMap]
 
   const globalPluginStyles = candidates
     .flatMap(([, candidate]) => {

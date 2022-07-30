@@ -1,5 +1,6 @@
-import deepMerge from 'lodash.merge'
 import camelize from './lib/util/camelize'
+import deepMerge from './lib/util/deepMerge'
+import get from './lib/util/get'
 import replaceThemeValue from './lib/util/replaceThemeValue'
 import sassifySelector from './lib/util/sassifySelector'
 import {
@@ -10,7 +11,7 @@ import {
   LAYER_DEFAULTS,
 } from './constants'
 
-const transformImportant = (value, params) => {
+function transformImportant(value, params) {
   if (params.passChecks === true) return value
   if (!params.hasImportant) return value
 
@@ -22,7 +23,7 @@ const transformImportant = (value, params) => {
 
 const transformValueTasks = [replaceThemeValue, transformImportant]
 
-const transformDeclValue = (value, params) => {
+function transformDeclValue(value, params) {
   const valueOriginal = value
 
   for (const task of transformValueTasks) {
@@ -38,42 +39,34 @@ const transformDeclValue = (value, params) => {
   return value
 }
 
-const extractFromRule = (rule, params) => [
-  rule.selector
-    .replace(/\\3(\d)/g, '$1') // Remove digit escaping
-    .replace(/\\2c /g, ',') // Remove comma escaping
-    .replace(/\\(?=.|$)/g, '') // Remove \\ escaping
-    .replace(/\n/g, ' '), //  Replace \n with a space
-  extractRuleStyles(rule.nodes, params),
-]
+function extractFromRule(rule, params) {
+  return [
+    rule.selector
+      .replace(/\\3(\d)/g, '$1') // Remove digit escaping
+      .replace(/\\2c /g, ',') // Remove comma escaping
+      .replace(/\\(?=.|$)/g, '') // Remove \\ escaping
+      .replace(/\n/g, ' '),
+    extractRuleStyles(rule.nodes, params),
+  ]
+}
 
-const extractSelectorFromAtRule = (name, value, params) => {
+function extractSelectorFromAtRule(name, value, params) {
   if (name === LAYER_DEFAULTS) {
-    if (params.processLayerDefaults === false) return
+    if (params.includeUniversalStyles === false) return
     return DEFAULTS_UNIVERSAL
   }
 
+  // Handle @screen usage in plugins, eg: `@screen md`
   if (name === 'screen') {
-    const screenValue = params.screens[value]
-    return screenValue && `@media (min-width: ${screenValue})`
+    const screenConfig = get(params, 'tailwindConfig.theme.screens')
+    return `@media (min-width: ${screenConfig[value]})`
   }
 
   return `@${name} ${value}`.trim()
 }
 
-const extractRuleStyles = (nodes, params) => {
-  const styles = nodes
-    .map(rule => {
-      const handler = handledRuleTypes(rule.type)
-      return handler ? handler(rule, params) : null
-    })
-    .filter(Boolean)
-  if (styles.length === 0) return null
-  return deepMerge(...styles)
-}
-
-const handledRuleTypes = type =>
-  ({
+function handledRuleTypes(type) {
+  return {
     decl(decl, params) {
       const property = decl.prop.startsWith('--')
         ? decl.prop
@@ -174,8 +167,21 @@ const handledRuleTypes = type =>
         params.debug('universal default', styles)
       }
 
+      params.debug('atrule', selector)
       return ruleset
     },
-  }[type])
+  }[type]
+}
+
+function extractRuleStyles(nodes, params) {
+  const styles = nodes
+    .map(rule => {
+      const handler = handledRuleTypes(rule.type)
+      return handler ? handler(rule, params) : null
+    })
+    .filter(Boolean)
+  if (styles.length === 0) return null
+  return deepMerge(...styles)
+}
 
 export default extractRuleStyles

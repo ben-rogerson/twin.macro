@@ -1,31 +1,35 @@
 const SPACE_ID = '_'
 
-const formatProp = classes =>
-  classes
-    // Normalize spacing
-    .replace(/\s\s+/g, ' ')
-    // Remove newline characters
-    .replace(/\n/g, ' ')
-    // Replace the space id
-    .replace(SPACE_ID, ' ')
-    .trim()
+function formatProp(classes) {
+  return (
+    classes
+      // Normalize spacing
+      .replace(/\s\s+/g, ' ')
+      // Remove newline characters
+      .replace(/\n/g, ' ')
+      // Replace the space id
+      .replace(SPACE_ID, ' ')
+      .trim()
+  )
+}
 
-const addDataTwPropToPath = ({
+function addDataTwPropToPath({
   t,
   attributes,
   rawClasses,
   path,
   state,
+  coreContext,
   propName = 'data-tw',
-}) => {
+}) {
   const dataTwPropAllEnvironments =
-    propName === 'data-tw' && state.configTwin.dataTwProp === 'all'
+    propName === 'data-tw' && coreContext.twinConfig.dataTwProp === 'all'
   const dataCsPropAllEnvironments =
-    propName === 'data-cs' && state.configTwin.dataCsProp === 'all'
+    propName === 'data-cs' && coreContext.twinConfig.dataCsProp === 'all'
   if (state.isProd && !dataTwPropAllEnvironments && !dataCsPropAllEnvironments)
     return
-  if (propName === 'data-tw' && !state.configTwin.dataTwProp) return
-  if (propName === 'data-cs' && !state.configTwin.dataCsProp) return
+  if (propName === 'data-tw' && !coreContext.twinConfig.dataTwProp) return
+  if (propName === 'data-cs' && !coreContext.twinConfig.dataCsProp) return
 
   // Remove the existing debug attribute if you happen to have it
   const dataProperty = attributes.filter(
@@ -44,22 +48,23 @@ const addDataTwPropToPath = ({
   )
 }
 
-const addDataPropToExistingPath = ({
+function addDataPropToExistingPath({
   t,
   attributes,
   rawClasses,
   path,
   state,
+  coreContext,
   propName = 'data-tw',
-}) => {
+}) {
   const dataTwPropAllEnvironments =
-    propName === 'data-tw' && state.configTwin.dataTwProp === 'all'
+    propName === 'data-tw' && coreContext.twinConfig.dataTwProp === 'all'
   const dataCsPropAllEnvironments =
-    propName === 'data-cs' && state.configTwin.dataCsProp === 'all'
+    propName === 'data-cs' && coreContext.twinConfig.dataCsProp === 'all'
   if (state.isProd && !dataTwPropAllEnvironments && !dataCsPropAllEnvironments)
     return
-  if (propName === 'data-tw' && !state.configTwin.dataTwProp) return
-  if (propName === 'data-cs' && !state.configTwin.dataCsProp) return
+  if (propName === 'data-tw' && !coreContext.twinConfig.dataTwProp) return
+  if (propName === 'data-cs' && !coreContext.twinConfig.dataCsProp) return
 
   // Append to the existing debug attribute
   const dataProperty = attributes.find(

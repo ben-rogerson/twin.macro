@@ -1,6 +1,6 @@
 // import { logBadGood } from './lib/logging'
 
-const getSuggestions = (className, params) => {
+function getSuggestions(className, params) {
   const ThrowError = params.CustomError || Error
 
   // eslint-disable-next-line @typescript-eslint/no-throw-literal
@@ -74,13 +74,13 @@ export default getSuggestions
 //   const {
 //     state: {
 //       tailwindConfig,
-//       configTwin: { hasSuggestions },
+//       twinConfig: { hasSuggestions },
 //     },
 //     pieces: { alphaError },
-//     isCsOnly,
+//     isShortCssOnly,
 //   } = properties
 
-//   if (isCsOnly) return logInvalidShortCssError(className)
+//   if (isShortCssOnly) return logInvalidShortCssError(className)
 
 //   if (alphaError) return logAlphaError(alphaError)
 
@@ -333,11 +333,11 @@ export default getSuggestions
 
 // ============
 
-// const logNoVariant = (variant, { config, context }) => {
+// const logNoVariant = (variant, { config, tailwindContext }) => {
 //     const screensList = Object.entries(
 //       get(config, ['theme', 'screens']) || {}
 //     ).map(([k, v]) => [k, [v]])
-//     const variantList = [...screensList, ...context.variantMap]
+//     const variantList = [...screensList, ...tailwindContext.variantMap]
 
 //     const textNotFound = `The variant ${color.errorLight(
 //       `${variant}:`
@@ -391,11 +391,11 @@ export default getSuggestions
 //         )
 
 //         if (typeof foundVariant === 'function') {
-//           const context = {
+//           const tailwindContext = {
 //             className: params.className,
 //             config: item => params.tailwindConfig[item] || null,
 //           }
-//           foundVariant = foundVariant(context)
+//           foundVariant = foundVariant(tailwindContext)
 //         }
 
 //         if (!foundVariant) {

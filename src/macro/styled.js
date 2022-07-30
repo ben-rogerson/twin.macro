@@ -1,32 +1,8 @@
-// eslint-disable-next-line import/no-relative-parent-imports
-import { getStitchesPath } from '../core'
-import userPresets from './config/userPresets'
 import { addImport, replaceWithLocation } from './lib/astHelpers'
 import isEmpty from './lib/util/isEmpty'
 import get from './lib/util/get'
 
-const getStyledConfig = ({ state, config }) => {
-  const usedConfig =
-    (config.styled && config) ||
-    userPresets[config.preset] ||
-    userPresets.emotion
-
-  if (typeof usedConfig.styled === 'string') {
-    return { import: 'default', from: usedConfig.styled }
-  }
-
-  if (config.preset === 'stitches') {
-    const stitchesPath = getStitchesPath(state, config)
-    if (stitchesPath) {
-      // Overwrite the stitches import data with the path from the current file
-      usedConfig.styled.from = stitchesPath
-    }
-  }
-
-  return usedConfig.styled
-}
-
-const updateStyledReferences = ({ references, state }) => {
+function updateStyledReferences({ references, state }) {
   if (state.existingStyledIdentifier) return
 
   const styledReferences = references.styled
@@ -39,7 +15,7 @@ const updateStyledReferences = ({ references, state }) => {
   })
 }
 
-const addStyledImport = ({ references, program, t, styledImport, state }) => {
+function addStyledImport({ references, program, t, state, coreContext }) {
   if (!state.isImportingStyled) {
     const shouldImport =
       !isEmpty(references.styled) && !state.existingStyledIdentifier
@@ -51,13 +27,13 @@ const addStyledImport = ({ references, program, t, styledImport, state }) => {
   addImport({
     types: t,
     program,
-    name: styledImport.import,
-    mod: styledImport.from,
+    name: coreContext.importConfig.styled.import,
+    mod: coreContext.importConfig.styled.from,
     identifier: state.styledIdentifier,
   })
 }
 
-const moveDotElementToParam = ({ path, t }) => {
+function moveDotElementToParam({ path, t }) {
   if (path.parent.type !== 'MemberExpression') return
 
   const parentCallExpression = path.findParent(x => x.isCallExpression())
@@ -71,8 +47,8 @@ const moveDotElementToParam = ({ path, t }) => {
   replaceWithLocation(parentCallExpression, replacement)
 }
 
-const handleStyledFunction = ({ references, t, state }) => {
-  if (!state.configTwin.convertStyledDot) return
+function handleStyledFunction({ references, t, coreContext }) {
+  if (!coreContext.twinConfig.convertStyledDot) return
   if (isEmpty(references)) return
   ;[...(references.default || []), ...(references.styled || [])]
     .filter(Boolean)
@@ -84,9 +60,4 @@ const handleStyledFunction = ({ references, t, state }) => {
     })
 }
 
-export {
-  getStyledConfig,
-  updateStyledReferences,
-  addStyledImport,
-  handleStyledFunction,
-}
+export { updateStyledReferences, addStyledImport, handleStyledFunction }

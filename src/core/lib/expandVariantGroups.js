@@ -21,7 +21,7 @@ function findRightBracket(
   }
 }
 
-const sliceToSpace = string => {
+function sliceToSpace(string) {
   const spaceIndex = string.indexOf(' ')
   if (spaceIndex === -1) return string
   return string.slice(0, spaceIndex)
@@ -156,6 +156,8 @@ function spreadVariantGroups(
   return results
 }
 
-const expandVariantGroups = classes => spreadVariantGroups(classes).join(' ')
+function expandVariantGroups(classes) {
+  return spreadVariantGroups(classes).join(' ')
+}
 
 export default expandVariantGroups

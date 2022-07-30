@@ -1,7 +1,6 @@
 import template from '@babel/template'
 // eslint-disable-next-line import/no-relative-parent-imports
 import { getGlobalStyles } from '../core'
-import userPresets from './config/userPresets'
 import { logGeneralError } from './lib/logging'
 import {
   addImport,
@@ -10,34 +9,26 @@ import {
 } from './lib/astHelpers'
 import throwIf from './lib/util/throwIf'
 
-const getGlobalConfig = config => {
-  const usedConfig =
-    (config.global && config) ||
-    userPresets[config.preset] ||
-    userPresets.emotion
-  return usedConfig.global
-}
-
-const addGlobalStylesImport = ({ program, t, identifier, config }) => {
-  const globalConfig = getGlobalConfig(config)
+function addGlobalStylesImport({ program, t, identifier, coreContext }) {
   addImport({
     types: t,
     program,
     identifier,
-    name: globalConfig.import,
-    mod: globalConfig.from,
+    name: coreContext.importConfig.global.import,
+    mod: coreContext.importConfig.global.from,
   })
 }
 
-const getGlobalDeclarationTte = ({ t, stylesUid, globalUid, styles }) =>
-  t.variableDeclaration('const', [
+function getGlobalDeclarationTte({ t, stylesUid, globalUid, styles }) {
+  return t.variableDeclaration('const', [
     t.variableDeclarator(
       globalUid,
       generateTaggedTemplateExpression({ t, identifier: stylesUid, styles })
     ),
   ])
+}
 
-const getGlobalDeclarationProperty = params => {
+function getGlobalDeclarationProperty(params) {
   const { t, stylesUid, globalUid, state, styles } = params
 
   const ttExpression = generateTaggedTemplateExpression({
@@ -71,31 +62,32 @@ const getGlobalDeclarationProperty = params => {
   return code
 }
 
-const kebabize = string =>
-  string.replace(/([\da-z]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase()
+function kebabize(string) {
+  return string.replace(/([\da-z]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase()
+}
 
-const convertCssObjectToString = cssObject => {
-  if (!cssObject) return
-
-  return Object.entries(cssObject)
-    .map(([k, v]) =>
-      typeof v === 'string'
-        ? `${kebabize(k)}: ${v};`
-        : `${k} {
+function convert(k, v) {
+  return typeof v === 'string'
+    ? `  ${kebabize(k)}: ${v};`
+    : `${k} {
 ${convertCssObjectToString(v)}
-        }`
-    )
+}`
+}
+
+function convertCssObjectToString(cssObject) {
+  if (!cssObject) return
+  return Object.entries(cssObject)
+    .map(([k, v]) => convert(k, v))
     .join('\n')
 }
 
-const handleGlobalStylesFunction = params => {
+function handleGlobalStylesFunction(params) {
   const { references } = params
-
   if (references.GlobalStyles) handleGlobalStylesJsx(params)
   if (references.globalStyles) handleGlobalStylesVariable(params)
 }
 
-const handleGlobalStylesVariable = params => {
+function handleGlobalStylesVariable(params) {
   const { references } = params
   if (references.globalStyles.length === 0) return
 
@@ -113,8 +105,8 @@ const handleGlobalStylesVariable = params => {
   })
 }
 
-const handleGlobalStylesJsx = params => {
-  const { references, program, t, state, config } = params
+function handleGlobalStylesJsx(params) {
+  const { references, program, t, state, coreContext } = params
   if (references.GlobalStyles.length === 0) return
 
   throwIf(references.GlobalStyles.length > 1, () =>
@@ -126,7 +118,7 @@ const handleGlobalStylesJsx = params => {
 
   throwIf(!parentPath, () =>
     logGeneralError(
-      'GlobalStyles must be added as a JSX element, eg: <GlobalStyles />'
+      'The `GlobalStyles` import must be added as a JSX element, eg: `<GlobalStyles />`.\nUse the `globalStyles` import for an object of styles that can be used anywhere.'
     )
   )
 
@@ -138,13 +130,13 @@ const handleGlobalStylesJsx = params => {
   const stylesUid = generateUid('globalImport', program)
   const declarationData = { t, globalUid, stylesUid, styles, state }
 
-  if (state.packageUsed.isStyledComponents) {
+  if (coreContext.packageUsed.isStyledComponents) {
     const declaration = getGlobalDeclarationTte(declarationData)
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
   }
 
-  if (state.packageUsed.isEmotion) {
+  if (coreContext.packageUsed.isEmotion) {
     const declaration = getGlobalDeclarationProperty(declarationData)
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
@@ -153,17 +145,22 @@ const handleGlobalStylesJsx = params => {
     state.isImportingCss = !state.existingCssIdentifier
   }
 
-  if (state.packageUsed.isGoober) {
+  if (coreContext.packageUsed.isGoober) {
     const declaration = getGlobalDeclarationTte(declarationData)
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))
   }
 
-  throwIf(state.packageUsed.isStitches, () =>
+  throwIf(coreContext.packageUsed.isStitches, () =>
     logGeneralError('Use the `globalStyles` import with stitches')
   )
 
-  addGlobalStylesImport({ identifier: stylesUid, t, program, config })
+  addGlobalStylesImport({
+    identifier: stylesUid,
+    t,
+    program,
+    coreContext,
+  })
 }
 
 export { handleGlobalStylesFunction }

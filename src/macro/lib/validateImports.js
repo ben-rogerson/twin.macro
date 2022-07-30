@@ -14,7 +14,7 @@ const validImports = new Set([
   'globalStyles',
 ])
 
-export default imports => {
+export default function validateImports(imports) {
   const unsupportedImport = Object.keys(imports).find(
     reference => !validImports.has(reference)
   )

@@ -1,9 +1,9 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
-    sourceType: 'module',
     ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: './tsconfig.json',
   },
   settings: { version: 'detect' },
   plugins: ['chai-friendly', 'jest', 'import'],
@@ -26,6 +26,7 @@ module.exports = {
     'no-warning-comments': ['error', { terms: ['todo'], location: 'start' }],
     'no-undef': 2,
     'capitalized-comments': 0,
+    'func-style': ['error', 'declaration'],
     'no-constant-binary-expression': 0,
     'import/no-unresolved': 'error',
     'import/no-relative-parent-imports': 'error',
@@ -37,7 +38,7 @@ module.exports = {
     'unicorn/prefer-array-flat': 0,
     'unicorn/prevent-abbreviations': [
       'error',
-      { allowList: { params: true, formatProp: true } },
+      { allowList: { params: true, formatProp: true, isDev: true } },
     ],
   },
   overrides: [
@@ -108,4 +109,5 @@ module.exports = {
     'types/macro.d.ts',
   ],
   globals: { JSX: true, AriaAttributes: true, process: true },
+  env: { browser: false, node: true, es6: true },
 }

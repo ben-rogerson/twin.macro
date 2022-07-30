@@ -16,7 +16,7 @@ import isEmpty from './lib/util/isEmpty'
 import { logGeneralError, logStylePropertyError } from './lib/logging'
 import { addDataTwPropToPath, addDataPropToExistingPath } from './dataProp'
 
-const moveTwPropToStyled = params => {
+function moveTwPropToStyled(params) {
   const { jsxPath, astStyles } = params
 
   makeStyledComponent({ ...params, secondArg: astStyles })
@@ -30,7 +30,7 @@ const moveTwPropToStyled = params => {
   jsxPath.node.attributes.splice(twAttributeIndex, 1)
 }
 
-const mergeIntoCssAttribute = ({ path, astStyles, cssAttribute, t }) => {
+function mergeIntoCssAttribute({ path, astStyles, cssAttribute, t }) {
   if (!cssAttribute) return
 
   // The expression is the value as a NodePath
@@ -67,7 +67,6 @@ const mergeIntoCssAttribute = ({ path, astStyles, cssAttribute, t }) => {
     // <div css={{ ... }} tw="..." />
     // or ArrowFunctionExpression/FunctionExpression
     // <div css={() => (...)} tw="..." />
-
     const existingCssAttributeNode = existingCssAttribute.node
 
     // The existing css prop is an array, eg: css={[...]}
@@ -87,7 +86,7 @@ const mergeIntoCssAttribute = ({ path, astStyles, cssAttribute, t }) => {
   }
 }
 
-const handleTwProperty = ({ path, t, program, state, coreContext }) => {
+function handleTwProperty({ path, t, program, state, coreContext }) {
   if (!path.node || path.node.name.name !== 'tw') return
   state.hasTwAttribute = true
 
@@ -109,11 +108,13 @@ const handleTwProperty = ({ path, t, program, state, coreContext }) => {
   const rawClasses = expressionValue || nodeValue.value || ''
   const { styles, unmatched } = getStyles(rawClasses, coreContext)
 
-  if (unmatched.length > 0)
-    return getSuggestions(unmatched, {
+  if (unmatched.length > 0) {
+    getSuggestions(unmatched, {
       CustomError: coreContext.CustomError,
       type: 'prop',
     })
+    return
+  }
 
   const astStyles = astify(isEmpty(styles) ? {} : styles, t)
 
@@ -121,9 +122,9 @@ const handleTwProperty = ({ path, t, program, state, coreContext }) => {
   const attributes = jsxPath.get('attributes')
   const { attribute: cssAttribute } = getCssAttributeData(attributes)
 
-  if (state.configTwin.moveTwPropToStyled) {
+  if (coreContext.twinConfig.moveTwPropToStyled) {
     moveTwPropToStyled({ astStyles, jsxPath, t, program, state })
-    addDataTwPropToPath({ t, attributes, rawClasses, path, state })
+    addDataTwPropToPath({ t, attributes, rawClasses, path, state, coreContext })
     return
   }
 
@@ -135,7 +136,7 @@ const handleTwProperty = ({ path, t, program, state, coreContext }) => {
         t.jsxExpressionContainer(astStyles)
       )
     )
-    addDataTwPropToPath({ t, attributes, rawClasses, path, state })
+    addDataTwPropToPath({ t, attributes, rawClasses, path, state, coreContext })
     return
   }
 
@@ -144,10 +145,17 @@ const handleTwProperty = ({ path, t, program, state, coreContext }) => {
 
   path.remove() // remove the tw prop
 
-  addDataPropToExistingPath({ t, attributes, rawClasses, path: jsxPath, state })
+  addDataPropToExistingPath({
+    t,
+    attributes,
+    rawClasses,
+    path: jsxPath,
+    coreContext,
+    state,
+  })
 }
 
-const handleTwFunction = ({ references, t, state, coreContext }) => {
+function handleTwFunction({ references, t, state, coreContext }) {
   const defaultImportReferences = references.default || references.tw || []
 
   // FIXME: Remove comment and fix next line
@@ -164,7 +172,7 @@ const handleTwFunction = ({ references, t, state, coreContext }) => {
     if (!parent) return
 
     // Check if the style attribute is being used
-    if (!state.configTwin.allowStyleProp) {
+    if (!coreContext.twinConfig.allowStyleProp) {
       const jsxAttribute = parent.findParent(x => x.isJSXAttribute())
       const attributeName =
         // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
@@ -181,17 +189,26 @@ const handleTwFunction = ({ references, t, state, coreContext }) => {
 
     if (jsxPath) {
       const attributes = jsxPath.get('attributes')
-      const pathData = { t, attributes, rawClasses, path: jsxPath, state }
+      const pathData = {
+        t,
+        attributes,
+        rawClasses,
+        path: jsxPath,
+        coreContext,
+        state,
+      }
       addDataPropToExistingPath(pathData)
     }
 
     const { styles, unmatched } = getStyles(rawClasses, coreContext)
 
-    if (unmatched.length > 0)
-      return getSuggestions(unmatched, {
+    if (unmatched.length > 0) {
+      getSuggestions(unmatched, {
         CustomError: coreContext.CustomError,
         type: 'styled',
       })
+      return
+    }
 
     const astStyles = astify(isEmpty(styles) ? {} : styles, t)
     replaceWithLocation(parsed.path, astStyles)

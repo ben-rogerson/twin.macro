@@ -11,25 +11,46 @@ const color = {
   hex: hex => chalk.hex(hex),
 }
 
-const spaced = string => `\n\n${string}\n`
-const warning = string => color.error(`✕ ${string}`)
+function spaced(string) {
+  return `\n\n${string}\n`
+}
 
-const logBadGood = (bad, good, extra) =>
-  spaced(
+function warning(string) {
+  return color.error(`✕ ${string}`)
+}
+
+function logBadGood(bad, good, extra) {
+  return spaced(
     `${color.error('✕ Bad:')} ${
       typeof bad === 'function' ? bad(color) : bad
     }\n${color.success('✓ Good:')} ${
       typeof good === 'function' ? good(color) : good
     }${extra ? `\n\n${extra}` : ''}`
   )
+}
 
-const logGeneralError = error =>
-  Array.isArray(error)
+function logGeneralError(error) {
+  return Array.isArray(error)
     ? spaced(
         `${warning(
           typeof error[0] === 'function' ? error[0](color) : error[0]
         )}\n\n${error[1]}`
       )
     : spaced(warning(error))
+}
 
-export { spaced, warning, color, logBadGood, logGeneralError }
+function createDebug(isDev, twinConfig) {
+  return (reference, data, type = 'subdued') => {
+    if (isDev !== true) return
+    if (twinConfig.debug !== true) return
+
+    const log = `${color[type]('-')} ${reference} ${color[type](
+      JSON.stringify(data)
+    )}`
+
+    // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
+    return console.log(log)
+  }
+}
+
+export { spaced, warning, color, logBadGood, logGeneralError, createDebug }

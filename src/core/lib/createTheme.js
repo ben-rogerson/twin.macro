@@ -2,15 +2,15 @@ import dlv from 'dlv'
 import { transformThemeValue, toPath } from './util/twImports'
 import isObject from './util/isObject'
 
-const createTheme = tailwindConfig => {
+function createTheme(tailwindConfig) {
   function getConfigValue(path, defaultValue) {
     return path ? dlv(tailwindConfig, path, defaultValue) : tailwindConfig
   }
 
-  function resolveThemeValue(path, defaultValue, opts = {}) {
+  function resolveThemeValue(path, defaultValue, options = {}) {
     const [pathRoot, ...subPaths] = toPath(path)
     const value = getConfigValue(['theme', pathRoot, ...subPaths], defaultValue)
-    return sassifyValues(transformThemeValue(pathRoot)(value, opts))
+    return sassifyValues(transformThemeValue(pathRoot)(value, options))
   }
 
   //   const theme = Object.assign(
@@ -22,10 +22,10 @@ const createTheme = tailwindConfig => {
   //     }
   //   ) // TODO: Add withAlpha
 
-  return (...opts) => resolveThemeValue(...opts)
+  return (...options) => resolveThemeValue(...options)
 }
 
-const sassifyValues = values => {
+function sassifyValues(values) {
   if (!isObject(values)) return values
   const transformed = Object.entries(values).map(([k, v]) => [
     k,

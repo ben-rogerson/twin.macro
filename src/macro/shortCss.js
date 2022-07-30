@@ -1,7 +1,3 @@
-/**
- * cs = Short css
- */
-
 // eslint-disable-next-line import/no-relative-parent-imports
 import { getStyles } from '../core'
 import throwIf from './lib/util/throwIf'
@@ -15,8 +11,8 @@ import {
   getCssAttributeData,
 } from './lib/astHelpers'
 
-const handleCsProperty = ({ path, t, state, coreContext }) => {
-  if (state.configTwin.disableCsProp) return
+function handleCsProperty({ path, t, state, coreContext }) {
+  if (coreContext.twinConfig.disableCsProp) return
   if (!path.node || path.node.name.name !== 'cs') return
 
   const nodeValue = path.node.value
@@ -35,7 +31,10 @@ const handleCsProperty = ({ path, t, state, coreContext }) => {
   )
 
   const rawClasses = expressionValue || nodeValue.value || ''
-  const { styles } = getStyles(rawClasses, { isCsOnly: true, ...coreContext })
+  const { styles } = getStyles(rawClasses, {
+    isShortCssOnly: true,
+    ...coreContext,
+  })
   const astStyles = astify(isEmpty(styles) ? {} : styles, t)
 
   const jsxPath = getParentJSX(path)
@@ -56,6 +55,7 @@ const handleCsProperty = ({ path, t, state, coreContext }) => {
       rawClasses,
       path,
       state,
+      coreContext,
       propName: 'data-cs',
     })
     return
@@ -94,7 +94,6 @@ const handleCsProperty = ({ path, t, state, coreContext }) => {
     // <div css={{ ... }} cs="..." />
     // or ArrowFunctionExpression/FunctionExpression
     // <div css={() => (...)} cs="..." />
-
     const existingCssAttributeNode = existingCssAttribute.node
 
     // The existing css prop is an array, eg: css={[...]}
@@ -121,6 +120,7 @@ const handleCsProperty = ({ path, t, state, coreContext }) => {
     rawClasses,
     path: jsxPath,
     state,
+    coreContext,
     propName: 'data-cs',
   })
 }
