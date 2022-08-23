@@ -11,10 +11,6 @@
 
 ---
 
-🌟 **August 2022 update**<br/>In version 3, Twin now includes full tailwindcss plugin support, faster compilation speeds and all the features from tailwindcss v3. [Release notes →](https://github.com/ben-rogerson/twin.macro/releases)
-
----
-
 Style jsx elements using Tailwind classes:
 
 ```js
@@ -116,8 +112,7 @@ tw`text-sm md:text-lg`
 ```diff
 - import styled from '@emotion/styled'
 - import css from '@emotion/react'
-- import tw from 'twin.macro'
-+ import tw, { styled, css } from 'twin.macro'
++ import { styled, css } from 'twin.macro'
 ```
 
 **🐹 Adds no size to your build** - Twin converts the classes you’ve used into css objects using Babel and then compiles away, leaving no runtime code
@@ -150,8 +145,6 @@ Try one of these classes:
 - ml-1.5 > 0.375rem
 - ml-1 > 0.25rem
 - ml-10 > 2.5rem
-- ml-11 > 2.75rem
-- ml-12 > 3rem
 ```
 
 **🖌️ Use the theme import to add values from your tailwind config**
@@ -184,7 +177,7 @@ Add !important to multiple classes with bracket groups:
 
 ## Get started
 
-Twin works within many modern stacks - take a look at these examples to get started:
+Twin works with many modern stacks - take a look at these examples to get started:
 
 ### App build tools and libraries
 

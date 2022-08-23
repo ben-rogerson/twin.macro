@@ -41,6 +41,16 @@ But with twin, spaces are okay because Twin is not restricted by the spacing rul
 />
 ```
 
+And we can also use Arbitrary values within variant groups:
+
+```js
+;<div
+  css={tw`
+    first:(h-[calc(1000px - 4rem)] mt-5)
+`}
+/>
+```
+
 ## Dynamic values
 
 Just like Tailwind, values can't be dynamically added because Twin doesn’t have the ability to read the variables before converting to a css object:

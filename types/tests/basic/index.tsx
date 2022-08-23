@@ -29,7 +29,7 @@ const jsx = (
 )
 
 // @ts-expect-error bad jsx
-const badJsx = <Button what="lol" />
+const badJsx = <Button what="bad-jsx" />
 
 // @ts-expect-error non-existent element
 tw.nonExistentElement``
@@ -47,7 +47,7 @@ const App = ({
 
 const twProperty = (
   <App tw="prop">
-    <div tw="prop">cool</div>
+    <div tw="prop">prop</div>
   </App>
 )
 

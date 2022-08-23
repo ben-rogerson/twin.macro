@@ -9,6 +9,9 @@ yarn.lock
 # artifacts from type tests
 *.tsbuildinfo
 types/build
+types/core
+types/macro
+types/suggestions
 .eslintcache
 
 sandbox/out.js

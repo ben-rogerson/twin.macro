@@ -27,13 +27,9 @@ Choose from one of the following configs:
   npx tailwindcss-cli@latest init --full
   ```
 
-  In the config, twin reads from the `darkMode`, `prefix`, `theme` and `plugins` entries, so feel free to remove the rest.
-
 ## Plugins
 
 You can use most Tailwind plugins with twin, like [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography) and [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms).
-
-Tip: You may see performance issues if plugins add a large number of classes.
 
 ## Resources
 

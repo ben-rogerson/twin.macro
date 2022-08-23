@@ -8,7 +8,6 @@ These options are available in your [twin config](#twin-config-location):
 | ----------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | config            | `"tailwind.config.js"` | The path to your Tailwind config.                                                                                                                                                                                                             |
 | preset            | `"emotion"`            | The css-in-js library behind the scenes.<br>Also supported: `"styled-components"` `"goober"` `"stitches"`                                                                                                                                     |
-| hasSuggestions    | `true`                 | Display suggestions when a class isn’t found.                                                                                                                                                                                                 |
 | dataTwProp        | `true`                 | Add a prop to jsx components in development showing the original tailwind classes.<br/> Use `"all"` to keep the prop in production.                                                                                                           |
 | debug             | `false`                | Display information in your terminal about the Tailwind class conversions.                                                                                                                                                                    |
 | disableShortCss   | `true`                 | Disable converting short css within the tw import/prop.                                                                                                                                                                                       |
@@ -64,22 +63,6 @@ preset: 'emotion', // Set the css-in-js library to use with twin
 Supports: `'emotion'` / `'styled-components'` / `'goober'` / `'stitches'`.
 
 The preset option primarily assigns the library imports for `css`, `styled` and `GlobalStyles`.
-
-</details>
-
----
-
-<details>
-
-  <summary><strong>hasSuggestions</strong></summary>
-
-<br />
-
-```js
-hasSuggestions: false, // Set the display of suggestions when a class isn’t found
-```
-
-Set `hasSuggestions` to `false` to remove the display of suggestions in your terminal.
 
 </details>
 

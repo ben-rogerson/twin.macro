@@ -42932,7 +42932,7 @@ globalStyles
               '--glass-border-opacity': '15%',
             },
             '&.glass:focus-visible': {
-              outline: '2px solid 0 0 2px currentColor',
+              outline: '2px solid currentColor',
             },
             '&[disabled],&[disabled]:hover': {
               '--tw-border-opacity': '0',
@@ -43314,7 +43314,7 @@ globalStyles
               '--glass-border-opacity': '15%',
             },
             '&.glass:focus-visible': {
-              outline: '2px solid 0 0 2px currentColor',
+              outline: '2px solid currentColor',
             },
             '&[disabled],&[disabled]:hover': {
               '--tw-border-opacity': '0',
@@ -43753,7 +43753,7 @@ globalStyles
               '--glass-border-opacity': '15%',
             },
             '&.glass:focus-visible': {
-              outline: '2px solid 0 0 2px currentColor',
+              outline: '2px solid currentColor',
             },
             '&[disabled],&[disabled]:hover': {
               '--tw-border-opacity': '0',
@@ -44192,7 +44192,7 @@ globalStyles
               '--glass-border-opacity': '15%',
             },
             '&.glass:focus-visible': {
-              outline: '2px solid 0 0 2px currentColor',
+              outline: '2px solid currentColor',
             },
             '&[disabled],&[disabled]:hover': {
               '--tw-border-opacity': '0',
@@ -44770,7 +44770,7 @@ globalStyles
               '--glass-border-opacity': '15%',
             },
             '&.glass:focus-visible': {
-              outline: '2px solid 0 0 2px currentColor',
+              outline: '2px solid currentColor',
             },
             '&[disabled],&[disabled]:hover': {
               '--tw-border-opacity': '0',
@@ -46138,7 +46138,7 @@ globalStyles
                     '--glass-border-opacity': '15%',
                   },
                   '&.glass:focus-visible': {
-                    outline: '2px solid 0 0 2px currentColor',
+                    outline: '2px solid currentColor',
                   },
                   '&[disabled],&[disabled]:hover': {
                     '--tw-border-opacity': '0',
@@ -46410,7 +46410,7 @@ globalStyles
                 '--glass-border-opacity': '15%',
               },
               '&.glass:focus-visible': {
-                outline: '2px solid 0 0 2px currentColor',
+                outline: '2px solid currentColor',
               },
               '&[disabled],&[disabled]:hover': {
                 '--tw-border-opacity': '0',
@@ -47362,7 +47362,7 @@ globalStyles
                 '--glass-border-opacity': '15%',
               },
               '&.glass:focus-visible': {
-                outline: '2px solid 0 0 2px currentColor',
+                outline: '2px solid currentColor',
               },
               '&[disabled],&[disabled]:hover': {
                 '--tw-border-opacity': '0',
@@ -47502,7 +47502,7 @@ globalStyles
                 '--glass-border-opacity': '15%',
               },
               '&.glass:focus-visible': {
-                outline: '2px solid 0 0 2px currentColor',
+                outline: '2px solid currentColor',
               },
               '&[disabled],&[disabled]:hover': {
                 '--tw-border-opacity': '0',
@@ -47642,7 +47642,7 @@ globalStyles
                 '--glass-border-opacity': '15%',
               },
               '&.glass:focus-visible': {
-                outline: '2px solid 0 0 2px currentColor',
+                outline: '2px solid currentColor',
               },
               '&[disabled],&[disabled]:hover': {
                 '--tw-border-opacity': '0',
@@ -47782,7 +47782,7 @@ globalStyles
                 '--glass-border-opacity': '15%',
               },
               '&.glass:focus-visible': {
-                outline: '2px solid 0 0 2px currentColor',
+                outline: '2px solid currentColor',
               },
               '&[disabled],&[disabled]:hover': {
                 '--tw-border-opacity': '0',
@@ -48223,7 +48223,7 @@ globalStyles
                   '--glass-border-opacity': '15%',
                 },
                 '&.glass:focus-visible': {
-                  outline: '2px solid 0 0 2px currentColor',
+                  outline: '2px solid currentColor',
                 },
                 '&[disabled],&[disabled]:hover': {
                   '--tw-border-opacity': '0',
@@ -48924,7 +48924,7 @@ globalStyles
                     '--glass-border-opacity': '15%',
                   },
                   '&.glass:focus-visible': {
-                    outline: '2px solid 0 0 2px currentColor',
+                    outline: '2px solid currentColor',
                   },
                   '&[disabled],&[disabled]:hover': {
                     '--tw-border-opacity': '0',
@@ -49385,7 +49385,7 @@ globalStyles
                 '--glass-border-opacity': '15%',
               },
               '&.glass:focus-visible': {
-                outline: '2px solid 0 0 2px currentColor',
+                outline: '2px solid currentColor',
               },
               '&[disabled],&[disabled]:hover': {
                 '--tw-border-opacity': '0',
@@ -49495,6 +49495,9 @@ globalStyles
               borderTop: '1px solid',
               borderRight: '1px solid',
               backgroundColor: 'transparent',
+            },
+            '[dir="rtl"] &>ul>li+*:before': {
+              '--tw-rotate': '-45deg',
             },
           }}
         >
@@ -50879,7 +50882,7 @@ globalStyles
                     '--glass-border-opacity': '15%',
                   },
                   '&.glass:focus-visible': {
-                    outline: '2px solid 0 0 2px currentColor',
+                    outline: '2px solid currentColor',
                   },
                   '&[disabled],&[disabled]:hover': {
                     '--tw-border-opacity': '0',
@@ -51207,7 +51210,7 @@ globalStyles
                 '--glass-border-opacity': '15%',
               },
               '&.glass:focus-visible': {
-                outline: '2px solid 0 0 2px currentColor',
+                outline: '2px solid currentColor',
               },
               '&[disabled],&[disabled]:hover': {
                 '--tw-border-opacity': '0',
@@ -51361,7 +51364,7 @@ globalStyles
                 '--glass-border-opacity': '15%',
               },
               '&.glass:focus-visible': {
-                outline: '2px solid 0 0 2px currentColor',
+                outline: '2px solid currentColor',
               },
               '&[disabled],&[disabled]:hover': {
                 '--tw-border-opacity': '0',
@@ -51515,7 +51518,7 @@ globalStyles
                 '--glass-border-opacity': '15%',
               },
               '&.glass:focus-visible': {
-                outline: '2px solid 0 0 2px currentColor',
+                outline: '2px solid currentColor',
               },
               '&[disabled],&[disabled]:hover': {
                 '--tw-border-opacity': '0',
@@ -51669,7 +51672,7 @@ globalStyles
                 '--glass-border-opacity': '15%',
               },
               '&.glass:focus-visible': {
-                outline: '2px solid 0 0 2px currentColor',
+                outline: '2px solid currentColor',
               },
               '&[disabled],&[disabled]:hover': {
                 '--tw-border-opacity': '0',
@@ -54111,7 +54114,7 @@ globalStyles
                         '--glass-border-opacity': '15%',
                       },
                       '&.glass:focus-visible': {
-                        outline: '2px solid 0 0 2px currentColor',
+                        outline: '2px solid currentColor',
                       },
                       '&[disabled],&[disabled]:hover': {
                         '--tw-border-opacity': '0',
@@ -54470,7 +54473,7 @@ globalStyles
                 '--glass-border-opacity': '15%',
               },
               '&.glass:focus-visible': {
-                outline: '2px solid 0 0 2px currentColor',
+                outline: '2px solid currentColor',
               },
               '&[disabled],&[disabled]:hover': {
                 '--tw-border-opacity': '0',

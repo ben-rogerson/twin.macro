@@ -6,6 +6,9 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "jsx": "react"
-  }
+    "jsx": "react",
+    "noEmit": true,
+    "baseUrl": "src"
+  },
+  "include": ["src/**/*.ts"]
 }

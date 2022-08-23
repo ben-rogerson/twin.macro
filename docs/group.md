@@ -1,10 +1,12 @@
 # Using the group className
 
-There’s only one Tailwind class that can’t be used within `tw` prop or function and that’s the `group` class. It needs to be added as a className so variants like `group-hover:` will work correctly when added to the children.
+There’s a couple of Tailwind classes that need to be added to React elements as a `className`.
 
-Here are the [rest of the group variants](https://github.com/ben-rogerson/twin.macro/blob/86ba4422fe2195d3e89f4fad0cb3ebf0e79e1635/src/config/variantConfig.js#L87) you can use with Twin.
+These classes are the `peer` and the `group` classes.
 
-Using the group className with the `tw` prop is similar to vanilla Tailwind. Adding the group as a className on an ancestor allows the group variants to work as intended on the child elements:
+A className is used so variants like `group-hover:` and `peer-hover:` can use the className as an anchor to allow their styles to work.
+
+Here’s how we use the `group` classes in twin:
 
 ```js
 import 'twin.macro'
