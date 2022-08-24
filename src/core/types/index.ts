@@ -6,9 +6,6 @@ import type chalk from 'chalk'
 import type { color } from '../lib/logging'
 import type userPresets from '../lib/userPresets'
 
-// =========
-// Utils
-
 type KeyValuePair<K extends keyof never = string, V = string> = Record<K, V>
 
 // eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style, @typescript-eslint/consistent-type-definitions
@@ -21,8 +18,6 @@ export type CssObject = RecursiveKeyValuePair<string, string | string[]>
 type Partial<T> = {
   [P in keyof T]?: T[P]
 }
-
-// =========
 
 export type ColorValue = (c: typeof color) => string
 
@@ -93,17 +88,11 @@ export type CoreContext = {
 }
 
 export type ExtractRuleStyles = {
-  // assert: CoreContext['assert']
-  // debug: CoreContext['debug']
-  // theme: CoreContext['theme']
-  // tailwindConfig: CoreContext['tailwindConfig']
-  // tailwindContext: CoreContext['tailwindContext']
-  sassyPseudo?: CoreContext['twinConfig']['sassyPseudo']
-  // options?: CoreContext['options']
   includeUniversalStyles?: boolean
   hasImportant?: boolean
   selectorMatchReg?: RegExp
   passChecks?: boolean
+  sassyPseudo?: TwinConfigAll['sassyPseudo']
 } & Pick<
   CoreContext,
   | 'assert'
@@ -113,20 +102,6 @@ export type ExtractRuleStyles = {
   | 'tailwindContext'
   | 'options'
 >
-
-// export type ExtractRuleStyles = {
-//   assert: CoreContext['assert']
-//   debug: CoreContext['debug']
-//   theme: CoreContext['theme']
-//   tailwindConfig: CoreContext['tailwindConfig']
-//   tailwindContext: CoreContext['tailwindContext']
-//   sassyPseudo?: CoreContext['twinConfig']['sassyPseudo']
-//   options?: CoreContext['options']
-//   includeUniversalStyles?: boolean
-//   hasImportant?: boolean
-//   selectorMatchReg?: RegExp
-//   passChecks?: boolean
-// }
 
 export type TransformDecl = {
   decl: P.Declaration
