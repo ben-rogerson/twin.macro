@@ -2,8 +2,7 @@ import type { MacroParams } from 'babel-plugin-macros'
 import type { NodePath, types as T } from '@babel/core'
 import type * as P from 'postcss'
 import type { Config as TailwindConfig } from 'tailwindcss'
-import type chalk from 'chalk'
-import type { color } from '../lib/logging'
+import type { colors } from '../lib/logging'
 import type userPresets from '../lib/userPresets'
 
 type KeyValuePair<K extends keyof never = string, V = string> = Record<K, V>
@@ -19,9 +18,11 @@ type Partial<T> = {
   [P in keyof T]?: T[P]
 }
 
-export type ColorValue = (c: typeof color) => string
+export type ColorValue = (c: typeof colors) => string
 
-export type ColorType = keyof typeof color
+export type ColorType = keyof typeof colors
+
+export type MakeColor = (message: string, type?: keyof typeof colors) => string
 
 export type PresetItem = { import: string; from: string }
 
@@ -46,6 +47,7 @@ export type TwinConfigAll = {
   convertStyledDot?: boolean
   moveTwPropToStyled?: boolean
   convertHtmlElementToStyled?: boolean
+  hasLogColors?: boolean
   stitchesConfig?: undefined
 } & PresetConfig
 
@@ -59,13 +61,13 @@ export type TailwindContext = {
   variantMap: Array<Record<string, never>>
 }
 
-export type MessageContext = {
-  color: Record<ColorType, chalk.Chalk>
+export type AssertContext = {
+  color: MakeColor
 }
 
 export type Assert = (
   expression: boolean | string,
-  message: ({ color }: MessageContext) => string
+  message: ({ color }: AssertContext) => string
 ) => void
 
 export type CoreContext = {

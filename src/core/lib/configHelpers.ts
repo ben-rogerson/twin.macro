@@ -17,8 +17,8 @@ import type {
   GetConfigTwinValidatedParameters,
   TailwindConfig,
   Assert,
-  // eslint-disable-next-line import/no-relative-parent-imports
-} from '../types'
+  AssertContext,
+} from 'core/types'
 
 type Validator = [(value: unknown) => boolean, string]
 
@@ -53,6 +53,21 @@ function getTailwindConfig({
 
   const configExists = configPath && existsSync(configPath)
 
+  if (config?.config)
+    assert(Boolean(configExists), ({ color }: AssertContext) =>
+      [
+        `${String(
+          color(
+            `✕ The tailwind config ${color(
+              String(config?.config),
+              'errorLight'
+            )} wasn’t found`
+          )
+        )}`,
+        `Update the \`config\` option in your twin config`,
+      ].join('\n\n')
+    )
+
   const configSelected: Record<string, unknown[]> = configExists
     ? requireFresh(configPath)
     : defaultTailwindConfig
@@ -60,12 +75,6 @@ function getTailwindConfig({
   const mergedConfig = deepMerge({ ...defaultTwinConfig }, configSelected)
 
   const tailwindConfig = resolveTailwindConfig([...getAllConfigs(mergedConfig)])
-
-  assert(
-    Boolean(tailwindConfig),
-    () => `Couldn’t find the Tailwind config.\nLooked in ${String(config)}`
-  )
-
   return tailwindConfig
 }
 

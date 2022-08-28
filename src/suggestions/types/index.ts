@@ -10,6 +10,7 @@ export type Options = {
   tailwindContext: TailwindContext
   tailwindConfig: TailwindConfig
   hasColor?: boolean
+  hasLogColors?: boolean
   suggestionNumber?: number
 }
 
@@ -22,6 +23,6 @@ export type ClassErrorContext = {
   'suggestionNumber' | 'CustomError' | 'tailwindConfig' | 'tailwindContext'
 >
 
-export type MakeColor = (message: string, type: keyof typeof colors) => string
+export type MakeColor = (message: string, type?: keyof typeof colors) => string
 
 export type { TailwindMatch, TailwindContext, TailwindConfig }

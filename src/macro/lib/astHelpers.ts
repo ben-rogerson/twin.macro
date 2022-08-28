@@ -1,8 +1,11 @@
-import throwIf from './util/throwIf'
 import get from './util/get'
-import { jsxElementNameError } from './logging'
-// eslint-disable-next-line import/no-relative-parent-imports
-import type { T, NodePath, ImportDeclarationHandler, State } from '../types'
+import type {
+  T,
+  State,
+  NodePath,
+  CoreContext,
+  ImportDeclarationHandler,
+} from 'macro/types'
 
 function addImport({
   types: t,
@@ -345,9 +348,12 @@ function isComponent(name: string): boolean {
   return name.slice(0, 1).toUpperCase() === name.slice(0, 1)
 }
 
+const jsxSingleDotError = `The css prop + tw props can only be added to jsx elements with a single dot in their name (or no dot at all).`
+
 function getFirstStyledArgument(
   jsxPath: NodePath<T.JSXOpeningElement>,
-  t: typeof T
+  t: typeof T,
+  assert: CoreContext['assert']
 ): T.MemberExpression | T.Identifier | T.StringLiteral {
   const path = get(jsxPath, 'node.name.name') as string
 
@@ -355,14 +361,14 @@ function getFirstStyledArgument(
     return isComponent(path) ? t.identifier(path) : t.stringLiteral(path)
 
   const dotComponent = get(jsxPath, 'node.name') as string
-  throwIf(!dotComponent, jsxElementNameError)
+  assert(Boolean(dotComponent), () => jsxSingleDotError)
 
   // Element name has dots in it
   const objectName = get(dotComponent, 'object.name') as string
-  throwIf(!objectName, jsxElementNameError)
+  assert(Boolean(objectName), () => jsxSingleDotError)
 
   const propertyName = get(dotComponent, 'property.name') as string
-  throwIf(!propertyName, jsxElementNameError)
+  assert(Boolean(propertyName), () => jsxSingleDotError)
 
   return t.memberExpression(
     t.identifier(objectName),
@@ -371,19 +377,21 @@ function getFirstStyledArgument(
 }
 
 type MakeStyledComponent = {
+  t: typeof T
   secondArg: T.Expression | T.StringLiteral | T.Identifier
   jsxPath: NodePath<T.JSXOpeningElement>
   program: NodePath<T.Program>
   state: State
-  t: typeof T
+  coreContext: CoreContext
 }
 
 function makeStyledComponent({
+  t,
   secondArg,
   jsxPath,
-  t,
   program,
   state,
+  coreContext,
 }: MakeStyledComponent): void {
   const constName = program.scope.generateUidIdentifier('TwComponent')
 
@@ -392,7 +400,7 @@ function makeStyledComponent({
     state.isImportingStyled = true
   }
 
-  const firstArg = getFirstStyledArgument(jsxPath, t)
+  const firstArg = getFirstStyledArgument(jsxPath, t, coreContext.assert)
 
   const args = [firstArg, secondArg].filter(Boolean)
   const identifier = t.callExpression(state.styledIdentifier, args)

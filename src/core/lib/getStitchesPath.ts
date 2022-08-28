@@ -2,8 +2,7 @@ import { resolve, relative, parse } from 'path'
 import { existsSync } from 'fs'
 import { logGeneralError } from './logging'
 import toArray from './util/toArray'
-// eslint-disable-next-line import/no-relative-parent-imports
-import type { TwinConfig } from '../types'
+import type { TwinConfig } from 'core/types'
 
 function getFirstValue<ListItem>(
   list: ListItem[],

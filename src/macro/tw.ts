@@ -11,12 +11,11 @@ import {
   getCssAttributeData,
   makeStyledComponent,
 } from './lib/astHelpers'
-import throwIf from './lib/util/throwIf'
 import isEmpty from './lib/util/isEmpty'
-import { logGeneralError, logStylePropertyError } from './lib/logging'
 import { addDataTwPropToPath, addDataPropToExistingPath } from './dataProp'
 import type {
   AdditionalHandlerParameters,
+  CoreContext,
   JSXAttributeHandler,
   NodePath,
   State,
@@ -29,6 +28,7 @@ type MoveTwPropToStyled = {
   program: NodePath<T.Program>
   astStyles: T.Expression
   jsxPath: NodePath<T.JSXOpeningElement>
+  coreContext: CoreContext
 }
 
 function moveTwPropToStyled(params: MoveTwPropToStyled): void {
@@ -149,11 +149,20 @@ function handleTwProperty({
   if (expressionValue === '') return // Allow `tw={""}`
 
   // Feedback for unsupported usage
-  throwIf(nodeExpression && !expressionValue, () =>
-    logGeneralError(
-      `Only plain strings can be used with the "tw" prop.\nEg: <div tw="text-black" /> or <div tw={"text-black"} />\nRead more at https://twinredirect.page.link/template-literals`
+  if (nodeExpression)
+    coreContext.assert(
+      Boolean(expressionValue),
+      ({ color }) =>
+        `${color(
+          `✕ Only plain strings can be used with the "tw" prop`
+        )}\n\nTry using it like this: ${color(
+          `<div tw="text-black" />`,
+          'success'
+        )} or ${color(
+          `<div tw={"text-black"} />`,
+          'success'
+        )}\n\nRead more at https://twinredirect.page.link/template-literals`
     )
-  )
 
   const rawClasses =
     expressionValue || (nodeValue as T.StringLiteral).value || ''
@@ -164,6 +173,7 @@ function handleTwProperty({
       CustomError: coreContext.CustomError,
       tailwindContext: coreContext.tailwindContext,
       tailwindConfig: coreContext.tailwindConfig,
+      hasLogColors: coreContext.twinConfig.hasLogColors,
     })
     return
   }
@@ -175,7 +185,7 @@ function handleTwProperty({
   const { attribute: cssAttribute } = getCssAttributeData(attributes)
 
   if (coreContext.twinConfig.moveTwPropToStyled) {
-    moveTwPropToStyled({ astStyles, jsxPath, t, program, state })
+    moveTwPropToStyled({ astStyles, jsxPath, t, program, state, coreContext })
     addDataTwPropToPath({ t, attributes, rawClasses, path, state, coreContext })
     return
   }
@@ -242,7 +252,20 @@ function handleTwFunction({
       const attributeName =
         // @ts-expect-error No `get` on resulting path
         jsxAttribute && (jsxAttribute.get('name').get('name').node as string)
-      throwIf(attributeName === 'style', () => logStylePropertyError)
+
+      coreContext.assert(
+        attributeName !== 'style',
+        ({ color }) =>
+          `${color(
+            `✕ Tailwind styles shouldn’t be added within a \`style={...}\` prop`
+          )}\n\nUse the tw or css prop instead: ${color(
+            '<div tw="" />',
+            'success'
+          )} or ${color(
+            '<div css="" />',
+            'success'
+          )}\n\nDisable this error by adding this in your twin config: \`{ "allowStyleProp": true }\`\nRead more at https://twinredirect.page.link/style-prop`
+      )
     }
 
     const parsed = parseTte(parent, { t, state })
@@ -274,6 +297,7 @@ function handleTwFunction({
         CustomError: coreContext.CustomError,
         tailwindContext: coreContext.tailwindContext,
         tailwindConfig: coreContext.tailwindConfig,
+        hasLogColors: coreContext.twinConfig.hasLogColors,
       })
       return
     }

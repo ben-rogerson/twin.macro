@@ -1,7 +1,4 @@
-import { logGeneralError } from './logging'
-import throwIf from './util/throwIf'
-// eslint-disable-next-line import/no-relative-parent-imports
-import type { MacroParams } from './../types'
+import type { CoreContext, MacroParams } from 'macro/types'
 
 const validImports = new Set([
   'default',
@@ -17,24 +14,40 @@ const validImports = new Set([
 ])
 
 export default function validateImports(
-  imports: MacroParams['references']
+  imports: MacroParams['references'],
+  coreContext: CoreContext
 ): void {
-  const unsupportedImport = Object.keys(imports).find(
-    reference => !validImports.has(reference)
-  )
   const importTwAsNamedNotDefault = Object.keys(imports).find(
     reference => reference === 'tw'
   )
-  throwIf(importTwAsNamedNotDefault, (): string =>
-    logGeneralError(
-      `Please use the default export for twin.macro, i.e:\nimport tw from 'twin.macro'\nNOT import { tw } from 'twin.macro'`
-    )
+  coreContext.assert(
+    !importTwAsNamedNotDefault,
+    ({ color }) =>
+      `${color(
+        `✕ import { tw } from 'twin.macro'`
+      )}\n\nUse the default export for \`tw\`:\n\n${color(
+        `import tw from 'twin.macro'`,
+        'success'
+      )}`
   )
-  throwIf(unsupportedImport, (): string =>
-    logGeneralError(
-      `Twin doesn't recognize { ${
-        unsupportedImport ?? ''
-      } }\n\nTry one of these imports:\nimport tw, { styled, css, theme, screen, GlobalStyles, globalStyles } from 'twin.macro'`
-    )
+
+  const unsupportedImport = Object.keys(imports).find(
+    reference => !validImports.has(reference)
+  )
+  coreContext.assert(
+    !unsupportedImport,
+    ({ color }) =>
+      `${color(
+        `✕ Twin doesn't recognize { ${String(unsupportedImport)} }`
+      )}\n\nTry one of these imports:\n\nimport ${color(
+        'tw',
+        'success'
+      )}, { ${color('styled', 'success')}, ${color('css', 'success')}, ${color(
+        'theme',
+        'success'
+      )}, ${color('screen', 'success')}, ${color(
+        'GlobalStyles',
+        'success'
+      )}, ${color('globalStyles', 'success')} } from 'twin.macro'`
   )
 }

@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-relative-parent-imports
-import type { CoreContext } from './../../types'
+import type { AssertContext, CoreContext } from 'core/types'
 
 const MATCH_THEME = /theme\((.+?)\)/
 const MATCH_QUOTES = /["'`]/g
@@ -20,9 +19,13 @@ function replaceThemeValue(
   const [main, second] = themeParameters.split(',')
   const themeValue = theme(main, second)
 
-  assert(
-    Boolean(themeValue),
-    () => `${themeParameters} doesn’t match a theme value from the config`
+  assert(Boolean(themeValue), ({ color }: AssertContext) =>
+    color(
+      `✕ ${color(
+        themeParameters,
+        'errorLight'
+      )} doesn’t match a theme value from the config`
+    )
   )
 
   const replacedValue = value.replace(themeFunction, String(themeValue))

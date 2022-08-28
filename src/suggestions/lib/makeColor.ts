@@ -1,6 +1,5 @@
 import colors from './colors'
-// eslint-disable-next-line import/no-relative-parent-imports
-import type { MakeColor } from '../types'
+import type { MakeColor } from 'suggestions/types'
 
 export function makeColor(hasColor: boolean): MakeColor {
   return (message: string, type: keyof typeof colors = 'error') => {

@@ -1,8 +1,7 @@
 import dlv from 'dlv'
 import { transformThemeValue, toPath } from './util/twImports'
 import isObject from './util/isObject'
-// eslint-disable-next-line import/no-relative-parent-imports
-import type { TailwindConfig } from '../types'
+import type { TailwindConfig } from 'core/types'
 
 function createTheme(
   tailwindConfig: TailwindConfig
@@ -18,7 +17,8 @@ function createTheme(
     path: string[],
     defaultValue?: string,
     options = {}
-  ): Record<string, unknown> {
+  ): Record<string, unknown> | undefined {
+    if (!path) return
     const [pathRoot, ...subPaths] = toPath(path)
     const value = getConfigValue(['theme', pathRoot, ...subPaths], defaultValue)
     return sassifyValues(transformThemeValue(pathRoot)(value, options))

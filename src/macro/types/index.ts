@@ -1,10 +1,11 @@
 import type { NodePath, types as T } from '@babel/core'
 import type { MacroParams } from 'babel-plugin-macros'
 import type { CoreContext, CssObject } from '../../core/types'
+import type { Config as TailwindConfig } from 'tailwindcss'
 
 type Identifiers = {
-  styledIdentifier: T.Identifier | undefined
-  cssIdentifier: T.Identifier | undefined
+  styledIdentifier?: T.Identifier
+  cssIdentifier?: T.Identifier
 }
 
 type StateBase = {
@@ -55,4 +56,4 @@ export type AdditionalHandlerParameters = {
   coreContext: CoreContext
 }
 
-export type { NodePath, CoreContext, T, MacroParams, CssObject }
+export type { NodePath, CoreContext, T, MacroParams, CssObject, TailwindConfig }

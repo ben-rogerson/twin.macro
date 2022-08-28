@@ -14,4 +14,4 @@ types/macro
 types/suggestions
 .eslintcache
 
-sandbox/out.js
+sandbox/out.tsx

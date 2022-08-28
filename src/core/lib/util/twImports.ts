@@ -1,10 +1,5 @@
 import type { Config } from 'tailwindcss'
-import type {
-  TailwindConfig,
-  TailwindContext,
-  TailwindMatch,
-  // eslint-disable-next-line import/no-relative-parent-imports
-} from '../../types'
+import type { TailwindConfig, TailwindContext, TailwindMatch } from 'core/types'
 
 // @ts-expect-error Types added below
 import { toPath as toPathRaw } from 'tailwindcss/lib/util/toPath'

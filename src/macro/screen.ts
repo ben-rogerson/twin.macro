@@ -5,10 +5,12 @@ import {
   getTaggedTemplateValue,
   getMemberExpression,
 } from './lib/astHelpers'
-import throwIf from './lib/util/throwIf'
-import { logBadGood } from './lib/logging'
-import type { AdditionalHandlerParameters, T, NodePath } from './types'
-import type { Config } from 'tailwindcss'
+import type {
+  AdditionalHandlerParameters,
+  T,
+  NodePath,
+  CoreContext,
+} from './types'
 
 type GetDirectReplacement = Pick<
   HandleDefinition,
@@ -93,38 +95,38 @@ function handleDefinition({
   }[type]
 }
 
-function validateScreenValue({
-  screen,
-  screens,
-  value,
-}: {
-  screen: string
-  screens: Config['screens']
-  value: string
-}): void {
-  throwIf(!screen, () =>
-    logBadGood(
-      `${
-        value
-          ? `“${value}” wasn’t found in your`
-          : 'Specify a screen value from your'
-      } tailwind config`,
-      `Try one of these:\n\n${Object.entries(screens)
-        .map(([k, v]) => `screen.${k}\`...\` (${String(v)})`)
-        .join('\n')}`
-    )
-  )
-}
-
 function getMediaQuery({
   input,
   screens,
+  assert,
 }: {
   input: string
   screens: Record<string, string>
+  assert: CoreContext['assert']
 }): string {
-  validateScreenValue({ screen: screens[input], screens, value: input })
-  const mediaQuery = `@media (min-width: ${String(screens[input])})`
+  const screen = screens[input]
+
+  assert(
+    Boolean(screen),
+    ({ color }) =>
+      `${color(
+        `${
+          input
+            ? `✕ ${color(input, 'errorLight')} wasn’t found in your`
+            : 'Specify a screen value from your'
+        } tailwind config`
+      )}\n\nTry one of these values:\n\n${Object.entries(screens)
+        .map(
+          ([k, v]) =>
+            `${color('-', 'subdued')} screen(${color(
+              `'${k}'`,
+              'success'
+            )})({ ... }) (${String(v)})`
+        )
+        .join('\n')}`
+  )
+
+  const mediaQuery = `@media (min-width: ${String(screen)})`
   return mediaQuery
 }
 
@@ -149,24 +151,27 @@ function handleScreenFunction({
 
     const definition = handleDefinition({
       type: (parent as NodePath).parent.type,
-      mediaQuery: getMediaQuery({ input: input as string, screens }),
+      mediaQuery: getMediaQuery({
+        input: input as string,
+        screens,
+        assert: coreContext.assert,
+      }),
       parent: parent as NodePath,
       t,
     })
 
-    if (!definition) {
-      throwIf(true, () =>
-        logBadGood(
-          `The screen import doesn’t support that syntax`,
-          `Try something like this:\n\n${[...Object.keys(screens)]
-            .map(f => `screen.${f}`)
-            .join(', ')}`
-        )
-      )
-      return
-    }
+    coreContext.assert(
+      Boolean(definition),
+      ({ color }) =>
+        `${color(
+          `✕ The screen import doesn’t support that syntax`
+        )}\n\nTry using it like this: ${color(
+          [Object.keys(screens)[0]].map(f => `screen("${f}")`).join(''),
+          'success'
+        )}`
+    )
 
-    const { newPath, replacement } = definition()
+    const { newPath, replacement } = (definition as () => Expression)()
 
     replaceWithLocation(newPath, replacement)
   })

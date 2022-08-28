@@ -4,9 +4,8 @@ import {
   getFunctionValue,
   getTaggedTemplateValue,
 } from './lib/astHelpers'
-import { logGeneralError } from './lib/logging'
-import throwIf from './lib/util/throwIf'
-import type { AdditionalHandlerParameters, NodePath } from './types'
+import type { AssertContext } from 'core/types'
+import type { AdditionalHandlerParameters, NodePath } from 'macro/types'
 
 function handleThemeFunction({
   references,
@@ -21,19 +20,41 @@ function handleThemeFunction({
 
     const { input, parent } = ttValue as {
       parent: NodePath
-      input: string
+      input?: string
     }
 
-    throwIf(
-      !parent,
-      () =>
-        "The theme value doesn’t look right\n\nTry using it like this: theme`colors.black` or theme('colors.black')"
+    coreContext.assert(
+      Boolean(input),
+      ({ color }: AssertContext) =>
+        `${color(`✕ The theme value doesn’t look right`)}\n\nTry ${color(
+          'theme`colors.black`',
+          'success'
+        )} or ${color(`theme('colors.black')`, 'success')}`
     )
 
-    const themeValue = coreContext.theme(input)
+    coreContext.assert(
+      Boolean(parent),
+      ({ color }: AssertContext) =>
+        `${color(
+          `✕ The theme value ${color(
+            input as string,
+            'errorLight'
+          )} doesn’t look right`
+        )}\n\nTry ${color('theme`colors.black`', 'success')} or ${color(
+          `theme('colors.black')`,
+          'success'
+        )}`
+    )
 
-    throwIf(!themeValue, () =>
-      logGeneralError(`${input} was not found in the tailwind config`)
+    const themeValue = coreContext.theme(input as string)
+
+    coreContext.assert(Boolean(themeValue), ({ color }: AssertContext) =>
+      color(
+        `✕ ${color(
+          input as string,
+          'errorLight'
+        )} doesn’t match a theme value from the config`
+      )
     )
 
     return replaceWithLocation(parent, astify(themeValue, t))

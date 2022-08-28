@@ -81,7 +81,7 @@ function getSuggestions(classList: string[], options: Options): void {
   ].join('\n')
 
   throw new context.CustomError(
-    `\n${errorText}\n\n${color(helpText, 'subdued')}\n`
+    `\n\n${errorText}\n\n${color(helpText, 'subdued')}\n`
   )
 }
 

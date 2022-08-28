@@ -1,7 +1,6 @@
 // eslint-disable-next-line import/no-relative-parent-imports
 import { createCoreContext } from '../core'
 import { MacroError } from 'babel-plugin-macros'
-import type { MacroParams } from 'babel-plugin-macros'
 import {
   setStyledIdentifier,
   setCssIdentifier,
@@ -26,6 +25,7 @@ import { handleGlobalStylesFunction } from './globalStyles'
 import { handleTwProperty, handleTwFunction } from './tw'
 import { handleCsProperty } from './shortCss'
 import { handleClassNameProperty } from './className'
+import type { MacroParams } from 'babel-plugin-macros'
 import type { State } from './types'
 
 const macroTasks = [
@@ -44,8 +44,6 @@ function twinMacro(params: MacroParams): void {
   const t = params.babel.types
   const program = params.state.file.path
 
-  validateImports(params.references)
-
   const isDev =
     process.env.NODE_ENV === 'development' ||
     process.env.NODE_ENV === 'dev' ||
@@ -58,6 +56,8 @@ function twinMacro(params: MacroParams): void {
     sourceRoot: params.state.file.opts.sourceRoot ?? '',
     CustomError: MacroError as typeof Error,
   })
+
+  validateImports(params.references, coreContext)
 
   const state: State = {
     isDev,
@@ -82,6 +82,7 @@ function twinMacro(params: MacroParams): void {
       const { index, hasCssAttribute } = getCssAttributeData(jsxAttributes)
       state.hasCssAttribute = state.hasCssAttribute || hasCssAttribute
       const attributePaths = index > 1 ? jsxAttributes.reverse() : jsxAttributes
+
       for (const path of attributePaths) {
         handleClassNameProperty({ ...handlerParameters, path })
         handleTwProperty({ ...handlerParameters, path })

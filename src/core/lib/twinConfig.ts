@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-relative-parent-imports
-import type { GetPackageUsed, TwinConfigAll } from '../types'
+import type { GetPackageUsed, TwinConfigAll } from 'core/types'
 
 const TWIN_CONFIG_DEFAULTS = {
   allowStyleProp: false,

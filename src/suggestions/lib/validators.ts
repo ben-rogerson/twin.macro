@@ -1,6 +1,5 @@
 import { validateVariants } from './validateVariants'
-// eslint-disable-next-line import/no-relative-parent-imports
-import type { ClassErrorContext } from '../types'
+import type { ClassErrorContext } from 'suggestions/types'
 
 const validators = [
   // Validate the opacity
@@ -116,8 +115,11 @@ const validators = [
   // Validate any variants
   (pieces: string[], context: ClassErrorContext): undefined | string => {
     const variants = pieces.slice(0, -1)
-    const variantError = validateVariants(variants, context)
-    if (variantError) return variantError
+    const variantError = variants
+      .map(variant => validateVariants(variant, context))
+      .filter(Boolean)
+    if (variantError.length === 0) return
+    return variantError[0] as string
   },
   // If prefix is set, validate the class for the prefix
   (pieces: string[], context: ClassErrorContext): undefined | string => {

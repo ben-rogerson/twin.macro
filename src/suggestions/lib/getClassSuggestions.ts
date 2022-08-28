@@ -1,6 +1,5 @@
 import stringSimilarity from 'string-similarity'
-// eslint-disable-next-line import/no-relative-parent-imports
-import type { ClassErrorContext } from '../types'
+import type { ClassErrorContext } from 'suggestions/types'
 
 type RateCandidate = [number, string, string]
 

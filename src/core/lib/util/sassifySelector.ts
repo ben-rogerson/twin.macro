@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-relative-parent-imports
-import type { ExtractRuleStyles } from '../../types'
+import type { ExtractRuleStyles } from 'core/types'
 
 const SELECTOR_PARENT_CANDIDATE = /^[ #.[]/
 const SELECTOR_ROOT = /(^| ):root(?!\w)/g

@@ -11,7 +11,7 @@ import type {
   CoreContext,
   CssObject,
   ExtractRuleStyles,
-  MessageContext,
+  AssertContext,
   TailwindMatch,
 } from './types'
 
@@ -70,14 +70,14 @@ function validateClasses(
   for (const className of classNames) {
     assert(
       !className.endsWith(':'),
-      ({ color }: MessageContext) =>
-        `${color.error(
+      ({ color }: AssertContext) =>
+        `${color(
           `✕ The variant ${String(
-            color.errorLight(className)
+            color(className, 'errorLight')
           )} has a space after the colon`
         )}\n\nUpdate to ${String(
-          color.success(`${className}block`)
-        )} or ${String(color.success(`${className}(block mt-4)`))}`
+          color(`${className}block`, 'success')
+        )} or ${String(color(`${className}(block mt-4)`, 'success'))}`
     )
   }
 
@@ -101,7 +101,11 @@ function getStyles(
   classes: string,
   params: CoreContext
 ): { styles: CssObject | undefined; unmatched: string[]; matched: string[] } {
-  const assert = createAssert(params.CustomError, params.isSilent)
+  const assert = createAssert(
+    params.CustomError,
+    params.isSilent,
+    params.twinConfig.hasLogColors
+  )
 
   params.debug('string in', classes)
 

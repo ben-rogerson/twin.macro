@@ -1,9 +1,7 @@
 // eslint-disable-next-line import/no-relative-parent-imports
 import { getStyles } from '../core'
 import { addDataTwPropToPath, addDataPropToExistingPath } from './dataProp'
-import throwIf from './lib/util/throwIf'
 import isEmpty from './lib/util/isEmpty'
-import { logGeneralError } from './lib/logging'
 import {
   astify,
   getParentJSX,
@@ -48,9 +46,7 @@ function handleClassNameProperty({
   // When classes can't be matched we add them back into the className (it exists as a few properties)
   const unmatchedClasses = unmatched.join(' ')
   if (!path.node.value) return
-
-  // @ts-expect-error Setting value on target
-  path.node.value.value = unmatchedClasses
+  ;(path.node.value as T.StringLiteral).value = unmatchedClasses
   if (path.node.value.extra) {
     path.node.value.extra.rawValue = unmatchedClasses
     path.node.value.extra.raw = `"${unmatchedClasses}"`
@@ -99,9 +95,9 @@ function handleClassNameProperty({
   } else {
     // The existing css prop is not an array, eg: css={{ ... }} / css={`...`}
     const existingCssAttribute = cssExpression.node
-    throwIf(!existingCssAttribute, () =>
-      logGeneralError(
-        `An empty css prop (css="") isn’t supported alongside the className prop`
+    coreContext.assert(Boolean(existingCssAttribute), ({ color }) =>
+      color(
+        `✕ An empty css prop (css="") isn’t supported alongside the className prop`
       )
     )
     const styleArray = isBeforeCssAttribute

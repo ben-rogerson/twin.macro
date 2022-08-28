@@ -11,6 +11,7 @@ These options are available in your [twin config](#twin-config-location):
 | dataTwProp        | `true`                 | Add a prop to jsx components in development showing the original tailwind classes.<br/> Use `"all"` to keep the prop in production.                                                                                                           |
 | debug             | `false`                | Display information in your terminal about the Tailwind class conversions.                                                                                                                                                                    |
 | disableShortCss   | `true`                 | Disable converting short css within the tw import/prop.                                                                                                                                                                                       |
+| hasLogColors      | `true`                 | Disable log colors to remove the glyphs when the color display is not supported                                                                                                                                                               |
 | includeClassNames | `false`                | Look in className props for tailwind classes to convert.                                                                                                                                                                                      |
 | dataCsProp        | `true`                 | Add a prop to your elements in development so you can see the original cs prop classes, eg: `<div data-cs="maxWidth[1em]" />`.                                                                                                                |
 | disableCsProp     | `true`                 | Disable twin from reading values specified in the cs prop.                                                                                                                                                                                    |
@@ -102,6 +103,22 @@ debug: true, // Display information about class conversions
 
 When debug mode is on, twin displays logs on class conversions.
 This feedback only displays in development.
+
+## </details>
+
+---
+
+<details>
+
+  <summary><strong>hasLogColors</strong></summary>
+
+<br />
+
+```js
+hasLogColors: false, // Disable log colors (removes those glyphs in your console/overlay)
+```
+
+Sometimes the display of errors and suggestions are pretty poor due to lack of support for custom colors. Use this setting to disable the colors so you can actually read the messages.
 
 </details>
 

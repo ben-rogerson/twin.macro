@@ -1,13 +1,11 @@
 // eslint-disable-next-line import/no-relative-parent-imports
 import { getGlobalStyles } from '../core'
 import template from '@babel/template'
-import { logGeneralError } from './lib/logging'
 import {
   addImport,
   generateUid,
   generateTaggedTemplateExpression,
 } from './lib/astHelpers'
-import throwIf from './lib/util/throwIf'
 import type {
   CoreContext,
   AdditionalHandlerParameters,
@@ -146,17 +144,23 @@ function handleGlobalStylesJsx(params: AdditionalHandlerParameters): void {
   const { references, program, t, state, coreContext } = params
   if (references.GlobalStyles.length === 0) return
 
-  throwIf(references.GlobalStyles.length > 1, () =>
-    logGeneralError('Only one GlobalStyles import can be used')
+  coreContext.assert(
+    references.GlobalStyles.length < 2,
+    ({ color }) =>
+      `${color(
+        `✕ Only one <GlobalStyles /> can be added per file`
+      )}\n\nNeed something custom?\nUse the \`globalStyles\` import for a style object you can work with`
   )
 
   const path = references.GlobalStyles[0]
   const parentPath = path.findParent(x => x.isJSXElement())
 
-  throwIf(!parentPath, () =>
-    logGeneralError(
-      'The `GlobalStyles` import must be added as a JSX element, eg: `<GlobalStyles />`.\nUse the `globalStyles` import for an object of styles that can be used anywhere.'
-    )
+  coreContext.assert(
+    Boolean(parentPath),
+    ({ color }) =>
+      `${color(
+        `✕ The \`GlobalStyles\` import must be added as a JSX element`
+      )}\neg: \`<GlobalStyles />\`\n\nNeed something custom?\nUse the \`globalStyles\` import for a style object you can work with`
   )
 
   const globalStyles = getGlobalStyles(params.coreContext)
@@ -188,8 +192,15 @@ function handleGlobalStylesJsx(params: AdditionalHandlerParameters): void {
     path.replaceWith(t.jSXIdentifier(globalUid.name))
   }
 
-  throwIf(coreContext.packageUsed.isStitches, () =>
-    logGeneralError('Use the `globalStyles` import with stitches')
+  coreContext.assert(
+    Boolean(!coreContext.packageUsed.isStitches),
+    ({ color }) =>
+      `${color(
+        `✕ The ${color(
+          'GlobalStyles',
+          'errorLight'
+        )} import can’t be used with stitches`
+      )}\n\nUse the ${color(`globalStyles`, 'success')} import instead`
   )
 
   addGlobalStylesImport({

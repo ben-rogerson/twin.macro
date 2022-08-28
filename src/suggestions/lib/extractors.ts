@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-relative-parent-imports
-import type { TailwindContext, TailwindMatch } from '../types'
+import type { TailwindContext, TailwindMatch } from 'suggestions/types'
 
 export function extractClassCandidates(
   tailwindContext: TailwindContext

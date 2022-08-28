@@ -1,15 +1,13 @@
 import stringSimilarity from 'string-similarity'
-// eslint-disable-next-line import/no-relative-parent-imports
-import type { ClassErrorContext } from '../types'
+import type { ClassErrorContext } from 'suggestions/types'
 
 export function validateVariants(
-  variants: string[],
+  variantMatch: string,
   context: ClassErrorContext
 ): string | undefined {
-  const variantCandidates = [...context.variants]
-
-  const variantMatch = variants[0] // TODO: Loop over variants
   if (!variantMatch) return
+
+  const variantCandidates = [...context.variants]
 
   // Exact variant match
   if (variantCandidates.includes(variantMatch)) return

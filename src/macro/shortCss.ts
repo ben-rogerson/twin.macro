@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 // eslint-disable-next-line import/no-relative-parent-imports
 import { getStyles } from '../core'
-import throwIf from './lib/util/throwIf'
 import isEmpty from './lib/util/isEmpty'
-import { logGeneralError } from './lib/logging'
 import { addDataTwPropToPath, addDataPropToExistingPath } from './dataProp'
 import {
   astify,
@@ -31,12 +29,17 @@ function handleCsProperty({
     nodeExpression.type === 'StringLiteral' &&
     nodeExpression.value
 
-  // Feedback for unsupported usage
-  throwIf(nodeExpression && !expressionValue, () =>
-    logGeneralError(
-      `Only plain strings can be used with the "cs" prop.\nEg: <div cs="maxWidth[30rem]" />\nRead more at https://twinredirect.page.link/cs-classes`
+  if (nodeExpression)
+    coreContext.assert(
+      Boolean(expressionValue),
+      ({ color }) =>
+        `${color(
+          `✕ Only plain strings can be used with the "cs" prop`
+        )}\n\nTry using it like this: ${color(
+          '<div cs="maxWidth[30rem]" />',
+          'success'
+        )}\n\nRead more at https://twinredirect.page.link/cs-classes`
     )
-  )
 
   const rawClasses =
     expressionValue || (nodeValue as T.StringLiteral).value || ''

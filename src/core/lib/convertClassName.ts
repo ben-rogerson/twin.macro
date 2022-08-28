@@ -1,8 +1,7 @@
 import replaceThemeValue from './util/replaceThemeValue'
 import isShortCss from './util/isShortCss'
 import splitOnFirst from './util/splitOnFirst'
-// eslint-disable-next-line import/no-relative-parent-imports
-import type { CoreContext } from '../types'
+import type { CoreContext } from 'core/types'
 
 const SPLIT_COLON_AVOID_WITHIN_SQUARE_BRACKETS =
   /:(?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g
@@ -45,13 +44,13 @@ function convertShortCssToArbitraryProperty(
   assert(!isShortCssDisabled, ({ color }) =>
     [
       `${String(
-        color.error(
+        color(
           `✕ ${String(
-            color.errorLight(className)
+            color(className, 'errorLight')
           )} uses the deprecated short css syntax`
         )
       )}`,
-      `Update to ${String(color.success(arbitraryProperty))}`,
+      `Update to ${String(color(arbitraryProperty, 'success'))}`,
       `To ignore this notice, add this to your twin config:\n{ "disableShortCss": false }`,
       `Read more at https://twinredirect.page.link/short-css`,
     ].join('\n\n')
