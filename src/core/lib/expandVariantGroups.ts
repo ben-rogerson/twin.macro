@@ -2,7 +2,7 @@ import { logGeneralError } from './logging'
 import {
   SPACE,
   SPACES,
-  SPACE_ID,
+  SPACE_ID_TEMP,
   // eslint-disable-next-line import/no-relative-parent-imports
 } from '../constants'
 
@@ -54,7 +54,7 @@ function spreadVariantGroups(
 
     if (variant) {
       // Replace arbitrary variant spaces with a placeholder to avoid incorrect splitting
-      const spaceReplacedVariant = variant.replace(SPACES, SPACE_ID)
+      const spaceReplacedVariant = variant.replace(SPACES, SPACE_ID_TEMP)
       context += spaceReplacedVariant
 
       // Skip empty classes
@@ -116,7 +116,7 @@ function spreadVariantGroups(
         // Normalize the spacing - single spaces only
         // Replace spaces with the space id stand-in
         // Remove newlines within the brackets to allow multiline values
-        .replace(SPACES, SPACE_ID)
+        .replace(SPACES, SPACE_ID_TEMP)
 
       results.push(
         context +

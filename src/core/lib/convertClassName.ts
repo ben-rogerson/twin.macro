@@ -2,6 +2,8 @@ import replaceThemeValue from './util/replaceThemeValue'
 import isShortCss from './util/isShortCss'
 import splitOnFirst from './util/splitOnFirst'
 import type { CoreContext } from 'core/types'
+// eslint-disable-next-line import/no-relative-parent-imports
+import { SPACE_ID, SPACE_ID_TEMP_ALL } from '../constants'
 
 const SPLIT_COLON_AVOID_WITHIN_SQUARE_BRACKETS =
   /:(?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g
@@ -73,6 +75,9 @@ function convertClassName(
     debug,
   }: ConvertClassNameParameters
 ): string {
+  // Remove twins temporary space ids (added so variant groups can be expanded)
+  className = className.replace(SPACE_ID_TEMP_ALL, SPACE_ID)
+
   // Move the bang to the front of the class
   if (className.endsWith('!')) {
     debug('trailing bang found', className)
