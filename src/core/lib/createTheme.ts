@@ -14,19 +14,25 @@ function createTheme(
   }
 
   function resolveThemeValue(
-    path: string[],
+    path: string,
     defaultValue?: string,
     options = {}
-  ): Record<string, unknown> | undefined {
-    if (!path) return
+  ): number | boolean | Record<string, unknown> {
     const [pathRoot, ...subPaths] = toPath(path)
     const value = getConfigValue(['theme', pathRoot, ...subPaths], defaultValue)
     return sassifyValues(transformThemeValue(pathRoot)(value, options))
   }
 
-  // @ts-expect-error TOFIX
-  // TODO: Complete the new theme functionality
-  return (...options) => resolveThemeValue(...options)
+  const out = Object.assign(
+    (path: string, defaultValue?: string) =>
+      resolveThemeValue(path, defaultValue),
+    {
+      withAlpha: (path: string, opacityValue?: string) =>
+        resolveThemeValue(path, undefined, { opacityValue }),
+    }
+  )
+
+  return out
 }
 
 function sassifyValues(
