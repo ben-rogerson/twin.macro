@@ -35,9 +35,10 @@ function convertShortCssToArbitraryProperty(
     preSelector = '!'
   }
 
-  const template = `${preSelector}[${[property, value]
-    .filter(Boolean)
-    .join(':')}]`
+  const template = `${preSelector}[${[
+    property,
+    value === '' ? "''" : value,
+  ].join(':')}]`
   splitArray.splice(-1, 1, template)
 
   const arbitraryProperty = splitArray.join(':')
@@ -107,7 +108,7 @@ function convertClassName(
   // Add a parent selector if it's missing from the arbitrary variant
   const arbitraryVariantsCount = className.match(ARBITRARY_VARIANTS)
   className = className.replace(ARBITRARY_VARIANTS, (v, _, offset) => {
-    if (v.includes('&')) return v
+    if (v.includes('&') || v.startsWith('@')) return v
     if (arbitraryVariantsCount && arbitraryVariantsCount.length > 1)
       return `${v}_&`
     return offset === 1 ? `&_${v}` : `${v}_&`

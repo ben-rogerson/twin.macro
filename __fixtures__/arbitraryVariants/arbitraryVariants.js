@@ -17,3 +17,5 @@ tw`[p]:marginTop[var(--myvar)]`
 tw`[p]:[margin-top:var(--myvar)]`
 
 tw`[p]:(mt-4 mb-4)`
+
+tw`[@media (min-width: 800px)]:block`

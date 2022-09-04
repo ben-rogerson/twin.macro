@@ -1,5 +1,4 @@
 import extractRuleStyles from './extractRuleStyles'
-import { orderingTasks } from './lib/ordering'
 import createAssert from './lib/createAssert'
 import expandVariantGroups from './lib/expandVariantGroups'
 import deepMerge from './lib/util/deepMerge'
@@ -13,6 +12,7 @@ import type {
   ExtractRuleStyles,
   AssertContext,
   TailwindMatch,
+  TailwindContext,
 } from './types'
 
 const IMPORTANT_OUTSIDE_BRACKETS =
@@ -20,6 +20,8 @@ const IMPORTANT_OUTSIDE_BRACKETS =
 const COMMENTS_MULTI_LINE = /(?<!\/)\/(?!\/)\*[\S\s]*?\*\//g
 const COMMENTS_SINGLE_LINE = /(?<!:)\/\/.*/g
 const CLASS_DIVIDER_PIPE = / \| /g
+const SPLIT_AT_SPACE_AVOID_WITHIN_SQUARE_BRACKETS =
+  / (?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g
 
 function getStylesFromMatches(
   matches: TailwindMatch[],
@@ -65,7 +67,7 @@ function validateClasses(
   classes: string,
   { assert }: { assert: CoreContext['assert'] }
 ): boolean {
-  const classNames = splitAtSpace(classes)
+  const classNames = classes.split(SPLIT_AT_SPACE_AVOID_WITHIN_SQUARE_BRACKETS)
 
   for (const className of classNames) {
     assert(
@@ -84,17 +86,38 @@ function validateClasses(
   return true
 }
 
-const tasks = [
-  (classes: string): string => classes.replace(CLASS_DIVIDER_PIPE, ' '),
-  (classes: string): string =>
+const tasks: Array<(classes: string) => string> = [
+  (classes): string => classes.replace(CLASS_DIVIDER_PIPE, ' '),
+  (classes): string =>
     classes.replace(COMMENTS_MULTI_LINE, multilineReplaceWith),
-  (classes: string): string => classes.replace(COMMENTS_SINGLE_LINE, ''),
+  (classes): string => classes.replace(COMMENTS_SINGLE_LINE, ''),
   expandVariantGroups, // Expand grouped variants to individual classes
-  ...Object.values(orderingTasks), // Move selected properties to the front so styles merge correctly
 ]
 
 function splitAtSpace(className: string): string[] {
   return className.match(CLASS_SEPARATOR) ?? []
+}
+
+function bigSign(bigIntValue: bigint): number {
+  // @ts-expect-error Unsure of types here
+  return (bigIntValue > 0n) - (bigIntValue < 0n)
+}
+
+function getOrderedClassList(
+  tailwindContext: TailwindContext,
+  convertedClassList: string[],
+  classList: string[]
+): Array<[order: bigint, className: string, preservedClassName: string]> {
+  const orderedClassList = tailwindContext
+    .getClassOrder(convertedClassList)
+    .map(([className, order], index): [bigint, string, string] => [
+      order || 0n,
+      className,
+      classList[index],
+    ])
+    .sort(([a], [z]) => bigSign(a - z))
+
+  return orderedClassList
 }
 
 function getStyles(
@@ -111,8 +134,10 @@ function getStyles(
 
   assert(
     ![null, 'null', undefined].includes(classes),
-    () =>
-      'Twin classes must be defined as complete strings\nRead more at https://twinredirect.page.link/template-literals'
+    ({ color }: AssertContext) =>
+      `${color(
+        `✕ Your classes need to be complete strings for Twin to detect them correctly`
+      )}\n\nRead more at https://twinredirect.page.link/template-literals`
   )
 
   const result = validateClasses(classes, { assert })
@@ -124,8 +149,8 @@ function getStyles(
 
   params.debug('classes after format', classes)
 
-  const matched = []
-  const unmatched = []
+  const matched: string[] = []
+  const unmatched: string[] = []
   const styles: CssObject[] = []
 
   const commonContext = {
@@ -140,6 +165,18 @@ function getStyles(
     disableShortCss: params.twinConfig.disableShortCss,
   }
 
+  const classList = splitAtSpace(classes)
+
+  const convertedClassList = classList.map(c =>
+    convertClassName(c, convertedClassNameContext)
+  )
+
+  const orderedClassList = getOrderedClassList(
+    params.tailwindContext,
+    convertedClassList,
+    classList
+  )
+
   const commonMatchContext = {
     ...commonContext,
     includeUniversalStyles: false,
@@ -148,14 +185,7 @@ function getStyles(
     sassyPseudo: params.twinConfig.sassyPseudo,
   }
 
-  for (const className of splitAtSpace(classes)) {
-    params.debug('class before convert', className)
-
-    const convertedClassName = convertClassName(
-      className,
-      convertedClassNameContext
-    )
-
+  for (const [, convertedClassName, className] of orderedClassList) {
     const matches = [
       ...resolveMatches(convertedClassName, params.tailwindContext),
     ]

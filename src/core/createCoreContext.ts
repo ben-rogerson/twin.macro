@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 import { getTailwindConfig, getConfigTwinValidated } from './lib/configHelpers'
 import getStitchesPath from './lib/getStitchesPath'
 import userPresets from './lib/userPresets'

@@ -34,7 +34,7 @@ function handleCsProperty({
       Boolean(expressionValue),
       ({ color }) =>
         `${color(
-          `✕ Only plain strings can be used with the "cs" prop`
+          `✕ Only complete classes can be used with the "cs" prop`
         )}\n\nTry using it like this: ${color(
           '<div cs="maxWidth[30rem]" />',
           'success'

@@ -63,3 +63,6 @@ tw`padding[
 // Theme value
 tw`--color[theme(colors.red.500)]`
 tw`--color[this theme(colors.red.500) that]`
+
+// Automatic '' value
+tw`touch-action[]`

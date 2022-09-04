@@ -57,6 +57,9 @@ export type Candidate = [
 ]
 
 export type TailwindContext = {
+  getClassOrder: (
+    classes: string[]
+  ) => Array<[className: string, order: bigint]>
   candidateRuleMap: Array<[string, Candidate[]]>
   variantMap: Array<Record<string, never>>
 }

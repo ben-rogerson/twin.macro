@@ -17,6 +17,8 @@ import type {
 const COLONS_OUTSIDE_BRACKETS =
   /:(?=(?:(?:(?!\)).)*\()|[^()]*$)(?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g
 
+const ALL_SPACE_IDS = /{{SPACE}}/g
+
 const OPTION_DEFAULTS = {
   CustomError: Error,
   tailwindContext: undefined,
@@ -26,7 +28,9 @@ const OPTION_DEFAULTS = {
 }
 
 function getClassError(rawClass: string, context: ClassErrorContext): string {
-  const classPieces = rawClass.split(COLONS_OUTSIDE_BRACKETS)
+  const classPieces = rawClass
+    .replace(ALL_SPACE_IDS, ' ')
+    .split(COLONS_OUTSIDE_BRACKETS)
 
   for (const validator of validators) {
     const error = validator(classPieces, context)
@@ -70,14 +74,11 @@ function getSuggestions(classList: string[], options: Options): void {
     .map(c => getClassError(c, classErrorContext))
     .join('\n\n')
 
-  const { twinVersion, tailwindcssVersion } = getPackageVersions()
+  const { twinVersion } = getPackageVersions()
   const helpText = [
-    `${
-      twinVersion ? `twin.macro@${twinVersion}` : 'twinVersion'
-    } - https://twinredirect.page.link/docs`,
-    `${
-      tailwindcssVersion ? `tailwindcss@${tailwindcssVersion}` : 'tailwindcss'
-    } - https://tailwindcss.com`,
+    `${twinVersion ? `twin.macro@${twinVersion}` : 'twinVersion'}`,
+    `https://twinredirect.page.link/docs`,
+    `https://tailwindcss.com/docs`,
   ].join('\n')
 
   throw new context.CustomError(

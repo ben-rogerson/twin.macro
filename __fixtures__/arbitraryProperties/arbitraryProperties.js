@@ -6,3 +6,4 @@ tw`[--my-var:blue]`
 tw`[color:var(--my-var)]`
 tw`bg-black md:[color:var(--my-var)]`
 tw`[margin:2px_4px_5px_1px]`
+tw`[content:'—']`

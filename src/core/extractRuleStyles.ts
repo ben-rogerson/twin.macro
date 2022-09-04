@@ -15,7 +15,7 @@ import type * as P from 'postcss'
 
 const ESC_DIGIT = /\\3(\d)/g
 const ESC_COMMA = /\\2c /g
-const ESC_DBL_BACKSLASHES = /\\(?=.|$)/g
+const ESC_DBL_BACKSLASHES = /\\(?!\d)(?=.|$)/g
 const COMMAS_OUTSIDE_BRACKETS =
   /,(?=(?:(?:(?!\)).)*\()|[^()]*$)(?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g
 
@@ -130,6 +130,12 @@ const ruleTypes = {
       .filter(s => params.selectorMatchReg?.test(s))
 
     if (selectorList.length === 0) {
+      // SPECIAL CASE: Postcss converts unicode characters but we don't do the same to our regex matcher so we let content values pass straight through, eg: in: tw`content-['—']`
+      if (/([.:]content-\[)|([.:]\[content:)/.test(selector)) {
+        params.debug('content pass return', styles)
+        return styles
+      }
+
       params.debug('no selector match', selector, 'warn')
       return
     }

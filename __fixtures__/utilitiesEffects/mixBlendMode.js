@@ -17,3 +17,4 @@ tw`mix-blend-hue`
 tw`mix-blend-saturation`
 tw`mix-blend-color`
 tw`mix-blend-luminosity`
+tw`mix-blend-plus-lighter`

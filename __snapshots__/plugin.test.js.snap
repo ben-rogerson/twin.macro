@@ -297,17 +297,19 @@ const ElementMediaStateMultiplePropertiesImportantPrefix = _styled(Box)({
 })
 
 const VariantImportantPrefixMergeCheck = _styled.div({
+  backgroundImage: 'linear-gradient(to right, var(--tw-gradient-stops))',
+  '--tw-gradient-to': '#dc4fc2',
   '@media (min-width: 768px)': {
     '--tw-gradient-from': '#000 !important',
     '--tw-gradient-to': 'rgb(0 0 0 / 0) !important',
     '--tw-gradient-stops':
       'var(--tw-gradient-from), var(--tw-gradient-to) !important',
   },
-  '--tw-gradient-to': '#dc4fc2',
-  backgroundImage: 'linear-gradient(to right, var(--tw-gradient-stops))',
 })
 
 const MultiVariantImportantPrefixMergeCheck = _styled.div({
+  backgroundImage: 'linear-gradient(to right, var(--tw-gradient-stops))',
+  '--tw-gradient-to': '#dc4fc2',
   '@media (min-width: 768px)': {
     ':first-child': {
       '--tw-gradient-from': '#000 !important',
@@ -316,8 +318,6 @@ const MultiVariantImportantPrefixMergeCheck = _styled.div({
         'var(--tw-gradient-from), var(--tw-gradient-to) !important',
     },
   },
-  '--tw-gradient-to': '#dc4fc2',
-  backgroundImage: 'linear-gradient(to right, var(--tw-gradient-stops))',
 })
 
 const JsxPlaceholderImportantPrefix = () => (
@@ -803,28 +803,28 @@ import _styled from '@emotion/styled'
 
 // Test the screen ordering - they are ordered by screens in tailwind.config.js
 _styled.div({
-  '@media (min-width: 1280px)': {
-    '--tw-bg-opacity': '1',
-    backgroundColor: 'rgb(239 68 68 / var(--tw-bg-opacity))',
-  },
-  '@media (min-width: 1024px)': {
-    '--tw-bg-opacity': '1',
-    backgroundColor: 'rgb(59 130 246 / var(--tw-bg-opacity))',
-  },
+  display: 'none',
   '--tw-bg-opacity': '1',
   backgroundColor: 'rgb(34 197 94 / var(--tw-bg-opacity))',
   fill: 'currentColor',
-  '@media (min-width: 768px)': {
-    '--tw-bg-opacity': '1',
-    backgroundColor: 'rgb(236 72 153 / var(--tw-bg-opacity))',
-  },
   '@media (min-width: 640px)': {
     '--tw-bg-opacity': '1',
     backgroundColor: 'rgb(34 197 94 / var(--tw-bg-opacity))',
     '--tw-text-opacity': '1',
     color: 'rgb(234 179 8 / var(--tw-text-opacity))',
   },
-  display: 'none',
+  '@media (min-width: 768px)': {
+    '--tw-bg-opacity': '1',
+    backgroundColor: 'rgb(236 72 153 / var(--tw-bg-opacity))',
+  },
+  '@media (min-width: 1024px)': {
+    '--tw-bg-opacity': '1',
+    backgroundColor: 'rgb(59 130 246 / var(--tw-bg-opacity))',
+  },
+  '@media (min-width: 1280px)': {
+    '--tw-bg-opacity': '1',
+    backgroundColor: 'rgb(239 68 68 / var(--tw-bg-opacity))',
+  },
 }) // Bg opacity should trump the default bg opacity
 
 ;({
@@ -1003,18 +1003,18 @@ tw\`first:(block bg-[black]/[.20])\`
 
 const basic = {
   '.group:hover &': {
-    display: 'flex',
     margin: '2.5rem',
+    display: 'flex',
   },
 }
 const subMediaQuery = {
+  ':focus-within': {
+    marginTop: '1.25rem',
+  },
   '@media (min-width: 768px)': {
     ':focus-within': {
       display: 'flex',
     },
-  },
-  ':focus-within': {
-    marginTop: '1.25rem',
   },
 }
 const multipleClasses = {
@@ -1029,9 +1029,9 @@ const multipleClasses = {
 const pseudoElement = {
   '::before': {
     content: 'var(--tw-content)',
-    width: '2.5rem',
-    height: '2.5rem',
     display: 'block',
+    height: '2.5rem',
+    width: '2.5rem',
     '--tw-bg-opacity': '1',
     backgroundColor: 'rgb(0 0 0 / var(--tw-bg-opacity))',
   },
@@ -1039,9 +1039,9 @@ const pseudoElement = {
 const pseudoElementNoContent = {
   '::before': {
     content: 'var(--tw-content)',
-    width: '2.5rem',
-    height: '2.5rem',
     display: 'block',
+    height: '2.5rem',
+    width: '2.5rem',
     '--tw-bg-opacity': '1',
     backgroundColor: 'rgb(0 0 0 / var(--tw-bg-opacity))',
   },
@@ -1049,13 +1049,13 @@ const pseudoElementNoContent = {
 const pseudoElementsNoContent = {
   '::before': {
     content: 'var(--tw-content)',
-    width: '2.5rem',
     height: '2.5rem',
+    width: '2.5rem',
   },
   '::after': {
     content: 'var(--tw-content)',
-    width: '2.5rem',
     height: '2.5rem',
+    width: '2.5rem',
   },
 }
 const mediaHover = {
@@ -1070,15 +1070,18 @@ const mediaHover = {
 }
 const sloppySpacing = {
   ':last-child': {
-    display: 'flex',
     marginTop: '1.25rem',
+    display: 'flex',
   },
 }
 const multipleGroups = {
+  ':focus-within': {
+    marginTop: '1.25rem',
+  },
   ':focus': {
-    width: '2.5rem',
-    height: '2.5rem',
     display: 'block',
+    height: '2.5rem',
+    width: '2.5rem',
     '--tw-bg-opacity': '1',
     backgroundColor: 'rgb(0 0 0 / var(--tw-bg-opacity))',
   },
@@ -1087,22 +1090,19 @@ const multipleGroups = {
       display: 'flex',
     },
   },
-  ':focus-within': {
-    marginTop: '1.25rem',
-  },
 }
 const nestedGroups = {
   '@media (min-width: 768px)': {
     width: '2.5rem',
     ':hover': {
-      height: '2.5rem',
       display: 'block',
+      height: '2.5rem',
       '--tw-bg-opacity': '1',
       backgroundColor: 'rgb(0 0 0 / var(--tw-bg-opacity))',
     },
     ':focus': {
-      height: '2.5rem',
       display: 'block',
+      height: '2.5rem',
       '--tw-bg-opacity': '1',
       backgroundColor: 'rgb(0 0 0 / var(--tw-bg-opacity))',
     },
@@ -1191,24 +1191,24 @@ const nestedGroups = {
 
 ;({
   ':first-child': {
+    display: 'block',
     backgroundColor: 'rgb(0 0 0 / 0.2)',
-    display: 'block',
   },
 })
 ;({
   ':first-child': {
-    backgroundColor: 'rgb(0 0 0 / .20)',
     display: 'block',
+    backgroundColor: 'rgb(0 0 0 / .20)',
   },
 })
 ;({
   ':first-child': {
-    backgroundColor: 'rgb(0 0 0 / .20)',
     display: 'inline',
+    backgroundColor: 'rgb(0 0 0 / .20)',
   },
   ':last-child:first-child': {
-    backgroundColor: 'rgb(0 0 0 / .20)',
     display: 'block',
+    backgroundColor: 'rgb(0 0 0 / .20)',
   },
 })
 ;({
@@ -1443,16 +1443,16 @@ tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
 })
 ;({
   '::before': {
-    '--tw-content': '',
     content: 'var(--tw-content)',
     display: 'block',
+    '--tw-content': '',
   },
 })
 ;({
   '::after': {
-    '--tw-content': '',
     content: 'var(--tw-content)',
     display: 'block',
+    '--tw-content': '',
   },
 }) // Positional
 
@@ -2031,10 +2031,9 @@ tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
 }) // Random
 
 ;({
-  '@media (min-width: 1280px)': {
-    '::placeholder': {
-      '--tw-placeholder-opacity': '1 !important',
-      color: 'rgb(239 68 68 / var(--tw-placeholder-opacity)) !important',
+  '@media (min-width: 640px)': {
+    ':disabled': {
+      display: 'flex',
     },
   },
   '@media (min-width: 768px)': {
@@ -2042,9 +2041,10 @@ tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
       display: 'block',
     },
   },
-  '@media (min-width: 640px)': {
-    ':disabled': {
-      display: 'flex',
+  '@media (min-width: 1280px)': {
+    '::placeholder': {
+      '--tw-placeholder-opacity': '1 !important',
+      color: 'rgb(239 68 68 / var(--tw-placeholder-opacity)) !important',
     },
   },
 })
@@ -4004,6 +4004,7 @@ tw\`[--my-var:blue]\`
 tw\`[color:var(--my-var)]\`
 tw\`bg-black md:[color:var(--my-var)]\`
 tw\`[margin:2px_4px_5px_1px]\`
+tw\`[content:'—']\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -4028,6 +4029,9 @@ tw\`[margin:2px_4px_5px_1px]\`
 })
 ;({
   margin: '2px 4px 5px 1px',
+})
+;({
+  content: "'\\u2014'",
 })
 
 
@@ -4054,6 +4058,8 @@ tw\`[p]:marginTop[var(--myvar)]\`
 tw\`[p]:[margin-top:var(--myvar)]\`
 
 tw\`[p]:(mt-4 mb-4)\`
+
+tw\`[@media (min-width: 800px)]:block\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -4120,6 +4126,11 @@ tw\`[p]:(mt-4 mb-4)\`
   '& p': {
     marginTop: '1rem',
     marginBottom: '1rem',
+  },
+})
+;({
+  '@media (min-width: 800px)': {
+    display: 'block',
   },
 })
 
@@ -16231,6 +16242,618 @@ tw\`rounded-tr-[var(--radius)] rounded-br-[var(--radius)] rounded-bl-[var(--radi
 
 `;
 
+exports[`twin.macro borderSpacing.js: borderSpacing.js 1`] = `
+
+import tw, { theme } from './macro'
+
+// https://tailwindcss.com/docs/border-spacing
+theme\`borderSpacing\`
+
+tw\`border-spacing-0\`
+tw\`border-spacing-x-0\`
+tw\`border-spacing-y-0\`
+tw\`border-spacing-px\`
+tw\`border-spacing-x-px\`
+tw\`border-spacing-y-px\`
+tw\`border-spacing-0.5\`
+tw\`border-spacing-x-0.5\`
+tw\`border-spacing-y-0.5\`
+tw\`border-spacing-1\`
+tw\`border-spacing-x-1\`
+tw\`border-spacing-y-1\`
+tw\`border-spacing-1.5\`
+tw\`border-spacing-x-1.5\`
+tw\`border-spacing-y-1.5\`
+tw\`border-spacing-2\`
+tw\`border-spacing-x-2\`
+tw\`border-spacing-y-2\`
+tw\`border-spacing-2.5\`
+tw\`border-spacing-x-2.5\`
+tw\`border-spacing-y-2.5\`
+tw\`border-spacing-3\`
+tw\`border-spacing-x-3\`
+tw\`border-spacing-y-3\`
+tw\`border-spacing-3.5\`
+tw\`border-spacing-x-3.5\`
+tw\`border-spacing-y-3.5\`
+tw\`border-spacing-4\`
+tw\`border-spacing-x-4\`
+tw\`border-spacing-y-4\`
+tw\`border-spacing-5\`
+tw\`border-spacing-x-5\`
+tw\`border-spacing-y-5\`
+tw\`border-spacing-6\`
+tw\`border-spacing-x-6\`
+tw\`border-spacing-y-6\`
+tw\`border-spacing-7\`
+tw\`border-spacing-x-7\`
+tw\`border-spacing-y-7\`
+tw\`border-spacing-8\`
+tw\`border-spacing-x-8\`
+tw\`border-spacing-y-8\`
+tw\`border-spacing-9\`
+tw\`border-spacing-x-9\`
+tw\`border-spacing-y-9\`
+tw\`border-spacing-10\`
+tw\`border-spacing-x-10\`
+tw\`border-spacing-y-10\`
+tw\`border-spacing-11\`
+tw\`border-spacing-x-11\`
+tw\`border-spacing-y-11\`
+tw\`border-spacing-12\`
+tw\`border-spacing-x-12\`
+tw\`border-spacing-y-12\`
+tw\`border-spacing-14\`
+tw\`border-spacing-x-14\`
+tw\`border-spacing-y-14\`
+tw\`border-spacing-16\`
+tw\`border-spacing-x-16\`
+tw\`border-spacing-y-16\`
+tw\`border-spacing-20\`
+tw\`border-spacing-x-20\`
+tw\`border-spacing-y-20\`
+tw\`border-spacing-24\`
+tw\`border-spacing-x-24\`
+tw\`border-spacing-y-24\`
+tw\`border-spacing-28\`
+tw\`border-spacing-x-28\`
+tw\`border-spacing-y-28\`
+tw\`border-spacing-32\`
+tw\`border-spacing-x-32\`
+tw\`border-spacing-y-32\`
+tw\`border-spacing-36\`
+tw\`border-spacing-x-36\`
+tw\`border-spacing-y-36\`
+tw\`border-spacing-40\`
+tw\`border-spacing-x-40\`
+tw\`border-spacing-y-40\`
+tw\`border-spacing-44\`
+tw\`border-spacing-x-44\`
+tw\`border-spacing-y-44\`
+tw\`border-spacing-48\`
+tw\`border-spacing-x-48\`
+tw\`border-spacing-y-48\`
+tw\`border-spacing-52\`
+tw\`border-spacing-x-52\`
+tw\`border-spacing-y-52\`
+tw\`border-spacing-56\`
+tw\`border-spacing-x-56\`
+tw\`border-spacing-y-56\`
+tw\`border-spacing-60\`
+tw\`border-spacing-x-60\`
+tw\`border-spacing-y-60\`
+tw\`border-spacing-64\`
+tw\`border-spacing-x-64\`
+tw\`border-spacing-y-64\`
+tw\`border-spacing-72\`
+tw\`border-spacing-x-72\`
+tw\`border-spacing-y-72\`
+tw\`border-spacing-80\`
+tw\`border-spacing-x-80\`
+tw\`border-spacing-y-80\`
+tw\`border-spacing-96\`
+tw\`border-spacing-x-96\`
+tw\`border-spacing-y-96\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// https://tailwindcss.com/docs/border-spacing
+;({
+  0: '0px',
+  1: '0.25rem',
+  2: '0.5rem',
+  3: '0.75rem',
+  4: '1rem',
+  5: '1.25rem',
+  6: '1.5rem',
+  7: '1.75rem',
+  8: '2rem',
+  9: '2.25rem',
+  10: '2.5rem',
+  11: '2.75rem',
+  12: '3rem',
+  14: '3.5rem',
+  16: '4rem',
+  20: '5rem',
+  24: '6rem',
+  28: '7rem',
+  32: '8rem',
+  36: '9rem',
+  40: '10rem',
+  44: '11rem',
+  48: '12rem',
+  52: '13rem',
+  56: '14rem',
+  60: '15rem',
+  64: '16rem',
+  72: '18rem',
+  80: '20rem',
+  96: '24rem',
+  px: '1px',
+  0.5: '0.125rem',
+  1.5: '0.375rem',
+  2.5: '0.625rem',
+  3.5: '0.875rem',
+})
+;({
+  '--tw-border-spacing-x': '0px',
+  '--tw-border-spacing-y': '0px',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0px',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '0px',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '1px',
+  '--tw-border-spacing-y': '1px',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '1px',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '1px',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0.125rem',
+  '--tw-border-spacing-y': '0.125rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0.125rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '0.125rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0.25rem',
+  '--tw-border-spacing-y': '0.25rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0.25rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '0.25rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0.375rem',
+  '--tw-border-spacing-y': '0.375rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0.375rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '0.375rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0.5rem',
+  '--tw-border-spacing-y': '0.5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0.5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '0.5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0.625rem',
+  '--tw-border-spacing-y': '0.625rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0.625rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '0.625rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0.75rem',
+  '--tw-border-spacing-y': '0.75rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0.75rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '0.75rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0.875rem',
+  '--tw-border-spacing-y': '0.875rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '0.875rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '0.875rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '1rem',
+  '--tw-border-spacing-y': '1rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '1rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '1rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '1.25rem',
+  '--tw-border-spacing-y': '1.25rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '1.25rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '1.25rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '1.5rem',
+  '--tw-border-spacing-y': '1.5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '1.5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '1.5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '1.75rem',
+  '--tw-border-spacing-y': '1.75rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '1.75rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '1.75rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '2rem',
+  '--tw-border-spacing-y': '2rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '2rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '2rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '2.25rem',
+  '--tw-border-spacing-y': '2.25rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '2.25rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '2.25rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '2.5rem',
+  '--tw-border-spacing-y': '2.5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '2.5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '2.5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '2.75rem',
+  '--tw-border-spacing-y': '2.75rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '2.75rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '2.75rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '3rem',
+  '--tw-border-spacing-y': '3rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '3rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '3rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '3.5rem',
+  '--tw-border-spacing-y': '3.5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '3.5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '3.5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '4rem',
+  '--tw-border-spacing-y': '4rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '4rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '4rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '5rem',
+  '--tw-border-spacing-y': '5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '5rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '6rem',
+  '--tw-border-spacing-y': '6rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '6rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '6rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '7rem',
+  '--tw-border-spacing-y': '7rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '7rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '7rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '8rem',
+  '--tw-border-spacing-y': '8rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '8rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '8rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '9rem',
+  '--tw-border-spacing-y': '9rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '9rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '9rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '10rem',
+  '--tw-border-spacing-y': '10rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '10rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '10rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '11rem',
+  '--tw-border-spacing-y': '11rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '11rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '11rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '12rem',
+  '--tw-border-spacing-y': '12rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '12rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '12rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '13rem',
+  '--tw-border-spacing-y': '13rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '13rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '13rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '14rem',
+  '--tw-border-spacing-y': '14rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '14rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '14rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '15rem',
+  '--tw-border-spacing-y': '15rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '15rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '15rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '16rem',
+  '--tw-border-spacing-y': '16rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '16rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '16rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '18rem',
+  '--tw-border-spacing-y': '18rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '18rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '18rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '20rem',
+  '--tw-border-spacing-y': '20rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '20rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '20rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '24rem',
+  '--tw-border-spacing-y': '24rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-x': '24rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+;({
+  '--tw-border-spacing-y': '24rem',
+  borderSpacing: 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+})
+
+
+`;
+
 exports[`twin.macro borderStyle.js: borderStyle.js 1`] = `
 
 import tw from './macro'
@@ -20139,10 +20762,10 @@ hum
     position: 'relative',
     '@media (min-width: 1024px)': {
       display: 'flex !important',
-      fontSize: '3rem !important',
-      lineHeight: '1 !important',
       '--tw-border-opacity': '1 !important',
       borderColor: 'rgb(234 179 8 / var(--tw-border-opacity)) !important',
+      fontSize: '3rem !important',
+      lineHeight: '1 !important',
     },
   }}
   data-tw={
@@ -20426,7 +21049,7 @@ tw\`md:container md:mx-auto\`
 
 `;
 
-exports[`twin.macro contentEmotion.js: contentEmotion.js 1`] = `
+exports[`twin.macro content.js: content.js 1`] = `
 
 import tw, { theme } from './macro'
 
@@ -20438,6 +21061,7 @@ tw\`content-test\`
 tw\`content-['hello']\`
 tw\`content-[attr(content-before)]\`
 tw\`content-['>']\`
+tw\`content-['—']\`
 tw\`content-none\`
 tw\`before:block\`
 tw\`peer-focus:before:block\`
@@ -20471,67 +21095,7 @@ tw\`peer-focus:before:block\`
   content: 'var(--tw-content)',
 })
 ;({
-  '--tw-content': 'none',
-  content: 'var(--tw-content)',
-})
-;({
-  '::before': {
-    content: 'var(--tw-content)',
-    display: 'block',
-  },
-})
-;({
-  '.peer:focus ~ &::before': {
-    content: 'var(--tw-content)',
-    display: 'block',
-  },
-})
-
-
-`;
-
-exports[`twin.macro contentStyledComponents.js: contentStyledComponents.js 1`] = `
-
-import tw, { theme } from './macro'
-
-// https://tailwindcss.com/docs/content
-theme\`content\`
-
-tw\`content\`
-tw\`content-test\`
-tw\`content-['hello']\`
-tw\`content-[attr(content-before)]\`
-tw\`content-['>']\`
-tw\`content-none\`
-tw\`before:block\`
-tw\`peer-focus:before:block\`
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-// https://tailwindcss.com/docs/content
-;({
-  none: 'none',
-  DEFAULT: '"default"',
-  test: '"hi"',
-})
-;({
-  '--tw-content': '"default"',
-  content: 'var(--tw-content)',
-})
-;({
-  '--tw-content': '"hi"',
-  content: 'var(--tw-content)',
-})
-;({
-  '--tw-content': "'hello'",
-  content: 'var(--tw-content)',
-})
-;({
-  '--tw-content': 'attr(content-before)',
-  content: 'var(--tw-content)',
-})
-;({
-  '--tw-content': "'>'",
+  '--tw-content': "'\\u2014'",
   content: 'var(--tw-content)',
 })
 ;({
@@ -32342,8 +32906,8 @@ const OnlyUppercaseConverted = (
 const AllConverted = (
   <div
     css={{
-      textTransform: 'uppercase',
       display: 'block',
+      textTransform: 'uppercase',
     }}
   />
 )
@@ -35832,23 +36396,23 @@ tw\`backdrop-filter backdrop-blur-2xl backdrop-brightness-50 backdrop-contrast-5
 }) // All
 
 ;({
+  '--tw-blur': 'blur(40px)',
   filter:
     'var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)',
-  '--tw-blur': 'blur(40px)',
   '--tw-brightness': 'brightness(.5)',
   '--tw-contrast': 'contrast(.5)',
+  '--tw-drop-shadow': 'drop-shadow(0 25px 25px rgb(0 0 0 / 0.15))',
   '--tw-grayscale': 'grayscale(100%)',
   '--tw-hue-rotate': 'hue-rotate(180deg)',
   '--tw-invert': 'invert(100%)',
   '--tw-saturate': 'saturate(.5)',
   '--tw-sepia': 'sepia(100%)',
-  '--tw-drop-shadow': 'drop-shadow(0 25px 25px rgb(0 0 0 / 0.15))',
 }) // All
 
 ;({
+  '--tw-backdrop-blur': 'blur(40px)',
   backdropFilter:
     'var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)',
-  '--tw-backdrop-blur': 'blur(40px)',
   '--tw-backdrop-brightness': 'brightness(.5)',
   '--tw-backdrop-contrast': 'contrast(.5)',
   '--tw-backdrop-grayscale': 'grayscale(100%)',
@@ -35876,22 +36440,22 @@ tw\`translate-y-2 mt-5 md:(skew-y-6 transform) mb-5\`
 // Test the transform ordering - 'transform' should be moved to the start
 // https://github.com/ben-rogerson/twin.macro/issues/363
 ;({
-  transform:
-    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
   marginTop: '1.25rem',
   '--tw-translate-y': '0.5rem',
+  transform:
+    'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
 })
 ;({
-  '@media (min-width: 768px)': {
-    transform:
-      'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-    '--tw-skew-y': '6deg',
-  },
+  marginTop: '1.25rem',
+  marginBottom: '1.25rem',
   '--tw-translate-y': '0.5rem',
   transform:
     'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-  marginTop: '1.25rem',
-  marginBottom: '1.25rem',
+  '@media (min-width: 768px)': {
+    '--tw-skew-y': '6deg',
+    transform:
+      'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+  },
 })
 
 
@@ -35917,15 +36481,15 @@ tw\`mt-5 md:(ml-5 ease-in transition) mb-5\`
   transitionDuration: '75ms',
 })
 ;({
+  marginTop: '1.25rem',
+  marginBottom: '1.25rem',
   '@media (min-width: 768px)': {
+    marginLeft: '1.25rem',
     transitionProperty:
       'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
     transitionTimingFunction: 'cubic-bezier(0.4, 0, 1, 1)',
     transitionDuration: '150ms',
-    marginLeft: '1.25rem',
   },
-  marginTop: '1.25rem',
-  marginBottom: '1.25rem',
 })
 
 
@@ -35983,9 +36547,9 @@ tw\`col-start-3 mt-4 md:(mt-3 col-span-3) mb-4 col-end-3 col-span-3\`
   display: 'grid',
 })
 ;({
-  display: 'grid',
   gridColumnStart: '3',
   gridColumnEnd: '3',
+  display: 'grid',
 })
 ;({
   gridColumn: 'span 3 / span 3',
@@ -35994,15 +36558,15 @@ tw\`col-start-3 mt-4 md:(mt-3 col-span-3) mb-4 col-end-3 col-span-3\`
   display: 'grid',
 })
 ;({
+  gridColumn: 'span 3 / span 3',
+  gridColumnStart: '3',
+  gridColumnEnd: '3',
+  marginTop: '1rem',
+  marginBottom: '1rem',
   '@media (min-width: 768px)': {
     gridColumn: 'span 3 / span 3',
     marginTop: '0.75rem',
   },
-  gridColumn: 'span 3 / span 3',
-  gridColumnStart: '3',
-  marginTop: '1rem',
-  marginBottom: '1rem',
-  gridColumnEnd: '3',
 })
 
 
@@ -36029,6 +36593,7 @@ tw\`mix-blend-hue\`
 tw\`mix-blend-saturation\`
 tw\`mix-blend-color\`
 tw\`mix-blend-luminosity\`
+tw\`mix-blend-plus-lighter\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -36080,6 +36645,9 @@ tw\`mix-blend-luminosity\`
 })
 ;({
   mixBlendMode: 'luminosity',
+})
+;({
+  mixBlendMode: 'plus-lighter',
 })
 
 
@@ -37637,11 +38205,11 @@ tw\`outline outline-dashed outline-none outline-black outline-4 outline-offset-2
   outlineWidth: 'var(--outline)',
 })
 ;({
-  outlineStyle: 'dashed',
   outline: '2px solid transparent',
   outlineOffset: '2px',
-  outlineColor: '#000',
+  outlineStyle: 'dashed',
   outlineWidth: '4px',
+  outlineColor: '#000',
 })
 
 
@@ -37775,8 +38343,8 @@ tw\`outline-[5px]\`
 })
 ;({
   outlineStyle: 'solid',
-  outlineOffset: '2px',
   outlineWidth: '1px',
+  outlineOffset: '2px',
 })
 ;({
   outlineWidth: '5px',
@@ -42837,14 +43405,14 @@ globalStyles
   <>
     <div
       css={{
-        padding: '1.25rem',
         margin: '1.25rem',
+        padding: '1.25rem',
       }}
     >
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <button
@@ -44549,8 +45117,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -44597,10 +45165,10 @@ globalStyles
             <svg
               xmlns="http://www.w3.org/2000/svg"
               css={{
-                stroke: 'currentColor',
-                flexShrink: '0',
                 height: '1.5rem',
                 width: '1.5rem',
+                flexShrink: '0',
+                stroke: 'currentColor',
               }}
               fill="none"
               viewBox="0 0 24 24"
@@ -44660,10 +45228,10 @@ globalStyles
               fill="none"
               viewBox="0 0 24 24"
               css={{
-                stroke: 'hsl(var(--in))',
-                flexShrink: '0',
-                width: '1.5rem',
                 height: '1.5rem',
+                width: '1.5rem',
+                flexShrink: '0',
+                stroke: 'hsl(var(--in))',
               }}
             >
               <path
@@ -44680,8 +45248,8 @@ globalStyles
 
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <label
@@ -44827,8 +45395,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <label
@@ -44921,8 +45489,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -45066,8 +45634,8 @@ globalStyles
             viewBox="0 0 24 24"
             css={{
               display: 'inline-block',
-              width: '1rem',
               height: '1rem',
+              width: '1rem',
               stroke: 'currentColor',
             }}
           >
@@ -45221,8 +45789,8 @@ globalStyles
             viewBox="0 0 24 24"
             css={{
               display: 'inline-block',
-              width: '1rem',
               height: '1rem',
+              width: '1rem',
               stroke: 'currentColor',
             }}
           >
@@ -45376,8 +45944,8 @@ globalStyles
             viewBox="0 0 24 24"
             css={{
               display: 'inline-block',
-              width: '1rem',
               height: '1rem',
+              width: '1rem',
               stroke: 'currentColor',
             }}
           >
@@ -45531,8 +46099,8 @@ globalStyles
             viewBox="0 0 24 24"
             css={{
               display: 'inline-block',
-              width: '1rem',
               height: '1rem',
+              width: '1rem',
               stroke: 'currentColor',
             }}
           >
@@ -45548,8 +46116,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <span
@@ -45583,8 +46151,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -45648,8 +46216,8 @@ globalStyles
                 viewBox="0 0 24 24"
                 css={{
                   display: 'inline-block',
-                  width: '2rem',
                   height: '2rem',
+                  width: '2rem',
                   stroke: 'currentColor',
                 }}
               >
@@ -45727,8 +46295,8 @@ globalStyles
                 viewBox="0 0 24 24"
                 css={{
                   display: 'inline-block',
-                  width: '2rem',
                   height: '2rem',
+                  width: '2rem',
                   stroke: 'currentColor',
                 }}
               >
@@ -45906,8 +46474,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -46257,8 +46825,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -46467,8 +47035,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -46576,8 +47144,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -46725,8 +47293,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -46888,8 +47456,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <input
@@ -46963,8 +47531,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -47097,8 +47665,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <select
@@ -47173,8 +47741,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <input
@@ -47237,8 +47805,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -47838,8 +48406,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -48762,11 +49330,11 @@ globalStyles
                     borderBottomRightRadius: 'inherit',
                     borderBottomLeftRadius: 'inherit',
                   },
-                padding: '1rem',
-                overflowY: 'auto',
                 width: '20rem',
+                overflowY: 'auto',
                 '--tw-bg-opacity': '1',
                 backgroundColor: 'hsl(var(--b1) / var(--tw-bg-opacity))',
+                padding: '1rem',
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--bc) / var(--tw-text-opacity))',
               }}
@@ -48783,8 +49351,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -49043,8 +49611,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -49111,60 +49679,6 @@ globalStyles
         >
           <span
             css={{
-              '.indicator :where(&)': {
-                zIndex: '1',
-                position: 'absolute',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-                right: '0px',
-                left: 'auto',
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-x': '50%',
-                '--tw-translate-y': '-50%',
-              },
-              '.indicator :where(&.indicator-start)': {
-                right: 'auto',
-                left: '0px',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-center)': {
-                right: '50%',
-                left: '50%',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-end)': {
-                right: '0px',
-                left: 'auto',
-                '--tw-translate-x': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-bottom)': {
-                top: 'auto',
-                bottom: '0px',
-                '--tw-translate-y': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-middle)': {
-                top: '50%',
-                bottom: '50%',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-top)': {
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -49290,6 +49804,60 @@ globalStyles
                   'hsl(var(--af, var(--a)) / var(--tw-bg-opacity))',
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--ac) / var(--tw-text-opacity))',
+              },
+              '.indicator :where(&)': {
+                zIndex: '1',
+                position: 'absolute',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                right: '0px',
+                left: 'auto',
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-x': '50%',
+                '--tw-translate-y': '-50%',
+              },
+              '.indicator :where(&.indicator-start)': {
+                right: 'auto',
+                left: '0px',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-center)': {
+                right: '50%',
+                left: '50%',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-end)': {
+                right: '0px',
+                left: 'auto',
+                '--tw-translate-x': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-bottom)': {
+                top: 'auto',
+                bottom: '0px',
+                '--tw-translate-y': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-middle)': {
+                top: '50%',
+                bottom: '50%',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-top)': {
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
               },
               '.badge-outline&': {
                 '--tw-text-opacity': '1',
@@ -49442,14 +50010,12 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
           css={{
-            fontSize: '0.875rem',
-            lineHeight: '1.25rem',
             maxWidth: '100%',
             overflowX: 'auto',
             paddingTop: '0.5rem',
@@ -49499,6 +50065,8 @@ globalStyles
             '[dir="rtl"] &>ul>li+*:before': {
               '--tw-rotate': '-45deg',
             },
+            fontSize: '0.875rem',
+            lineHeight: '1.25rem',
           }}
         >
           <ul>
@@ -49509,9 +50077,9 @@ globalStyles
                   fill="none"
                   viewBox="0 0 24 24"
                   css={{
-                    width: '1rem',
-                    height: '1rem',
                     marginRight: '0.5rem',
+                    height: '1rem',
+                    width: '1rem',
                     stroke: 'currentColor',
                   }}
                 >
@@ -49532,9 +50100,9 @@ globalStyles
                   fill="none"
                   viewBox="0 0 24 24"
                   css={{
-                    width: '1rem',
-                    height: '1rem',
                     marginRight: '0.5rem',
+                    height: '1rem',
+                    width: '1rem',
                     stroke: 'currentColor',
                   }}
                 >
@@ -49554,9 +50122,9 @@ globalStyles
                 fill="none"
                 viewBox="0 0 24 24"
                 css={{
-                  width: '1rem',
-                  height: '1rem',
                   marginRight: '0.5rem',
+                  height: '1rem',
+                  width: '1rem',
                   stroke: 'currentColor',
                 }}
               >
@@ -49574,8 +50142,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <ul
@@ -49749,8 +50317,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <ul
@@ -50259,8 +50827,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -50590,8 +51158,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -50658,8 +51226,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -51001,10 +51569,10 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
-          gap: '0.5rem',
           display: 'grid',
+          gap: '0.5rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -51117,11 +51685,11 @@ globalStyles
         <div
           css={{
             display: 'flex',
-            justifyContent: 'center',
             width: '100%',
+            justifyContent: 'center',
+            gap: '0.5rem',
             paddingTop: '0.5rem',
             paddingBottom: '0.5rem',
-            gap: '0.5rem',
           }}
         >
           <a
@@ -51744,8 +52312,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -51867,16 +52435,6 @@ globalStyles
                 transform:
                   'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
               },
-              '.indicator :where(.indicator-item&)': {
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-                right: 'auto',
-                left: '0px',
-                '--tw-translate-x': '-50%',
-              },
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -52006,6 +52564,16 @@ globalStyles
               '.badge-outline&': {
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--s) / var(--tw-text-opacity))',
+              },
+              '.indicator :where(.indicator-item&)': {
+                right: 'auto',
+                left: '0px',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-y': '-50%',
               },
             }}
           >
@@ -52014,70 +52582,6 @@ globalStyles
           <span
             className="indicator-item indicator-center"
             css={{
-              '.indicator :where(&)': {
-                zIndex: '1',
-                position: 'absolute',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-                right: '0px',
-                left: 'auto',
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-x': '50%',
-                '--tw-translate-y': '-50%',
-              },
-              '.indicator :where(&.indicator-start)': {
-                right: 'auto',
-                left: '0px',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-center)': {
-                right: '50%',
-                left: '50%',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-end)': {
-                right: '0px',
-                left: 'auto',
-                '--tw-translate-x': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-bottom)': {
-                top: 'auto',
-                bottom: '0px',
-                '--tw-translate-y': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-middle)': {
-                top: '50%',
-                bottom: '50%',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-top)': {
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(.indicator-item&)': {
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-                right: '50%',
-                left: '50%',
-                '--tw-translate-x': '-50%',
-              },
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -52204,9 +52708,73 @@ globalStyles
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--ac) / var(--tw-text-opacity))',
               },
+              '.indicator :where(&)': {
+                zIndex: '1',
+                position: 'absolute',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                right: '0px',
+                left: 'auto',
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-x': '50%',
+                '--tw-translate-y': '-50%',
+              },
+              '.indicator :where(&.indicator-start)': {
+                right: 'auto',
+                left: '0px',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-center)': {
+                right: '50%',
+                left: '50%',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-end)': {
+                right: '0px',
+                left: 'auto',
+                '--tw-translate-x': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-bottom)': {
+                top: 'auto',
+                bottom: '0px',
+                '--tw-translate-y': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-middle)': {
+                top: '50%',
+                bottom: '50%',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-top)': {
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
               '.badge-outline&': {
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--s) / var(--tw-text-opacity))',
+              },
+              '.indicator :where(.indicator-item&)': {
+                right: '50%',
+                left: '50%',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-y': '-50%',
               },
             }}
           >
@@ -52215,70 +52783,6 @@ globalStyles
           <span
             className="indicator-item"
             css={{
-              '.indicator :where(&)': {
-                zIndex: '1',
-                position: 'absolute',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-                right: '0px',
-                left: 'auto',
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-x': '50%',
-                '--tw-translate-y': '-50%',
-              },
-              '.indicator :where(&.indicator-start)': {
-                right: 'auto',
-                left: '0px',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-center)': {
-                right: '50%',
-                left: '50%',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-end)': {
-                right: '0px',
-                left: 'auto',
-                '--tw-translate-x': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-bottom)': {
-                top: 'auto',
-                bottom: '0px',
-                '--tw-translate-y': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-middle)': {
-                top: '50%',
-                bottom: '50%',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-top)': {
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(.indicator-item&)': {
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-                right: '0px',
-                left: 'auto',
-                '--tw-translate-x': '50%',
-              },
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -52405,9 +52909,73 @@ globalStyles
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--ac) / var(--tw-text-opacity))',
               },
+              '.indicator :where(&)': {
+                zIndex: '1',
+                position: 'absolute',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                right: '0px',
+                left: 'auto',
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-x': '50%',
+                '--tw-translate-y': '-50%',
+              },
+              '.indicator :where(&.indicator-start)': {
+                right: 'auto',
+                left: '0px',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-center)': {
+                right: '50%',
+                left: '50%',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-end)': {
+                right: '0px',
+                left: 'auto',
+                '--tw-translate-x': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-bottom)': {
+                top: 'auto',
+                bottom: '0px',
+                '--tw-translate-y': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-middle)': {
+                top: '50%',
+                bottom: '50%',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-top)': {
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
               '.badge-outline&': {
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--s) / var(--tw-text-opacity))',
+              },
+              '.indicator :where(.indicator-item&)': {
+                right: '0px',
+                left: 'auto',
+                '--tw-translate-x': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-y': '-50%',
               },
             }}
           >
@@ -52416,69 +52984,15 @@ globalStyles
           <span
             className="indicator-item"
             css={{
-              '.indicator :where(&)': {
-                zIndex: '1',
-                position: 'absolute',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-                right: '0px',
-                left: 'auto',
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-x': '50%',
-                '--tw-translate-y': '-50%',
-              },
-              '.indicator :where(&.indicator-start)': {
-                right: 'auto',
-                left: '0px',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-center)': {
-                right: '50%',
-                left: '50%',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-end)': {
-                right: '0px',
-                left: 'auto',
-                '--tw-translate-x': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-bottom)': {
-                top: 'auto',
-                bottom: '0px',
-                '--tw-translate-y': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-middle)': {
-                top: '50%',
-                bottom: '50%',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-top)': {
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
               '.indicator :where(.indicator-item&)': {
-                top: '50%',
-                bottom: '50%',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
                 right: 'auto',
                 left: '0px',
                 '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                top: '50%',
+                bottom: '50%',
+                '--tw-translate-y': '-50%',
               },
               display: 'inline-flex',
               alignItems: 'center',
@@ -52605,6 +53119,60 @@ globalStyles
                   'hsl(var(--af, var(--a)) / var(--tw-bg-opacity))',
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--ac) / var(--tw-text-opacity))',
+              },
+              '.indicator :where(&)': {
+                zIndex: '1',
+                position: 'absolute',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                right: '0px',
+                left: 'auto',
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-x': '50%',
+                '--tw-translate-y': '-50%',
+              },
+              '.indicator :where(&.indicator-start)': {
+                right: 'auto',
+                left: '0px',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-center)': {
+                right: '50%',
+                left: '50%',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-end)': {
+                right: '0px',
+                left: 'auto',
+                '--tw-translate-x': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-bottom)': {
+                top: 'auto',
+                bottom: '0px',
+                '--tw-translate-y': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-middle)': {
+                top: '50%',
+                bottom: '50%',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-top)': {
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
               },
               '.badge-outline&': {
                 '--tw-text-opacity': '1',
@@ -52617,69 +53185,15 @@ globalStyles
           <span
             className="indicator-item"
             css={{
-              '.indicator :where(&)': {
-                zIndex: '1',
-                position: 'absolute',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-                right: '0px',
-                left: 'auto',
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-x': '50%',
-                '--tw-translate-y': '-50%',
-              },
-              '.indicator :where(&.indicator-start)': {
-                right: 'auto',
-                left: '0px',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-center)': {
-                right: '50%',
-                left: '50%',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-end)': {
-                right: '0px',
-                left: 'auto',
-                '--tw-translate-x': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-bottom)': {
-                top: 'auto',
-                bottom: '0px',
-                '--tw-translate-y': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-middle)': {
-                top: '50%',
-                bottom: '50%',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-top)': {
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
               '.indicator :where(.indicator-item&)': {
-                top: '50%',
-                bottom: '50%',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
                 right: '50%',
                 left: '50%',
                 '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                top: '50%',
+                bottom: '50%',
+                '--tw-translate-y': '-50%',
               },
               display: 'inline-flex',
               alignItems: 'center',
@@ -52806,6 +53320,60 @@ globalStyles
                   'hsl(var(--af, var(--a)) / var(--tw-bg-opacity))',
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--ac) / var(--tw-text-opacity))',
+              },
+              '.indicator :where(&)': {
+                zIndex: '1',
+                position: 'absolute',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                right: '0px',
+                left: 'auto',
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-x': '50%',
+                '--tw-translate-y': '-50%',
+              },
+              '.indicator :where(&.indicator-start)': {
+                right: 'auto',
+                left: '0px',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-center)': {
+                right: '50%',
+                left: '50%',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-end)': {
+                right: '0px',
+                left: 'auto',
+                '--tw-translate-x': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-bottom)': {
+                top: 'auto',
+                bottom: '0px',
+                '--tw-translate-y': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-middle)': {
+                top: '50%',
+                bottom: '50%',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-top)': {
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
               },
               '.badge-outline&': {
                 '--tw-text-opacity': '1',
@@ -52818,69 +53386,15 @@ globalStyles
           <span
             className="indicator-item"
             css={{
-              '.indicator :where(&)': {
-                zIndex: '1',
-                position: 'absolute',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-                right: '0px',
-                left: 'auto',
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-x': '50%',
-                '--tw-translate-y': '-50%',
-              },
-              '.indicator :where(&.indicator-start)': {
-                right: 'auto',
-                left: '0px',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-center)': {
-                right: '50%',
-                left: '50%',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-end)': {
-                right: '0px',
-                left: 'auto',
-                '--tw-translate-x': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-bottom)': {
-                top: 'auto',
-                bottom: '0px',
-                '--tw-translate-y': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-middle)': {
-                top: '50%',
-                bottom: '50%',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-top)': {
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
               '.indicator :where(.indicator-item&)': {
-                top: '50%',
-                bottom: '50%',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
                 right: '0px',
                 left: 'auto',
                 '--tw-translate-x': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                top: '50%',
+                bottom: '50%',
+                '--tw-translate-y': '-50%',
               },
               display: 'inline-flex',
               alignItems: 'center',
@@ -53007,6 +53521,60 @@ globalStyles
                   'hsl(var(--af, var(--a)) / var(--tw-bg-opacity))',
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--ac) / var(--tw-text-opacity))',
+              },
+              '.indicator :where(&)': {
+                zIndex: '1',
+                position: 'absolute',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                right: '0px',
+                left: 'auto',
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-x': '50%',
+                '--tw-translate-y': '-50%',
+              },
+              '.indicator :where(&.indicator-start)': {
+                right: 'auto',
+                left: '0px',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-center)': {
+                right: '50%',
+                left: '50%',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-end)': {
+                right: '0px',
+                left: 'auto',
+                '--tw-translate-x': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-bottom)': {
+                top: 'auto',
+                bottom: '0px',
+                '--tw-translate-y': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-middle)': {
+                top: '50%',
+                bottom: '50%',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-top)': {
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
               },
               '.badge-outline&': {
                 '--tw-text-opacity': '1',
@@ -53019,69 +53587,15 @@ globalStyles
           <span
             className="indicator-item"
             css={{
-              '.indicator :where(&)': {
-                zIndex: '1',
-                position: 'absolute',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-                right: '0px',
-                left: 'auto',
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-x': '50%',
-                '--tw-translate-y': '-50%',
-              },
-              '.indicator :where(&.indicator-start)': {
-                right: 'auto',
-                left: '0px',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-center)': {
-                right: '50%',
-                left: '50%',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-end)': {
-                right: '0px',
-                left: 'auto',
-                '--tw-translate-x': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-bottom)': {
-                top: 'auto',
-                bottom: '0px',
-                '--tw-translate-y': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-middle)': {
-                top: '50%',
-                bottom: '50%',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-top)': {
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
               '.indicator :where(.indicator-item&)': {
-                top: 'auto',
-                bottom: '0px',
-                '--tw-translate-y': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
                 right: 'auto',
                 left: '0px',
                 '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                top: 'auto',
+                bottom: '0px',
+                '--tw-translate-y': '50%',
               },
               display: 'inline-flex',
               alignItems: 'center',
@@ -53208,6 +53722,60 @@ globalStyles
                   'hsl(var(--af, var(--a)) / var(--tw-bg-opacity))',
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--ac) / var(--tw-text-opacity))',
+              },
+              '.indicator :where(&)': {
+                zIndex: '1',
+                position: 'absolute',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                right: '0px',
+                left: 'auto',
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-x': '50%',
+                '--tw-translate-y': '-50%',
+              },
+              '.indicator :where(&.indicator-start)': {
+                right: 'auto',
+                left: '0px',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-center)': {
+                right: '50%',
+                left: '50%',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-end)': {
+                right: '0px',
+                left: 'auto',
+                '--tw-translate-x': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-bottom)': {
+                top: 'auto',
+                bottom: '0px',
+                '--tw-translate-y': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-middle)': {
+                top: '50%',
+                bottom: '50%',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-top)': {
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
               },
               '.badge-outline&': {
                 '--tw-text-opacity': '1',
@@ -53220,69 +53788,15 @@ globalStyles
           <span
             className="indicator-item"
             css={{
-              '.indicator :where(&)': {
-                zIndex: '1',
-                position: 'absolute',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-                right: '0px',
-                left: 'auto',
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-x': '50%',
-                '--tw-translate-y': '-50%',
-              },
-              '.indicator :where(&.indicator-start)': {
-                right: 'auto',
-                left: '0px',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-center)': {
-                right: '50%',
-                left: '50%',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-end)': {
-                right: '0px',
-                left: 'auto',
-                '--tw-translate-x': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-bottom)': {
-                top: 'auto',
-                bottom: '0px',
-                '--tw-translate-y': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-middle)': {
-                top: '50%',
-                bottom: '50%',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-top)': {
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
               '.indicator :where(.indicator-item&)': {
-                top: 'auto',
-                bottom: '0px',
-                '--tw-translate-y': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
                 right: '50%',
                 left: '50%',
                 '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                top: 'auto',
+                bottom: '0px',
+                '--tw-translate-y': '50%',
               },
               display: 'inline-flex',
               alignItems: 'center',
@@ -53409,6 +53923,60 @@ globalStyles
                   'hsl(var(--af, var(--a)) / var(--tw-bg-opacity))',
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--ac) / var(--tw-text-opacity))',
+              },
+              '.indicator :where(&)': {
+                zIndex: '1',
+                position: 'absolute',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                right: '0px',
+                left: 'auto',
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-x': '50%',
+                '--tw-translate-y': '-50%',
+              },
+              '.indicator :where(&.indicator-start)': {
+                right: 'auto',
+                left: '0px',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-center)': {
+                right: '50%',
+                left: '50%',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-end)': {
+                right: '0px',
+                left: 'auto',
+                '--tw-translate-x': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-bottom)': {
+                top: 'auto',
+                bottom: '0px',
+                '--tw-translate-y': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-middle)': {
+                top: '50%',
+                bottom: '50%',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-top)': {
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
               },
               '.badge-outline&': {
                 '--tw-text-opacity': '1',
@@ -53421,69 +53989,15 @@ globalStyles
           <span
             className="indicator-item"
             css={{
-              '.indicator :where(&)': {
-                zIndex: '1',
-                position: 'absolute',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-                right: '0px',
-                left: 'auto',
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-x': '50%',
-                '--tw-translate-y': '-50%',
-              },
-              '.indicator :where(&.indicator-start)': {
-                right: 'auto',
-                left: '0px',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-center)': {
-                right: '50%',
-                left: '50%',
-                '--tw-translate-x': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-end)': {
-                right: '0px',
-                left: 'auto',
-                '--tw-translate-x': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-bottom)': {
-                top: 'auto',
-                bottom: '0px',
-                '--tw-translate-y': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-middle)': {
-                top: '50%',
-                bottom: '50%',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
-              '.indicator :where(&.indicator-top)': {
-                top: '0px',
-                bottom: 'auto',
-                '--tw-translate-y': '-50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
-              },
               '.indicator :where(.indicator-item&)': {
-                top: 'auto',
-                bottom: '0px',
-                '--tw-translate-y': '50%',
-                transform:
-                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
                 right: '0px',
                 left: 'auto',
                 '--tw-translate-x': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                top: 'auto',
+                bottom: '0px',
+                '--tw-translate-y': '50%',
               },
               display: 'inline-flex',
               alignItems: 'center',
@@ -53611,6 +54125,60 @@ globalStyles
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--ac) / var(--tw-text-opacity))',
               },
+              '.indicator :where(&)': {
+                zIndex: '1',
+                position: 'absolute',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+                right: '0px',
+                left: 'auto',
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-x': '50%',
+                '--tw-translate-y': '-50%',
+              },
+              '.indicator :where(&.indicator-start)': {
+                right: 'auto',
+                left: '0px',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-center)': {
+                right: '50%',
+                left: '50%',
+                '--tw-translate-x': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-end)': {
+                right: '0px',
+                left: 'auto',
+                '--tw-translate-x': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-bottom)': {
+                top: 'auto',
+                bottom: '0px',
+                '--tw-translate-y': '50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-middle)': {
+                top: '50%',
+                bottom: '50%',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
+              '.indicator :where(&.indicator-top)': {
+                top: '0px',
+                bottom: 'auto',
+                '--tw-translate-y': '-50%',
+                transform:
+                  'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+              },
               '.badge-outline&': {
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--s) / var(--tw-text-opacity))',
@@ -53622,12 +54190,12 @@ globalStyles
           <div
             css={{
               display: 'grid',
-              width: '15rem',
               height: '8rem',
+              width: '15rem',
+              placeItems: 'center',
               '--tw-bg-opacity': '1',
               backgroundColor:
                 'hsl(var(--b3, var(--b2)) / var(--tw-bg-opacity))',
-              placeItems: 'center',
             }}
           >
             content
@@ -53636,8 +54204,8 @@ globalStyles
       </div>
       <div
         css={{
-          padding: '1.25rem',
           margin: '1.25rem',
+          padding: '1.25rem',
         }}
       >
         <div
@@ -53756,16 +54324,16 @@ globalStyles
                   fontSize: '0.875rem',
                   lineHeight: '1.25rem',
                 },
-                flexShrink: '0',
                 width: '100%',
                 maxWidth: '24rem',
+                flexShrink: '0',
+                '--tw-bg-opacity': '1',
+                backgroundColor: 'hsl(var(--b1) / var(--tw-bg-opacity))',
                 '--tw-shadow': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
                 '--tw-shadow-colored':
                   '0 25px 50px -12px var(--tw-shadow-color)',
                 boxShadow:
                   'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)',
-                '--tw-bg-opacity': '1',
-                backgroundColor: 'hsl(var(--b1) / var(--tw-bg-opacity))',
               }}
             >
               <div
@@ -53996,10 +54564,6 @@ globalStyles
                     <a
                       href="#"
                       css={{
-                        fontSize: '0.75rem',
-                        lineHeight: '1rem',
-                        '--tw-text-opacity': '1',
-                        color: 'hsl(var(--bc) / var(--tw-text-opacity))',
                         cursor: 'pointer',
                         WebkitTextDecorationLine: 'none',
                         textDecorationLine: 'none',
@@ -54015,6 +54579,10 @@ globalStyles
                           WebkitTextDecorationLine: 'underline',
                           textDecorationLine: 'underline',
                         },
+                        fontSize: '0.75rem',
+                        lineHeight: '1rem',
+                        '--tw-text-opacity': '1',
+                        color: 'hsl(var(--bc) / var(--tw-text-opacity))',
                       }}
                     >
                       Forgot password?
@@ -54358,9 +54926,9 @@ globalStyles
       >
         <h3
           css={{
-            fontWeight: '700',
             fontSize: '1.125rem',
             lineHeight: '1.75rem',
+            fontWeight: '700',
           }}
         >
           Congratulations random Interner user!
@@ -56771,30 +57339,30 @@ const addComponentsTestElementScreenReplacements = tw\`screenies\`
   lineHeight: '1.25',
 })
 const addUtilitiesTest = {
+  '--tw-text-opacity': '1',
+  color: 'rgb(239 68 68 / var(--tw-text-opacity))',
   fontSize: '0.875rem',
   fontWeight: '500',
   lineHeight: '1.25',
-  '--tw-text-opacity': '1',
-  color: 'rgb(239 68 68 / var(--tw-text-opacity))',
-  '@media (min-width: 1024px)': {
-    fontSize: '0.875rem',
-    fontWeight: '500',
-    lineHeight: '1.25',
-  },
   '@media (min-width: 768px)': {
     fontSize: '0.875rem !important',
     fontWeight: '500 !important',
     lineHeight: '1.25 !important',
+  },
+  '@media (min-width: 1024px)': {
+    fontSize: '0.875rem',
+    fontWeight: '500',
+    lineHeight: '1.25',
   },
 }
 const addUtilitiesTest2 = {
   transform: 'skewY(-15deg)',
 }
 const addUtilitiesTest2Important = {
-  transform: 'skewY(-15deg) !important',
   fontSize: '0.875rem !important',
   fontWeight: '500 !important',
   lineHeight: '1.25 !important',
+  transform: 'skewY(-15deg) !important',
 }
 const addUtilitiesTest2Media = {
   '@media (min-width: 640px)': {
@@ -56807,10 +57375,10 @@ const addUtilitiesTest2Media = {
   },
 }
 const addUtilitiesTest2Variants = {
-  ':active:hover': {
+  ':visited:nth-child(even)': {
     transform: 'skewY(-15deg)',
   },
-  ':visited:nth-child(even)': {
+  ':active:hover': {
     transform: 'skewY(-15deg)',
   },
 }
@@ -56825,11 +57393,6 @@ const addComponentsTest = {
   },
 }
 const addComponentsTestMedia = {
-  '@media (min-width: 1280px)': {
-    padding: '.5rem 1rem',
-    borderRadius: '.25rem',
-    fontWeight: '600',
-  },
   '@media (min-width: 640px)': {
     backgroundColor: '#3490dc',
     color: '#fff',
@@ -56844,8 +57407,20 @@ const addComponentsTestMedia = {
       backgroundColor: '#cc1f1a',
     },
   },
+  '@media (min-width: 1280px)': {
+    padding: '.5rem 1rem',
+    borderRadius: '.25rem',
+    fontWeight: '600',
+  },
 }
 const addComponentsTestVariants = {
+  ':visited:nth-child(even)': {
+    backgroundColor: '#e3342f',
+    color: '#fff',
+  },
+  ':visited:nth-child(even):hover': {
+    backgroundColor: '#cc1f1a',
+  },
   ':active:hover': {
     padding: '.5rem 1rem',
     borderRadius: '.25rem',
@@ -56868,13 +57443,6 @@ const addComponentsTestVariants = {
   ':focus:hover::before': {
     content: 'var(--tw-content)',
     backgroundColor: '#2779bd',
-  },
-  ':visited:nth-child(even)': {
-    backgroundColor: '#e3342f',
-    color: '#fff',
-  },
-  ':visited:nth-child(even):hover': {
-    backgroundColor: '#cc1f1a',
   },
 }
 const addComponentsTestElementPrefixes = {
@@ -57040,21 +57608,21 @@ import tw from './macro'
 /> // tw import + short css
 ;<div
   css={{
+    maxWidth: '100vw',
     '@media (min-width: 1024px)': {
       '--tw-bg-opacity': '1',
       backgroundColor: 'rgb(239 68 68 / var(--tw-bg-opacity))',
     },
-    maxWidth: '100vw',
   }}
   data-tw={'lg:tw-bg-red-500 max-width[100vw]'}
 /> // tw import + arbitrary property
 ;<div
   css={{
+    maxWidth: '100vw',
     '@media (min-width: 1024px)': {
       '--tw-bg-opacity': '1',
       backgroundColor: 'rgb(239 68 68 / var(--tw-bg-opacity))',
     },
-    maxWidth: '100vw',
   }}
   data-tw={'lg:tw-bg-red-500 [max-width:100vw]'}
 /> // className should be ignored without the prefix
@@ -57078,28 +57646,28 @@ import tw from './macro'
 />
 ;<div
   css={{
+    ':hover': {
+      maxWidth: '100vw',
+    },
     '@media (min-width: 1024px)': {
       ':hover': {
         '--tw-bg-opacity': '1',
         backgroundColor: 'rgb(239 68 68 / var(--tw-bg-opacity))',
       },
-    },
-    ':hover': {
-      maxWidth: '100vw',
     },
   }}
   data-tw="hover:(lg:tw-bg-red-500 max-width[100vw])"
 />
 ;<div
   css={{
+    ':hover': {
+      maxWidth: '100vw',
+    },
     '@media (min-width: 1024px)': {
       ':hover': {
         '--tw-bg-opacity': '1',
         backgroundColor: 'rgb(239 68 68 / var(--tw-bg-opacity))',
       },
-    },
-    ':hover': {
-      maxWidth: '100vw',
     },
   }}
   data-tw="hover:(lg:tw-bg-red-500 [max-width:100vw])"
@@ -57117,28 +57685,28 @@ import tw from './macro'
 />
 ;<div
   css={{
+    ':hover': {
+      maxWidth: '100vw',
+    },
     '@media (min-width: 1024px)': {
       ':hover': {
         '--tw-bg-opacity': '1',
         backgroundColor: 'rgb(239 68 68 / var(--tw-bg-opacity))',
       },
-    },
-    ':hover': {
-      maxWidth: '100vw',
     },
   }}
   data-tw={'hover:(lg:tw-bg-red-500 max-width[100vw])'}
 />
 ;<div
   css={{
+    ':hover': {
+      maxWidth: '100vw',
+    },
     '@media (min-width: 1024px)': {
       ':hover': {
         '--tw-bg-opacity': '1',
         backgroundColor: 'rgb(239 68 68 / var(--tw-bg-opacity))',
       },
-    },
-    ':hover': {
-      maxWidth: '100vw',
     },
   }}
   data-tw={'hover:(lg:tw-bg-red-500 [max-width:100vw])'}
@@ -58875,8 +59443,8 @@ tw\`ring-[10px]\`
   '--tw-ring-inset': 'inset',
   '--tw-ring-opacity': '0.5',
   '--tw-ring-color': 'rgb(168 85 247 / var(--tw-ring-opacity))',
-  '--tw-ring-offset-color': '#000',
   '--tw-ring-offset-width': '4px',
+  '--tw-ring-offset-color': '#000',
 })
 ;({
   '--tw-ring-offset-shadow':
@@ -58888,8 +59456,8 @@ tw\`ring-[10px]\`
   '--tw-ring-inset': 'inset',
   '--tw-ring-opacity': '1',
   '--tw-ring-color': 'rgb(168 85 247 / var(--tw-ring-opacity))',
-  '--tw-ring-offset-color': '#000',
   '--tw-ring-offset-width': '4px',
+  '--tw-ring-offset-color': '#000',
 })
 ;({
   '--tw-ring-offset-shadow':
@@ -58900,8 +59468,8 @@ tw\`ring-[10px]\`
     'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
   '--tw-ring-opacity': '1',
   '--tw-ring-color': 'rgb(168 85 247 / var(--tw-ring-opacity))',
-  '--tw-ring-offset-color': '#000',
   '--tw-ring-offset-width': '4px',
+  '--tw-ring-offset-color': '#000',
 })
 ;({
   '--tw-ring-offset-shadow':
@@ -58910,8 +59478,8 @@ tw\`ring-[10px]\`
     'var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
   boxShadow:
     'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
-  '--tw-ring-offset-color': '#000',
   '--tw-ring-offset-width': '4px',
+  '--tw-ring-offset-color': '#000',
 })
 ;({
   '--tw-ring-offset-shadow':
@@ -58936,6 +59504,7 @@ tw\`ring-[10px]\`
 })
 ;({
   marginTop: '1.25rem',
+  marginBottom: '1.25rem',
   '@media (min-width: 768px)': {
     '--tw-ring-offset-shadow':
       'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
@@ -58946,7 +59515,6 @@ tw\`ring-[10px]\`
     '--tw-ring-opacity': '0.2',
     '--tw-ring-color': 'rgb(34 197 94 / var(--tw-ring-opacity))',
   },
-  marginBottom: '1.25rem',
 })
 ;({
   '--tw-ring-offset-shadow':
@@ -60641,25 +61209,25 @@ tw\`my-class3\`
       ↓ ↓ ↓ ↓ ↓ ↓
 
 ;({
-  '&:hover': {
-    display: 'block',
-  },
   '&:first-child': {
     marginTop: '0.5rem',
   },
   '&:last-of-type': {
     maxWidth: '20px',
+  },
+  '&:hover': {
+    display: 'block',
   },
 })
 ;({
-  '&:hover': {
-    display: 'block',
-  },
   '&:first-child': {
     marginTop: '0.5rem',
   },
   '&:last-of-type': {
     maxWidth: '20px',
+  },
+  '&:hover': {
+    display: 'block',
   },
 })
 ;({
@@ -63837,6 +64405,9 @@ tw\`padding[
 tw\`--color[theme(colors.red.500)]\`
 tw\`--color[this theme(colors.red.500) that]\`
 
+// Automatic '' value
+tw\`touch-action[]\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 ;<div
@@ -63901,8 +64472,8 @@ tw\`--color[this theme(colors.red.500) that]\`
 />
 ;<div
   css={{
-    maxWidth: '100vw - 2rem',
     display: 'block',
+    maxWidth: '100vw - 2rem',
   }}
 />
 ;<div
@@ -63952,11 +64523,11 @@ tw\`--color[this theme(colors.red.500) that]\`
 /> // within css prop
 ;<div
   css={{
+    maxWidth: '100vw',
     '@media (min-width: 1024px)': {
       '--tw-bg-opacity': '1',
       backgroundColor: 'rgb(239 68 68 / var(--tw-bg-opacity))',
     },
-    maxWidth: '100vw',
   }}
 /> // within tw import
 
@@ -63964,8 +64535,8 @@ tw\`--color[this theme(colors.red.500) that]\`
   maxWidth: '100vw - 2rem',
 })
 ;({
-  maxWidth: '100vw - 2rem',
   display: 'block',
+  maxWidth: '100vw - 2rem',
 })
 ;({
   '@media (min-width: 768px)': {
@@ -64067,6 +64638,10 @@ tw\`--color[this theme(colors.red.500) that]\`
 })
 ;({
   '--color': 'this #ef4444 that',
+}) // Automatic '' value
+
+;({
+  touchAction: "''",
 })
 
 
@@ -65458,7 +66033,7 @@ tw\`space-x-[calc(20%-1cm)]\`
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--tw-space-x-reverse': '0',
+    '--tw-space-x-reverse': '1',
     marginRight: 'calc(0px * var(--tw-space-x-reverse))',
     marginLeft: 'calc(0px * calc(1 - var(--tw-space-x-reverse)))',
   },
@@ -65472,7 +66047,7 @@ tw\`space-x-[calc(20%-1cm)]\`
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--tw-space-y-reverse': '0',
+    '--tw-space-y-reverse': '1',
     marginTop: 'calc(0px * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(0px * var(--tw-space-y-reverse))',
   },
@@ -65486,7 +66061,7 @@ tw\`space-x-[calc(20%-1cm)]\`
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--tw-space-x-reverse': '0',
+    '--tw-space-x-reverse': '1',
     marginRight: 'calc(8rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(8rem * calc(1 - var(--tw-space-x-reverse)))',
   },
@@ -65500,7 +66075,7 @@ tw\`space-x-[calc(20%-1cm)]\`
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--tw-space-y-reverse': '0',
+    '--tw-space-y-reverse': '1',
     marginTop: 'calc(8rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(8rem * var(--tw-space-y-reverse))',
   },
@@ -65514,7 +66089,7 @@ tw\`space-x-[calc(20%-1cm)]\`
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--tw-space-x-reverse': '0',
+    '--tw-space-x-reverse': '1',
     marginRight: 'calc(1px * var(--tw-space-x-reverse))',
     marginLeft: 'calc(1px * calc(1 - var(--tw-space-x-reverse)))',
   },
@@ -65528,7 +66103,7 @@ tw\`space-x-[calc(20%-1cm)]\`
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--tw-space-y-reverse': '0',
+    '--tw-space-y-reverse': '1',
     marginTop: 'calc(1px * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(1px * var(--tw-space-y-reverse))',
   },
@@ -65542,7 +66117,7 @@ tw\`space-x-[calc(20%-1cm)]\`
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--tw-space-x-reverse': '0',
+    '--tw-space-x-reverse': '1',
     marginRight: 'calc(3rem * var(--tw-space-x-reverse))',
     marginLeft: 'calc(3rem * calc(1 - var(--tw-space-x-reverse)))',
   },
@@ -65556,7 +66131,7 @@ tw\`space-x-[calc(20%-1cm)]\`
 })
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
-    '--tw-space-y-reverse': '0',
+    '--tw-space-y-reverse': '1',
     marginTop: 'calc(3rem * calc(1 - var(--tw-space-y-reverse)))',
     marginBottom: 'calc(3rem * var(--tw-space-y-reverse))',
   },
