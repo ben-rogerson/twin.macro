@@ -67,6 +67,17 @@ function validateClasses(
   classes: string,
   { assert }: { assert: CoreContext['assert'] }
 ): boolean {
+  assert(
+    (classes.match(/\[/g) ?? []).length === (classes.match(/]/g) ?? []).length,
+    ({ color }: AssertContext) =>
+      `${color(
+        `✕ Unbalanced square brackets found in classes:\n\n${color(
+          classes,
+          'errorLight'
+        )}`
+      )}`
+  )
+
   const classNames = classes.split(SPLIT_AT_SPACE_AVOID_WITHIN_SQUARE_BRACKETS)
 
   for (const className of classNames) {
@@ -106,8 +117,13 @@ function bigSign(bigIntValue: bigint): number {
 function getOrderedClassList(
   tailwindContext: TailwindContext,
   convertedClassList: string[],
-  classList: string[]
+  classList: string[],
+  assert: CoreContext['assert']
 ): Array<[order: bigint, className: string, preservedClassName: string]> {
+  assert(typeof tailwindContext?.getClassOrder === 'function', ({ color }) =>
+    color('Twin requires a newer version of tailwindcss, please update')
+  ) // `getClassOrder` was added in tailwindcss@3.0.23
+
   const orderedClassList = tailwindContext
     .getClassOrder(convertedClassList)
     .map(([className, order], index): [bigint, string, string] => [
@@ -174,7 +190,8 @@ function getStyles(
   const orderedClassList = getOrderedClassList(
     params.tailwindContext,
     convertedClassList,
-    classList
+    classList,
+    assert
   )
 
   const commonMatchContext = {
