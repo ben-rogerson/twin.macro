@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "concurrently npm:dev:* -p none",
     "dev:macro": "NODE_ENV=dev nodemon -q --watch 'src/**/*.ts' --watch package.json -x \"npm run build:macro\" --delay .01",
-    "dev:sandbox": "NODE_ENV=dev nodemon -q --watch sandbox/in.tsx --watch tailwind.config.js --watch package.json --watch macro.js -x \"npm run build:sandbox\" --delay .01",
+    "dev:sandbox": "NODE_ENV=dev nodemon -q --watch sandbox/in.tsx --watch package.json --watch macro.js -x \"npm run build:sandbox\" --delay .01",
     "build": "npm run build:macro",
     "build:macro": "microbundle -i src/macro.ts -f cjs -o ./macro.js --target node",
     "build:sandbox": "babel sandbox/in.tsx --out-file sandbox/out.tsx",

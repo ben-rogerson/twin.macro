@@ -169,7 +169,7 @@ const defaultTailwindConfig = {
       theme: {
         extend: {
           content: { DEFAULT: '' }, // Add a `content` class
-          zIndex: { 1: '1' }, // Add a handy small zIndex (`z-1` / `-z-1)
+          zIndex: { 1: '1' }, // Add a handy small zIndex (`z-1` / `-z-1`)
         },
       },
       plugins: [defaultVariants], // Add extra variants

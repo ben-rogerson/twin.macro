@@ -29,7 +29,7 @@ Choose from one of the following configs:
 
 ## Plugins
 
-You can use most Tailwind plugins with twin, like [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography) and [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms).
+You can use all Tailwind plugins with twin, some popular ones are [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography) and [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms).
 
 ## Resources
 
