@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`twin.macro !general.js: !general.js 1`] = `
+exports[`twin.macro !general.tsx: !general.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 /**
@@ -84,8 +85,9 @@ const plainVariable = \`bg-\${plainConditional}-500\`
 
 `;
 
-exports[`twin.macro !important.js: !important.js 1`] = `
+exports[`twin.macro !important.tsx: !important.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 const Box = tw.div\`text-red-500\`
@@ -334,8 +336,9 @@ const JsxPlaceholderImportantPrefix = () => (
 
 `;
 
-exports[`twin.macro !imports.js: !imports.js 1`] = `
+exports[`twin.macro !imports.tsx: !imports.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme, styled, css, GlobalStyles } from './macro'
 
 const twPropertyTest = <div tw="text-purple-500" />
@@ -758,8 +761,9 @@ const Component = {
 
 `;
 
-exports[`twin.macro !namelessImport.js: !namelessImport.js 1`] = `
+exports[`twin.macro !namelessImport.tsx: !namelessImport.tsx 1`] = `
 
+// @ts-nocheck
 import './macro'
 
 const twPropertyString = <div tw="text-purple-500" />
@@ -767,6 +771,7 @@ const twPropertyExpression = <div tw={'text-purple-500'} />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 const twPropertyString = (
   <div
     css={{
@@ -787,8 +792,9 @@ const twPropertyExpression = (
 
 `;
 
-exports[`twin.macro !ordering.js: !ordering.js 1`] = `
+exports[`twin.macro !ordering.tsx: !ordering.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // Test the screen ordering - they are ordered by screens in tailwind.config.js
@@ -835,8 +841,9 @@ _styled.div({
 
 `;
 
-exports[`twin.macro !properties.js: !properties.js 1`] = `
+exports[`twin.macro !properties.tsx: !properties.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 const Component1 = () => <div tw="uppercase" />
@@ -869,6 +876,7 @@ const Component7 = () => (
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 const Component1 = () => (
   <div
     css={{
@@ -958,8 +966,9 @@ const Component7 = () => (
 
 `;
 
-exports[`twin.macro !variantGrouping.js: !variantGrouping.js 1`] = `
+exports[`twin.macro !variantGrouping.tsx: !variantGrouping.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 const basic = tw\`group-hover:(flex m-10)\`
@@ -1001,6 +1010,7 @@ tw\`first:(block bg-[black]/[.20])\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 const basic = {
   '.group:hover &': {
     margin: '2.5rem',
@@ -1221,8 +1231,9 @@ const nestedGroups = {
 
 `;
 
-exports[`twin.macro !variants.js: !variants.js 1`] = `
+exports[`twin.macro !variants.tsx: !variants.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // Pseudo element variants
@@ -1387,6 +1398,7 @@ tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // Pseudo element variants
 ;({
   '::first-letter': {
@@ -2052,8 +2064,9 @@ tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
 
 `;
 
-exports[`twin.macro accentColor.js: accentColor.js 1`] = `
+exports[`twin.macro accentColor.tsx: accentColor.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/accent-color
@@ -2295,6 +2308,7 @@ tw\`accent-[any:red]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/accent-color
 ;({
   inherit: 'inherit',
@@ -3267,8 +3281,9 @@ tw\`accent-[any:red]\`
 
 `;
 
-exports[`twin.macro addBase.js: addBase.js 1`] = `
+exports[`twin.macro addBase.tsx: addBase.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { GlobalStyles, globalStyles } from './macro'
 
 tw\`base-selector\`
@@ -3797,8 +3812,9 @@ img, video {
 
 `;
 
-exports[`twin.macro alignContent.js: alignContent.js 1`] = `
+exports[`twin.macro alignContent.tsx: alignContent.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/align-content
@@ -3811,6 +3827,7 @@ tw\`content-evenly\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/align-content
 ;({
   alignContent: 'center',
@@ -3834,8 +3851,9 @@ tw\`content-evenly\`
 
 `;
 
-exports[`twin.macro alignItems.js: alignItems.js 1`] = `
+exports[`twin.macro alignItems.tsx: alignItems.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/align-items
@@ -3847,6 +3865,7 @@ tw\`items-stretch\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/align-items
 ;({
   alignItems: 'flex-start',
@@ -3867,8 +3886,9 @@ tw\`items-stretch\`
 
 `;
 
-exports[`twin.macro alignSelf.js: alignSelf.js 1`] = `
+exports[`twin.macro alignSelf.tsx: alignSelf.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/align-self
@@ -3881,6 +3901,7 @@ tw\`self-baseline\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/align-self
 ;({
   alignSelf: 'auto',
@@ -3904,8 +3925,9 @@ tw\`self-baseline\`
 
 `;
 
-exports[`twin.macro animation.js: animation.js 1`] = `
+exports[`twin.macro animation.tsx: animation.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/animation
@@ -3921,6 +3943,7 @@ tw\`animate-[wiggle 1s ease-in-out infinite]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/animation
 ;({
   none: 'none',
@@ -3977,8 +4000,9 @@ tw\`animate-[wiggle 1s ease-in-out infinite]\`
 
 `;
 
-exports[`twin.macro appearance.js: appearance.js 1`] = `
+exports[`twin.macro appearance.tsx: appearance.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/appearance
@@ -3986,6 +4010,7 @@ tw\`appearance-none\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/appearance
 ;({
   appearance: 'none',
@@ -3994,8 +4019,9 @@ tw\`appearance-none\`
 
 `;
 
-exports[`twin.macro arbitraryProperties.js: arbitraryProperties.js 1`] = `
+exports[`twin.macro arbitraryProperties.tsx: arbitraryProperties.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 tw\`[mask-image:linear-gradient(180deg,white, rgba(255,255,255,0))]\`
@@ -4008,6 +4034,7 @@ tw\`[content:'—']\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   maskImage: 'linear-gradient(180deg,white, rgba(255,255,255,0))',
 })
@@ -4037,8 +4064,9 @@ tw\`[content:'—']\`
 
 `;
 
-exports[`twin.macro arbitraryVariants.js: arbitraryVariants.js 1`] = `
+exports[`twin.macro arbitraryVariants.tsx: arbitraryVariants.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 tw\`[section]:hover:block\`
@@ -4063,6 +4091,7 @@ tw\`[@media (min-width: 800px)]:block\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   ':hover section': {
     display: 'block',
@@ -4137,8 +4166,9 @@ tw\`[@media (min-width: 800px)]:block\`
 
 `;
 
-exports[`twin.macro aspectRatio.js: aspectRatio.js 1`] = `
+exports[`twin.macro aspectRatio.tsx: aspectRatio.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/aspect-ratio
@@ -4151,6 +4181,7 @@ tw\`aspect-[4/3]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/aspect-ratio
 ;({
   auto: 'auto',
@@ -4173,8 +4204,9 @@ tw\`aspect-[4/3]\`
 
 `;
 
-exports[`twin.macro autoCssProp.js: autoCssProp.js 1`] = `
+exports[`twin.macro autoCssProp.tsx: autoCssProp.tsx 1`] = `
 
+// @ts-nocheck
 import './macro' // twinImport
 
 // Css prop isn't handled by twin
@@ -4183,42 +4215,48 @@ import './macro' // twinImport
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;<div css="" />
 ;<div className="" />
 
 
 `;
 
-exports[`twin.macro autoCssProp.js: autoCssProp.js 2`] = `
+exports[`twin.macro autoCssProp.tsx: autoCssProp.tsx 2`] = `
 
+// @ts-nocheck
 import './macro' // twinImport
 ;<div css="" />
 ;<div className="" />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;<div css="" />
 ;<div className="" />
 
 
 `;
 
-exports[`twin.macro autoCssProp.js: autoCssProp.js 3`] = `
+exports[`twin.macro autoCssProp.tsx: autoCssProp.tsx 3`] = `
 
+// @ts-nocheck
 import './macro' // twinImport
 ;<div css="" />
 ;<div className="" />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;<div css="" />
 ;<div className="" />
 
 
 `;
 
-exports[`twin.macro autoCssPropWithStyled.js: autoCssPropWithStyled.js 1`] = `
+exports[`twin.macro autoCssPropWithStyled.tsx: autoCssPropWithStyled.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro' // twinImport
 
 // Css prop isn't handled by twin
@@ -4255,8 +4293,9 @@ const Test = _styled.div({})
 
 `;
 
-exports[`twin.macro autoCssPropWithStyled.js: autoCssPropWithStyled.js 2`] = `
+exports[`twin.macro autoCssPropWithStyled.tsx: autoCssPropWithStyled.tsx 2`] = `
 
+// @ts-nocheck
 import tw from './macro' // twinImport
 
 tw.div\`block\`
@@ -4291,8 +4330,9 @@ const Test = _styled.div({})
 
 `;
 
-exports[`twin.macro backdropBlur.js: backdropBlur.js 1`] = `
+exports[`twin.macro backdropBlur.tsx: backdropBlur.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/backdrop-blur
@@ -4311,6 +4351,7 @@ tw\`backdrop-blur-[2px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/backdrop-blur
 ;({
   0: '0',
@@ -4372,8 +4413,9 @@ tw\`backdrop-blur-[2px]\`
 
 `;
 
-exports[`twin.macro backdropBrightness.js: backdropBrightness.js 1`] = `
+exports[`twin.macro backdropBrightness.tsx: backdropBrightness.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/backdrop-brightness
@@ -4395,6 +4437,7 @@ tw\`brightness-[1.75]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/backdrop-brightness
 ;({
   0: '0',
@@ -4473,8 +4516,9 @@ tw\`brightness-[1.75]\`
 
 `;
 
-exports[`twin.macro backdropContrast.js: backdropContrast.js 1`] = `
+exports[`twin.macro backdropContrast.tsx: backdropContrast.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/backdrop-contrast
@@ -4492,6 +4536,7 @@ tw\`backdrop-contrast-[.25]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/backdrop-contrast
 ;({
   0: '0',
@@ -4546,8 +4591,9 @@ tw\`backdrop-contrast-[.25]\`
 
 `;
 
-exports[`twin.macro backdropGrayscale.js: backdropGrayscale.js 1`] = `
+exports[`twin.macro backdropGrayscale.tsx: backdropGrayscale.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/backdrop-grayscale
@@ -4560,6 +4606,7 @@ tw\`backdrop-grayscale-[.5]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/backdrop-grayscale
 ;({
   0: '0',
@@ -4584,8 +4631,9 @@ tw\`backdrop-grayscale-[.5]\`
 
 `;
 
-exports[`twin.macro backdropHueRotate.js: backdropHueRotate.js 1`] = `
+exports[`twin.macro backdropHueRotate.tsx: backdropHueRotate.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/backdrop-hue-rotate
@@ -4610,6 +4658,7 @@ tw\`-backdrop-hue-rotate-[270deg]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/backdrop-hue-rotate
 ;({
   0: '0deg',
@@ -4693,8 +4742,9 @@ tw\`-backdrop-hue-rotate-[270deg]\`
 
 `;
 
-exports[`twin.macro backdropInvert.js: backdropInvert.js 1`] = `
+exports[`twin.macro backdropInvert.tsx: backdropInvert.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/backdrop-invert
@@ -4707,6 +4757,7 @@ tw\`backdrop-invert-[.25]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/backdrop-invert
 ;({
   0: '0',
@@ -4731,8 +4782,9 @@ tw\`backdrop-invert-[.25]\`
 
 `;
 
-exports[`twin.macro backdropOpacity.js: backdropOpacity.js 1`] = `
+exports[`twin.macro backdropOpacity.tsx: backdropOpacity.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/backdrop-opacity
@@ -4758,6 +4810,7 @@ tw\`backdrop-opacity-[.15]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/backdrop-opacity
 ;({
   0: '0',
@@ -4860,8 +4913,9 @@ tw\`backdrop-opacity-[.15]\`
 
 `;
 
-exports[`twin.macro backdropSaturate.js: backdropSaturate.js 1`] = `
+exports[`twin.macro backdropSaturate.tsx: backdropSaturate.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/backdrop-saturate
@@ -4877,6 +4931,7 @@ tw\`backdrop-saturate-[.25]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/backdrop-saturate
 ;({
   0: '0',
@@ -4919,8 +4974,9 @@ tw\`backdrop-saturate-[.25]\`
 
 `;
 
-exports[`twin.macro backdropSepia.js: backdropSepia.js 1`] = `
+exports[`twin.macro backdropSepia.tsx: backdropSepia.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/backdrop-sepia
@@ -4933,6 +4989,7 @@ tw\`backdrop-sepia-[.25]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/backdrop-sepia
 ;({
   0: '0',
@@ -4957,8 +5014,9 @@ tw\`backdrop-sepia-[.25]\`
 
 `;
 
-exports[`twin.macro backgroundAttachment.js: backgroundAttachment.js 1`] = `
+exports[`twin.macro backgroundAttachment.tsx: backgroundAttachment.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/background-attachment
@@ -4968,6 +5026,7 @@ tw\`bg-scroll\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/background-attachment
 ;({
   backgroundAttachment: 'fixed',
@@ -4982,8 +5041,9 @@ tw\`bg-scroll\`
 
 `;
 
-exports[`twin.macro backgroundBlendMode.js: backgroundBlendMode.js 1`] = `
+exports[`twin.macro backgroundBlendMode.tsx: backgroundBlendMode.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/background-blend-mode
@@ -5006,6 +5066,7 @@ tw\`bg-blend-luminosity\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/background-blend-mode
 ;({
   backgroundBlendMode: 'normal',
@@ -5059,8 +5120,9 @@ tw\`bg-blend-luminosity\`
 
 `;
 
-exports[`twin.macro backgroundClip.js: backgroundClip.js 1`] = `
+exports[`twin.macro backgroundClip.tsx: backgroundClip.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/background-clip
@@ -5071,6 +5133,7 @@ tw\`bg-clip-text\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/background-clip
 ;({
   backgroundClip: 'border-box',
@@ -5088,8 +5151,9 @@ tw\`bg-clip-text\`
 
 `;
 
-exports[`twin.macro backgroundColor.js: backgroundColor.js 1`] = `
+exports[`twin.macro backgroundColor.tsx: backgroundColor.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/background-color
@@ -5348,6 +5412,7 @@ tw\`bg-[color:custom]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/background-color
 ;({
   inherit: 'inherit',
@@ -6593,8 +6658,9 @@ tw\`bg-[color:custom]\`
 
 `;
 
-exports[`twin.macro backgroundImage.js: backgroundImage.js 1`] = `
+exports[`twin.macro backgroundImage.tsx: backgroundImage.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/background-image
@@ -6614,6 +6680,7 @@ tw\`bg-[image:custom]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/background-image
 ;({
   none: 'none',
@@ -6661,8 +6728,9 @@ tw\`bg-[image:custom]\`
 
 `;
 
-exports[`twin.macro backgroundOpacity.js: backgroundOpacity.js 1`] = `
+exports[`twin.macro backgroundOpacity.tsx: backgroundOpacity.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/background-opacity
@@ -6692,6 +6760,7 @@ tw\`bg-opacity-[var(--value)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/background-opacity
 ;({
   backgroundColor: 'rgb(14 165 233 / 1)',
@@ -6760,8 +6829,9 @@ tw\`bg-opacity-[var(--value)]\`
 
 `;
 
-exports[`twin.macro backgroundOrigin.js: backgroundOrigin.js 1`] = `
+exports[`twin.macro backgroundOrigin.tsx: backgroundOrigin.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/background-origin
@@ -6771,6 +6841,7 @@ tw\`bg-origin-content\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/background-origin
 ;({
   backgroundOrigin: 'border-box',
@@ -6785,8 +6856,9 @@ tw\`bg-origin-content\`
 
 `;
 
-exports[`twin.macro backgroundPosition.js: backgroundPosition.js 1`] = `
+exports[`twin.macro backgroundPosition.tsx: backgroundPosition.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/background-position
@@ -6806,6 +6878,7 @@ tw\`bg-[center top 1rem]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/background-position
 ;({
   backgroundPosition: 'bottom',
@@ -6847,8 +6920,9 @@ tw\`bg-[center top 1rem]\`
 
 `;
 
-exports[`twin.macro backgroundRepeat.js: backgroundRepeat.js 1`] = `
+exports[`twin.macro backgroundRepeat.tsx: backgroundRepeat.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/background-repeat
@@ -6863,6 +6937,7 @@ tw\`bg-repeat-space\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/background-repeat
 ;({
   bottom: 'bottom',
@@ -6897,8 +6972,9 @@ tw\`bg-repeat-space\`
 
 `;
 
-exports[`twin.macro backgroundSize.js: backgroundSize.js 1`] = `
+exports[`twin.macro backgroundSize.tsx: backgroundSize.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/background-size
@@ -6912,6 +6988,7 @@ tw\`bg-[length:var(--value)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/background-size
 ;({
   auto: 'auto',
@@ -6934,8 +7011,9 @@ tw\`bg-[length:var(--value)]\`
 
 `;
 
-exports[`twin.macro blur.js: blur.js 1`] = `
+exports[`twin.macro blur.tsx: blur.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/blur
@@ -6954,6 +7032,7 @@ tw\`blur-[2px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/blur
 ;({
   0: '0',
@@ -7015,8 +7094,9 @@ tw\`blur-[2px]\`
 
 `;
 
-exports[`twin.macro borderCollapse.js: borderCollapse.js 1`] = `
+exports[`twin.macro borderCollapse.tsx: borderCollapse.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/border-collapse
@@ -7025,6 +7105,7 @@ tw\`border-separate\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/border-collapse
 ;({
   borderCollapse: 'collapse',
@@ -7036,8 +7117,9 @@ tw\`border-separate\`
 
 `;
 
-exports[`twin.macro borderColor.js: borderColor.js 1`] = `
+exports[`twin.macro borderColor.tsx: borderColor.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/border-color
@@ -8671,6 +8753,7 @@ tw\`border-y-[color:rgba(255, 255, 255, .45)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/border-color
 ;({
   inherit: 'inherit',
@@ -15798,8 +15881,9 @@ tw\`border-y-[color:rgba(255, 255, 255, .45)]\`
 
 `;
 
-exports[`twin.macro borderOpacity.js: borderOpacity.js 1`] = `
+exports[`twin.macro borderOpacity.tsx: borderOpacity.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/border-opacity
@@ -15822,6 +15906,7 @@ tw\`border-opacity-100\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/border-opacity
 // Deprecated
 ;({
@@ -15873,8 +15958,9 @@ tw\`border-opacity-100\`
 
 `;
 
-exports[`twin.macro borderRadius.js: borderRadius.js 1`] = `
+exports[`twin.macro borderRadius.tsx: borderRadius.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/border-radius
@@ -15960,6 +16046,7 @@ tw\`rounded-tr-[var(--radius)] rounded-br-[var(--radius)] rounded-bl-[var(--radi
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/border-radius
 ;({
   none: '0px',
@@ -16242,8 +16329,9 @@ tw\`rounded-tr-[var(--radius)] rounded-br-[var(--radius)] rounded-bl-[var(--radi
 
 `;
 
-exports[`twin.macro borderSpacing.js: borderSpacing.js 1`] = `
+exports[`twin.macro borderSpacing.tsx: borderSpacing.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/border-spacing
@@ -16357,6 +16445,7 @@ tw\`border-spacing-y-96\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/border-spacing
 ;({
   0: '0px',
@@ -16854,8 +16943,9 @@ tw\`border-spacing-y-96\`
 
 `;
 
-exports[`twin.macro borderStyle.js: borderStyle.js 1`] = `
+exports[`twin.macro borderStyle.tsx: borderStyle.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/border-style
@@ -16868,6 +16958,7 @@ tw\`border-none\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/border-style
 ;({
   borderStyle: 'solid',
@@ -16891,8 +16982,9 @@ tw\`border-none\`
 
 `;
 
-exports[`twin.macro borderWidth.js: borderWidth.js 1`] = `
+exports[`twin.macro borderWidth.tsx: borderWidth.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/border-width
@@ -16948,6 +17040,7 @@ tw\`border-[length:10px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/border-width
 ;({
   0: '0px',
@@ -17107,8 +17200,9 @@ tw\`border-[length:10px]\`
 
 `;
 
-exports[`twin.macro boxDecorationBreak.js: boxDecorationBreak.js 1`] = `
+exports[`twin.macro boxDecorationBreak.tsx: boxDecorationBreak.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/box-decoration-break
@@ -17119,6 +17213,7 @@ tw\`box-decoration-slice\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/box-decoration-break
 ;({
   boxDecorationBreak: 'clone',
@@ -17136,8 +17231,9 @@ tw\`box-decoration-slice\`
 
 `;
 
-exports[`twin.macro boxShadow.js: boxShadow.js 1`] = `
+exports[`twin.macro boxShadow.tsx: boxShadow.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/box-shadow
@@ -17156,6 +17252,7 @@ tw\`shadow-[0 35px 60px -15px rgba(0,0,0,0.3)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/box-shadow
 ;({
   sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
@@ -17233,8 +17330,9 @@ tw\`shadow-[0 35px 60px -15px rgba(0,0,0,0.3)]\`
 
 `;
 
-exports[`twin.macro boxShadowColor.js: boxShadowColor.js 1`] = `
+exports[`twin.macro boxShadowColor.tsx: boxShadowColor.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/box-shadow-color
@@ -17474,6 +17572,7 @@ tw\`shadow-[shadow:#50d71e]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/box-shadow-color
 ;({
   inherit: 'inherit',
@@ -17745,7 +17844,6 @@ tw\`shadow-[shadow:#50d71e]\`
     800: '#9f1239',
     900: '#881337',
   },
-  electric: void 0,
 })
 ;({
   '--tw-shadow-color': 'inherit',
@@ -18673,8 +18771,9 @@ tw\`shadow-[shadow:#50d71e]\`
 
 `;
 
-exports[`twin.macro boxSizing.js: boxSizing.js 1`] = `
+exports[`twin.macro boxSizing.tsx: boxSizing.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/box-sizing
@@ -18683,6 +18782,7 @@ tw\`box-content\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/box-sizing
 ;({
   boxSizing: 'border-box',
@@ -18694,8 +18794,9 @@ tw\`box-content\`
 
 `;
 
-exports[`twin.macro breakAfter.js: breakAfter.js 1`] = `
+exports[`twin.macro breakAfter.tsx: breakAfter.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/break-after
@@ -18710,6 +18811,7 @@ tw\`break-after-column\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/break-after
 ;({
   breakAfter: 'auto',
@@ -18739,8 +18841,9 @@ tw\`break-after-column\`
 
 `;
 
-exports[`twin.macro breakBefore.js: breakBefore.js 1`] = `
+exports[`twin.macro breakBefore.tsx: breakBefore.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/break-before
@@ -18755,6 +18858,7 @@ tw\`break-before-column\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/break-before
 ;({
   breakBefore: 'auto',
@@ -18784,8 +18888,9 @@ tw\`break-before-column\`
 
 `;
 
-exports[`twin.macro breakInside.js: breakInside.js 1`] = `
+exports[`twin.macro breakInside.tsx: breakInside.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/break-inside
@@ -18796,6 +18901,7 @@ tw\`break-inside-avoid-column\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/break-inside
 ;({
   breakInside: 'auto',
@@ -18813,8 +18919,9 @@ tw\`break-inside-avoid-column\`
 
 `;
 
-exports[`twin.macro brightness.js: brightness.js 1`] = `
+exports[`twin.macro brightness.tsx: brightness.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/brightness
@@ -18837,6 +18944,7 @@ tw\`brightness-[1.75]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/brightness
 ;({
   0: '0',
@@ -18920,8 +19028,9 @@ tw\`brightness-[1.75]\`
 
 `;
 
-exports[`twin.macro caretColor.js: caretColor.js 1`] = `
+exports[`twin.macro caretColor.tsx: caretColor.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/caret-color
@@ -19178,6 +19287,7 @@ tw\`caret-[any:blah]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/caret-color
 ;({
   inherit: 'inherit',
@@ -20188,8 +20298,9 @@ tw\`caret-[any:blah]\`
 
 `;
 
-exports[`twin.macro clear.js: clear.js 1`] = `
+exports[`twin.macro clear.tsx: clear.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/clear
@@ -20200,6 +20311,7 @@ tw\`clear-none\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/clear
 ;({
   clear: 'left',
@@ -20217,8 +20329,9 @@ tw\`clear-none\`
 
 `;
 
-exports[`twin.macro colorFunctions.js: colorFunctions.js 1`] = `
+exports[`twin.macro colorFunctions.tsx: colorFunctions.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { GlobalStyles } from './macro' // twinImport
 
 tw\`text-foreground text-opacity-40\`
@@ -20481,8 +20594,9 @@ img, video {
 
 `;
 
-exports[`twin.macro columns.js: columns.js 1`] = `
+exports[`twin.macro columns.tsx: columns.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/columns
@@ -20519,6 +20633,7 @@ tw\`columns-[10rem]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/columns
 ;({
   1: '1',
@@ -20633,8 +20748,9 @@ tw\`columns-[10rem]\`
 
 `;
 
-exports[`twin.macro comments.js: comments.js 1`] = `
+exports[`twin.macro comments.tsx: comments.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 /**
@@ -20715,6 +20831,7 @@ hum
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;<div css={{}} data-tw={'// comment'} /> // multiline
 ;<div css={{}} data-tw={'/* comment */'} /> // mixture
 ;<div
@@ -20776,8 +20893,9 @@ hum
 
 `;
 
-exports[`twin.macro config.js: config.js 1`] = `
+exports[`twin.macro config.tsx: config.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 /**
@@ -20821,6 +20939,8 @@ tw\`font-customFontWeightAsString\`
 tw\`font-customFontWeightAsNumber\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
+
+// @ts-nocheck
 
 /**
  * Test the config matching is working correctly
@@ -20930,8 +21050,9 @@ tw\`font-customFontWeightAsNumber\`
 
 `;
 
-exports[`twin.macro container.js: container.js 1`] = `
+exports[`twin.macro container.tsx: container.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/container
@@ -20941,6 +21062,7 @@ tw\`md:container md:mx-auto\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/container
 ;({
   padding: {
@@ -21049,8 +21171,9 @@ tw\`md:container md:mx-auto\`
 
 `;
 
-exports[`twin.macro content.js: content.js 1`] = `
+exports[`twin.macro content.tsx: content.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/content
@@ -21068,6 +21191,7 @@ tw\`peer-focus:before:block\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/content
 ;({
   none: 'none',
@@ -21118,8 +21242,9 @@ tw\`peer-focus:before:block\`
 
 `;
 
-exports[`twin.macro contrast.js: contrast.js 1`] = `
+exports[`twin.macro contrast.tsx: contrast.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/contrast
@@ -21138,6 +21263,7 @@ tw\`contrast-[-.25]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/contrast
 ;({
   0: '0',
@@ -21197,8 +21323,9 @@ tw\`contrast-[-.25]\`
 
 `;
 
-exports[`twin.macro cursor.js: cursor.js 1`] = `
+exports[`twin.macro cursor.tsx: cursor.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/cursor
@@ -21245,6 +21372,7 @@ tw\`cursor-[url(hand.cur), pointer]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/cursor
 ;({
   auto: 'auto',
@@ -21399,8 +21527,9 @@ tw\`cursor-[url(hand.cur), pointer]\`
 
 `;
 
-exports[`twin.macro darkLightModeArray.js: darkLightModeArray.js 1`] = `
+exports[`twin.macro darkLightModeArray.tsx: darkLightModeArray.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro' // twinImport
 
 tw\`dark:block\`
@@ -21408,6 +21537,7 @@ tw\`light:block\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // twinImport
 ;({
   '.test-dark &': {
@@ -21423,8 +21553,9 @@ tw\`light:block\`
 
 `;
 
-exports[`twin.macro directionalBorders.js: directionalBorders.js 1`] = `
+exports[`twin.macro directionalBorders.tsx: directionalBorders.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro' // twinImport
 
 tw\`border-t\`
@@ -21457,6 +21588,7 @@ tw\`border-l-4\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // twinImport
 ;({
   borderTopWidth: '1px',
@@ -21529,8 +21661,9 @@ tw\`border-l-4\`
 
 `;
 
-exports[`twin.macro display.js: display.js 1`] = `
+exports[`twin.macro display.tsx: display.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/display
@@ -21557,6 +21690,7 @@ tw\`hidden\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/display
 ;({
   display: 'block',
@@ -21622,8 +21756,9 @@ tw\`hidden\`
 
 `;
 
-exports[`twin.macro divideColor.js: divideColor.js 1`] = `
+exports[`twin.macro divideColor.tsx: divideColor.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/divide-color
@@ -21863,6 +21998,7 @@ tw\`divide-[color:blue]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/divide-color
 ;({
   inherit: 'inherit',
@@ -23517,8 +23653,9 @@ tw\`divide-[color:blue]\`
 
 `;
 
-exports[`twin.macro divideOpacity.js: divideOpacity.js 1`] = `
+exports[`twin.macro divideOpacity.tsx: divideOpacity.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/divide-opacity
@@ -23541,6 +23678,7 @@ tw\`divide-opacity-100\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/divide-opacity
 // Deprecated in favor of slash opacity syntax
 ;({
@@ -23622,8 +23760,9 @@ tw\`divide-opacity-100\`
 
 `;
 
-exports[`twin.macro divideStyle.js: divideStyle.js 1`] = `
+exports[`twin.macro divideStyle.tsx: divideStyle.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/divide-style
@@ -23635,6 +23774,7 @@ tw\`divide-none\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/divide-style
 ;({
   '> :not([hidden]) ~ :not([hidden])': {
@@ -23665,8 +23805,9 @@ tw\`divide-none\`
 
 `;
 
-exports[`twin.macro divideWidth.js: divideWidth.js 1`] = `
+exports[`twin.macro divideWidth.tsx: divideWidth.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/divide-width
@@ -23696,6 +23837,7 @@ tw\`divide-y-[length:3px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/divide-width
 ;({
   0: '0px',
@@ -23830,8 +23972,9 @@ tw\`divide-y-[length:3px]\`
 
 `;
 
-exports[`twin.macro dropShadow.js: dropShadow.js 1`] = `
+exports[`twin.macro dropShadow.tsx: dropShadow.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/drop-shadow
@@ -23849,6 +23992,7 @@ tw\`drop-shadow-[0 35px 35px rgba(0, 0, 0, 0.25)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/drop-shadow
 ;({
   sm: '0 1px 1px rgb(0 0 0 / 0.05)',
@@ -23907,8 +24051,9 @@ tw\`drop-shadow-[0 35px 35px rgba(0, 0, 0, 0.25)]\`
 
 `;
 
-exports[`twin.macro fill.js: fill.js 1`] = `
+exports[`twin.macro fill.tsx: fill.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/fill
@@ -24168,6 +24313,7 @@ tw\`fill-[theme('colors.electric')]/20\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/fill
 ;({
   inherit: 'inherit',
@@ -25190,8 +25336,9 @@ tw\`fill-[theme('colors.electric')]/20\`
 
 `;
 
-exports[`twin.macro flex.js: flex.js 1`] = `
+exports[`twin.macro flex.tsx: flex.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/flex
@@ -25207,6 +25354,7 @@ tw\`flex-[var(--flex)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/flex
 ;({
   1: '1 1 0%',
@@ -25236,8 +25384,9 @@ tw\`flex-[var(--flex)]\`
 
 `;
 
-exports[`twin.macro flexBasis.js: flexBasis.js 1`] = `
+exports[`twin.macro flexBasis.tsx: flexBasis.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/flex-basis
@@ -25311,6 +25460,7 @@ tw\`basis-[14.2857143%]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/flex-basis
 ;({
   0: '0px',
@@ -25573,8 +25723,9 @@ tw\`basis-[14.2857143%]\`
 
 `;
 
-exports[`twin.macro flexDirection.js: flexDirection.js 1`] = `
+exports[`twin.macro flexDirection.tsx: flexDirection.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/flex-direction
@@ -25585,6 +25736,7 @@ tw\`flex-col-reverse\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/flex-direction
 ;({
   flexDirection: 'row',
@@ -25602,8 +25754,9 @@ tw\`flex-col-reverse\`
 
 `;
 
-exports[`twin.macro flexGrow.js: flexGrow.js 1`] = `
+exports[`twin.macro flexGrow.tsx: flexGrow.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/flex-grow
@@ -25619,6 +25772,7 @@ tw\`flex-grow-[var(--grow)]\` // Deprecated
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/flex-grow
 ;({
   0: '0',
@@ -25648,8 +25802,9 @@ tw\`flex-grow-[var(--grow)]\` // Deprecated
 
 `;
 
-exports[`twin.macro flexShrink.js: flexShrink.js 1`] = `
+exports[`twin.macro flexShrink.tsx: flexShrink.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/flex-shrink
@@ -25665,6 +25820,7 @@ tw\`shrink-[var(--shrink)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/flex-shrink
 ;({
   0: '0',
@@ -25695,8 +25851,9 @@ tw\`shrink-[var(--shrink)]\`
 
 `;
 
-exports[`twin.macro flexWrap.js: flexWrap.js 1`] = `
+exports[`twin.macro flexWrap.tsx: flexWrap.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/flex-wrap
@@ -25706,6 +25863,7 @@ tw\`flex-nowrap\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/flex-wrap
 ;({
   flexWrap: 'wrap',
@@ -25720,8 +25878,9 @@ tw\`flex-nowrap\`
 
 `;
 
-exports[`twin.macro float.js: float.js 1`] = `
+exports[`twin.macro float.tsx: float.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/float
@@ -25731,6 +25890,7 @@ tw\`float-none\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/float
 ;({
   float: 'right',
@@ -25745,14 +25905,16 @@ tw\`float-none\`
 
 `;
 
-exports[`twin.macro fluidContainer.js: fluidContainer.js 1`] = `
+exports[`twin.macro fluidContainer.tsx: fluidContainer.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 tw\`fluid-container ml-10\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   marginLeft: '2.5rem',
   marginRight: 'auto',
@@ -25786,8 +25948,9 @@ tw\`fluid-container ml-10\`
 
 `;
 
-exports[`twin.macro fontFamily.js: fontFamily.js 1`] = `
+exports[`twin.macro fontFamily.tsx: fontFamily.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/font-family
@@ -25802,6 +25965,7 @@ tw\`font-[family-name:'this and that', this]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/font-family
 ;({
   fontFamily:
@@ -25827,8 +25991,9 @@ tw\`font-[family-name:'this and that', this]\`
 
 `;
 
-exports[`twin.macro fontSize.js: fontSize.js 1`] = `
+exports[`twin.macro fontSize.tsx: fontSize.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/font-size
@@ -25856,6 +26021,7 @@ tw\`text-3xl\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/font-size
 ;({
   xs: [
@@ -26010,8 +26176,9 @@ tw\`text-3xl\`
 
 `;
 
-exports[`twin.macro fontSmoothing.js: fontSmoothing.js 1`] = `
+exports[`twin.macro fontSmoothing.tsx: fontSmoothing.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/font-smoothing
@@ -26020,6 +26187,7 @@ tw\`subpixel-antialiased\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/font-smoothing
 ;({
   WebkitFontSmoothing: 'antialiased',
@@ -26033,8 +26201,9 @@ tw\`subpixel-antialiased\`
 
 `;
 
-exports[`twin.macro fontStyle.js: fontStyle.js 1`] = `
+exports[`twin.macro fontStyle.tsx: fontStyle.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/font-style
@@ -26043,6 +26212,7 @@ tw\`not-italic\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/font-style
 ;({
   fontStyle: 'italic',
@@ -26054,8 +26224,9 @@ tw\`not-italic\`
 
 `;
 
-exports[`twin.macro fontVariantNumeric.js: fontVariantNumeric.js 1`] = `
+exports[`twin.macro fontVariantNumeric.tsx: fontVariantNumeric.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/font-variant-numeric
@@ -26071,6 +26242,7 @@ tw\`stacked-fractions\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/font-variant-numeric
 ;({
   fontVariantNumeric: 'normal',
@@ -26119,8 +26291,9 @@ tw\`stacked-fractions\`
 
 `;
 
-exports[`twin.macro fontWeight.js: fontWeight.js 1`] = `
+exports[`twin.macro fontWeight.tsx: fontWeight.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/font-weight
@@ -26139,6 +26312,7 @@ tw\`font-[number:medium]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/font-weight
 ;({
   fontWeight: '100',
@@ -26177,8 +26351,9 @@ tw\`font-[number:medium]\`
 
 `;
 
-exports[`twin.macro gap.js: gap.js 1`] = `
+exports[`twin.macro gap.tsx: gap.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/gap
@@ -26288,6 +26463,7 @@ tw\`gap-y-[2.75rem]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/gap
 ;({
   0: '0px',
@@ -26614,8 +26790,9 @@ tw\`gap-y-[2.75rem]\`
 
 `;
 
-exports[`twin.macro globalStyles.js: globalStyles.js 1`] = `
+exports[`twin.macro globalStyles.tsx: globalStyles.tsx 1`] = `
 
+// @ts-nocheck
 import { GlobalStyles } from './macro'
 import { css, Global } from '@emotion/react'
 
@@ -26939,8 +27116,9 @@ const MyGlobals = () => (
 
 `;
 
-exports[`twin.macro gradientColorStops.js: gradientColorStops.js 1`] = `
+exports[`twin.macro gradientColorStops.tsx: gradientColorStops.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/gradient-color-stops
@@ -27677,6 +27855,7 @@ tw\`to-[theme('colors.electric')]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/gradient-color-stops
 ;({
   inherit: 'inherit',
@@ -31093,8 +31272,9 @@ tw\`to-[theme('colors.electric')]\`
 
 `;
 
-exports[`twin.macro grayscale.js: grayscale.js 1`] = `
+exports[`twin.macro grayscale.tsx: grayscale.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/grayscale
@@ -31107,6 +31287,7 @@ tw\`grayscale-[50%]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/grayscale
 ;({
   0: '0',
@@ -31131,8 +31312,9 @@ tw\`grayscale-[50%]\`
 
 `;
 
-exports[`twin.macro gridAutoColumns.js: gridAutoColumns.js 1`] = `
+exports[`twin.macro gridAutoColumns.tsx: gridAutoColumns.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/grid-auto-columns
@@ -31149,6 +31331,7 @@ tw\`lg:grid-cols-[200px,repeat(auto-fill,minmax(15%,100px)),300px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/grid-auto-columns
 ;({
   auto: 'auto',
@@ -31183,8 +31366,9 @@ tw\`lg:grid-cols-[200px,repeat(auto-fill,minmax(15%,100px)),300px]\`
 
 `;
 
-exports[`twin.macro gridAutoFlow.js: gridAutoFlow.js 1`] = `
+exports[`twin.macro gridAutoFlow.tsx: gridAutoFlow.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/grid-auto-flow
@@ -31195,6 +31379,7 @@ tw\`grid-flow-col-dense\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/grid-auto-flow
 ;({
   gridAutoFlow: 'row',
@@ -31212,8 +31397,9 @@ tw\`grid-flow-col-dense\`
 
 `;
 
-exports[`twin.macro gridAutoRows.js: gridAutoRows.js 1`] = `
+exports[`twin.macro gridAutoRows.tsx: gridAutoRows.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/grid-auto-rows
@@ -31228,6 +31414,7 @@ tw\`grid-rows-[200px, repeat(auto-fill, minmax(15%, 100px)), 300px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/grid-auto-rows
 ;({
   auto: 'auto',
@@ -31254,8 +31441,9 @@ tw\`grid-rows-[200px, repeat(auto-fill, minmax(15%, 100px)), 300px]\`
 
 `;
 
-exports[`twin.macro gridColumn.js: gridColumn.js 1`] = `
+exports[`twin.macro gridColumn.tsx: gridColumn.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/grid-column
@@ -31311,6 +31499,7 @@ tw\`col-start-[7]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/grid-column
 ;({
   auto: 'auto',
@@ -31467,8 +31656,9 @@ tw\`col-start-[7]\`
 
 `;
 
-exports[`twin.macro gridRow.js: gridRow.js 1`] = `
+exports[`twin.macro gridRow.tsx: gridRow.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/grid-row
@@ -31506,6 +31696,7 @@ tw\`row-start-[7]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/grid-row
 ;({
   auto: 'auto',
@@ -31605,8 +31796,9 @@ tw\`row-start-[7]\`
 
 `;
 
-exports[`twin.macro gridTemplateColumns.js: gridTemplateColumns.js 1`] = `
+exports[`twin.macro gridTemplateColumns.tsx: gridTemplateColumns.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/grid-template-columns
@@ -31630,6 +31822,7 @@ tw\`grid-cols-[200px minmax(900px, 1fr) 100px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/grid-template-columns
 ;({
   1: 'repeat(1, minmax(0, 1fr))',
@@ -31692,8 +31885,9 @@ tw\`grid-cols-[200px minmax(900px, 1fr) 100px]\`
 
 `;
 
-exports[`twin.macro gridTemplateRows.js: gridTemplateRows.js 1`] = `
+exports[`twin.macro gridTemplateRows.tsx: gridTemplateRows.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/grid-template-rows
@@ -31711,6 +31905,7 @@ tw\`grid-rows-[200px minmax(900px, 1fr) 100px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/grid-template-rows
 ;({
   1: 'repeat(1, minmax(0, 1fr))',
@@ -31749,8 +31944,9 @@ tw\`grid-rows-[200px minmax(900px, 1fr) 100px]\`
 
 `;
 
-exports[`twin.macro group.js: group.js 1`] = `
+exports[`twin.macro group.tsx: group.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // Positional
@@ -31860,6 +32056,7 @@ tw\`group-not-odd-of-type:block\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // Positional
 ;({
   '.group:first-child &': {
@@ -32278,8 +32475,9 @@ tw\`group-not-odd-of-type:block\`
 
 `;
 
-exports[`twin.macro height.js: height.js 1`] = `
+exports[`twin.macro height.tsx: height.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/height
@@ -32352,6 +32550,7 @@ tw\`h-[calc(100%-theme("spacing.16"))]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/height
 ;({
   0: '0px',
@@ -32601,8 +32800,9 @@ tw\`h-[calc(100%-theme("spacing.16"))]\`
 
 `;
 
-exports[`twin.macro hueRotate.js: hueRotate.js 1`] = `
+exports[`twin.macro hueRotate.tsx: hueRotate.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/hue-rotate
@@ -32625,6 +32825,7 @@ tw\`hue-rotate-[270deg]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/hue-rotate
 ;({
   0: '0deg',
@@ -32703,8 +32904,9 @@ tw\`hue-rotate-[270deg]\`
 
 `;
 
-exports[`twin.macro includeClassNames.js: includeClassNames.js 1`] = `
+exports[`twin.macro includeClassNames.tsx: includeClassNames.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 const SkipEmptyClassName = <div className="" />
@@ -33225,8 +33427,9 @@ const CssThenTwThenClassNameThenCs = (
 
 `;
 
-exports[`twin.macro invert.js: invert.js 1`] = `
+exports[`twin.macro invert.tsx: invert.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/invert
@@ -33239,6 +33442,7 @@ tw\`invert-[.25]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/invert
 ;({
   0: '0',
@@ -33263,8 +33467,9 @@ tw\`invert-[.25]\`
 
 `;
 
-exports[`twin.macro isolation.js: isolation.js 1`] = `
+exports[`twin.macro isolation.tsx: isolation.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/isolation
@@ -33273,6 +33478,7 @@ tw\`isolation-auto\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/isolation
 ;({
   isolation: 'isolate',
@@ -33284,8 +33490,9 @@ tw\`isolation-auto\`
 
 `;
 
-exports[`twin.macro justifyContent.js: justifyContent.js 1`] = `
+exports[`twin.macro justifyContent.tsx: justifyContent.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/justify-content
@@ -33298,6 +33505,7 @@ tw\`justify-evenly\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/justify-content
 ;({
   justifyContent: 'flex-start',
@@ -33321,8 +33529,9 @@ tw\`justify-evenly\`
 
 `;
 
-exports[`twin.macro justifyItems.js: justifyItems.js 1`] = `
+exports[`twin.macro justifyItems.tsx: justifyItems.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/justify-items
@@ -33333,6 +33542,7 @@ tw\`justify-items-stretch\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/justify-items
 ;({
   justifyItems: 'start',
@@ -33350,8 +33560,9 @@ tw\`justify-items-stretch\`
 
 `;
 
-exports[`twin.macro justifySelf.js: justifySelf.js 1`] = `
+exports[`twin.macro justifySelf.tsx: justifySelf.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/justify-self
@@ -33363,6 +33574,7 @@ tw\`justify-self-stretch\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/justify-self
 ;({
   justifySelf: 'auto',
@@ -33383,8 +33595,9 @@ tw\`justify-self-stretch\`
 
 `;
 
-exports[`twin.macro letterSpacing.js: letterSpacing.js 1`] = `
+exports[`twin.macro letterSpacing.tsx: letterSpacing.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/letter-spacing
@@ -33411,6 +33624,7 @@ tw\`tracking-[.25em]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/letter-spacing
 ;({
   tighter: '-0.05em',
@@ -33472,8 +33686,9 @@ tw\`tracking-[.25em]\`
 
 `;
 
-exports[`twin.macro lineHeight.js: lineHeight.js 1`] = `
+exports[`twin.macro lineHeight.tsx: lineHeight.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/line-height
@@ -33499,6 +33714,7 @@ tw\`leading-[var(--leading)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/line-height
 ;({
   3: '.75rem',
@@ -33568,8 +33784,9 @@ tw\`leading-[var(--leading)]\`
 
 `;
 
-exports[`twin.macro listStylePosition.js: listStylePosition.js 1`] = `
+exports[`twin.macro listStylePosition.tsx: listStylePosition.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/list-style-position
@@ -33578,6 +33795,7 @@ tw\`list-outside\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/list-style-position
 ;({
   listStylePosition: 'inside',
@@ -33589,8 +33807,9 @@ tw\`list-outside\`
 
 `;
 
-exports[`twin.macro listStyleType.js: listStyleType.js 1`] = `
+exports[`twin.macro listStyleType.tsx: listStyleType.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/list-style-type
@@ -33606,6 +33825,7 @@ tw\`list-[var(--value)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/list-style-type
 ;({
   none: 'none',
@@ -33634,8 +33854,9 @@ tw\`list-[var(--value)]\`
 
 `;
 
-exports[`twin.macro margin.js: margin.js 1`] = `
+exports[`twin.macro margin.tsx: margin.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/margin
@@ -34154,6 +34375,7 @@ tw\`!-mt-4\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/margin
 ;({
   0: '0px',
@@ -35858,8 +36080,9 @@ tw\`!-mt-4\`
 
 `;
 
-exports[`twin.macro maxHeight.js: maxHeight.js 1`] = `
+exports[`twin.macro maxHeight.tsx: maxHeight.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/max-height
@@ -35910,6 +36133,7 @@ tw\`max-h-[32rem]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/max-height
 ;({
   0: '0px',
@@ -36080,8 +36304,9 @@ tw\`max-h-[32rem]\`
 
 `;
 
-exports[`twin.macro maxWidth.js: maxWidth.js 1`] = `
+exports[`twin.macro maxWidth.tsx: maxWidth.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/max-width
@@ -36115,6 +36340,7 @@ tw\`max-w-[50%]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/max-width
 ;({
   0: '0rem',
@@ -36217,8 +36443,9 @@ tw\`max-w-[50%]\`
 
 `;
 
-exports[`twin.macro minHeight.js: minHeight.js 1`] = `
+exports[`twin.macro minHeight.tsx: minHeight.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/min-height
@@ -36240,6 +36467,7 @@ tw\`max-h-[var(--height)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/min-height
 ;({
   0: '0px',
@@ -36289,8 +36517,9 @@ tw\`max-h-[var(--height)]\`
 
 `;
 
-exports[`twin.macro minWidth.js: minWidth.js 1`] = `
+exports[`twin.macro minWidth.tsx: minWidth.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/min-width
@@ -36311,6 +36540,7 @@ tw\`max-w-[var(--width)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/min-width
 ;({
   0: '0px',
@@ -36356,8 +36586,9 @@ tw\`max-w-[var(--width)]\`
 
 `;
 
-exports[`twin.macro misc.js: misc.js 1`] = `
+exports[`twin.macro misc.tsx: misc.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/filter
@@ -36376,6 +36607,7 @@ tw\`backdrop-filter backdrop-blur-2xl backdrop-brightness-50 backdrop-contrast-5
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/filter
 ;({
   filter: 'none',
@@ -36426,8 +36658,9 @@ tw\`backdrop-filter backdrop-blur-2xl backdrop-brightness-50 backdrop-contrast-5
 
 `;
 
-exports[`twin.macro misc.js: misc.js 2`] = `
+exports[`twin.macro misc.tsx: misc.tsx 2`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // Test the transform ordering - 'transform' should be moved to the start
@@ -36437,6 +36670,7 @@ tw\`translate-y-2 mt-5 md:(skew-y-6 transform) mb-5\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // Test the transform ordering - 'transform' should be moved to the start
 // https://github.com/ben-rogerson/twin.macro/issues/363
 ;({
@@ -36461,8 +36695,9 @@ tw\`translate-y-2 mt-5 md:(skew-y-6 transform) mb-5\`
 
 `;
 
-exports[`twin.macro misc.js: misc.js 3`] = `
+exports[`twin.macro misc.tsx: misc.tsx 3`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // Test the transition ordering - 'transition' should be moved to the start
@@ -36472,6 +36707,7 @@ tw\`mt-5 md:(ml-5 ease-in transition) mb-5\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // Test the transition ordering - 'transition' should be moved to the start
 // https://github.com/ben-rogerson/twin.macro/issues/363
 ;({
@@ -36495,8 +36731,9 @@ tw\`mt-5 md:(ml-5 ease-in transition) mb-5\`
 
 `;
 
-exports[`twin.macro misc.js: misc.js 4`] = `
+exports[`twin.macro misc.tsx: misc.tsx 4`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // col-span-x should always be moved to the start
@@ -36514,6 +36751,7 @@ tw\`col-start-3 mt-4 md:(mt-3 col-span-3) mb-4 col-end-3 col-span-3\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // col-span-x should always be moved to the start
 // https://github.com/ben-rogerson/twin.macro/issues/363
 ;({
@@ -36572,8 +36810,9 @@ tw\`col-start-3 mt-4 md:(mt-3 col-span-3) mb-4 col-end-3 col-span-3\`
 
 `;
 
-exports[`twin.macro mixBlendMode.js: mixBlendMode.js 1`] = `
+exports[`twin.macro mixBlendMode.tsx: mixBlendMode.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/mix-blend-mode
@@ -36597,6 +36836,7 @@ tw\`mix-blend-plus-lighter\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/mix-blend-mode
 ;({
   mixBlendMode: 'normal',
@@ -36653,8 +36893,9 @@ tw\`mix-blend-plus-lighter\`
 
 `;
 
-exports[`twin.macro negative.js: negative.js 1`] = `
+exports[`twin.macro negative.tsx: negative.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 tw\`-z-1\`
@@ -36663,6 +36904,7 @@ tw\`-inset-10\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   zIndex: '-1',
 })
@@ -36679,8 +36921,9 @@ tw\`-inset-10\`
 
 `;
 
-exports[`twin.macro objectFit.js: objectFit.js 1`] = `
+exports[`twin.macro objectFit.tsx: objectFit.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/object-fit
@@ -36692,6 +36935,7 @@ tw\`object-scale-down\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/object-fit
 ;({
   objectFit: 'contain',
@@ -36712,8 +36956,9 @@ tw\`object-scale-down\`
 
 `;
 
-exports[`twin.macro objectPosition.js: objectPosition.js 1`] = `
+exports[`twin.macro objectPosition.tsx: objectPosition.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/object-position
@@ -36734,6 +36979,7 @@ tw\`object-[var(--position)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/object-position
 ;({
   bottom: 'bottom',
@@ -36783,8 +37029,9 @@ tw\`object-[var(--position)]\`
 
 `;
 
-exports[`twin.macro opacity.js: opacity.js 1`] = `
+exports[`twin.macro opacity.tsx: opacity.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/opacity
@@ -36811,6 +37058,7 @@ tw\`opacity-[var(--opacity)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/opacity
 ;({
   0: '0',
@@ -36884,8 +37132,9 @@ tw\`opacity-[var(--opacity)]\`
 
 `;
 
-exports[`twin.macro order.js: order.js 1`] = `
+exports[`twin.macro order.tsx: order.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/order
@@ -36911,6 +37160,7 @@ tw\`order-[13]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/order
 ;({
   1: '1',
@@ -36981,8 +37231,9 @@ tw\`order-[13]\`
 
 `;
 
-exports[`twin.macro outlineColor.js: outlineColor.js 1`] = `
+exports[`twin.macro outlineColor.tsx: outlineColor.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/outline-color
@@ -37230,6 +37481,7 @@ tw\`outline outline-dashed outline-none outline-black outline-4 outline-offset-2
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/outline-color
 ;({
   inherit: 'inherit',
@@ -38215,8 +38467,9 @@ tw\`outline outline-dashed outline-none outline-black outline-4 outline-offset-2
 
 `;
 
-exports[`twin.macro outlineOffset.js: outlineOffset.js 1`] = `
+exports[`twin.macro outlineOffset.tsx: outlineOffset.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/outline-offset
@@ -38232,6 +38485,7 @@ tw\`outline-offset-[3px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/outline-offset
 ;({
   0: '0px',
@@ -38262,8 +38516,9 @@ tw\`outline-offset-[3px]\`
 
 `;
 
-exports[`twin.macro outlineStyle.js: outlineStyle.js 1`] = `
+exports[`twin.macro outlineStyle.tsx: outlineStyle.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/outline-style
@@ -38276,6 +38531,7 @@ tw\`outline-hidden\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/outline-style
 ;({
   outlineStyle: 'solid',
@@ -38300,8 +38556,9 @@ tw\`outline-hidden\`
 
 `;
 
-exports[`twin.macro outlineWidth.js: outlineWidth.js 1`] = `
+exports[`twin.macro outlineWidth.tsx: outlineWidth.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/outline-width
@@ -38318,6 +38575,7 @@ tw\`outline-[5px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/outline-width
 ;({
   0: '0px',
@@ -38353,8 +38611,9 @@ tw\`outline-[5px]\`
 
 `;
 
-exports[`twin.macro overflow.js: overflow.js 1`] = `
+exports[`twin.macro overflow.tsx: overflow.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/overflow
@@ -38376,6 +38635,7 @@ tw\`overflow-y-scroll\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/overflow
 ;({
   overflow: 'auto',
@@ -38426,8 +38686,9 @@ tw\`overflow-y-scroll\`
 
 `;
 
-exports[`twin.macro overscrollBehavior.js: overscrollBehavior.js 1`] = `
+exports[`twin.macro overscrollBehavior.tsx: overscrollBehavior.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/overscroll-behavior
@@ -38443,6 +38704,7 @@ tw\`overscroll-x-none\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/overscroll-behavior
 ;({
   overscrollBehavior: 'auto',
@@ -38475,8 +38737,9 @@ tw\`overscroll-x-none\`
 
 `;
 
-exports[`twin.macro padding.js: padding.js 1`] = `
+exports[`twin.macro padding.tsx: padding.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/padding
@@ -38735,6 +38998,7 @@ tw\`p-[var(--app-padding)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/padding
 ;({
   0: '0px',
@@ -39594,8 +39858,9 @@ tw\`p-[var(--app-padding)]\`
 
 `;
 
-exports[`twin.macro peers.js: peers.js 1`] = `
+exports[`twin.macro peers.tsx: peers.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // Positional
@@ -39705,6 +39970,7 @@ tw\`peer-not-odd-of-type:block\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // Positional
 ;({
   '.peer:first-child ~ &': {
@@ -40123,8 +40389,9 @@ tw\`peer-not-odd-of-type:block\`
 
 `;
 
-exports[`twin.macro placeContent.js: placeContent.js 1`] = `
+exports[`twin.macro placeContent.tsx: placeContent.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/place-content
@@ -40138,6 +40405,7 @@ tw\`place-content-stretch\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/place-content
 ;({
   placeContent: 'center',
@@ -40164,8 +40432,9 @@ tw\`place-content-stretch\`
 
 `;
 
-exports[`twin.macro placeItems.js: placeItems.js 1`] = `
+exports[`twin.macro placeItems.tsx: placeItems.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/place-items
@@ -40176,6 +40445,7 @@ tw\`place-items-stretch\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/place-items
 ;({
   placeItems: 'start',
@@ -40193,8 +40463,9 @@ tw\`place-items-stretch\`
 
 `;
 
-exports[`twin.macro placeSelf.js: placeSelf.js 1`] = `
+exports[`twin.macro placeSelf.tsx: placeSelf.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/place-self
@@ -40206,6 +40477,7 @@ tw\`place-self-stretch\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/place-self
 ;({
   placeSelf: 'auto',
@@ -40226,8 +40498,9 @@ tw\`place-self-stretch\`
 
 `;
 
-exports[`twin.macro placeholderColor.js: placeholderColor.js 1`] = `
+exports[`twin.macro placeholderColor.tsx: placeholderColor.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/placeholder-color
@@ -40480,6 +40753,7 @@ tw\`placeholder-[any:red]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/placeholder-color
 ;({
   '::placeholder': {
@@ -41924,8 +42198,9 @@ tw\`placeholder-[any:red]\`
 
 `;
 
-exports[`twin.macro placeholderOpacity.js: placeholderOpacity.js 1`] = `
+exports[`twin.macro placeholderOpacity.tsx: placeholderOpacity.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/placeholder-opacity
@@ -41950,6 +42225,7 @@ tw\`placeholder-opacity-[var(--placeholder-opacity)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/placeholder-opacity
 // Deprecated in favor of slash opacity syntax
 ;({
@@ -42036,8 +42312,9 @@ tw\`placeholder-opacity-[var(--placeholder-opacity)]\`
 
 `;
 
-exports[`twin.macro pluginAspectRatio.js: pluginAspectRatio.js 1`] = `
+exports[`twin.macro pluginAspectRatio.tsx: pluginAspectRatio.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 tw\`aspect-w-1\`
@@ -42075,6 +42352,7 @@ tw\`aspect-h-16\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   position: 'relative',
   paddingBottom: 'calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%)',
@@ -42351,8 +42629,9 @@ tw\`aspect-h-16\`
 
 `;
 
-exports[`twin.macro pluginDaisyUi.js: pluginDaisyUi.js 1`] = `
+exports[`twin.macro pluginDaisyUi.tsx: pluginDaisyUi.tsx 1`] = `
 
+// @ts-nocheck
 import { globalStyles } from './macro'
 
 globalStyles
@@ -43053,6 +43332,7 @@ globalStyles
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   '*, ::before, ::after': {
     boxSizing: 'border-box',
@@ -55103,8 +55383,9 @@ globalStyles
 
 `;
 
-exports[`twin.macro pluginExamples.js: pluginExamples.js 1`] = `
+exports[`twin.macro pluginExamples.tsx: pluginExamples.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { globalStyles } from './macro'
 
 tw\`content-auto\`
@@ -55130,6 +55411,7 @@ tw\`test-4:block\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   contentVisibility: 'auto',
 })
@@ -55301,8 +55583,9 @@ tw\`test-4:block\`
 
 `;
 
-exports[`twin.macro pluginForms.js: pluginForms.js 1`] = `
+exports[`twin.macro pluginForms.tsx: pluginForms.tsx 1`] = `
 
+// @ts-nocheck
 import { GlobalStyles } from './macro'
 ;<GlobalStyles />
 
@@ -55684,8 +55967,9 @@ select {
 
 `;
 
-exports[`twin.macro pluginGapFallback.js: pluginGapFallback.js 1`] = `
+exports[`twin.macro pluginGapFallback.tsx: pluginGapFallback.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 tw\`flex-gap-0\`
@@ -55707,6 +55991,7 @@ tw\`test-2\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   margin: '-0px',
   '> *': {
@@ -55830,8 +56115,9 @@ tw\`test-2\`
 
 `;
 
-exports[`twin.macro pluginLineClamp.js: pluginLineClamp.js 1`] = `
+exports[`twin.macro pluginLineClamp.tsx: pluginLineClamp.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 tw\`line-clamp-1\`
@@ -55844,6 +56130,7 @@ tw\`line-clamp-none\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   overflow: 'hidden',
   display: '-webkit-box',
@@ -55887,8 +56174,9 @@ tw\`line-clamp-none\`
 
 `;
 
-exports[`twin.macro pluginTypography.js: pluginTypography.js 1`] = `
+exports[`twin.macro pluginTypography.tsx: pluginTypography.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 tw\`form-radio\`
@@ -55900,6 +56188,7 @@ tw\`form-multiselect\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   appearance: 'none',
   padding: '0',
@@ -56148,8 +56437,9 @@ tw\`form-multiselect\`
 
 `;
 
-exports[`twin.macro pluginTypography.js: pluginTypography.js 2`] = `
+exports[`twin.macro pluginTypography.tsx: pluginTypography.tsx 2`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // From @tailwindcss/typography
@@ -56160,6 +56450,7 @@ tw\`rich-text\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // From @tailwindcss/typography
 ;({
   color: 'var(--tw-prose-body)',
@@ -57256,8 +57547,9 @@ tw\`rich-text\`
 
 `;
 
-exports[`twin.macro pluginUserParentSelector.js: pluginUserParentSelector.js 1`] = `
+exports[`twin.macro pluginUserParentSelector.tsx: pluginUserParentSelector.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 tw\`my-class1\`
@@ -57269,6 +57561,7 @@ tw\`my-class6\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   backgroundColor: 'black',
   '& h2': {
@@ -57308,8 +57601,9 @@ tw\`my-class6\`
 
 `;
 
-exports[`twin.macro plugins.js: plugins.js 1`] = `
+exports[`twin.macro plugins.tsx: plugins.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // Tailwind plugin tests
@@ -57332,6 +57626,7 @@ const addComponentsTestElementScreenReplacements = tw\`screenies\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // Tailwind plugin tests
 ;({
   fontSize: '0.875rem',
@@ -57483,8 +57778,9 @@ const addComponentsTestElementScreenReplacements = {
 
 `;
 
-exports[`twin.macro pointerEvents.js: pointerEvents.js 1`] = `
+exports[`twin.macro pointerEvents.tsx: pointerEvents.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/pointer-events
@@ -57493,6 +57789,7 @@ tw\`pointer-events-auto\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/pointer-events
 ;({
   pointerEvents: 'none',
@@ -57504,8 +57801,9 @@ tw\`pointer-events-auto\`
 
 `;
 
-exports[`twin.macro position.js: position.js 1`] = `
+exports[`twin.macro position.tsx: position.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/position
@@ -57517,6 +57815,7 @@ tw\`sticky\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/position
 ;({
   position: 'static',
@@ -57537,8 +57836,9 @@ tw\`sticky\`
 
 `;
 
-exports[`twin.macro prefix.js: prefix.js 1`] = `
+exports[`twin.macro prefix.tsx: prefix.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // tw prop prefix
@@ -57577,6 +57877,7 @@ import tw from './macro'
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;<div
   css={{
     '--tw-text-opacity': '1',
@@ -57744,14 +58045,16 @@ import tw from './macro'
 
 `;
 
-exports[`twin.macro preflight.js: preflight.js 1`] = `
+exports[`twin.macro preflight.tsx: preflight.tsx 1`] = `
 
+// @ts-nocheck
 import { globalStyles } from './macro'
 
 globalStyles
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   '*, ::before, ::after': {
     '--tw-border-spacing-x': '0',
@@ -57850,26 +58153,9 @@ globalStyles
 
 `;
 
-exports[`twin.macro presets.js: presets.js 1`] = `
+exports[`twin.macro resize.tsx: resize.tsx 1`] = `
 
-// import tw from './macro'
-
-// tw\`text-badass\`
-// tw\`text-banana\`
-// tw\`text-hamburger\`
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-// import tw from './macro'
-// tw\`text-badass\`
-// tw\`text-banana\`
-// tw\`text-hamburger\`
-
-
-`;
-
-exports[`twin.macro resize.js: resize.js 1`] = `
-
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/resize
@@ -57880,6 +58166,7 @@ tw\`resize\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/resize
 ;({
   resize: 'none',
@@ -57897,8 +58184,9 @@ tw\`resize\`
 
 `;
 
-exports[`twin.macro ringColor.js: ringColor.js 1`] = `
+exports[`twin.macro ringColor.tsx: ringColor.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/ring-color
@@ -58158,6 +58446,7 @@ tw\`ring-[length:10px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/ring-color
 ;({
   DEFAULT: '#3b82f6',
@@ -59412,8 +59701,9 @@ tw\`ring-[length:10px]\`
 
 `;
 
-exports[`twin.macro ringMisc.js: ringMisc.js 1`] = `
+exports[`twin.macro ringMisc.tsx: ringMisc.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // Combined ring classes
@@ -59432,6 +59722,7 @@ tw\`ring-[10px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // Combined ring classes
 ;({
   '--tw-ring-offset-shadow':
@@ -59528,8 +59819,9 @@ tw\`ring-[10px]\`
 
 `;
 
-exports[`twin.macro ringOffsetColor.js: ringOffsetColor.js 1`] = `
+exports[`twin.macro ringOffsetColor.tsx: ringOffsetColor.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/ring-offset-color
@@ -59794,6 +60086,7 @@ tw\`ring-offset-[length:10px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/ring-offset-color
 ;({
   inherit: 'inherit',
@@ -60828,8 +61121,9 @@ tw\`ring-offset-[length:10px]\`
 
 `;
 
-exports[`twin.macro ringOffsetWidth.js: ringOffsetWidth.js 1`] = `
+exports[`twin.macro ringOffsetWidth.tsx: ringOffsetWidth.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/ring-offset-width
@@ -60847,6 +61141,7 @@ tw\`ring-offset-[#76ad65]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/ring-offset-width
 ;({
   0: '0px',
@@ -60883,8 +61178,9 @@ tw\`ring-offset-[#76ad65]\`
 
 `;
 
-exports[`twin.macro ringOpacity.js: ringOpacity.js 1`] = `
+exports[`twin.macro ringOpacity.tsx: ringOpacity.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/ring-opacity
@@ -60909,6 +61205,7 @@ tw\`ring-opacity-[var(--ring-opacity)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/ring-opacity
 // Deprecated in favor of slash opacity syntax
 ;({
@@ -60963,8 +61260,9 @@ tw\`ring-opacity-[var(--ring-opacity)]\`
 
 `;
 
-exports[`twin.macro ringWidth.js: ringWidth.js 1`] = `
+exports[`twin.macro ringWidth.tsx: ringWidth.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/ring-width
@@ -60982,6 +61280,7 @@ tw\`ring-[10px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/ring-width
 ;({
   0: '0px',
@@ -61054,8 +61353,9 @@ tw\`ring-[10px]\`
 
 `;
 
-exports[`twin.macro rotate.js: rotate.js 1`] = `
+exports[`twin.macro rotate.tsx: rotate.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/rotate
@@ -61084,6 +61384,7 @@ tw\`rotate-[23deg] rotate-[2.3rad] rotate-[401grad] rotate-[1.5turn]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/rotate
 ;({
   0: '0deg',
@@ -61195,8 +61496,9 @@ tw\`rotate-[23deg] rotate-[2.3rad] rotate-[401grad] rotate-[1.5turn]\`
 
 `;
 
-exports[`twin.macro sassyPseudo.js: sassyPseudo.js 1`] = `
+exports[`twin.macro sassyPseudo.tsx: sassyPseudo.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 tw\`hover:block first:mt-2 last-of-type:max-width[20px]\`
@@ -61208,6 +61510,7 @@ tw\`my-class3\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   '&:first-child': {
     marginTop: '0.5rem',
@@ -61249,8 +61552,9 @@ tw\`my-class3\`
 
 `;
 
-exports[`twin.macro saturate.js: saturate.js 1`] = `
+exports[`twin.macro saturate.tsx: saturate.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/saturate
@@ -61266,6 +61570,7 @@ tw\`saturate-[.25]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/saturate
 ;({
   0: '0',
@@ -61308,8 +61613,9 @@ tw\`saturate-[.25]\`
 
 `;
 
-exports[`twin.macro scale.js: scale.js 1`] = `
+exports[`twin.macro scale.tsx: scale.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/scale
@@ -61350,6 +61656,7 @@ tw\`scale-[1.7]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/scale
 ;({
   0: '0',
@@ -61533,8 +61840,9 @@ tw\`scale-[1.7]\`
 
 `;
 
-exports[`twin.macro screenImport.js: screenImport.js 1`] = `
+exports[`twin.macro screenImport.tsx: screenImport.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { styled, screen } from './macro'
 
 // Media query only
@@ -61849,8 +62157,9 @@ _styled.div\`
 
 `;
 
-exports[`twin.macro screenReaders.js: screenReaders.js 1`] = `
+exports[`twin.macro screenReaders.tsx: screenReaders.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/screen-readers
@@ -61859,6 +62168,7 @@ tw\`not-sr-only\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/screen-readers
 ;({
   position: 'absolute',
@@ -61885,8 +62195,9 @@ tw\`not-sr-only\`
 
 `;
 
-exports[`twin.macro screens.js: screens.js 1`] = `
+exports[`twin.macro screens.tsx: screens.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 tw\`sm:block\`
@@ -61900,6 +62211,7 @@ tw\`<sm:underline md>:font-bold\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   '@media (min-width: 640px)': {
     display: 'block',
@@ -61942,8 +62254,9 @@ tw\`<sm:underline md>:font-bold\`
 
 `;
 
-exports[`twin.macro scrollBehavior.js: scrollBehavior.js 1`] = `
+exports[`twin.macro scrollBehavior.tsx: scrollBehavior.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/scroll-behavior
@@ -61952,6 +62265,7 @@ tw\`scroll-smooth\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/scroll-behavior
 ;({
   scrollBehavior: 'auto',
@@ -61963,8 +62277,9 @@ tw\`scroll-smooth\`
 
 `;
 
-exports[`twin.macro scrollMargin.js: scrollMargin.js 1`] = `
+exports[`twin.macro scrollMargin.tsx: scrollMargin.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/scroll-margin
@@ -62229,6 +62544,7 @@ tw\`scroll-m-[24rem]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/scroll-margin
 ;({
   0: '0px',
@@ -63105,8 +63421,9 @@ tw\`scroll-m-[24rem]\`
 
 `;
 
-exports[`twin.macro scrollPadding.js: scrollPadding.js 1`] = `
+exports[`twin.macro scrollPadding.tsx: scrollPadding.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/scroll-padding
@@ -63362,6 +63679,7 @@ tw\`scroll-p-[24rem]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/scroll-padding
 ;({
   0: '0px',
@@ -64212,8 +64530,9 @@ tw\`scroll-p-[24rem]\`
 
 `;
 
-exports[`twin.macro scrollSnapAlign.js: scrollSnapAlign.js 1`] = `
+exports[`twin.macro scrollSnapAlign.tsx: scrollSnapAlign.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/scroll-snap-align
@@ -64224,6 +64543,7 @@ tw\`snap-align-none\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/scroll-snap-align
 ;({
   scrollSnapAlign: 'start',
@@ -64241,8 +64561,9 @@ tw\`snap-align-none\`
 
 `;
 
-exports[`twin.macro scrollSnapStop.js: scrollSnapStop.js 1`] = `
+exports[`twin.macro scrollSnapStop.tsx: scrollSnapStop.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/scroll-snap-stop
@@ -64251,6 +64572,7 @@ tw\`snap-always\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/scroll-snap-stop
 ;({
   scrollSnapStop: 'normal',
@@ -64262,8 +64584,9 @@ tw\`snap-always\`
 
 `;
 
-exports[`twin.macro scrollSnapType.js: scrollSnapType.js 1`] = `
+exports[`twin.macro scrollSnapType.tsx: scrollSnapType.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/scroll-snap-type
@@ -64276,6 +64599,7 @@ tw\`snap-proximity\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/scroll-snap-type
 ;({
   scrollSnapType: 'none',
@@ -64299,8 +64623,9 @@ tw\`snap-proximity\`
 
 `;
 
-exports[`twin.macro sepia.js: sepia.js 1`] = `
+exports[`twin.macro sepia.tsx: sepia.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/sepia
@@ -64313,6 +64638,7 @@ tw\`sepia-[.25]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/sepia
 ;({
   0: '0',
@@ -64337,8 +64663,9 @@ tw\`sepia-[.25]\`
 
 `;
 
-exports[`twin.macro shortCss.js: shortCss.js 1`] = `
+exports[`twin.macro shortCss.tsx: shortCss.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // within cs prop
@@ -64410,6 +64737,7 @@ tw\`touch-action[]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;<div
   css={{
     maxWidth: '100vw - 2rem',
@@ -64647,8 +64975,9 @@ tw\`touch-action[]\`
 
 `;
 
-exports[`twin.macro skew.js: skew.js 1`] = `
+exports[`twin.macro skew.tsx: skew.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/skew
@@ -64685,6 +65014,7 @@ tw\`-skew-y-[17deg]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/skew
 ;({
   0: '0deg',
@@ -64828,8 +65158,9 @@ tw\`-skew-y-[17deg]\`
 
 `;
 
-exports[`twin.macro spaceBetween.js: spaceBetween.js 1`] = `
+exports[`twin.macro spaceBetween.tsx: spaceBetween.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/space
@@ -65003,6 +65334,7 @@ tw\`space-x-[calc(20%-1cm)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/space
 ;({
   0: '0px',
@@ -66161,8 +66493,9 @@ tw\`space-x-[calc(20%-1cm)]\`
 
 `;
 
-exports[`twin.macro stitchesDotSyntax.js: stitchesDotSyntax.js 1`] = `
+exports[`twin.macro stitchesDotSyntax.tsx: stitchesDotSyntax.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { styled } from './macro'
 
 tw.div\`block\`
@@ -66195,8 +66528,9 @@ _styled('div', {
 
 `;
 
-exports[`twin.macro stitchesGlobals.js: stitchesGlobals.js 1`] = `
+exports[`twin.macro stitchesGlobals.tsx: stitchesGlobals.tsx 1`] = `
 
+// @ts-nocheck
 import { globalStyles } from './macro'
 import { global } from './stitches.config'
 
@@ -66209,6 +66543,7 @@ export function App() {
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 import { global } from './stitches.config'
 const globals = global({
   '*, ::before, ::after': {
@@ -66453,8 +66788,9 @@ export function App() {
 
 `;
 
-exports[`twin.macro stitchesImports.js: stitchesImports.js 1`] = `
+exports[`twin.macro stitchesImports.tsx: stitchesImports.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { css, styled } from './macro'
 
 css(tw\`block\`)
@@ -66481,8 +66817,9 @@ _styled('div', {
 
 `;
 
-exports[`twin.macro stitchesProps.js: stitchesProps.js 1`] = `
+exports[`twin.macro stitchesProps.tsx: stitchesProps.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 // tw prop
 ;<div tw="block" />
@@ -66604,8 +66941,9 @@ const _TwComponent12 = _styled(Component.Sub, {
 
 `;
 
-exports[`twin.macro stroke.js: stroke.js 1`] = `
+exports[`twin.macro stroke.tsx: stroke.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/stroke
@@ -66868,6 +67206,7 @@ tw\`stroke-[length:10px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/stroke
 ;({
   inherit: 'inherit',
@@ -67896,8 +68235,9 @@ tw\`stroke-[length:10px]\`
 
 `;
 
-exports[`twin.macro strokeWidth.js: strokeWidth.js 1`] = `
+exports[`twin.macro strokeWidth.tsx: strokeWidth.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/stroke-width
@@ -67917,6 +68257,7 @@ tw\`stroke-[url:url(hand.cur)_2_2, pointer]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/stroke-width
 ;({
   0: '0',
@@ -67954,8 +68295,9 @@ tw\`stroke-[url:url(hand.cur)_2_2, pointer]\`
 
 `;
 
-exports[`twin.macro tableLayout.js: tableLayout.js 1`] = `
+exports[`twin.macro tableLayout.tsx: tableLayout.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/table-layout
@@ -67964,6 +68306,7 @@ tw\`table-fixed\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/table-layout
 ;({
   tableLayout: 'auto',
@@ -67975,8 +68318,9 @@ tw\`table-fixed\`
 
 `;
 
-exports[`twin.macro textAlign.js: textAlign.js 1`] = `
+exports[`twin.macro textAlign.tsx: textAlign.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/text-align
@@ -67989,6 +68333,7 @@ tw\`text-end\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/text-align
 ;({
   textAlign: 'left',
@@ -68012,8 +68357,9 @@ tw\`text-end\`
 
 `;
 
-exports[`twin.macro textColor.js: textColor.js 1`] = `
+exports[`twin.macro textColor.tsx: textColor.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/text-color
@@ -68277,6 +68623,7 @@ tw\`text-[percentage:10%]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/text-color
 ;({
   inherit: 'inherit',
@@ -69537,8 +69884,9 @@ tw\`text-[percentage:10%]\`
 
 `;
 
-exports[`twin.macro textDecoration.js: textDecoration.js 1`] = `
+exports[`twin.macro textDecoration.tsx: textDecoration.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/text-decoration
@@ -69549,6 +69897,7 @@ tw\`no-underline\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/text-decoration
 ;({
   textDecorationLine: 'underline',
@@ -69566,8 +69915,9 @@ tw\`no-underline\`
 
 `;
 
-exports[`twin.macro textDecorationColor.js: textDecorationColor.js 1`] = `
+exports[`twin.macro textDecorationColor.tsx: textDecorationColor.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/text-decoration-color
@@ -69812,6 +70162,7 @@ tw\`decoration-[color:var(--color)]\` // \`decoration-[var(--color)]\` unsupport
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/text-decoration-color
 ;({
   inherit: 'inherit',
@@ -70797,8 +71148,9 @@ tw\`decoration-[color:var(--color)]\` // \`decoration-[var(--color)]\` unsupport
 
 `;
 
-exports[`twin.macro textDecorationStyle.js: textDecorationStyle.js 1`] = `
+exports[`twin.macro textDecorationStyle.tsx: textDecorationStyle.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/text-decoration-style
@@ -70810,6 +71162,7 @@ tw\`decoration-wavy\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/text-decoration-style
 ;({
   textDecorationStyle: 'solid',
@@ -70830,8 +71183,9 @@ tw\`decoration-wavy\`
 
 `;
 
-exports[`twin.macro textDecorationThickness.js: textDecorationThickness.js 1`] = `
+exports[`twin.macro textDecorationThickness.tsx: textDecorationThickness.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/text-decoration-thickness
@@ -70850,6 +71204,7 @@ tw\`decoration-[percentage:10%]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/text-decoration-thickness
 ;({
   0: '0px',
@@ -70891,8 +71246,9 @@ tw\`decoration-[percentage:10%]\`
 
 `;
 
-exports[`twin.macro textIndent.js: textIndent.js 1`] = `
+exports[`twin.macro textIndent.tsx: textIndent.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/text-indent
@@ -70976,6 +71332,7 @@ tw\`indent-[lookup:10px]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/text-indent
 ;({
   0: '0px',
@@ -71237,8 +71594,9 @@ tw\`indent-[lookup:10px]\`
 
 `;
 
-exports[`twin.macro textOpacity.js: textOpacity.js 1`] = `
+exports[`twin.macro textOpacity.tsx: textOpacity.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/text-opacity
@@ -71261,6 +71619,7 @@ tw\`text-opacity-100\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/text-opacity
 // Deprecated in favor of slash opacity syntax
 ;({
@@ -71312,8 +71671,9 @@ tw\`text-opacity-100\`
 
 `;
 
-exports[`twin.macro textOverflow.js: textOverflow.js 1`] = `
+exports[`twin.macro textOverflow.tsx: textOverflow.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/text-overflow
@@ -71323,6 +71683,7 @@ tw\`text-clip\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/text-overflow
 ;({
   overflow: 'hidden',
@@ -71339,8 +71700,9 @@ tw\`text-clip\`
 
 `;
 
-exports[`twin.macro textTransform.js: textTransform.js 1`] = `
+exports[`twin.macro textTransform.tsx: textTransform.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/text-transform
@@ -71351,6 +71713,7 @@ tw\`normal-case\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/text-transform
 ;({
   textTransform: 'uppercase',
@@ -71368,8 +71731,9 @@ tw\`normal-case\`
 
 `;
 
-exports[`twin.macro textUnderlineOffset.js: textUnderlineOffset.js 1`] = `
+exports[`twin.macro textUnderlineOffset.tsx: textUnderlineOffset.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/text-underline-offset
@@ -71389,6 +71753,7 @@ tw\`underline-offset-[percentage:30%]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/text-underline-offset
 ;({
   0: '0px',
@@ -71432,8 +71797,9 @@ tw\`underline-offset-[percentage:30%]\`
 
 `;
 
-exports[`twin.macro themeValuesToString.js: themeValuesToString.js 1`] = `
+exports[`twin.macro themeValuesToString.tsx: themeValuesToString.tsx 1`] = `
 
+// @ts-nocheck
 import { globalStyles, theme } from './macro'
 
 globalStyles
@@ -71442,6 +71808,7 @@ theme\`keyframes\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   '*, ::before, ::after': {
     boxSizing: 'border-box',
@@ -71694,8 +72061,9 @@ theme\`keyframes\`
 
 `;
 
-exports[`twin.macro topRightBottomLeft.js: topRightBottomLeft.js 1`] = `
+exports[`twin.macro topRightBottomLeft.tsx: topRightBottomLeft.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/top-right-bottom-left
@@ -72297,6 +72665,7 @@ tw\`inset-[50px]!\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/top-right-bottom-left
 ;({
   0: '0px',
@@ -74550,8 +74919,9 @@ tw\`inset-[50px]!\`
 
 `;
 
-exports[`twin.macro touchAction.js: touchAction.js 1`] = `
+exports[`twin.macro touchAction.tsx: touchAction.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/touch-action
@@ -74568,6 +74938,7 @@ tw\`touch-manipulation\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/touch-action
 ;({
   touchAction: 'auto',
@@ -74610,8 +74981,9 @@ tw\`touch-manipulation\`
 
 `;
 
-exports[`twin.macro transformOrigin.js: transformOrigin.js 1`] = `
+exports[`twin.macro transformOrigin.tsx: transformOrigin.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/transform-origin
@@ -74631,6 +75003,7 @@ tw\`origin-[33% 75%]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/transform-origin
 ;({
   center: 'center',
@@ -74677,8 +75050,9 @@ tw\`origin-[33% 75%]\`
 
 `;
 
-exports[`twin.macro transitionDelay.js: transitionDelay.js 1`] = `
+exports[`twin.macro transitionDelay.tsx: transitionDelay.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/transition-delay
@@ -74698,6 +75072,7 @@ tw\`delay-[var(--delay)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/transition-delay
 ;({
   75: '75ms',
@@ -74743,8 +75118,9 @@ tw\`delay-[var(--delay)]\`
 
 `;
 
-exports[`twin.macro transitionDuration.js: transitionDuration.js 1`] = `
+exports[`twin.macro transitionDuration.tsx: transitionDuration.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/transition-duration
@@ -74765,6 +75141,7 @@ tw\`duration-[var(--app-duration)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/transition-duration
 ;({
   75: '75ms',
@@ -74814,8 +75191,9 @@ tw\`duration-[var(--app-duration)]\`
 
 `;
 
-exports[`twin.macro transitionProperty.js: transitionProperty.js 1`] = `
+exports[`twin.macro transitionProperty.tsx: transitionProperty.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/transition-property
@@ -74835,6 +75213,7 @@ tw\`transition-[lookup:green]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/transition-property
 ;({
   none: 'none',
@@ -74896,8 +75275,9 @@ tw\`transition-[lookup:green]\`
 
 `;
 
-exports[`twin.macro transitionTimingFunction.js: transitionTimingFunction.js 1`] = `
+exports[`twin.macro transitionTimingFunction.tsx: transitionTimingFunction.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/transition-timing-function
@@ -74912,6 +75292,7 @@ tw\`ease-[cubic-bezier(0.95, 0.05, 0.795, 0.035)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/transition-timing-function
 ;({
   DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)',
@@ -74939,8 +75320,9 @@ tw\`ease-[cubic-bezier(0.95, 0.05, 0.795, 0.035)]\`
 
 `;
 
-exports[`twin.macro translate.js: translate.js 1`] = `
+exports[`twin.macro translate.tsx: translate.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/translate
@@ -75040,6 +75422,7 @@ tw\`-translate-x-10000\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/translate
 ;({
   '--tw-translate-x': '0px',
@@ -75490,14 +75873,16 @@ tw\`-translate-x-10000\`
 
 `;
 
-exports[`twin.macro userPluginOrdering.js: userPluginOrdering.js 1`] = `
+exports[`twin.macro userPluginOrdering.tsx: userPluginOrdering.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 tw\`selector\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   '@media (min-width: 1px)': {
     content: '@media .selector',
@@ -75532,8 +75917,9 @@ tw\`selector\`
 
 `;
 
-exports[`twin.macro userSelect.js: userSelect.js 1`] = `
+exports[`twin.macro userSelect.tsx: userSelect.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/user-select
@@ -75544,6 +75930,7 @@ tw\`select-auto\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/user-select
 ;({
   userSelect: 'none',
@@ -75561,8 +75948,9 @@ tw\`select-auto\`
 
 `;
 
-exports[`twin.macro variables.js: variables.js 1`] = `
+exports[`twin.macro variables.tsx: variables.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // Test a user created css class with a css variable as a rule property
@@ -75573,6 +75961,7 @@ tw\`-mx-gutter-1/2\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // Test a user created css class with a css variable as a rule property
 ;({
   '--some-css-variable-as-rule-prop': 'blue',
@@ -75586,8 +75975,9 @@ tw\`-mx-gutter-1/2\`
 
 `;
 
-exports[`twin.macro variantOrdering.js: variantOrdering.js 1`] = `
+exports[`twin.macro variantOrdering.tsx: variantOrdering.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 tw\`before:valid:rtl:motion-safe:contrast-more:dark:print:portrait:any-pointer-fine:block\`
@@ -75596,6 +75986,7 @@ tw\`any-pointer-fine:portrait:print:dark:contrast-more:motion-safe:rtl:valid:bef
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   '@media (prefers-reduced-motion: no-preference)': {
     '@media (prefers-contrast: more)': {
@@ -75636,8 +76027,9 @@ tw\`any-pointer-fine:portrait:print:dark:contrast-more:motion-safe:rtl:valid:bef
 
 `;
 
-exports[`twin.macro verticalAlign.js: verticalAlign.js 1`] = `
+exports[`twin.macro verticalAlign.tsx: verticalAlign.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/vertical-align
@@ -75654,6 +76046,7 @@ tw\`align-[something]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/vertical-align
 ;({
   verticalAlign: 'baseline',
@@ -75686,8 +76079,9 @@ tw\`align-[something]\`
 
 `;
 
-exports[`twin.macro visibility.js: visibility.js 1`] = `
+exports[`twin.macro visibility.tsx: visibility.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/visibility
@@ -75696,6 +76090,7 @@ tw\`invisible\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/visibility
 ;({
   visibility: 'visible',
@@ -75707,8 +76102,9 @@ tw\`invisible\`
 
 `;
 
-exports[`twin.macro visitedOpacity.js: visitedOpacity.js 1`] = `
+exports[`twin.macro visitedOpacity.tsx: visitedOpacity.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 tw\`visited:border-red-500 visited:bg-red-500 visited:text-red-500\`
@@ -75718,6 +76114,7 @@ tw\`visited:(border-red-500) visited:(bg-red-500) visited:(text-red-500)\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 ;({
   ':visited': {
     borderColor: 'rgb(239 68 68 )',
@@ -75750,8 +76147,9 @@ tw\`visited:(border-red-500) visited:(bg-red-500) visited:(text-red-500)\`
 
 `;
 
-exports[`twin.macro whitespace.js: whitespace.js 1`] = `
+exports[`twin.macro whitespace.tsx: whitespace.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/whitespace
@@ -75763,6 +76161,7 @@ tw\`whitespace-pre-wrap\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/whitespace
 ;({
   whiteSpace: 'normal',
@@ -75783,8 +76182,9 @@ tw\`whitespace-pre-wrap\`
 
 `;
 
-exports[`twin.macro width.js: width.js 1`] = `
+exports[`twin.macro width.tsx: width.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/width
@@ -75867,6 +76267,7 @@ tw\`w-[calc(100%/3-1rem*2)]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/width
 ;({
   0: '0px',
@@ -76160,8 +76561,9 @@ tw\`w-[calc(100%/3-1rem*2)]\`
 
 `;
 
-exports[`twin.macro willChange.js: willChange.js 1`] = `
+exports[`twin.macro willChange.tsx: willChange.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/will-change
@@ -76175,6 +76577,7 @@ tw\`will-change-[top, left]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/will-change
 ;({
   auto: 'auto',
@@ -76201,8 +76604,9 @@ tw\`will-change-[top, left]\`
 
 `;
 
-exports[`twin.macro wordBreak.js: wordBreak.js 1`] = `
+exports[`twin.macro wordBreak.tsx: wordBreak.tsx 1`] = `
 
+// @ts-nocheck
 import tw from './macro'
 
 // https://tailwindcss.com/docs/word-break
@@ -76212,6 +76616,7 @@ tw\`break-all\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/word-break
 ;({
   overflowWrap: 'normal',
@@ -76227,8 +76632,9 @@ tw\`break-all\`
 
 `;
 
-exports[`twin.macro zIndex.js: zIndex.js 1`] = `
+exports[`twin.macro zIndex.tsx: zIndex.tsx 1`] = `
 
+// @ts-nocheck
 import tw, { theme } from './macro'
 
 // https://tailwindcss.com/docs/z-index
@@ -76255,6 +76661,7 @@ tw\`-z-[-100]\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// @ts-nocheck
 // https://tailwindcss.com/docs/z-index
 ;({
   0: '0',

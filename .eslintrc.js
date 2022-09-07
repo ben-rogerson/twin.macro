@@ -81,7 +81,6 @@ module.exports = {
     '/macro.js',
     '/types',
     '/__fixtures__',
-    '/tailwind.config.js',
     '/sandbox',
     '/types/macro.d.ts',
     '/jest.config.ts',
