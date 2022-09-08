@@ -15,7 +15,11 @@ pluginTester({
   },
   snapshot: true,
   tests: glob
-    .sync(['__fixtures__/**/*.js', '!__fixtures__/**/*.config.js'])
+    .sync([
+      '__fixtures__/**/*.tsx',
+      '!__fixtures__/**/*.config.js',
+      '!__fixtures__/**/*.config.ts',
+    ])
     .map(file => ({
       title: path.basename(file),
       code: fs.readFileSync(file, 'utf8'),

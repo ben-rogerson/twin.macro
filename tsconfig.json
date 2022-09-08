@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es2019",
+    "target": "es2020", // To cover tailwindcss use of bigint
     "module": "esnext",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "jsx": "react"
-  }
+    "jsx": "react",
+    "noEmit": true,
+    "baseUrl": "src"
+  },
+  "include": ["src/**/*.ts"]
 }

@@ -3,8 +3,20 @@ module.exports = {
     extend: {
       // https://tailwindcss.com/docs/font-size#providing-a-default-line-height
       fontSize: {
-        arraystring: ['0.875rem', '1.5'],
-        arrayobject: ['0.875rem', { lineHeight: '2rem', color: 'red' }],
+        '2xl': [
+          '24px',
+          {
+            letterSpacing: '-0.01em',
+          },
+        ],
+        // Or with a default line-height as well
+        '3xl': [
+          '32px',
+          {
+            letterSpacing: '-0.02em',
+            lineHeight: '40px',
+          },
+        ],
       },
       colors: {
         'red-500/fromConfig': '#000',

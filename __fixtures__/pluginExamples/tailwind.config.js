@@ -78,49 +78,50 @@ const addVariant = function ({ addVariant }) {
 }
 
 // https://github.com/tailwindlabs/tailwindcss/blob/master/tests/match-variants.test.js
-// const matchVariant = ({ matchVariant }) => {
-//   matchVariant({
-//     potato: flavor => `.potato-${flavor} &`,
-//     carrot: flavor => `@media (carrot: ${flavor})`,
-//     beetroot: flavor => `@media (beetroot: ${flavor}) { &:beetroot }`,
-//   })
-//   matchVariant(
-//     {
-//       tooltip: side => `&${side}`,
-//     },
-//     {
-//       values: {
-//         bottom: '[data-location="bottom"]',
-//         top: '[data-location="top"]',
-//       },
-//     }
-//   )
-//   matchVariant(
-//     {
-//       alphabet: side => `&${side}`,
-//     },
-//     {
-//       values: {
-//         a: '[data-value="a"]',
-//         b: '[data-value="b"]',
-//         c: '[data-value="c"]',
-//         d: '[data-value="d"]',
-//       },
-//     }
-//   )
-//   matchVariant({
-//     test: selector => selector.split(',').map(selector => `&.${selector} > *`),
-//   })
-// }
+const matchVariant = ({ matchVariant }) => {
+  matchVariant({
+    potato: flavor => `.potato-${flavor} &`,
+    carrot: flavor => `@media (carrot: ${flavor})`,
+    beetroot: flavor => `@media (beetroot: ${flavor}) { &:beetroot }`,
+  })
+  matchVariant(
+    {
+      tooltip: side => `&${side}`,
+    },
+    {
+      values: {
+        bottom: '[data-location="bottom"]',
+        top: '[data-location="top"]',
+      },
+    }
+  )
+  matchVariant(
+    {
+      alphabet: side => `&${side}`,
+    },
+    {
+      values: {
+        a: '[data-value="a"]',
+        b: '[data-value="b"]',
+        c: '[data-value="c"]',
+        d: '[data-value="d"]',
+      },
+    }
+  )
+  matchVariant({
+    test: selector => selector.split(',').map(selector => `&.${selector} > *`),
+  })
+}
 
 module.exports = {
   corePlugins: { preflight: false },
+  experimental: { matchVariant: true },
   plugins: [
     addUtilities,
     defaultValues,
     addComponents,
     addBase,
     addVariant,
-    // matchVariant,
+    matchVariant,
   ],
 }

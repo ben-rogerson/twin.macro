@@ -25,7 +25,6 @@
 
 [](#classes)
 
-## Classes
+## More
 
-- [container](https://github.com/ben-rogerson/twin.macro/blob/master/docs/container.md)
 - [group](https://github.com/ben-rogerson/twin.macro/blob/master/docs/group.md)

@@ -6,12 +6,12 @@
     <a href="https://discord.gg/Xj6x9z7"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
     <br>
     <br>
-    <a href="https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/react-emotion?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&theme=dark">Demo twin on CodeSandbox →</a>
+    <a href="https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/react-emotion?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&theme=dark">Demo twin on CodeSandbox</a>
 </p>
 
 ---
 
-Style jsx elements using Tailwind v3 classes:
+Style jsx elements using Tailwind classes:
 
 ```js
 import 'twin.macro'
@@ -112,8 +112,7 @@ tw`text-sm md:text-lg`
 ```diff
 - import styled from '@emotion/styled'
 - import css from '@emotion/react'
-- import tw from 'twin.macro'
-+ import tw, { styled, css } from 'twin.macro'
++ import { styled, css } from 'twin.macro'
 ```
 
 **🐹 Adds no size to your build** - Twin converts the classes you’ve used into css objects using Babel and then compiles away, leaving no runtime code
@@ -146,8 +145,6 @@ Try one of these classes:
 - ml-1.5 > 0.375rem
 - ml-1 > 0.25rem
 - ml-10 > 2.5rem
-- ml-11 > 2.75rem
-- ml-12 > 3rem
 ```
 
 **🖌️ Use the theme import to add values from your tailwind config**
@@ -180,7 +177,7 @@ Add !important to multiple classes with bracket groups:
 
 ## Get started
 
-Twin works within many modern stacks - take a look at these examples to get started:
+Twin works with many modern stacks - take a look at these examples to get started:
 
 ### App build tools and libraries
 
@@ -193,7 +190,7 @@ Twin works within many modern stacks - take a look at these examples to get star
 ### Advanced frameworks
 
 - **Gatsby**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-emotion)
-- **Next.js**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion) / [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion-typescript) / [stitches (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/next-stitches-typescript)
+- **Next.js**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components) / [styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components-typescript) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion) / [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion-typescript) / [stitches (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/next-stitches-typescript)
 - **Blitz.js**<br/>[emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/blitz-emotion-typescript)
 - **Laravel**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/laravel-styled-components-typescript)
 

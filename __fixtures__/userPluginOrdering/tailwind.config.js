@@ -15,7 +15,7 @@ function fluidContainer({ addComponents, theme }) {
         },
         '@media (min-width: 1px)': {
           '.selector3': {
-            content: '.selector:hover @media .selector3',
+            content: '@media .selector .selector3',
           },
         },
       },
@@ -25,7 +25,10 @@ function fluidContainer({ addComponents, theme }) {
         content: '.selector:hover',
         '@media (min-width: 1px)': {
           '.selector2': {
-            content: '.selector:hover @media .selector',
+            content: '@media .selector:hover .selector2',
+          },
+          '&.selector2': {
+            content: '@media .selector:hover.selector2',
           },
         },
         '.selector3': {
@@ -44,7 +47,7 @@ function fluidContainer({ addComponents, theme }) {
         padding: 'padding',
         display: 'block',
         '@media (min-width: 2px)': {
-          content: '.selector @media',
+          content: '@media .selector',
         },
       },
     },

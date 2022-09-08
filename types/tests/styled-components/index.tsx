@@ -3,10 +3,16 @@ import React from 'react'
 import styled from 'styled-components'
 import tw from '../..'
 
+export const ComponentAsSelector = styled.div(() => [tw`block`])
+
 export const Container = styled.div`
   ${tw`flex flex-col w-full max-w-sm`}
   & > form {
     ${tw`w-full`}
+  }
+  ${ComponentAsSelector}:hover {
+    ${tw`bg-blue-500 text-gray-100`}
+    color: red;
   }
 `
 
