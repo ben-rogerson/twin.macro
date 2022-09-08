@@ -15,7 +15,7 @@ import type * as P from 'postcss'
 
 const ESC_DIGIT = /\\3(\d)/g
 const ESC_COMMA = /\\2c /g
-const ESC_DBL_BACKSLASHES = /\\(?!\d)(?=.|$)/g
+const ESC_DBL_BACKSLASHES = /\\(?!\d!)(?=.|$)/g
 const COMMAS_OUTSIDE_BRACKETS =
   /,(?=(?:(?:(?!\)).)*\()|[^()]*$)(?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g
 
@@ -54,10 +54,12 @@ function extractFromRule(
 ): [string, CssObject] {
   return [
     rule.selector
+      .replace(/\\{3}/g, '{{PRESERVED_DOUBLE_ESCAPE}}')
       .replace(ESC_DIGIT, '$1') // Remove digit escaping
       .replace(ESC_COMMA, ',') // Remove comma escaping
       .replace(ESC_DBL_BACKSLASHES, '') // Remove \\ escaping
-      .replace(LINEFEED, ' '),
+      .replace(LINEFEED, ' ')
+      .replace(/{{PRESERVED_DOUBLE_ESCAPE}}/g, '\\'),
     extractRuleStyles(rule.nodes, params),
   ] as [string, CssObject]
 }
