@@ -10,7 +10,7 @@ function createTheme(
   extra?: string
 ) => Record<string, unknown> | boolean | number {
   function getConfigValue(path: string[], defaultValue?: string): unknown {
-    return path ? dlv(tailwindConfig, path, defaultValue) : tailwindConfig
+    return dlv(tailwindConfig, path, defaultValue)
   }
 
   function resolveThemeValue(
@@ -19,7 +19,11 @@ function createTheme(
     options = {}
   ): number | boolean | Record<string, unknown> {
     const [pathRoot, ...subPaths] = toPath(path)
-    const value = getConfigValue(['theme', pathRoot, ...subPaths], defaultValue)
+
+    const value = getConfigValue(
+      path ? ['theme', pathRoot, ...subPaths] : ['theme'],
+      defaultValue
+    )
     return sassifyValues(transformThemeValue(pathRoot)(value, options))
   }
 

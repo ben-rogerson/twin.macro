@@ -23,14 +23,15 @@ function handleThemeFunction({
       input?: string
     }
 
-    coreContext.assert(
-      Boolean(input),
-      ({ color }: AssertContext) =>
-        `${color(`✕ The theme value doesn’t look right`)}\n\nTry ${color(
-          'theme`colors.black`',
-          'success'
-        )} or ${color(`theme('colors.black')`, 'success')}`
-    )
+    if (input !== '')
+      coreContext.assert(
+        Boolean(input),
+        ({ color }: AssertContext) =>
+          `${color(`✕ The theme value doesn’t look right`)}\n\nTry ${color(
+            'theme`colors.black`',
+            'success'
+          )} or ${color(`theme('colors.black')`, 'success')}`
+      )
 
     coreContext.assert(
       Boolean(parent),
