@@ -1,5 +1,6 @@
 module.exports = {
   theme: {
+    colors: {},
     keyframes: {
       'fade-up': {
         from: {
@@ -11,6 +12,9 @@ module.exports = {
           opacity: 1,
         },
       },
+    },
+    anotherkey: {
+      property: '1rem',
     },
   },
 }
