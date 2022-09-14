@@ -15,6 +15,8 @@ import { default as transformThemeValueRaw } from 'tailwindcss/lib/util/transfor
 import { default as resolveTailwindConfigRaw } from 'tailwindcss/lib/util/resolveConfig'
 // @ts-expect-error Types added below
 import { default as getAllConfigsRaw } from 'tailwindcss/lib/util/getAllConfigs'
+// @ts-expect-error Types added below
+import unescapeRaw from 'postcss-selector-parser/dist/util/unesc'
 
 const toPath = toPathRaw as (path: string[] | string) => string[]
 const createContext = createContextRaw as (config: Config) => TailwindContext
@@ -35,6 +37,7 @@ const resolveTailwindConfig = resolveTailwindConfigRaw as (
 const getAllConfigs = getAllConfigsRaw as (
   config: Record<string, unknown[]>
 ) => TailwindConfig[]
+const unescape = unescapeRaw as (string: string) => string
 
 export {
   toPath,
@@ -44,4 +47,5 @@ export {
   transformThemeValue,
   resolveTailwindConfig,
   getAllConfigs,
+  unescape,
 }

@@ -3,6 +3,7 @@ import deepMerge from './lib/util/deepMerge'
 import get from './lib/util/get'
 import replaceThemeValue from './lib/util/replaceThemeValue'
 import sassifySelector from './lib/util/sassifySelector'
+import { unescape } from './lib/util/twImports'
 import {
   DEFAULTS_UNIVERSAL,
   EMPTY_CSS_VARIABLE_VALUE,
@@ -52,16 +53,18 @@ function extractFromRule(
   rule: P.Rule,
   params: ExtractRuleStyles
 ): [string, CssObject] {
-  return [
-    rule.selector
-      .replace(/\\{3}/g, '{{PRESERVED_DOUBLE_ESCAPE}}')
-      .replace(ESC_DIGIT, '$1') // Remove digit escaping
-      .replace(ESC_COMMA, ',') // Remove comma escaping
-      .replace(ESC_DBL_BACKSLASHES, '') // Remove \\ escaping
-      .replace(LINEFEED, ' ')
-      .replace(/{{PRESERVED_DOUBLE_ESCAPE}}/g, '\\'),
-    extractRuleStyles(rule.nodes, params),
-  ] as [string, CssObject]
+  const selectorForUnescape = rule.selector
+    .replace(/\\{3}/g, '{{PRESERVED_DOUBLE_ESCAPE}}')
+    .replace(ESC_DIGIT, '$1') // Remove digit escaping
+  const selector = unescape(selectorForUnescape)
+    .replace(ESC_COMMA, ',') // Remove comma escaping
+    .replace(ESC_DBL_BACKSLASHES, '') // Remove \\ escaping
+    .replace(LINEFEED, ' ')
+    .replace(/{{PRESERVED_DOUBLE_ESCAPE}}/g, '\\')
+  return [selector, extractRuleStyles(rule.nodes, params)] as [
+    string,
+    CssObject
+  ]
 }
 
 function extractSelectorFromAtRule(
@@ -132,12 +135,6 @@ const ruleTypes = {
       .filter(s => params.selectorMatchReg?.test(s))
 
     if (selectorList.length === 0) {
-      // SPECIAL CASE: Postcss converts unicode characters but we don't do the same to our regex matcher so we let content values pass straight through, eg: in: tw`content-['—']`
-      if (/([.:]content-\[)|([.:]\[content:)/.test(selector)) {
-        params.debug('content pass return', styles)
-        return styles
-      }
-
       params.debug('no selector match', selector, 'warn')
       return
     }

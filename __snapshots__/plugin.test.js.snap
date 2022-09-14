@@ -21191,6 +21191,8 @@ tw\`content-['hello']\`
 tw\`content-[attr(content-before)]\`
 tw\`content-['>']\`
 tw\`content-['—']\`
+tw\`before:content-['—']\`
+tw\`before:(content-['—'] block)\`
 tw\`content-none\`
 tw\`before:block\`
 tw\`peer-focus:before:block\`
@@ -21227,6 +21229,19 @@ tw\`peer-focus:before:block\`
 ;({
   '--tw-content': "'\\u2014'",
   content: 'var(--tw-content)',
+})
+;({
+  '::before': {
+    '--tw-content': "'\\u2014'",
+    content: 'var(--tw-content)',
+  },
+})
+;({
+  '::before': {
+    content: 'var(--tw-content)',
+    display: 'block',
+    '--tw-content': "'\\u2014'",
+  },
 })
 ;({
   '--tw-content': 'none',
