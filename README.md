@@ -1,6 +1,14 @@
 <p align="center">
-  <img src="https://i.imgur.com/rXdOJG5.png" alt="twin logo" width="300"><br>
-    <br>Twin blends the magic of Tailwind with the flexibility of css-in-js<br><br>
+  <a href="https://github.com/ben-rogerson/twin.macro#gh-light-mode-only" target="_blank">
+    <img src="./.github/logo-light.svg" alt="Twin examples" width="199" height="70">
+  </a>
+  <a href="https://github.com/ben-rogerson/twin.macro#gh-dark-mode-only" target="_blank">
+    <img src="./.github/logo-dark.svg" alt="Twin examples" width="199" height="70">
+  </a>
+</p>
+
+<p align="center">
+    The <em>magic</em> of Tailwind with the <em>flexibility</em> of css-in-js.<br><br>
     <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/dt/twin.macro.svg" alt="Total Downloads"></a>
     <a href="https://www.npmjs.com/package/twin.macro"><img src="https://img.shields.io/npm/v/twin.macro.svg" alt="Latest Release"></a>
     <a href="https://discord.gg/Xj6x9z7"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
