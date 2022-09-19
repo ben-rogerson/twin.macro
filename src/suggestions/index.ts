@@ -1,3 +1,4 @@
+import { MacroError } from 'babel-plugin-macros'
 import { validators } from './lib/validators'
 import { getClassSuggestions } from './lib/getClassSuggestions'
 import { makeColor } from './lib/makeColor'
@@ -13,6 +14,8 @@ import type {
   TailwindContext,
   TailwindConfig,
 } from './types'
+// eslint-disable-next-line import/no-relative-parent-imports
+import { createCoreContext, getStyles } from '../core'
 
 const COLONS_OUTSIDE_BRACKETS =
   /:(?=(?:(?:(?!\)).)*\()|[^()]*$)(?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g
@@ -27,10 +30,37 @@ const OPTION_DEFAULTS = {
   suggestionNumber: 5,
 }
 
+function getVariantSuggestions(
+  variants: string[],
+  className: string,
+  context: ClassErrorContext
+): string | undefined {
+  const coreContext = createCoreContext({
+    CustomError: MacroError as typeof Error,
+  })
+  const { unmatched } = getStyles(className, coreContext)
+  if (unmatched.length > 0) return
+
+  const unmatchedVariants = variants.filter(v => {
+    if (v.startsWith('[')) return v
+    return !context.variants.has(v)
+  })
+  if (unmatchedVariants.length === 0) return
+
+  const problemVariant = unmatchedVariants[0]
+  return [
+    `${context.color(
+      `✕ Variant ${context.color(problemVariant, 'errorLight')} ${
+        problemVariant.startsWith('[') ? 'can’t be used' : 'was not found'
+      }`
+    )}`,
+  ].join('\n\n')
+}
+
 function getClassError(rawClass: string, context: ClassErrorContext): string {
-  const classPieces = rawClass
-    .replace(ALL_SPACE_IDS, ' ')
-    .split(COLONS_OUTSIDE_BRACKETS)
+  const input = rawClass.replace(ALL_SPACE_IDS, ' ')
+
+  const classPieces = input.split(COLONS_OUTSIDE_BRACKETS)
 
   for (const validator of validators) {
     const error = validator(classPieces, context)
@@ -38,6 +68,18 @@ function getClassError(rawClass: string, context: ClassErrorContext): string {
   }
 
   const className = classPieces.slice(-1).join('')
+  const variants = classPieces.slice(0, -1)
+
+  // Check if variants or classes with match issues
+  if (variants.length > 0) {
+    const variantSuggestions = getVariantSuggestions(
+      variants,
+      className,
+      context
+    )
+    if (variantSuggestions) return variantSuggestions
+  }
+
   return getClassSuggestions(className, context)
 }
 
