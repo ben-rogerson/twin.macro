@@ -114,7 +114,7 @@ export type TransformDecl = {
 } & ExtractRuleStyles
 
 export type CreateCoreContext = {
-  isDev: boolean
+  isDev?: boolean
   config?: TwinConfig
   sourceRoot?: string
   filename?: string

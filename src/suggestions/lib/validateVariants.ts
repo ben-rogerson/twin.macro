@@ -24,7 +24,10 @@ export function validateVariants(
     .filter(Boolean) as Array<[string, number]>
 
   const errorText = `${context.color(
-    `✕ ${context.color(`${variantMatch}:`, 'errorLight')} was not found`,
+    `✕ Variant ${context.color(
+      `${variantMatch}:`,
+      'errorLight'
+    )} was not found`,
     'error'
   )}`
 

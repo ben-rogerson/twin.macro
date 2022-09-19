@@ -108,7 +108,7 @@ function getGlobalConfig(config: TwinConfig): PresetItem {
 }
 
 function createCoreContext(params: CreateCoreContext): CoreContext {
-  const { sourceRoot, filename, config, isDev, CustomError } = params
+  const { sourceRoot, filename, config, isDev = false, CustomError } = params
   const assert = createAssert(CustomError, false, config?.hasLogColors)
   const configParameters = {
     sourceRoot,

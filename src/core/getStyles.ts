@@ -233,7 +233,7 @@ function getStyles(
     })
 
     if (!results) {
-      params.debug('No matching rules found', className, 'error')
+      params.debug('🔥 No matching rules found', className, 'error')
 
       unmatched.push(className)
 

@@ -126,7 +126,7 @@ const ruleTypes = {
       return out
     }
 
-    params.debug('styles extracted', [selector, styles])
+    params.debug('styles extracted', { selector, styles })
 
     const selectorList = (
       ARBITRARY_SELECTOR.test(selector)
@@ -157,7 +157,7 @@ const ruleTypes = {
       .filter(Boolean)
       .join(',')
 
-    params.debug('sassified key', selectorList)
+    params.debug('sassified key', selector ?? styles)
 
     if (!selector) return styles
 
