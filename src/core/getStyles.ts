@@ -124,16 +124,28 @@ function getOrderedClassList(
     color('Twin requires a newer version of tailwindcss, please update')
   ) // `getClassOrder` was added in tailwindcss@3.0.23
 
-  const orderedClassList = tailwindContext
-    .getClassOrder(convertedClassList)
-    .map(([className, order], index): [bigint, string, string] => [
-      order || 0n,
-      className,
-      classList[index],
-    ])
-    .sort(([a], [z]) => bigSign(a - z))
+  let orderedClassList
 
-  return orderedClassList
+  try {
+    orderedClassList = tailwindContext
+      .getClassOrder(convertedClassList)
+      .map(([className, order], index): [bigint, string, string] => [
+        order || 0n,
+        className,
+        classList[index],
+      ])
+      .sort(([a], [z]) => bigSign(a - z))
+  } catch (error: unknown) {
+    assert(
+      false,
+      ({ color }) =>
+        `${color(error as string)}\n\nFound in:\n${convertedClassList.join(
+          ' '
+        )}`
+    )
+  }
+
+  return orderedClassList as Array<[bigint, string, string]>
 }
 
 function getStyles(
