@@ -7,7 +7,8 @@ import { SPACE_ID, SPACE_ID_TEMP_ALL } from '../constants'
 
 const SPLIT_COLON_AVOID_WITHIN_SQUARE_BRACKETS =
   /:(?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g
-const ARBITRARY_VARIANTS = /(?!\[)([^[\]]+)(?=]:)/g
+const ARBITRARY_VARIANTS = /(?<=\[)(.+?)(?=]:)/g
+const ALL_COMMAS = /,/g
 
 type ConvertShortCssToArbitraryPropertyParameters = {
   disableShortCss: CoreContext['twinConfig']['disableShortCss']
@@ -107,16 +108,36 @@ function convertClassName(
 
   // Add a parent selector if it's missing from the arbitrary variant
   const arbitraryVariantsCount = className.match(ARBITRARY_VARIANTS)
-  className = className.replace(ARBITRARY_VARIANTS, (v, _, offset) => {
-    if (v.includes('&') || v.startsWith('@')) return v
-    if (arbitraryVariantsCount && arbitraryVariantsCount.length > 1)
-      return `${v}_&`
-    return offset === 1 ? `&_${v}` : `${v}_&`
-  })
+  className = className.replace(ARBITRARY_VARIANTS, (v, _, offset) =>
+    addParentSelector(v, offset, arbitraryVariantsCount)
+  )
 
   debug('class after format', className)
 
   return className
+}
+
+function escapeCommas(className: string): string {
+  return className.replace(ALL_COMMAS, '\\2c')
+}
+
+function addParentSelector(
+  value: string,
+  offset: number,
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  arbitraryVariantsCount: string[] | null
+): string {
+  // Tailwindcss requires pre-encoded commas - unencoded are removed and we end up with an invalid selector
+  const selector = escapeCommas(value)
+  // Preserve selectors with parent selector or media queries
+  if (selector.includes('&') || selector.startsWith('@')) return selector
+  // pseudo
+  if (selector.startsWith(':')) return `&${selector}`
+  // Selectors with multiple arbitrary variants are too hard to determine so follow a basic rule instead
+  if (arbitraryVariantsCount && arbitraryVariantsCount.length > 1)
+    return `&_${selector}`
+  // If the arbitrary variant is the first selector, add a parent selector
+  return offset === 1 ? `&_${selector}` : `${selector}_&`
 }
 
 export default convertClassName

@@ -4090,6 +4090,27 @@ tw\`[p]:(mt-4 mb-4)\`
 tw\`[@media (min-width: 800px)]:block\`
 tw\`[content\\\\!]:block\`
 
+// Combinations
+tw\`[&:nth-child(1)]:block\`
+tw\`[:nth-child(1)]:block\`
+tw\`[@media ...]:block\`
+tw\`[.selector]:block\`
+tw\`[section]:block\`
+tw\`[section &]:block\`
+tw\`md:[section]:block\`
+tw\`[section]:[bla]:block\`
+tw\`[section &]:[pre &]:block\`
+tw\`[section &]:[& pre]:block\`
+tw\`[section &]:first:[pre &]:block\`
+tw\`[section &]:first:[& pre]:block\`
+tw\`first:[section &]:[pre &]:block\`
+tw\`first:[section &]:[& pre]:block\`
+tw\`first:[section &]:[& pre]:mt-[2px]\`
+tw\`first:[section &]:[& pre]:[display:inline]\`
+tw\`[pre]:[display:inline]\`
+tw\`[& pre]:[display:inline]\`
+tw\`[:hover]:[display:inline]\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // @ts-nocheck
@@ -4121,13 +4142,13 @@ tw\`[content\\\\!]:block\`
 }) // Classes
 
 ;({
-  '.class1 .class2 &': {
+  '& .class2 .class1': {
     display: 'block',
   },
 }) // Multiple dynamic variants
 
 ;({
-  '.class1 .class2 .class3 &': {
+  '& .class3 .class1 .class2': {
     display: 'block',
   },
 }) // Multiple dynamic variants
@@ -4166,6 +4187,104 @@ tw\`[content\\\\!]:block\`
 ;({
   '& content!': {
     display: 'block',
+  },
+}) // Combinations
+
+;({
+  ':nth-child(1)': {
+    display: 'block',
+  },
+})
+;({
+  ':nth-child(1)': {
+    display: 'block',
+  },
+})
+;({
+  '@media ...': {
+    display: 'block',
+  },
+})
+;({
+  '& .selector': {
+    display: 'block',
+  },
+})
+;({
+  '& section': {
+    display: 'block',
+  },
+})
+;({
+  'section &': {
+    display: 'block',
+  },
+})
+;({
+  '@media (min-width: 768px)': {
+    'section &': {
+      display: 'block',
+    },
+  },
+})
+;({
+  '& bla section': {
+    display: 'block',
+  },
+})
+;({
+  'section pre &': {
+    display: 'block',
+  },
+})
+;({
+  'section & pre': {
+    display: 'block',
+  },
+})
+;({
+  'section pre &:first-child': {
+    display: 'block',
+  },
+})
+;({
+  'section & pre:first-child': {
+    display: 'block',
+  },
+})
+;({
+  'section pre &:first-child': {
+    display: 'block',
+  },
+})
+;({
+  'section & pre:first-child': {
+    display: 'block',
+  },
+})
+;({
+  'section & pre:first-child': {
+    marginTop: '2px',
+  },
+})
+;({
+  'section & pre:first-child': {
+    display: 'inline',
+  },
+})
+;({
+  '& pre': {
+    display: 'inline',
+  },
+})
+;({
+  '& pre': {
+    display: 'inline',
+  },
+})
+;({
+  ':hover': {
+    display: 'inline',
   },
 })
 

@@ -16,9 +16,9 @@ import type * as P from 'postcss'
 
 const ESC_DIGIT = /\\3(\d)/g
 const ESC_COMMA = /\\2c /g
-const ESC_DBL_BACKSLASHES = /\\(?!\d!)(?=.|$)/g
 const COMMAS_OUTSIDE_BRACKETS =
-  /,(?=(?:(?:(?!\)).)*\()|[^()]*$)(?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g
+  /,(?=(?:(?:(?!\)).)*\()|[^()]*$)(?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g // eg: Avoid `:where(ul, ul)`
+const ARBITRARY_SELECTOR = /[.:]\[/
 
 function transformImportant(value: string, params: TransformDecl): string {
   if (params.passChecks === true) return value
@@ -58,7 +58,6 @@ function extractFromRule(
     .replace(ESC_DIGIT, '$1') // Remove digit escaping
   const selector = unescape(selectorForUnescape)
     .replace(ESC_COMMA, ',') // Remove comma escaping
-    .replace(ESC_DBL_BACKSLASHES, '') // Remove \\ escaping
     .replace(LINEFEED, ' ')
     .replace(/{{PRESERVED_DOUBLE_ESCAPE}}/g, '\\')
   return [selector, extractRuleStyles(rule.nodes, params)] as [
@@ -129,10 +128,11 @@ const ruleTypes = {
 
     params.debug('styles extracted', [selector, styles])
 
-    const selectorList = selector
-      // Avoid split when comma is outside `()` + `[]`, eg: `:where(ul, ul)`
-      .split(COMMAS_OUTSIDE_BRACKETS)
-      .filter(s => params.selectorMatchReg?.test(s))
+    const selectorList = (
+      ARBITRARY_SELECTOR.test(selector)
+        ? [selector]
+        : selector.split(COMMAS_OUTSIDE_BRACKETS)
+    ).filter(s => params.selectorMatchReg?.test(s))
 
     if (selectorList.length === 0) {
       params.debug('no selector match', selector, 'warn')
