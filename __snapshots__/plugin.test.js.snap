@@ -58293,6 +58293,52 @@ globalStyles
 
 `;
 
+exports[`twin.macro presets.tsx: presets.tsx 1`] = `
+
+// @ts-nocheck
+import tw from './macro'
+
+tw\`text-badass\`
+tw\`text-banana\`
+tw\`text-hamburger\`
+tw\`active:text-white\`
+tw\`hocus:text-black\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// @ts-nocheck
+;({
+  '--tw-text-opacity': '1',
+  color: 'rgb(186 218 85 / var(--tw-text-opacity))',
+})
+;({
+  '--tw-text-opacity': '1',
+  color: 'rgb(255 255 0 / var(--tw-text-opacity))',
+})
+;({
+  '--tw-text-opacity': '1',
+  color: 'rgb(165 42 42 / var(--tw-text-opacity))',
+})
+;({
+  ':active': {
+    '--tw-text-opacity': '1',
+    color: 'rgb(255 255 255 / var(--tw-text-opacity))',
+  },
+})
+;({
+  ':hover': {
+    '--tw-text-opacity': '1',
+    color: 'rgb(0 0 0 / var(--tw-text-opacity))',
+  },
+  ':focus': {
+    '--tw-text-opacity': '1',
+    color: 'rgb(0 0 0 / var(--tw-text-opacity))',
+  },
+})
+
+
+`;
+
 exports[`twin.macro resize.tsx: resize.tsx 1`] = `
 
 // @ts-nocheck

@@ -4,13 +4,8 @@ import escalade from 'escalade/sync'
 import requireFresh from 'import-fresh'
 import { configTwinValidators, configDefaultsTwin } from './twinConfig'
 import defaultTwinConfig from './defaultTailwindConfig'
-import {
-  resolveTailwindConfig,
-  defaultTailwindConfig,
-  getAllConfigs,
-} from './util/twImports'
+import { resolveTailwindConfig, getAllConfigs } from './util/twImports'
 import { logGeneralError } from './logging'
-import deepMerge from './util/deepMerge'
 import type {
   TwinConfig,
   TwinConfigAll,
@@ -51,10 +46,10 @@ function getTailwindConfig({
         }
       })
 
-  const configExists = configPath && existsSync(configPath)
+  const configExists = Boolean(configPath && existsSync(configPath))
 
   if (config?.config)
-    assert(Boolean(configExists), ({ color }: AssertContext) =>
+    assert(configExists, ({ color }: AssertContext) =>
       [
         `${String(
           color(
@@ -68,13 +63,15 @@ function getTailwindConfig({
       ].join('\n\n')
     )
 
-  const configSelected: Record<string, unknown[]> = configExists
-    ? requireFresh(configPath)
-    : defaultTailwindConfig
+  const configs = [
+    // User config
+    ...(configExists ? getAllConfigs(requireFresh(configPath as string)) : []),
+    // Default config
+    ...getAllConfigs(defaultTwinConfig),
+  ]
 
-  const mergedConfig = deepMerge({ ...defaultTwinConfig }, configSelected)
+  const tailwindConfig = resolveTailwindConfig(configs)
 
-  const tailwindConfig = resolveTailwindConfig([...getAllConfigs(mergedConfig)])
   return tailwindConfig
 }
 
