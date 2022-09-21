@@ -1,12 +1,11 @@
 import replaceThemeValue from './util/replaceThemeValue'
 import isShortCss from './util/isShortCss'
 import splitOnFirst from './util/splitOnFirst'
+import { splitAtTopLevelOnly } from './util/twImports'
 import type { CoreContext } from 'core/types'
 // eslint-disable-next-line import/no-relative-parent-imports
 import { SPACE_ID, SPACE_ID_TEMP_ALL } from '../constants'
 
-const SPLIT_COLON_AVOID_WITHIN_SQUARE_BRACKETS =
-  /:(?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g
 const ARBITRARY_VARIANTS = /(?<=\[)(.+?)(?=]:)/g
 const ALL_COMMAS = /,/g
 
@@ -22,7 +21,7 @@ function convertShortCssToArbitraryProperty(
     isShortCssOnly,
   }: ConvertShortCssToArbitraryPropertyParameters
 ): string {
-  const splitArray = className.split(SPLIT_COLON_AVOID_WITHIN_SQUARE_BRACKETS)
+  const splitArray = [...splitAtTopLevelOnly(className, ':')]
 
   const lastValue = splitArray.slice(-1)[0]
 
@@ -84,9 +83,7 @@ function convertClassName(
   if (className.endsWith('!')) {
     debug('trailing bang found', className)
 
-    const splitArray = className
-      .slice(0, -1)
-      .split(SPLIT_COLON_AVOID_WITHIN_SQUARE_BRACKETS)
+    const splitArray = [...splitAtTopLevelOnly(className.slice(0, -1), ':')]
     // Place a ! before the class
     splitArray.splice(-1, 1, `!${splitArray[splitArray.length - 1]}`)
     className = splitArray.join(':')

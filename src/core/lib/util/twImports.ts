@@ -16,6 +16,8 @@ import { default as resolveTailwindConfigRaw } from 'tailwindcss/lib/util/resolv
 // @ts-expect-error Types added below
 import { default as getAllConfigsRaw } from 'tailwindcss/lib/util/getAllConfigs'
 // @ts-expect-error Types added below
+import { splitAtTopLevelOnly as splitAtTopLevelOnlyRaw } from 'tailwindcss/lib/util/splitAtTopLevelOnly'
+// @ts-expect-error Types added below
 import unescapeRaw from 'postcss-selector-parser/dist/util/unesc'
 
 const toPath = toPathRaw as (path: string[] | string) => string[]
@@ -37,6 +39,10 @@ const resolveTailwindConfig = resolveTailwindConfigRaw as (
 const getAllConfigs = getAllConfigsRaw as (
   config: Record<string, unknown[]>
 ) => TailwindConfig[]
+const splitAtTopLevelOnly = splitAtTopLevelOnlyRaw as (
+  input: string,
+  separator: string
+) => string[]
 const unescape = unescapeRaw as (string: string) => string
 
 export {
@@ -47,5 +53,6 @@ export {
   transformThemeValue,
   resolveTailwindConfig,
   getAllConfigs,
+  splitAtTopLevelOnly,
   unescape,
 }

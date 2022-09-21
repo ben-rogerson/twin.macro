@@ -15,10 +15,7 @@ import type {
   TailwindConfig,
 } from './types'
 // eslint-disable-next-line import/no-relative-parent-imports
-import { createCoreContext, getStyles } from '../core'
-
-const COLONS_OUTSIDE_BRACKETS =
-  /:(?=(?:(?:(?!\)).)*\()|[^()]*$)(?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g
+import { createCoreContext, getStyles, splitAtTopLevelOnly } from '../core'
 
 const ALL_SPACE_IDS = /{{SPACE}}/g
 
@@ -36,6 +33,7 @@ function getVariantSuggestions(
   context: ClassErrorContext
 ): string | undefined {
   const coreContext = createCoreContext({
+    tailwindConfig: context?.tailwindConfig,
     CustomError: MacroError as typeof Error,
   })
   const { unmatched } = getStyles(className, coreContext)
@@ -60,7 +58,7 @@ function getVariantSuggestions(
 function getClassError(rawClass: string, context: ClassErrorContext): string {
   const input = rawClass.replace(ALL_SPACE_IDS, ' ')
 
-  const classPieces = input.split(COLONS_OUTSIDE_BRACKETS)
+  const classPieces = [...splitAtTopLevelOnly(input, ':')]
 
   for (const validator of validators) {
     const error = validator(classPieces, context)
