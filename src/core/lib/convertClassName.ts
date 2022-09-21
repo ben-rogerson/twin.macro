@@ -50,7 +50,7 @@ function convertShortCssToArbitraryProperty(
         color(
           `✕ ${String(
             color(className, 'errorLight')
-          )} uses the deprecated short css syntax`
+          )} uses twin’s deprecated short-css syntax`
         )
       )}`,
       `Update to ${String(color(arbitraryProperty, 'success'))}`,
