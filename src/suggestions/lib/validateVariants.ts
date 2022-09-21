@@ -6,6 +6,7 @@ export function validateVariants(
   context: ClassErrorContext
 ): string | undefined {
   if (!variantMatch) return
+  if (variantMatch.startsWith('[')) return
 
   const variantCandidates = [...context.variants]
 

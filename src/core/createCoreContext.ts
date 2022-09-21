@@ -118,7 +118,9 @@ function createCoreContext(params: CreateCoreContext): CoreContext {
   }
   const styledImport = getStyledConfig(configParameters)
   const cssImport = getCssConfig(configParameters)
-  const tailwindConfig = getTailwindConfig(configParameters)
+  const tailwindConfig =
+    params.tailwindConfig ?? getTailwindConfig(configParameters)
+
   const packageUsed = getPackageUsed({ config, cssImport, styledImport })
   const twinConfig = getConfigTwinValidated(config, { ...packageUsed, isDev })
   const importConfig = {

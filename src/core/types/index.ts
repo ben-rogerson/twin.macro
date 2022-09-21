@@ -118,6 +118,7 @@ export type CreateCoreContext = {
   config?: TwinConfig
   sourceRoot?: string
   filename?: string
+  tailwindConfig?: TailwindConfig
   CustomError: typeof Error
 }
 
