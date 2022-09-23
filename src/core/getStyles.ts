@@ -2,10 +2,10 @@ import extractRuleStyles from './extractRuleStyles'
 import createAssert from './lib/createAssert'
 import expandVariantGroups from './lib/expandVariantGroups'
 import deepMerge from './lib/util/deepMerge'
-import { resolveMatches } from './lib/util/twImports'
+import { resolveMatches, splitAtTopLevelOnly } from './lib/util/twImports'
 import escapeRegex from './lib/util/escapeRegex'
 import convertClassName from './lib/convertClassName'
-import { WORD_CHARACTER, CLASS_SEPARATOR } from './constants'
+import { WORD_CHARACTER } from './constants'
 import type {
   CoreContext,
   CssObject,
@@ -20,8 +20,6 @@ const IMPORTANT_OUTSIDE_BRACKETS =
 const COMMENTS_MULTI_LINE = /(?<!\/)\/(?!\/)\*[\S\s]*?\*\//g
 const COMMENTS_SINGLE_LINE = /(?<!:)\/\/.*/g
 const CLASS_DIVIDER_PIPE = / \| /g
-const SPLIT_AT_SPACE_AVOID_WITHIN_SQUARE_BRACKETS =
-  / (?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g
 
 function getStylesFromMatches(
   matches: TailwindMatch[],
@@ -78,16 +76,14 @@ function validateClasses(
       )}`
   )
 
-  const classNames = classes.split(SPLIT_AT_SPACE_AVOID_WITHIN_SQUARE_BRACKETS)
-
-  for (const className of classNames) {
+  for (const className of splitAtTopLevelOnly(classes, ' ')) {
     assert(
       !className.endsWith(':'),
       ({ color }: AssertContext) =>
         `${color(
           `✕ The variant ${String(
             color(className, 'errorLight')
-          )} has a space after the colon`
+          )} doesn’t look right`
         )}\n\nUpdate to ${String(
           color(`${className}block`, 'success')
         )} or ${String(color(`${className}(block mt-4)`, 'success'))}`
@@ -104,10 +100,6 @@ const tasks: Array<(classes: string) => string> = [
   (classes): string => classes.replace(COMMENTS_SINGLE_LINE, ''),
   expandVariantGroups, // Expand grouped variants to individual classes
 ]
-
-function splitAtSpace(className: string): string[] {
-  return className.match(CLASS_SEPARATOR) ?? []
-}
 
 function bigSign(bigIntValue: bigint): number {
   // @ts-expect-error Unsure of types here
@@ -139,8 +131,11 @@ function getOrderedClassList(
     assert(
       false,
       ({ color }) =>
-        `${color(error as string)}\n\nFound in:\n${convertedClassList.join(
-          ' '
+        `${color(
+          String(error).replace('with \\ may', 'with `\\\\` may') // Fix error to ask for double escaping (for css-in-js)
+        )}\n\n${color('Found in:')} ${color(
+          convertedClassList.join(' '),
+          'errorLight'
         )}`
     )
   }
@@ -193,7 +188,7 @@ function getStyles(
     disableShortCss: params.twinConfig.disableShortCss,
   }
 
-  const classList = splitAtSpace(classes)
+  const classList = [...splitAtTopLevelOnly(classes, ' ')]
 
   const convertedClassList = classList.map(c =>
     convertClassName(c, convertedClassNameContext)
@@ -235,7 +230,8 @@ function getStyles(
     if (!results) {
       params.debug('🔥 No matching rules found', className, 'error')
 
-      unmatched.push(className)
+      // Allow tw``/tw="" to pass through
+      if (className !== '') unmatched.push(className)
 
       // If non-match and is on silent mode: Continue next iteration
       if (params.isSilent) continue

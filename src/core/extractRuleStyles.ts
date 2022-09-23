@@ -3,7 +3,7 @@ import deepMerge from './lib/util/deepMerge'
 import get from './lib/util/get'
 import replaceThemeValue from './lib/util/replaceThemeValue'
 import sassifySelector from './lib/util/sassifySelector'
-import { unescape } from './lib/util/twImports'
+import { splitAtTopLevelOnly, unescape } from './lib/util/twImports'
 import {
   DEFAULTS_UNIVERSAL,
   EMPTY_CSS_VARIABLE_VALUE,
@@ -16,9 +16,6 @@ import type * as P from 'postcss'
 
 const ESC_DIGIT = /\\3(\d)/g
 const ESC_COMMA = /\\2c /g
-const COMMAS_OUTSIDE_BRACKETS =
-  /,(?=(?:(?:(?!\)).)*\()|[^()]*$)(?=(?:(?:(?!]).)*\[)|[^[\]]*$)/g // eg: Avoid `:where(ul, ul)`
-const ARBITRARY_SELECTOR = /[.:]\[/
 
 function transformImportant(value: string, params: TransformDecl): string {
   if (params.passChecks === true) return value
@@ -54,12 +51,12 @@ function extractFromRule(
   params: ExtractRuleStyles
 ): [string, CssObject] {
   const selectorForUnescape = rule.selector
-    .replace(/\\{3}/g, '{{PRESERVED_DOUBLE_ESCAPE}}')
+    .replace(/\\{3}/g, '{{PRESERVED_ESCAPE}}')
     .replace(ESC_DIGIT, '$1') // Remove digit escaping
   const selector = unescape(selectorForUnescape)
     .replace(ESC_COMMA, ',') // Remove comma escaping
     .replace(LINEFEED, ' ')
-    .replace(/{{PRESERVED_DOUBLE_ESCAPE}}/g, '\\')
+    .replace(/{{PRESERVED_ESCAPE}}/g, '\\')
   return [selector, extractRuleStyles(rule.nodes, params)] as [
     string,
     CssObject
@@ -128,11 +125,17 @@ const ruleTypes = {
 
     params.debug('styles extracted', { selector, styles })
 
-    const selectorList = (
-      ARBITRARY_SELECTOR.test(selector)
-        ? [selector]
-        : selector.split(COMMAS_OUTSIDE_BRACKETS)
-    ).filter(s => params.selectorMatchReg?.test(s))
+    // As classes aren't used in css-in-js we split the selector into
+    // multiple selectors and strip the ones that don't affect the current
+    // element, eg: In `.this, .sub`, .sub is stripped as it has no target
+    const selectorList = [...splitAtTopLevelOnly(selector, ',')].filter(s => {
+      // Match the selector as a class
+      const result = params.selectorMatchReg?.test(s)
+      // Only keep selectors if they contain a `&` || aren’t
+      // targeting multiple elements with classes
+      if (!result && (s.includes('&') || !s.includes('.'))) return true
+      return result
+    })
 
     if (selectorList.length === 0) {
       params.debug('no selector match', selector, 'warn')

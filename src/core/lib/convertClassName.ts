@@ -4,7 +4,7 @@ import splitOnFirst from './util/splitOnFirst'
 import { splitAtTopLevelOnly } from './util/twImports'
 import type { CoreContext } from 'core/types'
 // eslint-disable-next-line import/no-relative-parent-imports
-import { SPACE_ID, SPACE_ID_TEMP_ALL } from '../constants'
+import { SPACE_ID, SPACES } from '../constants'
 
 const ARBITRARY_VARIANTS = /(?<=\[)(.+?)(?=]:)/g
 const ALL_COMMAS = /,/g
@@ -66,6 +66,7 @@ type ConvertClassNameParameters = {
   disableShortCss: CoreContext['twinConfig']['disableShortCss']
 } & Pick<CoreContext, 'theme' | 'assert' | 'debug' | 'isShortCssOnly'>
 
+// Convert a twin class to a tailwindcss friendly class
 function convertClassName(
   className: string,
   {
@@ -76,8 +77,8 @@ function convertClassName(
     debug,
   }: ConvertClassNameParameters
 ): string {
-  // Remove twins temporary space ids (added so variant groups can be expanded)
-  className = className.replace(SPACE_ID_TEMP_ALL, SPACE_ID)
+  // Convert spaces to class friendly underscores
+  className = className.replace(SPACES, SPACE_ID)
 
   // Move the bang to the front of the class
   if (className.endsWith('!')) {

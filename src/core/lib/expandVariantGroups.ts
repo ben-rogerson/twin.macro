@@ -1,10 +1,6 @@
 import { logGeneralError } from './logging'
-import {
-  SPACE,
-  SPACES,
-  SPACE_ID_TEMP,
-  // eslint-disable-next-line import/no-relative-parent-imports
-} from '../constants'
+// eslint-disable-next-line import/no-relative-parent-imports
+import { SPACE } from '../constants'
 
 function findRightBracket(
   classes: string,
@@ -53,9 +49,7 @@ function spreadVariantGroups(
     const [, variant, className, weird] = match
 
     if (variant) {
-      // Replace arbitrary variant spaces with a placeholder to avoid incorrect splitting
-      const spaceReplacedVariant = variant.replace(SPACES, SPACE_ID_TEMP)
-      context += spaceReplacedVariant
+      context += variant
 
       // Skip empty classes
       if (SPACE.test(classes[CLASS_PIECES.lastIndex])) {
@@ -110,17 +104,9 @@ function spreadVariantGroups(
         ? sliceToSpace(classes.slice(closeBracket + 1))
         : ''
 
-      // Convert spaces in classes to a temporary string so the css won't be
-      // split into multiple classes
-      const spaceReplacedClass = cssClass
-        // Normalize the spacing - single spaces only
-        // Replace spaces with the space id stand-in
-        // Remove newlines within the brackets to allow multiline values
-        .replace(SPACES, SPACE_ID_TEMP)
-
       results.push(
         context +
-          spaceReplacedClass +
+          cssClass +
           opacityValue +
           (importantGroup || importantContext ? '!' : '')
       )
