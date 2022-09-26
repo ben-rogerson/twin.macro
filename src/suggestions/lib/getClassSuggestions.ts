@@ -1,5 +1,5 @@
 import stringSimilarity from 'string-similarity'
-import type { TailwindConfig, ClassErrorContext } from 'suggestions/types'
+import type { ClassErrorContext } from 'suggestions/types'
 
 const RATING_MINIMUM = 0.2
 
@@ -8,14 +8,13 @@ type RateCandidate = [number, string, string]
 function rateCandidate(
   classData: [string, string],
   className: string,
-  matchee: string,
-  params: { tailwindConfig: TailwindConfig }
+  matchee: string
 ): RateCandidate | undefined {
   const [classEnd, value] = classData
 
   const candidate = `${[className, classEnd === 'DEFAULT' ? '' : classEnd]
     .filter(Boolean)
-    .join(params.tailwindConfig.separator)}`
+    .join('-')}`
 
   const rating = Number(stringSimilarity.compareTwoStrings(matchee, candidate))
   if (rating < RATING_MINIMUM) return
@@ -30,8 +29,7 @@ function rateCandidate(
 
 function extractCandidates(
   candidates: ClassErrorContext['candidates'],
-  matchee: string,
-  tailwindConfig: TailwindConfig
+  matchee: string
 ): RateCandidate[] {
   const results = [] as RateCandidate[]
 
@@ -41,17 +39,13 @@ function extractCandidates(
       if (options?.values) {
         // Dynamic classes like mt-xxx, bg-xxx
         for (const value of Object.entries(options?.values)) {
-          const rated = rateCandidate(value, className, matchee, {
-            tailwindConfig,
-          })
+          const rated = rateCandidate(value, className, matchee)
           // eslint-disable-next-line max-depth
           if (rated) results.push(rated)
         }
       } else {
         // Non-dynamic classes like fixed, block
-        const rated = rateCandidate(['', className], className, matchee, {
-          tailwindConfig,
-        })
+        const rated = rateCandidate(['', className], className, matchee)
         if (rated) results.push(rated)
       }
     }
@@ -66,11 +60,7 @@ export function getClassSuggestions(
 ): string {
   const { color } = context
 
-  const candidates = extractCandidates(
-    context.candidates,
-    matchee,
-    context.tailwindConfig
-  )
+  const candidates = extractCandidates(context.candidates, matchee)
 
   const errorText = `${context.color(
     `✕ ${context.color(matchee, 'errorLight')} was not found`,
