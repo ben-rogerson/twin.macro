@@ -2,11 +2,10 @@ import replaceThemeValue from './util/replaceThemeValue'
 import isShortCss from './util/isShortCss'
 import splitOnFirst from './util/splitOnFirst'
 import { splitAtTopLevelOnly } from './util/twImports'
-import type { CoreContext } from 'core/types'
+import type { CoreContext, TailwindConfig } from 'core/types'
 // eslint-disable-next-line import/no-relative-parent-imports
 import { SPACE_ID, SPACES } from '../constants'
 
-const ARBITRARY_VARIANTS = /(?<=\[)(.+?)(?=]:)/g
 const ALL_COMMAS = /,/g
 
 type ConvertShortCssToArbitraryPropertyParameters = {
@@ -117,11 +116,8 @@ function convertClassName(
   // Replace theme values throughout the class
   className = replaceThemeValue(className, { assert, theme })
 
-  // Add a parent selector if it's missing from the arbitrary variant
-  const arbitraryVariantsCount = className.match(ARBITRARY_VARIANTS)
-  className = className.replace(ARBITRARY_VARIANTS, (v, _, offset) =>
-    addParentSelector(v, offset, arbitraryVariantsCount)
-  )
+  // Add a parent selector if it's missing from an arbitrary variant
+  className = checkForMissingParentSelector(className, { tailwindConfig })
 
   debug('class after format', className)
 
@@ -132,11 +128,38 @@ function escapeCommas(className: string): string {
   return className.replace(ALL_COMMAS, '\\2c')
 }
 
+function checkForMissingParentSelector(
+  fullClassName: string,
+  { tailwindConfig }: { tailwindConfig: TailwindConfig }
+): string {
+  const splitArray = [
+    ...splitAtTopLevelOnly(fullClassName, tailwindConfig.separator ?? ':'),
+  ]
+
+  const variants = splitArray.slice(0, -1)
+  const className = splitArray.slice(-1)[0]
+
+  const arbitraryVariantsCount = variants.filter(
+    v => v.startsWith('[') && v.endsWith(']')
+  ).length
+  if (arbitraryVariantsCount === 0) return fullClassName
+
+  const variantsNew = variants.map((v, offset) => {
+    if (!(v.startsWith('[') && v.endsWith(']'))) return v
+
+    // Missing parent selector found
+    const unwrapped = v.slice(1, -1)
+    const added = addParentSelector(unwrapped, offset, arbitraryVariantsCount)
+    return `[${added}]`
+  })
+
+  return [...variantsNew, className].join(tailwindConfig.separator ?? ':')
+}
+
 function addParentSelector(
   value: string,
   offset: number,
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  arbitraryVariantsCount: string[] | null
+  arbitraryVariantsCount: number
 ): string {
   // Tailwindcss requires pre-encoded commas - unencoded are removed and we end up with an invalid selector
   const selector = escapeCommas(value)
@@ -145,10 +168,9 @@ function addParentSelector(
   // pseudo
   if (selector.startsWith(':')) return `&${selector}`
   // Selectors with multiple arbitrary variants are too hard to determine so follow a basic rule instead
-  if (arbitraryVariantsCount && arbitraryVariantsCount.length > 1)
-    return `&_${selector}`
+  if (arbitraryVariantsCount > 1) return `&_${selector}`
   // If the arbitrary variant is the first selector, add a parent selector
-  return offset === 1 ? `&_${selector}` : `${selector}_&`
+  return offset === 0 ? `&_${selector}` : `${selector}_&`
 }
 
 export default convertClassName
