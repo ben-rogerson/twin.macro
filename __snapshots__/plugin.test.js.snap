@@ -1008,6 +1008,8 @@ tw\`first:(bg-[black]/[.20] block)\`
 tw\`first:(bg-[black]/[.20] inline last:(bg-[black]/[.20] block))\`
 tw\`first:(block bg-[black]/[.20])\`
 
+tw\`md:(ml-4 [one]:( mt-5 [two]:(inline [three]:(inline))))!\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // @ts-nocheck
@@ -1225,6 +1227,20 @@ const nestedGroups = {
   ':first-child': {
     display: 'block',
     backgroundColor: 'rgb(0 0 0 / .20)',
+  },
+})
+;({
+  '@media (min-width: 768px)': {
+    marginLeft: '1rem !important',
+    'one &': {
+      marginTop: '1.25rem !important',
+    },
+    '& two one': {
+      display: 'inline !important',
+    },
+    '& three two one': {
+      display: 'inline !important',
+    },
   },
 })
 
@@ -4117,6 +4133,25 @@ tw\`[.sec section a[target="_blank"]]:block\` // < issue with _blank present in 
 tw\`[#blah, &.pre, & section,]:block\`
 tw\`[&.pre,& section,]:block\`
 
+tw\`[&>*]:underline\`
+tw\`[.a.b_&]:underline\`
+tw\`dark:lg:hover:[&>*]:underline\`
+tw\`[div]:underline\`
+tw\`[:hover]:underline\`
+tw\`[wtf-bbq]:underline\`
+tw\`[lol]:hover:underline\`
+tw\`underline lg:underline [&>*]:underline\`
+tw\`[@supports(what:ever)]:underline\`
+tw\`[@media_screen{@media(hover:hover)}]:underline\`
+tw\`[@media(hover:hover){&:hover}]:underline\`
+tw\`[&[data-open]]:underline\`
+//..
+tw\`[&_.foo\\\\_\\\\_bar]:underline\`
+tw\`[&_.foo\\\\_\\\\_bar]:[&_.bar\\\\_\\\\_baz]:underline\`
+tw\`[&_.foo\\\\_\\\\_bar]:hover:underline\`
+tw\`hover:[&_.foo\\\\_\\\\_bar]:underline\`
+tw\`[&[data-test='2']]:underline\`
+
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // @ts-nocheck
@@ -4332,6 +4367,104 @@ tw\`[&.pre,& section,]:block\`
 ;({
   '&.pre,& section': {
     display: 'block',
+  },
+})
+;({
+  '>*': {
+    textDecorationLine: 'underline',
+  },
+})
+;({
+  '.a.b &': {
+    textDecorationLine: 'underline',
+  },
+})
+;({
+  '@media (prefers-color-scheme: dark)': {
+    '@media (min-width: 1024px)': {
+      '>*:hover': {
+        textDecorationLine: 'underline',
+      },
+    },
+  },
+})
+;({
+  '& div': {
+    textDecorationLine: 'underline',
+  },
+})
+;({
+  ':hover': {
+    textDecorationLine: 'underline',
+  },
+})
+;({
+  '& wtf-bbq': {
+    textDecorationLine: 'underline',
+  },
+})
+;({
+  ':hover lol': {
+    textDecorationLine: 'underline',
+  },
+})
+;({
+  textDecorationLine: 'underline',
+  '@media (min-width: 1024px)': {
+    textDecorationLine: 'underline',
+  },
+  '>*': {
+    textDecorationLine: 'underline',
+  },
+})
+;({
+  '@supports (what:ever)': {
+    textDecorationLine: 'underline',
+  },
+})
+;({
+  '@media screen': {
+    '@media (hover:hover)': {
+      textDecorationLine: 'underline',
+    },
+  },
+})
+;({
+  '@media (hover:hover)': {
+    ':hover': {
+      textDecorationLine: 'underline',
+    },
+  },
+})
+;({
+  '&[data-open]': {
+    textDecorationLine: 'underline',
+  },
+}) //..
+
+;({
+  '& .foo__bar': {
+    textDecorationLine: 'underline',
+  },
+})
+;({
+  '& .bar__baz .foo__bar': {
+    textDecorationLine: 'underline',
+  },
+})
+;({
+  ':hover .foo__bar': {
+    textDecorationLine: 'underline',
+  },
+})
+;({
+  '& .foo__bar:hover': {
+    textDecorationLine: 'underline',
+  },
+})
+;({
+  "&[data-test='2']": {
+    textDecorationLine: 'underline',
   },
 })
 

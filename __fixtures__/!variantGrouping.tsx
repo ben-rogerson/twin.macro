@@ -37,3 +37,5 @@ tw`first:(bg-[black]/20 block)`
 tw`first:(bg-[black]/[.20] block)`
 tw`first:(bg-[black]/[.20] inline last:(bg-[black]/[.20] block))`
 tw`first:(block bg-[black]/[.20])`
+
+tw`md:(ml-4 [one]:( mt-5 [two]:(inline [three]:(inline))))!`

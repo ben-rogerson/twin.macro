@@ -21,6 +21,10 @@ const IMPORTANT_OUTSIDE_BRACKETS =
 const COMMENTS_MULTI_LINE = /(?<!\/)\/(?!\/)\*[\S\s]*?\*\//g
 const COMMENTS_SINGLE_LINE = /(?<!:)\/\/.*/g
 const CLASS_DIVIDER_PIPE = / \| /g
+const ALL_BRACKET_SQUARE_LEFT = /\[/g
+const ALL_BRACKET_SQUARE_RIGHT = /]/g
+const ALL_BRACKET_ROUND_LEFT = /\(/g
+const ALL_BRACKET_ROUND_RIGHT = /\)/g
 
 function getStylesFromMatches(
   matches: TailwindMatch[],
@@ -69,11 +73,25 @@ function validateClasses(
     tailwindConfig,
   }: { tailwindConfig: TailwindConfig; assert: CoreContext['assert'] }
 ): boolean {
+  // TOFIX: Avoid counting brackets within arbitrary values
   assert(
-    (classes.match(/\[/g) ?? []).length === (classes.match(/]/g) ?? []).length,
+    (classes.match(ALL_BRACKET_SQUARE_LEFT) ?? []).length ===
+      (classes.match(ALL_BRACKET_SQUARE_RIGHT) ?? []).length,
     ({ color }: AssertContext) =>
       `${color(
         `✕ Unbalanced square brackets found in classes:\n\n${color(
+          classes,
+          'errorLight'
+        )}`
+      )}`
+  )
+  // TOFIX: Avoid counting brackets within arbitrary values
+  assert(
+    (classes.match(ALL_BRACKET_ROUND_LEFT) ?? []).length ===
+      (classes.match(ALL_BRACKET_ROUND_RIGHT) ?? []).length,
+    ({ color }: AssertContext) =>
+      `${color(
+        `✕ Unbalanced round brackets found in classes:\n\n${color(
           classes,
           'errorLight'
         )}`
