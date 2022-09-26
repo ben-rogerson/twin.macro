@@ -11,17 +11,20 @@ const ALL_COMMAS = /,/g
 
 type ConvertShortCssToArbitraryPropertyParameters = {
   disableShortCss: CoreContext['twinConfig']['disableShortCss']
-} & Pick<CoreContext, 'assert' | 'isShortCssOnly'>
+} & Pick<CoreContext, 'tailwindConfig' | 'assert' | 'isShortCssOnly'>
 
 function convertShortCssToArbitraryProperty(
   className: string,
   {
+    tailwindConfig,
     assert,
     disableShortCss,
     isShortCssOnly,
   }: ConvertShortCssToArbitraryPropertyParameters
 ): string {
-  const splitArray = [...splitAtTopLevelOnly(className, ':')]
+  const splitArray = [
+    ...splitAtTopLevelOnly(className, tailwindConfig.separator ?? ':'),
+  ]
 
   const lastValue = splitArray.slice(-1)[0]
 
@@ -38,10 +41,10 @@ function convertShortCssToArbitraryProperty(
   const template = `${preSelector}[${[
     property,
     value === '' ? "''" : value,
-  ].join(':')}]`
+  ].join(tailwindConfig.separator ?? ':')}]`
   splitArray.splice(-1, 1, template)
 
-  const arbitraryProperty = splitArray.join(':')
+  const arbitraryProperty = splitArray.join(tailwindConfig.separator ?? ':')
 
   const isShortCssDisabled = disableShortCss && !isShortCssOnly
   assert(!isShortCssDisabled, ({ color }) =>
@@ -64,12 +67,16 @@ function convertShortCssToArbitraryProperty(
 
 type ConvertClassNameParameters = {
   disableShortCss: CoreContext['twinConfig']['disableShortCss']
-} & Pick<CoreContext, 'theme' | 'assert' | 'debug' | 'isShortCssOnly'>
+} & Pick<
+  CoreContext,
+  'tailwindConfig' | 'theme' | 'assert' | 'debug' | 'isShortCssOnly'
+>
 
 // Convert a twin class to a tailwindcss friendly class
 function convertClassName(
   className: string,
   {
+    tailwindConfig,
     theme,
     isShortCssOnly,
     disableShortCss,
@@ -84,10 +91,15 @@ function convertClassName(
   if (className.endsWith('!')) {
     debug('trailing bang found', className)
 
-    const splitArray = [...splitAtTopLevelOnly(className.slice(0, -1), ':')]
+    const splitArray = [
+      ...splitAtTopLevelOnly(
+        className.slice(0, -1),
+        tailwindConfig.separator ?? ':'
+      ),
+    ]
     // Place a ! before the class
     splitArray.splice(-1, 1, `!${splitArray[splitArray.length - 1]}`)
-    className = splitArray.join(':')
+    className = splitArray.join(tailwindConfig.separator ?? ':')
   }
 
   // Convert short css to an arbitrary property, eg: `[display:block]`
@@ -95,6 +107,7 @@ function convertClassName(
   if (isShortCss(className)) {
     debug('short css found', className)
     className = convertShortCssToArbitraryProperty(className, {
+      tailwindConfig,
       assert,
       disableShortCss,
       isShortCssOnly,

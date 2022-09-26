@@ -13,6 +13,7 @@ import type {
   AssertContext,
   TailwindMatch,
   TailwindContext,
+  TailwindConfig,
 } from './types'
 
 const IMPORTANT_OUTSIDE_BRACKETS =
@@ -63,7 +64,10 @@ function multilineReplaceWith(
 
 function validateClasses(
   classes: string,
-  { assert }: { assert: CoreContext['assert'] }
+  {
+    assert,
+    tailwindConfig,
+  }: { tailwindConfig: TailwindConfig; assert: CoreContext['assert'] }
 ): boolean {
   assert(
     (classes.match(/\[/g) ?? []).length === (classes.match(/]/g) ?? []).length,
@@ -78,7 +82,7 @@ function validateClasses(
 
   for (const className of splitAtTopLevelOnly(classes, ' ')) {
     assert(
-      !className.endsWith(':'),
+      !className.endsWith(tailwindConfig.separator ?? ':'),
       ({ color }: AssertContext) =>
         `${color(
           `✕ The variant ${String(
@@ -93,12 +97,15 @@ function validateClasses(
   return true
 }
 
-const tasks: Array<(classes: string) => string> = [
+const tasks: Array<
+  (classes: string, tailwindConfig: TailwindConfig) => string
+> = [
   (classes): string => classes.replace(CLASS_DIVIDER_PIPE, ' '),
   (classes): string =>
     classes.replace(COMMENTS_MULTI_LINE, multilineReplaceWith),
   (classes): string => classes.replace(COMMENTS_SINGLE_LINE, ''),
-  expandVariantGroups, // Expand grouped variants to individual classes
+  (classes, tailwindConfig): string =>
+    expandVariantGroups(classes, { tailwindConfig }), // Expand grouped variants to individual classes
 ]
 
 function bigSign(bigIntValue: bigint): number {
@@ -163,11 +170,14 @@ function getStyles(
       )}\n\nRead more at https://twinredirect.page.link/template-literals`
   )
 
-  const result = validateClasses(classes, { assert })
+  const result = validateClasses(classes, {
+    tailwindConfig: params.tailwindConfig,
+    assert,
+  })
   if (!result) return { styles: undefined, matched: [], unmatched: [] }
 
   for (const task of tasks) {
-    classes = task(classes)
+    classes = task(classes, params.tailwindConfig)
   }
 
   params.debug('classes after format', classes)
@@ -184,6 +194,7 @@ function getStyles(
 
   const convertedClassNameContext = {
     ...commonContext,
+    tailwindConfig: params.tailwindConfig,
     isShortCssOnly: params.isShortCssOnly,
     disableShortCss: params.twinConfig.disableShortCss,
   }

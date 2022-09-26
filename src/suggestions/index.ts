@@ -58,7 +58,9 @@ function getVariantSuggestions(
 function getClassError(rawClass: string, context: ClassErrorContext): string {
   const input = rawClass.replace(ALL_SPACE_IDS, ' ')
 
-  const classPieces = [...splitAtTopLevelOnly(input, ':')]
+  const classPieces = [
+    ...splitAtTopLevelOnly(input, context.tailwindConfig.separator ?? ':'),
+  ]
 
   for (const validator of validators) {
     const error = validator(classPieces, context)

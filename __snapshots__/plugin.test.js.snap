@@ -64856,6 +64856,25 @@ tw\`snap-proximity\`
 
 `;
 
+exports[`twin.macro separator.tsx: separator.tsx 1`] = `
+
+// @ts-nocheck
+import tw from './macro'
+
+tw\`[&[data-foo][data-bar]:not([data-baz])]__underline\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// @ts-nocheck
+;({
+  '&[data-foo][data-bar]:not([data-baz])': {
+    textDecorationLine: 'underline',
+  },
+})
+
+
+`;
+
 exports[`twin.macro sepia.tsx: sepia.tsx 1`] = `
 
 // @ts-nocheck

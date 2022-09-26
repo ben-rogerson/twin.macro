@@ -25,10 +25,7 @@ export function validateVariants(
     .filter(Boolean) as Array<[string, number]>
 
   const errorText = `${context.color(
-    `✕ Variant ${context.color(
-      `${variantMatch}:`,
-      'errorLight'
-    )} was not found`,
+    `✕ Variant ${context.color(`${variantMatch}`, 'errorLight')} was not found`,
     'error'
   )}`
 
@@ -37,7 +34,10 @@ export function validateVariants(
   const suggestions = results
     .sort(([, a]: [string, number], [, b]: [string, number]) => b - a)
     .slice(0, 4)
-    .map(([i]: [string, number]): string => `${i}:`)
+    .map(
+      ([i]: [string, number]): string =>
+        `${i}${context.tailwindConfig.separator ?? ':'}`
+    )
 
   const showMore = results.length > 2 && results[0][1] - results[1][1] < 0.1
 
