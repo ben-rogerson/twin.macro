@@ -66892,7 +66892,7 @@ styled('div', tw\`block\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { styled as _styled } from '__fixtures__/stitches/stitches.config.js'
+import { styled as _styled } from 'tests/__fixtures__/stitches/stitches.config.js'
 
 _styled('div', {
   display: 'block',
@@ -67184,8 +67184,8 @@ styled.div(tw\`block\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css as _css } from '__fixtures__/stitches/stitches.config.js'
-import { styled as _styled } from '__fixtures__/stitches/stitches.config.js'
+import { css as _css } from 'tests/__fixtures__/stitches/stitches.config.js'
+import { styled as _styled } from 'tests/__fixtures__/stitches/stitches.config.js'
 
 _css({
   display: 'block',
@@ -67228,7 +67228,7 @@ const Component = { Sub: () => [] }
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { styled as _styled } from '__fixtures__/stitches/stitches.config.js'
+import { styled as _styled } from 'tests/__fixtures__/stitches/stitches.config.js'
 
 const _TwComponent = _styled('div', {
   display: 'block',

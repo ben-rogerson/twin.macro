@@ -1,0 +1,4 @@
+{
+  "preset": "stitches",
+  "stitchesConfig": "tests/__fixtures__/stitches/stitches.config.js"
+}

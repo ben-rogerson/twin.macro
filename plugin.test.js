@@ -16,9 +16,9 @@ pluginTester({
   snapshot: true,
   tests: glob
     .sync([
-      '__fixtures__/**/*.tsx',
-      '!__fixtures__/**/*.config.js',
-      '!__fixtures__/**/*.config.ts',
+      'tests/__fixtures__/**/*.tsx',
+      '!tests/__fixtures__/**/*.config.js',
+      '!tests/__fixtures__/**/*.config.ts',
     ])
     .map(file => ({
       title: path.basename(file),
