@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro' // twinImport
+import tw from '../macro' // twinImport
 
 tw`border-t`
 tw`border-r`

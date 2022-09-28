@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw`before:valid:rtl:motion-safe:contrast-more:dark:print:portrait:any-pointer-fine:block`
 

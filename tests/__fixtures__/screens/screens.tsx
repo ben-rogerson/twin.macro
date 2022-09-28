@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw`sm:block`
 tw`md:block`

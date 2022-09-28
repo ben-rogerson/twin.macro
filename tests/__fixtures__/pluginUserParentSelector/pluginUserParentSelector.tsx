@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw`my-class1`
 tw`my-class2`

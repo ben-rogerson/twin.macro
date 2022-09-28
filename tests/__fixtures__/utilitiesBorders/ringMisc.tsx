@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // Combined ring classes
 tw`ring ring-inset ring-purple-500 ring-offset-black ring-offset-4 ring-opacity-50`

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro' // twinImport
+import tw from '../macro' // twinImport
 
 // Css prop isn't handled by twin
 tw.div`block`

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 const SkipEmptyClassName = <div className="" />
 const OnlyUppercaseConverted = <div className="uppercase spare-class" />

@@ -1,4 +1,4 @@
 // @ts-nocheck
-import './macro' // twinImport
+import '../macro' // twinImport
 ;<div css="" />
 ;<div className="" />

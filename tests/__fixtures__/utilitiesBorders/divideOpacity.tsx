@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/divide-opacity
 // Deprecated in favor of slash opacity syntax

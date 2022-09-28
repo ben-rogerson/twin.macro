@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { GlobalStyles } from './macro'
+import { GlobalStyles } from '../macro'
 import { css, Global } from '@emotion/react'
 
 const MyGlobals = () => (

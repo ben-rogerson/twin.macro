@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw, { globalStyles } from './macro'
+import tw, { globalStyles } from '../macro'
 
 tw`content-auto`
 tw`content-hidden`

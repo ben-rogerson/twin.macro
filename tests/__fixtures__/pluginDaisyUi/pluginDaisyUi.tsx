@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { globalStyles } from './macro'
+import { globalStyles } from '../macro'
 
 globalStyles
 ;() => (

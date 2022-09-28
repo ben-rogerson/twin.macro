@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw`flex-gap-0`
 tw`flex-gap-3`

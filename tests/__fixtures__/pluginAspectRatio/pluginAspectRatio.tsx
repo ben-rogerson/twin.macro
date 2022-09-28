@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw`aspect-w-1`
 tw`aspect-h-1`

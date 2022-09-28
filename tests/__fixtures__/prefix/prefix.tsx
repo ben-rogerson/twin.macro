@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // tw prop prefix
 ;<div tw="tw-text-black" />

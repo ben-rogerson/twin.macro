@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw`[mask-image:linear-gradient(180deg,white, rgba(255,255,255,0))]`
 tw`[-webkit-property:bg-black]`

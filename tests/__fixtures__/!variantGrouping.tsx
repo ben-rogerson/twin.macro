@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 const basic = tw`group-hover:(flex m-10)`
 const subMediaQuery = tw`focus-within:(md:flex mt-5)`

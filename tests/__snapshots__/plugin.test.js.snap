@@ -3,7 +3,7 @@
 exports[`twin.macro !general.tsx: !general.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 /**
  * Misc usage tests
@@ -88,7 +88,7 @@ const plainVariable = \`bg-\${plainConditional}-500\`
 exports[`twin.macro !important.tsx: !important.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 const Box = tw.div\`text-red-500\`
 
@@ -339,7 +339,7 @@ const JsxPlaceholderImportantPrefix = () => (
 exports[`twin.macro !imports.tsx: !imports.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme, styled, css, GlobalStyles } from './macro'
+import tw, { theme, styled, css, GlobalStyles } from '../macro'
 
 const twPropertyTest = <div tw="text-purple-500" />
 
@@ -764,7 +764,7 @@ const Component = {
 exports[`twin.macro !namelessImport.tsx: !namelessImport.tsx 1`] = `
 
 // @ts-nocheck
-import './macro'
+import '../macro'
 
 const twPropertyString = <div tw="text-purple-500" />
 const twPropertyExpression = <div tw={'text-purple-500'} />
@@ -795,7 +795,7 @@ const twPropertyExpression = (
 exports[`twin.macro !ordering.tsx: !ordering.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // Test the screen ordering - they are ordered by screens in tailwind.config.js
 tw.div\`xl:bg-red-500 lg:bg-blue-500 bg-green-500 fill-current md:bg-pink-500 sm:bg-green-500 sm:text-yellow-500 hidden\`
@@ -844,7 +844,7 @@ _styled.div({
 exports[`twin.macro !properties.tsx: !properties.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 const Component1 = () => <div tw="uppercase" />
 
@@ -969,7 +969,7 @@ const Component7 = () => (
 exports[`twin.macro !variantGrouping.tsx: !variantGrouping.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 const basic = tw\`group-hover:(flex m-10)\`
 const subMediaQuery = tw\`focus-within:(md:flex mt-5)\`
@@ -1250,7 +1250,7 @@ const nestedGroups = {
 exports[`twin.macro !variants.tsx: !variants.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // Pseudo element variants
 tw\`first-letter:block\`
@@ -2083,7 +2083,7 @@ tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
 exports[`twin.macro accentColor.tsx: accentColor.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/accent-color
 theme\`accentColor\`
@@ -3300,7 +3300,7 @@ tw\`accent-[any:red]\`
 exports[`twin.macro addBase.tsx: addBase.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { GlobalStyles, globalStyles } from './macro'
+import tw, { GlobalStyles, globalStyles } from '../macro'
 
 tw\`base-selector\`
 ;<GlobalStyles />
@@ -3831,7 +3831,7 @@ img, video {
 exports[`twin.macro alignContent.tsx: alignContent.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/align-content
 tw\`content-center\`
@@ -3870,7 +3870,7 @@ tw\`content-evenly\`
 exports[`twin.macro alignItems.tsx: alignItems.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/align-items
 tw\`items-start\`
@@ -3905,7 +3905,7 @@ tw\`items-stretch\`
 exports[`twin.macro alignSelf.tsx: alignSelf.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/align-self
 tw\`self-auto\`
@@ -3944,7 +3944,7 @@ tw\`self-baseline\`
 exports[`twin.macro animation.tsx: animation.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/animation
 theme\`animation\`
@@ -4019,7 +4019,7 @@ tw\`animate-[wiggle 1s ease-in-out infinite]\`
 exports[`twin.macro appearance.tsx: appearance.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/appearance
 tw\`appearance-none\`
@@ -4038,7 +4038,7 @@ tw\`appearance-none\`
 exports[`twin.macro arbitraryProperties.tsx: arbitraryProperties.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`[mask-image:linear-gradient(180deg,white, rgba(255,255,255,0))]\`
 tw\`[-webkit-property:bg-black]\`
@@ -4083,7 +4083,7 @@ tw\`[content:'—']\`
 exports[`twin.macro arbitraryVariants.tsx: arbitraryVariants.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`[section]:hover:block\`
 
@@ -4474,7 +4474,7 @@ tw\`[&[data-test='2']]:underline\`
 exports[`twin.macro aspectRatio.tsx: aspectRatio.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/aspect-ratio
 theme\`aspectRatio\`
@@ -4512,7 +4512,7 @@ tw\`aspect-[4/3]\`
 exports[`twin.macro autoCssProp.tsx: autoCssProp.tsx 1`] = `
 
 // @ts-nocheck
-import './macro' // twinImport
+import '../macro' // twinImport
 
 // Css prop isn't handled by twin
 ;<div css="" />
@@ -4530,7 +4530,7 @@ import './macro' // twinImport
 exports[`twin.macro autoCssProp.tsx: autoCssProp.tsx 2`] = `
 
 // @ts-nocheck
-import './macro' // twinImport
+import '../macro' // twinImport
 ;<div css="" />
 ;<div className="" />
 
@@ -4546,7 +4546,7 @@ import './macro' // twinImport
 exports[`twin.macro autoCssProp.tsx: autoCssProp.tsx 3`] = `
 
 // @ts-nocheck
-import './macro' // twinImport
+import '../macro' // twinImport
 ;<div css="" />
 ;<div className="" />
 
@@ -4562,7 +4562,7 @@ import './macro' // twinImport
 exports[`twin.macro autoCssPropWithStyled.tsx: autoCssPropWithStyled.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro' // twinImport
+import tw from '../macro' // twinImport
 
 // Css prop isn't handled by twin
 tw.div\`block\`
@@ -4601,7 +4601,7 @@ const Test = _styled.div({})
 exports[`twin.macro autoCssPropWithStyled.tsx: autoCssPropWithStyled.tsx 2`] = `
 
 // @ts-nocheck
-import tw from './macro' // twinImport
+import tw from '../macro' // twinImport
 
 tw.div\`block\`
 ;<div tw="block" />
@@ -4638,7 +4638,7 @@ const Test = _styled.div({})
 exports[`twin.macro backdropBlur.tsx: backdropBlur.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/backdrop-blur
 theme\`backdropBlur.\`
@@ -4721,7 +4721,7 @@ tw\`backdrop-blur-[2px]\`
 exports[`twin.macro backdropBrightness.tsx: backdropBrightness.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/backdrop-brightness
 theme\`brightness\`
@@ -4824,7 +4824,7 @@ tw\`brightness-[1.75]\`
 exports[`twin.macro backdropContrast.tsx: backdropContrast.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/backdrop-contrast
 theme\`backdropContrast\`
@@ -4899,7 +4899,7 @@ tw\`backdrop-contrast-[.25]\`
 exports[`twin.macro backdropGrayscale.tsx: backdropGrayscale.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/backdrop-grayscale
 theme\`backdropGrayscale.\`
@@ -4939,7 +4939,7 @@ tw\`backdrop-grayscale-[.5]\`
 exports[`twin.macro backdropHueRotate.tsx: backdropHueRotate.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/backdrop-hue-rotate
 theme\`backdropHueRotate\`
@@ -5050,7 +5050,7 @@ tw\`-backdrop-hue-rotate-[270deg]\`
 exports[`twin.macro backdropInvert.tsx: backdropInvert.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/backdrop-invert
 theme\`backdropInvert.\`
@@ -5090,7 +5090,7 @@ tw\`backdrop-invert-[.25]\`
 exports[`twin.macro backdropOpacity.tsx: backdropOpacity.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/backdrop-opacity
 theme\`backdropOpacity\`
@@ -5221,7 +5221,7 @@ tw\`backdrop-opacity-[.15]\`
 exports[`twin.macro backdropSaturate.tsx: backdropSaturate.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/backdrop-saturate
 theme\`backdropSaturate\`
@@ -5282,7 +5282,7 @@ tw\`backdrop-saturate-[.25]\`
 exports[`twin.macro backdropSepia.tsx: backdropSepia.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/backdrop-sepia
 theme\`backdropSepia.\`
@@ -5322,7 +5322,7 @@ tw\`backdrop-sepia-[.25]\`
 exports[`twin.macro backgroundAttachment.tsx: backgroundAttachment.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/background-attachment
 tw\`bg-fixed\`
@@ -5349,7 +5349,7 @@ tw\`bg-scroll\`
 exports[`twin.macro backgroundBlendMode.tsx: backgroundBlendMode.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/background-blend-mode
 tw\`bg-blend-normal\`
@@ -5428,7 +5428,7 @@ tw\`bg-blend-luminosity\`
 exports[`twin.macro backgroundClip.tsx: backgroundClip.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/background-clip
 tw\`bg-clip-border\`
@@ -5459,7 +5459,7 @@ tw\`bg-clip-text\`
 exports[`twin.macro backgroundColor.tsx: backgroundColor.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/background-color
 theme\`backgroundColor\`
@@ -6966,7 +6966,7 @@ tw\`bg-[color:custom]\`
 exports[`twin.macro backgroundImage.tsx: backgroundImage.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/background-image
 theme\`backgroundImage\`
@@ -7036,7 +7036,7 @@ tw\`bg-[image:custom]\`
 exports[`twin.macro backgroundOpacity.tsx: backgroundOpacity.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/background-opacity
 tw\`bg-sky-500/100\`
@@ -7137,7 +7137,7 @@ tw\`bg-opacity-[var(--value)]\`
 exports[`twin.macro backgroundOrigin.tsx: backgroundOrigin.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/background-origin
 tw\`bg-origin-border\`
@@ -7164,7 +7164,7 @@ tw\`bg-origin-content\`
 exports[`twin.macro backgroundPosition.tsx: backgroundPosition.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/background-position
 tw\`bg-bottom\`
@@ -7228,7 +7228,7 @@ tw\`bg-[center top 1rem]\`
 exports[`twin.macro backgroundRepeat.tsx: backgroundRepeat.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/background-repeat
 theme\`backgroundPosition\`
@@ -7280,7 +7280,7 @@ tw\`bg-repeat-space\`
 exports[`twin.macro backgroundSize.tsx: backgroundSize.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/background-size
 theme\`backgroundSize\`
@@ -7319,7 +7319,7 @@ tw\`bg-[length:var(--value)]\`
 exports[`twin.macro blur.tsx: blur.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/blur
 theme\`blur.\`
@@ -7402,7 +7402,7 @@ tw\`blur-[2px]\`
 exports[`twin.macro borderCollapse.tsx: borderCollapse.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/border-collapse
 tw\`border-collapse\`
@@ -7425,7 +7425,7 @@ tw\`border-separate\`
 exports[`twin.macro borderColor.tsx: borderColor.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/border-color
 theme\`borderColor.\`
@@ -16189,7 +16189,7 @@ tw\`border-y-[color:rgba(255, 255, 255, .45)]\`
 exports[`twin.macro borderOpacity.tsx: borderOpacity.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/border-opacity
 // Deprecated
@@ -16266,7 +16266,7 @@ tw\`border-opacity-100\`
 exports[`twin.macro borderRadius.tsx: borderRadius.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/border-radius
 theme\`borderRadius.\`
@@ -16637,7 +16637,7 @@ tw\`rounded-tr-[var(--radius)] rounded-br-[var(--radius)] rounded-bl-[var(--radi
 exports[`twin.macro borderSpacing.tsx: borderSpacing.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/border-spacing
 theme\`borderSpacing\`
@@ -17251,7 +17251,7 @@ tw\`border-spacing-y-96\`
 exports[`twin.macro borderStyle.tsx: borderStyle.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/border-style
 tw\`border-solid\`
@@ -17290,7 +17290,7 @@ tw\`border-none\`
 exports[`twin.macro borderWidth.tsx: borderWidth.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/border-width
 theme\`borderWidth.\`
@@ -17508,7 +17508,7 @@ tw\`border-[length:10px]\`
 exports[`twin.macro boxDecorationBreak.tsx: boxDecorationBreak.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/box-decoration-break
 tw\`decoration-clone\`
@@ -17539,7 +17539,7 @@ tw\`box-decoration-slice\`
 exports[`twin.macro boxShadow.tsx: boxShadow.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/box-shadow
 theme\`boxShadow.\`
@@ -17638,7 +17638,7 @@ tw\`shadow-[0 35px 60px -15px rgba(0,0,0,0.3)]\`
 exports[`twin.macro boxShadowColor.tsx: boxShadowColor.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/box-shadow-color
 theme\`boxShadowColor\`
@@ -19079,7 +19079,7 @@ tw\`shadow-[shadow:#50d71e]\`
 exports[`twin.macro boxSizing.tsx: boxSizing.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/box-sizing
 tw\`box-border\`
@@ -19102,7 +19102,7 @@ tw\`box-content\`
 exports[`twin.macro breakAfter.tsx: breakAfter.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/break-after
 tw\`break-after-auto\`
@@ -19149,7 +19149,7 @@ tw\`break-after-column\`
 exports[`twin.macro breakBefore.tsx: breakBefore.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/break-before
 tw\`break-before-auto\`
@@ -19196,7 +19196,7 @@ tw\`break-before-column\`
 exports[`twin.macro breakInside.tsx: breakInside.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/break-inside
 tw\`break-inside-auto\`
@@ -19227,7 +19227,7 @@ tw\`break-inside-avoid-column\`
 exports[`twin.macro brightness.tsx: brightness.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/brightness
 theme\`brightness\`
@@ -19336,7 +19336,7 @@ tw\`brightness-[1.75]\`
 exports[`twin.macro caretColor.tsx: caretColor.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/caret-color
 theme\`caretColor\`
@@ -20606,7 +20606,7 @@ tw\`caret-[any:blah]\`
 exports[`twin.macro clear.tsx: clear.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/clear
 tw\`clear-left\`
@@ -20637,7 +20637,7 @@ tw\`clear-none\`
 exports[`twin.macro colorFunctions.tsx: colorFunctions.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { GlobalStyles } from './macro' // twinImport
+import tw, { GlobalStyles } from '../macro' // twinImport
 
 tw\`text-foreground text-opacity-40\`
 tw\`text-gray-300\`
@@ -20902,7 +20902,7 @@ img, video {
 exports[`twin.macro columns.tsx: columns.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/columns
 theme\`columns\`
@@ -21056,7 +21056,7 @@ tw\`columns-[10rem]\`
 exports[`twin.macro comments.tsx: comments.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 /**
  * Test comments
@@ -21201,7 +21201,7 @@ hum
 exports[`twin.macro config.tsx: config.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 /**
  * Test the config matching is working correctly
@@ -21358,7 +21358,7 @@ tw\`font-customFontWeightAsNumber\`
 exports[`twin.macro container.tsx: container.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/container
 theme\`container\`
@@ -21479,7 +21479,7 @@ tw\`md:container md:mx-auto\`
 exports[`twin.macro content.tsx: content.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/content
 theme\`content\`
@@ -21565,7 +21565,7 @@ tw\`peer-focus:before:block\`
 exports[`twin.macro contrast.tsx: contrast.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/contrast
 theme\`contrast\`
@@ -21646,7 +21646,7 @@ tw\`contrast-[-.25]\`
 exports[`twin.macro cursor.tsx: cursor.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/cursor
 theme\`cursor\`
@@ -21850,7 +21850,7 @@ tw\`cursor-[url(hand.cur), pointer]\`
 exports[`twin.macro darkLightModeArray.tsx: darkLightModeArray.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro' // twinImport
+import tw from '../macro' // twinImport
 
 tw\`dark:block\`
 tw\`light:block\`
@@ -21876,7 +21876,7 @@ tw\`light:block\`
 exports[`twin.macro directionalBorders.tsx: directionalBorders.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro' // twinImport
+import tw from '../macro' // twinImport
 
 tw\`border-t\`
 tw\`border-r\`
@@ -21984,7 +21984,7 @@ tw\`border-l-4\`
 exports[`twin.macro display.tsx: display.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/display
 tw\`block\`
@@ -22079,7 +22079,7 @@ tw\`hidden\`
 exports[`twin.macro divideColor.tsx: divideColor.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/divide-color
 theme\`divideColor.\`
@@ -23976,7 +23976,7 @@ tw\`divide-[color:blue]\`
 exports[`twin.macro divideOpacity.tsx: divideOpacity.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/divide-opacity
 // Deprecated in favor of slash opacity syntax
@@ -24083,7 +24083,7 @@ tw\`divide-opacity-100\`
 exports[`twin.macro divideStyle.tsx: divideStyle.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/divide-style
 tw\`divide-solid\`
@@ -24128,7 +24128,7 @@ tw\`divide-none\`
 exports[`twin.macro divideWidth.tsx: divideWidth.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/divide-width
 theme\`divideWidth.\`
@@ -24295,7 +24295,7 @@ tw\`divide-y-[length:3px]\`
 exports[`twin.macro dropShadow.tsx: dropShadow.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/drop-shadow
 theme\`dropShadow\`
@@ -24374,7 +24374,7 @@ tw\`drop-shadow-[0 35px 35px rgba(0, 0, 0, 0.25)]\`
 exports[`twin.macro fill.tsx: fill.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/fill
 theme\`fill\`
@@ -25659,7 +25659,7 @@ tw\`fill-[theme('colors.electric')]/20\`
 exports[`twin.macro flex.tsx: flex.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/flex
 theme\`flex\`
@@ -25707,7 +25707,7 @@ tw\`flex-[var(--flex)]\`
 exports[`twin.macro flexBasis.tsx: flexBasis.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/flex-basis
 theme\`flexBasis\`
@@ -26046,7 +26046,7 @@ tw\`basis-[14.2857143%]\`
 exports[`twin.macro flexDirection.tsx: flexDirection.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/flex-direction
 tw\`flex-row\`
@@ -26077,7 +26077,7 @@ tw\`flex-col-reverse\`
 exports[`twin.macro flexGrow.tsx: flexGrow.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/flex-grow
 theme\`flexGrow.\`
@@ -26125,7 +26125,7 @@ tw\`flex-grow-[var(--grow)]\` // Deprecated
 exports[`twin.macro flexShrink.tsx: flexShrink.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/flex-shrink
 theme\`flexShrink.\`
@@ -26174,7 +26174,7 @@ tw\`shrink-[var(--shrink)]\`
 exports[`twin.macro flexWrap.tsx: flexWrap.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/flex-wrap
 tw\`flex-wrap\`
@@ -26201,7 +26201,7 @@ tw\`flex-nowrap\`
 exports[`twin.macro float.tsx: float.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/float
 tw\`float-right\`
@@ -26228,7 +26228,7 @@ tw\`float-none\`
 exports[`twin.macro fluidContainer.tsx: fluidContainer.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`fluid-container ml-10\`
 
@@ -26271,7 +26271,7 @@ tw\`fluid-container ml-10\`
 exports[`twin.macro fontFamily.tsx: fontFamily.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/font-family
 tw\`font-sans\`
@@ -26314,7 +26314,7 @@ tw\`font-[family-name:'this and that', this]\`
 exports[`twin.macro fontSize.tsx: fontSize.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/font-size
 theme\`fontSize\`
@@ -26499,7 +26499,7 @@ tw\`text-3xl\`
 exports[`twin.macro fontSmoothing.tsx: fontSmoothing.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/font-smoothing
 tw\`antialiased\`
@@ -26524,7 +26524,7 @@ tw\`subpixel-antialiased\`
 exports[`twin.macro fontStyle.tsx: fontStyle.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/font-style
 tw\`italic\`
@@ -26547,7 +26547,7 @@ tw\`not-italic\`
 exports[`twin.macro fontVariantNumeric.tsx: fontVariantNumeric.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/font-variant-numeric
 tw\`normal-nums\`
@@ -26614,7 +26614,7 @@ tw\`stacked-fractions\`
 exports[`twin.macro fontWeight.tsx: fontWeight.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/font-weight
 tw\`font-thin\`
@@ -26674,7 +26674,7 @@ tw\`font-[number:medium]\`
 exports[`twin.macro gap.tsx: gap.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/gap
 theme\`gap\`
@@ -27113,7 +27113,7 @@ tw\`gap-y-[2.75rem]\`
 exports[`twin.macro globalStyles.tsx: globalStyles.tsx 1`] = `
 
 // @ts-nocheck
-import { GlobalStyles } from './macro'
+import { GlobalStyles } from '../macro'
 import { css, Global } from '@emotion/react'
 
 const MyGlobals = () => (
@@ -27439,7 +27439,7 @@ const MyGlobals = () => (
 exports[`twin.macro gradientColorStops.tsx: gradientColorStops.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/gradient-color-stops
 theme\`gradientColorStops\`
@@ -31595,7 +31595,7 @@ tw\`to-[theme('colors.electric')]\`
 exports[`twin.macro grayscale.tsx: grayscale.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/grayscale
 theme\`grayscale.\`
@@ -31635,7 +31635,7 @@ tw\`grayscale-[50%]\`
 exports[`twin.macro gridAutoColumns.tsx: gridAutoColumns.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/grid-auto-columns
 theme\`gridAutoColumns\`
@@ -31689,7 +31689,7 @@ tw\`lg:grid-cols-[200px,repeat(auto-fill,minmax(15%,100px)),300px]\`
 exports[`twin.macro gridAutoFlow.tsx: gridAutoFlow.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/grid-auto-flow
 tw\`grid-flow-row\`
@@ -31720,7 +31720,7 @@ tw\`grid-flow-col-dense\`
 exports[`twin.macro gridAutoRows.tsx: gridAutoRows.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/grid-auto-rows
 theme\`gridAutoRows\`
@@ -31764,7 +31764,7 @@ tw\`grid-rows-[200px, repeat(auto-fill, minmax(15%, 100px)), 300px]\`
 exports[`twin.macro gridColumn.tsx: gridColumn.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/grid-column
 theme\`gridColumn\`
@@ -31979,7 +31979,7 @@ tw\`col-start-[7]\`
 exports[`twin.macro gridRow.tsx: gridRow.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/grid-row
 theme\`gridRow\`
@@ -32119,7 +32119,7 @@ tw\`row-start-[7]\`
 exports[`twin.macro gridTemplateColumns.tsx: gridTemplateColumns.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/grid-template-columns
 theme\`gridTemplateColumns\`
@@ -32208,7 +32208,7 @@ tw\`grid-cols-[200px minmax(900px, 1fr) 100px]\`
 exports[`twin.macro gridTemplateRows.tsx: gridTemplateRows.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/grid-template-rows
 theme\`gridTemplateRows\`
@@ -32267,7 +32267,7 @@ tw\`grid-rows-[200px minmax(900px, 1fr) 100px]\`
 exports[`twin.macro group.tsx: group.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // Positional
 tw\`group-first:block\`
@@ -32798,7 +32798,7 @@ tw\`group-not-odd-of-type:block\`
 exports[`twin.macro height.tsx: height.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/height
 theme\`height\`
@@ -33123,7 +33123,7 @@ tw\`h-[calc(100%-theme("spacing.16"))]\`
 exports[`twin.macro hueRotate.tsx: hueRotate.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/hue-rotate
 theme\`hueRotate\`
@@ -33227,7 +33227,7 @@ tw\`hue-rotate-[270deg]\`
 exports[`twin.macro includeClassNames.tsx: includeClassNames.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 const SkipEmptyClassName = <div className="" />
 const OnlyUppercaseConverted = <div className="uppercase spare-class" />
@@ -33750,7 +33750,7 @@ const CssThenTwThenClassNameThenCs = (
 exports[`twin.macro invert.tsx: invert.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/invert
 theme\`invert.\`
@@ -33790,7 +33790,7 @@ tw\`invert-[.25]\`
 exports[`twin.macro isolation.tsx: isolation.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/isolation
 tw\`isolate\`
@@ -33813,7 +33813,7 @@ tw\`isolation-auto\`
 exports[`twin.macro justifyContent.tsx: justifyContent.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/justify-content
 tw\`justify-start\`
@@ -33852,7 +33852,7 @@ tw\`justify-evenly\`
 exports[`twin.macro justifyItems.tsx: justifyItems.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/justify-items
 tw\`justify-items-start\`
@@ -33883,7 +33883,7 @@ tw\`justify-items-stretch\`
 exports[`twin.macro justifySelf.tsx: justifySelf.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/justify-self
 tw\`justify-self-auto\`
@@ -33918,7 +33918,7 @@ tw\`justify-self-stretch\`
 exports[`twin.macro letterSpacing.tsx: letterSpacing.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/letter-spacing
 theme\`letterSpacing\`
@@ -34009,7 +34009,7 @@ tw\`tracking-[.25em]\`
 exports[`twin.macro lineHeight.tsx: lineHeight.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/line-height
 theme\`lineHeight\`
@@ -34107,7 +34107,7 @@ tw\`leading-[var(--leading)]\`
 exports[`twin.macro listStylePosition.tsx: listStylePosition.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/list-style-position
 tw\`list-inside\`
@@ -34130,7 +34130,7 @@ tw\`list-outside\`
 exports[`twin.macro listStyleType.tsx: listStyleType.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/list-style-type
 theme\`listStyleType\`
@@ -34177,7 +34177,7 @@ tw\`list-[var(--value)]\`
 exports[`twin.macro margin.tsx: margin.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/margin
 theme\`margin\`
@@ -36403,7 +36403,7 @@ tw\`!-mt-4\`
 exports[`twin.macro maxHeight.tsx: maxHeight.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/max-height
 theme\`maxHeight\`
@@ -36627,7 +36627,7 @@ tw\`max-h-[32rem]\`
 exports[`twin.macro maxWidth.tsx: maxWidth.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/max-width
 theme\`maxWidth\`
@@ -36766,7 +36766,7 @@ tw\`max-w-[50%]\`
 exports[`twin.macro minHeight.tsx: minHeight.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/min-height
 theme\`minHeight\`
@@ -36840,7 +36840,7 @@ tw\`max-h-[var(--height)]\`
 exports[`twin.macro minWidth.tsx: minWidth.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/min-width
 theme\`minWidth\`
@@ -36909,7 +36909,7 @@ tw\`max-w-[var(--width)]\`
 exports[`twin.macro misc.tsx: misc.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/filter
 tw\`filter-none\`
@@ -36981,7 +36981,7 @@ tw\`backdrop-filter backdrop-blur-2xl backdrop-brightness-50 backdrop-contrast-5
 exports[`twin.macro misc.tsx: misc.tsx 2`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // Test the transform ordering - 'transform' should be moved to the start
 // https://github.com/ben-rogerson/twin.macro/issues/363
@@ -37018,7 +37018,7 @@ tw\`translate-y-2 mt-5 md:(skew-y-6 transform) mb-5\`
 exports[`twin.macro misc.tsx: misc.tsx 3`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // Test the transition ordering - 'transition' should be moved to the start
 // https://github.com/ben-rogerson/twin.macro/issues/363
@@ -37054,7 +37054,7 @@ tw\`mt-5 md:(ml-5 ease-in transition) mb-5\`
 exports[`twin.macro misc.tsx: misc.tsx 4`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // col-span-x should always be moved to the start
 // https://github.com/ben-rogerson/twin.macro/issues/363
@@ -37133,7 +37133,7 @@ tw\`col-start-3 mt-4 md:(mt-3 col-span-3) mb-4 col-end-3 col-span-3\`
 exports[`twin.macro mixBlendMode.tsx: mixBlendMode.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/mix-blend-mode
 tw\`mix-blend-normal\`
@@ -37216,7 +37216,7 @@ tw\`mix-blend-plus-lighter\`
 exports[`twin.macro negative.tsx: negative.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`-z-1\`
 tw\`-z-10\`
@@ -37244,7 +37244,7 @@ tw\`-inset-10\`
 exports[`twin.macro objectFit.tsx: objectFit.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/object-fit
 tw\`object-contain\`
@@ -37279,7 +37279,7 @@ tw\`object-scale-down\`
 exports[`twin.macro objectPosition.tsx: objectPosition.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/object-position
 theme\`objectPosition\`
@@ -37352,7 +37352,7 @@ tw\`object-[var(--position)]\`
 exports[`twin.macro opacity.tsx: opacity.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/opacity
 theme\`opacity\`
@@ -37455,7 +37455,7 @@ tw\`opacity-[var(--opacity)]\`
 exports[`twin.macro order.tsx: order.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/order
 theme\`order\`
@@ -37554,7 +37554,7 @@ tw\`order-[13]\`
 exports[`twin.macro outlineColor.tsx: outlineColor.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/outline-color
 theme\`outlineColor\`
@@ -38790,7 +38790,7 @@ tw\`outline outline-dashed outline-none outline-black outline-4 outline-offset-2
 exports[`twin.macro outlineOffset.tsx: outlineOffset.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/outline-offset
 theme\`outlineOffset\`
@@ -38839,7 +38839,7 @@ tw\`outline-offset-[3px]\`
 exports[`twin.macro outlineStyle.tsx: outlineStyle.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/outline-style
 tw\`outline\`
@@ -38879,7 +38879,7 @@ tw\`outline-hidden\`
 exports[`twin.macro outlineWidth.tsx: outlineWidth.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/outline-width
 theme\`outlineWidth\`
@@ -38934,7 +38934,7 @@ tw\`outline-[5px]\`
 exports[`twin.macro overflow.tsx: overflow.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/overflow
 tw\`overflow-auto\`
@@ -39009,7 +39009,7 @@ tw\`overflow-y-scroll\`
 exports[`twin.macro overscrollBehavior.tsx: overscrollBehavior.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/overscroll-behavior
 tw\`overscroll-auto\`
@@ -39060,7 +39060,7 @@ tw\`overscroll-x-none\`
 exports[`twin.macro padding.tsx: padding.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/padding
 theme\`padding\`
@@ -40181,7 +40181,7 @@ tw\`p-[var(--app-padding)]\`
 exports[`twin.macro peers.tsx: peers.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // Positional
 tw\`peer-first:block\`
@@ -40712,7 +40712,7 @@ tw\`peer-not-odd-of-type:block\`
 exports[`twin.macro placeContent.tsx: placeContent.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/place-content
 tw\`place-content-center\`
@@ -40755,7 +40755,7 @@ tw\`place-content-stretch\`
 exports[`twin.macro placeItems.tsx: placeItems.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/place-items
 tw\`place-items-start\`
@@ -40786,7 +40786,7 @@ tw\`place-items-stretch\`
 exports[`twin.macro placeSelf.tsx: placeSelf.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/place-self
 tw\`place-self-auto\`
@@ -40821,7 +40821,7 @@ tw\`place-self-stretch\`
 exports[`twin.macro placeholderColor.tsx: placeholderColor.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/placeholder-color
 tw\`placeholder-inherit\`
@@ -42521,7 +42521,7 @@ tw\`placeholder-[any:red]\`
 exports[`twin.macro placeholderOpacity.tsx: placeholderOpacity.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/placeholder-opacity
 // Deprecated in favor of slash opacity syntax
@@ -42635,7 +42635,7 @@ tw\`placeholder-opacity-[var(--placeholder-opacity)]\`
 exports[`twin.macro pluginAspectRatio.tsx: pluginAspectRatio.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`aspect-w-1\`
 tw\`aspect-h-1\`
@@ -42952,7 +42952,7 @@ tw\`aspect-h-16\`
 exports[`twin.macro pluginDaisyUi.tsx: pluginDaisyUi.tsx 1`] = `
 
 // @ts-nocheck
-import { globalStyles } from './macro'
+import { globalStyles } from '../macro'
 
 globalStyles
 ;() => (
@@ -55706,7 +55706,7 @@ globalStyles
 exports[`twin.macro pluginExamples.tsx: pluginExamples.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { globalStyles } from './macro'
+import tw, { globalStyles } from '../macro'
 
 tw\`content-auto\`
 tw\`content-hidden\`
@@ -55906,7 +55906,7 @@ tw\`test-4:block\`
 exports[`twin.macro pluginForms.tsx: pluginForms.tsx 1`] = `
 
 // @ts-nocheck
-import { GlobalStyles } from './macro'
+import { GlobalStyles } from '../macro'
 ;<GlobalStyles />
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -56290,7 +56290,7 @@ select {
 exports[`twin.macro pluginGapFallback.tsx: pluginGapFallback.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`flex-gap-0\`
 tw\`flex-gap-3\`
@@ -56438,7 +56438,7 @@ tw\`test-2\`
 exports[`twin.macro pluginLineClamp.tsx: pluginLineClamp.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`line-clamp-1\`
 tw\`line-clamp-2\`
@@ -56497,7 +56497,7 @@ tw\`line-clamp-none\`
 exports[`twin.macro pluginTypography.tsx: pluginTypography.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`form-radio\`
 tw\`form-select\`
@@ -56760,7 +56760,7 @@ tw\`form-multiselect\`
 exports[`twin.macro pluginTypography.tsx: pluginTypography.tsx 2`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // From @tailwindcss/typography
 tw\`prose sm:prose-sm lg:prose-lg xl:prose-xl\`
@@ -57870,7 +57870,7 @@ tw\`rich-text\`
 exports[`twin.macro pluginUserParentSelector.tsx: pluginUserParentSelector.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`my-class1\`
 tw\`my-class2\`
@@ -57924,7 +57924,7 @@ tw\`my-class6\`
 exports[`twin.macro plugins.tsx: plugins.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // Tailwind plugin tests
 
@@ -58101,7 +58101,7 @@ const addComponentsTestElementScreenReplacements = {
 exports[`twin.macro pointerEvents.tsx: pointerEvents.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/pointer-events
 tw\`pointer-events-none\`
@@ -58124,7 +58124,7 @@ tw\`pointer-events-auto\`
 exports[`twin.macro position.tsx: position.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/position
 tw\`static\`
@@ -58159,7 +58159,7 @@ tw\`sticky\`
 exports[`twin.macro prefix.tsx: prefix.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // tw prop prefix
 ;<div tw="tw-text-black" />
@@ -58368,7 +58368,7 @@ import tw from './macro'
 exports[`twin.macro preflight.tsx: preflight.tsx 1`] = `
 
 // @ts-nocheck
-import { globalStyles } from './macro'
+import { globalStyles } from '../macro'
 
 globalStyles
 
@@ -58476,7 +58476,7 @@ globalStyles
 exports[`twin.macro presets.tsx: presets.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`text-badass\`
 tw\`text-banana\`
@@ -58522,7 +58522,7 @@ tw\`hocus:text-black\`
 exports[`twin.macro resize.tsx: resize.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/resize
 tw\`resize-none\`
@@ -58553,7 +58553,7 @@ tw\`resize\`
 exports[`twin.macro ringColor.tsx: ringColor.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/ring-color
 theme\`ringColor.\`
@@ -60070,7 +60070,7 @@ tw\`ring-[length:10px]\`
 exports[`twin.macro ringMisc.tsx: ringMisc.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // Combined ring classes
 tw\`ring ring-inset ring-purple-500 ring-offset-black ring-offset-4 ring-opacity-50\`
@@ -60188,7 +60188,7 @@ tw\`ring-[10px]\`
 exports[`twin.macro ringOffsetColor.tsx: ringOffsetColor.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/ring-offset-color
 theme\`ringOffsetColor\`
@@ -61490,7 +61490,7 @@ tw\`ring-offset-[length:10px]\`
 exports[`twin.macro ringOffsetWidth.tsx: ringOffsetWidth.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/ring-offset-width
 theme\`ringOffsetWidth\`
@@ -61547,7 +61547,7 @@ tw\`ring-offset-[#76ad65]\`
 exports[`twin.macro ringOpacity.tsx: ringOpacity.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/ring-opacity
 // Deprecated in favor of slash opacity syntax
@@ -61629,7 +61629,7 @@ tw\`ring-opacity-[var(--ring-opacity)]\`
 exports[`twin.macro ringWidth.tsx: ringWidth.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/ring-width
 theme\`ringWidth.\`
@@ -61722,7 +61722,7 @@ tw\`ring-[10px]\`
 exports[`twin.macro rotate.tsx: rotate.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/rotate
 theme\`rotate\`
@@ -61865,7 +61865,7 @@ tw\`rotate-[23deg] rotate-[2.3rad] rotate-[401grad] rotate-[1.5turn]\`
 exports[`twin.macro sassyPseudo.tsx: sassyPseudo.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`hover:block first:mt-2 last-of-type:max-width[20px]\`
 tw\`hover:block first:mt-2 last-of-type:[max-width:20px]\`
@@ -61921,7 +61921,7 @@ tw\`my-class3\`
 exports[`twin.macro saturate.tsx: saturate.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/saturate
 theme\`saturate\`
@@ -61982,7 +61982,7 @@ tw\`saturate-[.25]\`
 exports[`twin.macro scale.tsx: scale.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/scale
 theme\`scale\`
@@ -62209,7 +62209,7 @@ tw\`scale-[1.7]\`
 exports[`twin.macro screenImport.tsx: screenImport.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { styled, screen } from './macro'
+import tw, { styled, screen } from '../macro'
 
 // Media query only
 screen\`sm\`
@@ -62526,7 +62526,7 @@ _styled.div\`
 exports[`twin.macro screenReaders.tsx: screenReaders.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/screen-readers
 tw\`sr-only\`
@@ -62564,7 +62564,7 @@ tw\`not-sr-only\`
 exports[`twin.macro screens.tsx: screens.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`sm:block\`
 tw\`md:block\`
@@ -62623,7 +62623,7 @@ tw\`<sm:underline md>:font-bold\`
 exports[`twin.macro scrollBehavior.tsx: scrollBehavior.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/scroll-behavior
 tw\`scroll-auto\`
@@ -62646,7 +62646,7 @@ tw\`scroll-smooth\`
 exports[`twin.macro scrollMargin.tsx: scrollMargin.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/scroll-margin
 theme\`scrollMargin\`
@@ -63790,7 +63790,7 @@ tw\`scroll-m-[24rem]\`
 exports[`twin.macro scrollPadding.tsx: scrollPadding.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/scroll-padding
 theme\`scrollPadding\`
@@ -64899,7 +64899,7 @@ tw\`scroll-p-[24rem]\`
 exports[`twin.macro scrollSnapAlign.tsx: scrollSnapAlign.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/scroll-snap-align
 tw\`snap-start\`
@@ -64930,7 +64930,7 @@ tw\`snap-align-none\`
 exports[`twin.macro scrollSnapStop.tsx: scrollSnapStop.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/scroll-snap-stop
 tw\`snap-normal\`
@@ -64953,7 +64953,7 @@ tw\`snap-always\`
 exports[`twin.macro scrollSnapType.tsx: scrollSnapType.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/scroll-snap-type
 tw\`snap-none\`
@@ -64992,7 +64992,7 @@ tw\`snap-proximity\`
 exports[`twin.macro separator.tsx: separator.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`[&[data-foo][data-bar]:not([data-baz])]__underline\`
 
@@ -65011,7 +65011,7 @@ tw\`[&[data-foo][data-bar]:not([data-baz])]__underline\`
 exports[`twin.macro sepia.tsx: sepia.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/sepia
 theme\`sepia.\`
@@ -65051,7 +65051,7 @@ tw\`sepia-[.25]\`
 exports[`twin.macro shortCss.tsx: shortCss.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // within cs prop
 ;<div cs="maxWidth[100vw - 2rem]" />
@@ -65363,7 +65363,7 @@ tw\`touch-action[]\`
 exports[`twin.macro skew.tsx: skew.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/skew
 theme\`skew\`
@@ -65546,7 +65546,7 @@ tw\`-skew-y-[17deg]\`
 exports[`twin.macro spaceBetween.tsx: spaceBetween.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/space
 theme\`space\`
@@ -66881,7 +66881,7 @@ tw\`space-x-[calc(20%-1cm)]\`
 exports[`twin.macro stitchesDotSyntax.tsx: stitchesDotSyntax.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { styled } from './macro'
+import tw, { styled } from '../macro'
 
 tw.div\`block\`
 styled.div(tw\`block\`)
@@ -66892,7 +66892,7 @@ styled('div', tw\`block\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { styled as _styled } from 'tests/__fixtures__/stitches/stitches.config.js'
+import { styled as _styled } from '__fixtures__/stitches/stitches.config.js'
 
 _styled('div', {
   display: 'block',
@@ -66916,7 +66916,7 @@ _styled('div', {
 exports[`twin.macro stitchesGlobals.tsx: stitchesGlobals.tsx 1`] = `
 
 // @ts-nocheck
-import { globalStyles } from './macro'
+import { globalStyles } from '../macro'
 import { global } from './stitches.config'
 
 const globals = global(globalStyles)
@@ -67176,7 +67176,7 @@ export function App() {
 exports[`twin.macro stitchesImports.tsx: stitchesImports.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { css, styled } from './macro'
+import tw, { css, styled } from '../macro'
 
 css(tw\`block\`)
 tw.div\`block\`
@@ -67184,8 +67184,8 @@ styled.div(tw\`block\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css as _css } from 'tests/__fixtures__/stitches/stitches.config.js'
-import { styled as _styled } from 'tests/__fixtures__/stitches/stitches.config.js'
+import { css as _css } from '__fixtures__/stitches/stitches.config.js'
+import { styled as _styled } from '__fixtures__/stitches/stitches.config.js'
 
 _css({
   display: 'block',
@@ -67205,7 +67205,7 @@ _styled('div', {
 exports[`twin.macro stitchesProps.tsx: stitchesProps.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 // tw prop
 ;<div tw="block" />
 
@@ -67228,7 +67228,7 @@ const Component = { Sub: () => [] }
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { styled as _styled } from 'tests/__fixtures__/stitches/stitches.config.js'
+import { styled as _styled } from '__fixtures__/stitches/stitches.config.js'
 
 const _TwComponent = _styled('div', {
   display: 'block',
@@ -67329,7 +67329,7 @@ const _TwComponent12 = _styled(Component.Sub, {
 exports[`twin.macro stroke.tsx: stroke.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/stroke
 theme\`stroke\`
@@ -68623,7 +68623,7 @@ tw\`stroke-[length:10px]\`
 exports[`twin.macro strokeWidth.tsx: strokeWidth.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/stroke-width
 theme\`strokeWidth\`
@@ -68683,7 +68683,7 @@ tw\`stroke-[url:url(hand.cur)_2_2, pointer]\`
 exports[`twin.macro tableLayout.tsx: tableLayout.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/table-layout
 tw\`table-auto\`
@@ -68706,7 +68706,7 @@ tw\`table-fixed\`
 exports[`twin.macro textAlign.tsx: textAlign.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/text-align
 tw\`text-left\`
@@ -68745,7 +68745,7 @@ tw\`text-end\`
 exports[`twin.macro textColor.tsx: textColor.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/text-color
 theme\`textColor\`
@@ -70272,7 +70272,7 @@ tw\`text-[percentage:10%]\`
 exports[`twin.macro textDecoration.tsx: textDecoration.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/text-decoration
 tw\`underline\`
@@ -70303,7 +70303,7 @@ tw\`no-underline\`
 exports[`twin.macro textDecorationColor.tsx: textDecorationColor.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/text-decoration-color
 theme\`textDecorationColor\`
@@ -71536,7 +71536,7 @@ tw\`decoration-[color:var(--color)]\` // \`decoration-[var(--color)]\` unsupport
 exports[`twin.macro textDecorationStyle.tsx: textDecorationStyle.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/text-decoration-style
 tw\`decoration-solid\`
@@ -71571,7 +71571,7 @@ tw\`decoration-wavy\`
 exports[`twin.macro textDecorationThickness.tsx: textDecorationThickness.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/text-decoration-thickness
 theme\`textDecorationThickness\`
@@ -71634,7 +71634,7 @@ tw\`decoration-[percentage:10%]\`
 exports[`twin.macro textIndent.tsx: textIndent.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/text-indent
 theme\`textIndent\`
@@ -71982,7 +71982,7 @@ tw\`indent-[lookup:10px]\`
 exports[`twin.macro textOpacity.tsx: textOpacity.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/text-opacity
 // Deprecated in favor of slash opacity syntax
@@ -72059,7 +72059,7 @@ tw\`text-opacity-100\`
 exports[`twin.macro textOverflow.tsx: textOverflow.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/text-overflow
 tw\`truncate\`
@@ -72088,7 +72088,7 @@ tw\`text-clip\`
 exports[`twin.macro textTransform.tsx: textTransform.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/text-transform
 tw\`uppercase\`
@@ -72119,7 +72119,7 @@ tw\`normal-case\`
 exports[`twin.macro textUnderlineOffset.tsx: textUnderlineOffset.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/text-underline-offset
 theme\`textUnderlineOffset\`
@@ -72185,7 +72185,7 @@ tw\`underline-offset-[percentage:30%]\`
 exports[`twin.macro themeValuesToString.tsx: themeValuesToString.tsx 1`] = `
 
 // @ts-nocheck
-import { globalStyles, theme } from './macro'
+import { globalStyles, theme } from '../macro'
 
 globalStyles
 
@@ -74068,7 +74068,7 @@ theme\`\`
 exports[`twin.macro topRightBottomLeft.tsx: topRightBottomLeft.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/top-right-bottom-left
 theme\`inset\`
@@ -76926,7 +76926,7 @@ tw\`inset-[50px]!\`
 exports[`twin.macro touchAction.tsx: touchAction.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/touch-action
 tw\`touch-auto\`
@@ -76988,7 +76988,7 @@ tw\`touch-manipulation\`
 exports[`twin.macro transformOrigin.tsx: transformOrigin.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/transform-origin
 theme\`transformOrigin\`
@@ -77057,7 +77057,7 @@ tw\`origin-[33% 75%]\`
 exports[`twin.macro transitionDelay.tsx: transitionDelay.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/transition-delay
 theme\`transitionDelay\`
@@ -77125,7 +77125,7 @@ tw\`delay-[var(--delay)]\`
 exports[`twin.macro transitionDuration.tsx: transitionDuration.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/transition-duration
 theme\`transitionDuration.\`
@@ -77198,7 +77198,7 @@ tw\`duration-[var(--app-duration)]\`
 exports[`twin.macro transitionProperty.tsx: transitionProperty.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/transition-property
 theme\`transitionProperty.\`
@@ -77282,7 +77282,7 @@ tw\`transition-[lookup:green]\`
 exports[`twin.macro transitionTimingFunction.tsx: transitionTimingFunction.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/transition-timing-function
 theme\`transitionTimingFunction.\`
@@ -77327,7 +77327,7 @@ tw\`ease-[cubic-bezier(0.95, 0.05, 0.795, 0.035)]\`
 exports[`twin.macro translate.tsx: translate.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/translate
 
@@ -77880,7 +77880,7 @@ tw\`-translate-x-10000\`
 exports[`twin.macro userPluginOrdering.tsx: userPluginOrdering.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`selector\`
 
@@ -77924,7 +77924,7 @@ tw\`selector\`
 exports[`twin.macro userSelect.tsx: userSelect.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/user-select
 tw\`select-none\`
@@ -77955,7 +77955,7 @@ tw\`select-auto\`
 exports[`twin.macro variables.tsx: variables.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // Test a user created css class with a css variable as a rule property
 tw\`css-class-with-variable-as-rule-property\`
@@ -77982,7 +77982,7 @@ tw\`-mx-gutter-1/2\`
 exports[`twin.macro variantOrdering.tsx: variantOrdering.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`before:valid:rtl:motion-safe:contrast-more:dark:print:portrait:any-pointer-fine:block\`
 
@@ -78034,7 +78034,7 @@ tw\`any-pointer-fine:portrait:print:dark:contrast-more:motion-safe:rtl:valid:bef
 exports[`twin.macro verticalAlign.tsx: verticalAlign.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/vertical-align
 tw\`align-baseline\`
@@ -78086,7 +78086,7 @@ tw\`align-[something]\`
 exports[`twin.macro visibility.tsx: visibility.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/visibility
 tw\`visible\`
@@ -78109,7 +78109,7 @@ tw\`invisible\`
 exports[`twin.macro visitedOpacity.tsx: visitedOpacity.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 tw\`visited:border-red-500 visited:bg-red-500 visited:text-red-500\`
 tw\`visited:border-red-500/20 visited:bg-red-500/20 visited:text-red-500/20\`
@@ -78154,7 +78154,7 @@ tw\`visited:(border-red-500) visited:(bg-red-500) visited:(text-red-500)\`
 exports[`twin.macro whitespace.tsx: whitespace.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/whitespace
 tw\`whitespace-normal\`
@@ -78189,7 +78189,7 @@ tw\`whitespace-pre-wrap\`
 exports[`twin.macro width.tsx: width.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/width
 theme\`width\`
@@ -78568,7 +78568,7 @@ tw\`w-[calc(100%/3-1rem*2)]\`
 exports[`twin.macro willChange.tsx: willChange.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/will-change
 theme\`willChange\`
@@ -78611,7 +78611,7 @@ tw\`will-change-[top, left]\`
 exports[`twin.macro wordBreak.tsx: wordBreak.tsx 1`] = `
 
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/word-break
 tw\`break-normal\`
@@ -78639,7 +78639,7 @@ tw\`break-all\`
 exports[`twin.macro zIndex.tsx: zIndex.tsx 1`] = `
 
 // @ts-nocheck
-import tw, { theme } from './macro'
+import tw, { theme } from '../macro'
 
 // https://tailwindcss.com/docs/z-index
 theme\`zIndex\`

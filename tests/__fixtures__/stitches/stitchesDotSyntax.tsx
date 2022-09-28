@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw, { styled } from './macro'
+import tw, { styled } from '../macro'
 
 tw.div`block`
 styled.div(tw`block`)

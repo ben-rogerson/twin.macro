@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // Test the transition ordering - 'transition' should be moved to the start
 // https://github.com/ben-rogerson/twin.macro/issues/363

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // https://tailwindcss.com/docs/user-select
 tw`select-none`

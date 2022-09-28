@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw, { styled, screen } from './macro'
+import tw, { styled, screen } from '../macro'
 
 // Media query only
 screen`sm`

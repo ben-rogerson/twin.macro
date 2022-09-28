@@ -1,5 +1,5 @@
 // @ts-nocheck
-import tw from './macro'
+import tw from '../macro'
 
 // within cs prop
 ;<div cs="maxWidth[100vw - 2rem]" />
