@@ -2,6 +2,7 @@ import type { ExtractRuleStyles } from 'core/types'
 
 const SELECTOR_PARENT_CANDIDATE = /^[ #.[]/
 const SELECTOR_ROOT = /(^| ):root(?!\w)/g
+const UNDERSCORE_ESCAPING = /\\+(_)/g
 
 type SassifySelectorTasks = Array<
   (
@@ -19,6 +20,9 @@ const sassifySelectorTasks: SassifySelectorTasks = [
     selector.replace(selectorMatchReg, (match, __, offset: number) =>
       selector === match || (offset === 0 && !sassyPseudo) ? '' : '&'
     ),
+
+  // Remove unneeded escaping from the selector
+  (selector): string => selector.replace(UNDERSCORE_ESCAPING, '$1'),
 
   // Prefix classes/ids/attribute selectors with a parent selector so styles
   // are applied to the current element rather than its children
