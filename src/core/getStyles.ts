@@ -157,7 +157,7 @@ function getOrderedClassList(
       false,
       ({ color }) =>
         `${color(
-          String(error).replace('with \\ may', 'with `\\\\` may') // Fix error to ask for double escaping (for css-in-js)
+          String(error).replace('with \\ may', 'with a single \\ may') // Improve error
         )}\n\n${color('Found in:')} ${color(
           convertedClassList.join(' '),
           'errorLight'
