@@ -6,7 +6,7 @@ These options are available in your [twin config](#twin-config-location):
 
 | Name              | Default                | Description                                                                                                                                                                                                                                   |
 | ----------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| config            | `"tailwind.config.js"` | The path to your Tailwind config.                                                                                                                                                                                                             |
+| config            | `"tailwind.config.js"` | The path to your Tailwind config. Also takes a config object.                                                                                                                                                                                 |
 | preset            | `"emotion"`            | The css-in-js library behind the scenes.<br>Also supported: `"styled-components"` `"goober"` `"stitches"`                                                                                                                                     |
 | dataTwProp        | `true`                 | Add a prop to jsx components in development showing the original tailwind classes.<br/> Use `"all"` to keep the prop in production.                                                                                                           |
 | debug             | `false`                | Display information in your terminal about the Tailwind class conversions.                                                                                                                                                                    |
@@ -33,6 +33,29 @@ config: 'tailwind.config.js', // Path to the tailwind config
 ```
 
 Set a custom location by specifying a path to your tailwind.config.js file.
+
+**Passing in a config**: The config option also accepts a config object:
+
+```js
+// babel-plugin-macros.config.js
+const tailwindConfig = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#ff0000',
+      },
+    },
+  },
+}
+
+module.exports = {
+  twin: {
+    config: tailwindConfig,
+  },
+}
+```
+
+This can be useful in component libraries, tests, or just to remove the need for a tailwind.config.js file.
 
 **Monorepos / Workspaces**: The tailwind.config.js is commonly added as a shared file in the project root so you may need to add a `path.resolve` on the pathname in the twin config:
 

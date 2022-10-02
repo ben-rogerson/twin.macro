@@ -43,7 +43,7 @@ export type TwinConfigAll = {
   dataCsProp: boolean | 'all'
   disableCsProp: boolean
   disableShortCss: boolean
-  config?: string
+  config?: string | Partial<TailwindConfig>
   convertStyledDot?: boolean
   moveTwPropToStyled?: boolean
   convertHtmlElementToStyled?: boolean
