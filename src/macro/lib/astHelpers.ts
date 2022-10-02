@@ -167,9 +167,33 @@ function setCssIdentifier({
   })
 }
 
-/**
- * Parse tagged template arrays (``)
- */
+function getStringFromTTE(path: NodePath<T.TaggedTemplateExpression>): string {
+  let getRawValue = false
+  let rawValue = ''
+
+  // Convert basic interpolated variables defined in the same file
+  const evaluatedValue = (path.get('quasi').evaluate().value as string) ?? ''
+  if (evaluatedValue === '') getRawValue = true
+
+  // Evaluating strips escaping, so if there's a square bracket we know it's an
+  // arbitrary value/property/variant and should grab the raw value
+  if (evaluatedValue.includes('[')) getRawValue = true
+
+  if (getRawValue)
+    rawValue = (path.get('quasi.quasis') as Array<NodePath<T.TemplateElement>>)
+      .map(q => q.node.value.raw)
+      .join('')
+
+  // Trigger error due to non-evaluated value, eg:`w-[${sizes.width}]`
+  if (evaluatedValue.length === 0 && rawValue.length > 0) return 'null'
+
+  // Return raw classes with escaping, eg: [content\!]:block
+  if (rawValue.length > evaluatedValue.length) return rawValue
+
+  return evaluatedValue
+}
+
+// Parse tagged template arrays (``)
 function parseTte(
   path: NodePath<T.TaggedTemplateExpression>,
   { t, state }: { t: typeof T; state: State }
@@ -184,8 +208,8 @@ function parseTte(
   )
     return
 
-  // Convert *very* basic interpolated variables
-  const string = path.get('quasi').evaluate().value as string
+  const string = getStringFromTTE(path)
+
   // Grab the path location before changing it
   const stringLoc = path.get('quasi').node.loc
 

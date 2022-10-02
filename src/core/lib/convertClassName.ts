@@ -103,7 +103,7 @@ function convertClassName(
 
   // Convert short css to an arbitrary property, eg: `[display:block]`
   // (Short css is deprecated)
-  if (isShortCss(className)) {
+  if (isShortCss(className, tailwindConfig)) {
     debug('short css found', className)
     className = convertShortCssToArbitraryProperty(className, {
       tailwindConfig,

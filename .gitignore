@@ -12,6 +12,10 @@ types/build
 types/core
 types/macro
 types/suggestions
+types/src
+types/tests/types
+types/tests/util
+types/tests/*.ts
 .eslintcache
-
+coverage
 sandbox/out.tsx

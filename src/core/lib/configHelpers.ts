@@ -5,6 +5,7 @@ import requireFresh from 'import-fresh'
 import { configTwinValidators, configDefaultsTwin } from './twinConfig'
 import defaultTwinConfig from './defaultTailwindConfig'
 import { resolveTailwindConfig, getAllConfigs } from './util/twImports'
+import isObject from './util/isObject'
 import { logGeneralError } from './logging'
 import type {
   TwinConfig,
@@ -34,8 +35,18 @@ function getTailwindConfig({
 
   const baseDirectory = filename ? dirname(filename) : process.cwd()
 
-  const configPath = config?.config
-    ? resolve(sourceRoot, config.config)
+  const userTailwindConfig = config?.config
+
+  if (isObject(userTailwindConfig))
+    return resolveTailwindConfig([
+      // User config
+      ...getAllConfigs(userTailwindConfig as Record<string, unknown[]>),
+      // Default config
+      ...getAllConfigs(defaultTwinConfig),
+    ])
+
+  const configPath = userTailwindConfig
+    ? resolve(sourceRoot, userTailwindConfig as string)
     : escalade(baseDirectory, (_, names) => {
         if (names.includes('tailwind.config.js')) {
           return 'tailwind.config.js'
@@ -48,13 +59,13 @@ function getTailwindConfig({
 
   const configExists = Boolean(configPath && existsSync(configPath))
 
-  if (config?.config)
+  if (userTailwindConfig)
     assert(configExists, ({ color }: AssertContext) =>
       [
         `${String(
           color(
             `✕ The tailwind config ${color(
-              String(config?.config),
+              String(userTailwindConfig),
               'errorLight'
             )} wasn’t found`
           )

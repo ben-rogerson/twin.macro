@@ -16,6 +16,7 @@ import type * as P from 'postcss'
 
 const ESC_DIGIT = /\\3(\d)/g
 const ESC_COMMA = /\\2c /g
+const UNDERSCORE_ESCAPING = /\\+(_)/g
 
 function transformImportant(value: string, params: TransformDecl): string {
   if (params.passChecks === true) return value
@@ -28,7 +29,15 @@ function transformImportant(value: string, params: TransformDecl): string {
   return `${value} !important`
 }
 
-const transformValueTasks = [replaceThemeValue, transformImportant]
+function transformEscaping(value: string): string {
+  return value.replace(UNDERSCORE_ESCAPING, '$1')
+}
+
+const transformValueTasks = [
+  replaceThemeValue,
+  transformImportant,
+  transformEscaping,
+]
 
 function transformDeclValue(value: string, params: TransformDecl): string {
   const valueOriginal = value
@@ -50,13 +59,10 @@ function extractFromRule(
   rule: P.Rule,
   params: ExtractRuleStyles
 ): [string, CssObject] {
-  const selectorForUnescape = rule.selector
-    .replace(/\\{3}/g, '{{PRESERVED_ESCAPE}}')
-    .replace(ESC_DIGIT, '$1') // Remove digit escaping
+  const selectorForUnescape = rule.selector.replace(ESC_DIGIT, '$1') // Remove digit escaping
   const selector = unescape(selectorForUnescape)
     .replace(ESC_COMMA, ',') // Remove comma escaping
     .replace(LINEFEED, ' ')
-    .replace(/{{PRESERVED_ESCAPE}}/g, '\\')
   return [selector, extractRuleStyles(rule.nodes, params)] as [
     string,
     CssObject

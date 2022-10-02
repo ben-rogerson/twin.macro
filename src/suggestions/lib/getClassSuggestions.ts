@@ -21,7 +21,8 @@ function rateCandidate(
 
   const classValue = `${String(
     (typeof value === 'string' && (value.length === 0 ? `''` : value)) ??
-      JSON.stringify(value)
+      (Array.isArray(value) && value.join(', ')) ??
+      value
   )}${classEnd === 'DEFAULT' ? ' (DEFAULT)' : ''}`
 
   return [rating, candidate, classValue]
@@ -95,10 +96,9 @@ export function getClassSuggestions(
     .slice(0, context.suggestionNumber)
     .map(
       ([, suggestion, value]: [number, string, string]): string =>
-        `${color('-', 'subdued')} ${color(suggestion, 'highlight')} ${color(
-          '>',
-          'subdued'
-        )} ${value}`
+        `${color('-', 'subdued')} ${color(suggestion, 'highlight')} ${
+          value === 'false' ? '' : `${color('>', 'subdued')} ${value}`
+        }`
     )
   return [errorText, 'Try one of these classes:', suggestions.join('\n')].join(
     '\n\n'
