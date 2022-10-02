@@ -1,7 +1,35 @@
-import escapeRegex from './escapeRegex'
+import { splitAtTopLevelOnly } from './twImports'
+import type { TailwindConfig } from 'core/types'
 
-const SHORT_CSS = /\w[^/-]\\\[(?!.+:)/
+export default function isShortCss(
+  fullClassName: string,
+  tailwindConfig: TailwindConfig
+): boolean {
+  const classPieces = [
+    ...splitAtTopLevelOnly(fullClassName, tailwindConfig.separator ?? ':'),
+  ]
 
-export default function isShortCss(className: string): boolean {
-  return SHORT_CSS.test(escapeRegex(className))
+  const className = classPieces.slice(-1)[0]
+
+  if (!className.includes('[')) return false
+
+  // Replace brackets before splitting on them as the split function already
+  // reads brackets to determine where the top level is
+  const splitAtArbitrary = [
+    ...splitAtTopLevelOnly(className.replace(/\[/g, '∀'), '∀'),
+  ]
+
+  // Normal class
+  if (splitAtArbitrary[0].endsWith('-')) return false
+
+  // Important prefix
+  if (splitAtArbitrary[0].endsWith('!')) return false
+
+  // Arbitrary property
+  if (splitAtArbitrary[0] === '') return false
+
+  // Slash opacity, eg: bg-red-500/fromConfig/[.555]
+  if (splitAtArbitrary[0].endsWith('/')) return false
+
+  return true
 }
