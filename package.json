@@ -90,6 +90,7 @@
     "@types/babel-plugin-macros": "^2.8.5",
     "@types/didyoumean": "^1.2.0",
     "@types/dlv": "^1.1.2",
+    "@types/jest": "^29.0.3",
     "@types/lodash.flatmap": "^4.5.7",
     "@types/lodash.get": "^4.4.7",
     "@types/lodash.merge": "^4.6.7",

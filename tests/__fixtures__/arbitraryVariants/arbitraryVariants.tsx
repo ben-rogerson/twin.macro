@@ -20,7 +20,7 @@ tw`[p]:[margin-top:var(--myvar)]`
 tw`[p]:(mt-4 mb-4)`
 
 tw`[@media (min-width: 800px)]:block`
-tw`[content\\!]:block`
+tw`[content\!]:block`
 
 // Combinations
 tw`[&:nth-child(1)]:block`

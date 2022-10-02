@@ -5,4 +5,5 @@ module.exports = {
     '^.+\\.ts?$': 'ts-jest',
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/types'],
+  setupFilesAfterEnv: ['<rootDir>/tests/util/customMatchers.ts'],
 }
