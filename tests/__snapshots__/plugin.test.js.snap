@@ -5450,6 +5450,7 @@ tw\`bg-clip-text\`
   backgroundClip: 'content-box',
 })
 ;({
+  WebkitBackgroundClip: 'text',
   backgroundClip: 'text',
 })
 

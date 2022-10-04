@@ -104,6 +104,15 @@ const ruleTypes = {
 
     if (value === null) return
 
+    // `background-clip: text` is still in "unofficial"  phase and needs a
+    // prefix in Firefox, Chrome and Safari.
+    // https://caniuse.com/background-img-opts
+    if (property === 'backgroundClip' && value === 'text')
+      return {
+        WebkitBackgroundClip: value,
+        [property]: value,
+      }
+
     return { [property]: value }
   },
   // General styles, eg: `{ display: block }`
@@ -166,7 +175,7 @@ const ruleTypes = {
       .filter(Boolean)
       .join(',')
 
-    params.debug('sassified key', selector ?? styles)
+    params.debug('sassified key', selector || styles)
 
     if (!selector) return styles
 
