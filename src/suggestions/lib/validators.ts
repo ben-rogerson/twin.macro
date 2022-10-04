@@ -32,26 +32,20 @@ const validators = [
   (pieces: string[], context: ClassErrorContext): undefined | string => {
     if (!pieces.includes('group')) return
     return `${context.color(
-      `✕ ${context.color('group', 'errorLight')} is used like a normal class`,
+      `✕ ${context.color('group', 'errorLight')} must be added as a className:`,
       'error'
-    )}\n\nAdd group in a ${context.color(
-      'className',
-      'success'
-    )}:\n\n<div ${context.color(
+    )}\n\n<div ${context.color(
       'className="group"',
       'success'
-    )}>\n\n<div tw="group-hover:bg-black" />\n</div>\n\nRead more at https://twinredirect.page.link/group`
+    )}>\n <div tw="group-hover:bg-black" />\n</div>\n\nRead more at https://twinredirect.page.link/group`
   },
   // Validate the peer class
   (pieces: string[], context: ClassErrorContext): undefined | string => {
     if (!pieces.includes('peer')) return
     return `${context.color(
-      `✕ ${context.color('peer', 'errorLight')} is used like a normal class`,
+      `✕ ${context.color('peer', 'errorLight')} must be added as a className:`,
       'error'
-    )}\n\nAdd peer in a ${context.color(
-      'className',
-      'success'
-    )}:\n\n<div ${context.color(
+    )}\n\n<div ${context.color(
       'className="peer"',
       'success'
     )}>\n<div tw="peer-hover:bg-black" />\n\nRead more at https://twinredirect.page.link/peer`
@@ -60,22 +54,30 @@ const validators = [
   (pieces: string[], context: ClassErrorContext): undefined | string => {
     if (!pieces.includes('lead')) return
     return `${context.color(
-      `✕ ${context.color('lead', 'errorLight')} is used like a normal class`,
+      `✕ ${context.color('lead', 'errorLight')} must be added as a className:`,
       'error'
-    )}\n\nAdd lead in a ${context.color(
-      'className',
+    )}\n\n<div ${context.color('className="lead"', 'success')}>...</div>`
+  },
+  // Validate the not-prose class (from the official typography plugin)
+  (pieces: string[], context: ClassErrorContext): undefined | string => {
+    if (!pieces.includes('not-prose')) return
+    return `${context.color(
+      `✕ ${context.color(
+        'not-prose',
+        'errorLight'
+      )} must be added as a className:`,
+      'error'
+    )}\n\n<div tw="prose">\n <div ${context.color(
+      'className="not-prose"',
       'success'
-    )}:\n\n<div ${context.color(
-      'className="lead"',
-      'success'
-    )}>...</div>\n\nRead more at https://twinredirect.page.link/peer`
+    )}>...</div>\n</div>`
   },
   // Validate the dark class
   (pieces: string[], context: ClassErrorContext): undefined | string => {
     const className = pieces.slice(-1).join('')
     if (className !== 'dark') return
     return `${context.color(
-      `✕ ${context.color('dark', 'errorLight')} is used like a normal class`,
+      `✕ ${context.color('dark', 'errorLight')} must be added as a className:`,
       'error'
     )}\n\nAdd dark in a ${context.color(
       'className',
@@ -96,7 +98,7 @@ const validators = [
     const className = pieces.slice(-1).join('')
     if (className !== 'light') return
     return `${context.color(
-      `✕ ${context.color('light', 'errorLight')} is used like a normal class`,
+      `✕ ${context.color('light', 'errorLight')} must be added as a className:`,
       'error'
     )}\n\nAdd light in a ${context.color(
       'className',
