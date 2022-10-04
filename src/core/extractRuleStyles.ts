@@ -107,7 +107,10 @@ const ruleTypes = {
     // `background-clip: text` is still in "unofficial"  phase and needs a
     // prefix in Firefox, Chrome and Safari.
     // https://caniuse.com/background-img-opts
-    if (property === 'backgroundClip' && value === 'text')
+    if (
+      property === 'backgroundClip' &&
+      (value === 'text' || value === 'text !important')
+    )
       return {
         WebkitBackgroundClip: value,
         [property]: value,
