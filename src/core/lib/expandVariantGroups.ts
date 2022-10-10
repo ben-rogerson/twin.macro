@@ -45,7 +45,11 @@ function spreadVariantGroups(classes: string, context: Context): string[] {
 
   const group = classList
     .map(className => {
-      if (BRACKETED_MAYBE_IMPORTANT.test(className)) {
+      if (
+        BRACKETED_MAYBE_IMPORTANT.test(className) &&
+        // Avoid infinite loop due to lack of separator, eg: `[em](block)`
+        !className.includes('](')
+      ) {
         const ctx = { ...context, beforeImportant, afterImportant }
         return expandVariantGroups(
           [...pieces, className].join(context.tailwindConfig.separator ?? ':'),

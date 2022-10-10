@@ -67,7 +67,7 @@ test('variants without & or an at-rule are handled', async () => {
           css: { '& wtf-bbq': { textDecorationLine: 'underline' } },
         }),
         React.createElement('div', {
-          css: { ':hover lol': { textDecorationLine: 'underline' } },
+          css: { 'lol &:hover': { textDecorationLine: 'underline' } },
         })
       )
     `)
@@ -203,7 +203,7 @@ test('keeps escaped underscores in arbitrary variants mixed with normal variants
   ].join('; ')
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
-      ({ ':hover .foo_bar': { textDecorationLine: 'underline' } });
+      ({ '& .foo_bar:hover': { textDecorationLine: 'underline' } });
       ({ '& .foo_bar:hover': { textDecorationLine: 'underline' } });
     `)
   })
@@ -268,6 +268,115 @@ test('classes in the same arbitrary variant should not be prefixed', async () =>
     `)
   })
 })
+
+test('errors when separator is forgotten against a group', async () => {
+  const input = 'tw`[em](block)`'
+  expect.assertions(1)
+  return run(input).catch(error => {
+    // eslint-disable-next-line jest/no-conditional-expect
+    expect(error).toMatchFormattedError(`
+      MacroError: unknown:
+
+      ✕ [em](block) was not found
+    `)
+  })
+})
+
+describe('auto parent selector', () => {
+  test('selectors containing a parent selector are preserved', async () => {
+    const input = 'tw`md:[.test &]:m-1`'
+    return run(input).then(result => {
+      expect(result).toMatchFormattedJavaScript(`
+        ({ "@media (min-width: 768px)": { ".test &": { margin: "0.25rem" } } });
+      `)
+    })
+  })
+
+  test('media queries are preserved', async () => {
+    const input = 'tw`[@media blah]:m-1`'
+    return run(input).then(result => {
+      expect(result).toMatchFormattedJavaScript(`
+        ({
+          "@media blah": { margin: "0.25rem" },
+        });
+      `)
+    })
+  })
+
+  test('pseudo elements are prefixed', async () => {
+    const input = 'tw`[:hover]:m-1`'
+    return run(input).then(result => {
+      expect(result).toMatchFormattedJavaScript(`
+        ({ ":hover": { margin: "0.25rem" } });
+      `)
+    })
+  })
+
+  test('selectors are prefixed when media variants precede', async () => {
+    const input = 'tw`md:sm:[one]:m-1`'
+    return run(input).then(result => {
+      expect(result).toMatchFormattedJavaScript(`
+        ({
+          "@media (min-width: 768px)": {
+            "@media (min-width: 640px)": {
+              "& one": { margin: "0.25rem" },
+            }
+          },
+        });
+      `)
+    })
+  })
+
+  test('selectors are suffixed when non-media variants precede', async () => {
+    const input = 'tw`file:first:[one]:m-1`'
+    return run(input).then(result => {
+      expect(result).toMatchFormattedJavaScript(`
+        ({ "one &:first-child::file-selector-button": { margin: "0.25rem" } });
+      `)
+    })
+  })
+
+  test('multiple parentless variants have order preserved (groups)', async () => {
+    const input = 'tw`[one]:(m-2 [two]:(m-3 [three]:(m-4)))`'
+    return run(input).then(result => {
+      expect(result).toMatchFormattedJavaScript(`
+        ({
+          "& one": { margin: "0.5rem" },
+          "& one two": { margin: "0.75rem" },
+          "& one two three": { margin: "1rem" },
+        });
+      `)
+    })
+  })
+
+  test('multiple parentless variants have order preserved (groupless)', async () => {
+    const input = 'tw`[one]:[two]:[three]:m-4`'
+    return run(input).then(result => {
+      expect(result).toMatchFormattedJavaScript(`
+        ({ "& one two three": { margin: "1rem" } });
+      `)
+    })
+  })
+
+  test('multiple parentless variants amongst pseudo variants have order preserved', async () => {
+    const input = 'tw`[one]:[two]:not-link:[three]:[four]:m-4`'
+    return run(input).then(result => {
+      expect(result).toMatchFormattedJavaScript(`
+        ({ "one two three four &:not(:link)": { margin: "1rem" } });
+      `)
+    })
+  })
+
+  test('multiple parentless variants amongst media variants have order preserved', async () => {
+    const input = 'tw`[one]:[two]:md:[three]:[four]:m-4`'
+    return run(input).then(result => {
+      expect(result).toMatchFormattedJavaScript(`
+        ({ "@media (min-width: 768px)": { "& one two three four": { margin: "1rem" } } });
+      `)
+    })
+  })
+})
+
 test('nested at-rules', async () => {
   const input = 'tw`[@media_screen { @media (hover: hover) }]:underline`'
   return run(input).then(result => {

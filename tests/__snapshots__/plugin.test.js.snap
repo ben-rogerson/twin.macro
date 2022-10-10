@@ -1232,13 +1232,13 @@ const nestedGroups = {
 ;({
   '@media (min-width: 768px)': {
     marginLeft: '1rem !important',
-    'one &': {
+    '& one': {
       marginTop: '1.25rem !important',
     },
-    '& two one': {
+    '& one two': {
       display: 'inline !important',
     },
-    '& three two one': {
+    '& one two three': {
       display: 'inline !important',
     },
   },
@@ -1369,6 +1369,8 @@ tw\`not-read-write:block\`
 tw\`not-svg:block\`
 tw\`not-even-of-type:block\`
 tw\`not-odd-of-type:block\`
+
+//
 
 tw\`ltr:block\`
 tw\`rtl:block\`
@@ -1896,7 +1898,8 @@ tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
   ':not(:nth-of-type(odd))': {
     display: 'block',
   },
-})
+}) //
+
 ;({
   '[dir="ltr"] &': {
     display: 'block',
@@ -4133,35 +4136,16 @@ tw\`[.sec section a[target="_blank"]]:block\` // < issue with _blank present in 
 tw\`[#blah, &.pre, & section,]:block\`
 tw\`[&.pre,& section,]:block\`
 
-tw\`[&>*]:underline\`
-tw\`[.a.b_&]:underline\`
-tw\`dark:lg:hover:[&>*]:underline\`
-tw\`[div]:underline\`
-tw\`[:hover]:underline\`
-tw\`[wtf-bbq]:underline\`
-tw\`[lol]:hover:underline\`
-tw\`underline lg:underline [&>*]:underline\`
-tw\`[@supports(what:ever)]:underline\`
-tw\`[@media_screen{@media(hover:hover)}]:underline\`
-tw\`[@media(hover:hover){&:hover}]:underline\`
-tw\`[&[data-open]]:underline\`
-//..
-tw\`[&_.foo\\\\_\\\\_bar]:underline\`
-tw\`[&_.foo\\\\_\\\\_bar]:[&_.bar\\\\_\\\\_baz]:underline\`
-tw\`[&_.foo\\\\_\\\\_bar]:hover:underline\`
-tw\`hover:[&_.foo\\\\_\\\\_bar]:underline\`
-tw\`[&[data-test='2']]:underline\`
-
       ↓ ↓ ↓ ↓ ↓ ↓
 
 // @ts-nocheck
 ;({
-  ':hover section': {
+  'section &:hover': {
     display: 'block',
   },
 })
 ;({
-  ':hover p': {
+  'p &:hover': {
     display: 'block',
   },
 })
@@ -4183,13 +4167,13 @@ tw\`[&[data-test='2']]:underline\`
 }) // Classes
 
 ;({
-  '& .class2 .class1': {
+  '& .class1 .class2': {
     display: 'block',
   },
 }) // Multiple dynamic variants
 
 ;({
-  '& .class3 .class1 .class2': {
+  '& .class1 .class2 .class3': {
     display: 'block',
   },
 }) // Multiple dynamic variants
@@ -4263,13 +4247,13 @@ tw\`[&[data-test='2']]:underline\`
 })
 ;({
   '@media (min-width: 768px)': {
-    'section &': {
+    '& section': {
       display: 'block',
     },
   },
 })
 ;({
-  '& bla section': {
+  '& section bla': {
     display: 'block',
   },
 })
@@ -4334,11 +4318,11 @@ tw\`[&[data-test='2']]:underline\`
   },
 })
 ;({
-  ':first-child path': {
+  'path &:first-child': {
     stroke: '#000',
   },
   '@media (min-width: 768px)': {
-    'path &': {
+    '& path': {
       stroke: '#000',
     },
   },
@@ -4348,7 +4332,7 @@ tw\`[&[data-test='2']]:underline\`
     display: 'block',
   },
   '@media (min-width: 768px)': {
-    'path &': {
+    '& path': {
       stroke: '#000',
     },
   },
@@ -4367,104 +4351,6 @@ tw\`[&[data-test='2']]:underline\`
 ;({
   '&.pre,& section': {
     display: 'block',
-  },
-})
-;({
-  '>*': {
-    textDecorationLine: 'underline',
-  },
-})
-;({
-  '.a.b &': {
-    textDecorationLine: 'underline',
-  },
-})
-;({
-  '@media (prefers-color-scheme: dark)': {
-    '@media (min-width: 1024px)': {
-      '>*:hover': {
-        textDecorationLine: 'underline',
-      },
-    },
-  },
-})
-;({
-  '& div': {
-    textDecorationLine: 'underline',
-  },
-})
-;({
-  ':hover': {
-    textDecorationLine: 'underline',
-  },
-})
-;({
-  '& wtf-bbq': {
-    textDecorationLine: 'underline',
-  },
-})
-;({
-  ':hover lol': {
-    textDecorationLine: 'underline',
-  },
-})
-;({
-  textDecorationLine: 'underline',
-  '@media (min-width: 1024px)': {
-    textDecorationLine: 'underline',
-  },
-  '>*': {
-    textDecorationLine: 'underline',
-  },
-})
-;({
-  '@supports (what:ever)': {
-    textDecorationLine: 'underline',
-  },
-})
-;({
-  '@media screen': {
-    '@media (hover:hover)': {
-      textDecorationLine: 'underline',
-    },
-  },
-})
-;({
-  '@media (hover:hover)': {
-    ':hover': {
-      textDecorationLine: 'underline',
-    },
-  },
-})
-;({
-  '&[data-open]': {
-    textDecorationLine: 'underline',
-  },
-}) //..
-
-;({
-  '& .foo__bar': {
-    textDecorationLine: 'underline',
-  },
-})
-;({
-  '& .bar__baz .foo__bar': {
-    textDecorationLine: 'underline',
-  },
-})
-;({
-  ':hover .foo__bar': {
-    textDecorationLine: 'underline',
-  },
-})
-;({
-  '& .foo__bar:hover': {
-    textDecorationLine: 'underline',
-  },
-})
-;({
-  "&[data-test='2']": {
-    textDecorationLine: 'underline',
   },
 })
 

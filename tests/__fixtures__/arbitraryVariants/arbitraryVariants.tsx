@@ -48,22 +48,3 @@ tw`first:block md:[path]:[stroke: #000]`
 tw`[.sec section a[target="_blank"]]:block` // < issue with _blank present in tailwindcss
 tw`[#blah, &.pre, & section,]:block`
 tw`[&.pre,& section,]:block`
-
-tw`[&>*]:underline`
-tw`[.a.b_&]:underline`
-tw`dark:lg:hover:[&>*]:underline`
-tw`[div]:underline`
-tw`[:hover]:underline`
-tw`[wtf-bbq]:underline`
-tw`[lol]:hover:underline`
-tw`underline lg:underline [&>*]:underline`
-tw`[@supports(what:ever)]:underline`
-tw`[@media_screen{@media(hover:hover)}]:underline`
-tw`[@media(hover:hover){&:hover}]:underline`
-tw`[&[data-open]]:underline`
-//..
-tw`[&_.foo\\_\\_bar]:underline`
-tw`[&_.foo\\_\\_bar]:[&_.bar\\_\\_baz]:underline`
-tw`[&_.foo\\_\\_bar]:hover:underline`
-tw`hover:[&_.foo\\_\\_bar]:underline`
-tw`[&[data-test='2']]:underline`

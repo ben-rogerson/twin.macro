@@ -7,6 +7,31 @@ import type { CoreContext, TailwindConfig } from 'core/types'
 import { SPACE_ID, SPACES } from '../constants'
 
 const ALL_COMMAS = /,/g
+const ALL_CLASS_DOTS = /(?<!\\)(\.)(?=\w)/g
+const MEDIA_VARIANTS = new Set([
+  'dark',
+  'light',
+  'ltr',
+  'rtl',
+  'motion-safe',
+  'motion-reduce',
+  'print',
+  'screen',
+  'portrait',
+  'landscape',
+  'contrast-more',
+  'contrast-less',
+  'any-pointer-none',
+  'any-pointer-fine',
+  'any-pointer-coarse',
+  'pointer-none',
+  'pointer-fine',
+  'pointer-coarse',
+  'any-hover-none',
+  'any-hover',
+  'can-hover',
+  'cant-hover',
+])
 
 type ConvertShortCssToArbitraryPropertyParameters = {
   disableShortCss: CoreContext['twinConfig']['disableShortCss']
@@ -117,18 +142,18 @@ function convertClassName(
   className = replaceThemeValue(className, { assert, theme })
 
   // Add a parent selector if it's missing from an arbitrary variant
-  className = checkForMissingParentSelector(className, { tailwindConfig })
+  className = addMissingParentSelector(className, { tailwindConfig })
 
   debug('class after format', className)
 
   return className
 }
 
-function escapeCommas(className: string): string {
-  return className.replace(ALL_COMMAS, '\\2c')
+function isArbitraryVariant(variant: string): boolean {
+  return variant.startsWith('[') && variant.endsWith(']')
 }
 
-function checkForMissingParentSelector(
+function addMissingParentSelector(
   fullClassName: string,
   { tailwindConfig }: { tailwindConfig: TailwindConfig }
 ): string {
@@ -139,38 +164,69 @@ function checkForMissingParentSelector(
   const variants = splitArray.slice(0, -1)
   const className = splitArray.slice(-1)[0]
 
-  const arbitraryVariantsCount = variants.filter(
-    v => v.startsWith('[') && v.endsWith(']')
-  ).length
-  if (arbitraryVariantsCount === 0) return fullClassName
+  if (variants.length === 0) return fullClassName
 
-  const variantsNew = variants.map((v, offset) => {
-    if (!(v.startsWith('[') && v.endsWith(']'))) return v
+  // Collapse arbitrary variants when they don't contain `&`.
+  // `[> div]:[.nav]:(flex block)` -> `[> div_.nav]:flex [> div_.nav]:block`
+  const collapsed = [] as string[]
+  variants
+    .sort((a, b) => {
+      // Move arbitrary variants without parent selectors to the end
+      if (isArbitraryVariant(a)) return 1
+      if (isArbitraryVariant(b)) return -1
+      return 0
+    })
+    .forEach((variant, index) => {
+      if (
+        index === 0 ||
+        !isArbitraryVariant(variant) ||
+        !isArbitraryVariant(variants[index - 1])
+      )
+        return collapsed.push(variant)
 
-    // Missing parent selector found
-    const unwrapped = v.slice(1, -1)
-    const added = addParentSelector(unwrapped, offset, arbitraryVariantsCount)
-    return `[${added}]`
+      if (variant.includes('&') && variants[index - 1].includes('&'))
+        return collapsed.push(variant)
+
+      collapsed[collapsed.length - 1] = [
+        collapsed[collapsed.length - 1].slice(0, -1),
+        variant.slice(1),
+      ].join('_')
+    })
+
+  // Remove non-styling variants (sm, md, etc) from the variants list
+  const screenConfig = tailwindConfig.theme?.screens ?? {}
+  const screens = Object.keys(screenConfig)
+  const nonStylingVariantsRemoved = collapsed.filter(
+    c => !screens.includes(c) && !MEDIA_VARIANTS.has(c)
+  )
+
+  // Use that list to either prefix or suffix with the parent selector
+  const variantsWithParentSelectors = collapsed.map(v => {
+    if (!isArbitraryVariant(v)) return v
+    const out = addParentSelector(
+      v.slice(1, -1),
+      nonStylingVariantsRemoved.indexOf(v) !== 0
+    )
+    return `[${out}]`
   })
 
-  return [...variantsNew, className].join(tailwindConfig.separator ?? ':')
+  return [...variantsWithParentSelectors, className].join(
+    tailwindConfig.separator ?? ':'
+  )
 }
 
-function addParentSelector(
-  value: string,
-  offset: number,
-  arbitraryVariantsCount: number
-): string {
+function addParentSelector(rawSelector: string, shouldSuffix: boolean): string {
   // Tailwindcss requires pre-encoded commas - unencoded are removed and we end up with an invalid selector
-  const selector = escapeCommas(value)
-  // Preserve selectors with parent selector or media queries
+  let selector = rawSelector.replace(ALL_COMMAS, '\\2c')
+  // Escape class dots in the selector - otherwise tailwindcss adds a the prefix within arbitrary variants (only when `prefix` is set in tailwind config)
+  // eg: tw`[.a]:first:tw-block` -> `.tw-a &:first-child`
+  selector = selector.replace(ALL_CLASS_DOTS, '\\.')
+  // Preserve selectors with a parent selector and media queries
   if (selector.includes('&') || selector.startsWith('@')) return selector
-  // pseudo
+  // Pseudo elements get an auto parent selector prefixed
   if (selector.startsWith(':')) return `&${selector}`
-  // Selectors with multiple arbitrary variants are too hard to determine so follow a basic rule instead
-  if (arbitraryVariantsCount > 1) return `&_${selector}`
-  // If the arbitrary variant is the first selector, add a parent selector
-  return offset === 0 ? `&_${selector}` : `${selector}_&`
+
+  return shouldSuffix ? `${selector}_&` : `&_${selector}`
 }
 
 export default convertClassName
