@@ -14,6 +14,7 @@ import type {
   TailwindMatch,
   TailwindContext,
   TailwindConfig,
+  Assert,
 } from './types'
 
 const IMPORTANT_OUTSIDE_BRACKETS =
@@ -25,6 +26,7 @@ const ALL_BRACKET_SQUARE_LEFT = /\[/g
 const ALL_BRACKET_SQUARE_RIGHT = /]/g
 const ALL_BRACKET_ROUND_LEFT = /\(/g
 const ALL_BRACKET_ROUND_RIGHT = /\)/g
+const ESCAPE_CHARACTERS = /\n|\t/g
 
 function getStylesFromMatches(
   matches: TailwindMatch[],
@@ -99,16 +101,18 @@ function validateClasses(
   )
 
   for (const className of splitAtTopLevelOnly(classes, ' ')) {
+    // Check for missing class attached to a variant
+    const classCheck = className.replace(ESCAPE_CHARACTERS, ' ').trim()
     assert(
-      !className.endsWith(tailwindConfig.separator ?? ':'),
+      !classCheck.endsWith(tailwindConfig.separator ?? ':'),
       ({ color }: AssertContext) =>
         `${color(
           `✕ The variant ${String(
-            color(className, 'errorLight')
+            color(classCheck, 'errorLight')
           )} doesn’t look right`
         )}\n\nUpdate to ${String(
-          color(`${className}block`, 'success')
-        )} or ${String(color(`${className}(block mt-4)`, 'success'))}`
+          color(`${classCheck}block`, 'success')
+        )} or ${String(color(`${classCheck}(block mt-4)`, 'success'))}`
     )
   }
 
@@ -116,14 +120,14 @@ function validateClasses(
 }
 
 const tasks: Array<
-  (classes: string, tailwindConfig: TailwindConfig) => string
+  (classes: string, tailwindConfig: TailwindConfig, assert: Assert) => string
 > = [
   (classes): string => classes.replace(CLASS_DIVIDER_PIPE, ' '),
   (classes): string =>
     classes.replace(COMMENTS_MULTI_LINE, multilineReplaceWith),
   (classes): string => classes.replace(COMMENTS_SINGLE_LINE, ''),
-  (classes, tailwindConfig): string =>
-    expandVariantGroups(classes, { tailwindConfig }), // Expand grouped variants to individual classes
+  (classes, tailwindConfig, assert): string =>
+    expandVariantGroups(classes, { assert, tailwindConfig }), // Expand grouped variants to individual classes
 ]
 
 function bigSign(bigIntValue: bigint): number {
@@ -195,7 +199,7 @@ function getStyles(
   if (!result) return { styles: undefined, matched: [], unmatched: [] }
 
   for (const task of tasks) {
-    classes = task(classes, params.tailwindConfig)
+    classes = task(classes, params.tailwindConfig, assert)
   }
 
   params.debug('classes after format', classes)

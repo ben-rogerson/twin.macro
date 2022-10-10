@@ -1,4 +1,4 @@
-import type { TailwindConfig } from 'core/types'
+import type { Assert, AssertContext, TailwindConfig } from 'core/types'
 import { splitAtTopLevelOnly } from './util/twImports'
 
 const BRACKETED = /^\(.*?\)$/
@@ -10,6 +10,7 @@ type Context = {
   beforeImportant?: string
   afterImportant?: string
   tailwindConfig: TailwindConfig
+  assert: Assert
 }
 
 function spreadVariantGroups(classes: string, context: Context): string[] {
@@ -22,6 +23,23 @@ function spreadVariantGroups(classes: string, context: Context): string[] {
 
   let groupedClasses = pieces.pop()
   if (!groupedClasses) return [] // type guard
+
+  // Check for too many dividers used
+  // Added here instead of "validateClasses" as it's less error prone to check here
+  context.assert(
+    !pieces.includes(''),
+    ({ color }: AssertContext) =>
+      `${color(
+        `✕ ${String(color(classes, 'errorLight'))} has too many dividers`
+      )}\n\nUpdate to ${String(
+        color(
+          `${pieces
+            .filter(Boolean)
+            .join(context.tailwindConfig.separator ?? ':')}`,
+          'success'
+        )
+      )}`
+  )
 
   let beforeImportant = context?.beforeImportant ?? ''
   let afterImportant = context?.afterImportant ?? ''
@@ -70,6 +88,8 @@ function expandVariantGroups(classes: string, context: Context): string {
   const classList = [
     ...splitAtTopLevelOnly(classes.replace(ESCAPE_CHARACTERS, ' ').trim(), ' '),
   ]
+  if (classList.length === 1 && ['', '()'].includes(classList[0])) return ''
+
   const expandedClasses = classList.flatMap(item =>
     spreadVariantGroups(item, context)
   )
