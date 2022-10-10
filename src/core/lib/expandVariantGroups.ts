@@ -3,7 +3,7 @@ import { splitAtTopLevelOnly } from './util/twImports'
 
 const BRACKETED = /^\(.*?\)$/
 const BRACKETED_MAYBE_IMPORTANT = /\)!?$/
-const NEW_LINE = /\n/g
+const ESCAPE_CHARACTERS = /\n|\t/g
 
 type Context = {
   variants?: string
@@ -68,7 +68,7 @@ function spreadVariantGroups(classes: string, context: Context): string[] {
 
 function expandVariantGroups(classes: string, context: Context): string {
   const classList = [
-    ...splitAtTopLevelOnly(classes.replace(NEW_LINE, ' ').trim(), ' '),
+    ...splitAtTopLevelOnly(classes.replace(ESCAPE_CHARACTERS, ' ').trim(), ' '),
   ]
   const expandedClasses = classList.flatMap(item =>
     spreadVariantGroups(item, context)

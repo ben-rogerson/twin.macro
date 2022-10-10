@@ -209,6 +209,18 @@ test('keeps escaped underscores in arbitrary variants mixed with normal variants
   })
 })
 
+test('removes newline and tab escape characters', async () => {
+  const input = 'tw`\tm-0\tinline\n`'
+  return run(input).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({
+        "margin": "0px",
+        "display": "inline"
+      });
+    `)
+  })
+})
+
 test('allows attribute variants with quotes', async () => {
   const input = [
     "tw`[&[data-test='2']]:underline`",
