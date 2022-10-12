@@ -7,31 +7,9 @@ import type { CoreContext, TailwindConfig } from 'core/types'
 import { SPACE_ID, SPACES } from '../constants'
 
 const ALL_COMMAS = /,/g
+const ALL_AMPERSANDS = /&/g
+const ENDING_AMP_THEN_WHITESPACE = /&[\s_]*$/
 const ALL_CLASS_DOTS = /(?<!\\)(\.)(?=\w)/g
-const MEDIA_VARIANTS = new Set([
-  'dark',
-  'light',
-  'ltr',
-  'rtl',
-  'motion-safe',
-  'motion-reduce',
-  'print',
-  'screen',
-  'portrait',
-  'landscape',
-  'contrast-more',
-  'contrast-less',
-  'any-pointer-none',
-  'any-pointer-fine',
-  'any-pointer-coarse',
-  'pointer-none',
-  'pointer-fine',
-  'pointer-coarse',
-  'any-hover-none',
-  'any-hover',
-  'can-hover',
-  'cant-hover',
-])
 
 type ConvertShortCssToArbitraryPropertyParameters = {
   disableShortCss: CoreContext['twinConfig']['disableShortCss']
@@ -153,6 +131,10 @@ function isArbitraryVariant(variant: string): boolean {
   return variant.startsWith('[') && variant.endsWith(']')
 }
 
+function unbracket(variant: string): string {
+  return variant.slice(1, -1)
+}
+
 function addMissingParentSelector(
   fullClassName: string,
   { tailwindConfig }: { tailwindConfig: TailwindConfig }
@@ -170,13 +152,18 @@ function addMissingParentSelector(
   // `[> div]:[.nav]:(flex block)` -> `[> div_.nav]:flex [> div_.nav]:block`
   const collapsed = [] as string[]
   variants
+    // Deal with tailwindcss inability to maintain order of variants.
+    // Unfortunately this means we have to group arbitrary variants and lose the
+    // original ordering if there are non-arbitrary variants in the mix.
+    .reverse()
     .sort((a, b) => {
-      // Move arbitrary variants without parent selectors to the end
       if (isArbitraryVariant(a)) return 1
       if (isArbitraryVariant(b)) return -1
       return 0
     })
+    .reverse()
     .forEach((variant, index) => {
+      // This code attempts to replicate sass-type usage of the parent selector
       if (
         index === 0 ||
         !isArbitraryVariant(variant) ||
@@ -184,29 +171,47 @@ function addMissingParentSelector(
       )
         return collapsed.push(variant)
 
-      if (variant.includes('&') && variants[index - 1].includes('&'))
-        return collapsed.push(variant)
+      const prev = collapsed[collapsed.length - 1]
 
-      collapsed[collapsed.length - 1] = [
-        collapsed[collapsed.length - 1].slice(0, -1),
-        variant.slice(1),
-      ].join('_')
+      if (variant.includes('&')) {
+        const prevHasParent = prev.includes('&')
+
+        // Merge with current
+        if (prevHasParent) {
+          const mergedWithCurrent = variant.replace(
+            ALL_AMPERSANDS,
+            unbracket(prev)
+          )
+          const isLast = index === variants.length - 1
+          collapsed[index - 1] = isLast
+            ? mergedWithCurrent.replace(ALL_AMPERSANDS, '')
+            : mergedWithCurrent
+          return
+        }
+
+        // Merge with previous
+        if (!prevHasParent) {
+          const mergedWithPrev = `[${unbracket(variant).replace(
+            ALL_AMPERSANDS,
+            unbracket(prev)
+          )}]`
+          collapsed[collapsed.length - 1] = mergedWithPrev
+          return
+        }
+      }
+
+      // Parentless variants are merged into the previous arbitrary variant
+      const mergedWithPrev = `[${[
+        unbracket(prev).replace(ENDING_AMP_THEN_WHITESPACE, ''),
+        unbracket(variant),
+      ].join('_')}]`
+      collapsed[collapsed.length - 1] = mergedWithPrev
     })
 
-  // Remove non-styling variants (sm, md, etc) from the variants list
-  const screenConfig = tailwindConfig.theme?.screens ?? {}
-  const screens = Object.keys(screenConfig)
-  const nonStylingVariantsRemoved = collapsed.filter(
-    c => !screens.includes(c) && !MEDIA_VARIANTS.has(c)
-  )
-
-  // Use that list to either prefix or suffix with the parent selector
+  // Use that list to add the parent selector
   const variantsWithParentSelectors = collapsed.map(v => {
     if (!isArbitraryVariant(v)) return v
-    const out = addParentSelector(
-      v.slice(1, -1),
-      nonStylingVariantsRemoved.indexOf(v) !== 0
-    )
+    const out = addParentSelector(unbracket(v))
     return `[${out}]`
   })
 
@@ -215,7 +220,7 @@ function addMissingParentSelector(
   )
 }
 
-function addParentSelector(rawSelector: string, shouldSuffix: boolean): string {
+function addParentSelector(rawSelector: string): string {
   // Tailwindcss requires pre-encoded commas - unencoded are removed and we end up with an invalid selector
   let selector = rawSelector.replace(ALL_COMMAS, '\\2c')
   // Escape class dots in the selector - otherwise tailwindcss adds a the prefix within arbitrary variants (only when `prefix` is set in tailwind config)
@@ -226,7 +231,7 @@ function addParentSelector(rawSelector: string, shouldSuffix: boolean): string {
   // Pseudo elements get an auto parent selector prefixed
   if (selector.startsWith(':')) return `&${selector}`
 
-  return shouldSuffix ? `${selector}_&` : `&_${selector}`
+  return `&_${selector}`
 }
 
 export default convertClassName

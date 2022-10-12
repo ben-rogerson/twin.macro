@@ -17,9 +17,16 @@ const sassifySelectorTasks: SassifySelectorTasks = [
   // Prefix with the parent selector when sassyPseudo is enabled,
   // otherwise just replace the class with the parent selector
   (selector, { selectorMatchReg, sassyPseudo }): string =>
-    selector.replace(selectorMatchReg, (match, __, offset: number) =>
-      selector === match || (offset === 0 && !sassyPseudo) ? '' : '&'
-    ),
+    selector.replace(selectorMatchReg, (match, __, offset: number) => {
+      if (selector === match) return ''
+      if (sassyPseudo) return '&'
+      if (
+        /\w/.test(selector[offset - 1]) &&
+        selector[offset + match.length] === ':'
+      )
+        return '' // Cover [section&]:hover:block / .btn.loading&:before
+      return offset === 0 ? '' : '&'
+    }),
 
   // Remove unneeded escaping from the selector
   (selector): string => selector.replace(UNDERSCORE_ESCAPING, '$1'),

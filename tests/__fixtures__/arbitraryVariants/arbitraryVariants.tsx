@@ -2,6 +2,7 @@
 import tw from '../macro'
 
 tw`[section]:hover:block`
+tw`[section&]:hover:block`
 
 tw`[p]:hover:block`
 tw`hover:[p]:block`

@@ -4089,6 +4089,7 @@ exports[`twin.macro arbitraryVariants.tsx: arbitraryVariants.tsx 1`] = `
 import tw from '../macro'
 
 tw\`[section]:hover:block\`
+tw\`[section&]:hover:block\`
 
 tw\`[p]:hover:block\`
 tw\`hover:[p]:block\`
@@ -4140,17 +4141,22 @@ tw\`[&.pre,& section,]:block\`
 
 // @ts-nocheck
 ;({
-  'section &:hover': {
+  ':hover section': {
     display: 'block',
   },
 })
 ;({
-  'p &:hover': {
+  'section:hover': {
     display: 'block',
   },
 })
 ;({
-  'p &:hover': {
+  ':hover p': {
+    display: 'block',
+  },
+})
+;({
+  ':hover p': {
     display: 'block',
   },
 })
@@ -4258,42 +4264,42 @@ tw\`[&.pre,& section,]:block\`
   },
 })
 ;({
-  'section pre &': {
+  '& pre section': {
     display: 'block',
   },
 })
 ;({
-  'section & pre': {
+  '& section pre': {
     display: 'block',
   },
 })
 ;({
-  'section pre &:first-child': {
+  'pre section &:first-child': {
     display: 'block',
   },
 })
 ;({
-  'section & pre:first-child': {
+  'section &:first-child pre': {
     display: 'block',
   },
 })
 ;({
-  'section pre &:first-child': {
+  'pre section &:first-child': {
     display: 'block',
   },
 })
 ;({
-  'section & pre:first-child': {
+  'section &:first-child pre': {
     display: 'block',
   },
 })
 ;({
-  'section & pre:first-child': {
+  'section &:first-child pre': {
     marginTop: '2px',
   },
 })
 ;({
-  'section & pre:first-child': {
+  'section &:first-child pre': {
     display: 'inline',
   },
 })
@@ -4318,7 +4324,7 @@ tw\`[&.pre,& section,]:block\`
   },
 })
 ;({
-  'path &:first-child': {
+  ':first-child path': {
     stroke: '#000',
   },
   '@media (min-width: 768px)': {
@@ -44015,7 +44021,7 @@ globalStyles
               '--tw-text-opacity': '1',
               color: 'hsl(var(--pc) / var(--tw-text-opacity))',
             },
-            '.btn-group > input[type="radio"]:checked&:focus-visible': {
+            '&.btn-group > input[type="radio"]:checked:focus-visible': {
               outline: '2px solid hsl(var(--p))',
             },
             '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -44397,7 +44403,7 @@ globalStyles
               '--tw-text-opacity': '1',
               color: 'hsl(var(--pc) / var(--tw-text-opacity))',
             },
-            '.btn-group > input[type="radio"]:checked&:focus-visible': {
+            '&.btn-group > input[type="radio"]:checked:focus-visible': {
               outline: '2px solid hsl(var(--p))',
             },
             '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -44677,7 +44683,7 @@ globalStyles
               '--tw-text-opacity': '1',
               color: 'hsl(var(--p) / var(--tw-text-opacity))',
             },
-            '.btn-outline&:hover .badge': {
+            '&.btn-outline:hover .badge': {
               '--tw-border-opacity': '1',
               borderColor: 'hsl(var(--pc) / var(--tw-border-opacity))',
               '--tw-bg-opacity': '1',
@@ -44685,7 +44691,7 @@ globalStyles
               '--tw-text-opacity': '1',
               color: 'hsl(var(--p) / var(--tw-text-opacity))',
             },
-            '.btn-outline&:hover .badge.outline': {
+            '&.btn-outline:hover .badge.outline': {
               '--tw-border-opacity': '1',
               borderColor: 'hsl(var(--pc) / var(--tw-border-opacity))',
               '--tw-bg-opacity': '1',
@@ -44706,7 +44712,7 @@ globalStyles
               '--tw-text-opacity': '1',
               color: 'hsl(var(--p) / var(--tw-text-opacity))',
             },
-            '.btn-outline&:hover': {
+            '&.btn-outline:hover': {
               '--tw-border-opacity': '1',
               borderColor:
                 'hsl(var(--pf, var(--p)) / var(--tw-border-opacity))',
@@ -44836,7 +44842,7 @@ globalStyles
               '--tw-text-opacity': '1',
               color: 'hsl(var(--pc) / var(--tw-text-opacity))',
             },
-            '.btn-group > input[type="radio"]:checked&:focus-visible': {
+            '&.btn-group > input[type="radio"]:checked:focus-visible': {
               outline: '2px solid hsl(var(--p))',
             },
             '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -45116,7 +45122,7 @@ globalStyles
               '--tw-text-opacity': '1',
               color: 'hsl(var(--s) / var(--tw-text-opacity))',
             },
-            '.btn-outline&:hover .badge': {
+            '&.btn-outline:hover .badge': {
               '--tw-border-opacity': '1',
               borderColor: 'hsl(var(--sc) / var(--tw-border-opacity))',
               '--tw-bg-opacity': '1',
@@ -45124,7 +45130,7 @@ globalStyles
               '--tw-text-opacity': '1',
               color: 'hsl(var(--s) / var(--tw-text-opacity))',
             },
-            '.btn-outline&:hover .badge.outline': {
+            '&.btn-outline:hover .badge.outline': {
               '--tw-border-opacity': '1',
               borderColor: 'hsl(var(--sc) / var(--tw-border-opacity))',
               '--tw-bg-opacity': '1',
@@ -45145,7 +45151,7 @@ globalStyles
               '--tw-text-opacity': '1',
               color: 'hsl(var(--s) / var(--tw-text-opacity))',
             },
-            '.btn-outline&:hover': {
+            '&.btn-outline:hover': {
               '--tw-border-opacity': '1',
               borderColor:
                 'hsl(var(--sf, var(--s)) / var(--tw-border-opacity))',
@@ -45275,7 +45281,7 @@ globalStyles
               '--tw-text-opacity': '1',
               color: 'hsl(var(--pc) / var(--tw-text-opacity))',
             },
-            '.btn-group > input[type="radio"]:checked&:focus-visible': {
+            '&.btn-group > input[type="radio"]:checked:focus-visible': {
               outline: '2px solid hsl(var(--p))',
             },
             '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -45555,7 +45561,7 @@ globalStyles
               '--tw-text-opacity': '1',
               color: 'hsl(var(--a) / var(--tw-text-opacity))',
             },
-            '.btn-outline&:hover .badge': {
+            '&.btn-outline:hover .badge': {
               '--tw-border-opacity': '1',
               borderColor: 'hsl(var(--ac) / var(--tw-border-opacity))',
               '--tw-bg-opacity': '1',
@@ -45563,7 +45569,7 @@ globalStyles
               '--tw-text-opacity': '1',
               color: 'hsl(var(--a) / var(--tw-text-opacity))',
             },
-            '.btn-outline&:hover .badge.outline': {
+            '&.btn-outline:hover .badge.outline': {
               '--tw-border-opacity': '1',
               borderColor: 'hsl(var(--ac) / var(--tw-border-opacity))',
               '--tw-bg-opacity': '1',
@@ -45584,7 +45590,7 @@ globalStyles
               '--tw-text-opacity': '1',
               color: 'hsl(var(--a) / var(--tw-text-opacity))',
             },
-            '.btn-outline&:hover': {
+            '&.btn-outline:hover': {
               '--tw-border-opacity': '1',
               borderColor:
                 'hsl(var(--af, var(--a)) / var(--tw-border-opacity))',
@@ -45853,7 +45859,7 @@ globalStyles
               '--tw-text-opacity': '1',
               color: 'hsl(var(--pc) / var(--tw-text-opacity))',
             },
-            '.btn-group > input[type="radio"]:checked&:focus-visible': {
+            '&.btn-group > input[type="radio"]:checked:focus-visible': {
               outline: '2px solid hsl(var(--p))',
             },
             '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -47221,7 +47227,7 @@ globalStyles
                     '--tw-text-opacity': '1',
                     color: 'hsl(var(--pc) / var(--tw-text-opacity))',
                   },
-                  '.btn-group > input[type="radio"]:checked&:focus-visible': {
+                  '&.btn-group > input[type="radio"]:checked:focus-visible': {
                     outline: '2px solid hsl(var(--p))',
                   },
                   '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)':
@@ -47259,7 +47265,7 @@ globalStyles
                     '--tw-text-opacity': '1',
                     color: 'hsl(var(--p) / var(--tw-text-opacity))',
                   },
-                  '.btn-outline&:hover .badge': {
+                  '&.btn-outline:hover .badge': {
                     '--tw-border-opacity': '1',
                     borderColor: 'hsl(var(--pc) / var(--tw-border-opacity))',
                     '--tw-bg-opacity': '1',
@@ -47267,7 +47273,7 @@ globalStyles
                     '--tw-text-opacity': '1',
                     color: 'hsl(var(--p) / var(--tw-text-opacity))',
                   },
-                  '.btn-outline&:hover .badge.outline': {
+                  '&.btn-outline:hover .badge.outline': {
                     '--tw-border-opacity': '1',
                     borderColor: 'hsl(var(--pc) / var(--tw-border-opacity))',
                     '--tw-bg-opacity': '1',
@@ -47288,7 +47294,7 @@ globalStyles
                     '--tw-text-opacity': '1',
                     color: 'hsl(var(--p) / var(--tw-text-opacity))',
                   },
-                  '.btn-outline&:hover': {
+                  '&.btn-outline:hover': {
                     '--tw-border-opacity': '1',
                     borderColor:
                       'hsl(var(--pf, var(--p)) / var(--tw-border-opacity))',
@@ -47493,7 +47499,7 @@ globalStyles
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--pc) / var(--tw-text-opacity))',
               },
-              '.btn-group > input[type="radio"]:checked&:focus-visible': {
+              '&.btn-group > input[type="radio"]:checked:focus-visible': {
                 outline: '2px solid hsl(var(--p))',
               },
               '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -48445,7 +48451,7 @@ globalStyles
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--pc) / var(--tw-text-opacity))',
               },
-              '.btn-group > input[type="radio"]:checked&:focus-visible': {
+              '&.btn-group > input[type="radio"]:checked:focus-visible': {
                 outline: '2px solid hsl(var(--p))',
               },
               '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -48585,7 +48591,7 @@ globalStyles
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--pc) / var(--tw-text-opacity))',
               },
-              '.btn-group > input[type="radio"]:checked&:focus-visible': {
+              '&.btn-group > input[type="radio"]:checked:focus-visible': {
                 outline: '2px solid hsl(var(--p))',
               },
               '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -48725,7 +48731,7 @@ globalStyles
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--pc) / var(--tw-text-opacity))',
               },
-              '.btn-group > input[type="radio"]:checked&:focus-visible': {
+              '&.btn-group > input[type="radio"]:checked:focus-visible': {
                 outline: '2px solid hsl(var(--p))',
               },
               '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -48865,7 +48871,7 @@ globalStyles
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--pc) / var(--tw-text-opacity))',
               },
-              '.btn-group > input[type="radio"]:checked&:focus-visible': {
+              '&.btn-group > input[type="radio"]:checked:focus-visible': {
                 outline: '2px solid hsl(var(--p))',
               },
               '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -49306,7 +49312,7 @@ globalStyles
                   '--tw-text-opacity': '1',
                   color: 'hsl(var(--pc) / var(--tw-text-opacity))',
                 },
-                '.btn-group > input[type="radio"]:checked&:focus-visible': {
+                '&.btn-group > input[type="radio"]:checked:focus-visible': {
                   outline: '2px solid hsl(var(--p))',
                 },
                 '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -49342,7 +49348,7 @@ globalStyles
                   '--tw-text-opacity': '1',
                   color: 'hsl(var(--p) / var(--tw-text-opacity))',
                 },
-                '.btn-outline&:hover .badge': {
+                '&.btn-outline:hover .badge': {
                   '--tw-border-opacity': '1',
                   borderColor: 'hsl(var(--pc) / var(--tw-border-opacity))',
                   '--tw-bg-opacity': '1',
@@ -49350,7 +49356,7 @@ globalStyles
                   '--tw-text-opacity': '1',
                   color: 'hsl(var(--p) / var(--tw-text-opacity))',
                 },
-                '.btn-outline&:hover .badge.outline': {
+                '&.btn-outline:hover .badge.outline': {
                   '--tw-border-opacity': '1',
                   borderColor: 'hsl(var(--pc) / var(--tw-border-opacity))',
                   '--tw-bg-opacity': '1',
@@ -49371,7 +49377,7 @@ globalStyles
                   '--tw-text-opacity': '1',
                   color: 'hsl(var(--p) / var(--tw-text-opacity))',
                 },
-                '.btn-outline&:hover': {
+                '&.btn-outline:hover': {
                   '--tw-border-opacity': '1',
                   borderColor:
                     'hsl(var(--pf, var(--p)) / var(--tw-border-opacity))',
@@ -50007,7 +50013,7 @@ globalStyles
                     '--tw-text-opacity': '1',
                     color: 'hsl(var(--pc) / var(--tw-text-opacity))',
                   },
-                  '.btn-group > input[type="radio"]:checked&:focus-visible': {
+                  '&.btn-group > input[type="radio"]:checked:focus-visible': {
                     outline: '2px solid hsl(var(--p))',
                   },
                   '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)':
@@ -50045,7 +50051,7 @@ globalStyles
                     '--tw-text-opacity': '1',
                     color: 'hsl(var(--p) / var(--tw-text-opacity))',
                   },
-                  '.btn-outline&:hover .badge': {
+                  '&.btn-outline:hover .badge': {
                     '--tw-border-opacity': '1',
                     borderColor: 'hsl(var(--pc) / var(--tw-border-opacity))',
                     '--tw-bg-opacity': '1',
@@ -50053,7 +50059,7 @@ globalStyles
                     '--tw-text-opacity': '1',
                     color: 'hsl(var(--p) / var(--tw-text-opacity))',
                   },
-                  '.btn-outline&:hover .badge.outline': {
+                  '&.btn-outline:hover .badge.outline': {
                     '--tw-border-opacity': '1',
                     borderColor: 'hsl(var(--pc) / var(--tw-border-opacity))',
                     '--tw-bg-opacity': '1',
@@ -50074,7 +50080,7 @@ globalStyles
                     '--tw-text-opacity': '1',
                     color: 'hsl(var(--p) / var(--tw-text-opacity))',
                   },
-                  '.btn-outline&:hover': {
+                  '&.btn-outline:hover': {
                     '--tw-border-opacity': '1',
                     borderColor:
                       'hsl(var(--pf, var(--p)) / var(--tw-border-opacity))',
@@ -50468,7 +50474,7 @@ globalStyles
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--pc) / var(--tw-text-opacity))',
               },
-              '.btn-group > input[type="radio"]:checked&:focus-visible': {
+              '&.btn-group > input[type="radio"]:checked:focus-visible': {
                 outline: '2px solid hsl(var(--p))',
               },
               '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -51965,7 +51971,7 @@ globalStyles
                     '--tw-text-opacity': '1',
                     color: 'hsl(var(--pc) / var(--tw-text-opacity))',
                   },
-                  '.btn-group > input[type="radio"]:checked&:focus-visible': {
+                  '&.btn-group > input[type="radio"]:checked:focus-visible': {
                     outline: '2px solid hsl(var(--p))',
                   },
                   '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)':
@@ -52003,7 +52009,7 @@ globalStyles
                     '--tw-text-opacity': '1',
                     color: 'hsl(var(--p) / var(--tw-text-opacity))',
                   },
-                  '.btn-outline&:hover .badge': {
+                  '&.btn-outline:hover .badge': {
                     '--tw-border-opacity': '1',
                     borderColor: 'hsl(var(--pc) / var(--tw-border-opacity))',
                     '--tw-bg-opacity': '1',
@@ -52011,7 +52017,7 @@ globalStyles
                     '--tw-text-opacity': '1',
                     color: 'hsl(var(--p) / var(--tw-text-opacity))',
                   },
-                  '.btn-outline&:hover .badge.outline': {
+                  '&.btn-outline:hover .badge.outline': {
                     '--tw-border-opacity': '1',
                     borderColor: 'hsl(var(--pc) / var(--tw-border-opacity))',
                     '--tw-bg-opacity': '1',
@@ -52032,7 +52038,7 @@ globalStyles
                     '--tw-text-opacity': '1',
                     color: 'hsl(var(--p) / var(--tw-text-opacity))',
                   },
-                  '.btn-outline&:hover': {
+                  '&.btn-outline:hover': {
                     '--tw-border-opacity': '1',
                     borderColor:
                       'hsl(var(--pf, var(--p)) / var(--tw-border-opacity))',
@@ -52293,7 +52299,7 @@ globalStyles
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--pc) / var(--tw-text-opacity))',
               },
-              '.btn-group > input[type="radio"]:checked&:focus-visible': {
+              '&.btn-group > input[type="radio"]:checked:focus-visible': {
                 outline: '2px solid hsl(var(--p))',
               },
               '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -52314,7 +52320,7 @@ globalStyles
                 borderBottomRightRadius: '0px',
                 borderBottomLeftRadius: '0px',
               },
-              '.btn.loading&:before': {
+              '&.btn.loading:before': {
                 height: '0.75rem',
                 width: '0.75rem',
               },
@@ -52447,7 +52453,7 @@ globalStyles
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--pc) / var(--tw-text-opacity))',
               },
-              '.btn-group > input[type="radio"]:checked&:focus-visible': {
+              '&.btn-group > input[type="radio"]:checked:focus-visible': {
                 outline: '2px solid hsl(var(--p))',
               },
               '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -52468,7 +52474,7 @@ globalStyles
                 borderBottomRightRadius: '0px',
                 borderBottomLeftRadius: '0px',
               },
-              '.btn.loading&:before': {
+              '&.btn.loading:before': {
                 height: '0.75rem',
                 width: '0.75rem',
               },
@@ -52601,7 +52607,7 @@ globalStyles
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--pc) / var(--tw-text-opacity))',
               },
-              '.btn-group > input[type="radio"]:checked&:focus-visible': {
+              '&.btn-group > input[type="radio"]:checked:focus-visible': {
                 outline: '2px solid hsl(var(--p))',
               },
               '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -52622,7 +52628,7 @@ globalStyles
                 borderBottomRightRadius: '0px',
                 borderBottomLeftRadius: '0px',
               },
-              '.btn.loading&:before': {
+              '&.btn.loading:before': {
                 height: '0.75rem',
                 width: '0.75rem',
               },
@@ -52755,7 +52761,7 @@ globalStyles
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--pc) / var(--tw-text-opacity))',
               },
-              '.btn-group > input[type="radio"]:checked&:focus-visible': {
+              '&.btn-group > input[type="radio"]:checked:focus-visible': {
                 outline: '2px solid hsl(var(--p))',
               },
               '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {
@@ -52776,7 +52782,7 @@ globalStyles
                 borderBottomRightRadius: '0px',
                 borderBottomLeftRadius: '0px',
               },
-              '.btn.loading&:before': {
+              '&.btn.loading:before': {
                 height: '0.75rem',
                 width: '0.75rem',
               },
@@ -55198,7 +55204,7 @@ globalStyles
                         '--tw-text-opacity': '1',
                         color: 'hsl(var(--pc) / var(--tw-text-opacity))',
                       },
-                      '.btn-group > input[type="radio"]:checked&:focus-visible':
+                      '&.btn-group > input[type="radio"]:checked:focus-visible':
                         {
                           outline: '2px solid hsl(var(--p))',
                         },
@@ -55237,7 +55243,7 @@ globalStyles
                         '--tw-text-opacity': '1',
                         color: 'hsl(var(--p) / var(--tw-text-opacity))',
                       },
-                      '.btn-outline&:hover .badge': {
+                      '&.btn-outline:hover .badge': {
                         '--tw-border-opacity': '1',
                         borderColor:
                           'hsl(var(--pc) / var(--tw-border-opacity))',
@@ -55247,7 +55253,7 @@ globalStyles
                         '--tw-text-opacity': '1',
                         color: 'hsl(var(--p) / var(--tw-text-opacity))',
                       },
-                      '.btn-outline&:hover .badge.outline': {
+                      '&.btn-outline:hover .badge.outline': {
                         '--tw-border-opacity': '1',
                         borderColor:
                           'hsl(var(--pc) / var(--tw-border-opacity))',
@@ -55269,7 +55275,7 @@ globalStyles
                         '--tw-text-opacity': '1',
                         color: 'hsl(var(--p) / var(--tw-text-opacity))',
                       },
-                      '.btn-outline&:hover': {
+                      '&.btn-outline:hover': {
                         '--tw-border-opacity': '1',
                         borderColor:
                           'hsl(var(--pf, var(--p)) / var(--tw-border-opacity))',
@@ -55556,7 +55562,7 @@ globalStyles
                 '--tw-text-opacity': '1',
                 color: 'hsl(var(--pc) / var(--tw-text-opacity))',
               },
-              '.btn-group > input[type="radio"]:checked&:focus-visible': {
+              '&.btn-group > input[type="radio"]:checked:focus-visible': {
                 outline: '2px solid hsl(var(--p))',
               },
               '.btn-group:not(.btn-group-vertical) > &:not(:first-of-type)': {

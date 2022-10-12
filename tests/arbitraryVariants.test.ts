@@ -34,7 +34,7 @@ test('arbitrary variants with modifiers', async () => {
       ({
         '@media (prefers-color-scheme: dark)': {
           '@media (min-width: 1024px)': {
-            '> *:hover': { textDecorationLine: 'underline' },
+            ':hover > *': { textDecorationLine: 'underline' }
           },
         }
       })
@@ -67,7 +67,7 @@ test('variants without & or an at-rule are handled', async () => {
           css: { '& wtf-bbq': { textDecorationLine: 'underline' } },
         }),
         React.createElement('div', {
-          css: { 'lol &:hover': { textDecorationLine: 'underline' } },
+          css: { ':hover lol': { textDecorationLine: 'underline' } },
         })
       )
     `)
@@ -109,7 +109,7 @@ test('at-rules with selector modifications', async () => {
   const input = 'tw`[@media (hover: hover) { &:hover }]:underline`'
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
-      ({ "@media (hover: hover)": { ":hover": { textDecorationLine: "underline" } } })
+      ({ '@media (hover: hover)': { ':hover': { textDecorationLine: 'underline' } } })
     `)
   })
 })
@@ -132,7 +132,7 @@ test('attribute selectors', async () => {
   const input = 'tw`[&[data-open]]:underline`'
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
-      ({ "&[data-open]": { textDecorationLine: "underline" } })
+      ({ '&[data-open]': { textDecorationLine: 'underline' } })
     `)
   })
 })
@@ -182,7 +182,7 @@ test('keeps escaped underscores', async () => {
   const input = 'tw`[&_.foo\\_bar]:underline`'
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
-      ({ "& .foo_bar": { textDecorationLine: "underline" } })
+      ({ '& .foo_bar': { textDecorationLine: 'underline' } })
     `)
   })
 })
@@ -191,7 +191,7 @@ test('keeps escaped underscores with multiple arbitrary variants', async () => {
   const input = 'tw`[&_.foo\\_bar]:[&_.bar\\_baz]:underline`'
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
-      ({ "& .bar_baz .foo_bar": { textDecorationLine: "underline" } })
+      ({ '& .foo_bar .bar_baz': { textDecorationLine: 'underline' } });
     `)
   })
 })
@@ -203,20 +203,8 @@ test('keeps escaped underscores in arbitrary variants mixed with normal variants
   ].join('; ')
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
-      ({ '& .foo_bar:hover': { textDecorationLine: 'underline' } });
-      ({ '& .foo_bar:hover': { textDecorationLine: 'underline' } });
-    `)
-  })
-})
-
-test('removes newline and tab escape characters', async () => {
-  const input = 'tw`\tm-0\tinline\n`'
-  return run(input).then(result => {
-    expect(result).toMatchFormattedJavaScript(`
-      ({
-        "margin": "0px",
-        "display": "inline"
-      });
+      ({ ':hover .foo_bar': { textDecorationLine: 'underline' } });
+      ({ ':hover .foo_bar': { textDecorationLine: 'underline' } });
     `)
   })
 })
@@ -339,11 +327,11 @@ describe('auto parent selector', () => {
     })
   })
 
-  test('selectors are suffixed when non-media variants precede', async () => {
+  test('non-arbitrary variants are placed at the end', async () => {
     const input = 'tw`file:first:[one]:m-1`'
     return run(input).then(result => {
       expect(result).toMatchFormattedJavaScript(`
-        ({ "one &:first-child::file-selector-button": { margin: "0.25rem" } });
+        ({ ':first-child::file-selector-button one': { margin: '0.25rem' } });
       `)
     })
   })
@@ -353,9 +341,9 @@ describe('auto parent selector', () => {
     return run(input).then(result => {
       expect(result).toMatchFormattedJavaScript(`
         ({
-          "& one": { margin: "0.5rem" },
-          "& one two": { margin: "0.75rem" },
-          "& one two three": { margin: "1rem" },
+          '& one': { margin: '0.5rem' },
+          '& one two': { margin: '0.75rem' },
+          '& one two three': { margin: '1rem' },
         });
       `)
     })
@@ -365,27 +353,36 @@ describe('auto parent selector', () => {
     const input = 'tw`[one]:[two]:[three]:m-4`'
     return run(input).then(result => {
       expect(result).toMatchFormattedJavaScript(`
-        ({ "& one two three": { margin: "1rem" } });
+        ({ '& one two three': { margin: '1rem' } });
       `)
     })
   })
 
-  test('multiple parentless variants amongst pseudo variants have order preserved', async () => {
+  test('multiple parentless variants amongst pseudo variants have arbitrary variants at the end', async () => {
     const input = 'tw`[one]:[two]:not-link:[three]:[four]:m-4`'
     return run(input).then(result => {
       expect(result).toMatchFormattedJavaScript(`
-        ({ "one two three four &:not(:link)": { margin: "1rem" } });
+        ({ ':not(:link) one two three four': { margin: '1rem' } });
       `)
     })
   })
 
-  test('multiple parentless variants amongst media variants have order preserved', async () => {
+  test('multiple parentless variants amongst media variants', async () => {
     const input = 'tw`[one]:[two]:md:[three]:[four]:m-4`'
     return run(input).then(result => {
       expect(result).toMatchFormattedJavaScript(`
-        ({ "@media (min-width: 768px)": { "& one two three four": { margin: "1rem" } } });
+        ({ '@media (min-width: 768px)': { '& one two three four': { margin: '1rem' } } });
       `)
     })
+  })
+})
+
+test('parent selector at end is handled', async () => {
+  const input = 'tw`[path&]:first:[stroke: #000]`'
+  return run(input).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({ "path:first-child": { "stroke": "#000" } });
+    `)
   })
 })
 
@@ -393,7 +390,7 @@ test('nested at-rules', async () => {
   const input = 'tw`[@media_screen { @media (hover: hover) }]:underline`'
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
-      ({ "@media screen": { "@media (hover: hover)": { textDecorationLine: "underline" } } });
+      ({ '@media screen': { '@media (hover: hover)': { textDecorationLine: 'underline' } } });
     `)
   })
 })
