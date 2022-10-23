@@ -81,41 +81,56 @@ test('colons are allowed in braces', async () => {
 test('invalid class', async () => {
   const input = 'tw`[a:b:c:d]`'
   expect.assertions(1)
-  return run(input).catch(error => {
-    // eslint-disable-next-line jest/no-conditional-expect
-    expect(error).toMatchFormattedError(`
+  return run(input)
+    .then(result => {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(result).toMatchFormattedJavaScript(``)
+    })
+    .catch(error => {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(error).toMatchFormattedError(`
       MacroError: unknown:
       
       ✕ [a:b:c:d] was not found`)
-  })
+    })
 })
 
 test('invalid arbitrary property', async () => {
   // eslint-disable-next-line no-template-curly-in-string
   const input = 'tw`[autoplay:${autoplay}]`'
   expect.assertions(1)
-  return run(input).catch(error => {
-    // eslint-disable-next-line jest/no-conditional-expect
-    expect(error).toMatchFormattedError(`
+  return run(input)
+    .then(result => {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(result).toMatchFormattedJavaScript(``)
+    })
+    .catch(error => {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(error).toMatchFormattedError(`
       MacroError: unknown: 
 
       ✕ Your classes need to be complete strings for Twin to detect them correctly
     
       Read more at https://twinredirect.page.link/template-literals
     `)
-  })
+    })
 })
 
 test('invalid arbitrary property 2', async () => {
   const input = 'tw`[0:02]`'
-  return run(input).catch(error => {
-    // eslint-disable-next-line jest/no-conditional-expect
-    expect(error).toMatchFormattedError(`
+  return run(input)
+    .then(result => {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(result).toMatchFormattedJavaScript(``)
+    })
+    .catch(error => {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(error).toMatchFormattedError(`
       MacroError: unknown:
       
       ✕ [0:02] was not found
     `)
-  })
+    })
 })
 
 it('should be possible to read theme values in arbitrary properties (without quotes)', async () => {
@@ -139,14 +154,19 @@ it('should be possible to read theme values in arbitrary properties (with quotes
 it('should not generate invalid CSS', async () => {
   const input = 'tw`[https://en.wikipedia.org/wiki]`'
   expect.assertions(1)
-  return run(input).catch(error => {
-    // eslint-disable-next-line jest/no-conditional-expect
-    expect(error).toMatchFormattedError(`
+  return run(input)
+    .then(result => {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(result).toMatchFormattedJavaScript(``)
+    })
+    .catch(error => {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(error).toMatchFormattedError(`
       MacroError: unknown:
       
       ✕ [https://en.wikipedia.org/wiki] was not found
     `)
-  })
+    })
 })
 
 it('should generate seemingly invalid CSS', async () => {

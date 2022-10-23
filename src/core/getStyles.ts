@@ -256,7 +256,7 @@ function getStyles(
         // This regex specifies a list of characters allowed for the character
         // immediately after the class ends - this avoids matching other classes
         // eg: Input 'btn' will avoid matching '.btn-primary' in `.btn + .btn-primary`
-        `(${escapeRegex(`.${convertedClassName}`)})(?=[\\[. >~+*:$\\)]|$)`
+        `(${escapeRegex(`.${convertedClassName}`)})(?=[\\[.# >~+*:$\\)]|$)`
       ),
     })
 

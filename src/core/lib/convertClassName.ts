@@ -2,7 +2,12 @@ import replaceThemeValue from './util/replaceThemeValue'
 import isShortCss from './util/isShortCss'
 import splitOnFirst from './util/splitOnFirst'
 import { splitAtTopLevelOnly } from './util/twImports'
-import type { CoreContext, TailwindConfig } from 'core/types'
+import type {
+  Assert,
+  AssertContext,
+  CoreContext,
+  TailwindConfig,
+} from 'core/types'
 // eslint-disable-next-line import/no-relative-parent-imports
 import { SPACE_ID, SPACES } from '../constants'
 
@@ -10,6 +15,7 @@ const ALL_COMMAS = /,/g
 const ALL_AMPERSANDS = /&/g
 const ENDING_AMP_THEN_WHITESPACE = /&[\s_]*$/
 const ALL_CLASS_DOTS = /(?<!\\)(\.)(?=\w)/g
+const ALL_WRAPPABLE_PARENT_SELECTORS = /&(?=([^ $)*+,.:>[_~])[\w-])/g
 
 type ConvertShortCssToArbitraryPropertyParameters = {
   disableShortCss: CoreContext['twinConfig']['disableShortCss']
@@ -119,8 +125,8 @@ function convertClassName(
   // Replace theme values throughout the class
   className = replaceThemeValue(className, { assert, theme })
 
-  // Add a parent selector if it's missing from an arbitrary variant
-  className = addMissingParentSelector(className, { tailwindConfig })
+  // Add missing parent selectors and collapse arbitrary variants
+  className = sassifyArbitraryVariants(className, { assert, tailwindConfig })
 
   debug('class after format', className)
 
@@ -135,9 +141,9 @@ function unbracket(variant: string): string {
   return variant.slice(1, -1)
 }
 
-function addMissingParentSelector(
+function sassifyArbitraryVariants(
   fullClassName: string,
-  { tailwindConfig }: { tailwindConfig: TailwindConfig }
+  { assert, tailwindConfig }: { assert: Assert; tailwindConfig: TailwindConfig }
 ): string {
   const splitArray = [
     ...splitAtTopLevelOnly(fullClassName, tailwindConfig.separator ?? ':'),
@@ -151,67 +157,88 @@ function addMissingParentSelector(
   // Collapse arbitrary variants when they don't contain `&`.
   // `[> div]:[.nav]:(flex block)` -> `[> div_.nav]:flex [> div_.nav]:block`
   const collapsed = [] as string[]
-  variants
-    // Deal with tailwindcss inability to maintain order of variants.
-    // Unfortunately this means we have to group arbitrary variants and lose the
-    // original ordering if there are non-arbitrary variants in the mix.
-    .reverse()
-    .sort((a, b) => {
-      if (isArbitraryVariant(a)) return 1
-      if (isArbitraryVariant(b)) return -1
-      return 0
-    })
-    .reverse()
-    .forEach((variant, index) => {
-      // This code attempts to replicate sass-type usage of the parent selector
-      if (
-        index === 0 ||
-        !isArbitraryVariant(variant) ||
-        !isArbitraryVariant(variants[index - 1])
-      )
-        return collapsed.push(variant)
+  variants.forEach((variant, index) => {
+    // We can’t match the selector if there's a character right next to the parent selector (eg: `[&section]:block`) otherwise we'd accidentally replace `.step` in classes like this:
+    // Bad: `.steps-primary .steps` -> `&-primary &`
+    // Good: `.steps-primary .steps` -> `.steps-primary &`
+    // So here we replace it with crazy brackets to identify and unwrap it later
+    if (isArbitraryVariant(variant))
+      variant = variant.replace(ALL_WRAPPABLE_PARENT_SELECTORS, '(((&)))')
 
-      const prev = collapsed[collapsed.length - 1]
+    if (
+      index === 0 ||
+      !isArbitraryVariant(variant) ||
+      !isArbitraryVariant(variants[index - 1])
+    )
+      return collapsed.push(variant)
 
-      if (variant.includes('&')) {
-        const prevHasParent = prev.includes('&')
+    const prev = collapsed[collapsed.length - 1]
 
-        // Merge with current
-        if (prevHasParent) {
-          const mergedWithCurrent = variant.replace(
-            ALL_AMPERSANDS,
-            unbracket(prev)
-          )
-          const isLast = index === variants.length - 1
-          collapsed[index - 1] = isLast
-            ? mergedWithCurrent.replace(ALL_AMPERSANDS, '')
-            : mergedWithCurrent
-          return
-        }
+    if (variant.includes('&')) {
+      const prevHasParent = prev.includes('&')
 
-        // Merge with previous
-        if (!prevHasParent) {
-          const mergedWithPrev = `[${unbracket(variant).replace(
-            ALL_AMPERSANDS,
-            unbracket(prev)
-          )}]`
-          collapsed[collapsed.length - 1] = mergedWithPrev
-          return
-        }
+      // Merge with current
+      if (prevHasParent) {
+        const mergedWithCurrent = variant.replace(
+          ALL_AMPERSANDS,
+          unbracket(prev)
+        )
+        const isLast = index === variants.length - 1
+        collapsed[index - 1] = isLast
+          ? mergedWithCurrent.replace(ALL_AMPERSANDS, '')
+          : mergedWithCurrent
+        return
       }
 
-      // Parentless variants are merged into the previous arbitrary variant
-      const mergedWithPrev = `[${[
-        unbracket(prev).replace(ENDING_AMP_THEN_WHITESPACE, ''),
-        unbracket(variant),
-      ].join('_')}]`
-      collapsed[collapsed.length - 1] = mergedWithPrev
-    })
+      // Merge with previous
+      if (!prevHasParent) {
+        const mergedWithPrev = `[${unbracket(variant).replace(
+          ALL_AMPERSANDS,
+          unbracket(prev)
+        )}]`
+        collapsed[collapsed.length - 1] = mergedWithPrev
+        return
+      }
+    }
+
+    // Parentless variants are merged into the previous arbitrary variant
+    const mergedWithPrev = `[${[
+      unbracket(prev).replace(ENDING_AMP_THEN_WHITESPACE, ''),
+      unbracket(variant),
+    ].join('_')}]`
+    collapsed[collapsed.length - 1] = mergedWithPrev
+  })
 
   // Use that list to add the parent selector
-  const variantsWithParentSelectors = collapsed.map(v => {
-    if (!isArbitraryVariant(v)) return v
-    const out = addParentSelector(unbracket(v))
+  let hasArbitraryVariant = false
+  let hasNormalVariant = false
+  const variantsWithParentSelectors = collapsed.map((v, idx) => {
+    if (!isArbitraryVariant(v)) {
+      if (idx > 0 && hasArbitraryVariant) hasNormalVariant = true
+      return v
+    }
+
+    // The ordering gets screwy in the selector when using a mix of arbitrary variants, normal variants and the auto parent feature - so notify in that case
+    const isBlah = hasArbitraryVariant && hasNormalVariant && !v.includes('&')
+    assert(
+      !isBlah,
+      ({ color }: AssertContext) =>
+        `${color(
+          `✕ ${String(
+            color(fullClassName, 'errorLight')
+          )} had trouble with the auto parent selector feature`
+        )}\n\nYou’ll need to add the parent selector manually within the arbitrary variant(s), eg: ${String(
+          color(`[section &]:block`, 'success')
+        )}`
+    )
+
+    hasArbitraryVariant = true
+
+    const out = addParentSelector(
+      unbracket(v),
+      collapsed[idx - 1],
+      collapsed[idx + 1] ?? ''
+    )
     return `[${out}]`
   })
 
@@ -220,7 +247,11 @@ function addMissingParentSelector(
   )
 }
 
-function addParentSelector(rawSelector: string): string {
+function addParentSelector(
+  rawSelector: string,
+  prev: string,
+  next: string
+): string {
   // Tailwindcss requires pre-encoded commas - unencoded are removed and we end up with an invalid selector
   let selector = rawSelector.replace(ALL_COMMAS, '\\2c')
   // Escape class dots in the selector - otherwise tailwindcss adds a the prefix within arbitrary variants (only when `prefix` is set in tailwind config)
@@ -230,6 +261,10 @@ function addParentSelector(rawSelector: string): string {
   if (selector.includes('&') || selector.startsWith('@')) return selector
   // Pseudo elements get an auto parent selector prefixed
   if (selector.startsWith(':')) return `&${selector}`
+  // When a non arbitrary variant follows then we combine it with the current
+  // selector by adding the parent selector at the end
+  // eg: `[input&]:focus:...` -> `input:focus:...`
+  if (next && !isArbitraryVariant(next)) return `${selector}&`
 
   return `&_${selector}`
 }

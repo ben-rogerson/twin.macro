@@ -4141,7 +4141,7 @@ tw\`[&.pre,& section,]:block\`
 
 // @ts-nocheck
 ;({
-  ':hover section': {
+  'section:hover': {
     display: 'block',
   },
 })
@@ -4151,12 +4151,12 @@ tw\`[&.pre,& section,]:block\`
   },
 })
 ;({
-  ':hover p': {
+  'p:hover': {
     display: 'block',
   },
 })
 ;({
-  ':hover p': {
+  '& p:hover': {
     display: 'block',
   },
 })
@@ -4274,32 +4274,32 @@ tw\`[&.pre,& section,]:block\`
   },
 })
 ;({
-  'pre section &:first-child': {
+  'section pre &:first-child': {
     display: 'block',
   },
 })
 ;({
-  'section &:first-child pre': {
+  'section & pre:first-child': {
     display: 'block',
   },
 })
 ;({
-  'pre section &:first-child': {
+  '& pre section:first-child': {
     display: 'block',
   },
 })
 ;({
-  'section &:first-child pre': {
+  '& section pre:first-child': {
     display: 'block',
   },
 })
 ;({
-  'section &:first-child pre': {
+  '& section pre:first-child': {
     marginTop: '2px',
   },
 })
 ;({
-  'section &:first-child pre': {
+  '& section pre:first-child': {
     display: 'inline',
   },
 })
@@ -4324,7 +4324,7 @@ tw\`[&.pre,& section,]:block\`
   },
 })
 ;({
-  ':first-child path': {
+  'path:first-child': {
     stroke: '#000',
   },
   '@media (min-width: 768px)': {

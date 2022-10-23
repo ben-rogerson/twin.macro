@@ -3,6 +3,7 @@ import type { ExtractRuleStyles } from 'core/types'
 const SELECTOR_PARENT_CANDIDATE = /^[ #.[]/
 const SELECTOR_ROOT = /(^| ):root(?!\w)/g
 const UNDERSCORE_ESCAPING = /\\+(_)/g
+const WRAPPED_PARENT_SELECTORS = /(\({3}&(.*?)\){3})/g
 
 type SassifySelectorTasks = Array<
   (
@@ -27,6 +28,9 @@ const sassifySelectorTasks: SassifySelectorTasks = [
         return '' // Cover [section&]:hover:block / .btn.loading&:before
       return offset === 0 ? '' : '&'
     }),
+
+  // Unwrap the pre-wrapped parent selectors (pre-wrapping avoids matching issues against word characters, eg: `[&section]:block`)
+  (selector): string => selector.replace(WRAPPED_PARENT_SELECTORS, '&$2'),
 
   // Remove unneeded escaping from the selector
   (selector): string => selector.replace(UNDERSCORE_ESCAPING, '$1'),

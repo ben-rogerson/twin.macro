@@ -138,9 +138,14 @@ describe('config', () => {
 
       expect.assertions(1)
 
-      return run(input, tailwindConfig, twinConfig).catch(error => {
-        // eslint-disable-next-line jest/no-conditional-expect
-        expect(error).toMatchFormattedError(`
+      return run(input, tailwindConfig, twinConfig)
+        .then(result => {
+          // eslint-disable-next-line jest/no-conditional-expect
+          expect(result).toMatchFormattedJavaScript(``)
+        })
+        .catch(error => {
+          // eslint-disable-next-line jest/no-conditional-expect
+          expect(error).toMatchFormattedError(`
             MacroError: unknown:
 
             ✕ text-sec was not found
@@ -153,7 +158,7 @@ describe('config', () => {
               - text-start > text-start
               - text-xs
             `)
-      })
+        })
     })
   })
 })

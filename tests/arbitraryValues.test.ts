@@ -52,9 +52,14 @@ it('should support arbitrary values for various background utilities', async () 
 it('should error if an unknown typehint is used', async () => {
   const input = 'tw`inset-[hmm:12px]`'
   expect.assertions(1)
-  return run(input).catch(error => {
-    // eslint-disable-next-line jest/no-conditional-expect
-    expect(error).toMatchFormattedError(`
+  return run(input)
+    .then(result => {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(result).toMatchFormattedJavaScript(``)
+    })
+    .catch(error => {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(error).toMatchFormattedError(`
       MacroError: unknown:
 
       ✕ inset-[hmm:12px] was not found
@@ -67,7 +72,7 @@ it('should error if an unknown typehint is used', async () => {
       - inset-x-px > 1px
       - inset-y-12 > 3rem
     `)
-  })
+    })
 })
 
 it('should handle unknown typehints', async () => {
@@ -199,16 +204,21 @@ it('should not output unparsable arbitrary CSS values', async () => {
   const input = 'tw`w-[${sizes.width}]`'
   expect.assertions(1)
 
-  return run(input).catch(error => {
-    // eslint-disable-next-line jest/no-conditional-expect
-    expect(error).toMatchFormattedError(`
+  return run(input)
+    .then(result => {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(result).toMatchFormattedJavaScript(``)
+    })
+    .catch(error => {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(error).toMatchFormattedError(`
       MacroError: unknown: 
 
       ✕ Your classes need to be complete strings for Twin to detect them correctly
     
       Read more at https://twinredirect.page.link/template-literals
     `)
-  })
+    })
 })
 
 it('should correctly validate each part when checking for `percentage` data types', async () => {

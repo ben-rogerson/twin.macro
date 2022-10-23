@@ -33,9 +33,7 @@ test('arbitrary variants with modifiers', async () => {
     expect(result).toMatchFormattedJavaScript(`
       ({
         '@media (prefers-color-scheme: dark)': {
-          '@media (min-width: 1024px)': {
-            ':hover > *': { textDecorationLine: 'underline' }
-          },
+          "@media (min-width: 1024px)": { "> *:hover": { textDecorationLine: "underline" } },
         }
       })
     `)
@@ -66,15 +64,13 @@ test('variants without & or an at-rule are handled', async () => {
         React.createElement('div', {
           css: { '& wtf-bbq': { textDecorationLine: 'underline' } },
         }),
-        React.createElement('div', {
-          css: { ':hover lol': { textDecorationLine: 'underline' } },
-        })
+        React.createElement("div", { css: { "lol:hover": { textDecorationLine: "underline" } } })
       )
     `)
   })
 })
 
-test('arbitrary variants are sorted after other variants', async () => {
+test('arbitrary variants are sorted correctly', async () => {
   const input = 'tw`[& > *]:underline underline lg:underline`'
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
@@ -204,7 +200,7 @@ test('keeps escaped underscores in arbitrary variants mixed with normal variants
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
       ({ ':hover .foo_bar': { textDecorationLine: 'underline' } });
-      ({ ':hover .foo_bar': { textDecorationLine: 'underline' } });
+      ({ "& .foo_bar:hover": { textDecorationLine: "underline" } });
     `)
   })
 })
@@ -269,17 +265,31 @@ test('classes in the same arbitrary variant should not be prefixed', async () =>
   })
 })
 
+test('parent selectors before elements are kept', async () => {
+  const input = 'tw`[&section]:block`'
+  return run(input).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({ "&section": { display: "block" } });
+    `)
+  })
+})
+
 test('errors when separator is forgotten against a group', async () => {
   const input = 'tw`[em](block)`'
   expect.assertions(1)
-  return run(input).catch(error => {
-    // eslint-disable-next-line jest/no-conditional-expect
-    expect(error).toMatchFormattedError(`
+  return run(input)
+    .then(result => {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(result).toMatchFormattedJavaScript(``)
+    })
+    .catch(error => {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(error).toMatchFormattedError(`
       MacroError: unknown:
 
       ✕ [em](block) was not found
     `)
-  })
+    })
 })
 
 describe('auto parent selector', () => {
@@ -327,15 +337,6 @@ describe('auto parent selector', () => {
     })
   })
 
-  test('non-arbitrary variants are placed at the end', async () => {
-    const input = 'tw`file:first:[one]:m-1`'
-    return run(input).then(result => {
-      expect(result).toMatchFormattedJavaScript(`
-        ({ ':first-child::file-selector-button one': { margin: '0.25rem' } });
-      `)
-    })
-  })
-
   test('multiple parentless variants have order preserved (groups)', async () => {
     const input = 'tw`[one]:(m-2 [two]:(m-3 [three]:(m-4)))`'
     return run(input).then(result => {
@@ -358,22 +359,38 @@ describe('auto parent selector', () => {
     })
   })
 
-  test('multiple parentless variants amongst pseudo variants have arbitrary variants at the end', async () => {
-    const input = 'tw`[one]:[two]:not-link:[three]:[four]:m-4`'
-    return run(input).then(result => {
-      expect(result).toMatchFormattedJavaScript(`
-        ({ ':not(:link) one two three four': { margin: '1rem' } });
-      `)
-    })
+  test('mixed variants without parent selectors throw error', async () => {
+    const input = 'tw`[one]:not-link:[two]:m-4`'
+    return run(input)
+      .then(result => {
+        // eslint-disable-next-line jest/no-conditional-expect
+        expect(result).toMatchFormattedJavaScript(``)
+      })
+      .catch(error => {
+        // eslint-disable-next-line jest/no-conditional-expect
+        expect(error).toMatchFormattedError(`
+          MacroError: unknown:
+
+          ✕ [one]:not-link:[two]:m-4 had trouble with the auto parent selector feature
+        `)
+      })
   })
 
-  test('multiple parentless variants amongst media variants', async () => {
-    const input = 'tw`[one]:[two]:md:[three]:[four]:m-4`'
-    return run(input).then(result => {
-      expect(result).toMatchFormattedJavaScript(`
-        ({ '@media (min-width: 768px)': { '& one two three four': { margin: '1rem' } } });
-      `)
-    })
+  test('mixed variants without parent selectors throw error 2', async () => {
+    const input = 'tw`not-link:[one]:last:[two]:m-4`'
+    return run(input)
+      .then(result => {
+        // eslint-disable-next-line jest/no-conditional-expect
+        expect(result).toMatchFormattedJavaScript(``)
+      })
+      .catch(error => {
+        // eslint-disable-next-line jest/no-conditional-expect
+        expect(error).toMatchFormattedError(`
+          MacroError: unknown:
+
+          ✕ not-link:[one]:last:[two]:m-4 had trouble with the auto parent selector feature
+        `)
+      })
   })
 })
 

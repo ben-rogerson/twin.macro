@@ -14,9 +14,10 @@ import {
 import type { ExtractRuleStyles, CssObject, TransformDecl } from './types'
 import type * as P from 'postcss'
 
+const ESC_COMMA = /\\2c/g
 const ESC_DIGIT = /\\3(\d)/g
-const ESC_COMMA = /\\2c /g
 const UNDERSCORE_ESCAPING = /\\+(_)/g
+const BACKSLASH_ESCAPING = /\\\\/g
 
 function transformImportant(value: string, params: TransformDecl): string {
   if (params.passChecks === true) return value
@@ -30,7 +31,12 @@ function transformImportant(value: string, params: TransformDecl): string {
 }
 
 function transformEscaping(value: string): string {
-  return value.replace(UNDERSCORE_ESCAPING, '$1')
+  return (
+    value
+      .replace(UNDERSCORE_ESCAPING, '$1')
+      // Fix the duplicate escaping babel delivers
+      .replace(BACKSLASH_ESCAPING, '\\')
+  )
 }
 
 const transformValueTasks = [
@@ -60,9 +66,8 @@ function extractFromRule(
   params: ExtractRuleStyles
 ): [string, CssObject] {
   const selectorForUnescape = rule.selector.replace(ESC_DIGIT, '$1') // Remove digit escaping
-  const selector = unescape(selectorForUnescape)
-    .replace(ESC_COMMA, ',') // Remove comma escaping
-    .replace(LINEFEED, ' ')
+  const selector = unescape(selectorForUnescape).replace(LINEFEED, ' ')
+
   return [selector, extractRuleStyles(rule.nodes, params)] as [
     string,
     CssObject
@@ -79,16 +84,18 @@ function extractSelectorFromAtRule(
     return DEFAULTS_UNIVERSAL
   }
 
+  const val = value.replace(ESC_COMMA, ',')
+
   // Handle @screen usage in plugins, eg: `@screen md`
   if (name === 'screen') {
     const screenConfig = get(params, 'tailwindConfig.theme.screens') as Record<
       string,
       string
     >
-    return `@media (min-width: ${screenConfig[value]})`
+    return `@media (min-width: ${screenConfig[val]})`
   }
 
-  return `@${name} ${value}`.trim()
+  return `@${name} ${val}`.trim()
 }
 
 const ruleTypes = {
@@ -104,7 +111,7 @@ const ruleTypes = {
 
     if (value === null) return
 
-    // `background-clip: text` is still in "unofficial"  phase and needs a
+    // `background-clip: text` is still in "unofficial" phase and needs a
     // prefix in Firefox, Chrome and Safari.
     // https://caniuse.com/background-img-opts
     if (
