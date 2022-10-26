@@ -4,11 +4,7 @@ import tw, { theme } from '../macro'
 // https://tailwindcss.com/docs/stroke
 theme`stroke`
 
-tw`stroke-inherit`
-tw`stroke-current`
-tw`stroke-transparent`
-tw`stroke-black`
-tw`stroke-white`
+tw`stroke-none`
 tw`stroke-inherit`
 tw`stroke-current`
 tw`stroke-transparent`

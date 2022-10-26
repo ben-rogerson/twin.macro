@@ -292,6 +292,460 @@ test('errors when separator is forgotten against a group', async () => {
     })
 })
 
+it('should support aria variants', async () => {
+  const input = [
+    'tw`aria-checked:underline`',
+    'tw`aria-[sort=ascending]:underline`',
+    'tw`aria-[labelledby=a_b]:underline`',
+    'tw`group-aria-checked:underline`',
+    'tw`peer-aria-checked:underline`',
+    'tw`group-aria-checked/foo:underline`',
+    'tw`peer-aria-checked/foo:underline`',
+    'tw`group-aria-[sort=ascending]:underline`',
+    'tw`peer-aria-[sort=ascending]:underline`',
+    'tw`group-aria-[labelledby=a_b]:underline`',
+    'tw`peer-aria-[labelledby=a_b]:underline`',
+    'tw`group-aria-[sort=ascending]/foo:underline`',
+    'tw`peer-aria-[sort=ascending]/foo:underline`',
+  ].join('; ')
+
+  return run(input).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({
+        '&[aria-checked="true"]': {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        "&[aria-sort=ascending]": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        "&[aria-labelledby=a b]": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        '.group[aria-checked="true"] &': {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        '.peer[aria-checked="true"] ~ &': {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        '.group/foo[aria-checked="true"] &': {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        '.peer/foo[aria-checked="true"] ~ &': {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group[aria-sort=ascending] &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer[aria-sort=ascending] ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group[aria-labelledby=a b] &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer[aria-labelledby=a b] ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group/foo[aria-sort=ascending] &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer/foo[aria-sort=ascending] ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+    `)
+  })
+})
+
+it('should support data variants', async () => {
+  const input = [
+    'tw`data-checked:underline`',
+    'tw`data-[position=top]:underline`',
+    'tw`data-[foo=bar_baz]:underline`',
+    'tw`group-data-checked:underline`',
+    'tw`peer-data-checked:underline`',
+    'tw`group-data-checked/foo:underline`',
+    'tw`peer-data-checked/foo:underline`',
+    'tw`group-data-[position=top]:underline`',
+    'tw`peer-data-[position=top]:underline`',
+    'tw`group-data-[foo=bar_baz]:underline`',
+    'tw`peer-data-[foo=bar_baz]:underline`',
+    'tw`group-data-[position=top]/foo:underline`',
+    'tw`peer-data-[position=top]/foo:underline`',
+  ].join('; ')
+
+  const config = { theme: { data: { checked: 'ui~="checked"' } } }
+
+  return run(input, config).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({
+        '&[data-ui~="checked"]': {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        "&[data-position=top]": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        "&[data-foo=bar baz]": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        '.group[data-ui~="checked"] &': {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        '.peer[data-ui~="checked"] ~ &': {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        '.group/foo[data-ui~="checked"] &': {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        '.peer/foo[data-ui~="checked"] ~ &': {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group[data-position=top] &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer[data-position=top] ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group[data-foo=bar baz] &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer[data-foo=bar baz] ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group/foo[data-position=top] &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer/foo[data-position=top] ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+    `)
+  })
+})
+
+it('should support supports', async () => {
+  const input = [
+    // Property check
+    'tw`supports-[display:grid]:grid`',
+    // Value with spaces, needs to be normalized
+    'tw`supports-[transform-origin:5%_5%]:underline`',
+    // Selectors (raw)
+    'tw`supports-[selector(A>B)]:underline`',
+    // 'not' check (raw)
+    'tw`supports-[not(foo:bar)]:underline`',
+    // 'or' check (raw)
+    'tw`supports-[(foo:bar)or(bar:baz)]:underline`',
+    // 'and' check (raw)
+    'tw`supports-[(foo:bar)and(bar:baz)]:underline`',
+    // No value give for the property, defaulting to prop: var(--tw)
+    'tw`supports-[container-type]:underline`',
+    // Named supports usage
+    'tw`supports-grid:underline`',
+  ].join('; ')
+  const config = { theme: { supports: { grid: 'display: grid' } } }
+
+  return run(input, config).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({
+        "@supports (display:grid)": {
+          "display": "grid"
+        }
+      });
+      ({
+        "@supports (transform-origin:5% 5%)": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        "@supports selector(A>B)": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        "@supports not (foo:bar)": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        "@supports (foo:bar) or (bar:baz)": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        "@supports (foo:bar) and (bar:baz)": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        "@supports (container-type: var(--tw))": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        "@supports (display: grid)": {
+          "textDecorationLine": "underline"
+        }
+      });
+    `)
+  })
+})
+
+it('should be possible to use modifiers and arbitrary groups', async () => {
+  const input = [
+    // Default group usage
+    'tw`group-hover:underline`',
+    // Arbitrary variants with pseudo class for group
+    // With &
+    'tw`group-[&:focus]:underline`',
+    // Without &
+    'tw`group-[:hover]:underline`',
+    // Arbitrary variants with attributes selectors for group
+    // With &
+    'tw`group-[&[data-open]]:underline`',
+    // Without &
+    'tw`group-[[data-open]]:underline`',
+    // Arbitrary variants with other selectors
+    // With &
+    'tw`group-[.in-foo_&]:underline`',
+    // Without &
+    'tw`group-[.in-foo]:underline`',
+    // The same as above, but with modifiers
+    'tw`group-hover/foo:underline`',
+    'tw`group-[&:focus]/foo:underline`',
+    'tw`group-[:hover]/foo:underline`',
+    'tw`group-[&[data-open]]/foo:underline`',
+    'tw`group-[[data-open]]/foo:underline`',
+    'tw`group-[.in-foo_&]/foo:underline`',
+    'tw`group-[.in-foo]/foo:underline`',
+  ].join('; ')
+
+  return run(input).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({
+        ".group:hover &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group:focus &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group:hover &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group[data-open] &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group[data-open] &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".in-foo .group &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group.in-foo &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group/foo:hover &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group/foo:focus &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group/foo:hover &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group/foo[data-open] &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group/foo[data-open] &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".in-foo .group/foo &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".group/foo.in-foo &": {
+          "textDecorationLine": "underline"
+        }
+      });
+    `)
+  })
+})
+
+it('should be possible to use modifiers and arbitrary peers', async () => {
+  const input = [
+    // Default peer usage
+    'tw`peer-hover:underline`',
+    // Arbitrary variants with pseudo class for peer
+    // With &
+    'tw`peer-[&:focus]:underline`',
+    // Without &
+    'tw`peer-[:hover]:underline`',
+    // Arbitrary variants with attributes selectors for peer
+    // With &
+    'tw`peer-[&[data-open]]:underline`',
+    // Without &
+    'tw`peer-[[data-open]]:underline`',
+    // Arbitrary variants with other selectors
+    // With &
+    'tw`peer-[.in-foo_&]:underline`',
+    // Without &
+    'tw`peer-[.in-foo]:underline`',
+    // The same as above, but with modifiers
+    'tw`peer-hover/foo:underline`',
+    'tw`peer-[&:focus]/foo:underline`',
+    'tw`peer-[:hover]/foo:underline`',
+    'tw`peer-[&[data-open]]/foo:underline`',
+    'tw`peer-[[data-open]]/foo:underline`',
+    'tw`peer-[.in-foo_&]/foo:underline`',
+    'tw`peer-[.in-foo]/foo:underline`',
+  ].join('; ')
+
+  const result = await run(input)
+  expect(result).toMatchFormattedJavaScript(`
+      ({
+        ".peer:hover ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer:focus ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer:hover ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer[data-open] ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer[data-open] ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".in-foo .peer ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer.in-foo ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer/foo:hover ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer/foo:focus ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer/foo:hover ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer/foo[data-open] ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer/foo[data-open] ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".in-foo .peer/foo ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+      ({
+        ".peer/foo.in-foo ~ &": {
+          "textDecorationLine": "underline"
+        }
+      });
+    `)
+})
+
 describe('auto parent selector', () => {
   test('selectors containing a parent selector are preserved', async () => {
     const input = 'tw`md:[.test &]:m-1`'

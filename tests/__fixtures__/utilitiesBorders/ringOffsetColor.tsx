@@ -9,11 +9,6 @@ tw`ring-offset-current`
 tw`ring-offset-transparent`
 tw`ring-offset-black`
 tw`ring-offset-white`
-tw`ring-offset-inherit`
-tw`ring-offset-current`
-tw`ring-offset-transparent`
-tw`ring-offset-black`
-tw`ring-offset-white`
 tw`ring-offset-slate-50`
 tw`ring-offset-slate-100`
 tw`ring-offset-slate-200`

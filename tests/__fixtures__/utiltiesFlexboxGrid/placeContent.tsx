@@ -9,3 +9,4 @@ tw`place-content-between`
 tw`place-content-around`
 tw`place-content-evenly`
 tw`place-content-stretch`
+tw`place-content-baseline`

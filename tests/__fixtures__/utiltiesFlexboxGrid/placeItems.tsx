@@ -6,3 +6,4 @@ tw`place-items-start`
 tw`place-items-end`
 tw`place-items-center`
 tw`place-items-stretch`
+tw`place-items-baseline`

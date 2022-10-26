@@ -4,11 +4,7 @@ import tw, { theme } from '../macro'
 // https://tailwindcss.com/docs/fill
 theme`fill`
 
-tw`fill-inherit`
-tw`fill-current`
-tw`fill-transparent`
-tw`fill-black`
-tw`fill-white`
+tw`fill-none`
 tw`fill-inherit`
 tw`fill-current`
 tw`fill-transparent`

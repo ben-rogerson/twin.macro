@@ -7,4 +7,3 @@ tw`outline-none`
 tw`outline-dashed`
 tw`outline-dotted`
 tw`outline-double`
-tw`outline-hidden`

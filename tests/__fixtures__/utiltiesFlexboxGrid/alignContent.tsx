@@ -8,3 +8,4 @@ tw`content-end`
 tw`content-between`
 tw`content-around`
 tw`content-evenly`
+tw`content-baseline`
