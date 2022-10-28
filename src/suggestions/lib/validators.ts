@@ -2,6 +2,62 @@ import { validateVariants } from './validateVariants'
 import type { ClassErrorContext } from 'suggestions/types'
 
 const validators = [
+  // Validate the group class
+  (pieces: string[], context: ClassErrorContext): undefined | string => {
+    const className = pieces.slice(-1).join('')
+
+    if (/^!?group\/\S/.test(className)) {
+      return `${context.color(
+        `✕ ${context.color(
+          className,
+          'errorLight'
+        )} must be added as a className:`,
+        'error'
+      )}\n\n<div ${context.color(
+        `className="${className}"`,
+        'success'
+      )}>\n <div tw="group-hover/${String(
+        /\/(\w+)$/.exec(className)?.[1]
+      )}:bg-black" />\n</div>`
+    }
+
+    if (!pieces.includes('group')) return
+    return `${context.color(
+      `✕ ${context.color('group', 'errorLight')} must be added as a className:`,
+      'error'
+    )}\n\n<div ${context.color(
+      'className="group"',
+      'success'
+    )}>\n <div tw="group-hover:bg-black" />\n</div>\n\nRead more at https://twinredirect.page.link/group`
+  },
+  // Validate the peer class
+  (pieces: string[], context: ClassErrorContext): undefined | string => {
+    const className = pieces.slice(-1).join('')
+
+    if (/^!?peer\/\S/.test(className)) {
+      return `${context.color(
+        `✕ ${context.color(
+          className,
+          'errorLight'
+        )} must be added as a className:`,
+        'error'
+      )}\n\n<div ${context.color(
+        `className="${className}"`,
+        'success'
+      )}>\n <div tw="peer-hover/${String(
+        /\/(\w+)$/.exec(className)?.[1]
+      )}:bg-black" />\n</div>`
+    }
+
+    if (!pieces.includes('peer')) return
+    return `${context.color(
+      `✕ ${context.color('peer', 'errorLight')} must be added as a className:`,
+      'error'
+    )}\n\n<div ${context.color(
+      'className="peer"',
+      'success'
+    )}>\n<div tw="peer-hover:bg-black" />\n\nRead more at https://twinredirect.page.link/peer`
+  },
   // Validate the opacity
   (pieces: string[], context: ClassErrorContext): undefined | string => {
     const className = pieces.slice(-1).join('')
@@ -27,28 +83,6 @@ const validators = [
       )} doesn’t have an opacity from your config`,
       'error'
     )}\n\nTry one of these opacity values:\n\n${choices}`
-  },
-  // Validate the group class
-  (pieces: string[], context: ClassErrorContext): undefined | string => {
-    if (!pieces.includes('group')) return
-    return `${context.color(
-      `✕ ${context.color('group', 'errorLight')} must be added as a className:`,
-      'error'
-    )}\n\n<div ${context.color(
-      'className="group"',
-      'success'
-    )}>\n <div tw="group-hover:bg-black" />\n</div>\n\nRead more at https://twinredirect.page.link/group`
-  },
-  // Validate the peer class
-  (pieces: string[], context: ClassErrorContext): undefined | string => {
-    if (!pieces.includes('peer')) return
-    return `${context.color(
-      `✕ ${context.color('peer', 'errorLight')} must be added as a className:`,
-      'error'
-    )}\n\n<div ${context.color(
-      'className="peer"',
-      'success'
-    )}>\n<div tw="peer-hover:bg-black" />\n\nRead more at https://twinredirect.page.link/peer`
   },
   // Validate the lead class (from the official typography plugin)
   (pieces: string[], context: ClassErrorContext): undefined | string => {
