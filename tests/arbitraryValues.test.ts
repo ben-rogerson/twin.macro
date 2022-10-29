@@ -194,6 +194,38 @@ it('reads theme values in arbitrary values (with quotes) when inside calc or sim
   })
 })
 
+it('should allow omitting the DEFAULT key when using theme', async () => {
+  const input = 'tw`bg-[theme(colors.black)]`'
+  const config = {
+    theme: { colors: { black: { DEFAULT: '#111111', pure: '#000000 ' } } },
+  }
+
+  return run(input, config).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({
+        "--tw-bg-opacity": "1",
+        backgroundColor: "rgb(17 17 17 / var(--tw-bg-opacity))"
+      });
+    `)
+  })
+})
+
+it('should allow using the DEFAULT key when using theme', async () => {
+  const input = 'tw`bg-[theme(colors.black.DEFAULT)]`'
+  const config = {
+    theme: { colors: { black: { DEFAULT: '#111111', pure: '#000000 ' } } },
+  }
+
+  return run(input, config).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({
+        "--tw-bg-opacity": "1",
+        backgroundColor: "rgb(17 17 17 / var(--tw-bg-opacity))"
+      });
+    `)
+  })
+})
+
 it('should not output unparsable arbitrary CSS values', async () => {
   // eslint-disable-next-line no-template-curly-in-string
   const input = 'tw`w-[${sizes.width}]`'

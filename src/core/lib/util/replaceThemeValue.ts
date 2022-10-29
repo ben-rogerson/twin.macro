@@ -17,7 +17,7 @@ function replaceThemeValue(
   const themeParameters = match[1].replace(MATCH_QUOTES, '').trim()
 
   const [main, second] = themeParameters.split(',')
-  const themeValue = theme(main, second)
+  let themeValue = theme(main, second)
 
   assert(Boolean(themeValue), ({ color }: AssertContext) =>
     color(
@@ -28,7 +28,13 @@ function replaceThemeValue(
     )
   )
 
+  // Account for the 'DEFAULT' key
+  if (typeof themeValue === 'object' && 'DEFAULT' in themeValue) {
+    themeValue = themeValue.DEFAULT as typeof themeValue
+  }
+
   const replacedValue = value.replace(themeFunction, String(themeValue))
+
   return replacedValue
 }
 
