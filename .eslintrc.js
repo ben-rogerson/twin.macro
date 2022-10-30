@@ -63,6 +63,13 @@ module.exports = {
       },
     },
     {
+      files: ['tests/**/*test.ts'],
+      rules: {
+        '@typescript-eslint/no-require-imports': 0,
+        'unicorn/prefer-module': 0,
+      },
+    },
+    {
       files: ['types/tests/**/*.ts', 'types/tests/**/*.tsx'],
       rules: {
         'import/no-unassigned-import': 0,

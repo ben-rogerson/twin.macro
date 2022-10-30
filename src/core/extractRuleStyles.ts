@@ -7,7 +7,7 @@ import { splitAtTopLevelOnly, unescape } from './lib/util/twImports'
 import {
   DEFAULTS_UNIVERSAL,
   EMPTY_CSS_VARIABLE_VALUE,
-  HANDLED_ATRULE_TYPES,
+  PRESERVED_ATRULE_TYPES,
   LAYER_DEFAULTS,
   LINEFEED,
 } from './constants'
@@ -209,7 +209,7 @@ const ruleTypes = {
       return
     }
 
-    if (!HANDLED_ATRULE_TYPES.has(atrule.name)) {
+    if (PRESERVED_ATRULE_TYPES.has(atrule.name)) {
       params.debug(`${atrule.name} pass given`, selector)
       // Rules that pass checks have no further style transformations
       params.passChecks = true

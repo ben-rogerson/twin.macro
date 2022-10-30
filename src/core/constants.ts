@@ -1,12 +1,15 @@
 const CLASS_SEPARATOR = /\S+/g
 const DEFAULTS_UNIVERSAL = '*, ::before, ::after'
 const EMPTY_CSS_VARIABLE_VALUE = 'var(--tw-empty,/*!*/ /*!*/)'
-const HANDLED_ATRULE_TYPES = new Set([
+const PRESERVED_ATRULE_TYPES = new Set([
+  'charset',
+  'counter-style',
   'document',
-  'media',
-  'page',
-  'screen',
-  'supports',
+  'font-face',
+  'font-feature-values',
+  'import',
+  'keyframes',
+  'namespace',
 ])
 const LAYER_DEFAULTS = 'defaults'
 const LINEFEED = /\n/g
@@ -19,7 +22,7 @@ export {
   CLASS_SEPARATOR,
   DEFAULTS_UNIVERSAL,
   EMPTY_CSS_VARIABLE_VALUE,
-  HANDLED_ATRULE_TYPES,
+  PRESERVED_ATRULE_TYPES,
   LAYER_DEFAULTS,
   LINEFEED,
   SPACE_ID,
