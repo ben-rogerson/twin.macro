@@ -1235,13 +1235,13 @@ const nestedGroups = {
 ;({
   '@media (min-width: 768px)': {
     marginLeft: '1rem !important',
-    '& one': {
+    one: {
       marginTop: '1.25rem !important',
     },
-    '& one two': {
+    'one two': {
       display: 'inline !important',
     },
-    '& one two three': {
+    'one two three': {
       display: 'inline !important',
     },
   },
@@ -4169,7 +4169,7 @@ tw\`[&.pre,& section,]:block\`
   },
 })
 ;({
-  '& p:hover': {
+  'p:hover': {
     display: 'block',
   },
 })
@@ -4266,7 +4266,7 @@ tw\`[&.pre,& section,]:block\`
 })
 ;({
   '@media (min-width: 768px)': {
-    '& section': {
+    section: {
       display: 'block',
     },
   },
@@ -4297,22 +4297,22 @@ tw\`[&.pre,& section,]:block\`
   },
 })
 ;({
-  '& pre section:first-child': {
+  'pre section:first-child': {
     display: 'block',
   },
 })
 ;({
-  '& section pre:first-child': {
+  'section pre:first-child': {
     display: 'block',
   },
 })
 ;({
-  '& section pre:first-child': {
+  'section pre:first-child': {
     marginTop: '2px',
   },
 })
 ;({
-  '& section pre:first-child': {
+  'section pre:first-child': {
     display: 'inline',
   },
 })
@@ -4341,7 +4341,7 @@ tw\`[&.pre,& section,]:block\`
     stroke: '#000',
   },
   '@media (min-width: 768px)': {
-    '& path': {
+    path: {
       stroke: '#000',
     },
   },
@@ -4351,7 +4351,7 @@ tw\`[&.pre,& section,]:block\`
     display: 'block',
   },
   '@media (min-width: 768px)': {
-    '& path': {
+    path: {
       stroke: '#000',
     },
   },

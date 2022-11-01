@@ -5,11 +5,14 @@ const SELECTOR_ROOT = /(^| ):root(?!\w)/g
 const UNDERSCORE_ESCAPING = /\\+(_)/g
 const WRAPPED_PARENT_SELECTORS = /(\({3}&(.*?)\){3})/g
 
+type OptionalSassifyContext = {
+  selectorMatchReg: RegExp
+  sassyPseudo: boolean
+  original?: string
+}
+
 type SassifySelectorTasks = Array<
-  (
-    selector: string,
-    params: { selectorMatchReg: RegExp; sassyPseudo: boolean }
-  ) => string
+  (selector: string, params: OptionalSassifyContext) => string
 >
 
 const sassifySelectorTasks: SassifySelectorTasks = [
@@ -17,17 +20,28 @@ const sassifySelectorTasks: SassifySelectorTasks = [
 
   // Prefix with the parent selector when sassyPseudo is enabled,
   // otherwise just replace the class with the parent selector
-  (selector, { selectorMatchReg, sassyPseudo }): string =>
-    selector.replace(selectorMatchReg, (match, __, offset: number) => {
-      if (selector === match) return ''
-      if (sassyPseudo) return '&'
-      if (
-        /\w/.test(selector[offset - 1]) &&
-        selector[offset + match.length] === ':'
-      )
-        return '' // Cover [section&]:hover:block / .btn.loading&:before
-      return offset === 0 ? '' : '&'
-    }),
+  (selector, { selectorMatchReg, sassyPseudo, original }): string => {
+    const out = selector.replace(
+      selectorMatchReg,
+      (match, __, offset: number) => {
+        if (selector === match) return ''
+        if (sassyPseudo) return '&'
+        if (
+          /\w/.test(selector[offset - 1]) &&
+          selector[offset + match.length] === ':'
+        )
+          return '' // Cover [section&]:hover:block / .btn.loading&:before
+        return offset === 0 ? '' : '&'
+      }
+    )
+
+    // Fix certain matches not covered by the previous task, eg: `first:[section]:m-1`
+    // (Arbitrary variants targeting html elements)
+    if (original && out === selector && selector.includes(`.${original}`))
+      return selector.replace(`.${original}`, '')
+
+    return out
+  },
 
   // Unwrap the pre-wrapped parent selectors (pre-wrapping avoids matching issues against word characters, eg: `[&section]:block`)
   (selector): string => selector.replace(WRAPPED_PARENT_SELECTORS, '&$2'),
@@ -58,7 +72,7 @@ const sassifySelectorTasks: SassifySelectorTasks = [
 
 function sassifySelector(
   selector: string,
-  params: ExtractRuleStyles & { selectorMatchReg: RegExp; sassyPseudo: boolean }
+  params: ExtractRuleStyles & OptionalSassifyContext
 ): string {
   // Remove the selector if it only contains the parent selector
   if (selector === '&') {

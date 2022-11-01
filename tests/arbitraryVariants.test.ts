@@ -783,7 +783,7 @@ describe('auto parent selector', () => {
         ({
           "@media (min-width: 768px)": {
             "@media (min-width: 640px)": {
-              "& one": { margin: "0.25rem" },
+              "one": { margin: "0.25rem" },
             }
           },
         });

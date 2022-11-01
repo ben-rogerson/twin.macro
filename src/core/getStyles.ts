@@ -258,6 +258,7 @@ function getStyles(
         // eg: Input 'btn' will avoid matching '.btn-primary' in `.btn + .btn-primary`
         `(${escapeRegex(`.${convertedClassName}`)})(?=[\\[.# >~+*:$\\)]|$)`
       ),
+      original: convertedClassName,
     })
 
     if (!results) {

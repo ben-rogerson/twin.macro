@@ -219,9 +219,10 @@ function sassifyArbitraryVariants(
     }
 
     // The ordering gets screwy in the selector when using a mix of arbitrary variants, normal variants and the auto parent feature - so notify in that case
-    const isBlah = hasArbitraryVariant && hasNormalVariant && !v.includes('&')
+    const isMissingParentSelectorOkay =
+      hasArbitraryVariant && hasNormalVariant && !v.includes('&')
     assert(
-      !isBlah,
+      !isMissingParentSelectorOkay,
       ({ color }: AssertContext) =>
         `${color(
           `✕ ${String(
@@ -261,6 +262,8 @@ function addParentSelector(
   if (selector.includes('&') || selector.startsWith('@')) return selector
   // Pseudo elements get an auto parent selector prefixed
   if (selector.startsWith(':')) return `&${selector}`
+  // Prefix the selector when there's more than one and it's at the end
+  if (!next && prev) return `&${selector}`
   // When a non arbitrary variant follows then we combine it with the current
   // selector by adding the parent selector at the end
   // eg: `[input&]:focus:...` -> `input:focus:...`

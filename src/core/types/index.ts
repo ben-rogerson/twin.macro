@@ -94,6 +94,7 @@ export type CoreContext = {
 
 export type ExtractRuleStyles = {
   includeUniversalStyles?: boolean
+  original?: string
   hasImportant?: boolean
   selectorMatchReg?: RegExp
   passChecks?: boolean
