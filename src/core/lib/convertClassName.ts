@@ -20,6 +20,7 @@ const BASIC_SELECTOR_TYPES = /^#|^\\./
 
 type ConvertShortCssToArbitraryPropertyParameters = {
   disableShortCss: CoreContext['twinConfig']['disableShortCss']
+  origClassName: string
 } & Pick<CoreContext, 'tailwindConfig' | 'assert' | 'isShortCssOnly'>
 
 function convertShortCssToArbitraryProperty(
@@ -29,6 +30,7 @@ function convertShortCssToArbitraryProperty(
     assert,
     disableShortCss,
     isShortCssOnly,
+    origClassName,
   }: ConvertShortCssToArbitraryPropertyParameters
 ): string {
   const splitArray = [
@@ -61,7 +63,7 @@ function convertShortCssToArbitraryProperty(
       `${String(
         color(
           `✕ ${String(
-            color(className, 'errorLight')
+            color(origClassName, 'errorLight')
           )} uses twin’s deprecated short-css syntax`
         )
       )}`,
@@ -93,6 +95,8 @@ function convertClassName(
     debug,
   }: ConvertClassNameParameters
 ): string {
+  const origClassName = className
+
   // Convert spaces to class friendly underscores
   className = className.replace(SPACES, SPACE_ID)
 
@@ -120,6 +124,7 @@ function convertClassName(
       assert,
       disableShortCss,
       isShortCssOnly,
+      origClassName,
     })
   }
 
