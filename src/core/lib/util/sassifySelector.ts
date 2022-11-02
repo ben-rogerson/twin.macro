@@ -25,12 +25,15 @@ const sassifySelectorTasks: SassifySelectorTasks = [
       selectorMatchReg,
       (match, __, offset: number) => {
         if (selector === match) return ''
-        if (sassyPseudo) return '&'
+
         if (
           /\w/.test(selector[offset - 1]) &&
           selector[offset + match.length] === ':'
-        )
+        ) {
+          if (sassyPseudo && selector[offset - 1] === undefined) return '&'
           return '' // Cover [section&]:hover:block / .btn.loading&:before
+        }
+
         return offset === 0 ? '' : '&'
       }
     )
