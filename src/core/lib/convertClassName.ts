@@ -16,6 +16,7 @@ const ALL_AMPERSANDS = /&/g
 const ENDING_AMP_THEN_WHITESPACE = /&[\s_]*$/
 const ALL_CLASS_DOTS = /(?<!\\)(\.)(?=\w)/g
 const ALL_WRAPPABLE_PARENT_SELECTORS = /&(?=([^ $)*+,.:>[_~])[\w-])/g
+const BASIC_SELECTOR_TYPES = /^#|^\\./
 
 type ConvertShortCssToArbitraryPropertyParameters = {
   disableShortCss: CoreContext['twinConfig']['disableShortCss']
@@ -260,9 +261,13 @@ function addParentSelector(
   selector = selector.replace(ALL_CLASS_DOTS, '\\.')
   // Preserve selectors with a parent selector and media queries
   if (selector.includes('&') || selector.startsWith('@')) return selector
+
+  // Arbitrary variants
+  // Variants that start with a class/id get treated as a child
+  if (BASIC_SELECTOR_TYPES.test(selector) && !prev) return `& ${selector}`
   // Pseudo elements get an auto parent selector prefixed
   if (selector.startsWith(':')) return `&${selector}`
-  // Prefix the selector when there's more than one and it's at the end
+  // When there's more than one variant and it's at the end then prefix it
   if (!next && prev) return `&${selector}`
   // When a non arbitrary variant follows then we combine it with the current
   // selector by adding the parent selector at the end
