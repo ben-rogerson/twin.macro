@@ -14,6 +14,9 @@
     <a href="https://discord.gg/Xj6x9z7"><img src="https://img.shields.io/discord/705884695400939552?label=discord&logo=discord" alt="Discord"></a>
     <br>
     <br>
+    🌟 New: Twin v3 now includes full Tailwind plugin support and more<br/><a href="https://github.com/ben-rogerson/twin.macro/releases">Release notes →</a>
+    <br>
+    <br>
     <a href="https://codesandbox.io/embed/github/ben-rogerson/twin.examples/tree/master/react-emotion?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&theme=dark">Demo twin on CodeSandbox</a>
 </p>
 
