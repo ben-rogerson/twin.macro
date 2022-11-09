@@ -50,17 +50,27 @@ function astify(
   }
 
   switch (typeof literal) {
-    case 'function':
+    case 'function': {
       return t.unaryExpression('void', t.numericLiteral(0), true)
-    case 'number':
+    }
+
+    case 'number': {
       return t.numericLiteral(literal)
-    case 'boolean':
+    }
+
+    case 'boolean': {
       return t.booleanLiteral(literal)
-    case 'undefined':
+    }
+
+    case 'undefined': {
       return t.unaryExpression('void', t.numericLiteral(0), true)
-    case 'string':
+    }
+
+    case 'string': {
       return t.stringLiteral(literal)
-    default:
+    }
+
+    default: {
       if (Array.isArray(literal)) {
         return t.arrayExpression(literal.map(x => astify(x, t)))
       }
@@ -68,6 +78,7 @@ function astify(
       return t.objectExpression(
         objectExpressionElements(literal as Record<string, string>, t)
       )
+    }
   }
 }
 
