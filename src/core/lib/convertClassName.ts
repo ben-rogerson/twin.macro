@@ -275,11 +275,25 @@ function sassifyArbitraryVariants(
 
     hasArbitraryVariant = true
 
-    const out = addParentSelector(
-      unbracket(v),
-      collapsed[idx - 1],
-      collapsed[idx + 1] ?? ''
-    )
+    const unwrappedVariant = unbracket(v)
+      // Escape class dots in the selector - otherwise tailwindcss adds the prefix within arbitrary variants (only when `prefix` is set in tailwind config)
+      // eg: tw`[.a]:first:tw-block` -> `.tw-a &:first-child`
+      .replace(ALL_CLASS_DOTS, '\\.')
+
+    const variantList = unwrappedVariant.startsWith('@')
+      ? [unwrappedVariant]
+      : // Arbitrary variants with commas are split, handled as separate selectors then joined
+        [...splitAtTopLevelOnly(unwrappedVariant, ',')]
+    const out = variantList
+      .map(variant =>
+        addParentSelector(variant, collapsed[idx - 1], collapsed[idx + 1] ?? '')
+      )
+      // Tailwindcss removes everything from a comma onwards in arbitrary variants, so we need to encode to preserve them
+      // Underscore is needed to distance the code from another possible number
+      // Eg: [path[fill='rgb(51,100,51)']]:[fill:white]
+      .join('\\2c_')
+      .replace(ALL_COMMAS, '\\2c_')
+
     return `[${out}]`
   })
 
@@ -289,15 +303,10 @@ function sassifyArbitraryVariants(
 }
 
 function addParentSelector(
-  rawSelector: string,
+  selector: string,
   prev: string,
   next: string
 ): string {
-  // Tailwindcss requires pre-encoded commas - unencoded are removed and we end up with an invalid selector
-  let selector = rawSelector.replace(ALL_COMMAS, '\\2c')
-  // Escape class dots in the selector - otherwise tailwindcss adds a the prefix within arbitrary variants (only when `prefix` is set in tailwind config)
-  // eg: tw`[.a]:first:tw-block` -> `.tw-a &:first-child`
-  selector = selector.replace(ALL_CLASS_DOTS, '\\.')
   // Preserve selectors with a parent selector and media queries
   if (selector.includes('&') || selector.startsWith('@')) return selector
 
