@@ -83,6 +83,38 @@ type ConvertClassNameParameters = {
   'tailwindConfig' | 'theme' | 'assert' | 'debug' | 'isShortCssOnly'
 >
 
+function checkForVariantSupport({
+  className,
+  tailwindConfig,
+  assert,
+}: { className: string } & Pick<
+  CoreContext,
+  'tailwindConfig' | 'assert'
+>): void {
+  const pieces = splitAtTopLevelOnly(className, tailwindConfig.separator ?? ':')
+  const hasMultipleVariants = pieces.length > 2
+  const hasACommaInVariants = pieces.some(p => {
+    const splits = splitAtTopLevelOnly(p.slice(1, -1), ',')
+    return splits.length > 1
+  })
+  const hasIssue = hasMultipleVariants && hasACommaInVariants
+  assert(
+    !hasIssue,
+    ({ color }: AssertContext) =>
+      `${color(
+        `✕ The variants on ${String(
+          color(className, 'errorLight')
+        )} are invalid tailwind and twin classes`
+      )}\n\n${color(
+        `To fix, either reduce all variants into a single arbitrary variant:`,
+        'success'
+      )}\nFrom: \`[.this, .that]:first:block\`\nTo: \`[.this:first, .that:first]:block\`\n\n${color(
+        `Or split the class into separate classes instead of using commas:`,
+        'success'
+      )}\nFrom: \`[.this, .that]:first:block\`\nTo: \`[.this]:first:block [.that]:first:block\`\n\nRead more at https://twinredirect.page.link/arbitrary-variants-with-commas`
+  )
+}
+
 // Convert a twin class to a tailwindcss friendly class
 function convertClassName(
   className: string,
@@ -95,6 +127,8 @@ function convertClassName(
     debug,
   }: ConvertClassNameParameters
 ): string {
+  checkForVariantSupport({ className, tailwindConfig, assert })
+
   const origClassName = className
 
   // Convert spaces to class friendly underscores
