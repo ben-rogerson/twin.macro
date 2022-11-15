@@ -209,6 +209,14 @@ const ruleTypes = {
       return
     }
 
+    // Strip keyframes from animate-* classes
+    if (
+      selector.startsWith('@keyframes') &&
+      !params.passChecks &&
+      params.twinConfig.moveKeyframesToGlobalStyles
+    )
+      return
+
     if (PRESERVED_ATRULE_TYPES.has(atrule.name)) {
       params.debug(`${atrule.name} pass given`, selector)
       // Rules that pass checks have no further style transformations

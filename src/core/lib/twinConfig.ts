@@ -16,6 +16,7 @@ const TWIN_CONFIG_DEFAULTS = {
   hasLogColors: true,
   includeClassNames: false,
   moveTwPropToStyled: false,
+  moveKeyframesToGlobalStyles: false,
   preset: undefined,
   sassyPseudo: false,
   stitchesConfig: undefined,
@@ -30,6 +31,7 @@ const configDefaultsStitches = {
   moveTwPropToStyled: true, // Move the tw prop to a styled definition
   convertHtmlElementToStyled: true, // For packages like stitches, add a styled definition on css prop elements
   stitchesConfig: undefined, // Set the path to the stitches config
+  moveKeyframesToGlobalStyles: true, // Stitches doesn't support inline @keyframes
 }
 
 function configDefaultsTwin({

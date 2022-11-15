@@ -18,4 +18,4 @@ const styles = {
 // Dot syntax
 const Component = { Sub: () => [] }
 ;<Component.Sub css={tw`fixed`} />
-;<Component.Sub tw="fixed" />
+;<Component.Sub tw="animate-spin" />

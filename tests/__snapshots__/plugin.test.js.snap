@@ -67615,6 +67615,32 @@ const globals = global({
     '--tw-backdrop-saturate': 'var(--tw-empty,/*!*/ /*!*/)',
     '--tw-backdrop-sepia': 'var(--tw-empty,/*!*/ /*!*/)',
   },
+  '@keyframes spin': {
+    to: {
+      transform: 'rotate(360deg)',
+    },
+  },
+  '@keyframes ping': {
+    '75%, 100%': {
+      transform: 'scale(2)',
+      opacity: '0',
+    },
+  },
+  '@keyframes pulse': {
+    '50%': {
+      opacity: '.5',
+    },
+  },
+  '@keyframes bounce': {
+    '0%, 100%': {
+      transform: 'translateY(-25%)',
+      animationTimingFunction: 'cubic-bezier(0.8,0,1,1)',
+    },
+    '50%': {
+      transform: 'none',
+      animationTimingFunction: 'cubic-bezier(0,0,0.2,1)',
+    },
+  },
 })
 export function App() {
   globals() // ...
@@ -67674,7 +67700,7 @@ const styles = {
 // Dot syntax
 const Component = { Sub: () => [] }
 ;<Component.Sub css={tw\`fixed\`} />
-;<Component.Sub tw="fixed" />
+;<Component.Sub tw="animate-spin" />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -67768,7 +67794,7 @@ const _TwComponent11 = _styled(Component.Sub, {})
 />
 
 const _TwComponent12 = _styled(Component.Sub, {
-  position: 'fixed',
+  animation: 'spin 1s linear infinite',
 })
 
 ;<_TwComponent12 />

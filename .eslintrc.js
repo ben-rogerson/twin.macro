@@ -88,6 +88,7 @@ module.exports = {
   ],
   ignorePatterns: [
     '/tests/plugin.test.js',
+    '/tests/stitches.config.js',
     '/tests/__fixtures__',
     '/types/macro.d.ts',
     '/types',

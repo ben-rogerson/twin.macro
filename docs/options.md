@@ -4,19 +4,20 @@
 
 These options are available in your [twin config](#twin-config-location):
 
-| Name              | Default                | Description                                                                                                                                                                                                                                   |
-| ----------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| config            | `"tailwind.config.js"` | The path to your Tailwind config. Also takes a config object.                                                                                                                                                                                 |
-| preset            | `"emotion"`            | The css-in-js library behind the scenes.<br>Also supported: `"styled-components"` `"goober"` `"stitches"`                                                                                                                                     |
-| dataTwProp        | `true`                 | Add a prop to jsx components in development showing the original tailwind classes.<br/> Use `"all"` to keep the prop in production.                                                                                                           |
-| debug             | `false`                | Display information in your terminal about the Tailwind class conversions.                                                                                                                                                                    |
-| disableShortCss   | `true`                 | Disable converting short css within the tw import/prop.                                                                                                                                                                                       |
-| hasLogColors      | `true`                 | Disable log colors to remove the glyphs when the color display is not supported                                                                                                                                                               |
-| includeClassNames | `false`                | Look in className props for tailwind classes to convert.                                                                                                                                                                                      |
-| dataCsProp        | `true`                 | Add a prop to your elements in development so you can see the original cs prop classes, eg: `<div data-cs="maxWidth[1em]" />`.                                                                                                                |
-| disableCsProp     | `true`                 | Disable twin from reading values specified in the cs prop.                                                                                                                                                                                    |
-| sassyPseudo       | `false`                | Some css-in-js frameworks require the `&` in selectors like `&:hover`, this option ensures it’s added.                                                                                                                                        |
-| autoCssProp       | _deprecated in v2.8.2_ | `styled-components` only: Used to add an import of 'styled-components/macro' which automatically adds the styled-components css prop. Here’s how to [setup the new styled-components css prop](https://twinredirect.page.link/auto-css-prop). |
+| Name                        | Default                | Description                                                                                                                                                                                                                                   |
+| --------------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| config                      | `"tailwind.config.js"` | The path to your Tailwind config. Also takes a config object.                                                                                                                                                                                 |
+| preset                      | `"emotion"`            | The css-in-js library behind the scenes.<br>Also supported: `"styled-components"` `"goober"` `"stitches"`                                                                                                                                     |
+| dataTwProp                  | `true`                 | Add a prop to jsx components in development showing the original tailwind classes.<br/> Use `"all"` to keep the prop in production.                                                                                                           |
+| debug                       | `false`                | Display information in your terminal about the Tailwind class conversions.                                                                                                                                                                    |
+| disableShortCss             | `true`                 | Disable converting short css within the tw import/prop.                                                                                                                                                                                       |
+| hasLogColors                | `true`                 | Disable log colors to remove the glyphs when the color display is not supported                                                                                                                                                               |
+| includeClassNames           | `false`                | Look in className props for tailwind classes to convert.                                                                                                                                                                                      |
+| dataCsProp                  | `true`                 | Add a prop to your elements in development so you can see the original cs prop classes, eg: `<div data-cs="maxWidth[1em]" />`.                                                                                                                |
+| disableCsProp               | `true`                 | Disable twin from reading values specified in the cs prop.                                                                                                                                                                                    |
+| sassyPseudo                 | `false`                | Some css-in-js frameworks require the `&` in selectors like `&:hover`, this option ensures it’s added.                                                                                                                                        |
+| moveKeyframesToGlobalStyles | `false`                | `@keyframes` are added next to the `animation-x` classes - this option can move them to global styles instead.                                                                                                                                |
+| autoCssProp                 | _deprecated in v2.8.2_ | `styled-components` only: Used to add an import of 'styled-components/macro' which automatically adds the styled-components css prop. Here’s how to [setup the new styled-components css prop](https://twinredirect.page.link/auto-css-prop). |
 
 ### Options
 
@@ -232,6 +233,23 @@ sassyPseudo: true, // Prefix pseudo selectors with a `&`
 ```
 
 Some css-in-js frameworks require the `&` in selectors like `&:hover`, this option ensures it’s added.
+
+</details>
+
+---
+
+<details>
+
+  <summary><strong>moveKeyframesToGlobalStyles</strong></summary>
+
+<br />
+
+```js
+moveKeyframesToGlobalStyles: true, // Avoid @keyframes next to animation-x classes
+```
+
+Add `@keyframes` matching an `animation-x` class to global styles instead of alongside the `animation-x` class.<br/>
+In stitches this gets set to `true` to make animations work.
 
 </details>
 

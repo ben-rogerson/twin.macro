@@ -237,6 +237,7 @@ function getStyles(
   const commonMatchContext = {
     ...commonContext,
     includeUniversalStyles: false,
+    twinConfig: params.twinConfig,
     tailwindConfig: params.tailwindConfig,
     tailwindContext: params.tailwindContext,
     sassyPseudo: params.twinConfig.sassyPseudo,

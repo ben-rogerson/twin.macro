@@ -1,3 +1,4 @@
+import type { TwinConfig } from './types'
 import { run, html } from './util/run'
 
 describe('includeClassNames', () => {
@@ -157,6 +158,59 @@ describe('config', () => {
               - text-xs
             `)
         })
+    })
+  })
+})
+
+describe('moveKeyframesToGlobalStyles', () => {
+  describe('When set to true', () => {
+    test('Then animation classes don’t have keyframes', async () => {
+      const input = html`<div tw="animate-bounce" />`
+      const twinConfig = { moveKeyframesToGlobalStyles: true }
+
+      return run(input, undefined, twinConfig).then((result: string) => {
+        expect(result).toMatchFormattedJavaScript(`
+          React.createElement("div", { css: { animation: "bounce 1s infinite" } });
+        `)
+      })
+    })
+
+    test('Then animation classes do have keyframes', async () => {
+      const input = html`<div tw="animate-bounce" /> `
+      const twinConfig = { moveKeyframesToGlobalStyles: false }
+
+      return run(input, undefined, twinConfig).then((result: string) => {
+        expect(result).toMatchFormattedJavaScript(`
+          React.createElement("div", {
+            css: {
+              "@keyframes bounce": {
+                "0%, 100%": {
+                  transform: "translateY(-25%)",
+                  animationTimingFunction: "cubic-bezier(0.8,0,1,1)",
+                },
+                "50%": { transform: "none", animationTimingFunction: "cubic-bezier(0,0,0.2,1)" },
+              },
+              animation: "bounce 1s infinite",
+            },
+          });
+        `)
+      })
+    })
+
+    test('Stitches has no keyframes', async () => {
+      const input = html`<div tw="animate-bounce" /> `
+      const twinConfig = {
+        preset: 'stitches' as string,
+        stitchesConfig: 'tests/stitches.config.js',
+      } as unknown as TwinConfig
+
+      return run(input, undefined, twinConfig).then((result: string) => {
+        expect(result).toMatchFormattedJavaScript(`
+          import { styled as _styled } from "tests/stitches.config.js";
+          const _TwComponent = _styled("div", { animation: "bounce 1s infinite" });
+          React.createElement(_TwComponent, null);
+        `)
+      })
     })
   })
 })
