@@ -4,11 +4,9 @@ it('errors with extra dividers between variants', async () => {
   const input = 'tw`[&_.test]::block`'
   return run(input)
     .then(result => {
-      // eslint-disable-next-line jest/no-conditional-expect
       expect(result).toMatchFormattedJavaScript(``)
     })
     .catch(error => {
-      // eslint-disable-next-line jest/no-conditional-expect
       expect(error).toMatchFormattedError(`
       MacroError: unknown:
 
@@ -21,11 +19,9 @@ it('errors with an extra divider after the class', async () => {
   const input = 'tw`[&_.test]:block:`'
   return run(input)
     .then(result => {
-      // eslint-disable-next-line jest/no-conditional-expect
       expect(result).toMatchFormattedJavaScript(``)
     })
     .catch(error => {
-      // eslint-disable-next-line jest/no-conditional-expect
       expect(error).toMatchFormattedError(`
       MacroError: unknown:
 

@@ -54,11 +54,9 @@ it('should error if an unknown typehint is used', async () => {
   expect.assertions(1)
   return run(input)
     .then(result => {
-      // eslint-disable-next-line jest/no-conditional-expect
       expect(result).toMatchFormattedJavaScript(``)
     })
     .catch(error => {
-      // eslint-disable-next-line jest/no-conditional-expect
       expect(error).toMatchFormattedError(`
       MacroError: unknown:
 
@@ -238,11 +236,9 @@ it('should not output unparsable arbitrary CSS values', async () => {
 
   return run(input)
     .then(result => {
-      // eslint-disable-next-line jest/no-conditional-expect
       expect(result).toMatchFormattedJavaScript(``)
     })
     .catch(error => {
-      // eslint-disable-next-line jest/no-conditional-expect
       expect(error).toMatchFormattedError(`
       MacroError: unknown: 
 

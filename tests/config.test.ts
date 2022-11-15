@@ -140,11 +140,9 @@ describe('config', () => {
 
       return run(input, tailwindConfig, twinConfig)
         .then(result => {
-          // eslint-disable-next-line jest/no-conditional-expect
           expect(result).toMatchFormattedJavaScript(``)
         })
         .catch(error => {
-          // eslint-disable-next-line jest/no-conditional-expect
           expect(error).toMatchFormattedError(`
             MacroError: unknown:
 

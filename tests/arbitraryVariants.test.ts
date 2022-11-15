@@ -279,11 +279,9 @@ test('errors when separator is forgotten against a group', async () => {
   expect.assertions(1)
   return run(input)
     .then(result => {
-      // eslint-disable-next-line jest/no-conditional-expect
       expect(result).toMatchFormattedJavaScript(``)
     })
     .catch(error => {
-      // eslint-disable-next-line jest/no-conditional-expect
       expect(error).toMatchFormattedError(`
       MacroError: unknown:
 
@@ -817,11 +815,9 @@ describe('auto parent selector', () => {
     const input = 'tw`[one]:not-link:[two]:m-4`'
     return run(input)
       .then(result => {
-        // eslint-disable-next-line jest/no-conditional-expect
         expect(result).toMatchFormattedJavaScript(``)
       })
       .catch(error => {
-        // eslint-disable-next-line jest/no-conditional-expect
         expect(error).toMatchFormattedError(`
           MacroError: unknown:
 
@@ -834,11 +830,9 @@ describe('auto parent selector', () => {
     const input = 'tw`not-link:[one]:last:[two]:m-4`'
     return run(input)
       .then(result => {
-        // eslint-disable-next-line jest/no-conditional-expect
         expect(result).toMatchFormattedJavaScript(``)
       })
       .catch(error => {
-        // eslint-disable-next-line jest/no-conditional-expect
         expect(error).toMatchFormattedError(`
           MacroError: unknown:
 

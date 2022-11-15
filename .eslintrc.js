@@ -67,6 +67,7 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-require-imports': 0,
         'unicorn/prefer-module': 0,
+        'jest/no-conditional-expect': 0,
       },
     },
     {
