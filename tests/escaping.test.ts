@@ -28,7 +28,7 @@ test('media commas in media queries are preserved', async () => {
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
       ({
-        "@media (min-width: 700px),, (min-width: 700px), and (orientation: landscape)": {
+        "@media (min-width: 700px), , (min-width: 700px), and (orientation: landscape)": {
           "display": "block",
         }
       });

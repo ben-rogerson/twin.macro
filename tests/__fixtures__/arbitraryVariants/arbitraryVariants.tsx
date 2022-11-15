@@ -47,5 +47,4 @@ tw`[.dropdown.dropdown-open &, .dropdown:focus &]:block`
 tw`[path]:first:[stroke: #000] md:[path]:[stroke: #000]`
 tw`first:block md:[path]:[stroke: #000]`
 tw`[.sec section a[target="_blank"]]:block` // < issue with _blank present in tailwindcss
-tw`[#blah, &.pre, & section,]:block`
 tw`[&.pre,& section,]:block`

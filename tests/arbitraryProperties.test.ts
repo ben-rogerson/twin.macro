@@ -169,3 +169,12 @@ it('should generate seemingly invalid CSS', async () => {
     `)
   })
 })
+
+it('should preserve commas', async () => {
+  const input = 'tw`[path[fill="rgb(51,100,51)"]]:[fill:white]`'
+  return run(input).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({ '& path[fill="rgb(51,100,51)"]': { fill: "white" } });
+    `)
+  })
+})
