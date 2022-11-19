@@ -12,8 +12,8 @@ test('arbitrary properties with modifiers', async () => {
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
       ({
-        '@media (prefers-color-scheme: dark)': {
-          '@media (min-width: 1024px)': { ':hover': { paintOrder: 'markers' } },
+        '@media (min-width: 1024px)': {
+          '@media (prefers-color-scheme: dark)': { ':hover': { paintOrder: 'markers' } },
         },
       })  
     `)

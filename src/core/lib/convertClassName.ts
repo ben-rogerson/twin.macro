@@ -2,12 +2,7 @@ import replaceThemeValue from './util/replaceThemeValue'
 import isShortCss from './util/isShortCss'
 import splitOnFirst from './util/splitOnFirst'
 import { splitAtTopLevelOnly } from './util/twImports'
-import type {
-  Assert,
-  AssertContext,
-  CoreContext,
-  TailwindConfig,
-} from 'core/types'
+import type { AssertContext, CoreContext, TailwindConfig } from 'core/types'
 // eslint-disable-next-line import/no-relative-parent-imports
 import { SPACE_ID, SPACES } from '../constants'
 
@@ -15,8 +10,9 @@ const ALL_COMMAS = /,/g
 const ALL_AMPERSANDS = /&/g
 const ENDING_AMP_THEN_WHITESPACE = /&[\s_]*$/
 const ALL_CLASS_DOTS = /(?<!\\)(\.)(?=\w)/g
+const ALL_CLASS_ATS = /(?<!\\)(@)(?=\w)(?!media)/g
 const ALL_WRAPPABLE_PARENT_SELECTORS = /&(?=([^ $)*+,.:>[_~])[\w-])/g
-const BASIC_SELECTOR_TYPES = /^#|^\\./
+const BASIC_SELECTOR_TYPES = /^#|^\\.|[^\W_]/
 
 type ConvertShortCssToArbitraryPropertyParameters = {
   disableShortCss: CoreContext['twinConfig']['disableShortCss']
@@ -166,7 +162,7 @@ function convertClassName(
   className = replaceThemeValue(className, { assert, theme })
 
   // Add missing parent selectors and collapse arbitrary variants
-  className = sassifyArbitraryVariants(className, { assert, tailwindConfig })
+  className = sassifyArbitraryVariants(className, { tailwindConfig })
 
   debug('class after format', className)
 
@@ -183,7 +179,7 @@ function unbracket(variant: string): string {
 
 function sassifyArbitraryVariants(
   fullClassName: string,
-  { assert, tailwindConfig }: { assert: Assert; tailwindConfig: TailwindConfig }
+  { tailwindConfig }: { tailwindConfig: TailwindConfig }
 ): string {
   const splitArray = [
     ...splitAtTopLevelOnly(fullClassName, tailwindConfig.separator ?? ':'),
@@ -249,36 +245,17 @@ function sassifyArbitraryVariants(
     collapsed[collapsed.length - 1] = mergedWithPrev
   })
 
-  // Use that list to add the parent selector
-  let hasArbitraryVariant = false
-  let hasNormalVariant = false
-  const variantsWithParentSelectors = collapsed.map((v, idx) => {
-    if (!isArbitraryVariant(v)) {
-      if (idx > 0 && hasArbitraryVariant) hasNormalVariant = true
-      return v
-    }
-
-    // The ordering gets screwy in the selector when using a mix of arbitrary variants, normal variants and the auto parent feature - so notify in that case
-    const isMissingParentSelectorOkay =
-      hasArbitraryVariant && hasNormalVariant && !v.includes('&')
-    assert(
-      !isMissingParentSelectorOkay,
-      ({ color }: AssertContext) =>
-        `${color(
-          `✕ ${String(
-            color(fullClassName, 'errorLight')
-          )} had trouble with the auto parent selector feature`
-        )}\n\nYou’ll need to add the parent selector manually within the arbitrary variant(s), eg: ${String(
-          color(`[section &]:block`, 'success')
-        )}`
-    )
-
-    hasArbitraryVariant = true
+  // The supplied class requires the reversal of it's variants as resolveMatches adds them in reverse order
+  const reversedVariantList = [...collapsed].slice().reverse()
+  const allVariants = reversedVariantList.map((v, idx) => {
+    if (!isArbitraryVariant(v)) return v
 
     const unwrappedVariant = unbracket(v)
-      // Escape class dots in the selector - otherwise tailwindcss adds the prefix within arbitrary variants (only when `prefix` is set in tailwind config)
+      // Unescaped dots incorrectly add the prefix within arbitrary variants (only when`prefix` is set in tailwind config)
       // eg: tw`[.a]:first:tw-block` -> `.tw-a &:first-child`
       .replace(ALL_CLASS_DOTS, '\\.')
+      // Unescaped ats will throw a conversion error
+      .replace(ALL_CLASS_ATS, '\\@')
 
     const variantList = unwrappedVariant.startsWith('@')
       ? [unwrappedVariant]
@@ -297,9 +274,7 @@ function sassifyArbitraryVariants(
     return `[${out}]`
   })
 
-  return [...variantsWithParentSelectors, className].join(
-    tailwindConfig.separator ?? ':'
-  )
+  return [...allVariants, className].join(tailwindConfig.separator ?? ':')
 }
 
 function addParentSelector(
@@ -311,18 +286,14 @@ function addParentSelector(
   if (selector.includes('&') || selector.startsWith('@')) return selector
 
   // Arbitrary variants
-  // Variants that start with a class/id get treated as a child
-  if (BASIC_SELECTOR_TYPES.test(selector) && !prev) return `& ${selector}`
   // Pseudo elements get an auto parent selector prefixed
   if (selector.startsWith(':')) return `&${selector}`
+  // Variants that start with a class/id get treated as a child
+  if (BASIC_SELECTOR_TYPES.test(selector) && !prev) return `& ${selector}`
   // When there's more than one variant and it's at the end then prefix it
   if (!next && prev) return `&${selector}`
-  // When a non arbitrary variant follows then we combine it with the current
-  // selector by adding the parent selector at the end
-  // eg: `[input&]:focus:...` -> `input:focus:...`
-  if (next && !isArbitraryVariant(next)) return `${selector}&`
 
-  return `&_${selector}`
+  return `& ${selector}`
 }
 
 export default convertClassName

@@ -32,8 +32,8 @@ test('arbitrary variants with modifiers', async () => {
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
       ({
-        '@media (prefers-color-scheme: dark)': {
-          "@media (min-width: 1024px)": { "> *:hover": { textDecorationLine: "underline" } },
+        '@media (min-width: 1024px)': {
+          "@media (prefers-color-scheme: dark)": { ":hover > *": { textDecorationLine: "underline" } },
         }
       })
     `)
@@ -199,8 +199,8 @@ test('keeps escaped underscores in arbitrary variants mixed with normal variants
   ].join('; ')
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
-      ({ ':hover .foo_bar': { textDecorationLine: 'underline' } });
       ({ "& .foo_bar:hover": { textDecorationLine: "underline" } });
+      ({ ':hover .foo_bar': { textDecorationLine: 'underline' } });
     `)
   })
 })
@@ -779,9 +779,9 @@ describe('auto parent selector', () => {
     return run(input).then(result => {
       expect(result).toMatchFormattedJavaScript(`
         ({
-          "@media (min-width: 768px)": {
-            "@media (min-width: 640px)": {
-              "one": { margin: "0.25rem" },
+          "@media (min-width: 640px)": {
+            "@media (min-width: 768px)": {
+              "& one": { margin: "0.25rem" },
             }
           },
         });
@@ -820,34 +820,22 @@ describe('auto parent selector', () => {
     })
   })
 
-  test('mixed variants without parent selectors throw error', async () => {
+  test('mixed variants without parent selectors are handled', async () => {
     const input = 'tw`[one]:not-link:[two]:m-4`'
-    return run(input)
-      .then(result => {
-        expect(result).toMatchFormattedJavaScript(``)
-      })
-      .catch(error => {
-        expect(error).toMatchFormattedError(`
-          MacroError: unknown:
-
-          ✕ [one]:not-link:[two]:m-4 had trouble with the auto parent selector feature
-        `)
-      })
+    return run(input).then(result => {
+      expect(result).toMatchFormattedJavaScript(`
+        ({ "one:not(:link) two": { margin: "1rem" } });
+      `)
+    })
   })
 
-  test('mixed variants without parent selectors throw error 2', async () => {
+  test('mixed variants without parent selectors are handled 2', async () => {
     const input = 'tw`not-link:[one]:last:[two]:m-4`'
-    return run(input)
-      .then(result => {
-        expect(result).toMatchFormattedJavaScript(``)
-      })
-      .catch(error => {
-        expect(error).toMatchFormattedError(`
-          MacroError: unknown:
-
-          ✕ not-link:[one]:last:[two]:m-4 had trouble with the auto parent selector feature
-        `)
-      })
+    return run(input).then(result => {
+      expect(result).toMatchFormattedJavaScript(`
+        ({ ":not(:link) one:last-child two": { "margin": "1rem" } });
+      `)
+    })
   })
 })
 
@@ -865,6 +853,15 @@ test('nested at-rules', async () => {
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
       ({ '@media screen': { '@media (hover: hover)': { textDecorationLine: 'underline' } } });
+    `)
+  })
+})
+
+test('nested at-rules 2', async () => {
+  const input = 'tw`print:[@page]:underline`'
+  return run(input).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({ '@media print': { '@page': { textDecorationLine: 'underline' } } });
     `)
   })
 })
