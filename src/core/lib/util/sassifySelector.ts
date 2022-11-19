@@ -1,6 +1,7 @@
 import type { ExtractRuleStyles } from 'core/types'
 
 const SELECTOR_PARENT_CANDIDATE = /^[ #.[]/
+const SELECTOR_SPECIAL_STARTS = /^ [>@]/
 const SELECTOR_ROOT = /(^| ):root(?!\w)/g
 const UNDERSCORE_ESCAPING = /\\+(_)/g
 const WRAPPED_PARENT_SELECTORS = /(\({3}&(.*?)\){3})/g
@@ -62,7 +63,7 @@ const sassifySelectorTasks: SassifySelectorTasks = [
 
     // Fix: ` > :not([hidden]) ~ :not([hidden])` / ` > *`
     // Fix: `[@page]:x`
-    if (/^ [>@]/.test(selector)) return selector
+    if (SELECTOR_SPECIAL_STARTS.test(selector)) return selector
 
     return `&${selector}`
   },
