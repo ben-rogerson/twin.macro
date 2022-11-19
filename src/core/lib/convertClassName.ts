@@ -83,6 +83,38 @@ type ConvertClassNameParameters = {
   'tailwindConfig' | 'theme' | 'assert' | 'debug' | 'isShortCssOnly'
 >
 
+function checkForVariantSupport({
+  className,
+  tailwindConfig,
+  assert,
+}: { className: string } & Pick<
+  CoreContext,
+  'tailwindConfig' | 'assert'
+>): void {
+  const pieces = splitAtTopLevelOnly(className, tailwindConfig.separator ?? ':')
+  const hasMultipleVariants = pieces.length > 2
+  const hasACommaInVariants = pieces.some(p => {
+    const splits = splitAtTopLevelOnly(p.slice(1, -1), ',')
+    return splits.length > 1
+  })
+  const hasIssue = hasMultipleVariants && hasACommaInVariants
+  assert(
+    !hasIssue,
+    ({ color }: AssertContext) =>
+      `${color(
+        `✕ The variants on ${String(
+          color(className, 'errorLight')
+        )} are invalid tailwind and twin classes`
+      )}\n\n${color(
+        `To fix, either reduce all variants into a single arbitrary variant:`,
+        'success'
+      )}\nFrom: \`[.this, .that]:first:block\`\nTo: \`[.this:first, .that:first]:block\`\n\n${color(
+        `Or split the class into separate classes instead of using commas:`,
+        'success'
+      )}\nFrom: \`[.this, .that]:first:block\`\nTo: \`[.this]:first:block [.that]:first:block\`\n\nRead more at https://twinredirect.page.link/arbitrary-variants-with-commas`
+  )
+}
+
 // Convert a twin class to a tailwindcss friendly class
 function convertClassName(
   className: string,
@@ -95,6 +127,8 @@ function convertClassName(
     debug,
   }: ConvertClassNameParameters
 ): string {
+  checkForVariantSupport({ className, tailwindConfig, assert })
+
   const origClassName = className
 
   // Convert spaces to class friendly underscores
@@ -241,11 +275,25 @@ function sassifyArbitraryVariants(
 
     hasArbitraryVariant = true
 
-    const out = addParentSelector(
-      unbracket(v),
-      collapsed[idx - 1],
-      collapsed[idx + 1] ?? ''
-    )
+    const unwrappedVariant = unbracket(v)
+      // Escape class dots in the selector - otherwise tailwindcss adds the prefix within arbitrary variants (only when `prefix` is set in tailwind config)
+      // eg: tw`[.a]:first:tw-block` -> `.tw-a &:first-child`
+      .replace(ALL_CLASS_DOTS, '\\.')
+
+    const variantList = unwrappedVariant.startsWith('@')
+      ? [unwrappedVariant]
+      : // Arbitrary variants with commas are split, handled as separate selectors then joined
+        [...splitAtTopLevelOnly(unwrappedVariant, ',')]
+    const out = variantList
+      .map(variant =>
+        addParentSelector(variant, collapsed[idx - 1], collapsed[idx + 1] ?? '')
+      )
+      // Tailwindcss removes everything from a comma onwards in arbitrary variants, so we need to encode to preserve them
+      // Underscore is needed to distance the code from another possible number
+      // Eg: [path[fill='rgb(51,100,51)']]:[fill:white]
+      .join('\\2c_')
+      .replace(ALL_COMMAS, '\\2c_')
+
     return `[${out}]`
   })
 
@@ -255,15 +303,10 @@ function sassifyArbitraryVariants(
 }
 
 function addParentSelector(
-  rawSelector: string,
+  selector: string,
   prev: string,
   next: string
 ): string {
-  // Tailwindcss requires pre-encoded commas - unencoded are removed and we end up with an invalid selector
-  let selector = rawSelector.replace(ALL_COMMAS, '\\2c')
-  // Escape class dots in the selector - otherwise tailwindcss adds a the prefix within arbitrary variants (only when `prefix` is set in tailwind config)
-  // eg: tw`[.a]:first:tw-block` -> `.tw-a &:first-child`
-  selector = selector.replace(ALL_CLASS_DOTS, '\\.')
   // Preserve selectors with a parent selector and media queries
   if (selector.includes('&') || selector.startsWith('@')) return selector
 

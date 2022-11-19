@@ -811,6 +811,15 @@ describe('auto parent selector', () => {
     })
   })
 
+  test('each selector is visited individually', async () => {
+    const input = 'tw`[#blah,#app,pre,.pre,&.post,& section,.main &]:m-4`'
+    return run(input).then(result => {
+      expect(result).toMatchFormattedJavaScript(`
+      ({ "& #blah,& #app,& pre,& .pre,&.post,& section,.main &": { margin: '1rem' } });
+    `)
+    })
+  })
+
   test('mixed variants without parent selectors throw error', async () => {
     const input = 'tw`[one]:not-link:[two]:m-4`'
     return run(input)
@@ -858,4 +867,27 @@ test('nested at-rules', async () => {
       ({ '@media screen': { '@media (hover: hover)': { textDecorationLine: 'underline' } } });
     `)
   })
+})
+
+test('multiple variants containing commas throw unsupported error', async () => {
+  const input = 'tw`[.this,.that]:first:block`'
+  return run(input)
+    .then(result => {
+      expect(result).toMatchFormattedJavaScript(``)
+    })
+    .catch(error => {
+      expect(error).toMatchFormattedError(`
+        MacroError: unknown:
+
+        ✕ The variants on [.this,.that]:first:block are invalid tailwind and twin classes
+
+        To fix, either reduce all variants into a single arbitrary variant:
+        From: \`[.this, .that]:first:block\`
+        To: \`[.this:first, .that:first]:block\`
+        
+        Or split the class into separate classes instead of using commas:
+        From: \`[.this, .that]:first:block\`
+        To: \`[.this]:first:block [.that]:first:block\`\n\nRead more at https://twinredirect.page.link/arbitrary-variants-with-commas
+      `)
+    })
 })
