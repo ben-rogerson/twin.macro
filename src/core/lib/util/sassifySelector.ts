@@ -58,11 +58,11 @@ const sassifySelectorTasks: SassifySelectorTasks = [
     if (selector.includes('&')) return selector
 
     const addParentSelector = SELECTOR_PARENT_CANDIDATE.test(selector)
-
     if (!addParentSelector) return selector
 
-    // ` > :not([hidden]) ~ :not([hidden])` / ` > *`
-    if (selector.startsWith(' >')) return selector
+    // Fix: ` > :not([hidden]) ~ :not([hidden])` / ` > *`
+    // Fix: `[@page]:x`
+    if (/^ [>@]/.test(selector)) return selector
 
     return `&${selector}`
   },

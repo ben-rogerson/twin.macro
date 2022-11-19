@@ -177,7 +177,7 @@ const StatePlaceholderImportant = _styled.input({
 })
 
 const StateStatePlaceholderImportant = _styled.input({
-  ':hover:active::placeholder': {
+  ':active:hover::placeholder': {
     '--tw-placeholder-opacity': '1 !important',
     color: 'rgb(239 68 68 / var(--tw-placeholder-opacity)) !important',
   },
@@ -264,7 +264,7 @@ const StatePlaceholderImportantPrefix = _styled.input({
 })
 
 const StateStatePlaceholderImportantPrefix = _styled.input({
-  ':hover:active::placeholder': {
+  ':active:hover::placeholder': {
     '--tw-placeholder-opacity': '1 !important',
     color: 'rgb(239 68 68 / var(--tw-placeholder-opacity)) !important',
   },
@@ -1222,7 +1222,7 @@ const nestedGroups = {
     display: 'inline',
     backgroundColor: 'rgb(0 0 0 / .20)',
   },
-  ':last-child:first-child': {
+  ':first-child:last-child': {
     display: 'block',
     backgroundColor: 'rgb(0 0 0 / .20)',
   },
@@ -1236,13 +1236,13 @@ const nestedGroups = {
 ;({
   '@media (min-width: 768px)': {
     marginLeft: '1rem !important',
-    one: {
+    '& one': {
       marginTop: '1.25rem !important',
     },
-    'one two': {
+    '& one two': {
       display: 'inline !important',
     },
-    'one two three': {
+    '& one two three': {
       display: 'inline !important',
     },
   },
@@ -1935,22 +1935,22 @@ tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
   },
 })
 ;({
-  '@media (prefers-color-scheme: dark)': {
-    '@media (min-width: 640px)': {
+  '@media (min-width: 640px)': {
+    '@media (prefers-color-scheme: dark)': {
       display: 'block',
     },
   },
 })
 ;({
-  '@media (prefers-color-scheme: light)': {
-    '@media (min-width: 640px)': {
+  '@media (min-width: 640px)': {
+    '@media (prefers-color-scheme: light)': {
       display: 'block',
     },
   },
 })
 ;({
-  '@media (prefers-color-scheme: dark)': {
-    '@media (min-width: 640px)': {
+  '@media (min-width: 640px)': {
+    '@media (prefers-color-scheme: dark)': {
       '.group:hover &': {
         display: 'block',
       },
@@ -1958,8 +1958,8 @@ tw\`xl:placeholder-red-500! first:md:block sm:disabled:flex\`
   },
 })
 ;({
-  '@media (prefers-color-scheme: light)': {
-    '@media (min-width: 640px)': {
+  '@media (min-width: 640px)': {
+    '@media (prefers-color-scheme: light)': {
       '.group:hover &': {
         display: 'block',
       },
@@ -4171,7 +4171,7 @@ tw\`[&.pre,& section,]:block\`
   },
 })
 ;({
-  'p:hover': {
+  ':hover p': {
     display: 'block',
   },
 })
@@ -4268,7 +4268,7 @@ tw\`[&.pre,& section,]:block\`
 })
 ;({
   '@media (min-width: 768px)': {
-    section: {
+    '& section': {
       display: 'block',
     },
   },
@@ -4289,32 +4289,32 @@ tw\`[&.pre,& section,]:block\`
   },
 })
 ;({
-  'section pre &:first-child': {
+  'pre section &:first-child': {
     display: 'block',
   },
 })
 ;({
-  'section & pre:first-child': {
+  'section &:first-child pre': {
     display: 'block',
   },
 })
 ;({
-  'pre section:first-child': {
+  ':first-child pre section': {
     display: 'block',
   },
 })
 ;({
-  'section pre:first-child': {
+  ':first-child section pre': {
     display: 'block',
   },
 })
 ;({
-  'section pre:first-child': {
+  ':first-child section pre': {
     marginTop: '2px',
   },
 })
 ;({
-  'section pre:first-child': {
+  ':first-child section pre': {
     display: 'inline',
   },
 })
@@ -4343,7 +4343,7 @@ tw\`[&.pre,& section,]:block\`
     stroke: '#000',
   },
   '@media (min-width: 768px)': {
-    path: {
+    '& path': {
       stroke: '#000',
     },
   },
@@ -4353,7 +4353,7 @@ tw\`[&.pre,& section,]:block\`
     display: 'block',
   },
   '@media (min-width: 768px)': {
-    path: {
+    '& path': {
       stroke: '#000',
     },
   },
@@ -58450,10 +58450,10 @@ const addUtilitiesTest2Media = {
   },
 }
 const addUtilitiesTest2Variants = {
-  ':visited:nth-child(even)': {
+  ':nth-child(even):visited': {
     transform: 'skewY(-15deg)',
   },
-  ':active:hover': {
+  ':hover:active': {
     transform: 'skewY(-15deg)',
   },
 }
@@ -58489,14 +58489,14 @@ const addComponentsTestMedia = {
   },
 }
 const addComponentsTestVariants = {
-  ':visited:nth-child(even)': {
+  ':nth-child(even):visited': {
     backgroundColor: '#e3342f',
     color: '#fff',
   },
-  ':visited:nth-child(even):hover': {
+  ':nth-child(even):visited:hover': {
     backgroundColor: '#cc1f1a',
   },
-  ':active:hover': {
+  ':hover:active': {
     padding: '.5rem 1rem',
     borderRadius: '.25rem',
     fontWeight: '600',
@@ -78440,12 +78440,12 @@ tw\`any-pointer-fine:portrait:print:dark:contrast-more:motion-safe:rtl:valid:bef
 
 // @ts-nocheck
 ;({
-  '@media (prefers-reduced-motion: no-preference)': {
-    '@media (prefers-contrast: more)': {
-      '@media (prefers-color-scheme: dark)': {
-        '@media print': {
-          '@media (orientation: portrait)': {
-            '@media (any-pointer: fine)': {
+  '@media (any-pointer: fine)': {
+    '@media (orientation: portrait)': {
+      '@media print': {
+        '@media (prefers-color-scheme: dark)': {
+          '@media (prefers-contrast: more)': {
+            '@media (prefers-reduced-motion: no-preference)': {
               '[dir="rtl"] &:valid::before': {
                 content: 'var(--tw-content)',
                 display: 'block',
@@ -78458,12 +78458,12 @@ tw\`any-pointer-fine:portrait:print:dark:contrast-more:motion-safe:rtl:valid:bef
   },
 })
 ;({
-  '@media (any-pointer: fine)': {
-    '@media (orientation: portrait)': {
-      '@media print': {
-        '@media (prefers-color-scheme: dark)': {
-          '@media (prefers-contrast: more)': {
-            '@media (prefers-reduced-motion: no-preference)': {
+  '@media (prefers-reduced-motion: no-preference)': {
+    '@media (prefers-contrast: more)': {
+      '@media (prefers-color-scheme: dark)': {
+        '@media print': {
+          '@media (orientation: portrait)': {
+            '@media (any-pointer: fine)': {
               '[dir="rtl"] &:valid::before': {
                 content: 'var(--tw-content)',
                 marginTop: '1.25rem',
