@@ -29,8 +29,26 @@ function getGlobalStyles(params: CoreContext): CssObject | undefined {
     extractRuleStyles([rule], { ...params, passChecks: true })
   )
 
-  // @ts-expect-error TOFIX: Fix tuple type error
-  return deepMerge(...preflightStyles, ...globalPluginStyles)
+  return deepMerge(
+    // @ts-expect-error TOFIX: Fix tuple type error
+    ...preflightStyles,
+    ...globalPluginStyles,
+    ...globalKeyframeStyles(params)
+  )
+}
+
+function globalKeyframeStyles(
+  params: CoreContext
+): Array<Record<string, unknown>> {
+  if (params.twinConfig.moveKeyframesToGlobalStyles === false) return []
+  const keyframes = params.theme('keyframes')
+  if (!keyframes) return []
+
+  return Object.entries(keyframes).map(
+    ([name, frames]: [string, Record<string, unknown>]) => ({
+      [`@keyframes ${name}`]: frames,
+    })
+  )
 }
 
 export default getGlobalStyles

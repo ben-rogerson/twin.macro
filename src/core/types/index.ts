@@ -46,6 +46,7 @@ export type TwinConfigAll = {
   config?: string | Partial<TailwindConfig>
   convertStyledDot?: boolean
   moveTwPropToStyled?: boolean
+  moveKeyframesToGlobalStyles?: boolean
   convertHtmlElementToStyled?: boolean
   hasLogColors?: boolean
   stitchesConfig?: undefined
@@ -107,6 +108,7 @@ export type ExtractRuleStyles = {
   | 'tailwindConfig'
   | 'tailwindContext'
   | 'options'
+  | 'twinConfig'
 >
 
 export type TransformDecl = {
