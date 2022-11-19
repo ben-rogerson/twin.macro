@@ -857,6 +857,15 @@ test('nested at-rules', async () => {
   })
 })
 
+test('nested at-rules 2', async () => {
+  const input = 'tw`print:[@page]:underline`'
+  return run(input).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({ '@media print': { '@page': { textDecorationLine: 'underline' } } });
+    `)
+  })
+})
+
 test('multiple variants containing commas throw unsupported error', async () => {
   const input = 'tw`[.this,.that]:first:block`'
   return run(input)

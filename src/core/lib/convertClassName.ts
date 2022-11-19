@@ -10,6 +10,7 @@ const ALL_COMMAS = /,/g
 const ALL_AMPERSANDS = /&/g
 const ENDING_AMP_THEN_WHITESPACE = /&[\s_]*$/
 const ALL_CLASS_DOTS = /(?<!\\)(\.)(?=\w)/g
+const ALL_CLASS_ATS = /(?<!\\)(@)(?=\w)(?!media)/g
 const ALL_WRAPPABLE_PARENT_SELECTORS = /&(?=([^ $)*+,.:>[_~])[\w-])/g
 const BASIC_SELECTOR_TYPES = /^#|^\\.|[^\W_]/
 
@@ -253,6 +254,8 @@ function sassifyArbitraryVariants(
       // Unescaped dots incorrectly add the prefix within arbitrary variants (only when`prefix` is set in tailwind config)
       // eg: tw`[.a]:first:tw-block` -> `.tw-a &:first-child`
       .replace(ALL_CLASS_DOTS, '\\.')
+      // Unescaped ats will throw a conversion error
+      .replace(ALL_CLASS_ATS, '\\@')
 
     const variantList = unwrappedVariant.startsWith('@')
       ? [unwrappedVariant]
