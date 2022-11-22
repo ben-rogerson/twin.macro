@@ -101,7 +101,12 @@ function getMediaQuery({
   assert,
 }: {
   input: string
-  screens: Record<string, any>
+  screens: Record<
+    string,
+    | string
+    | { raw?: string; min?: string; max?: string }
+    | Array<{ raw?: string; min?: string; max?: string }>
+  >
   assert: CoreContext['assert']
 }): string {
   const screen = screens[input]
@@ -126,18 +131,25 @@ function getMediaQuery({
         .join('\n')}`
   )
 
-  var mediaQuery;
+  let mediaQuery
 
-  if (typeof screen === 'string') { mediaQuery= ("@media (min-width: " + screen + ")"); }
-
-  if (typeof screen.raw === 'string') {
-    mediaQuery= ("@media " + (screen.raw));
+  if (typeof screen === 'string') {
+    mediaQuery = '@media (min-width: ' + screen + ')'
+  } else if (!Array.isArray(screen) && typeof screen.raw === 'string') {
+    mediaQuery = '@media ' + screen.raw
+  } else {
+    const string = (Array.isArray(screen) ? screen : [screen])
+      .map(range =>
+        [
+          typeof range.min === 'string' ? `(min-width: ${range.min} )` : null,
+          typeof range.max === 'string' ? `(max-width: ${range.max}) ` : null,
+        ]
+          .filter(Boolean)
+          .join(' and ')
+      )
+      .join(', ')
+    mediaQuery = string ? '@media ' + string : ''
   }
-
-  var string = (Array.isArray(screen) ? screen : [screen]).map(function (range) {
-    return [typeof range.min === 'string' ? ("(min-width: " + (range.min) + ")") : null, typeof range.max === 'string' ? ("(max-width: " + (range.max) + ")") : null].filter(Boolean).join(' and ');
-  }).join(', ');
-  mediaQuery= string ? ("@media " + string) : '';
 
   // const mediaQuery = `@media (min-width: ${String(screen)})`
   return mediaQuery
