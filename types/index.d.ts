@@ -1,4 +1,5 @@
 import { ComponentType } from 'react'
+import { Config as TailwindConfig } from 'tailwindcss'
 
 export interface TwStyle {
   [key: string]: string | number | TwStyle
@@ -57,9 +58,31 @@ declare global {
   }
 }
 
+// Docs: https://github.com/ben-rogerson/twin.macro/blob/master/docs/options.md
+export type Config = {
+  preset?: 'styled-components' | 'emotion' | 'goober' | 'stitches'
+  allowStyleProp?: boolean
+  config?: string | Partial<TailwindConfig>
+  convertHtmlElementToStyled?: boolean
+  convertStyledDot?: boolean
+  dataCsProp?: boolean | 'all'
+  dataTwProp?: boolean | 'all'
+  debug?: boolean
+  disableCsProp?: boolean
+  disableShortCss?: boolean
+  hasLogColors?: boolean
+  includeClassNames?: boolean
+  moveKeyframesToGlobalStyles?: boolean
+  moveTwPropToStyled?: boolean
+  sassyPseudo?: boolean
+  stitchesConfig?: string
+  css?: { import: string; from: string }
+  styled?: { import: string; from: string }
+  global?: { import: string; from: string }
+}
+
 declare const theme: ThemeFn
 declare const screen: ScreenFn
-
 declare const globalStyles: Record<string, unknown>
 
 export { theme, screen, globalStyles }

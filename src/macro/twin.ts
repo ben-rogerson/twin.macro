@@ -51,7 +51,7 @@ function twinMacro(params: MacroParams): void {
 
   const coreContext = createCoreContext({
     isDev,
-    config: params.config as undefined,
+    config: params.config,
     filename: params.state.filename ?? '',
     sourceRoot: params.state.file.opts.sourceRoot ?? '',
     CustomError: MacroError as typeof Error,
