@@ -202,6 +202,7 @@ Twin works with many modern stacks - take a look at these examples to get starte
 - **Preact**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/preact-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/preact-emotion) / [goober](https://github.com/ben-rogerson/twin.examples/tree/master/preact-goober)
 - **Create React App**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/cra-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/cra-emotion)
 - **Vite**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/vite-styled-components-typescript) / [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/vite-emotion-typescript)
+- **Jest / React Testing Library**<br/>[styled-components (ts) / emotion (ts) 🎉](https://github.com/ben-rogerson/twin.examples/tree/master/jest-testing-typescript)
 
 ### Advanced frameworks
 
