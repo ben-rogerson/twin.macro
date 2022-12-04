@@ -27,6 +27,17 @@ function getDirectReplacement({
   }
 }
 
+type ScreenValues =
+  | string
+  | { raw?: string; min?: string; max?: string }
+  | Array<{ raw?: string; min?: string; max?: string }>
+
+type GetMediaQuery = {
+  input: string | string[]
+  screens: Record<string, ScreenValues>
+  assert: CoreContext['assert']
+}
+
 type Expression = {
   newPath: NodePath
   replacement: T.TemplateLiteral | T.ObjectExpression | T.Expression
@@ -95,23 +106,9 @@ function handleDefinition({
   }[type]
 }
 
-function getMediaQuery({
-  input,
-  screens,
-  assert,
-}: {
-  input: string | string[]
-  screens: Record<
-    string,
-    | string
-    | { raw?: string; min?: string; max?: string }
-    | Array<{ raw?: string; min?: string; max?: string }>
-  >
-  assert: CoreContext['assert']
-}): string {
+function getMediaQuery({ input, screens, assert }: GetMediaQuery): string {
   const _input =
     typeof input === 'string' ? input.split(',').map(s => s.trim()) : input
-
   const _screens = _input.map(s => screens[s])
 
   _input.forEach(i => {
@@ -138,19 +135,16 @@ function getMediaQuery({
 
   const mediaQuery = _screens
     .map(screen => {
-      if (typeof screen === 'string') {
-        return '(min-width: ' + screen + ')'
-      }
+      if (typeof screen === 'string') return `(min-width: ${screen})`
 
-      if (!Array.isArray(screen) && typeof screen.raw === 'string') {
+      if (!Array.isArray(screen) && typeof screen.raw === 'string')
         return screen.raw
-      }
 
       return (Array.isArray(screen) ? screen : [screen])
         .map(range =>
           [
-            typeof range.min === 'string' ? `(min-width: ${range.min} )` : null,
-            typeof range.max === 'string' ? `(max-width: ${range.max}) ` : null,
+            typeof range.min === 'string' ? `(min-width: ${range.min})` : null,
+            typeof range.max === 'string' ? `(max-width: ${range.max})` : null,
           ]
             .filter(Boolean)
             .join(' and ')
@@ -159,7 +153,7 @@ function getMediaQuery({
     })
     .join(', ')
 
-  return mediaQuery ? '@media ' + mediaQuery : ''
+  return mediaQuery ? `@media ${mediaQuery}` : ''
 }
 
 function handleScreenFunction({

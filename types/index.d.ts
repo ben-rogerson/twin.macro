@@ -21,7 +21,7 @@ export type ThemeSearchTaggedFn<R> = (
 export type ThemeFn = <T = string>(arg?: string | TemplateStringsArray) => T
 
 export type ScreenFn = <T = string>(
-  screenValue: string | TemplateStringsArray
+  screenValue: string | TemplateStringsArray | string[]
 ) => (styles?: string | TemplateStringsArray | TwStyle | TwStyle[]) => T
 
 export type TwComponent<K extends keyof JSX.IntrinsicElements> = (

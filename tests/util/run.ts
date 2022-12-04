@@ -35,7 +35,7 @@ export async function babelTransform(
   })
   if (!babelOptions) return '' // Type guard
 
-  const twinImports = `import tw, { globalStyles } from './twin.macro'`
+  const twinImports = `import tw, { globalStyles, screen } from './twin.macro'`
   const inputWithImports = `${twinImports};${input}`
   const transformed = await babel.transformAsync(inputWithImports, babelOptions)
   return transformed?.code ?? ''
