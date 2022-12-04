@@ -10,7 +10,11 @@ function getGlobalStyles(params: CoreContext): CssObject | undefined {
     .flatMap(([, candidate]: [unknown, Candidate[]]) => {
       const out = candidate.map(([data, rule]) => {
         if (data.layer !== LAYER_DEFAULTS) return
-        return extractRuleStyles([rule], { ...params, passChecks: true })
+        return extractRuleStyles([rule], {
+          ...params,
+          coreContext: params,
+          passChecks: true,
+        })
       })
       if (out.length === 0) return
 
@@ -26,7 +30,11 @@ function getGlobalStyles(params: CoreContext): CssObject | undefined {
   if (!Array.isArray(preflightRules)) return deepMerge(...globalPluginStyles)
 
   const preflightStyles = preflightRules.flatMap(([, rule]) =>
-    extractRuleStyles([rule], { ...params, passChecks: true })
+    extractRuleStyles([rule], {
+      ...params,
+      coreContext: params,
+      passChecks: true,
+    })
   )
 
   return deepMerge(

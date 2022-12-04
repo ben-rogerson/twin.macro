@@ -100,6 +100,7 @@ export type ExtractRuleStyles = {
   selectorMatchReg?: RegExp
   passChecks?: boolean
   sassyPseudo?: TwinConfigAll['sassyPseudo']
+  coreContext: CoreContext
 } & Pick<
   CoreContext,
   | 'assert'
