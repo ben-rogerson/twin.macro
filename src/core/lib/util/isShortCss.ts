@@ -22,7 +22,7 @@ export default function isShortCss(
   // Normal class
   if (splitAtArbitrary[0].endsWith('-')) return false
 
-  // Important prefix
+  // Important suffix
   if (splitAtArbitrary[0].endsWith('!')) return false
 
   // Arbitrary property

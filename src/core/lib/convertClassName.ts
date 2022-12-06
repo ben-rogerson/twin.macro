@@ -87,12 +87,13 @@ function checkForVariantSupport({
   CoreContext,
   'tailwindConfig' | 'assert'
 >): void {
-  const pieces = splitAtTopLevelOnly(className, tailwindConfig.separator ?? ':')
-  const hasMultipleVariants = pieces.length > 2
-  const hasACommaInVariants = pieces.some(p => {
-    const splits = splitAtTopLevelOnly(p.slice(1, -1), ',')
-    return splits.length > 1
-  })
+  const pieces = [
+    ...splitAtTopLevelOnly(className, tailwindConfig.separator ?? ':'),
+  ]
+  const hasMultipleVariants = pieces.length > 2 // One is the class name
+  const hasACommaInVariants = pieces.some(
+    p => splitAtTopLevelOnly(p.slice(1, -1), ',').length > 1
+  )
   const hasIssue = hasMultipleVariants && hasACommaInVariants
   assert(
     !hasIssue,
