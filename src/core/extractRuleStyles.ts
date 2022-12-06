@@ -11,6 +11,7 @@ import {
   LAYER_DEFAULTS,
   LINEFEED,
 } from './constants'
+import getStyles from './getStyles'
 import type { ExtractRuleStyles, CssObject, TransformDecl } from './types'
 import type * as P from 'postcss'
 
@@ -209,9 +210,29 @@ const ruleTypes = {
       return
     }
 
+    // Add @apply support in plugins
+    if (selector.startsWith('@apply ')) {
+      const { styles, unmatched } = getStyles(
+        selector.slice(7),
+        params.coreContext
+      )
+      params.coreContext.assert(unmatched.length === 0, ({ color }) => {
+        const extraMessage =
+          selector === `@apply ${unmatched.join(' ')}`
+            ? '.'
+            : ` as:\n\`${selector}\``
+        return `${color(
+          `✕ ${color(unmatched.join(' '), 'errorLight')} ${
+            unmatched.length > 1 ? 'classes' : 'class'
+          } can’t be used.\n\nThis is defined in a tailwind plugin${extraMessage}`
+        )}`
+      })
+      return styles
+    }
+
     // Strip keyframes from animate-* classes
     if (
-      selector.startsWith('@keyframes') &&
+      selector.startsWith('@keyframes ') &&
       !params.passChecks &&
       params.twinConfig.moveKeyframesToGlobalStyles
     )
