@@ -77,7 +77,7 @@ export type Config = {
    */
   convertHtmlElementToStyled?: boolean
   /**
-   * Convert styled.[element] to a default syntax.
+   * Convert `styled.[element]` to a default syntax.
    */
   convertStyledDot?: boolean
   /**
@@ -129,11 +129,11 @@ export type Config = {
    */
   css?: { import: string; from: string }
   /**
-   * Overwrite the css prop based import, eg: `import: 'default', from: '@emotion/styled'`.
+   * Overwrite the styled import, eg: `import: 'default', from: '@emotion/styled'`.
    */
   styled?: { import: string; from: string }
   /**
-   * Overwrite the css prop based import, eg: `import: 'Global', from: '@emotion/react'`.
+   * Overwrite the import used for global styles, eg: `import: 'Global', from: '@emotion/react'`.
    */
   global?: { import: string; from: string }
 }
