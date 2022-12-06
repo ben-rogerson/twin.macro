@@ -11,24 +11,22 @@ function tw(...classes: string[]): Record<string, {}> {
 
 // Test @apply in plugins, eg: `{ 'body': { '@apply mt-4 bg-black': {} }}`
 test('it renders the apply method', async () => {
-  const input = ['globalStyles', 'tw`full-screen`', 'tw`focus-ring`'].join('; ')
+  const input = ['globalStyles', 'tw`component`', 'tw`utility`'].join('; ')
   const config: TailwindConfig = {
     content: [''],
     theme: { colors: { primary: '#F07E22' } },
     plugins: [
       plugin(({ addBase, addComponents, addUtilities }): void => {
-        addBase({
-          'html, body': tw('min-h-full', 'selection:text-primary'),
-        })
+        addBase({ 'html, body': tw('selection:text-primary') })
 
         addComponents({
-          '.full-screen': tw(
-            'relative left-[calc(-50vw + 50%)] [.selector]:w-screen'
+          '.component': tw(
+            'content-[arbitrary value] [.arbitrary-variant]:content [content:arbitrary-property]'
           ),
         })
 
         addUtilities({
-          '.focus-ring': tw('disabled:ring-0', 'first:(block mt-4)'),
+          '.utility': tw('first:(block mt-4)'),
         })
       }),
     ],
@@ -196,7 +194,6 @@ test('it renders the apply method', async () => {
           "--tw-backdrop-sepia": "var(--tw-empty,/*!*/ /*!*/)",
         },
         "html, body": {
-          minHeight: "100%",
           "& *::selection": {
             "--tw-text-opacity": "1",
             color: "rgb(240 126 34 / var(--tw-text-opacity))",
@@ -204,17 +201,11 @@ test('it renders the apply method', async () => {
           "::selection": { "--tw-text-opacity": "1", color: "rgb(240 126 34 / var(--tw-text-opacity))" },
         },
       });
-      ({ position: "relative", left: "calc(-50vw + 50%)", "& .selector": { width: "100vw" } });
-      ({
-        ":first-child": { marginTop: "1rem", display: "block" },
-        ":disabled": {
-          "--tw-ring-offset-shadow":
-            "var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)",
-          "--tw-ring-shadow":
-            "var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color)",
-          boxShadow: "var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)",
-        },
+      ({ 
+        "--tw-content": "arbitrary value",
+        content: "arbitrary-property",
+        "& .arbitrary-variant": { "--tw-content": "", content: "var(--tw-content)" }
       });
-    `)
+      ({ ":first-child": { marginTop: "1rem", display: "block" } });`)
   })
 })

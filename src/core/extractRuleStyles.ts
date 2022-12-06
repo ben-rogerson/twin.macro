@@ -216,15 +216,17 @@ const ruleTypes = {
         selector.slice(7),
         params.coreContext
       )
-      params.coreContext.assert(
-        unmatched.length === 0,
-        ({ color }) =>
-          `${color(
-            `✕ ${color(unmatched.join(' '), 'errorLight')} ${
-              unmatched.length > 1 ? 'classes' : 'class'
-            } not found`
-          )}\n\nFound in a tailwind plugin within:\n\`${selector}\``
-      )
+      params.coreContext.assert(unmatched.length === 0, ({ color }) => {
+        const extraMessage =
+          selector === `@apply ${unmatched.join(' ')}`
+            ? '.'
+            : ` as:\n\`${selector}\``
+        return `${color(
+          `✕ ${color(unmatched.join(' '), 'errorLight')} ${
+            unmatched.length > 1 ? 'classes' : 'class'
+          } can’t be used.\n\nThis is defined in a tailwind plugin${extraMessage}`
+        )}`
+      })
       return styles
     }
 
