@@ -83,8 +83,6 @@ const Component = () => (
 )
 ```
 
-[...]
-
 ## Keeping jsx clean
 
 It’s no secret that when tailwind class sets become larger, they obstruct the readability of other jsx props.
