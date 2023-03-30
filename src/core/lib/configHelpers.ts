@@ -46,7 +46,7 @@ function getTailwindConfig({
     ])
 
   const configPath = userTailwindConfig
-    ? resolve(sourceRoot, userTailwindConfig as string)
+    ? resolve(sourceRoot, userTailwindConfig)
     : escalade(baseDirectory, (_, names) => {
         if (names.includes('tailwind.config.js')) {
           return 'tailwind.config.js'

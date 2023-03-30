@@ -137,15 +137,14 @@ function defaultVariants({ config, addVariant }: PluginAPI): void {
   // Light mode
 
   // eslint-disable-next-line unicorn/prefer-spread
-  let [mode, className = '.light'] = ([] as string[]).concat(
+  let [mode, className = '.light'] = ([] as Array<string | boolean>).concat(
     config('lightMode', 'media')
   )
 
-  // @ts-expect-error Source types don't include boolean
   if (mode === false) mode = 'media'
 
   if (mode === 'class') {
-    addVariant('light', `${className} &`)
+    addVariant('light', `${String(className)} &`)
   } else if (mode === 'media') {
     addVariant('light', '@media (prefers-color-scheme: light)')
   }

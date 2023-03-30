@@ -46,7 +46,6 @@ function sassifyValues(
   const transformed: Array<[string, unknown]> = Object.entries(values).map(
     ([k, v]: [string, unknown]) => [
       k,
-      // @ts-expect-error TOFIX: ts doesn't understand isObject
       (isObject(v) && sassifyValues(v)) ||
         (typeof v === 'number' && String(v)) ||
         v,

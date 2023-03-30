@@ -130,9 +130,8 @@ const tasks: Array<
     expandVariantGroups(classes, { assert, tailwindConfig }), // Expand grouped variants to individual classes
 ]
 
-function bigSign(bigIntValue: bigint): number {
-  // @ts-expect-error Unsure of types here
-  return (bigIntValue > 0n) - (bigIntValue < 0n)
+function sortBigSign(bigIntValue: bigint): number {
+  return Number(bigIntValue > 0n) - Number(bigIntValue < 0n)
 }
 
 function getOrderedClassList(
@@ -155,7 +154,7 @@ function getOrderedClassList(
         className,
         classList[index],
       ])
-      .sort(([a], [z]) => bigSign(a - z))
+      .sort(([a], [z]) => sortBigSign(a - z))
   } catch (error: unknown) {
     assert(
       false,
