@@ -33,7 +33,13 @@ function replaceThemeValue(
     themeValue = themeValue.DEFAULT as typeof themeValue
   }
 
-  const replacedValue = value.replace(themeFunction, String(themeValue))
+  // Escape spaces in the value - without this we get an incorrect order
+  // in class groups like this:
+  // tw`w-[calc(100%-theme('spacing.1'))] w-[calc(100%-theme('spacing[0.5]'))]`
+  // theme: { spacing: { 0.5: "calc(.5 * .25rem)", 1: "calc(1 * .25rem)" } }
+  const stringValue = String(themeValue).replace(/\./g, '\\.')
+
+  const replacedValue = value.replace(themeFunction, stringValue)
 
   return replacedValue
 }

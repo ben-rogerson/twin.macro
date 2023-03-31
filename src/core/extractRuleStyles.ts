@@ -18,6 +18,7 @@ import type * as P from 'postcss'
 const ESC_COMMA = /\\2c/g
 const ESC_DIGIT = /\\3(\d)/g
 const UNDERSCORE_ESCAPING = /\\+(_)/g
+const SLASH_DOT_ESCAPING = /\\\./g
 const BACKSLASH_ESCAPING = /\\\\/g
 
 function transformImportant(value: string, params: TransformDecl): string {
@@ -35,6 +36,9 @@ function transformEscaping(value: string): string {
   return (
     value
       .replace(UNDERSCORE_ESCAPING, '$1')
+      // Remove slash dot encoding in values
+      // eg: calc(\\.5 * .25rem)
+      .replace(SLASH_DOT_ESCAPING, '.')
       // Fix the duplicate escaping babel delivers
       .replace(BACKSLASH_ESCAPING, '\\')
   )
