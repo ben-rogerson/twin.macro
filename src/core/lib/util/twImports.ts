@@ -8,7 +8,7 @@ import { resolveMatches as resolveMatchesRaw } from 'tailwindcss/lib/lib/generat
 // @ts-expect-error Types added below
 import { createContext as createContextRaw } from 'tailwindcss/lib/lib/setupContextUtils'
 // @ts-expect-error Types added below
-import { default as defaultTailwindConfigRaw } from 'tailwindcss/stubs/defaultConfig.stub'
+import { default as defaultTailwindConfigRaw } from 'tailwindcss/stubs/config.full'
 // @ts-expect-error Types added below
 import { default as transformThemeValueRaw } from 'tailwindcss/lib/util/transformThemeValue'
 // @ts-expect-error Types added below
