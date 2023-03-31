@@ -93,6 +93,7 @@ test('it renders the apply method', async () => {
           fontFamily:
             'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
           fontFeatureSettings: " normal",
+          fontVariationSettings: " normal",
         },
         body: { margin: "0", lineHeight: "inherit" },
         hr: { height: "0", color: "inherit", borderTopWidth: "1px" },

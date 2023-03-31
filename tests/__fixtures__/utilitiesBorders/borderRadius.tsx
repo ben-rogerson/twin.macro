@@ -81,3 +81,5 @@ tw`rounded-bl-full`
 tw`rounded-[12px]`
 tw`rounded-t-[var(--radius)] rounded-r-[var(--radius)] rounded-b-[var(--radius)] rounded-l-[var(--radius)]`
 tw`rounded-tr-[var(--radius)] rounded-br-[var(--radius)] rounded-bl-[var(--radius)] rounded-tl-[var(--radius)]`
+
+tw`rounded-s rounded-e rounded-ss rounded-es`

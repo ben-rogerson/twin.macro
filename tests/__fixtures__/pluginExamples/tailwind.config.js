@@ -79,37 +79,34 @@ const addVariant = function ({ addVariant }) {
 
 // https://github.com/tailwindlabs/tailwindcss/blob/master/tests/match-variants.test.js
 const matchVariant = ({ matchVariant }) => {
-  matchVariant({
-    potato: flavor => `.potato-${flavor} &`,
-    carrot: flavor => `@media (carrot: ${flavor})`,
-    beetroot: flavor => `@media (beetroot: ${flavor}) { &:beetroot }`,
+  matchVariant('potato', flavor => `.potato-${flavor} &`)
+  matchVariant('carrot', flavor => `@media (carrot: ${flavor})`)
+  matchVariant(
+    'beetroot',
+    flavor => `@media (beetroot: ${flavor}) { &:beetroot }`
+  )
+  matchVariant('tooltip', side => `&${side}`, {
+    values: {
+      bottom: '[data-location="bottom"]',
+      top: '[data-location="top"]',
+    },
   })
-  matchVariant(
-    {
-      tooltip: side => `&${side}`,
+
+  matchVariant('alphabet', side => `&${side}`, {
+    values: {
+      a: '[data-value="a"]',
+      b: '[data-value="b"]',
+      c: '[data-value="c"]',
+      d: '[data-value="d"]',
     },
-    {
-      values: {
-        bottom: '[data-location="bottom"]',
-        top: '[data-location="top"]',
-      },
-    }
+  })
+  matchVariant('test', selector =>
+    selector.split(',').map(selector => `&.${selector} > *`)
   )
-  matchVariant(
-    {
-      alphabet: side => `&${side}`,
+  matchVariant('testmin', value => `@media (min-width: ${value})`, {
+    sort(a, z) {
+      return parseInt(a.value) - parseInt(z.value)
     },
-    {
-      values: {
-        a: '[data-value="a"]',
-        b: '[data-value="b"]',
-        c: '[data-value="c"]',
-        d: '[data-value="d"]',
-      },
-    }
-  )
-  matchVariant({
-    test: selector => selector.split(',').map(selector => `&.${selector} > *`),
   })
 }
 

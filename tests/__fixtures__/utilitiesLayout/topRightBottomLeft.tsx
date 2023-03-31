@@ -597,3 +597,5 @@ tw`-left-full`
 
 tw`top-[3px]`
 tw`inset-[50px]!`
+
+tw`inset-6 inset-x-1 start-4 end-8`

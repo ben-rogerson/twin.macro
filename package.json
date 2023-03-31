@@ -67,7 +67,7 @@
   },
   "homepage": "https://github.com/ben-rogerson/twin.macro#readme",
   "peerDependencies": {
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": ">=3.3.1"
   },
   "dependencies": {
     "@babel/template": "^7.18.10",
@@ -86,7 +86,6 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/container-queries": "^0.1.0",
     "@tailwindcss/forms": "^0.5.3",
-    "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.7",
     "@types/babel-plugin-macros": "^2.8.5",
     "@types/didyoumean": "^1.2.0",
@@ -105,7 +104,6 @@
     "daisyui": "^2.38.0",
     "escalade": "^3.1.1",
     "eslint": "^8.26.0",
-    "eslint-config-import": "^0.13.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-xo": "^0.42.0",
     "eslint-config-xo-react": "^0.27.0",

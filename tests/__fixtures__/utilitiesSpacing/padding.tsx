@@ -254,3 +254,5 @@ tw`pl-[5px]`
 tw`pr-[5px]`
 tw`pb-[5px]`
 tw`p-[var(--app-padding)]`
+
+tw`pt-6 px-1 ps-4 pe-8`

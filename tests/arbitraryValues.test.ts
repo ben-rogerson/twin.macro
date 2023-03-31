@@ -284,3 +284,52 @@ it('can explicitly specify type for percentage and length', async () => {
     `)
   })
 })
+
+it('can use CSS variables as arbitrary modifiers without `var()`', async () => {
+  const input = [
+    'tw`text-sm/[--line-height]`',
+    'tw`bg-red-500/[--opacity]`',
+  ].join('; ')
+
+  return run(input).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({
+        "fontSize": "0.875rem",
+        "lineHeight": "var(--line-height)"
+      });
+      ({
+        "backgroundColor": "rgb(239 68 68 / var(--opacity))"
+      });
+    `)
+  })
+})
+
+it('can use CSS variables as arbitrary values without `var()`', async () => {
+  const input = [
+    'tw`w-[--width-var]`',
+    'tw`bg-[--color-var]`',
+    'tw`bg-[--color-var,#000]`',
+    'tw`bg-[length:--size-var]`',
+    'tw`text-[length:--size-var,12px]`',
+  ].join('; ')
+
+  return run(input).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({
+        "width": "var(--width-var)"
+      });
+      ({
+        "backgroundColor": "var(--color-var)"
+      });
+      ({
+        "backgroundColor": "var(--color-var,#000)"
+      });
+      ({
+        "backgroundSize": "var(--size-var)"
+      });
+      ({
+        "fontSize": "var(--size-var,12px)"
+      });
+    `)
+  })
+})

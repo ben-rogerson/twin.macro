@@ -140,7 +140,7 @@ it('should be possible to read theme values in arbitrary properties (with quotes
   const input = "tw`[color:var(--a)] [--a:theme('colors.blue.500')]`"
   return run(input).then(result => {
     expect(result).toMatchFormattedJavaScript(`
-      ({ color: "var(--a)", "--a": "#3b82f6" });
+      ({ "--a": "#3b82f6", color: "var(--a)" });
     `)
   })
 })

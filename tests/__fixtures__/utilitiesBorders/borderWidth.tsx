@@ -51,3 +51,5 @@ tw`border-l-[length:10px]`
 tw`border-x-[length:10px]`
 tw`border-y-[length:10px]`
 tw`border-[length:10px]`
+
+tw`border-2 border-s-0 border-e-4`

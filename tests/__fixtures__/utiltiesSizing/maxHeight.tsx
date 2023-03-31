@@ -12,6 +12,7 @@ tw`max-h-2`
 tw`max-h-2.5`
 tw`max-h-3`
 tw`max-h-3.5`
+tw`max-h-none`
 tw`max-h-4`
 tw`max-h-5`
 tw`max-h-6`

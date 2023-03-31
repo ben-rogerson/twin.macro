@@ -18,6 +18,15 @@ module.exports = {
           },
         ],
       },
+      fontFamily: {
+        custom: [
+          'Inter var, sans-serif',
+          {
+            fontFeatureSettings: '"cv11", "ss01"',
+            fontVariationSettings: '"opsz" 32',
+          },
+        ],
+      },
       colors: {
         'red-500/fromConfig': '#000',
         electric: ({ opacityVariable, opacityValue }) => {

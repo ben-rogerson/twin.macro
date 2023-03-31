@@ -514,3 +514,5 @@ tw`-mb-[5px]`
 tw`mt-[clamp(30px,100px)]`
 
 tw`!-mt-4`
+
+tw`mt-6 mx-1 ms-4 me-8`

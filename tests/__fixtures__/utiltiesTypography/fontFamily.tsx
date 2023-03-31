@@ -5,6 +5,7 @@ import tw from '../macro'
 tw`font-sans`
 tw`font-serif`
 tw`font-mono`
+tw`font-custom`
 
 tw`font-['Open Sans']`
 

@@ -172,13 +172,13 @@ test('with dots in the name', async () => {
         React.createElement("div", {
           css: {
             "@keyframes zoom-\\\\.5": { to: { transform: "scale(0.5)" } },
-            animation: "zoom-\\\\.5 2s"
+            animation: "zoom-.5 2s"
           },
         }),
         React.createElement("div", {
           css: {
             "@keyframes zoom-1\\\\.5": { to: { transform: "scale(1.5)" } },
-            animation: "zoom-1\\\\.5 2s",
+            animation: "zoom-1.5 2s",
           },
         })
       );
@@ -217,13 +217,13 @@ test('with dots in the name and prefix', async () => {
         React.createElement("div", {
           css: {
             "@keyframes tw-zoom-\\\\.5": { to: { transform: "scale(0.5)" } },
-            animation: "tw-zoom-\\\\.5 2s",
+            animation: "tw-zoom-.5 2s",
           },
         }),
         React.createElement("div", {
           css: {
             "@keyframes tw-zoom-1\\\\.5": { to: { transform: "scale(1.5)" } },
-            animation: "tw-zoom-1\\\\.5 2s",
+            animation: "tw-zoom-1.5 2s",
           },
         })
       );
