@@ -1,4 +1,6 @@
-module.exports = {
+import type { Config } from 'tailwindcss'
+
+export default {
   theme: {
     animation: {
       'zoom-.5': 'zoom-.5 2s',
@@ -50,4 +52,4 @@ module.exports = {
       customFontWeightAsNumber: 800,
     },
   },
-}
+} satisfies Config

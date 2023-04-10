@@ -30,6 +30,11 @@ pluginTester({
           ) && {
             config: path.join(path.dirname(file), 'tailwind.config.js'),
           }),
+          ...(fs.existsSync(
+            path.join(path.dirname(file), 'tailwind.config.ts')
+          ) && {
+            config: path.join(path.dirname(file), 'tailwind.config.ts'),
+          }),
           ...(fs.existsSync(configFile(file)) &&
             JSON.parse(fs.readFileSync(configFile(file), 'utf8'))),
         },

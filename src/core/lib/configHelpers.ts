@@ -1,7 +1,6 @@
 import { resolve, dirname } from 'path'
 import { existsSync } from 'fs'
 import escalade from 'escalade/sync'
-import requireFresh from 'import-fresh'
 import { configTwinValidators, configDefaultsTwin } from './twinConfig'
 import defaultTwinConfig from './defaultTailwindConfig'
 import { resolveTailwindConfig, getAllConfigs } from './util/twImports'
@@ -15,6 +14,7 @@ import type {
   Assert,
   AssertContext,
 } from 'core/types'
+import loadConfig from 'tailwindcss/loadConfig'
 
 type Validator = [(value: unknown) => boolean, string]
 
@@ -76,7 +76,7 @@ function getTailwindConfig({
 
   const configs = [
     // User config
-    ...(configExists ? getAllConfigs(requireFresh(configPath as string)) : []),
+    ...(configExists ? getAllConfigs(loadConfig(configPath as string)) : []),
     // Default config
     ...getAllConfigs(defaultTwinConfig),
   ]
