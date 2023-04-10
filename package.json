@@ -123,7 +123,7 @@
     "lint-staged": "^13.0.3",
     "microbundle": "^0.15.1",
     "nodemon": "^2.0.20",
-    "prettier": "^2.7.1",
+    "prettier": "^2.8.7",
     "react": "^18.2.0",
     "string-similarity": "^4.0.4",
     "styled-components": "^5.3.6",
