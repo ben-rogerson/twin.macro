@@ -21428,6 +21428,31 @@ tw\`font-customFontWeightAsNumber\`
 
 `;
 
+exports[`twin.macro configTS.tsx: configTS.tsx 1`] = `
+
+// @ts-nocheck
+import tw from '../macro'
+
+/**
+ * Test the config matching is working correctly
+ */
+
+tw\`text-purple\`
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// @ts-nocheck
+
+/**
+ * Test the config matching is working correctly
+ */
+;({
+  color: 'custom',
+})
+
+
+`;
+
 exports[`twin.macro container.tsx: container.tsx 1`] = `
 
 // @ts-nocheck
