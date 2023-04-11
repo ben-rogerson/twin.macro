@@ -48,14 +48,12 @@ function getTailwindConfig({
   const configPath = userTailwindConfig
     ? resolve(sourceRoot, userTailwindConfig)
     : escalade(baseDirectory, (_, names) => {
-        if (names.includes('tailwind.config.js')) {
-          return 'tailwind.config.js'
-        }
+        if (names.includes('tailwind.config.js')) return 'tailwind.config.js'
 
-        if (names.includes('tailwind.config.cjs')) {
-          return 'tailwind.config.cjs'
-        }
-      })
+        if (names.includes('tailwind.config.cjs')) return 'tailwind.config.cjs'
+
+        if (names.includes('tailwind.config.ts')) return 'tailwind.config.ts'
+      }) ?? ''
 
   const configExists = Boolean(configPath && existsSync(configPath))
 
@@ -76,7 +74,7 @@ function getTailwindConfig({
 
   const configs = [
     // User config
-    ...(configExists ? getAllConfigs(loadConfig(configPath as string)) : []),
+    ...(configExists ? getAllConfigs(loadConfig(configPath)) : []),
     // Default config
     ...getAllConfigs(defaultTwinConfig),
   ]
