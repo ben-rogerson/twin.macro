@@ -335,12 +335,12 @@ it('should support aria variants', async () => {
         }
       });
       ({
-        '.group/foo[aria-checked="true"] &': {
+        '.group\\\\/foo[aria-checked="true"] &': {
           "textDecorationLine": "underline"
         }
       });
       ({
-        '.peer/foo[aria-checked="true"] ~ &': {
+        '.peer\\\\/foo[aria-checked="true"] ~ &': {
           "textDecorationLine": "underline"
         }
       });
@@ -365,12 +365,12 @@ it('should support aria variants', async () => {
         }
       });
       ({
-        ".group/foo[aria-sort=ascending] &": {
+        ".group\\\\/foo[aria-sort=ascending] &": {
           "textDecorationLine": "underline"
         }
       });
       ({
-        ".peer/foo[aria-sort=ascending] ~ &": {
+        ".peer\\\\/foo[aria-sort=ascending] ~ &": {
           "textDecorationLine": "underline"
         }
       });
@@ -425,12 +425,12 @@ it('should support data variants', async () => {
         }
       });
       ({
-        '.group/foo[data-ui~="checked"] &': {
+        '.group\\\\/foo[data-ui~="checked"] &': {
           "textDecorationLine": "underline"
         }
       });
       ({
-        '.peer/foo[data-ui~="checked"] ~ &': {
+        '.peer\\\\/foo[data-ui~="checked"] ~ &': {
           "textDecorationLine": "underline"
         }
       });
@@ -455,12 +455,12 @@ it('should support data variants', async () => {
         }
       });
       ({
-        ".group/foo[data-position=top] &": {
+        ".group\\\\/foo[data-position=top] &": {
           "textDecorationLine": "underline"
         }
       });
       ({
-        ".peer/foo[data-position=top] ~ &": {
+        ".peer\\\\/foo[data-position=top] ~ &": {
           "textDecorationLine": "underline"
         }
       });
@@ -602,37 +602,37 @@ it('should be possible to use modifiers and arbitrary groups', async () => {
         }
       });
       ({
-        ".group/foo:hover &": {
+        ".group\\\\/foo:hover &": {
           "textDecorationLine": "underline"
         }
       });
       ({
-        ".group/foo:focus &": {
+        ".group\\\\/foo:focus &": {
           "textDecorationLine": "underline"
         }
       });
       ({
-        ".group/foo:hover &": {
+        ".group\\\\/foo:hover &": {
           "textDecorationLine": "underline"
         }
       });
       ({
-        ".group/foo[data-open] &": {
+        ".group\\\\/foo[data-open] &": {
           "textDecorationLine": "underline"
         }
       });
       ({
-        ".group/foo[data-open] &": {
+        ".group\\\\/foo[data-open] &": {
           "textDecorationLine": "underline"
         }
       });
       ({
-        ".in-foo .group/foo &": {
+        ".in-foo .group\\\\/foo &": {
           "textDecorationLine": "underline"
         }
       });
       ({
-        ".group/foo.in-foo &": {
+        ".group\\\\/foo.in-foo &": {
           "textDecorationLine": "underline"
         }
       });
@@ -707,37 +707,37 @@ it('should be possible to use modifiers and arbitrary peers', async () => {
         }
       });
       ({
-        ".peer/foo:hover ~ &": {
+        ".peer\\\\/foo:hover ~ &": {
           "textDecorationLine": "underline"
         }
       });
       ({
-        ".peer/foo:focus ~ &": {
+        ".peer\\\\/foo:focus ~ &": {
           "textDecorationLine": "underline"
         }
       });
       ({
-        ".peer/foo:hover ~ &": {
+        ".peer\\\\/foo:hover ~ &": {
           "textDecorationLine": "underline"
         }
       });
       ({
-        ".peer/foo[data-open] ~ &": {
+        ".peer\\\\/foo[data-open] ~ &": {
           "textDecorationLine": "underline"
         }
       });
       ({
-        ".peer/foo[data-open] ~ &": {
+        ".peer\\\\/foo[data-open] ~ &": {
           "textDecorationLine": "underline"
         }
       });
       ({
-        ".in-foo .peer/foo ~ &": {
+        ".in-foo .peer\\\\/foo ~ &": {
           "textDecorationLine": "underline"
         }
       });
       ({
-        ".peer/foo.in-foo ~ &": {
+        ".peer\\\\/foo.in-foo ~ &": {
           "textDecorationLine": "underline"
         }
       });
