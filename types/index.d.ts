@@ -63,7 +63,7 @@ export type Config = {
   /**
    * The css-in-js library behind the scenes, default is `emotion`.
    */
-  preset?: 'styled-components' | 'emotion' | 'goober' | 'stitches'
+  preset?: 'styled-components' | 'emotion' | 'goober' | 'stitches' | 'solid'
   /**
    * Visit `style={...}` props/attributes for classes.
    */
