@@ -34,7 +34,7 @@ type MoveTwPropToStyled = {
 function moveTwPropToStyled(params: MoveTwPropToStyled): void {
   const { jsxPath, astStyles } = params
 
-  makeStyledComponent({ ...params, secondArg: astStyles })
+  makeStyledComponent({ ...params, secondArg: astStyles, fromProp: 'tw' })
 
   // Remove the tw attribute
   const tagAttributes = jsxPath.node.attributes

@@ -59,6 +59,7 @@ function convertHtmlElementToStyled(
     ...params,
     jsxPath,
     secondArg: t.objectExpression([]),
+    fromProp: 'css',
   })
 }
 

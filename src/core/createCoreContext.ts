@@ -18,10 +18,14 @@ import type {
 
 function packageCheck(
   packageToCheck: PossiblePresets,
-  params: GetPackageConfig
+  params: GetPackageConfig,
+  hasNoFallback?: boolean
 ): boolean {
+  if (params.config && params.config.preset === packageToCheck) return true
+
+  if (hasNoFallback) return false
+
   return (
-    (params.config && params.config.preset === packageToCheck) ||
     params.styledImport.from.includes(packageToCheck) ||
     params.cssImport.from.includes(packageToCheck)
   )
@@ -36,8 +40,9 @@ type GetPackageConfig = {
 function getPackageUsed(params: GetPackageConfig): GetPackageUsed {
   return {
     isEmotion: packageCheck('emotion', params),
-    isStyledComponents: packageCheck('styled-components', params),
+    isStyledComponents: packageCheck('styled-components', params, true),
     isGoober: packageCheck('goober', params),
+    isSolid: packageCheck('solid', params),
     isStitches: packageCheck('stitches', params),
   }
 }

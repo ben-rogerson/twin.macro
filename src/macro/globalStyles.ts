@@ -186,7 +186,7 @@ function handleGlobalStylesJsx(params: AdditionalHandlerParameters): void {
     state.isImportingCss = !state.existingCssIdentifier
   }
 
-  if (coreContext.packageUsed.isGoober) {
+  if (coreContext.packageUsed.isGoober || coreContext.packageUsed.isSolid) {
     const declaration = getGlobalDeclarationTte(declarationData)
     program.unshiftContainer('body', declaration)
     path.replaceWith(t.jSXIdentifier(globalUid.name))

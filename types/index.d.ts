@@ -77,9 +77,13 @@ export type Config = {
    */
   convertHtmlElementToStyled?: boolean
   /**
-   * Convert `styled.[element]` to a default syntax.
+   * Convert `styled.[element]``` to `styled('element', ({}))`.
    */
-  convertStyledDot?: boolean
+  convertStyledDotToParam?: boolean
+  /**
+   * Convert `styled.[element]``` to `styled('element')({})`.
+   */
+  convertStyledDotToFunction?: boolean
   /**
    * Add a prop to your elements in development so you can see the original cs prop classes, eg: `<div data-cs="maxWidth[1em]" />`.
    */

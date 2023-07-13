@@ -44,7 +44,8 @@ export type TwinConfigAll = {
   disableCsProp: boolean
   disableShortCss: boolean
   config?: string | Partial<TailwindConfig>
-  convertStyledDot?: boolean
+  convertStyledDotToParam?: boolean
+  convertStyledDotToFunction?: boolean
   moveTwPropToStyled?: boolean
   moveKeyframesToGlobalStyles?: boolean
   convertHtmlElementToStyled?: boolean
@@ -133,6 +134,7 @@ export type GetPackageUsed = {
   isStyledComponents: boolean
   isGoober: boolean
   isStitches: boolean
+  isSolid: boolean
 }
 
 export type TailwindMatchOptions = {

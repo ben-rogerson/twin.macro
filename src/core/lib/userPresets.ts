@@ -29,6 +29,11 @@ const userPresets = {
     css: { import: 'css', from: 'stitches.config' },
     global: { import: 'global', from: 'stitches.config' },
   },
+  solid: {
+    styled: { import: 'styled', from: 'solid-styled-components' },
+    css: { import: 'css', from: 'solid-styled-components' },
+    global: { import: 'createGlobalStyles', from: 'solid-styled-components' },
+  },
 }
 
 export default userPresets
