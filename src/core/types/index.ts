@@ -49,7 +49,7 @@ export type TwinConfigAll = {
   moveKeyframesToGlobalStyles?: boolean
   convertHtmlElementToStyled?: boolean
   hasLogColors?: boolean
-  stitchesConfig?: undefined
+  stitchesConfig?: string
 } & PresetConfig
 
 export type Candidate = [
