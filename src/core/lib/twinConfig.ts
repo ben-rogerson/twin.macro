@@ -25,6 +25,11 @@ const TWIN_CONFIG_DEFAULTS = {
 } as const
 
 // Defaults for different css-in-js libraries
+
+const configDefaultsStyledComponents = {
+  sassyPseudo: true, // Sets selectors like hover to &:hover
+} as const
+
 const configDefaultsGoober = {
   sassyPseudo: true, // Sets selectors like hover to &:hover
 } as const
@@ -47,6 +52,7 @@ const configDefaultsStitches = {
 
 function configDefaultsTwin({
   isSolid,
+  isStyledComponents,
   isGoober,
   isStitches,
   isDev,
@@ -54,6 +60,7 @@ function configDefaultsTwin({
   return {
     ...TWIN_CONFIG_DEFAULTS,
     ...(isSolid && configDefaultsSolid),
+    ...(isStyledComponents && configDefaultsStyledComponents),
     ...(isGoober && configDefaultsGoober),
     ...(isStitches && configDefaultsStitches),
     dataTwProp: isDev,
