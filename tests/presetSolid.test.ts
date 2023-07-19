@@ -14,11 +14,12 @@ test('tw prop', async () => {
 })
 
 test('css prop', async () => {
-  const input = html`<div css="{{}}" />`
+  const input = '<div css={[tw`block`]} />'
   return run(input, undefined, twinConfig).then(result => {
     expect(result).toMatchFormattedJavaScript(`
       import { styled as _styled } from "solid-styled-components";
-      React.createElement("div", { css: "{{}}" });
+      const _TwComponent = _styled("div")([{ display: "block" }]);
+      React.createElement(_TwComponent, null);
     `)
   })
 })

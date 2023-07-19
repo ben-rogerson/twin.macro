@@ -437,11 +437,12 @@ function createStyledPropsForTw({
   secondArg,
   constName,
 }: CreateStyledProps): T.VariableDeclaration {
-  const identifier = t.callExpression(stateStyled, [firstArg])
-  const styledProps = [
-    t.variableDeclarator(constName, t.callExpression(identifier, [secondArg])),
+  const callee = t.callExpression(stateStyled, [firstArg])
+  const declarations = [
+    t.variableDeclarator(constName, t.callExpression(callee, [secondArg])),
   ]
-  return t.variableDeclaration('const', styledProps)
+
+  return t.variableDeclaration('const', declarations)
 }
 
 function createStyledPropsForCss(
@@ -463,9 +464,7 @@ function createStyledPropsForCss(
   const expression = cssPropValue?.node?.expression
   if (!expression || expression.type === 'JSXEmptyExpression') return
 
-  args.jsxPath.node.attributes = args.jsxPath.node.attributes.filter(
-    p => p === cssPropAttribute?.node
-  )
+  cssPropAttribute?.remove()
 
   return createStyledPropsForTw({ ...args, secondArg: expression })
 }
@@ -498,9 +497,9 @@ function makeStyledComponent({
         : createStyledPropsForCss(params)
   } else {
     const args = [firstArg, secondArg].filter(Boolean)
-    const identifier = t.callExpression(stateStyled, args)
-    const styledProps = [t.variableDeclarator(constName, identifier)]
-    styledDefinition = t.variableDeclaration('const', styledProps)
+    const init = t.callExpression(stateStyled, args)
+    const declarations = [t.variableDeclarator(constName, init)]
+    styledDefinition = t.variableDeclaration('const', declarations)
   }
 
   if (!styledDefinition) return
