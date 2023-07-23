@@ -71,6 +71,9 @@ const sassifySelectorTasks: SassifySelectorTasks = [
   // Fix the spotty `:root` support in emotion/styled-components
   (selector): string => selector.replace(SELECTOR_ROOT, '*:root'),
 
+  // Escape selectors containing forward slashes, eg: group-hover/link:bg-black
+  (selector): string => selector.replace(/\//g, '\\/'),
+
   (selector): string => selector.trim(),
 ]
 
