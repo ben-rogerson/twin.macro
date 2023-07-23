@@ -42,12 +42,14 @@ function addStyledImport({
   })
 }
 
-function moveDotElementToParam({
+function moveDotElement({
   path,
   t,
+  moveToParam = true,
 }: {
   path: NodePath
   t: typeof T
+  moveToParam: boolean
 }): void {
   if (path.parent.type !== 'MemberExpression') return
 
@@ -62,11 +64,20 @@ function moveDotElementToParam({
     | T.SpreadElement
     | T.JSXNamespacedName
     | T.ArgumentPlaceholder
-  const args = [t.stringLiteral(styledName), styledArgs].filter(Boolean)
-  const replacement = t.callExpression(
-    (path as NodePath<T.Expression>).node,
-    args
-  )
+    | T.ArrowFunctionExpression
+
+  let replacement
+  if (moveToParam) {
+    // `styled('div', {})`
+    const args = [t.stringLiteral(styledName), styledArgs].filter(Boolean)
+    replacement = t.callExpression((path as NodePath<T.Expression>).node, args)
+  } else {
+    // `styled('div')({})`
+    const callee = t.callExpression((path as NodePath<T.Expression>).node, [
+      t.stringLiteral(styledName),
+    ])
+    replacement = t.expressionStatement(t.callExpression(callee, [styledArgs]))
+  }
 
   replaceWithLocation(parentCallExpression, replacement)
 }
@@ -76,18 +87,26 @@ function handleStyledFunction({
   t,
   coreContext,
 }: AdditionalHandlerParameters): void {
-  if (!coreContext.twinConfig.convertStyledDot) return
+  if (
+    !coreContext.twinConfig.convertStyledDotToParam &&
+    !coreContext.twinConfig.convertStyledDotToFunction
+  )
+    return
   if (isEmpty(references)) return
 
   const defaultRefs = references.default || []
   const styledRefs = references.styled || []
 
-  ;[...defaultRefs, ...styledRefs]
-    .filter(Boolean)
-    .forEach((path: NodePath): void => {
-      // convert tw.div`` & styled.div`` to styled('div', {})
-      moveDotElementToParam({ path, t })
+  const refs = [...defaultRefs, ...styledRefs].filter(Boolean)
+
+  refs.forEach((path: NodePath): void => {
+    // convert tw.div`` & styled.div`` to styled('div', {}) / styled('div')({})
+    moveDotElement({
+      path,
+      t,
+      moveToParam: coreContext.twinConfig.convertStyledDotToParam ?? true,
     })
+  })
 }
 
 export { updateStyledReferences, addStyledImport, handleStyledFunction }

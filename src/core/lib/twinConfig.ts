@@ -5,7 +5,8 @@ const TWIN_CONFIG_DEFAULTS = {
   autoCssProp: false,
   config: undefined,
   convertHtmlElementToStyled: false,
-  convertStyledDot: false,
+  convertStyledDotToParam: false,
+  convertStyledDotToFunction: false,
   css: { import: '', from: '' },
   dataCsProp: false,
   dataTwProp: false,
@@ -21,26 +22,38 @@ const TWIN_CONFIG_DEFAULTS = {
   sassyPseudo: false,
   stitchesConfig: undefined,
   styled: { import: '', from: '' },
-}
+} as const
 
 // Defaults for different css-in-js libraries
-const configDefaultsGoober = { sassyPseudo: true } // Sets selectors like hover to &:hover
+const configDefaultsGoober = {
+  sassyPseudo: true, // Sets selectors like hover to &:hover
+} as const
+
+const configDefaultsSolid = {
+  sassyPseudo: true, // Sets selectors like hover to &:hover
+  moveTwPropToStyled: true, // Move the tw prop to a styled definition
+  convertHtmlElementToStyled: true, // Add a styled definition on css prop elements
+  convertStyledDotToFunction: true, // Convert styled.[element] to a default syntax
+} as const
+
 const configDefaultsStitches = {
   sassyPseudo: true, // Sets selectors like hover to &:hover
-  convertStyledDot: true, // Convert styled.[element] to a default syntax
+  convertStyledDotToParam: true, // Convert styled.[element] to a default syntax
   moveTwPropToStyled: true, // Move the tw prop to a styled definition
-  convertHtmlElementToStyled: true, // For packages like stitches, add a styled definition on css prop elements
+  convertHtmlElementToStyled: true, // Add a styled definition on css prop elements
   stitchesConfig: undefined, // Set the path to the stitches config
   moveKeyframesToGlobalStyles: true, // Stitches doesn't support inline @keyframes
-}
+} as const
 
 function configDefaultsTwin({
+  isSolid,
   isGoober,
   isStitches,
   isDev,
 }: GetPackageUsed & { isDev: boolean }): TwinConfigAll {
   return {
     ...TWIN_CONFIG_DEFAULTS,
+    ...(isSolid && configDefaultsSolid),
     ...(isGoober && configDefaultsGoober),
     ...(isStitches && configDefaultsStitches),
     dataTwProp: isDev,
@@ -52,7 +65,13 @@ function isBoolean(value: unknown): boolean {
   return typeof value === 'boolean'
 }
 
-const allowedPresets = ['styled-components', 'emotion', 'goober', 'stitches']
+const allowedPresets = [
+  'styled-components',
+  'emotion',
+  'goober',
+  'stitches',
+  'solid',
+]
 
 type ConfigTwinValidators = Record<
   keyof typeof TWIN_CONFIG_DEFAULTS & 'disableColorVariables',
@@ -76,6 +95,10 @@ const configTwinValidators: ConfigTwinValidators = {
     (value: unknown): boolean => !value,
     'The “autoCssProp” feature has been removed from twin.macro@2.8.2+\nThis means the css prop must be added by styled-components instead.\nSetup info at https://twinredirect.page.link/auto-css-prop\n\nRemove the “autoCssProp” item from your config to avoid this message.',
   ],
+  convertStyledDot: [
+    (value: unknown): boolean => !value,
+    'The “convertStyledDot” feature was changed to “convertStyledDotParam”.',
+  ],
   disableColorVariables: [
     (value: unknown): boolean => !value,
     'The disableColorVariables feature has been removed from twin.macro@3+\n\nRemove the disableColorVariables item from your config to avoid this message.',
@@ -97,9 +120,13 @@ const configTwinValidators: ConfigTwinValidators = {
     isBoolean,
     'The config “disableCsProp” can only be a boolean',
   ],
-  convertStyledDot: [
+  convertStyledDotToParam: [
     isBoolean,
-    'The config “convertStyledDot” can only be a boolean',
+    'The config “convertStyledDotToParam” can only be a boolean',
+  ],
+  convertStyledDotToFunction: [
+    isBoolean,
+    'The config “convertStyledDotToFunction” can only be a boolean',
   ],
   moveTwPropToStyled: [
     isBoolean,

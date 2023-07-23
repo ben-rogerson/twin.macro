@@ -260,7 +260,7 @@ function parseTte(
 
 function replaceWithLocation<EmptyArray>(
   path: NodePath,
-  replacement: NodePath | T.Expression
+  replacement: NodePath | T.Expression | T.ExpressionStatement
 ): [NodePath] | EmptyArray[] {
   const { loc } = path.node
   const newPaths = replacement ? path.replaceWith(replacement) : []
@@ -418,6 +418,55 @@ type MakeStyledComponent = {
   program: NodePath<T.Program>
   state: State
   coreContext: CoreContext
+  fromProp: 'tw' | 'css'
+}
+
+type CreateStyledProps = Pick<
+  MakeStyledComponent,
+  'jsxPath' | 't' | 'secondArg'
+> & {
+  stateStyled: T.Identifier
+  constName: T.Identifier
+  firstArg: T.MemberExpression | T.Identifier | T.StringLiteral
+}
+
+function createStyledPropsForTw({
+  t,
+  stateStyled,
+  firstArg,
+  secondArg,
+  constName,
+}: CreateStyledProps): T.VariableDeclaration {
+  const callee = t.callExpression(stateStyled, [firstArg])
+  const declarations = [
+    t.variableDeclarator(constName, t.callExpression(callee, [secondArg])),
+  ]
+
+  return t.variableDeclaration('const', declarations)
+}
+
+function createStyledPropsForCss(
+  args: CreateStyledProps
+): T.VariableDeclaration | undefined {
+  const cssPropAttribute = args.jsxPath
+    .get('attributes')
+    .find(
+      p =>
+        p.isJSXAttribute() &&
+        p.get('name').isJSXIdentifier() &&
+        p.get('name')?.node.name === 'css'
+    )
+
+  const cssPropValue = cssPropAttribute?.get(
+    'value'
+  ) as NodePath<T.JSXExpressionContainer>
+
+  const expression = cssPropValue?.node?.expression
+  if (!expression || expression.type === 'JSXEmptyExpression') return
+
+  cssPropAttribute?.remove()
+
+  return createStyledPropsForTw({ ...args, secondArg: expression })
 }
 
 function makeStyledComponent({
@@ -427,6 +476,7 @@ function makeStyledComponent({
   program,
   state,
   coreContext,
+  fromProp,
 }: MakeStyledComponent): void {
   const constName = program.scope.generateUidIdentifier('TwComponent')
 
@@ -436,11 +486,23 @@ function makeStyledComponent({
   }
 
   const firstArg = getFirstStyledArgument(jsxPath, t, coreContext.assert)
+  let styledDefinition = null
+  const stateStyled: T.Identifier = state.styledIdentifier
 
-  const args = [firstArg, secondArg].filter(Boolean)
-  const identifier = t.callExpression(state.styledIdentifier, args)
-  const styledProps = [t.variableDeclarator(constName, identifier)]
-  const styledDefinition = t.variableDeclaration('const', styledProps)
+  if (coreContext.packageUsed.isSolid) {
+    const params = { jsxPath, t, stateStyled, firstArg, secondArg, constName }
+    styledDefinition =
+      fromProp === 'tw'
+        ? createStyledPropsForTw(params)
+        : createStyledPropsForCss(params)
+  } else {
+    const args = [firstArg, secondArg].filter(Boolean)
+    const init = t.callExpression(stateStyled, args)
+    const declarations = [t.variableDeclarator(constName, init)]
+    styledDefinition = t.variableDeclaration('const', declarations)
+  }
+
+  if (!styledDefinition) return
 
   const rootParentPath = jsxPath.findParent(p =>
     p.parentPath ? p.parentPath.isProgram() : false

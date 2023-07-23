@@ -49,7 +49,7 @@ interface ContainerProps {
   hasBg?: string
 }
 
-const Container = styled.div(({ hasBg }: ContainerProps) => [
+const Container = styled.div<ContainerProps>(({ hasBg }) => [
   tw`flex w-full`, // Add base styles first
   hasBg && tw`bg-black`, // Then add conditional styles
 ])
@@ -342,6 +342,7 @@ Use a theme value to grab a value from your tailwind.config:
 
 ```js
 tw.div`[color:theme('colors.gray.300')]`
+tw.div`[margin:theme('spacing[2.5]')]`
 tw.div`[box-shadow: 5px 10px theme('colors.black')]`
 ```
 
