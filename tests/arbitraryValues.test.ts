@@ -229,6 +229,18 @@ it('should allow using the DEFAULT key when using theme', async () => {
   })
 })
 
+it('should allow dots instead of square brackets for decimal point values', async () => {
+  const input = 'tw`ml-[theme(spacing.0.5)]`'
+
+  return run(input).then(result => {
+    expect(result).toMatchFormattedJavaScript(`
+      ({
+        "marginLeft": "0.125rem"
+      });
+    `)
+  })
+})
+
 it('should not output unparsable arbitrary CSS values', async () => {
   // eslint-disable-next-line no-template-curly-in-string
   const input = 'tw`w-[${sizes.width}]`'

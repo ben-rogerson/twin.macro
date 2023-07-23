@@ -18,7 +18,16 @@ function createTheme(
     defaultValue?: string,
     options = {}
   ): number | boolean | Record<string, unknown> {
-    const [pathRoot, ...subPaths] = toPath(path)
+    let [pathRoot, ...subPaths] = toPath(path)
+
+    // Retain dots in spacing values, eg: `ml-[theme(spacing.0.5)]`
+    if (
+      pathRoot === 'spacing' &&
+      subPaths.length === 2 &&
+      subPaths.every(x => !Number.isNaN(Number(x)))
+    ) {
+      subPaths = [subPaths.join('.')]
+    }
 
     const value = getConfigValue(
       path ? ['theme', pathRoot, ...subPaths] : ['theme'],
