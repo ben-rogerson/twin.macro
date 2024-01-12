@@ -26,3 +26,6 @@ export const ComposedLink2 = styled(Link)``
 
 export const cssProperty = <div css={tw`bg-red-100`} />
 export const csProperty = <div cs="maxWidth[100%] height[calc(100vh - 1em)]" />
+
+export const asProperty = <Link as="button" />
+export const asProperty2 = <Container as="button" />
