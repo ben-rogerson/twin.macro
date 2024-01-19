@@ -52,3 +52,7 @@ const twProperty = (
 )
 
 const csProperty = <div cs="maxWidth[100%] height[calc(100vh - 1em)]" />
+const asProperty = <Button as="div" />
+
+// @ts-expect-error basic element doesn't provide as prop
+const asPropertyError = <p as="div" />

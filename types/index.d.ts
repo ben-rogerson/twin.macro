@@ -1,4 +1,4 @@
-import { ComponentType } from 'react'
+import { ComponentType, ElementType } from 'react'
 import { Config as TailwindConfig } from 'tailwindcss'
 
 export interface TwStyle {
@@ -26,7 +26,7 @@ export type ScreenFn = <T = string>(
 ) => (styles?: string | TemplateStringsArray | TwStyle | TwStyle[]) => T
 
 export type TwComponent<K extends keyof JSX.IntrinsicElements> = (
-  props: JSX.IntrinsicElements[K]
+  props: JSX.IntrinsicElements[K] & { as?: ElementType }
 ) => JSX.Element
 
 export type TwComponentMap = {
