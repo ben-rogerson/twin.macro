@@ -70,7 +70,7 @@
     "tailwindcss": ">=3.3.1"
   },
   "dependencies": {
-    "@babel/template": "^7.18.10",
+    "@babel/template": "^7.22.15",
     "babel-plugin-macros": "^3.1.0",
     "chalk": "4.1.2",
     "lodash.get": "^4.4.2",
