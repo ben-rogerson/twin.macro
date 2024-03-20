@@ -201,20 +201,20 @@ Twin works with many modern stacks - take a look at these examples to get starte
 - **Webpack**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/webpack-styled-components-typescript) / [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/webpack-emotion-typescript)
 - **Preact**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/preact-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/preact-emotion) / [goober](https://github.com/ben-rogerson/twin.examples/tree/master/preact-goober)
 - **Create React App**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/cra-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/cra-emotion)
-- **Vite**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/vite-styled-components-typescript) / [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/vite-emotion-typescript) / [solid (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/vite-solid-typescript) 🎉
+- **Vite**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/vite-styled-components-typescript) / [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/vite-emotion-typescript) / [solid (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/vite-solid-typescript)
 - **Jest / React Testing Library**<br/>[styled-components (ts) / emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/jest-testing-typescript)
 
 ### Advanced frameworks
 
 - **Next.js**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components) / [styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/next-styled-components-typescript) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion) / [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion-typescript) / [stitches (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/next-stitches-typescript)
-- **T3 App**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/t3-styled-components-typescript) 🎉 /
-  [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/t3-emotion-typescript) 🎉
+- **T3 App**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/t3-styled-components-typescript) /
+  [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/t3-emotion-typescript)
 - **Blitz.js**<br/>[emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/blitz-emotion-typescript)
 - **Gatsby**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-styled-components) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-emotion)
 
 ### Component libraries
 
-- **Storybook**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-styled-components-typescript) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-emotion) / [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-emotion-typescript) 🎉
+- **Storybook**<br/>[styled-components (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-styled-components-typescript) / [emotion](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-emotion) / [emotion (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/storybook-emotion-typescript)
 - **yarn/npm workspaces + Next.js + shared ui components**<br/>[styled-components](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-styled-components)
 - **Yarn workspaces + Rollup**<br/>[emotion](https://github.com/ben-rogerson/twin.examples/tree/master/component-library-emotion)
 - [**HeadlessUI** (ts)](https://github.com/ben-rogerson/twin.examples/tree/master/headlessui-typescript)
