@@ -75,7 +75,7 @@
     "chalk": "4.1.2",
     "lodash.get": "^4.4.2",
     "lodash.merge": "^4.6.2",
-    "postcss-selector-parser": "^6.0.13"
+    "postcss-selector-parser": "^6.0.15"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
