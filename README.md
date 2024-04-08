@@ -237,3 +237,7 @@ Twin works with many modern stacks - take a look at these examples to get starte
 ## Special thanks
 
 This project stemmed from [babel-plugin-tailwind-components](https://github.com/bradlc/babel-plugin-tailwind-components) so a big shout out goes to [Brad Cornes](https://github.com/bradlc) for the amazing work he produced. Styling with tailwind.macro has been such a pleasure.
+
+---
+
+[Consider donating some 🍕 if you enjoy!](https://www.buymeacoffee.com/benrogerson)
