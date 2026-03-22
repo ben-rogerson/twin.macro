@@ -116,7 +116,7 @@ export default () => (
 )
 ```
 
-You could also use `defaultProps` but it’s [going to be deprecated at some stage](https://twitter.com/dan_abramov/status/1133878326358171650), which is a shame because it’s a really nice way to add the className:
+You could also use `defaultProps` but it’s [deprecated in React 18.3+](https://react.dev/blog/2024/04/25/react-19-upgrade-guide#removed-deprecated-react-apis) and removed in React 19:
 
 ```js
 import tw from 'twin.macro'
